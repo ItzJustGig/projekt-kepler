@@ -1836,7 +1836,7 @@ public class BattleSystem : MonoBehaviour
                                     trueDmg += trueDmg * a.num;
                                 }
                             }
-                            bool isDot = false;
+                            
                             foreach (Dotdmg dot in move.dot)
                             {
                                 Dotdmg dotdmg = dot.ReturnDOT();
@@ -1844,34 +1844,42 @@ public class BattleSystem : MonoBehaviour
                                 {
                                     case Dotdmg.DmgType.PHYSICAL:
                                         dotdmg.Setup(phyDmg, isCrit);
+                                        phyDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.MAGICAL:
                                         dotdmg.Setup(magicDmg);
+                                        magicDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.TRUE:
                                         dotdmg.Setup(trueDmg);
+                                        trueDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.SANITY:
                                         dotdmg.Setup(sanityDmg);
+                                        sanityDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEAL:
                                         dotdmg.Setup(heal);
+                                        heal = 0;
                                         user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALMANA:
                                         dotdmg.Setup(healMana);
+                                        healMana = 0;
                                         user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALSTAMINA:
                                         dotdmg.Setup(healStamina);
+                                        healStamina = 0;
                                         user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALSANITY:
                                         dotdmg.Setup(healSanity);
+                                        healSanity = 0;
                                         user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.SHIELD:
@@ -1881,8 +1889,6 @@ public class BattleSystem : MonoBehaviour
                                     default:
                                         continue;
                                 }
-
-                                isDot = true;
                             }
 
                             BattleHud userHud;
@@ -1899,213 +1905,212 @@ public class BattleSystem : MonoBehaviour
                                 enemyHud = enemyHUD;
                             }
 
-                            if (!isDot)
+
+                            if (phyDmg > 0)
                             {
-                                if (phyDmg > 0)
-                                {
-                                    user.phyDmgDealt += phyDmg;
-                                    dmgMitigated = (float)((statsTarget.dmgResis - (statsTarget.dmgResis * statsUser.armourPen)) * 0.18);
-                                    phyDmg -= dmgMitigated;
-                                    target.phyDmgMitigated += dmgMitigated;
-                                }
+                                user.phyDmgDealt += phyDmg;
+                                dmgMitigated = (float)((statsTarget.dmgResis - (statsTarget.dmgResis * statsUser.armourPen)) * 0.18);
+                                phyDmg -= dmgMitigated;
+                                target.phyDmgMitigated += dmgMitigated;
+                            }
 
-                                if (statsUser.lifesteal > 0)
-                                    heal += phyDmg * statsUser.lifesteal;
+                            if (statsUser.lifesteal > 0)
+                                heal += phyDmg * statsUser.lifesteal;
 
-                                if (magicDmg > 0)
-                                {
-                                    user.magicDmgDealt += magicDmg;
-                                    dmgMitigated = (float)(statsTarget.magicResis * 0.12);
-                                    magicDmg -= dmgMitigated;
-                                    target.magicDmgMitigated += dmgMitigated;
-                                }
+                            if (magicDmg > 0)
+                            {
+                                user.magicDmgDealt += magicDmg;
+                                dmgMitigated = (float)(statsTarget.magicResis * 0.12);
+                                magicDmg -= dmgMitigated;
+                                target.magicDmgMitigated += dmgMitigated;
+                            }
 
-                                foreach (Passives a in target.passives.ToArray())
+                            foreach (Passives a in target.passives.ToArray())
+                            {
+                                if (a.name == "roughskin")
                                 {
-                                    if (a.name == "roughskin")
+                                    //if move is physical
+                                    if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.RANGED)
                                     {
-                                        //if move is physical
-                                        if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.RANGED)
-                                        {
-                                            //show passive popup
-                                            target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                            //get the mitigated dmg
-                                            dmgMitigated = phyDmg * ((statsTarget.dmgResis * a.num) / 100);
-                                            //subtract mitigated dmg from the dmg
-                                            phyDmg -= dmgMitigated;
-                                            //add mitigated dmg to the overview
-                                            target.phyDmgMitigated += dmgMitigated;
-                                        }
-                                    }
-
-                                    if (a.name == "dreadofthesupernatural")
-                                    {
-                                        //if sanityDmg bellow 0
-                                        if (sanityDmg > 0)
-                                        {
-                                            //show passive popup
-                                            target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                            //get bonus sanityDmg
-                                            int bonusSanityDmg = (int)(sanityDmg * a.num);
-                                            //if bonus under a.maxNum, set to it
-                                            if (bonusSanityDmg < a.maxNum)
-                                                bonusSanityDmg = (int)a.maxNum;
-                                            //add bonus damage
-                                            sanityDmg += bonusSanityDmg;
-                                        }
+                                        //show passive popup
+                                        target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                        //get the mitigated dmg
+                                        dmgMitigated = phyDmg * ((statsTarget.dmgResis * a.num) / 100);
+                                        //subtract mitigated dmg from the dmg
+                                        phyDmg -= dmgMitigated;
+                                        //add mitigated dmg to the overview
+                                        target.phyDmgMitigated += dmgMitigated;
                                     }
                                 }
 
-                                foreach (Passives a in user.passives.ToArray())
+                                if (a.name == "dreadofthesupernatural")
                                 {
-                                    if (a.name == "perfectshooter")
+                                    //if sanityDmg bellow 0
+                                    if (sanityDmg > 0)
                                     {
-                                        if ((move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.BASIC) && isCrit == true && a.stacks < a.maxStacks)
-                                            a.num++;
-
-                                        if (a.num == a.maxNum && a.stacks < a.maxStacks)
-                                        {
-                                            a.num = 0;
-                                            a.stacks++;
-                                            user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                            StatMod mod = a.ifConditionTrueMod();
-
-                                            StatMod statMod = a.statMod.ReturnStats();
-                                            statMod.inTime = statMod.time;
-                                            user.statMods.Add(statMod);
-                                            user.usedBonusStuff = false;
-                                            SetStatsHud(user, userHud);
-                                            DestroyPassiveIcon(a.name, user.isEnemy);
-                                        }
-
-                                        ManagePassiveIcon(a.sprite, a.name, (a.stacks + "S" + (a.maxNum - a.num) + "T").ToString(), user.isEnemy, a.GetPassiveInfo());
+                                        //show passive popup
+                                        target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                        //get bonus sanityDmg
+                                        int bonusSanityDmg = (int)(sanityDmg * a.num);
+                                        //if bonus under a.maxNum, set to it
+                                        if (bonusSanityDmg < a.maxNum)
+                                            bonusSanityDmg = (int)a.maxNum;
+                                        //add bonus damage
+                                        sanityDmg += bonusSanityDmg;
                                     }
-                                }
-
-                                target.phyDmgTaken += phyDmg;
-                                target.magicDmgTaken += magicDmg;
-                                target.trueDmgTaken += trueDmg;
-
-                                user.trueDmgDealt += trueDmg;
-
-                                float dmg = phyDmg + magicDmg + trueDmg;
-                                float shieldedDmg = 0;
-
-                                if (move.healFromDmgType != Moves.HealFromDmg.NONE)
-                                {
-                                    if (move.healFromDmgType is Moves.HealFromDmg.PHYSICAL)
-                                        heal += phyDmg * move.healFromDmg;
-                                    else if (move.healFromDmgType is Moves.HealFromDmg.MAGICAL)
-                                        heal += magicDmg * move.healFromDmg;
-                                    else if (move.healFromDmgType is Moves.HealFromDmg.TRUE)
-                                        heal += trueDmg * move.healFromDmg;
-                                    else if (move.healFromDmgType is Moves.HealFromDmg.PHYSICAL_MAGICAL)
-                                        heal += (phyDmg + magicDmg) * move.healFromDmg;
-                                    else if (move.healFromDmgType is Moves.HealFromDmg.PHYSICAL_TRUE)
-                                        heal += (phyDmg + trueDmg) * move.healFromDmg;
-                                    else if (move.healFromDmgType is Moves.HealFromDmg.MAGICAL_TRUE)
-                                        heal += (magicDmg + trueDmg) * move.healFromDmg;
-                                    else if (move.healFromDmgType is Moves.HealFromDmg.ALL)
-                                        heal += (phyDmg + magicDmg + trueDmg) * move.healFromDmg;
-                                }
-
-                                if (target.curShield > 0)
-                                {
-                                    float tempDmg = dmg;
-                                    float tempShield = target.curShield;
-
-                                    dmg -= target.curShield;
-                                    target.curShield -= tempDmg;
-
-                                    if (target.curShield < 0)
-                                        target.curShield = 0;
-
-                                    shieldedDmg = tempShield - target.curShield;
-                                }
-
-                                if (dmg > 0 || shieldedDmg > 0)
-                                {
-                                    isDead = target.TakeDamage(dmg, shieldedDmg, isCrit);
-                                    if (!(move.type is Moves.MoveType.ULT))
-                                        SetUltNumber(user, userHud, (dmg + shieldedDmg), true);
-
-                                    if (move.type is Moves.MoveType.ULT)
-                                        SetUltNumber(target, enemyHud, ((dmg + shieldedDmg) / 2), false);
-                                    else
-                                        SetUltNumber(target, enemyHud, (dmg + shieldedDmg), false);
-                                }
-
-                                if (sanityDmg > 0)
-                                {
-                                    if ((target.curSanity - sanityDmg) >= 0)
-                                    {
-                                        target.curSanity -= sanityDmg;
-                                    }
-                                    else
-                                    {
-                                        sanityDmg = target.curSanity;
-                                        target.curSanity = 0;
-                                    }
-
-                                    user.sanityDmgDealt += sanityDmg;
-                                    target.sanityDmgTaken += sanityDmg;
-                                }
-
-                                if (heal > 0)
-                                {
-                                    user.healDone += heal;
-                                    user.Heal(heal);
-                                }
-
-                                Stats statsU = user.charc.stats.ReturnStats();
-
-                                if (user.statMods.Count > 0)
-                                    foreach (StatMod statMod in user.statMods.ToArray())
-                                    {
-                                        statsU = SetModifiers(statMod.ReturnStats(), statsU.ReturnStats(), user);
-                                    }
-
-                                if (healMana > 0)
-                                {
-                                    user.curMana += healMana;
-                                    if (user.curMana > statsU.mana)
-                                    {
-                                        user.curMana = statsU.mana;
-                                        healMana = user.curMana - statsU.mana;
-                                    }
-                                    user.manaHealDone += healMana;
-                                }
-
-                                if (healStamina > 0)
-                                {
-                                    user.curStamina += healStamina;
-                                    if (user.curStamina > statsU.stamina)
-                                    {
-                                        user.curStamina = statsU.stamina;
-                                        healStamina = user.curStamina - statsU.stamina;
-                                    }
-                                    user.staminaHealDone += healStamina;
-                                }
-
-                                if (healSanity > 0)
-                                {
-                                    user.curSanity += healSanity;
-                                    if (user.curSanity > statsU.sanity)
-                                    {
-                                        user.curSanity = statsU.sanity;
-                                        healSanity = user.curSanity - statsU.sanity;
-                                    }
-                                    user.sanityHealDone += healSanity;
-                                }
-
-                                if (shield > 0)
-                                {
-                                    user.shieldDone += shield;
-                                    user.curShield += shield;
-                                    if (user.curShield > 1000)
-                                        user.curShield = 1000;
                                 }
                             }
+
+                            foreach (Passives a in user.passives.ToArray())
+                            {
+                                if (a.name == "perfectshooter")
+                                {
+                                    if ((move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.BASIC) && isCrit == true && a.stacks < a.maxStacks)
+                                        a.num++;
+
+                                    if (a.num == a.maxNum && a.stacks < a.maxStacks)
+                                    {
+                                        a.num = 0;
+                                        a.stacks++;
+                                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                        StatMod mod = a.ifConditionTrueMod();
+
+                                        StatMod statMod = a.statMod.ReturnStats();
+                                        statMod.inTime = statMod.time;
+                                        user.statMods.Add(statMod);
+                                        user.usedBonusStuff = false;
+                                        SetStatsHud(user, userHud);
+                                        DestroyPassiveIcon(a.name, user.isEnemy);
+                                    }
+
+                                    ManagePassiveIcon(a.sprite, a.name, (a.stacks + "S" + (a.maxNum - a.num) + "T").ToString(), user.isEnemy, a.GetPassiveInfo());
+                                }
+                            }
+
+                            target.phyDmgTaken += phyDmg;
+                            target.magicDmgTaken += magicDmg;
+                            target.trueDmgTaken += trueDmg;
+
+                            user.trueDmgDealt += trueDmg;
+
+                            float dmg = phyDmg + magicDmg + trueDmg;
+                            float shieldedDmg = 0;
+
+                            if (move.healFromDmgType != Moves.HealFromDmg.NONE)
+                            {
+                                if (move.healFromDmgType is Moves.HealFromDmg.PHYSICAL)
+                                    heal += phyDmg * move.healFromDmg;
+                                else if (move.healFromDmgType is Moves.HealFromDmg.MAGICAL)
+                                    heal += magicDmg * move.healFromDmg;
+                                else if (move.healFromDmgType is Moves.HealFromDmg.TRUE)
+                                    heal += trueDmg * move.healFromDmg;
+                                else if (move.healFromDmgType is Moves.HealFromDmg.PHYSICAL_MAGICAL)
+                                    heal += (phyDmg + magicDmg) * move.healFromDmg;
+                                else if (move.healFromDmgType is Moves.HealFromDmg.PHYSICAL_TRUE)
+                                    heal += (phyDmg + trueDmg) * move.healFromDmg;
+                                else if (move.healFromDmgType is Moves.HealFromDmg.MAGICAL_TRUE)
+                                    heal += (magicDmg + trueDmg) * move.healFromDmg;
+                                else if (move.healFromDmgType is Moves.HealFromDmg.ALL)
+                                    heal += (phyDmg + magicDmg + trueDmg) * move.healFromDmg;
+                            }
+
+                            if (target.curShield > 0)
+                            {
+                                float tempDmg = dmg;
+                                float tempShield = target.curShield;
+
+                                dmg -= target.curShield;
+                                target.curShield -= tempDmg;
+
+                                if (target.curShield < 0)
+                                    target.curShield = 0;
+
+                                shieldedDmg = tempShield - target.curShield;
+                            }
+
+                            if (dmg > 0 || shieldedDmg > 0)
+                            {
+                                isDead = target.TakeDamage(dmg, shieldedDmg, isCrit);
+                                if (!(move.type is Moves.MoveType.ULT))
+                                    SetUltNumber(user, userHud, (dmg + shieldedDmg), true);
+
+                                if (move.type is Moves.MoveType.ULT)
+                                    SetUltNumber(target, enemyHud, ((dmg + shieldedDmg) / 2), false);
+                                else
+                                    SetUltNumber(target, enemyHud, (dmg + shieldedDmg), false);
+                            }
+
+                            if (sanityDmg > 0)
+                            {
+                                if ((target.curSanity - sanityDmg) >= 0)
+                                {
+                                    target.curSanity -= sanityDmg;
+                                }
+                                else
+                                {
+                                    sanityDmg = target.curSanity;
+                                    target.curSanity = 0;
+                                }
+
+                                user.sanityDmgDealt += sanityDmg;
+                                target.sanityDmgTaken += sanityDmg;
+                            }
+
+                            if (heal > 0)
+                            {
+                                user.healDone += heal;
+                                user.Heal(heal);
+                            }
+
+                            Stats statsU = user.charc.stats.ReturnStats();
+
+                            if (user.statMods.Count > 0)
+                                foreach (StatMod statMod in user.statMods.ToArray())
+                                {
+                                    statsU = SetModifiers(statMod.ReturnStats(), statsU.ReturnStats(), user);
+                                }
+
+                            if (healMana > 0)
+                            {
+                                user.curMana += healMana;
+                                if (user.curMana > statsU.mana)
+                                {
+                                    user.curMana = statsU.mana;
+                                    healMana = user.curMana - statsU.mana;
+                                }
+                                user.manaHealDone += healMana;
+                            }
+
+                            if (healStamina > 0)
+                            {
+                                user.curStamina += healStamina;
+                                if (user.curStamina > statsU.stamina)
+                                {
+                                    user.curStamina = statsU.stamina;
+                                    healStamina = user.curStamina - statsU.stamina;
+                                }
+                                user.staminaHealDone += healStamina;
+                            }
+
+                            if (healSanity > 0)
+                            {
+                                user.curSanity += healSanity;
+                                if (user.curSanity > statsU.sanity)
+                                {
+                                    user.curSanity = statsU.sanity;
+                                    healSanity = user.curSanity - statsU.sanity;
+                                }
+                                user.sanityHealDone += healSanity;
+                            }
+
+                            if (shield > 0)
+                            {
+                                user.shieldDone += shield;
+                                user.curShield += shield;
+                                if (user.curShield > 1000)
+                                    user.curShield = 1000;
+                            }
+                            
 
                             if (blockPhysical)
                             {
@@ -2813,6 +2818,13 @@ public class BattleSystem : MonoBehaviour
 
     public bool DotCalc(Dotdmg dot, Unit user)
     {
+        Stats stats = user.charc.stats.ReturnStats();
+        if (user.statMods.Count > 0)
+            foreach (StatMod statMod in user.statMods.ToArray())
+            {
+                stats = SetModifiers(statMod.ReturnStats(), stats.ReturnStats(), user);
+            }
+
         Dotdmg a = dot.ReturnDOT();
 
         switch (a.type)
@@ -2820,7 +2832,7 @@ public class BattleSystem : MonoBehaviour
             case Dotdmg.DmgType.PHYSICAL:
                 if (a.dmg > 0)
                 {
-                    float dmgMitigated = (float)(user.charc.stats.dmgResis * 0.12);
+                    float dmgMitigated = (float)(stats.dmgResis * 0.12);
                     a.dmg -= dmgMitigated;
                     user.phyDmgMitigated += dmgMitigated;
                     user.phyDmgTaken += a.dmg - dmgMitigated;
@@ -2837,7 +2849,7 @@ public class BattleSystem : MonoBehaviour
             case Dotdmg.DmgType.MAGICAL:
                 if (a.dmg > 0)
                 {
-                    float dmgMitigated = (float)(user.charc.stats.magicResis * 0.06);
+                    float dmgMitigated = (float)(stats.magicResis * 0.06);
                     a.dmg -= dmgMitigated;
                     user.magicDmgMitigated += dmgMitigated;
                     user.magicDmgTaken += a.dmg - dmgMitigated;
@@ -2868,8 +2880,8 @@ public class BattleSystem : MonoBehaviour
                 if (a.dmg > 0)
                 {
                     user.curMana += a.dmg;
-                    if (user.curMana > user.charc.stats.mana)
-                        user.curMana = user.charc.stats.mana;
+                    if (user.curMana > stats.mana)
+                        user.curMana = stats.mana;
                 }
                 user.manaHealDone += a.dmg;
                 break;
@@ -2877,8 +2889,8 @@ public class BattleSystem : MonoBehaviour
                 if (a.dmg > 0)
                 {
                     user.curStamina += a.dmg;
-                    if (user.curStamina > user.charc.stats.stamina)
-                        user.curStamina = user.charc.stats.stamina;
+                    if (user.curStamina > stats.stamina)
+                        user.curStamina = stats.stamina;
                 }
                 user.staminaHealDone += a.dmg;
                 break;
@@ -2886,8 +2898,8 @@ public class BattleSystem : MonoBehaviour
                 if (a.dmg > 0)
                 {
                     user.curSanity += (int)a.dmg;
-                    if (user.curSanity > user.charc.stats.sanity)
-                        user.curSanity = user.charc.stats.sanity;
+                    if (user.curSanity > stats.sanity)
+                        user.curSanity = stats.sanity;
                 }
                 user.sanityHealDone += a.dmg;
                 break;
@@ -2900,6 +2912,42 @@ public class BattleSystem : MonoBehaviour
                 }
                 user.shieldDone += a.dmg;
                 break;
+        }
+
+        foreach (Passives p in user.passives.ToArray())
+        {
+            if (p.name == "roughskin")
+            {
+                //if move is physical
+                if (dot.type is Dotdmg.DmgType.PHYSICAL)
+                {
+                    //show passive popup
+                    user.PassivePopup(langmanag.GetInfo("passive", "name", p.name));
+                    //get the mitigated dmg
+                    float dmgMitigated = a.dmg * ((stats.dmgResis * p.num) / 100);
+                    //subtract mitigated dmg from the dmg
+                    a.dmg -= dmgMitigated;
+                    //add mitigated dmg to the overview
+                    user.phyDmgMitigated += dmgMitigated;
+                }
+            }
+
+            if (p.name == "dreadofthesupernatural")
+            {
+                //if sanityDmg bellow 0
+                if (a.dmg > 0)
+                {
+                    //show passive popup
+                    user.PassivePopup(langmanag.GetInfo("passive", "name", p.name));
+                    //get bonus sanityDmg
+                    int bonusSanityDmg = (int)(a.dmg * p.num);
+                    //if bonus under a.maxNum, set to it
+                    if (bonusSanityDmg < p.maxNum)
+                        bonusSanityDmg = (int)p.maxNum;
+                    //add bonus damage
+                    a.dmg += bonusSanityDmg;
+                }
+            }
         }
 
         float shieldedDmg = 0;
