@@ -285,6 +285,7 @@ public class LanguageManager : MonoBehaviour
         public string healsanitydmg;
         public string shielddmg;
         public string inflicteffect;
+        public string overtime;
         public string as_;
         public string of;
         public string and;
@@ -444,6 +445,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "inflicteffect":
                     returns = inflicteffect;
+                    break;
+                case "overtime":
+                    returns = overtime;
                     break;
                 case "as_":
                     returns = as_;
