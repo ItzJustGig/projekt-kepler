@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
+  m_Name: bonsour stats
+  m_EditorClassIdentifier: 
+  hp: 5460
+  hpRegen: 35
+  mana: 375
+  manaRegen: 0.9
+  stamina: 990
+  staminaRegen: 1.45
+  sanity: 140
+  atkDmg: 59
+  magicPower: 25
+  critChance: 0.16
+  critDmg: 0.24
+  dmgResis: 98
+  magicResis: 27
+  timing: 0.5
+  movSpeed: 200
+  lifesteal: 0
+  accuracy: 1
+  evasion: 0
+  armourPen: 0

@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
+  m_Name: Blind
+  m_EditorClassIdentifier: 
+  name: Blind
+  id: BLI
+  sprite: {fileID: 21300000, guid: c0b2803a4f1bfe3478d46974b26a66c1, type: 3}
+  duration: 0
+  timesInc: 0
+  canUsePhysical: 1
+  canUseRanged: 0
+  canUseMagic: 1
+  canUseSupp: 1
+  canUseProtec: 1
+  canUseStatMod: 1
+  phyDmgMin: 0
+  phyDmgMax: 0
+  phyDmgInc: 0
+  magicDmgMin: 0
+  magicDmgMax: 0
+  magicDmgInc: 0
+  trueDmgMin: 0
+  trueDmgMax: 0
+  trueDmgInc: 0
+  sanityDmgMin: 3
+  sanityDmgMax: 5
+  sanityDmgInc: 0
+  sanityHealMin: 0
+  sanityHealMax: 0
+  sanityHealInc: 0
+  healMin: 0
+  healMax: 0
+  healInc: 0
+  healManaMin: 0
+  healManaMax: 0
+  healManaInc: 0
+  healStaminaMin: 0
+  healStaminaMax: 0
+  healStaminaInc: 0
+  shieldMin: 0
+  shieldMax: 0
+  shieldInc: 0
+  cancelAtkChance: 0
+  recoil: 0
+  cancelMsg: 
+  scale: []
+  statMods:
+  - {fileID: 11400000, guid: d70aab690e24c414cafc5653d6544333, type: 2}

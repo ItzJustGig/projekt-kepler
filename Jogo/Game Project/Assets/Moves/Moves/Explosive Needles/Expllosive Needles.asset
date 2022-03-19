@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Expllosive Needles
+  m_EditorClassIdentifier: 
+  type: 1
+  name: explosiveneedles
+  hitTime: 4
+  priority: 0
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 10
+  magicDmg: 30
+  trueDmg: 0
+  sanityDmg: 0
+  heal: 0
+  healMana: 0
+  healStamina: 0
+  healSanity: 0
+  shield: 0
+  cooldown: 5
+  inCooldown: 0
+  manaCost: 30
+  staminaCost: 20
+  critDmgBonus: 0
+  critChanceBonus: 0
+  statModUser: {fileID: 0}
+  statModEnemy: {fileID: 0}
+  scale:
+  - {fileID: 11400000, guid: f0a0bdd8bfd7fbc4cb6d721380205ed4, type: 2}
+  - {fileID: 11400000, guid: dee6e58226d659348b4ae08f2c4ebfca, type: 2}
+  effects:
+  - {fileID: 11400000, guid: 4291a90c68cfd6c4b953f62127a57f04, type: 2}
+  grantPassive: {fileID: 0}

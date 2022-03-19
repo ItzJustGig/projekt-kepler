@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d789de254ec901741a8cedbf21aabeda, type: 3}
+  m_Name: Shine
+  m_EditorClassIdentifier: 
+  strenght: 6
+  classe: 6
+  name: shine
+  sprite: {fileID: 402143169715320279, guid: 957328262f66b3e47ac2d340a24a6ead, type: 3}
+  charcIcon: {fileID: 21300000, guid: c87a83c8fd4ca094fb32d608f5af0382, type: 3}
+  audio: {fileID: 8300000, guid: 9ea728fd75644cf4cab72e691d321298, type: 3}
+  stats: {fileID: 11400000, guid: 79a27e701747303449d49dd13233a5ad, type: 2}
+  passives:
+  - {fileID: 11400000, guid: df72980005ebc0e4ab808bd593956531, type: 2}
+  - {fileID: 11400000, guid: b9bca016c3d18654284af958dce4e910, type: 2}
+  - {fileID: 11400000, guid: 3ec050f0cfab65045bb0531a93655c19, type: 2}
+  moves:
+  - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
+  - {fileID: 11400000, guid: a8a4619fd0e997c4f9460f09417a5d97, type: 2}
+  - {fileID: 11400000, guid: 0c9817eb0a40ddb4ca4bc4cd816862de, type: 2}
+  - {fileID: 11400000, guid: 8c7bb729897ba9144a9f64ea48eeec56, type: 2}
+  - {fileID: 11400000, guid: 9231fd6c7911b7f4098a5fd215b44376, type: 2}
+  - {fileID: 11400000, guid: d49c1b08338014b4a81bf2374ae50b4a, type: 2}
+  - {fileID: 11400000, guid: 703706987f040884e8e8440e082e0a25, type: 2}
+  - {fileID: 11400000, guid: e34fb1df5ade06147a20f45b1c776646, type: 2}
+  - {fileID: 11400000, guid: fcbfff3c1b46a8e4c80508805c3d407d, type: 2}
+  - {fileID: 11400000, guid: 59026b7c0f683824d90df33b45dc8abf, type: 2}
+  - {fileID: 11400000, guid: 272d5671bb95dd64a90208cda15850e1, type: 2}
+  - {fileID: 11400000, guid: d2f6520910bc23a418896e9dfd4b9b89, type: 2}
+  ultimate: {fileID: 11400000, guid: 015525fcb07050047ae672c6acbad650, type: 2}

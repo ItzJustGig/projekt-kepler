@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
+  m_Name: phantom stats
+  m_EditorClassIdentifier: 
+  hp: 570
+  hpRegen: 23
+  mana: 735
+  manaRegen: 1.25
+  stamina: 215
+  staminaRegen: 0.425
+  sanity: 180
+  atkDmg: 32
+  magicPower: 78
+  critChance: 0.0935
+  critDmg: 0.1115
+  dmgResis: 48
+  magicResis: 78
+  timing: 3.1
+  movSpeed: 220
+  lifesteal: 0
+  accuracy: 1
+  evasion: 0
+  armourPen: 0

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Agility
+  m_EditorClassIdentifier: 
+  type: 5
+  name: agility
+  hitTime: 1
+  priority: 0
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 0
+  magicDmg: 0
+  trueDmg: 0
+  sanityDmg: 0
+  heal: 0
+  healMana: 0
+  healStamina: 45
+  healSanity: 0
+  shield: 0
+  cooldown: 6
+  inCooldown: 0
+  manaCost: 15
+  staminaCost: 0
+  critDmgBonus: 0
+  critChanceBonus: 0
+  statModUser: {fileID: 11400000, guid: 17909259c2111684292f005ed6498184, type: 2}
+  statModEnemy: {fileID: 0}
+  scale: []
+  effects: []
+  grantPassive: {fileID: 0}

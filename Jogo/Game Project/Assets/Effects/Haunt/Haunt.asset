@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
+  m_Name: Haunt
+  m_EditorClassIdentifier: 
+  id: HAU
+  sprite: {fileID: 21300000, guid: 3b933707ebf84604b90b1d8d233ddc55, type: 3}
+  duration: 0
+  timesInc: 0
+  canUsePhysical: 1
+  canUseRanged: 1
+  canUseMagic: 1
+  canUseSupp: 1
+  canUseProtec: 0
+  canUseStatMod: 0
+  phyDmgMin: 5
+  phyDmgMax: 15
+  phyDmgInc: 2
+  magicDmgMin: 5
+  magicDmgMax: 15
+  magicDmgInc: 2
+  trueDmgMin: 5
+  trueDmgMax: 15
+  trueDmgInc: 2
+  sanityDmgMin: 2
+  sanityDmgMax: 5
+  sanityDmgInc: 1
+  sanityHealMin: 0
+  sanityHealMax: 0
+  sanityHealInc: 0
+  healMin: 0
+  healMax: 0
+  healInc: 0
+  healManaMin: 0
+  healManaMax: 0
+  healManaInc: 0
+  healStaminaMin: 0
+  healStaminaMax: 0
+  healStaminaInc: 0
+  shieldMin: 0
+  shieldMax: 0
+  shieldInc: 0
+  cancelAtkChance: 0.2
+  recoil: 0
+  scale: []
+  statMods:
+  - {fileID: 11400000, guid: 3eeec60d5ed498f448b92676175ecccd, type: 2}

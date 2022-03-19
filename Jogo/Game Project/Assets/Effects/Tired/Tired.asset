@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
+  m_Name: Tired
+  m_EditorClassIdentifier: 
+  name: Tired
+  id: TRD
+  sprite: {fileID: 21300000, guid: 554ececede4055a4ab042e77225dcc6f, type: 3}
+  duration: 0
+  timesInc: 0
+  canUsePhysical: 0
+  canUseRanged: 1
+  canUseMagic: 1
+  canUseSupp: 1
+  canUseProtec: 0
+  canUseStatMod: 0
+  phyDmgMin: 0
+  phyDmgMax: 0
+  phyDmgInc: 0
+  magicDmgMin: 0
+  magicDmgMax: 0
+  magicDmgInc: 0
+  trueDmgMin: 0
+  trueDmgMax: 0
+  trueDmgInc: 0
+  sanityDmgMin: 2
+  sanityDmgMax: 3
+  sanityDmgInc: 0
+  sanityHealMin: 0
+  sanityHealMax: 0
+  sanityHealInc: 0
+  healMin: 0
+  healMax: 0
+  healInc: 0
+  healManaMin: 0
+  healManaMax: 0
+  healManaInc: 0
+  healStaminaMin: 4
+  healStaminaMax: 6
+  healStaminaInc: 6
+  shieldMin: 0
+  shieldMax: 0
+  shieldInc: 0
+  cancelAtkChance: 0
+  recoil: 0
+  cancelMsg: 
+  scale:
+  - {fileID: 11400000, guid: 1eb08a2fc9974a44aa93f6f93f13a183, type: 2}
+  statMods:
+  - {fileID: 11400000, guid: 841aa5e891a8ef44c807fd13e283beb8, type: 2}

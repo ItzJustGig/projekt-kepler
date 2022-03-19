@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Trigger Update
+  m_EditorClassIdentifier: 
+  type: 5
+  name: triggerupdate
+  hitTime: 1
+  priority: -2
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 0
+  magicDmg: 0
+  trueDmg: 0
+  sanityDmg: 0
+  heal: 10
+  healMana: 20
+  healStamina: 10
+  healSanity: 2
+  shield: 10
+  healFromDmgType: 0
+  healFromDmg: 0
+  cooldown: 12
+  inCooldown: 0
+  manaCost: 40
+  staminaCost: 20
+  critDmgBonus: 0
+  critChanceBonus: 0
+  statModUser: {fileID: 11400000, guid: f95caabef710be64685b98651577a450, type: 2}
+  statModEnemy: {fileID: 0}
+  scale:
+  - {fileID: 11400000, guid: bc8b897dd6abd5046abc05e06bc2cf8b, type: 2}
+  effects: []
+  grantPassive: {fileID: 0}

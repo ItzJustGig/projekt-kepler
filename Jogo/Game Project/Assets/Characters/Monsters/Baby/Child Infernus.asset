@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d789de254ec901741a8cedbf21aabeda, type: 3}
+  m_Name: Child Infernus
+  m_EditorClassIdentifier: 
+  strenght: 0
+  classe: 3
+  name: childinfernus
+  sprite: {fileID: 5806852883944117854, guid: cc6e0f2e536db9d49ae8e440a402b82e, type: 3}
+  charcIcon: {fileID: 21300000, guid: 05daf7065d00189449c9a7a9c63570c4, type: 3}
+  audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
+  stats: {fileID: 11400000, guid: 1ac5ebb4f18d7e94f89a4122d57bbb92, type: 2}
+  passives: []
+  moves:
+  - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
+  - {fileID: 11400000, guid: 8e870889b9dae5d4f9e35cb88e84742d, type: 2}
+  - {fileID: 11400000, guid: f7453ec62071cab45b3dddf83a214a82, type: 2}
+  - {fileID: 11400000, guid: 51481218fcac0694fa84bbd899a849ac, type: 2}
+  - {fileID: 11400000, guid: c265a13f84e503644810691054576b8b, type: 2}
+  - {fileID: 11400000, guid: 6eee52437e1e9934e88cbe25c2afeeee, type: 2}
+  ultimate: {fileID: 11400000, guid: bd9d41a3a130a4c4e9298e64bad11d9f, type: 2}

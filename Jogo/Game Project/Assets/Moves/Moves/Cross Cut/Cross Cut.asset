@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Cross Cut
+  m_EditorClassIdentifier: 
+  type: 0
+  name: crosscut
+  hitTime: 1
+  priority: 0
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 70
+  magicDmg: 0
+  trueDmg: 0
+  sanityDmg: 0
+  heal: 0
+  healMana: 0
+  healStamina: 0
+  healSanity: 0
+  shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
+  cooldown: 8
+  inCooldown: 0
+  manaCost: 0
+  staminaCost: 90
+  critDmgBonus: 0.15
+  critChanceBonus: 0.05
+  statModUser: {fileID: 11400000, guid: f1456b81f27ee244e820a022b3afd78e, type: 2}
+  statModEnemy: {fileID: 0}
+  scale:
+  - {fileID: 11400000, guid: 58537c38e360dbc479e7819428b5e35d, type: 2}
+  effects: []
+  grantPassive: {fileID: 0}

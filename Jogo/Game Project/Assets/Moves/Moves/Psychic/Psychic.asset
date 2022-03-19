@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Psychic
+  m_EditorClassIdentifier: 
+  type: 1
+  name: psychic
+  hitTime: 1
+  priority: 0
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 0
+  magicDmg: 50
+  trueDmg: 0
+  sanityDmg: 4
+  heal: 0
+  healMana: 0
+  healStamina: 0
+  healSanity: 0
+  shield: 0
+  cooldown: 6
+  inCooldown: 0
+  manaCost: 65
+  staminaCost: 0
+  critDmgBonus: 0
+  critChanceBonus: 0
+  statModUser: {fileID: 0}
+  statModEnemy: {fileID: 0}
+  scale:
+  - {fileID: 11400000, guid: 1ff0910641675de4880dd94b963edf54, type: 2}
+  effects:
+  - {fileID: 11400000, guid: 227524b6f43cdc24d8e1a3aad65b6283, type: 2}
+  grantPassive: {fileID: 0}

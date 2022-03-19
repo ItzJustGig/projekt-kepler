@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d789de254ec901741a8cedbf21aabeda, type: 3}
+  m_Name: Seedling
+  m_EditorClassIdentifier: 
+  strenght: 0
+  classe: 5
+  name: seedling
+  sprite: {fileID: 5806852883944117854, guid: bb437d2cc5541a24db828f3c05f27b9b, type: 3}
+  charcIcon: {fileID: 21300000, guid: 5020f38c5893a8c48a05b69fe9edca20, type: 3}
+  audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
+  stats: {fileID: 11400000, guid: 4816a2c2f8d78a9449a33062bae5fdb0, type: 2}
+  passives: []
+  moves:
+  - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
+  - {fileID: 11400000, guid: 189bf032048af9d4d825f46a3898195a, type: 2}
+  - {fileID: 11400000, guid: db17e33d297036e4899258958fa170b4, type: 2}
+  - {fileID: 11400000, guid: 0ae6c006296f5e042a63e2b4edb1bdff, type: 2}
+  - {fileID: 11400000, guid: c1ca40a7c5492b44389d3c2d28943f5b, type: 2}
+  - {fileID: 11400000, guid: 14a3639604f3d8644a3680c5db4c81f2, type: 2}
+  - {fileID: 11400000, guid: 0c14c42d198201449b841e6e6802d0e7, type: 2}
+  ultimate: {fileID: 11400000, guid: e9f8a0ad5b9dd2f43a69b98d440728a8, type: 2}

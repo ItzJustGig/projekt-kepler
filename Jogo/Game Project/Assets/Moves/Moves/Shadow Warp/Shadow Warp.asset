@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Shadow Warp
+  m_EditorClassIdentifier: 
+  type: 5
+  name: shadowwarp
+  hitTime: 1
+  priority: 1
+  blocksPhysical: 1
+  blocksMagical: 1
+  blocksRanged: 1
+  phyDmg: 0
+  magicDmg: 0
+  trueDmg: 0
+  sanityDmg: 2
+  heal: 0
+  healMana: 0
+  healStamina: 8
+  healSanity: 4
+  shield: 20
+  cooldown: 6
+  inCooldown: 0
+  manaCost: 20
+  staminaCost: 5
+  critDmgBonus: 0
+  critChanceBonus: 0
+  statModUser: {fileID: 11400000, guid: 8e99ca57c27753240ab233cc856182c9, type: 2}
+  statModEnemy: {fileID: 0}
+  scale: []
+  effects: []
+  grantPassive: {fileID: 0}

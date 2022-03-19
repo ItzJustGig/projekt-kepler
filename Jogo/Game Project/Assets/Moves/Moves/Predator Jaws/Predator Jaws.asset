@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Predator Jaws
+  m_EditorClassIdentifier: 
+  type: 0
+  name: predatorjaws
+  hitTime: 1
+  priority: 1
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 80
+  magicDmg: 0
+  trueDmg: 0
+  sanityDmg: 0
+  heal: 5
+  healMana: 0
+  healStamina: 0
+  healSanity: 0
+  shield: 0
+  healFromDmgType: 1
+  healFromDmg: 0.5
+  cooldown: 7
+  inCooldown: 0
+  manaCost: 0
+  staminaCost: 80
+  critDmgBonus: 0.05
+  critChanceBonus: 0.1
+  statModUser: {fileID: 0}
+  statModEnemy: {fileID: 11400000, guid: 62c3715a78317b445aed8613faff509c, type: 2}
+  scale:
+  - {fileID: 11400000, guid: 16807bf1c9670414cb86f4a1a5ca0a85, type: 2}
+  effects:
+  - {fileID: 11400000, guid: bd6ccedd5b931a24c9d46c443261d54c, type: 2}
+  grantPassive: {fileID: 0}

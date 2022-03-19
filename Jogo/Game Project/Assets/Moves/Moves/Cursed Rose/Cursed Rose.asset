@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Cursed Rose
+  m_EditorClassIdentifier: 
+  type: 1
+  name: cursedrose
+  hitTime: 1
+  priority: 0
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 0
+  magicDmg: 30
+  trueDmg: 0
+  sanityDmg: 2
+  heal: 0
+  healMana: 0
+  healStamina: 0
+  healSanity: 0
+  shield: 0
+  cooldown: 6
+  inCooldown: 0
+  manaCost: 60
+  staminaCost: 0
+  critDmgBonus: 0
+  critChanceBonus: 0
+  statModUser: {fileID: 0}
+  statModEnemy: {fileID: 11400000, guid: a355a32582ac3434ab1a410fbe7e584d, type: 2}
+  scale:
+  - {fileID: 11400000, guid: 5be4f5f3d65dea146bc44b89aa64e5f7, type: 2}
+  effects:
+  - {fileID: 11400000, guid: 8945198444edb094482b2ef5c50d4bae, type: 2}
+  - {fileID: 11400000, guid: d444e634ad2fad74b99b121226074ae2, type: 2}
+  grantPassive: {fileID: 0}

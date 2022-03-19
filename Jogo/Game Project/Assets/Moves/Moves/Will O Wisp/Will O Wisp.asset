@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Will O Wisp
+  m_EditorClassIdentifier: 
+  type: 1
+  name: willowisp
+  hitTime: 1
+  priority: 0
+  uses: -1
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 0
+  magicDmg: 45
+  trueDmg: 0
+  sanityDmg: 2
+  heal: 0
+  healMana: 0
+  healStamina: 0
+  healSanity: 0
+  shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
+  cooldown: 5
+  inCooldown: 0
+  manaCost: 45
+  staminaCost: 0
+  critDmgBonus: 0
+  critChanceBonus: 0
+  statModUser: {fileID: 0}
+  statModEnemy: {fileID: 11400000, guid: f67b1708fb9b679409b30ff067c332aa, type: 2}
+  scale:
+  - {fileID: 11400000, guid: 7790f343e78077442aea930d5bb1f84e, type: 2}
+  - {fileID: 11400000, guid: 652855440a867404eb170783b6fb6922, type: 2}
+  dot:
+  - {fileID: 11400000, guid: 9b1959fc5ffa76b468a3ec47c2642a6f, type: 2}
+  effects:
+  - {fileID: 11400000, guid: 3a4a301d84afabc4d82e52e2f7d3f8ff, type: 2}
+  grantPassive: {fileID: 0}

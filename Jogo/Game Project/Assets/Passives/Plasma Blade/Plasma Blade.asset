@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c40be94f130cb7f409300204aedd3b37, type: 3}
+  m_Name: Plasma Blade
+  m_EditorClassIdentifier: 
+  name: plasmablade
+  showNameOnInfo: 1
+  sprite: {fileID: 21300000, guid: 16307b561aa462f459e2da6bdf91f0ff, type: 3}
+  num: 0.6
+  maxNum: 0.3
+  stacks: 20
+  maxStacks: 0
+  cd: 0
+  inCd: 0
+  statScale: {fileID: 11400000, guid: f777e7fb61a3e4b48abe83096d2965bd, type: 2}
+  statScale2: {fileID: 11400000, guid: 802db02264bf6ab4b9bbad2352ba41be, type: 2}
+  statMod: {fileID: 11400000, guid: 3722fb8c57ffeb84593919bdb96ab990, type: 2}
+  statMod2: {fileID: 0}

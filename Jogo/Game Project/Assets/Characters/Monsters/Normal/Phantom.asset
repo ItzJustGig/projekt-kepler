@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d789de254ec901741a8cedbf21aabeda, type: 3}
+  m_Name: Phantom
+  m_EditorClassIdentifier: 
+  strenght: 2
+  classe: 3
+  name: phantom
+  sprite: {fileID: 5806852883944117854, guid: e14ff431356231f42bbc0411eccf6784, type: 3}
+  charcIcon: {fileID: 21300000, guid: 2d5bbf26b90bbce48aae3dfbf3653c46, type: 3}
+  audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
+  stats: {fileID: 11400000, guid: 02d5c61d41361fe47bd1c4e57fefcec4, type: 2}
+  passives: []
+  moves:
+  - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
+  - {fileID: 11400000, guid: 8c7bb729897ba9144a9f64ea48eeec56, type: 2}
+  - {fileID: 11400000, guid: d1e5249ba8ae76c46b35a8c7c758c564, type: 2}
+  - {fileID: 11400000, guid: 3e8202bd58af91e4bb3dffcd9e357e27, type: 2}
+  - {fileID: 11400000, guid: c614fbecf2a19584da5c0bb33f0a4fc4, type: 2}
+  - {fileID: 11400000, guid: 709578c464b54f94881d2ef3ebeee214, type: 2}
+  - {fileID: 11400000, guid: e9c706314c879a140abbd2c048bc24e6, type: 2}
+  - {fileID: 11400000, guid: 1d9019547fd10064aa444ced13b25b41, type: 2}
+  ultimate: {fileID: 11400000, guid: 02bdf00caa1b7044287ed75d19caa190, type: 2}

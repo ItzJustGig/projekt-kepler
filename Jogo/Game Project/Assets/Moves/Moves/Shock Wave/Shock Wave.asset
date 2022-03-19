@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Shock Wave
+  m_EditorClassIdentifier: 
+  type: 0
+  name: shockwave
+  hitTime: 1
+  priority: 0
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 70
+  magicDmg: 20
+  trueDmg: 0
+  sanityDmg: 0
+  heal: 0
+  healMana: 0
+  healStamina: 0
+  healSanity: 0
+  shield: 0
+  cooldown: 6
+  inCooldown: 0
+  manaCost: 20
+  staminaCost: 55
+  critDmgBonus: 0
+  critChanceBonus: 0
+  statModUser: {fileID: 0}
+  statModEnemy: {fileID: 0}
+  scale:
+  - {fileID: 11400000, guid: 3e981f7bd2ae30447b76227679ddde4d, type: 2}
+  - {fileID: 11400000, guid: 91cada9d890a5a14b818cc2bf971b49f, type: 2}
+  effects:
+  - {fileID: 11400000, guid: 4cae29b4655fbf14094ea6be2d7a5baa, type: 2}
+  grantPassive: {fileID: 0}

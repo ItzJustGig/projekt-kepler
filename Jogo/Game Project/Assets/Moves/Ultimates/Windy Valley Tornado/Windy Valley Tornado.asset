@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Windy Valley Tornado
+  m_EditorClassIdentifier: 
+  type: 7
+  name: windyvalleytornado
+  hitTime: 5
+  priority: 0
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 0
+  magicDmg: 30
+  trueDmg: 0
+  sanityDmg: 0
+  heal: 0
+  healMana: 0
+  healStamina: 0
+  healSanity: 0
+  shield: 10
+  cooldown: 0
+  inCooldown: 0
+  manaCost: 0
+  staminaCost: 0
+  critDmgBonus: 0
+  critChanceBonus: 0
+  statModUser: {fileID: 11400000, guid: dd677c836bef11e4eb383634b1c46d8e, type: 2}
+  statModEnemy: {fileID: 11400000, guid: dc01a4a0e92b4ef4a89eac10035c110b, type: 2}
+  scale:
+  - {fileID: 11400000, guid: 2a4d7f1014d12a74eaea5ffe614d2e89, type: 2}
+  - {fileID: 11400000, guid: 093ff1ee47bacde45839c4ca234c22a5, type: 2}
+  effects:
+  - {fileID: 11400000, guid: 764f1eefb32d81a4e8a3821426ad2091, type: 2}
+  grantPassive: {fileID: 0}

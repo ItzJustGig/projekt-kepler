@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Mud Toss
+  m_EditorClassIdentifier: 
+  type: 1
+  name: mudtoss
+  hitTime: 1
+  priority: 0
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 0
+  magicDmg: 70
+  trueDmg: 0
+  sanityDmg: 1
+  heal: 0
+  healMana: 0
+  healStamina: 0
+  healSanity: 0
+  shield: 0
+  cooldown: 4
+  inCooldown: 0
+  manaCost: 40
+  staminaCost: 0
+  critDmgBonus: 0
+  critChanceBonus: 0
+  statModUser: {fileID: 0}
+  statModEnemy: {fileID: 11400000, guid: 3200b80e43e62c64dbe3f47ee6eea662, type: 2}
+  scale:
+  - {fileID: 11400000, guid: 0f5c340da3b9c1d4cb24fc44fd856bff, type: 2}
+  effects: []
+  grantPassive: {fileID: 0}

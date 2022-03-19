@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5012494870561102848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7768821669238523849}
+  - component: {fileID: 1497513160506442188}
+  m_Layer: 0
+  m_Name: Enemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7768821669238523849
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5012494870561102848}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1497513160506442188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5012494870561102848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681fa197d5ebdd54591fb107a73e1d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnemy: 1
+  curHp: 0
+  curMana: 0
+  curStamina: 0
+  curShield: 0
+  curSanity: 0
+  ult: 0
+  bonusHp: 0
+  bonusMana: 0
+  bonusStamina: 0
+  bonusSanity: 0
+  usedBonusStuff: 1
+  isBlockingPhysical: 0
+  isBlockingMagical: 0
+  isBlockingRanged: 0
+  canUsePhysical: 1
+  canUseRanged: 1
+  canUseMagic: 1
+  canUseSupp: 1
+  canUseProtec: 1
+  canUseStatMod: 1
+  statMods: []
+  effects: []
+  moves: []
+  passives: []
+  items: []
+  characters:
+  - {fileID: 11400000, guid: 8a74174598c529c40992335d34c08daa, type: 2}
+  - {fileID: 11400000, guid: fdc1eaabf42a43d4ebfa0c7a8735b4ce, type: 2}
+  - {fileID: 11400000, guid: b48f3faa36f0b754e9ca22735629239f, type: 2}
+  - {fileID: 11400000, guid: df803ad4f62e51b459c7930a7a30f052, type: 2}
+  - {fileID: 11400000, guid: 3fe32267b3cdaee4f9eec0f8a5fd10a2, type: 2}
+  - {fileID: 11400000, guid: 662fbdcaf73e7454a9245c9da504dabd, type: 2}
+  - {fileID: 11400000, guid: 1d46e1b95ae5356429afd857d4ce0cfe, type: 2}
+  - {fileID: 11400000, guid: fc2d03984d5dbb14ba4a3f0dd4952f28, type: 2}
+  monsters:
+  - {fileID: 11400000, guid: 666148e919e3ae5439768a82a57da86a, type: 2}
+  - {fileID: 11400000, guid: e9b8d6ee608812644b5aa77e46d4e182, type: 2}
+  - {fileID: 11400000, guid: 86039499d75aaf8469372f5a98286ebc, type: 2}
+  - {fileID: 11400000, guid: 84fa0fc8c0780ee4480d95de20023dc3, type: 2}
+  - {fileID: 11400000, guid: f477225a46ede4d45a2ce573629bf2f3, type: 2}
+  - {fileID: 11400000, guid: 169ae13a766d7a74b8110e2c6bf8a69d, type: 2}
+  - {fileID: 11400000, guid: f2524c41e7c50864f9bce828a7d72252, type: 2}
+  - {fileID: 11400000, guid: 31c2cbf9a91a68846a2e227a6ead5935, type: 2}
+  - {fileID: 11400000, guid: 1f1a4259e9ad98c48aaa0d980c7ccacc, type: 2}
+  - {fileID: 11400000, guid: 6f81eea80626a524eb05c88059ff0ddb, type: 2}
+  - {fileID: 11400000, guid: a405d00879dfca341b8b7f9aba1611b6, type: 2}
+  - {fileID: 11400000, guid: 40c04ed15ad85c94593d01ffb6aee731, type: 2}
+  - {fileID: 11400000, guid: 3dab910ad6f172843af2055ef75349aa, type: 2}
+  - {fileID: 11400000, guid: 98fa812dad3ce2744b8d3a75a87e0c25, type: 2}
+  - {fileID: 11400000, guid: cef54f3cc64e532438c194d1fad8f572, type: 2}
+  - {fileID: 11400000, guid: 34e34541c5664924ca8bcc078b63d345, type: 2}
+  - {fileID: 11400000, guid: b7ad0fc2e2cc2a048856ead00dcf9884, type: 2}
+  - {fileID: 11400000, guid: 2aba51100e931284fb791cc31cf58b13, type: 2}
+  charc: {fileID: 0}
+  spriteDefault: {fileID: 5806852883944117854, guid: e14ff431356231f42bbc0411eccf6784,
+    type: 3}
+  dmgText: {fileID: 6660151446694098444, guid: c90935b74ad7c07479f8cbd0f409eb0f, type: 3}
+  passiveText: {fileID: 6660151446694098444, guid: f9916f54c3f208a419a5e66d8b965f90,
+    type: 3}
+  phyDmgDealt: 0
+  magicDmgDealt: 0
+  trueDmgDealt: 0
+  sanityDmgDealt: 0
+  healDone: 0
+  shieldDone: 0
+  manaHealDone: 0
+  staminaHealDone: 0
+  sanityHealDone: 0
+  phyDmgTaken: 0
+  magicDmgTaken: 0
+  trueDmgTaken: 0
+  sanityDmgTaken: 0
+  phyDmgMitigated: 0
+  magicDmgMitigated: 0
+  animator: {fileID: 0}

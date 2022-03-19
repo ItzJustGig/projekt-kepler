@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d789de254ec901741a8cedbf21aabeda, type: 3}
+  m_Name: Worm
+  m_EditorClassIdentifier: 
+  strenght: 0
+  classe: 8
+  name: worm
+  sprite: {fileID: 5806852883944117854, guid: 5de02698be5be7d48bc2ef8b9cb2e489, type: 3}
+  charcIcon: {fileID: 21300000, guid: fef6fa4dacde8d44183cf3b7cea60c5f, type: 3}
+  audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
+  stats: {fileID: 11400000, guid: 253a68491c443a141bccfcf1f9ad3d7d, type: 2}
+  passives: []
+  moves:
+  - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
+  - {fileID: 11400000, guid: 2ef5f33f2a39d5b44912c7d77c2a5f72, type: 2}
+  - {fileID: 11400000, guid: db17e33d297036e4899258958fa170b4, type: 2}
+  - {fileID: 11400000, guid: 1969a027ecfa3c848aedcbf6476a0780, type: 2}
+  - {fileID: 11400000, guid: b597c68ce43a7c3438b0c18bdb6d04cf, type: 2}
+  - {fileID: 11400000, guid: fc0d3e66d0e2cf34db76858f6de109ae, type: 2}
+  ultimate: {fileID: 11400000, guid: d5a4bf7b0b173264498e119043ba1586, type: 2}

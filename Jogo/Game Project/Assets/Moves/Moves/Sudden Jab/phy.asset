@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266200e1cfac25c4aa7c5a406a38c002, type: 3}
+  m_Name: phy
+  m_EditorClassIdentifier: 
+  type: 0
+  playerStat: 1
+  flatValue: 0
+  curHp: 0
+  missHp: 0
+  maxHp: 0
+  hpRegen: 0
+  missMana: 0
+  curMana: 0
+  maxMana: 0
+  manaRegen: 0
+  maxStamina: 0
+  curStamina: 0
+  missStamina: 0
+  staminaRegen: 0
+  curSanity: 0
+  missSanity: 0
+  maxSanity: 0
+  atkDmg: 0.55
+  magicPower: 0
+  dmgResis: 0
+  magicResis: 0
+  timing: 0
+  movSpeed: 0.14

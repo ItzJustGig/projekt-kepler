@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Light Speed Plasma Cut
+  m_EditorClassIdentifier: 
+  type: 7
+  name: lightspeedplasmacut
+  hitTime: 1
+  priority: 1
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 35
+  magicDmg: 70
+  trueDmg: 25
+  sanityDmg: 0
+  heal: 0
+  healMana: 0
+  healStamina: 0
+  healSanity: 0
+  shield: 0
+  cooldown: 0
+  inCooldown: 0
+  manaCost: 0
+  staminaCost: 0
+  critDmgBonus: 0
+  critChanceBonus: 0
+  statModUser: {fileID: 11400000, guid: 34f562b944d31a34286e3afb9054bcd5, type: 2}
+  statModEnemy: {fileID: 11400000, guid: 0148da63c4625db449acbad368b18f8f, type: 2}
+  scale:
+  - {fileID: 11400000, guid: 1121b478831b77d4188316a3b9d02282, type: 2}
+  - {fileID: 11400000, guid: 56fc34cfd0e371142bae5b96a226da66, type: 2}
+  - {fileID: 11400000, guid: 189aa66cbd1bf8b4b9e7a68c63d5b0cd, type: 2}
+  effects:
+  - {fileID: 11400000, guid: bc69ea7a8e8481c4f817eee1b4c5cf4a, type: 2}
+  grantPassive: {fileID: 0}

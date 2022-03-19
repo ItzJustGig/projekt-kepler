@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
+  m_Name: Fear
+  m_EditorClassIdentifier: 
+  name: Fear
+  id: FEA
+  sprite: {fileID: 21300000, guid: fec2aec64e5a1e940b7c4e8aed396b6c, type: 3}
+  duration: 0
+  timesInc: 0
+  canUsePhysical: 1
+  canUseRanged: 1
+  canUseMagic: 1
+  canUseSupp: 1
+  canUseProtec: 1
+  canUseStatMod: 1
+  phyDmgMin: 0
+  phyDmgMax: 0
+  phyDmgInc: 0
+  magicDmgMin: 0
+  magicDmgMax: 0
+  magicDmgInc: 0
+  trueDmgMin: 0
+  trueDmgMax: 0
+  trueDmgInc: 0
+  sanityDmgMin: 0
+  sanityDmgMax: 0
+  sanityDmgInc: 0
+  sanityHealMin: 9
+  sanityHealMax: 12
+  sanityHealInc: 5
+  healMin: 0
+  healMax: 0
+  healInc: 0
+  healManaMin: 0
+  healManaMax: 0
+  healManaInc: 0
+  healStaminaMin: 0
+  healStaminaMax: 0
+  healStaminaInc: 0
+  shieldMin: 0
+  shieldMax: 0
+  shieldInc: 0
+  cancelAtkChance: 0.6
+  recoil: 10
+  cancelMsg: is in fear.
+  scale:
+  - {fileID: 11400000, guid: 7818a7f011497c440b7d6f13345538eb, type: 2}
+  statMods:
+  - {fileID: 11400000, guid: 0bce91383159620458dfa370ec80238e, type: 2}

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
+  m_Name: mimi stats
+  m_EditorClassIdentifier: 
+  hp: 555
+  hpRegen: 26
+  mana: 200
+  manaRegen: 0.25
+  stamina: 495
+  staminaRegen: 0.4
+  sanity: 95
+  atkDmg: 45
+  magicPower: 19
+  critChance: 0.094
+  critDmg: 0.13
+  dmgResis: 50
+  magicResis: 35
+  timing: 2.15
+  movSpeed: 195
+  lifesteal: 0
+  accuracy: 1
+  evasion: 0
+  armourPen: 0

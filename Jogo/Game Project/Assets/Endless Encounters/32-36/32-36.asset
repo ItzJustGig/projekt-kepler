@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032fd4fbd2e4d194c8153e53a9871fae, type: 3}
+  m_Name: 32-36
+  m_EditorClassIdentifier: 
+  strenghts:
+  - {fileID: 11400000, guid: 097969b41ac5cae4aad4d4438850b5cc, type: 2}
+  - {fileID: 11400000, guid: a66682aee9945d04bb052643b45de9cd, type: 2}
+  startRound: 32
+  endRound: 36
+  isBoss: 0

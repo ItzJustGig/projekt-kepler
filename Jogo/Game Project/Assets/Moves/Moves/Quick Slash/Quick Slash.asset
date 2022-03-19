@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Quick Slash
+  m_EditorClassIdentifier: 
+  type: 0
+  name: quickslash
+  hitTime: 1
+  priority: 1
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 55
+  magicDmg: 0
+  trueDmg: 0
+  sanityDmg: 0
+  heal: 0
+  healMana: 0
+  healStamina: 0
+  healSanity: 0
+  shield: 0
+  cooldown: 5
+  inCooldown: 0
+  manaCost: 0
+  staminaCost: 50
+  critDmgBonus: 0.08
+  critChanceBonus: 0
+  statModUser: {fileID: 0}
+  statModEnemy: {fileID: 11400000, guid: 150a5e3897a008d49a9184c5df6a759d, type: 2}
+  scale:
+  - {fileID: 11400000, guid: 34fb8e836de994640a51c28b91f87be7, type: 2}
+  effects: []
+  grantPassive: {fileID: 0}

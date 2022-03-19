@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d789de254ec901741a8cedbf21aabeda, type: 3}
+  m_Name: Sandew
+  m_EditorClassIdentifier: 
+  strenght: 6
+  classe: 7
+  name: sandew
+  sprite: {fileID: 5806852883944117854, guid: a9be5b2a64a4a8b42a7f6979da8ac051, type: 3}
+  charcIcon: {fileID: 21300000, guid: c382f9bd64c89d541a30d7d9293b8b12, type: 3}
+  audio: {fileID: 8300000, guid: 43d78e6233923c64996d17ac2ba4c27c, type: 3}
+  stats: {fileID: 11400000, guid: 4c4e0a51c86fb4644af95dfb06cc3ae4, type: 2}
+  passives:
+  - {fileID: 11400000, guid: fd9a5b8b72e17b8478007c8d06ddc6ab, type: 2}
+  - {fileID: 11400000, guid: 635b8120dc60bac4d9c0eeec7f81c1d8, type: 2}
+  - {fileID: 11400000, guid: 572af329379c6874a8d2c4cdb2c23875, type: 2}
+  moves:
+  - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
+  - {fileID: 11400000, guid: f9836d3e12897d74996d631b91c8df8b, type: 2}
+  - {fileID: 11400000, guid: b597c68ce43a7c3438b0c18bdb6d04cf, type: 2}
+  - {fileID: 11400000, guid: 3c82a57b363c183479bfa39f7a08010b, type: 2}
+  - {fileID: 11400000, guid: 91b4efea4dd0bda48be911438c154653, type: 2}
+  - {fileID: 11400000, guid: fc0d3e66d0e2cf34db76858f6de109ae, type: 2}
+  - {fileID: 11400000, guid: e8c2ee4d54733d041baf75318bc3c559, type: 2}
+  - {fileID: 11400000, guid: 2ef5f33f2a39d5b44912c7d77c2a5f72, type: 2}
+  - {fileID: 11400000, guid: 1969a027ecfa3c848aedcbf6476a0780, type: 2}
+  ultimate: {fileID: 11400000, guid: 4eac4fb07462e2644ac10a17e117c0a7, type: 2}

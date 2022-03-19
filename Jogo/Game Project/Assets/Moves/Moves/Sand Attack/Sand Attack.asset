@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Sand Attack
+  m_EditorClassIdentifier: 
+  type: 5
+  name: sandattack
+  hitTime: 1
+  priority: 0
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 0
+  magicDmg: 0
+  trueDmg: 5
+  sanityDmg: 3
+  heal: 0
+  healMana: 5
+  healStamina: 0
+  healSanity: 0
+  shield: 0
+  cooldown: 6
+  inCooldown: 0
+  manaCost: 0
+  staminaCost: 0
+  critDmgBonus: 0
+  critChanceBonus: 0
+  statModUser: {fileID: 0}
+  statModEnemy: {fileID: 11400000, guid: 7c3f5d836daa3fa42a94ea39e8d41f74, type: 2}
+  scale: []
+  effects:
+  - {fileID: 11400000, guid: d82cd5b4d0a5d7f43ab8d3c21ee31192, type: 2}
+  grantPassive: {fileID: 0}

@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Glare
+  m_EditorClassIdentifier: 
+  type: 1
+  name: glare
+  hitTime: 1
+  priority: 0
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 0
+  magicDmg: 25
+  trueDmg: 10
+  sanityDmg: 8
+  heal: 0
+  healMana: 0
+  healStamina: 0
+  healSanity: 0
+  shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
+  cooldown: 9
+  inCooldown: 0
+  manaCost: 85
+  staminaCost: 0
+  critDmgBonus: 0
+  critChanceBonus: 0
+  statModUser: {fileID: 0}
+  statModEnemy: {fileID: 0}
+  scale:
+  - {fileID: 11400000, guid: a734dc2fa1a86664b8d71646b6706332, type: 2}
+  - {fileID: 11400000, guid: 27635e9351b718e43bf0c1c13838173a, type: 2}
+  effects:
+  - {fileID: 11400000, guid: 290be62211f7f9449bed9259439f554d, type: 2}
+  grantPassive: {fileID: 0}

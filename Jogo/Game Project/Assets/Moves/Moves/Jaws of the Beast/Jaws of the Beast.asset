@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Jaws of the Beast
+  m_EditorClassIdentifier: 
+  type: 0
+  name: jawsofthebeast
+  hitTime: 1
+  priority: 0
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 165
+  magicDmg: 0
+  trueDmg: 20
+  sanityDmg: 8
+  heal: 3
+  healMana: 0
+  healStamina: 0
+  healSanity: 0
+  shield: 0
+  healFromDmgType: 1
+  healFromDmg: 0.2
+  cooldown: 10
+  inCooldown: 0
+  manaCost: 45
+  staminaCost: 95
+  critDmgBonus: 0
+  critChanceBonus: 0.05
+  statModUser: {fileID: 11400000, guid: 1fa0e60756fed8240b61b8af43cb3590, type: 2}
+  statModEnemy: {fileID: 11400000, guid: 56360607e0ca2f049b2b2b565ba4d993, type: 2}
+  scale:
+  - {fileID: 11400000, guid: 9d8dfebb52b995848ac6f0ff5e4b8c8a, type: 2}
+  - {fileID: 11400000, guid: 18124bef96d9a5149acbc57249517c07, type: 2}
+  - {fileID: 11400000, guid: fc11fce152532034289de39f1df4d410, type: 2}
+  effects:
+  - {fileID: 11400000, guid: cd8a17d14c24ab3449018668080fb061, type: 2}
+  grantPassive: {fileID: 0}

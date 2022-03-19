@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
+  m_Name: Silent Shot
+  m_EditorClassIdentifier: 
+  type: 2
+  name: silentshot
+  hitTime: 1
+  priority: 0
+  blocksPhysical: 0
+  blocksMagical: 0
+  blocksRanged: 0
+  phyDmg: 35
+  magicDmg: 20
+  trueDmg: 0
+  sanityDmg: 0
+  heal: 0
+  healMana: 10
+  healStamina: 0
+  healSanity: 0
+  shield: 0
+  cooldown: 5
+  inCooldown: 0
+  manaCost: 55
+  staminaCost: 0
+  critDmgBonus: 0.06
+  critChanceBonus: 0
+  statModUser: {fileID: 0}
+  statModEnemy: {fileID: 0}
+  scale:
+  - {fileID: 11400000, guid: d2ec5a91dfd75ae49b790d16163e7366, type: 2}
+  - {fileID: 11400000, guid: 2a7c8bf07be50144bbd1021415cd1e22, type: 2}
+  effects:
+  - {fileID: 11400000, guid: d12d9a962c1c06f4ebd34e3bbe592fea, type: 2}
+  grantPassive: {fileID: 0}

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d789de254ec901741a8cedbf21aabeda, type: 3}
+  m_Name: Blazamander
+  m_EditorClassIdentifier: 
+  strenght: 2
+  classe: 3
+  name: blazamander
+  sprite: {fileID: 5806852883944117854, guid: e14ff431356231f42bbc0411eccf6784, type: 3}
+  charcIcon: {fileID: 21300000, guid: 2d5bbf26b90bbce48aae3dfbf3653c46, type: 3}
+  audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
+  stats: {fileID: 11400000, guid: 5d10faab72d4db64988074a7a0389039, type: 2}
+  passives: []
+  moves:
+  - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
+  - {fileID: 11400000, guid: f7453ec62071cab45b3dddf83a214a82, type: 2}
+  - {fileID: 11400000, guid: 5ed051461737d3345941e8ba2889dba3, type: 2}
+  - {fileID: 11400000, guid: aa000c6ce6772c949b6395bd1b52ece5, type: 2}
+  - {fileID: 11400000, guid: bd9d41a3a130a4c4e9298e64bad11d9f, type: 2}
+  - {fileID: 11400000, guid: 939afa8e6637fcf40ae5796369069e9c, type: 2}
+  - {fileID: 11400000, guid: d5a4bf7b0b173264498e119043ba1586, type: 2}
+  - {fileID: 11400000, guid: b1562d14553e310468a985720abdf4f2, type: 2}
+  ultimate: {fileID: 11400000, guid: b8c34ff8c72bcb442ae83cff63ac6a0c, type: 2}

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
+  m_Name: alex stats
+  m_EditorClassIdentifier: 
+  hp: 2720
+  hpRegen: 29
+  mana: 675
+  manaRegen: 1.15
+  stamina: 475
+  staminaRegen: 1.2
+  sanity: 200
+  atkDmg: 68
+  magicPower: 45
+  critChance: 0.38
+  critDmg: 0.5
+  dmgResis: 74
+  magicResis: 67
+  timing: 2.6
+  movSpeed: 340
+  lifesteal: 0
+  accuracy: 1
+  evasion: 0
