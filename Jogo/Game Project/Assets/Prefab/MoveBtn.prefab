@@ -386,7 +386,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 9
+  m_Text: 11
 --- !u!1 &7954924221204952151
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shadow Warp
+  m_Text: Taunt
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,7 +619,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: 0
 --- !u!1 &7954924221810379002
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,41 +800,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
-  text: '<size=25><align=center>Shadow Warp</align></size>
+  text: '<size=24><align=center>Taunt</align></size>
 
-    Priority: 1
+    Priority: 0
 
     <s><align=center>|                
     |</align></s>
 
-    Blocks <color=#ffaa00>physical</color> moves
+    100% chance to <color=#ffaa00>10% Attack Damage</color> to
+    the enemy for 4 turns
 
-    Blocks
-    <color=#1a66ff>magic</color> moves
+    100% chance to <color=#1a66ff>10% Magic Power</color>
+    to the enemy for 4 turns
 
-    Blocks <color=#f75145>ranged</color>
-    moves
+    100% chance to <color=#f75145>-10% Critical Chance</color>
+    to the enemy for 4 turns
+
+    100% chance to <color=#f75145>-6% Critical Damage</color>
+    to the enemy for 4 turns
+
+    100% chance to <color=#937264>-32% Damage Resistance</color>
+    to the enemy for 4 turns
+
+    100% chance to <color=#946ACD>-28% Magic Resistance</color>
+    to the enemy for 4 turns
+
+    100% chance to <color=#0984db>-30% Timing</color>
+    to the enemy for 4 turns
 
     <s><align=center>|                 |</align></s>
 
-    45% chance
-    to <color=#946ACD>9,5% Magic Resistance</color> to the user for 2 turns
+    Deal
+    <color=#b829ff>5 sanity damage</color>
 
-    45%
-    chance to <color=#0984db>10% Timing</color> to the user for 2 turns
-
-    45%
-    chance to <color=#0095ff>10% Movement Speed</color> to the user for 2 turns
-
-    <s><align=center>|                
-    |</align></s>
-
-    Deal <color=#b829ff>2 sanity damage</color>
+    Recover <color=#1e68fc>5 mana</color>
 
     Recover
-    <color=#f0dd0a>8 stamina</color>
-
-    Grants a <color=#787878>20 health shield</color>
+    <color=#f0dd0a>5 stamina</color>
 
 '
 --- !u!1 &7954924222130100152
@@ -915,7 +917,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 6
+  m_Text: 7
 --- !u!1 &7954924222182827413
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,7 +996,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 20
+  m_Text: 0
 --- !u!1 &7970126842544643455
 GameObject:
   m_ObjectHideFlags: 0

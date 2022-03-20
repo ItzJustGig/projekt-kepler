@@ -8,32 +8,37 @@ public class ScreenManager : MonoBehaviour
     public Dropdown resDrop;
     public Toggle fullscrnToggle;
     Resolution[] resolutions;
+    public bool needHud = true;
 
     void Start()
     {
-        resolutions = Screen.resolutions;
-        resDrop.ClearOptions();
-
-        List<string> resString = new List<string>();
-        int curRes = 0;
-
-        for (int i=0; i<resolutions.Length; i++)
+        if (needHud)
         {
-            string res = resolutions[i].width + " x " + resolutions[i].height;
-            resString.Add(res);
+            resolutions = Screen.resolutions;
+            resDrop.ClearOptions();
 
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            List<string> resString = new List<string>();
+            int curRes = 0;
+
+            for (int i = 0; i < resolutions.Length; i++)
             {
-                curRes = i;
+                string res = resolutions[i].width + " x " + resolutions[i].height;
+                if (!resString.Contains(res))
+                    resString.Add(res);
+
+                if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+                {
+                    curRes = i;
+                }
             }
+
+            resDrop.AddOptions(resString);
+            resDrop.value = curRes;
+            resDrop.RefreshShownValue();
+            fullscrnToggle.isOn = Screen.fullScreen;
         }
-
-        resDrop.AddOptions(resString);
-        resDrop.value = curRes;
-        resDrop.RefreshShownValue();
-
+        
         SetRes();
-        fullscrnToggle.isOn = Screen.fullScreen;
     }
 
     public void SetRes(int resIndex)
@@ -44,8 +49,8 @@ public class ScreenManager : MonoBehaviour
 
     public void SetRes()
     {
-        Resolution res = Screen.currentResolution;
-        Screen.SetResolution(res.width, res.height, Screen.fullScreen);
+        //Resolution res = Screen.currentResolution;
+        Screen.SetResolution(Screen.width, Screen.height, Screen.fullScreen);
     }
 
     public void SetFullscreen(bool isFullscrn)

@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 812f067d5d60add448aa657880474a92, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 78d0639cbe23ffd49a16b9331235b42c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -153,7 +153,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tecido de Couro
+  m_Text: Big Steak
 --- !u!1 &5427755121742644162
 GameObject:
   m_ObjectHideFlags: 0
