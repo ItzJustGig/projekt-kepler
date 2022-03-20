@@ -11,8 +11,20 @@ public class EffectsMove : ScriptableObject
     public int durationMax;
     public float chance;
     public bool targetPlayer = false;
+    private bool applied = false;
 
     public Effects effect;
+
+    public bool WasApplied()
+    {
+        return applied;
+    }
+
+    public void SetApply(bool a)
+    {
+        if (!applied)
+            applied = a;
+    }
 
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string detail, string chance, string effect, string user, string time)
     {

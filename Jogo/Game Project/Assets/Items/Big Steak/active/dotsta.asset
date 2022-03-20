@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162ff384d3b463541a5c7fe0731c0cd1, type: 3}
   m_Name: dotsta
   m_EditorClassIdentifier: 
-  type: 0
+  type: 6
   dmg: 0
-  time: 0
+  time: 6
   inTime: 0
   isCrit: 0

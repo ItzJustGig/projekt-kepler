@@ -599,7 +599,6 @@ public class BattleSystem : MonoBehaviour
             }
             else
             {
-                bool usedEffect = false;
                 bool usedUsMod = false;
                 bool usedEnMod = false;
                 float stopAttackChance = 0;
@@ -1553,6 +1552,12 @@ public class BattleSystem : MonoBehaviour
 
                                 sumPlayerHud.UpdateValues(playerUnit, langmanag.GetInfo("charc", "name", playerUnit.charc.name));
                                 sumEnemyHud.UpdateValues(enemyUnit, langmanag.GetInfo("charc", "name", enemyUnit.charc.name));
+
+                                if (isDead)
+                                    if (user.isEnemy)
+                                        state = BattleState.WIN;
+                                    else
+                                        state = BattleState.LOSE;
                             }
                         }
                     }
@@ -1600,7 +1605,7 @@ public class BattleSystem : MonoBehaviour
                                 {
                                     Effects effect = a.effect.ReturnEffect();
                                     
-                                    if (Random.Range(0f, 1f) < a.chance && !usedEffect)
+                                    if (Random.Range(0f, 1f) < a.chance && !a.WasApplied())
                                     {
                                         foreach (Passives b in target.passives.ToArray())
                                         {
@@ -1725,7 +1730,7 @@ public class BattleSystem : MonoBehaviour
                                         {
                                             skipEffect = false;
                                         }
-                                        usedEffect = true;
+                                        a.SetApply(true);
                                     }
                                 }
                             }
@@ -4038,6 +4043,11 @@ public class BattleSystem : MonoBehaviour
 
                 if (move.inCooldown > 0 && move.name != "recovmana")
                     move.inCooldown--;
+
+                foreach (EffectsMove a in move.effects)
+                {
+                    a.SetApply(false);
+                }
             }
         }   
 
@@ -4052,6 +4062,11 @@ public class BattleSystem : MonoBehaviour
 
                 if (move.inCooldown > 0)
                     move.inCooldown--;
+
+                foreach (EffectsMove a in move.effects)
+                {
+                    a.SetApply(false);
+                }
             }
 
         if (recoverManaMoveP.inCooldown > 0)

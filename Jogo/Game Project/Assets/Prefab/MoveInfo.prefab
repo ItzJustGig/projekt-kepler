@@ -382,7 +382,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 7
+  m_Text: 4
 --- !u!1 &7461933490921630933
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,45 +501,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
-  text: '<size=25><align=center>Taunt</align></size>
+  text: '<size=24><align=center>Bite</align></size>
 
     Priority: 0
 
     <s><align=center>|                
     |</align></s>
 
-    100% chance to <color=#ffaa00>10% Attack Damage</color> to
-    the enemy for 4 turns
+    12% chance to inflict Blood to the enemy for 1-2 turns.
 
-    100% chance to <color=#1a66ff>10% Magic Power</color>
-    to the enemy for 4 turns
+    <s><align=center>|                
+    |</align></s>
 
-    100% chance to <color=#f75145>-10% Critical Chance</color>
-    to the enemy for 4 turns
+    Deal <color=#ffaa00>20 + (<color=#ffaa00>80%</color> of the
+    user''s <color=#ffaa00>Attack Damage</color>) physical damage</color>
 
-    100% chance to <color=#f75145>-6% Critical Damage</color>
-    to the enemy for 4 turns
-
-    100% chance to <color=#937264>-32% Damage Resistance</color>
-    to the enemy for 4 turns
-
-    100% chance to <color=#946ACD>-28% Magic Resistance</color>
-    to the enemy for 4 turns
-
-    100% chance to <color=#0984db>-30% Timing</color>
-    to the enemy for 4 turns
-
-    <s><align=center>|                 |</align></s>
-
-    Deal
-    <color=#b829ff>5 sanity damage</color>
-
-    Recover <color=#1e68fc>5 mana</color>
-
-    Recover
-    <color=#f0dd0a>5 stamina</color>
-
-    Recover <color=#b641f0>1 sanity</color>
+    <color=#00ff11>Heal
+    4 + (<color=#ffaa00>38%</color> of<color=#ffaa00> physical damage</color>) health</color>
 
 '
 --- !u!1 &7461933492413409170
@@ -620,7 +598,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 40
 --- !u!1 &7461933492528101758
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +664,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 936908b1d1e44524f9d402eb684ac7da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -774,4 +752,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Taunt
+  m_Text: Bite
