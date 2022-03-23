@@ -194,7 +194,7 @@ public class Moves : ScriptableObject
             }
         }
 
-        builder.Replace("%t%", temp.ToString());
+        builder.Replace("%dot%", temp.ToString());
 
         return builder;
     }
@@ -292,6 +292,8 @@ public class Moves : ScriptableObject
             return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().language;
         else if (GameObject.Find("GameManager").GetComponent<FightLang>())
             return GameObject.Find("GameManager").GetComponent<FightLang>().language;
+        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
+            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().language;
         else
             return null;
     }
@@ -302,67 +304,18 @@ public class Moves : ScriptableObject
             return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().languageManager;
         else if (GameObject.Find("GameManager").GetComponent<FightLang>())
             return GameObject.Find("GameManager").GetComponent<FightLang>().languageManager;
+        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
+            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().languageManager;
         else
             return null;
     }
 
-    public string GetTooltipText()
+    private StringBuilder GetDmgMove()
     {
         LanguageManager languageManager = GetLanguageMan();
         string language = GetLanguage();
+
         StringBuilder builder = new StringBuilder();
-
-        builder.Append("<size=24><align=center>").Append(GetDetail(languageManager, language, "moves", name)).Append("</align></size>").AppendLine();
-        //builder.Append(description).AppendLine();
-        if (hitTime > 1)
-            builder.Append(GetDmg(languageManager, language, "hitimes", hitTime, "FFFFFF")).AppendLine();
-
-        builder.Append(GetDmg(languageManager, language, "priority", priority, "FFFFFF")).AppendLine();
-
-        if (critChanceBonus != 0)
-            builder.Append(GetDmg(languageManager, language, "bonuscritchance", (critChanceBonus * 100), "f75145")).AppendLine();
-
-        if (critDmgBonus != 0)
-            builder.Append(GetDmg(languageManager, language, "bonuscritdmg", (critDmgBonus * 100), "f75145")).AppendLine();
-
-        if (uses > -1)
-            builder.Append(GetDmg(languageManager, language, "uses", uses, "FFFFFF")).AppendLine();
-
-        if (blocksPhysical || blocksMagical || blocksRanged)
-        {
-            builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
-
-            if (blocksPhysical)
-                builder.Append(GetDmg(languageManager, language, "blockphysic", "ffaa00")).AppendLine();
-
-            if (blocksMagical)
-                builder.Append(GetDmg(languageManager, language, "blockmagic", "1a66ff")).AppendLine();
-
-            if (blocksRanged)
-                builder.Append(GetDmg(languageManager, language, "blockranged", "f75145")).AppendLine();
-        }   
-
-        if (statModUser || statModEnemy)
-        {
-            builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
-
-            if (statModUser)
-                builder.Append(statModUser.GetStatModInfo(true));
-
-            if (statModEnemy)
-                builder.Append(statModEnemy.GetStatModInfo(false));
-        }
-
-        if (effects.Count > 0)
-        {
-            builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
-
-            foreach (EffectsMove a in effects)
-            {
-                builder.Append(a.GetEffectMoveInfo());
-            }
-        }
-        builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
 
         if (phyDmg > 0)
         {
@@ -469,10 +422,164 @@ public class Moves : ScriptableObject
             builder.Append(GetDmg(languageManager, language, "shield", shield, "787878", temp.ToString())).AppendLine();
         }
 
+        return builder;
+    }
+
+    public string GetTooltipText()
+    {
+        LanguageManager languageManager = GetLanguageMan();
+        string language = GetLanguage();
+        StringBuilder builder = new StringBuilder();
+
+        builder.Append("<size=24><align=center>").Append(GetDetail(languageManager, language, "moves", name)).Append("</align></size>").AppendLine();
+        //builder.Append(description).AppendLine();
+        if (hitTime > 1)
+            builder.Append(GetDmg(languageManager, language, "hitimes", hitTime, "FFFFFF")).AppendLine();
+
+        builder.Append(GetDmg(languageManager, language, "priority", priority, "FFFFFF")).AppendLine();
+
+        if (critChanceBonus != 0)
+            builder.Append(GetDmg(languageManager, language, "bonuscritchance", (critChanceBonus * 100), "f75145")).AppendLine();
+
+        if (critDmgBonus != 0)
+            builder.Append(GetDmg(languageManager, language, "bonuscritdmg", (critDmgBonus * 100), "f75145")).AppendLine();
+
+        if (uses > -1)
+            builder.Append(GetDmg(languageManager, language, "uses", uses, "FFFFFF")).AppendLine();
+
+        if (blocksPhysical || blocksMagical || blocksRanged)
+        {
+            builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
+
+            if (blocksPhysical)
+                builder.Append(GetDmg(languageManager, language, "blockphysic", "ffaa00")).AppendLine();
+
+            if (blocksMagical)
+                builder.Append(GetDmg(languageManager, language, "blockmagic", "1a66ff")).AppendLine();
+
+            if (blocksRanged)
+                builder.Append(GetDmg(languageManager, language, "blockranged", "f75145")).AppendLine();
+        }   
+
+        if (statModUser || statModEnemy)
+        {
+            builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
+
+            if (statModUser)
+                builder.Append(statModUser.GetStatModInfo(true));
+
+            if (statModEnemy)
+                builder.Append(statModEnemy.GetStatModInfo(false));
+        }
+
+        if (effects.Count > 0)
+        {
+            builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
+
+            foreach (EffectsMove a in effects)
+            {
+                builder.Append(a.GetEffectMoveInfo());
+            }
+        }
+        builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
+
+        builder.Append(GetDmgMove());
+
         if (grantPassive)
         {
             builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
             builder.Append(grantPassive.GetPassiveInfo());
+        }
+
+        return builder.ToString();
+    }
+
+    //vv ITEMS vv
+    public string GetMoveInfo()
+    {
+        LanguageManager languageManager = GetLanguageMan();
+        string language = GetLanguage();
+        StringBuilder builder = new StringBuilder();
+
+        builder.Append(languageManager.GetText(language, "items", "move", name));
+
+        builder.Replace("%dmg%", GetDmgMove().ToString());
+        builder.Replace("%mcost%", manaCost.ToString());
+        builder.Replace("%scost%", staminaCost.ToString());
+        builder.Replace("%critdmg%", critDmgBonus.ToString());
+        builder.Replace("%critchance%", critChanceBonus.ToString());
+        builder.Replace("%prio%", priority.ToString());
+        builder.Replace("%hit%", hitTime.ToString());
+
+        {
+            StringBuilder temp = new StringBuilder();
+
+            if (blocksPhysical)
+                temp.Append(GetDmg(languageManager, language, "blockphysic", "ffaa00"));
+
+            if (blocksMagical)
+                temp.Append(GetDmg(languageManager, language, "blockmagic", "1a66ff"));
+
+            if (blocksRanged)
+                temp.Append(GetDmg(languageManager, language, "blockranged", "f75145"));
+
+            builder.Replace("%block%", temp.ToString());
+
+            temp.Clear();
+
+            switch (type)
+            {
+                case MoveType.PHYSICAL:
+                    temp.Append(languageManager.GetText(language, "moves", "type", "physical"));
+                    temp.Replace("%c%", "<color=#ffaa00>");
+                    break;
+                case MoveType.MAGICAL:
+                    temp.Append(languageManager.GetText(language, "moves", "type", "magic"));
+                    temp.Replace("%c%", "<color=#1a66ff>");
+                    break;
+                case MoveType.RANGED:
+                    temp.Append(languageManager.GetText(language, "moves", "type", "ranged"));
+                    temp.Replace("%c%", "<color=#f75145>");
+                    break;
+                case MoveType.STATMOD:
+                    temp.Append(languageManager.GetText(language, "moves", "type", "statmod"));
+                    temp.Replace("%c%", "<color=#00ff11>");
+                    break;
+                case MoveType.SUPPORT:
+                    temp.Append(languageManager.GetText(language, "moves", "type", "support"));
+                    temp.Replace("%c%", "<color=#ebdb28>");
+                    break;
+                case MoveType.DEFFENCIVE:
+                    temp.Append(languageManager.GetText(language, "moves", "type", "defence"));
+                    temp.Replace("%c%", "<color=#787878>");
+                    break;
+            }
+
+            temp.Replace("%c/%", "</color>");
+
+            builder.Replace("%type%", temp.ToString());
+        }
+
+        if (statModUser || statModEnemy)
+        {
+            if (statModUser)
+                builder.Replace("%modu%", statModUser.GetStatModInfo(true).ToString());
+
+            if (statModEnemy)
+                builder.Replace("%mode%", statModEnemy.GetStatModInfo(false).ToString());
+        }
+
+        if (effects.Count > 0)
+        {
+            foreach (EffectsMove a in effects)
+            {
+                builder.Replace("%effects%", a.GetEffectMoveInfo().ToString());
+            }
+        }
+
+        if (grantPassive)
+        {
+            builder.Replace("%gpassive%", grantPassive.GetPassiveInfo());
         }
 
         return builder.ToString();

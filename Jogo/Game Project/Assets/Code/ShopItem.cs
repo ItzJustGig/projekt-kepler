@@ -23,7 +23,7 @@ public class ShopItem : MonoBehaviour
 
     [SerializeField] private ShopLangManager langmanag;
 
-    public void SetUpCard(Items item)
+    public void SetUpCard(Items item, GameObject tooltip)
     {
         if (item != null)
         {
@@ -32,6 +32,9 @@ public class ShopItem : MonoBehaviour
             price = Random.Range(item.minPrice, item.maxPrice);
             goldText.text = price + langmanag.GetInfo("gui", "text", "goldinicial");
             itemSprite.sprite = item.icon;
+
+            this.gameObject.GetComponent<TooltipButton>().tooltipPopup = tooltip.GetComponent<TooltipPopUp>();
+            this.gameObject.GetComponent<TooltipButton>().text = item.GetTooltipText();
 
             switch (item.rarity)
             {
@@ -61,15 +64,18 @@ public class ShopItem : MonoBehaviour
         
     }
     
-    public void SetUpCard(Items item, int price)
+    public void SetUpCard(Items item, int price, GameObject tooltip)
     {
         if (item != null)
         {
-            cardName.text = langmanag.GetInfo("items", item.name);
+            cardName.text = langmanag.GetInfo("items", "name", item.name);
             itemName = item.name;
             this.price = price;
             goldText.text = price + langmanag.GetInfo("gui", "text", "goldinicial");
             itemSprite.sprite = item.icon;
+
+            btnBuy.gameObject.GetComponent<TooltipButton>().tooltipPopup = tooltip.GetComponent<TooltipPopUp>();
+            btnBuy.gameObject.GetComponent<TooltipButton>().text = item.GetTooltipText();
 
             switch (item.rarity)
             {

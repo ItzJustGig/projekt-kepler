@@ -49,13 +49,13 @@ public class LanguageManager : MonoBehaviour
                     returns = effect.Get_Effect(sec, tri);
                     break;
                 case "moves":
-                    returns = moves.Get_Moves(sec);
+                    returns = moves.Get_Moves(sec, tri);
                     break;
                 case "passive":
                     returns = passive.Get_Passive(sec, tri);
                     break;
                 case "items":
-                    returns = items.Get_Item(sec);
+                    returns = items.Get_Item(sec, tri);
                     break;
                 default:
                     returns = "null";
@@ -1331,6 +1331,7 @@ public class LanguageManager : MonoBehaviour
     [Serializable]
     public class Moves
     {
+        public Move_Type type;
         public string basicattack;
         public string recovmana;
         public string accurateshot;
@@ -1447,11 +1448,14 @@ public class LanguageManager : MonoBehaviour
         public string bigsteak;
         public string zap;
 
-        public string Get_Moves(string a)
+        public string Get_Moves(string a, string b)
         {
             string returns;
             switch (a)
             {
+                case "type":
+                    returns = type.Get_Move_Type(b);
+                    break;
                 case "basicattack":
                     returns = basicattack;
                     break;
@@ -1800,7 +1804,93 @@ public class LanguageManager : MonoBehaviour
     }
 
     [Serializable]
+    public class Move_Type
+    {
+        public string physical;
+        public string magic;
+        public string ranged;
+        public string statmod;
+        public string support;
+        public string defence;
+
+        public string Get_Move_Type(string a)
+        {
+            string returns;
+            switch (a)
+            {
+                case "physical":
+                    returns = physical;
+                    break;
+                case "magic":
+                    returns = magic;
+                    break;
+                case "ranged":
+                    returns = ranged;
+                    break;
+                case "statmod":
+                    returns = statmod;
+                    break;
+                case "support":
+                    returns = support;
+                    break;
+                case "defence":
+                    returns = defence;
+                    break;
+                default:
+                    returns = "null";
+                    break;
+            }
+            return returns;
+        }
+    }
+
+        [Serializable]
     public class Items
+    {
+        public string passive;
+        public string active;
+        public string stat;
+        public string cd;
+        public string uses;
+        public Item_Name name;
+        public Item_Move move;
+
+        public string Get_Item(string a, string b)
+        {
+            string returns;
+            switch (a)
+            {
+                case "passive":
+                    returns = passive;
+                    break;
+                case "active":
+                    returns = active;
+                    break;
+                case "stat":
+                    returns = stat;
+                    break;
+                case "cd":
+                    returns = cd;
+                    break;
+                case "uses":
+                    returns = uses;
+                    break;
+                case "name":
+                    returns = name.Get_ItemName(b);
+                    break;
+                case "move":
+                    returns = move.Get_ItemMove(b);
+                    break;
+                default:
+                    returns = "null";
+                    break;
+            }
+            return returns;
+        }
+    }
+
+    [Serializable]
+    public class Item_Name
     {
         public string bigsteak;
         public string manacrystal;
@@ -1821,7 +1911,7 @@ public class LanguageManager : MonoBehaviour
         public string shadowdagger;
         public string bookofdisaster;
 
-        public string Get_Item(string a)
+        public string Get_ItemName(string a)
         {
             string returns;
             switch (a)
@@ -1888,13 +1978,49 @@ public class LanguageManager : MonoBehaviour
         }
     }
 
+    [Serializable]
+    public class Item_Move
+    {
+        public string zap;
+        public string manapotion;
+        public string healthpotion;
+        public string bigsteak;
+        public string ravensfeather;
+
+        public string Get_ItemMove(string a)
+        {
+            string returns;
+            switch (a)
+            {
+                case "zap":
+                    returns = zap;
+                    break;
+                case "manapotion":
+                    returns = manapotion;
+                    break;
+                case "healthpotion":
+                    returns = healthpotion;
+                    break;
+                case "bigsteak":
+                    returns = bigsteak;
+                    break;
+                case "ravensfeather":
+                    returns = ravensfeather;
+                    break;
+                default:
+                    returns = "null";
+                    break;
+            }
+            return returns;
+        }
+    }
+
     public string GetText(string languageId, string main, string sec, string tri)
     {
         foreach (TextAsset a in languages)
         {
-            Json lang = new Json();
             string json = a.ToString();
-            lang = JsonUtility.FromJson<Json>(json);
+            Json lang = JsonUtility.FromJson<Json>(json);
             
             if (lang.language.Get_Language("code") == languageId)
             {   
@@ -1908,9 +2034,8 @@ public class LanguageManager : MonoBehaviour
     {
         foreach (TextAsset a in languages)
         {
-            Json lang = new Json();
             string json = a.ToString();
-            lang = JsonUtility.FromJson<Json>(json);
+            Json lang = JsonUtility.FromJson<Json>(json);
 
             if (lang.language.Get_Language("code") == languageId)
             {

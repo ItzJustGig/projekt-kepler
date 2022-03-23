@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spectral Ring
   m_EditorClassIdentifier: 
   name: spectralring
-  showNameOnInfo: 1
+  showNameOnInfo: 0
   sprite: {fileID: 21300000, guid: ee4b75241f289104f9157f42c4a0abb4, type: 3}
   num: 0.2
   maxNum: 0

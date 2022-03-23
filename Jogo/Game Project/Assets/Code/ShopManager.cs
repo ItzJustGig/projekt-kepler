@@ -15,6 +15,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private GameObject itemOwnPrefab;
     [SerializeField] private Transform itemOwnList;
     [SerializeField] private GameObject inventoryGO;
+    [SerializeField] private GameObject tooltip;
 
     [SerializeField] private Image charcIcon;
     [SerializeField] private Text gold;
@@ -50,7 +51,7 @@ public class ShopManager : MonoBehaviour
 
         if (info.generateShop == true)
         {
-            item1.SetUpCard(GenItem());
+            item1.SetUpCard(GenItem(), tooltip);
 
             if (item1.itemName != "")
             {
@@ -69,7 +70,7 @@ public class ShopManager : MonoBehaviour
                 } while (temp.name == item1.itemName);
             }
 
-            item2.SetUpCard(temp);
+            item2.SetUpCard(temp, tooltip);
             temp = null;
 
             if (item1.itemName != "" && item2.itemName != "")
@@ -87,7 +88,7 @@ public class ShopManager : MonoBehaviour
                 } while (temp.name == item2.itemName || temp.name == item1.itemName);
             }
 
-            item3.SetUpCard(temp);
+            item3.SetUpCard(temp, tooltip);
 
             info.itemShop.Add(item1.GetItemString());
             info.itemShop.Add(item2.GetItemString());
@@ -116,13 +117,13 @@ public class ShopManager : MonoBehaviour
                 switch (i)
                 {
                     case 1:
-                        item1.SetUpCard(temp, priceI);
+                        item1.SetUpCard(temp, priceI, tooltip);
                         break;
                     case 2:
-                        item2.SetUpCard(temp, priceI);
+                        item2.SetUpCard(temp, priceI, tooltip);
                         break;
                     case 3:
-                        item3.SetUpCard(temp, priceI);
+                        item3.SetUpCard(temp, priceI, tooltip);
                         break;
                     default:
                         Debug.LogWarning("Tried to load many items found in itemShop from the endless data file (" + i + ")");
@@ -145,13 +146,19 @@ public class ShopManager : MonoBehaviour
         {
             if (info.items[i] != "")
             {
-                /*moveButton.GetComponent<TooltipButton>().tooltipPopup = tooltip.GetComponent<TooltipPopUp>();
-                moveButton.GetComponent<TooltipButton>().text = move.GetTooltipText();*/
+                foreach (Items a in items)
+                {
+                    if (a.name == info.items[i])
+                    {
+                        itemOwnPrefab.GetComponent<TooltipButton>().tooltipPopup = tooltip.GetComponent<TooltipPopUp>();
+                        itemOwnPrefab.GetComponent<TooltipButton>().text = a.GetTooltipText();
+                    }
+                }
 
                 itemOwnPrefab.name = GetItem(info.items[i]).name;
 
                 Text text = itemOwnPrefab.transform.Find("Text").gameObject.GetComponent<Text>();
-                text.text = langmanag.GetInfo("items", GetItem(info.items[i]).name);
+                text.text = langmanag.GetInfo("items", "name", GetItem(info.items[i]).name);
 
                 Image icon = itemOwnPrefab.transform.Find("Icon").gameObject.GetComponent<Image>();
                 icon.sprite = GetItem(info.items[i]).icon;

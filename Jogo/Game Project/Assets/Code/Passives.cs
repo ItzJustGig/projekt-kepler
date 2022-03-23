@@ -112,6 +112,8 @@ public class Passives : ScriptableObject
             return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().language;
         else if (GameObject.Find("GameManager").GetComponent<FightLang>())
             return GameObject.Find("GameManager").GetComponent<FightLang>().language;
+        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
+            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().language;
         else
             return null;
     }
@@ -122,6 +124,8 @@ public class Passives : ScriptableObject
             return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().languageManager;
         else if (GameObject.Find("GameManager").GetComponent<FightLang>())
             return GameObject.Find("GameManager").GetComponent<FightLang>().languageManager;
+        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
+            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().languageManager;
         else
             return null;
     }
