@@ -915,9 +915,26 @@ public class BattleSystem : MonoBehaviour
 
                         if (a.name == "gravitybelt")
                         {
-                            if ((move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL) && isCrit)
+                            if (a.inCd == 0)
                             {
-                                trueDmg += a.num;
+                                if ((move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL) && isCrit)
+                                {
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    trueDmg += a.num;
+
+                                    a.inCd = a.cd;
+
+                                    //apply statmod
+                                    StatMod statMod = a.statMod.ReturnStats();
+                                    statMod.inTime = statMod.time;
+                                    user.statMods.Add(statMod);
+                                    user.usedBonusStuff = false;
+
+                                    if (user.isEnemy)
+                                        SetStatsHud(user, enemyHUD);
+                                    else
+                                        SetStatsHud(user, playerHUD);
+                                }
                             }
                         }
 
@@ -3696,7 +3713,6 @@ public class BattleSystem : MonoBehaviour
                 ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
             }
 
-
             if (a.name == "toxicteeth")
             {
                 if (a.inCd > 0)
@@ -3707,6 +3723,14 @@ public class BattleSystem : MonoBehaviour
                     DestroyPassiveIcon(a.name, user.isEnemy);
                     user.passives.Remove(a);
                 }
+
+                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+            }
+
+            if (a.name == "gravitybelt")
+            {
+                if (a.inCd > 0)
+                    a.inCd--;
 
                 ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
             }

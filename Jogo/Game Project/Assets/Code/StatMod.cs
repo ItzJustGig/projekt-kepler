@@ -162,7 +162,10 @@ public class StatMod : ScriptableObject
             builder.Replace("%val%", (val * 100).ToString());
         else
             builder.Replace("%val%%", val.ToString());
-        
+
+        if (val < 0)
+            builder.Replace("+", "");
+
         builder.Replace("%stat%", stat);
 
         return builder;

@@ -153,7 +153,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Spectral Ring
+  m_Text: Anel Espectral
 --- !u!1 &5427755121742644162
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,10 +226,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
-  text: "<size=24><align=center>Spectral Ring</align></size>\r\n<s><align=center>|                
-    |</align></s>\r\n<color=#3366ff>+25 Maximum Mana</color>\r\n<color=#2d71fa>+0,1
-    Mana Regen</color>\r\n<color=#1a66ff>+20 Magic Power</color>\r\n\r\n<color=#ffdf00>PASSIVE</color>:
-    The user gain  <color=#1a66ff>3 Magic Power</color>  \r\n every 5 turns up to
-    7 times. \nWhen the user drops below 20% health, magic moves deal bonus <color=#1a66ff>10
-    + (<color=#1a66ff>15%</color> of the user's <color=#1a66ff>Magic Power</color>)</color>
-    as<color=#1a66ff> magical damage</color>.\r\n\r\n"
+  text: "<size=24><align=center>Anel Espectral</align></size>\r\n<s><align=center>|                
+    |</align></s>\r\n<color=#3366ff>+25 Mana M\xE1xima</color>\r\n<color=#2d71fa>+0,1
+    Regenera\xE7\xE3o de Mana</color>\r\n<color=#1a66ff>+20 Poder M\xE1gico</color>\r\n\r\n<color=#ffdf00>PASSIVA</color>:
+    O utilizador ganha <color=#1a66ff>3 Poder M\xE1gico</color>  \r\n a cada 5 turnos,
+    at\xE9 7 vezes. \nQuando o utilizador cai a baixo de 20% vida, t\xE9cnicas m\xE1gicas
+    causam <color=#1a66ff>10 + (<color=#1a66ff>15%</color> do/a <color=#1a66ff>Poder
+    M\xE1gico</color> do utilizador)</color><color=#1a66ff> dano m\xE1gico</color>
+    b\xF3nus.\r\n\r\n"

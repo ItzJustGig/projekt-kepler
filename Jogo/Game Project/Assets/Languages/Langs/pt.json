@@ -357,9 +357,9 @@
             "legendary": "\u00C9 um inimigo forte, isso enche-te de determina\u00E7\u00E3o. (Algumas das tuas estat\u00EDsticas foram aumentadas em %num%%)",
             "boss": "Isto \u00E9 um grande rapaz. (Algumas das tuas estat\u00EDsticas foram reduzidas em %num%%)",
             "toxicteeth": "O utilizador causa %scale% b\u00F3nus com <color=#ffaa00>ataques f\u00EDsicos</color> ou <color=#ffaa00>ataques b\u00E1sicos</color> por %cd% turnos.",
-            "gravitybelt": "Quando o utilizador usa uma t\u00E9cnica f\u00EDsica ou um ataque b\u00E1sico e \u00E9 cr\u00EDtico, causa %num% dano verdadeiro b\u00F3nus.",
+            "gravitybelt": "Quando o utilizador usa uma t\u00E9cnica f\u00EDsica ou um ataque b\u00E1sico e \u00E9 cr\u00EDtico, causa %num% dano verdadeiro b\u00F3nus e ganha %mod%.",
             "manasword": "A cada t\u00E9cnica f\u00EDsica que o utilizador usa, ganha %mod% at\u00E9 %maxStacks% vezes. \nQuando estiver completamente empilhado o utilizador ganha %mod2% e causa %scale% b\u00F3nus com t\u00E9cnicas f\u00EDsicas.",
-            "shadowdagger": "As t\u00E9cnicas f\u00EDsicas do utilizador causam %scale% b\u00F3nus e ganha%mod%. (8 turnos de recarga)",
+            "shadowdagger": "As t\u00E9cnicas f\u00EDsicas do utilizador causam %scale% b\u00F3nus e ganha%mod%. (%cd% turnos de recarga)",
             "spectralring": "O utilizador ganha%mod% a cada %cd% turnos, at\u00E9 %maxStacks% vezes. \nQuando o utilizador cai a baixo de %num%% vida, t\u00E9cnicas m\u00E1gicas causam %scale% b\u00F3nus."
         }
     },

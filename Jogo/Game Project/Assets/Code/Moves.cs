@@ -543,11 +543,11 @@ public class Moves : ScriptableObject
                     break;
                 case MoveType.STATMOD:
                     temp.Append(languageManager.GetText(language, "moves", "type", "statmod"));
-                    temp.Replace("%c%", "<color=#00ff11>");
+                    temp.Replace("%c%", "<color=#ebdb28>");
                     break;
                 case MoveType.SUPPORT:
                     temp.Append(languageManager.GetText(language, "moves", "type", "support"));
-                    temp.Replace("%c%", "<color=#ebdb28>");
+                    temp.Replace("%c%", "<color=#00ff11>");
                     break;
                 case MoveType.DEFFENCIVE:
                     temp.Append(languageManager.GetText(language, "moves", "type", "defence"));

@@ -357,9 +357,9 @@
 			"legendary": "This is a tough oponent, you are filled with determination. (Some of your stats were increased by %num%%)",
 			"boss": "That is a big boi. (Some of the user's stats were increased by %num%%)",
 			"toxicteeth": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> or <color=#ffaa00>basic attacks</color> for %cd% turns.",
-			"gravitybelt": "When the carrier uses a physical move or basic attack and crits, deal bonus %num% as true damage.",
+			"gravitybelt": "When the carrier uses a physical move or basic attack and crits, deal bonus %num% as true damage and gain %mod%.",
 			"manasword": "Every physical moves the carrier gain %mod% up to %maxStacks% times. \nWhen its at maximum stacks the user gain %mod2% and deal bonus %scale% on physical moves.",
-			"shadowdagger": "The user's physical moves deal bonus %scale% and gain %mod%. (8 turns cooldown)",
+			"shadowdagger": "The user's physical moves deal bonus %scale% and gain %mod%. (%cd% turns cooldown)",
 			"spectralring": "The user gain %mod% every %cd% turns up to %maxStacks% times. \nWhen the user drops below %num%% health, magic moves deal bonus %scale%."
 		}
 	},
