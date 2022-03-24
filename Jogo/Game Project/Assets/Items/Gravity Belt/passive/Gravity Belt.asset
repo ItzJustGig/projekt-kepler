@@ -15,13 +15,13 @@ MonoBehaviour:
   name: gravitybelt
   showNameOnInfo: 0
   sprite: {fileID: 21300000, guid: d367d3d7d355f7847983884b91c60b19, type: 3}
-  num: 30
+  num: 35
   maxNum: 0
   stacks: 0
   maxStacks: 0
-  cd: 0
+  cd: 6
   inCd: 0
   statScale: {fileID: 0}
   statScale2: {fileID: 0}
-  statMod: {fileID: 0}
+  statMod: {fileID: 11400000, guid: 42fc3906baa542442a237ac0582e13f4, type: 2}
   statMod2: {fileID: 0}

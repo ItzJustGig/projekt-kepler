@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: mod
   m_EditorClassIdentifier: 
   flat: 0
-  time: 0
-  inTime: 0
+  time: 2
+  inTime: 2
   chance: 0
   hp: 0
   hpRegen: 0
@@ -29,8 +29,8 @@ MonoBehaviour:
   critDmg: 0
   dmgResis: 0
   magicResis: 0
-  timing: 0
-  movSpeed: 0
+  timing: 0.5
+  movSpeed: 0.2
   lifesteal: 0
   accuracy: 0
   evasion: 0

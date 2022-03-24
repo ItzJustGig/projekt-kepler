@@ -15,7 +15,7 @@ MonoBehaviour:
   name: plasmablade
   showNameOnInfo: 1
   sprite: {fileID: 21300000, guid: 16307b561aa462f459e2da6bdf91f0ff, type: 3}
-  num: 0.6
+  num: 0.75
   maxNum: 0.3
   stacks: 20
   maxStacks: 0

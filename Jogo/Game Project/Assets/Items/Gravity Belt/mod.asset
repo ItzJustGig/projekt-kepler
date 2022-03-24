@@ -16,7 +16,7 @@ MonoBehaviour:
   time: -1
   inTime: -1
   chance: 0
-  hp: 140
+  hp: 145
   hpRegen: 0
   mana: 0
   manaRegen: 0
@@ -34,3 +34,4 @@ MonoBehaviour:
   lifesteal: 0
   accuracy: 0
   evasion: 0
+  armourPen: 0

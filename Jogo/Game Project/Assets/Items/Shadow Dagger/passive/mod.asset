@@ -34,4 +34,4 @@ MonoBehaviour:
   lifesteal: 0
   accuracy: 0
   evasion: 0
-  armourPen: 0.2
+  armourPen: 0.15
