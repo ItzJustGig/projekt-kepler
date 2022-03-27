@@ -81,9 +81,16 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] private EndlessFightStuff endlessStuff;
     [SerializeField] private List<Items> items = new List<Items>();
+    [SerializeField] GameObject loadPanel;
+    [SerializeField] Slider slider;
+
+    private SceneLoader loader;
 
     void Start()
     {
+        gameObject.AddComponent<SceneLoader>();
+        loader = gameObject.GetComponent<SceneLoader>();
+
         if (PlayerPrefs.GetInt("isEndless") == 1)
         {
             info.Load();
@@ -119,13 +126,12 @@ public class BattleSystem : MonoBehaviour
             sumHud.SetActive(false);
     }
 
-
     public void Leave()
     {
         if ((state == BattleState.WIN || state == BattleState.LOSE) && PlayerPrefs.GetInt("isEndless") == 1)
-            SceneManager.LoadScene(3, LoadSceneMode.Single);
+            loader.LoadScene(3, slider, loadPanel);
         else
-            SceneManager.LoadScene(0, LoadSceneMode.Single);
+            loader.LoadScene(0, slider, loadPanel);
     }
 
     IEnumerator SetupBattle()

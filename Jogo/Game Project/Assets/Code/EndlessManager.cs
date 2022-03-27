@@ -40,9 +40,15 @@ public class EndlessManager : MonoBehaviour
     [SerializeField] private TooltipButton sanityInfo;
     [SerializeField] private TooltipButton ultInfo;
 
+    [SerializeField] GameObject loadPanel;
+    [SerializeField] Slider slider;
+
+    private SceneLoader loader;
+
     int enemyId;
     Character.Strenght strenght;
     bool isBoss;
+    [SerializeField] GameObject[] iconsArray;
 
     void Awake()
     {
@@ -174,6 +180,9 @@ public class EndlessManager : MonoBehaviour
 
     void Start()
     {
+        gameObject.AddComponent<SceneLoader>();
+        loader = gameObject.GetComponent<SceneLoader>();
+
         Character charc;
         if (info.isPlayerChamp)
         {
@@ -216,6 +225,14 @@ public class EndlessManager : MonoBehaviour
         staminaInfo.text = langmanag.GetInfo("stats", "name", "stamina");
         sanityInfo.text = langmanag.GetInfo("stats", "name", "sanity");
         ultInfo.text = langmanag.GetInfo("stats", "name", "ultimate");
+    }
+
+    void HideIcons()
+    {
+        for (int i = 0; i < iconsArray.Length; i++)
+        {
+            iconsArray[i].SetActive(false);
+        }
     }
 
     void GenEnemy(int round)
@@ -280,20 +297,23 @@ public class EndlessManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(0, LoadSceneMode.Single);
+            HideIcons();
+            loader.LoadScene(0, slider, loadPanel);
         }
     }
 
     public void BackBtn()
     {
         SaveSystem.Save(info);
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        HideIcons();
+        loader.LoadScene(0, slider, loadPanel);
     }
 
     public void ShopBtn()
     {
         SaveSystem.Save(info);
-        SceneManager.LoadScene(5, LoadSceneMode.Single);
+        HideIcons();
+        loader.LoadScene(5, slider, loadPanel);
     }
 
     public void StartBtn()
@@ -305,7 +325,8 @@ public class EndlessManager : MonoBehaviour
         PlayerPrefs.SetInt(isEnemyChamp, System.Convert.ToInt32(info.isEnemyChampNext));
         PlayerPrefs.SetInt(isEnemyBoss, System.Convert.ToInt32(isBoss));
 
-        SceneManager.LoadScene(2, LoadSceneMode.Single);
+        HideIcons();
+        loader.LoadScene(2, slider, loadPanel);
     }
 
     IEnumerator WaitWhile()

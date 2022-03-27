@@ -50,6 +50,11 @@ public class SelectManager : MonoBehaviour
     private readonly string isPlayerChamp = "isPlayerChamp";
     private readonly string isEnemyChamp = "isEnemyChamp";
 
+    [SerializeField] GameObject loadPanel;
+    [SerializeField] Slider slider;
+
+    private SceneLoader loader;
+
     private void Awake()
     {
         thisLangManager = this.gameObject.GetComponent<CharcSelectLang>();
@@ -76,6 +81,8 @@ public class SelectManager : MonoBehaviour
 
     void Start()
     {
+        gameObject.AddComponent<SceneLoader>();
+        loader = gameObject.GetComponent<SceneLoader>();
         SetText(i);
         SetPassives(i);
         SetMoves(i);
@@ -225,136 +232,58 @@ public class SelectManager : MonoBehaviour
         }
     }
 
+    private void SetupMoves(GameObject charac)
+    {
+        int i = 1;
+        foreach (Moves a in charac.GetComponent<CharacterInfo>().character.moves)
+        {
+            if (i > 1)
+            {
+                if (a.name != "Recover Mana")
+                    ShowMove(a);
+                else
+                    charac.GetComponent<CharacterInfo>().character.moves.Remove(a);
+            }
+            i++;
+        }
+        ultInfo.GetComponent<TooltipButton>().tooltipPopup = tooltipPopup.GetComponent<TooltipPopUp>();
+        ultInfo.GetComponent<TooltipButton>().text = charac.GetComponent<CharacterInfo>().character.ultimate.GetTooltipText();
+    }
+
     public void SetMoves(int n)
     {
         foreach (Transform child in moveList.transform)
         {
             GameObject.Destroy(child.gameObject);
         }
-        int i = 1;
+        
         try
         {
             switch (n)
             {
                 case 1:
-                    foreach (Moves a in alex.GetComponent<CharacterInfo>().character.moves)
-                    {
-                        if (i > 1)
-                        {
-                            if (a.name != "Recover Mana")
-                                ShowMove(a);
-                            else
-                                alex.GetComponent<CharacterInfo>().character.moves.Remove(a);
-                        }
-                        i++;
-                    }
-                    ultInfo.GetComponent<TooltipButton>().tooltipPopup = tooltipPopup.GetComponent<TooltipPopUp>();
-                    ultInfo.GetComponent<TooltipButton>().text = alex.GetComponent<CharacterInfo>().character.ultimate.GetTooltipText();
+                    SetupMoves(alex);
                     break;
                 case 2:
-                    foreach (Moves a in leowind.GetComponent<CharacterInfo>().character.moves)
-                    {
-                        if (i > 1)
-                        {
-                            if (a.name != "Recover Mana")
-                                ShowMove(a);
-                            else
-                                leowind.GetComponent<CharacterInfo>().character.moves.Remove(a);
-                        }
-                        i++;
-                    }
-                    ultInfo.GetComponent<TooltipButton>().tooltipPopup = tooltipPopup.GetComponent<TooltipPopUp>();
-                    ultInfo.GetComponent<TooltipButton>().text = leowind.GetComponent<CharacterInfo>().character.ultimate.GetTooltipText();
+                    SetupMoves(leowind);
                     break;
                 case 3:
-                    foreach (Moves a in bonsour.GetComponent<CharacterInfo>().character.moves)
-                    {
-                        if (i > 1)
-                        {
-                            if (a.name != "Recover Mana")
-                                ShowMove(a);
-                            else
-                                bonsour.GetComponent<CharacterInfo>().character.moves.Remove(a);
-                        }
-                        i++;
-                    }
-                    ultInfo.GetComponent<TooltipButton>().tooltipPopup = tooltipPopup.GetComponent<TooltipPopUp>();
-                    ultInfo.GetComponent<TooltipButton>().text = bonsour.GetComponent<CharacterInfo>().character.ultimate.GetTooltipText();
+                    SetupMoves(bonsour);
                     break;
                 case 4:
-                    foreach (Moves a in shine.GetComponent<CharacterInfo>().character.moves)
-                    {
-                        if (i > 1)
-                        {
-                            if (a.name != "Recover Mana")
-                                ShowMove(a);
-                            else
-                                shine.GetComponent<CharacterInfo>().character.moves.Remove(a);
-                        }
-                        i++;
-                    }
-                    ultInfo.GetComponent<TooltipButton>().tooltipPopup = tooltipPopup.GetComponent<TooltipPopUp>();
-                    ultInfo.GetComponent<TooltipButton>().text = shine.GetComponent<CharacterInfo>().character.ultimate.GetTooltipText();
+                    SetupMoves(shine);
                     break;
                 case 5:
-                    foreach (Moves a in sandew.GetComponent<CharacterInfo>().character.moves)
-                    {
-                        if (i > 1)
-                        {
-                            if (a.name != "Recover Mana")
-                                ShowMove(a);
-                            else
-                                sandew.GetComponent<CharacterInfo>().character.moves.Remove(a);
-                        }
-                        i++;
-                    }
-                    ultInfo.GetComponent<TooltipButton>().tooltipPopup = tooltipPopup.GetComponent<TooltipPopUp>();
-                    ultInfo.GetComponent<TooltipButton>().text = sandew.GetComponent<CharacterInfo>().character.ultimate.GetTooltipText();
+                    SetupMoves(sandew);
                     break;
                 case 6:
-                    foreach (Moves a in isadoe.GetComponent<CharacterInfo>().character.moves)
-                    {
-                        if (i > 1)
-                        {
-                            if (a.name != "Recover Mana")
-                                ShowMove(a);
-                            else
-                                isadoe.GetComponent<CharacterInfo>().character.moves.Remove(a);
-                        }
-                        i++;
-                    }
-                    ultInfo.GetComponent<TooltipButton>().tooltipPopup = tooltipPopup.GetComponent<TooltipPopUp>();
-                    ultInfo.GetComponent<TooltipButton>().text = isadoe.GetComponent<CharacterInfo>().character.ultimate.GetTooltipText();
+                    SetupMoves(isadoe);
                     break;
                 case 7:
-                    foreach (Moves a in william.GetComponent<CharacterInfo>().character.moves)
-                    {
-                        if (i > 1)
-                        {
-                            if (a.name != "Recover Mana")
-                                ShowMove(a);
-                            else
-                                william.GetComponent<CharacterInfo>().character.moves.Remove(a);
-                        }
-                        i++;
-                    }
-                    ultInfo.GetComponent<TooltipButton>().tooltipPopup = tooltipPopup.GetComponent<TooltipPopUp>();
-                    ultInfo.GetComponent<TooltipButton>().text = william.GetComponent<CharacterInfo>().character.ultimate.GetTooltipText();
+                    SetupMoves(william);
                     break;
                 case 8:
-                    foreach (Moves a in hestia.GetComponent<CharacterInfo>().character.moves)
-                    {
-                        if (i > 1)
-                        {
-                            if (a.name != "Recover Mana")
-                                ShowMove(a);
-                            else
-                                hestia.GetComponent<CharacterInfo>().character.moves.Remove(a);
-                        }
-                        i++;
-                    }
-                    ultInfo.GetComponent<TooltipButton>().tooltipPopup = tooltipPopup.GetComponent<TooltipPopUp>();
-                    ultInfo.GetComponent<TooltipButton>().text = hestia.GetComponent<CharacterInfo>().character.ultimate.GetTooltipText();
+                    SetupMoves(hestia);
                     break;
             }
 
@@ -411,65 +340,42 @@ public class SelectManager : MonoBehaviour
         Instantiate(movePrefab, moveList.transform);
     }
 
+    private void SetupText(GameObject charc)
+    {
+        nameDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "name", charc.GetComponent<CharacterInfo>().character.name);
+        titleDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "title", charc.GetComponent<CharacterInfo>().character.name);
+        charcIcon.sprite = charc.GetComponent<CharacterInfo>().character.charcIcon;
+        SetStats(charc.GetComponent<CharacterInfo>().character.stats);
+        SetClassIcon(charc.GetComponent<CharacterInfo>().character.classe);
+    }
+
     public void SetText(int n)
     {
         switch (n)
         {
             case 1:
-                nameDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "name", alex.GetComponent<CharacterInfo>().character.name);
-                titleDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "title", alex.GetComponent<CharacterInfo>().character.name);
-                charcIcon.sprite = alex.GetComponent<CharacterInfo>().character.charcIcon;
-                SetStats(alex.GetComponent<CharacterInfo>().character.stats);
-                SetClassIcon(alex.GetComponent<CharacterInfo>().character.classe);
+                SetupText(alex);
                 break;
             case 2:
-                nameDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "name", leowind.GetComponent<CharacterInfo>().character.name);
-                titleDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "title", leowind.GetComponent<CharacterInfo>().character.name);
-                charcIcon.sprite = leowind.GetComponent<CharacterInfo>().character.charcIcon;
-                SetStats(leowind.GetComponent<CharacterInfo>().character.stats);
-                SetClassIcon(leowind.GetComponent<CharacterInfo>().character.classe);
+                SetupText(leowind);
                 break;
             case 3:
-                nameDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "name", bonsour.GetComponent<CharacterInfo>().character.name);
-                titleDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "title", bonsour.GetComponent<CharacterInfo>().character.name);
-                charcIcon.sprite = bonsour.GetComponent<CharacterInfo>().character.charcIcon;
-                SetStats(bonsour.GetComponent<CharacterInfo>().character.stats);
-                SetClassIcon(bonsour.GetComponent<CharacterInfo>().character.classe);
+                SetupText(bonsour);
                 break;
             case 4:
-                nameDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "name", shine.GetComponent<CharacterInfo>().character.name);
-                titleDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "title", shine.GetComponent<CharacterInfo>().character.name);
-                charcIcon.sprite = shine.GetComponent<CharacterInfo>().character.charcIcon;
-                SetStats(shine.GetComponent<CharacterInfo>().character.stats);
-                SetClassIcon(shine.GetComponent<CharacterInfo>().character.classe);
+                SetupText(shine);
                 break;
             case 5:
-                nameDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "name", sandew.GetComponent<CharacterInfo>().character.name);
-                titleDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "title", sandew.GetComponent<CharacterInfo>().character.name);
-                charcIcon.sprite = sandew.GetComponent<CharacterInfo>().character.charcIcon;
-                SetStats(sandew.GetComponent<CharacterInfo>().character.stats);
-                SetClassIcon(sandew.GetComponent<CharacterInfo>().character.classe);
+                SetupText(sandew);
                 break;
             case 6:
-                nameDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "name", isadoe.GetComponent<CharacterInfo>().character.name);
-                titleDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "title", isadoe.GetComponent<CharacterInfo>().character.name);
-                charcIcon.sprite = isadoe.GetComponent<CharacterInfo>().character.charcIcon;
-                SetStats(isadoe.GetComponent<CharacterInfo>().character.stats);
-                SetClassIcon(isadoe.GetComponent<CharacterInfo>().character.classe);
+                SetupText(isadoe);
                 break;
             case 7:
-                nameDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "name", william.GetComponent<CharacterInfo>().character.name);
-                titleDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "title", william.GetComponent<CharacterInfo>().character.name);
-                charcIcon.sprite = william.GetComponent<CharacterInfo>().character.charcIcon;
-                SetStats(william.GetComponent<CharacterInfo>().character.stats);
-                SetClassIcon(william.GetComponent<CharacterInfo>().character.classe);
+                SetupText(william);
                 break;
             case 8:
-                nameDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "name", hestia.GetComponent<CharacterInfo>().character.name);
-                titleDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "title", hestia.GetComponent<CharacterInfo>().character.name);
-                charcIcon.sprite = hestia.GetComponent<CharacterInfo>().character.charcIcon;
-                SetStats(hestia.GetComponent<CharacterInfo>().character.stats);
-                SetClassIcon(hestia.GetComponent<CharacterInfo>().character.classe);
+                SetupText(hestia);
                 break;
         }
     }
@@ -555,7 +461,6 @@ public class SelectManager : MonoBehaviour
             evasion.text = ((stats.movSpeed * 0.035) + (stats.timing * 0.5) + (stats.sanity * 0.01) + stats.evasion).ToString("0.00") + "%";
         else
             evasion.text = 0 + "%";
-
     }
 
     public void NextCharacter()
@@ -670,7 +575,8 @@ public class SelectManager : MonoBehaviour
 
     public void Return()
     {
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        DesablePortraits();
+        loader.LoadScene(0, slider, loadPanel);
     }
 
     private void Reset()
@@ -690,12 +596,24 @@ public class SelectManager : MonoBehaviour
         yield return null;
     }
 
+    private void DesablePortraits()
+    {
+        alexRender.enabled = false;
+        leowindRender.enabled = false;
+        bonsourRender.enabled = false;
+        shineRender.enabled = false;
+        sandewRender.enabled = false;
+        isadoeRender.enabled = false;
+        williamRender.enabled = false;
+        hestiaRender.enabled = false;
+    }
+
     public void ChangeScene()
     {
+        DesablePortraits();
         if (PlayerPrefs.GetInt("isEndless") == 0)
         {
-            int random = 0;
-
+            int random;
             do
             {
                 random = Random.Range(1, max + 1);
@@ -707,13 +625,13 @@ public class SelectManager : MonoBehaviour
             PlayerPrefs.SetInt(isPlayerChamp, 1);
             PlayerPrefs.SetInt(isEnemyChamp, 1);
 
-            SceneManager.LoadScene(2, LoadSceneMode.Single);
+            loader.LoadScene(2, slider, loadPanel);
         } else
         {
             PlayerPrefs.SetInt(selectedCharacter, i);
             PlayerPrefs.SetInt(isPlayerChamp, 1);
 
-            SceneManager.LoadScene(3, LoadSceneMode.Single);
+            loader.LoadScene(3, slider, loadPanel);
         }
             
     }

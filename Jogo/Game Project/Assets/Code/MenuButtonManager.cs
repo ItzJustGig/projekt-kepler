@@ -8,6 +8,16 @@ public class MenuButtonManager : MonoBehaviour
 {
     [SerializeField] GameObject mainPanel;
     [SerializeField] GameObject optionsPanel;
+    [SerializeField] GameObject loadPanel;
+    [SerializeField] Slider slider;
+
+    private SceneLoader loader;
+
+    private void Start()
+    {
+        gameObject.AddComponent<SceneLoader>();
+        loader = gameObject.GetComponent<SceneLoader>();
+    }
 
     public void BtnOptions(bool appear)
     {
@@ -26,7 +36,8 @@ public class MenuButtonManager : MonoBehaviour
     public void BtnRngBattle()
     {
         PlayerPrefs.SetInt("isEndless", 0);
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+
+        loader.LoadScene(1, slider, loadPanel);
     }
 
     public void BtnEndlessBattle()
@@ -35,14 +46,14 @@ public class MenuButtonManager : MonoBehaviour
 
         PlayerPrefs.SetInt("isEndless", 1);
         if (data.playerId != -1)
-            SceneManager.LoadScene(3, LoadSceneMode.Single);
+            loader.LoadScene(3, slider, loadPanel);
         else
-            SceneManager.LoadScene(1, LoadSceneMode.Single);
+            loader.LoadScene(1, slider, loadPanel);
     }
     
     public void BtnInfo()
     {
-        SceneManager.LoadScene(4, LoadSceneMode.Single);
+        loader.LoadScene(4, slider, loadPanel);
     }
 
     public void btnQuit()

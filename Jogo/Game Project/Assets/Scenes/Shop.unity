@@ -1525,24 +1525,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714310855}
   m_CullTransparentMesh: 1
---- !u!1 &747109203 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3422808953885299110, guid: 0f237443123e1cd4bafc39390dff8ba7,
-    type: 3}
-  m_PrefabInstance: {fileID: 864393021}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &747109204 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3422808953885299108, guid: 0f237443123e1cd4bafc39390dff8ba7,
-    type: 3}
-  m_PrefabInstance: {fileID: 864393021}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747109203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56ca3962a7e5fef48a48fda2ae4a768d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &753647978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,7 +2012,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &905986606
 GameObject:
@@ -2244,6 +2226,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956014075}
   m_CullTransparentMesh: 1
+--- !u!1 &981423214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1217040613610025391, guid: 0f237443123e1cd4bafc39390dff8ba7,
+    type: 3}
+  m_PrefabInstance: {fileID: 864393021}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1067037263
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,7 +2454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb0ee46bff17304e9d4edad75892f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltipPopup: {fileID: 747109204}
+  tooltipPopup: {fileID: 0}
   text: 
 --- !u!1 &1081564264
 GameObject:
@@ -2782,7 +2770,7 @@ MonoBehaviour:
     type: 3}
   itemOwnList: {fileID: 304070328}
   inventoryGO: {fileID: 585369640}
-  tooltip: {fileID: 747109203}
+  tooltip: {fileID: 981423214}
   charcIcon: {fileID: 213013574}
   gold: {fileID: 271433683}
   info: {fileID: 1250475053}
@@ -3135,7 +3123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb0ee46bff17304e9d4edad75892f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltipPopup: {fileID: 747109204}
+  tooltipPopup: {fileID: 0}
   text: 
 --- !u!1 &1410712753
 GameObject:
@@ -4830,7 +4818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb0ee46bff17304e9d4edad75892f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltipPopup: {fileID: 747109204}
+  tooltipPopup: {fileID: 0}
   text: 
 --- !u!1 &3346184962743181330
 GameObject:
