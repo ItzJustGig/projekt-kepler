@@ -27,11 +27,18 @@ public class ShopManager : MonoBehaviour
     public List<Character> monsters = new List<Character>();
     public List<Items> items = new List<Items>();
     public List<ItemEncounter> encounters = new List<ItemEncounter>();
+    private Items.ShopRarity rarity;
 
-    Items.ShopRarity rarity;
+    [SerializeField] GameObject loadPanel;
+    [SerializeField] Slider slider;
+
+    private SceneLoader loader;
 
     void Start()
     {
+        gameObject.AddComponent<SceneLoader>();
+        loader = gameObject.GetComponent<SceneLoader>();
+
         langmanag = this.gameObject.GetComponent<ShopLangManager>();
         info.Load();
         gold.text = info.gold.ToString();
@@ -285,7 +292,7 @@ public class ShopManager : MonoBehaviour
     public void BackBtn()
     {
         SaveSystem.Save(info);
-        SceneManager.LoadScene(3, LoadSceneMode.Single);
+        loader.LoadScene(3, slider, loadPanel);
     }
 
     public void InvBtn()
