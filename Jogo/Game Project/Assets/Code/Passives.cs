@@ -7,8 +7,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Passive", menuName = "Passive")]
 public class Passives : ScriptableObject
 {
+    public enum Origin { PASSIVE, ITEM, MOVE }
+
     public new string name;
     public bool showNameOnInfo = true;
+    public Origin origin = Origin.PASSIVE;
     public Sprite sprite;
     public float num;
     public float maxNum;
@@ -43,6 +46,7 @@ public class Passives : ScriptableObject
         Passives passive = CreateInstance<Passives>();
 
         passive.name = name;
+        passive.origin = origin;
         passive.sprite = sprite;
         passive.num = num;
         passive.maxNum = maxNum;
@@ -137,8 +141,24 @@ public class Passives : ScriptableObject
         StringBuilder desc = new StringBuilder();
 
         if (showNameOnInfo)
-            desc.Append("<size=25><align=center>").Append(GetName(languageManager, language, name)).Append("</align></size>").AppendLine().AppendLine();
-
+        {
+            desc.Append("<size=25><align=center>").Append(GetName(languageManager, language, name)).Append("</align></size>").AppendLine();
+            
+            switch (origin)
+            {
+                case Origin.PASSIVE:
+                    desc.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(language, "passive", "title")).Append("</color></align></size>").AppendLine().AppendLine();
+                    break;
+                case Origin.MOVE:
+                    desc.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(language, "passive", "titlemove")).Append("</color></align></size>").AppendLine().AppendLine();
+                    break;
+                case Origin.ITEM:
+                    desc.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(language, "items", "title")).Append("</color></align></size>").AppendLine().AppendLine();
+                    break;
+            }
+                
+        }
+            
         desc.Append(GetDesc(languageManager, language, name)).AppendLine();
 
         if (num >= 1)

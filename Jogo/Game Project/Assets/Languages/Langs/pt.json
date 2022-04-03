@@ -238,6 +238,7 @@
         }
     },
     "effect": {
+        "title": "Efeito",
         "name": {
             "alr": "Alergia",
             "bli": "Cegueira",
@@ -280,6 +281,8 @@
         }
     },
     "passive": {
+        "title": "Passiva",
+		"titlemove": "Passiva de T\u00e9cnica",
         "name": {
             "bloodbath": "Banho de Sague",
             "bullsrage": "A f\u00FAria do touro",
@@ -487,6 +490,7 @@
         "zap": "Zap"
     },
     "items": {
+        "title": "Iten",
         "passive":"<color=#ffdf00>PASSIVA</color>: %txt%",
 		"active":"<color=#ffdf00>ACTIVA (%uses%%cd%)</color>: %txt%",
 		"cd": "%val% turnos de recarga",

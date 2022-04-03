@@ -254,6 +254,7 @@ public class Effects : ScriptableObject
         StringBuilder builder = new StringBuilder();
 
         builder.Append("<size=25><align=center>").Append(GetEffect(languageManager, language, "name", id.ToLower())).Append("</align></size>").AppendLine();
+        builder.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(language, "effect", "title")).Append("</color></align></size>").AppendLine();
         builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
         if (!canUseMagic || !canUsePhysical || !canUseProtec || !canUseRanged || !canUseStatMod || !canUseSupp)
         {

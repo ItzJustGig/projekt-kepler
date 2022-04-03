@@ -238,6 +238,7 @@
 		}
 	},
 	"effect": {
+		"title": "Effect",
 		"name": {
 			"alr": "Allergy",
 			"bli": "Blindness",
@@ -280,6 +281,8 @@
 		}
 	},
 	"passive": {
+		"title": "Passive",
+		"titlemove": "Move's Passive",
 		"name": {
 			"bloodbath": "Blood Bath",
 			"bullsrage": "Bull's Rage",
@@ -487,6 +490,7 @@
 		"zap": "Zap"
 	},
 	"items": {
+		"title": "Item",
 		"passive":"<color=#ffdf00>PASSIVE</color>: %txt%",
 		"active":"<color=#ffdf00>ACTIVE (%uses%%cd%)</color>: %txt%",
 		"cd": "%val% turns cooldown",

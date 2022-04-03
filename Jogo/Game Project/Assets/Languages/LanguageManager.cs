@@ -747,6 +747,8 @@ public class LanguageManager : MonoBehaviour
     [Serializable]
     public class Passive
     {
+        public string title;
+        public string titlemove;
         public Passive_Info name;
         public Passive_Info desc;
 
@@ -755,6 +757,12 @@ public class LanguageManager : MonoBehaviour
             string returns;
             switch (a)
             {
+                case "title":
+                    returns = title;
+                    break;
+                case "titlemove":
+                    returns = titlemove;
+                    break;
                 case "name":
                     returns = name.Get_Cont(b);
                     break;
@@ -1215,6 +1223,7 @@ public class LanguageManager : MonoBehaviour
     [Serializable]
     public class Effect
     {
+        public string title;
         public Effect_Info name;
         public Effect_Info cancelmsg;
 
@@ -1223,6 +1232,9 @@ public class LanguageManager : MonoBehaviour
             string returns;
             switch (a)
             {
+                case "title":
+                    returns = title;
+                    break;
                 case "name":
                     returns = name.Get_EffectInfo(b);
                     break;
@@ -1852,6 +1864,7 @@ public class LanguageManager : MonoBehaviour
         public string stat;
         public string cd;
         public string uses;
+        public string title;
         public Item_Name name;
         public Item_Move move;
 
@@ -1860,6 +1873,9 @@ public class LanguageManager : MonoBehaviour
             string returns;
             switch (a)
             {
+                case "title":
+                    returns = title;
+                    break;
                 case "passive":
                     returns = passive;
                     break;
