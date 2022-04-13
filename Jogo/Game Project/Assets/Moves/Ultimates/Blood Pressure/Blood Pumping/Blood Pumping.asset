@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: bloodpumping
   showNameOnInfo: 0
+  origin: 2
   sprite: {fileID: 21300000, guid: b0a16991cd68928448f01fcf09411298, type: 3}
   num: 0
   maxNum: 0

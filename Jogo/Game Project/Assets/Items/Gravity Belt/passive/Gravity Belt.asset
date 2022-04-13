@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: gravitybelt
   showNameOnInfo: 0
+  origin: 1
   sprite: {fileID: 21300000, guid: d367d3d7d355f7847983884b91c60b19, type: 3}
   num: 35
   maxNum: 0
