@@ -2950,6 +2950,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 934f9363bbf89a74d91dd63f4020da41, type: 2}
   - {fileID: 11400000, guid: 6238e7062c8244c4ab18339cbb9eead7, type: 2}
   - {fileID: 11400000, guid: 5eda90cbd562ff64eb375376c646f526, type: 2}
+  - {fileID: 11400000, guid: 9fae412794dd2dd41a5393433093a99e, type: 2}
   encounters:
   - {fileID: 11400000, guid: 5ba5edcdc50e106498e07d907c6c2222, type: 2}
   - {fileID: 11400000, guid: c0bf7d175224ebc4c8f01217b5424f98, type: 2}

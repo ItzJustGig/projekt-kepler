@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: shine stats
   m_EditorClassIdentifier: 
   hp: 2820
-  hpRegen: 30
+  hpRegen: 27
   mana: 625
   manaRegen: 0.8
   stamina: 640
@@ -30,3 +30,4 @@ MonoBehaviour:
   lifesteal: 0
   accuracy: 1
   evasion: 0
+  armourPen: 0

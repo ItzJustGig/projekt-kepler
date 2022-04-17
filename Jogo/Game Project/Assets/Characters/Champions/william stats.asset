@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: william stats
   m_EditorClassIdentifier: 
   hp: 2870
-  hpRegen: 25
+  hpRegen: 22
   mana: 670
   manaRegen: 0.8
   stamina: 475
@@ -30,3 +30,4 @@ MonoBehaviour:
   lifesteal: 0.2
   accuracy: 1
   evasion: 0
+  armourPen: 0

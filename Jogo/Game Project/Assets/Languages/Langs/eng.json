@@ -338,7 +338,7 @@
 			"musicup": "Every %cd% turns, the user get %mod%(stacks up to %maxStacks%).",
 			"onewiththeshadows": "If the user is not hit %cd% times gain %mod% until is hit again.",
 			"perfectshooter": "Every <color=#f75145>%maxNum% critical ranged attacks</color> or <color=#ffaa00>basic attacks</color>, the user gain %mod%(stacks up to %maxStacks%).",
-			"plasmablade": "The user's physical moves deal bonus %scale%. If the user is below %stacks%% health, the bonus magic damage is increased by %num%%, deal bonus %scale2% and gain %mod% (If the user is silenced or the mana is bellow %maxNum%%, the passive won't activate)",
+			"plasmablade": "The user's physical or basic attacks deal bonus %scale%. If the user is below %stacks%% health, the bonus magic damage is increased by %num%%, deal bonus %scale2% and gain %mod% (If the user is silenced or the mana is bellow %maxNum%%, the passive won't activate)",
 			"roughskin": "The user blocks <color=#f75145>(%num%% of the user's damage resistance)% of the damage</color> from <color=#ffaa00>physical moves</color> and <color=#f75145>ranged moves</color>.",
 			"sharpshooter": "Every <color=#f75145>%maxNum% ranged attacks</color>, the next <color=#f75145>ranged attack</color> will crit and deal bonus %scale%.",
 			"strongmind": "The user is immune to Confusion, Charm and Sleep.",
@@ -514,7 +514,10 @@
 			"gravitybelt": "Gravity Belt",
 			"manasword": "Mana Sword",
 			"shadowdagger": "Shadow Dagger",
-			"bookofdisaster": "Book of Disaster"
+			"bookofdisaster": "Book of Disaster",
+			"bootsoftherunner": "Boots of the Runner",
+			"shadowmushroom": "Shadow Mushroom",
+			"huntersdirk": "Hunter's Dirk"
 		},
 		"move": {
 			"zap": "the carrier will <color=#ffdf00>zap</color> an enemy with an %type% to %dmg%",

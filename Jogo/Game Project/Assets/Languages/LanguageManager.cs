@@ -1926,6 +1926,9 @@ public class LanguageManager : MonoBehaviour
         public string manasword;
         public string shadowdagger;
         public string bookofdisaster;
+        public string bootsoftherunner;
+        public string shadowmushroom;
+        public string huntersdirk;
 
         public string Get_ItemName(string a)
         {
@@ -1985,6 +1988,15 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "bookofdisaster":
                     returns = bookofdisaster;
+                    break;
+                case "bootsoftherunner":
+                    returns = bootsoftherunner;
+                    break;
+                case "shadowmushroom":
+                    returns = shadowmushroom;
+                    break;
+                case "huntersdirk":
+                    returns = huntersdirk;
                     break;
                 default:
                     returns = "null";

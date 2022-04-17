@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: alex stats
   m_EditorClassIdentifier: 
   hp: 2720
-  hpRegen: 29
+  hpRegen: 26
   mana: 675
   manaRegen: 1.15
   stamina: 475
@@ -30,3 +30,4 @@ MonoBehaviour:
   lifesteal: 0
   accuracy: 1
   evasion: 0
+  armourPen: 0

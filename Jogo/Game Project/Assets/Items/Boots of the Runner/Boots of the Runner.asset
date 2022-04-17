@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6ab09c0988f81449be8c5ce1f80558, type: 3}
+  m_Name: Boots of the Runner
+  m_EditorClassIdentifier: 
+  name: bootsoftherunner
+  icon: {fileID: 21300000, guid: a25e75bfd4a663546aa250568a0bc00b, type: 3}
+  passives: []
+  statmod:
+  - {fileID: 11400000, guid: a77ddab3858c37f499352c77079f26a1, type: 2}
+  moves: []
+  rarity: 1
+  minPrice: 40
+  maxPrice: 65

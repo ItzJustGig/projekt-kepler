@@ -338,7 +338,7 @@
             "musicup": "A cada %cd% turnos, o utilizador ganha %mod%(empilha at\u00E9 %maxStacks% vezes).",
             "onewiththeshadows": "Se o utilizador n\u00E3o for acertado %cd% vezes ganha %mod% at\u00E9 voltar a ser acertado.",
             "perfectshooter": "A cada <color=#f75145>%maxNum% ataques de longa dist\u00E2ncia</color> ou <color=#ffaa00>ataques b\u00E1sicos</color> cr\u00EDticos, o utilizador ganha %mod%(empilha at\u00E9 %maxStacks% vezes).",
-            "plasmablade": "Os ataques f\u00EDsicos do utilizador causam %scale% b\u00F3nus. Se o utilizador estiver abaixo de %stacks%% de vida, o dano m\u00E1gico b\u00F3nus \u00E9 aumentado em %num%%, causa %scale2% b\u00F3nus e ganha %mod% (Se estiver Silenciado ou a mana estiver abaixo de %maxNum%%, a passiva n\u00E3o ativa-se)",
+            "plasmablade": "Os ataques b\u00E1sicos ou f\u00EDsicos do utilizador causam %scale% b\u00F3nus. Se o utilizador estiver abaixo de %stacks%% de vida, o dano m\u00E1gico b\u00F3nus \u00E9 aumentado em %num%%, causa %scale2% b\u00F3nus e ganha %mod% (Se estiver Silenciado ou a mana estiver abaixo de %maxNum%%, a passiva n\u00E3o ativa-se)",
             "roughskin": "O utilizador mitiga <color=#f75145>(%num%% da defesa do utilizador)% do dano</color> de <color=#ffaa00>t\u00E9cnicas f\u00EDsicas</color> e <color=#f75145>t\u00E9cnicas de longa dist\u00E2ncia</color>.",
             "sharpshooter": "A cada <color=#f75145>%maxNum% ataques de longa dist\u00E2ncia</color>, o pr\u00F3ximo <color=#f75145>ataques de longa dist\u00E2ncia</color> vai ser cr\u00EDtico e causa %scale% b\u00F3nus.",
             "strongmind": "O utilizador \u00E9 imune a Confus\u00E3o, Charme e Dormir.",
@@ -514,7 +514,10 @@
             "gravitybelt": "Sinto de Gravidade",
             "manasword": "Espada de Mana",
             "shadowdagger": "Adaga das Sombras",
-            "bookofdisaster": "Livro do Desastre"
+            "bookofdisaster": "Livro do Desastre",
+			"bootsoftherunner": "Botas do Corredor",
+			"shadowmushroom": "Cogulemos das Sombras",
+			"huntersdirk": "Punhal do Ca\u00e7ador"
 		},
 		"move": {
 			"zap": "O transportador usa um <color=#ffdf00>zap</color> num inimgo com uma %type% que %dmg%",

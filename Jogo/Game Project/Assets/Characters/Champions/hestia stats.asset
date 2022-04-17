@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: hestia stats
   m_EditorClassIdentifier: 
   hp: 3120
-  hpRegen: 34
+  hpRegen: 29
   mana: 410
   manaRegen: 0.6
   stamina: 580

@@ -234,8 +234,6 @@ public class BattleSystem : MonoBehaviour
 
         if (PlayerPrefs.GetInt("isEndless") == 1)
         {
-            Debug.Log(enemyUnit.charc.strenght);
-
             switch (enemyUnit.charc.strenght)
             {
                 case Character.Strenght.BABY:
@@ -396,8 +394,6 @@ public class BattleSystem : MonoBehaviour
             stat.movSpeed -= enemyUnit.charc.stats.movSpeed;
             movEnemy += stat.movSpeed;
         }
-
-        Debug.Log(movPlayer + "/" + movEnemy);
 
         if (movePlayer == null || moveEnemy == null)
             canUseNormal = false;
@@ -1099,7 +1095,7 @@ public class BattleSystem : MonoBehaviour
                                 DestroyPassiveIcon(a.name, user.isEnemy);
                             }
 
-                            if (move.type is Moves.MoveType.PHYSICAL && !isSilence && enoughMana)
+                            if ((move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC) && !isSilence && enoughMana)
                             {
                                 StatScale scale = a.ifConditionTrueScale();
 
