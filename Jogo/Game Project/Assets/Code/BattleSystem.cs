@@ -86,6 +86,45 @@ public class BattleSystem : MonoBehaviour
 
     private SceneLoader loader;
 
+    public struct DMG
+    {
+        public float phyDmg;
+        public float magicDmg;
+        public float trueDmg;
+        public int sanityDmg;
+        public float heal;
+        public float healMana;
+        public float healStamina;
+        public int healSanity;
+        public int shield;
+
+        public void Reset()
+        {
+            phyDmg = 0;
+            magicDmg = 0;
+            trueDmg = 0;
+            sanityDmg = 0;
+            heal = 0;
+            healMana = 0;
+            healStamina = 0;
+            healSanity = 0;
+            shield = 0;
+        }
+
+        public void AddDmg(DMG dmg)
+        {
+            phyDmg += dmg.phyDmg;
+            magicDmg += dmg.magicDmg;
+            trueDmg += dmg.trueDmg;
+            sanityDmg += dmg.sanityDmg;
+            heal += dmg.heal;
+            healMana += dmg.healMana;
+            healStamina += dmg.healStamina;
+            healSanity += dmg.healSanity;
+            shield += dmg.shield;
+        }
+    };
+
     void Start()
     {
         gameObject.AddComponent<SceneLoader>();
@@ -535,15 +574,8 @@ public class BattleSystem : MonoBehaviour
             if (move.name == "recovmana")
                 move.inCooldown = move.cooldown;
 
-            float phyDmg = 0;
-            float magicDmg = 0;
-            float trueDmg = 0;
-            int sanityDmg = 0;
-            float heal = 0;
-            float healMana = 0;
-            float healStamina = 0;
-            int healSanity = 0;
-            int shield = 0;
+            DMG dmg = default;
+
             bool isDead = false;
             bool blockPhysical = false;
             bool blockMagic = false;
@@ -613,15 +645,7 @@ public class BattleSystem : MonoBehaviour
                     user.DoMoveAnim(move.type);
 
                     isCrit = false;
-                    phyDmg = 0;
-                    magicDmg = 0;
-                    trueDmg = 0;
-                    sanityDmg = 0;
-                    heal = 0;
-                    healMana = 0;
-                    healStamina = 0;
-                    healSanity = 0;
-                    shield = 0;
+                    dmg.Reset();
 
                     if (Random.Range(0f, 1f) < (statsUser.critChance + move.critChanceBonus))
                         isCrit = true;
@@ -681,45 +705,8 @@ public class BattleSystem : MonoBehaviour
                                     stats = statsTarget;
                                 }
 
-                                switch (scale.type)
-                                {
-                                    case StatScale.DmgType.PHYSICAL:
-                                        phyDmg += scale.flatValue;
-                                        phyDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.MAGICAL:
-                                        magicDmg += scale.flatValue;
-                                        magicDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.TRUE:
-                                        trueDmg += scale.flatValue;
-                                        trueDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SANITY:
-                                        sanityDmg += scale.flatValue;
-                                        sanityDmg += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEAL:
-                                        heal += scale.flatValue;
-                                        heal += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALMANA:
-                                        healMana += scale.flatValue;
-                                        healMana += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSTAMINA:
-                                        healStamina += scale.flatValue;
-                                        healStamina += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSANITY:
-                                        healSanity += scale.flatValue;
-                                        healSanity += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SHIELD:
-                                        shield += scale.flatValue;
-                                        shield += (int)SetScale(scale, stats, unit);
-                                        break;
-                                }
+                                dmg.AddDmg(SetScaleDmg(scale, stats, unit));
+                                
                                 isCrit = true;
                                 DestroyPassiveIcon(a.name, user.isEnemy);
                             }                            
@@ -754,85 +741,9 @@ public class BattleSystem : MonoBehaviour
                                     stats = statsTarget;
                                 }
 
-                                switch (scale.type)
-                                {
-                                    case StatScale.DmgType.PHYSICAL:
-                                        phyDmg += scale.flatValue;
-                                        phyDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.MAGICAL:
-                                        magicDmg += scale.flatValue;
-                                        magicDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.TRUE:
-                                        trueDmg += scale.flatValue;
-                                        trueDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SANITY:
-                                        sanityDmg += scale.flatValue;
-                                        sanityDmg += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEAL:
-                                        heal += scale.flatValue;
-                                        heal += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALMANA:
-                                        healMana += scale.flatValue;
-                                        healMana += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSTAMINA:
-                                        healStamina += scale.flatValue;
-                                        healStamina += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSANITY:
-                                        healSanity += scale.flatValue;
-                                        healSanity += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SHIELD:
-                                        shield += scale.flatValue;
-                                        shield += (int)SetScale(scale, stats, unit);
-                                        break;
-                                }
+                                dmg.AddDmg(SetScaleDmg(scale, stats, unit));
 
-                                switch (scale2.type)
-                                {
-                                    case StatScale.DmgType.PHYSICAL:
-                                        phyDmg += scale2.flatValue;
-                                        phyDmg += SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.MAGICAL:
-                                        magicDmg += scale2.flatValue;
-                                        magicDmg += SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.TRUE:
-                                        trueDmg += scale2.flatValue;
-                                        trueDmg += SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SANITY:
-                                        sanityDmg += scale2.flatValue;
-                                        sanityDmg += (int)SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEAL:
-                                        heal += scale2.flatValue;
-                                        heal += SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALMANA:
-                                        healMana += scale2.flatValue;
-                                        healMana += SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSTAMINA:
-                                        healStamina += scale2.flatValue;
-                                        healStamina += SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSANITY:
-                                        healSanity += scale2.flatValue;
-                                        healSanity += (int)SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SHIELD:
-                                        shield += scale2.flatValue;
-                                        shield += (int)SetScale(scale2, stats, unit);
-                                        break;
-                                }
+                                dmg.AddDmg(SetScaleDmg(scale2, stats, unit));
 
                                 StatMod statMod = a.statMod.ReturnStats();
                                 statMod.inTime = statMod.time;
@@ -846,7 +757,7 @@ public class BattleSystem : MonoBehaviour
                             if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
                             {
                                 user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                trueDmg += a.num;
+                                dmg.trueDmg += a.num;
                             }
                         }
 
@@ -868,45 +779,7 @@ public class BattleSystem : MonoBehaviour
                                     stats = statsTarget;
                                 }
 
-                                switch (scale.type)
-                                {
-                                    case StatScale.DmgType.PHYSICAL:
-                                        phyDmg += scale.flatValue;
-                                        phyDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.MAGICAL:
-                                        magicDmg += scale.flatValue;
-                                        magicDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.TRUE:
-                                        trueDmg += scale.flatValue;
-                                        trueDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SANITY:
-                                        sanityDmg += scale.flatValue;
-                                        sanityDmg += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEAL:
-                                        heal += scale.flatValue;
-                                        heal += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALMANA:
-                                        healMana += scale.flatValue;
-                                        healMana += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSTAMINA:
-                                        healStamina += scale.flatValue;
-                                        healStamina += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSANITY:
-                                        healSanity += scale.flatValue;
-                                        healSanity += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SHIELD:
-                                        shield += scale.flatValue;
-                                        shield += (int)SetScale(scale, stats, unit);
-                                        break;
-                                }
+                                dmg.AddDmg(SetScaleDmg(scale, stats, unit));
                             }
 
                             if (move.type is Moves.MoveType.PHYSICAL && a.stacks < a.maxStacks)
@@ -922,7 +795,7 @@ public class BattleSystem : MonoBehaviour
                                 if ((move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL) && isCrit)
                                 {
                                     user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                    trueDmg += a.num;
+                                    dmg.trueDmg += a.num;
 
                                     a.inCd = a.cd;
 
@@ -961,45 +834,7 @@ public class BattleSystem : MonoBehaviour
                                     stats = statsTarget;
                                 }
 
-                                switch (scale.type)
-                                {
-                                    case StatScale.DmgType.PHYSICAL:
-                                        phyDmg += scale.flatValue;
-                                        phyDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.MAGICAL:
-                                        magicDmg += scale.flatValue;
-                                        magicDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.TRUE:
-                                        trueDmg += scale.flatValue;
-                                        trueDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SANITY:
-                                        sanityDmg += scale.flatValue;
-                                        sanityDmg += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEAL:
-                                        heal += scale.flatValue;
-                                        heal += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALMANA:
-                                        healMana += scale.flatValue;
-                                        healMana += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSTAMINA:
-                                        healStamina += scale.flatValue;
-                                        healStamina += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSANITY:
-                                        healSanity += scale.flatValue;
-                                        healSanity += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SHIELD:
-                                        shield += scale.flatValue;
-                                        shield += (int)SetScale(scale, stats, unit);
-                                        break;
-                                }
+                                dmg.AddDmg(SetScaleDmg(scale, stats, unit));
                             }
                         }
 
@@ -1028,46 +863,8 @@ public class BattleSystem : MonoBehaviour
                                     stats = statsTarget;
                                 }
 
-                                switch (scale.type)
-                                {
-                                    case StatScale.DmgType.PHYSICAL:
-                                        phyDmg += scale.flatValue;
-                                        phyDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.MAGICAL:
-                                        magicDmg += scale.flatValue;
-                                        magicDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.TRUE:
-                                        trueDmg += scale.flatValue;
-                                        trueDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SANITY:
-                                        sanityDmg += scale.flatValue;
-                                        sanityDmg += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEAL:
-                                        heal += scale.flatValue;
-                                        heal += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALMANA:
-                                        healMana += scale.flatValue;
-                                        healMana += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSTAMINA:
-                                        healStamina += scale.flatValue;
-                                        healStamina += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSANITY:
-                                        healSanity += scale.flatValue;
-                                        healSanity += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SHIELD:
-                                        shield += scale.flatValue;
-                                        shield += (int)SetScale(scale, stats, unit);
-                                        break;
-                                }
-                                
+                                dmg.AddDmg(SetScaleDmg(scale, stats, unit));
+
                                 DestroyPassiveIcon(a.name, user.isEnemy);
                             }
                         }
@@ -1123,11 +920,11 @@ public class BattleSystem : MonoBehaviour
                                     StatScale scale2 = a.ifConditionTrueScale2();
                                     
                                     magicBonus += magicBonus * a.num;
-                                    trueDmg += scale2.flatValue;
-                                    trueDmg += SetScale(scale2, stats, unit);
+                                    dmg.trueDmg += scale2.flatValue;
+                                    dmg.trueDmg += SetScale(scale2, stats, unit);
                                 }
 
-                                magicDmg += magicBonus;
+                                dmg.magicDmg += magicBonus;
                                 user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
                             }
                         }
@@ -1151,8 +948,8 @@ public class BattleSystem : MonoBehaviour
                                     stats = statsTarget;
                                 }
 
-                                sanityDmg += scale.flatValue;
-                                sanityDmg += (int)SetScale(scale, stats, unit);
+                                dmg.sanityDmg += scale.flatValue;
+                                dmg.sanityDmg += (int)SetScale(scale, stats, unit);
                             }
                         }
 
@@ -1184,45 +981,7 @@ public class BattleSystem : MonoBehaviour
                                     stats = statsTarget;
                                 }
 
-                                switch (scale.type)
-                                {
-                                    case StatScale.DmgType.PHYSICAL:
-                                        phyDmg += scale.flatValue;
-                                        phyDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.MAGICAL:
-                                        magicDmg += scale.flatValue;
-                                        magicDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.TRUE:
-                                        trueDmg += scale.flatValue;
-                                        trueDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SANITY:
-                                        sanityDmg += scale.flatValue;
-                                        sanityDmg += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEAL:
-                                        heal += scale.flatValue;
-                                        heal += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALMANA:
-                                        healMana += scale.flatValue;
-                                        healMana += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSTAMINA:
-                                        healStamina += scale.flatValue;
-                                        healStamina += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSANITY:
-                                        healSanity += scale.flatValue;
-                                        healSanity += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SHIELD:
-                                        shield += scale.flatValue;
-                                        shield += (int)SetScale(scale, stats, unit);
-                                        break;
-                                }
+                                dmg.AddDmg(SetScaleDmg(scale, stats, unit));
                             }
                         }
 
@@ -1246,87 +1005,11 @@ public class BattleSystem : MonoBehaviour
                                     stats = statsTarget;
                                 }
 
-                                switch (scale.type)
-                                {
-                                    case StatScale.DmgType.PHYSICAL:
-                                        phyDmg += scale.flatValue;
-                                        phyDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.MAGICAL:
-                                        magicDmg += scale.flatValue;
-                                        magicDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.TRUE:
-                                        trueDmg += scale.flatValue;
-                                        trueDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SANITY:
-                                        sanityDmg += scale.flatValue;
-                                        sanityDmg += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEAL:
-                                        heal += scale.flatValue;
-                                        heal += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALMANA:
-                                        healMana += scale.flatValue;
-                                        healMana += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSTAMINA:
-                                        healStamina += scale.flatValue;
-                                        healStamina += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSANITY:
-                                        healSanity += scale.flatValue;
-                                        healSanity += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SHIELD:
-                                        shield += scale.flatValue;
-                                        shield += (int)SetScale(scale, stats, unit);
-                                        break;
-                                }
+                                dmg.AddDmg(SetScaleDmg(scale, stats, unit));
 
-                                switch (scale2.type)
-                                {
-                                    case StatScale.DmgType.PHYSICAL:
-                                        phyDmg += scale2.flatValue;
-                                        phyDmg += SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.MAGICAL:
-                                        magicDmg += scale2.flatValue;
-                                        magicDmg += SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.TRUE:
-                                        trueDmg += scale2.flatValue;
-                                        trueDmg += SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SANITY:
-                                        sanityDmg += scale2.flatValue;
-                                        sanityDmg += (int)SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEAL:
-                                        heal += scale2.flatValue;
-                                        heal += SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALMANA:
-                                        healMana += scale2.flatValue;
-                                        healMana += SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSTAMINA:
-                                        healStamina += scale2.flatValue;
-                                        healStamina += SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSANITY:
-                                        healSanity += scale2.flatValue;
-                                        healSanity += (int)SetScale(scale2, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SHIELD:
-                                        shield += scale2.flatValue;
-                                        shield += (int)SetScale(scale2, stats, unit);
-                                        break;
-                                }
+                                dmg.AddDmg(SetScaleDmg(scale2, stats, unit));
 
-                                Debug.Log("STAMINA: " + healStamina + "\nMana:" + healMana);
+                                Debug.Log("STAMINA: " + dmg.healStamina + "\nMana:" + dmg.healMana);
                             }
                         }
 
@@ -1353,45 +1036,7 @@ public class BattleSystem : MonoBehaviour
                                     stats = statsTarget;
                                 }
 
-                                switch (scale.type)
-                                {
-                                    case StatScale.DmgType.PHYSICAL:
-                                        phyDmg += scale.flatValue;
-                                        phyDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.MAGICAL:
-                                        magicDmg += scale.flatValue;
-                                        magicDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.TRUE:
-                                        trueDmg += scale.flatValue;
-                                        trueDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SANITY:
-                                        sanityDmg += scale.flatValue;
-                                        sanityDmg += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEAL:
-                                        heal += scale.flatValue;
-                                        heal += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALMANA:
-                                        healMana += scale.flatValue;
-                                        healMana += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSTAMINA:
-                                        healStamina += scale.flatValue;
-                                        healStamina += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSANITY:
-                                        healSanity += scale.flatValue;
-                                        healSanity += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SHIELD:
-                                        shield += scale.flatValue;
-                                        shield += (int)SetScale(scale, stats, unit);
-                                        break;
-                                }
+                                dmg.AddDmg(SetScaleDmg(scale, stats, unit));
                             }
                         }
 
@@ -1418,45 +1063,7 @@ public class BattleSystem : MonoBehaviour
                                     stats = statsTarget;
                                 }
 
-                                switch (scale.type)
-                                {
-                                    case StatScale.DmgType.PHYSICAL:
-                                        phyDmg += scale.flatValue;
-                                        phyDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.MAGICAL:
-                                        magicDmg += scale.flatValue;
-                                        magicDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.TRUE:
-                                        trueDmg += scale.flatValue;
-                                        trueDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SANITY:
-                                        sanityDmg += scale.flatValue;
-                                        sanityDmg += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEAL:
-                                        heal += scale.flatValue;
-                                        heal += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALMANA:
-                                        healMana += scale.flatValue;
-                                        healMana += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSTAMINA:
-                                        healStamina += scale.flatValue;
-                                        healStamina += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSANITY:
-                                        healSanity += scale.flatValue;
-                                        healSanity += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SHIELD:
-                                        shield += scale.flatValue;
-                                        shield += (int)SetScale(scale, stats, unit);
-                                        break;
-                                }
+                                dmg.AddDmg(SetScaleDmg(scale, stats, unit));
 
                                 StatMod mod = a.statMod.ReturnStats();
                                 mod.inTime = mod.time+1;
@@ -1488,55 +1095,17 @@ public class BattleSystem : MonoBehaviour
                                     stats = statsTarget;
                                 }
 
-                                switch (scale.type)
-                                {
-                                    case StatScale.DmgType.PHYSICAL:
-                                        phyDmg += scale.flatValue;
-                                        phyDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.MAGICAL:
-                                        magicDmg += scale.flatValue;
-                                        magicDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.TRUE:
-                                        trueDmg += scale.flatValue;
-                                        trueDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SANITY:
-                                        sanityDmg += scale.flatValue;
-                                        sanityDmg += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEAL:
-                                        heal += scale.flatValue;
-                                        heal += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALMANA:
-                                        healMana += scale.flatValue;
-                                        healMana += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSTAMINA:
-                                        healStamina += scale.flatValue;
-                                        healStamina += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSANITY:
-                                        healSanity += scale.flatValue;
-                                        healSanity += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SHIELD:
-                                        shield += scale.flatValue;
-                                        shield += (int)SetScale(scale, stats, unit);
-                                        break;
-                                }
+                                dmg.AddDmg(SetScaleDmg(scale, stats, unit));
                             }
                         }
                     }
 
                     dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
-                    heal += move.heal;
-                    healMana += move.healMana;
-                    healStamina += move.healStamina;
-                    healSanity += move.healSanity;
-                    shield += move.shield;
+                    dmg.heal += move.heal;
+                    dmg.healMana += move.healMana;
+                    dmg.healStamina += move.healStamina;
+                    dmg.healSanity += move.healSanity;
+                    dmg.shield += move.shield;
 
                     foreach (Effects a in user.effects)
                     {
@@ -1549,15 +1118,15 @@ public class BattleSystem : MonoBehaviour
                                 isStoped = true;
                                 cancelText = langmanag.GetInfo("effect", "cancelmsg", a.id.ToLower());
                                 float shieldedDmg = 0;
-                                float dmg = a.recoil;
-                                user.trueDmgTaken += dmg;
+                                float recoil = a.recoil;
+                                user.trueDmgTaken += recoil;
 
                                 if (user.curShield > 0)
                                 {
-                                    float tempDmg = dmg;
+                                    float tempDmg = recoil;
                                     float tempShield = user.curShield;
                                     
-                                    dmg -= user.curShield;
+                                    recoil -= user.curShield;
                                     user.curShield -= tempDmg;
 
                                     if (user.curShield < 0)
@@ -1566,8 +1135,8 @@ public class BattleSystem : MonoBehaviour
                                     shieldedDmg = tempShield - user.curShield;
                                 }
                                 
-                                if (dmg > 0 || shieldedDmg > 0)
-                                    isDead = user.TakeDamage(dmg, shieldedDmg, false);
+                                if (recoil > 0 || shieldedDmg > 0)
+                                    isDead = user.TakeDamage(recoil, shieldedDmg, false);
 
                                 sumPlayerHud.UpdateValues(playerUnit, langmanag.GetInfo("charc", "name", playerUnit.charc.name));
                                 sumEnemyHud.UpdateValues(enemyUnit, langmanag.GetInfo("charc", "name", enemyUnit.charc.name));
@@ -1607,10 +1176,10 @@ public class BattleSystem : MonoBehaviour
                         }
                         else
                         {
-                            phyDmg += move.phyDmg;
-                            magicDmg += move.magicDmg;
-                            trueDmg += move.trueDmg;
-                            sanityDmg += move.sanityDmg;
+                            dmg.phyDmg += move.phyDmg;
+                            dmg.magicDmg += move.magicDmg;
+                            dmg.trueDmg += move.trueDmg;
+                            dmg.sanityDmg += move.sanityDmg;
 
                             blockPhysical = move.blocksPhysical;
                             blockMagic = move.blocksMagical;
@@ -1689,10 +1258,10 @@ public class BattleSystem : MonoBehaviour
                                                 {
                                                     StatMod statMod = b.ReturnStats();
                                                     statMod.inTime = effect.duration;
-                                                    heal += (int)((user.charc.stats.hp * statMod.hp) / 2);
-                                                    healMana += (int)((user.charc.stats.mana * statMod.mana) / 2);
-                                                    healStamina += (int)((user.charc.stats.stamina * statMod.stamina) / 2);
-                                                    healSanity += (int)((user.charc.stats.sanity * statMod.sanity) / 2);
+                                                    dmg.heal += (int)((user.charc.stats.hp * statMod.hp) / 2);
+                                                    dmg.healMana += (int)((user.charc.stats.mana * statMod.mana) / 2);
+                                                    dmg.healStamina += (int)((user.charc.stats.stamina * statMod.stamina) / 2);
+                                                    dmg.healSanity += (int)((user.charc.stats.sanity * statMod.sanity) / 2);
                                                     user.statMods.Add(statMod);
                                                     user.usedBonusStuff = false;
                                                     SetModifiers(statMod, statsUser, user);
@@ -1735,10 +1304,10 @@ public class BattleSystem : MonoBehaviour
                                                 {
                                                     StatMod statMod = b.ReturnStats();
                                                     statMod.inTime = effect.duration;
-                                                    heal += (int)((target.charc.stats.hp * statMod.hp) / 2);
-                                                    healMana += (int)((target.charc.stats.mana * statMod.mana) / 2);
-                                                    healStamina += (int)((target.charc.stats.stamina * statMod.stamina) / 2);
-                                                    healSanity += (int)((target.charc.stats.sanity * statMod.sanity) / 2);
+                                                    dmg.heal += (int)((target.charc.stats.hp * statMod.hp) / 2);
+                                                    dmg.healMana += (int)((target.charc.stats.mana * statMod.mana) / 2);
+                                                    dmg.healStamina += (int)((target.charc.stats.stamina * statMod.stamina) / 2);
+                                                    dmg.healSanity += (int)((target.charc.stats.sanity * statMod.sanity) / 2);
                                                     target.statMods.Add(statMod);
                                                     target.usedBonusStuff = false;
                                                     SetModifiers(statMod, statsTarget, target);
@@ -1761,10 +1330,10 @@ public class BattleSystem : MonoBehaviour
                                     {
                                         StatMod statMod = move.statModUser.ReturnStats();
                                         statMod.inTime = statMod.time + 1;
-                                        heal += ((user.charc.stats.hp * statMod.hp) / 2);
-                                        healMana += ((user.charc.stats.mana * statMod.mana) / 2);
-                                        healStamina += ((user.charc.stats.stamina * statMod.stamina) / 2);
-                                        healSanity += (int)((user.charc.stats.sanity * statMod.sanity) / 2);
+                                        dmg.heal += ((user.charc.stats.hp * statMod.hp) / 2);
+                                        dmg.healMana += ((user.charc.stats.mana * statMod.mana) / 2);
+                                        dmg.healStamina += ((user.charc.stats.stamina * statMod.stamina) / 2);
+                                        dmg.healSanity += (int)((user.charc.stats.sanity * statMod.sanity) / 2);
                                         user.statMods.Add(statMod);
                                         user.usedBonusStuff = false;
                                         SetModifiers(statMod, statsUser, user);
@@ -1780,10 +1349,10 @@ public class BattleSystem : MonoBehaviour
                                     {
                                         StatMod statMod = move.statModEnemy.ReturnStats();
                                         statMod.inTime = statMod.time + 1;
-                                        heal += ((target.charc.stats.hp * statMod.hp) / 2);
-                                        healMana += ((target.charc.stats.mana * statMod.mana) / 2);
-                                        healStamina += ((target.charc.stats.stamina * statMod.stamina) / 2);
-                                        healSanity += (int)((target.charc.stats.sanity * statMod.sanity) / 2);
+                                        dmg.heal += ((target.charc.stats.hp * statMod.hp) / 2);
+                                        dmg.healMana += ((target.charc.stats.mana * statMod.mana) / 2);
+                                        dmg.healStamina += ((target.charc.stats.stamina * statMod.stamina) / 2);
+                                        dmg.healSanity += (int)((target.charc.stats.sanity * statMod.sanity) / 2);
                                         target.statMods.Add(statMod);
                                         target.usedBonusStuff = false;
                                         SetModifiers(statMod, statsTarget, target);
@@ -1807,45 +1376,16 @@ public class BattleSystem : MonoBehaviour
                                     stats = statsTarget;
                                 }
 
-                                switch (scale.type)
-                                {
-                                    case StatScale.DmgType.PHYSICAL:
-                                        phyDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.MAGICAL:
-                                        magicDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.TRUE:
-                                        trueDmg += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SANITY:
-                                        sanityDmg += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEAL:
-                                        heal += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALMANA:
-                                        healMana += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSTAMINA:
-                                        healStamina += SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.HEALSANITY:
-                                        healSanity += (int)SetScale(scale, stats, unit);
-                                        break;
-                                    case StatScale.DmgType.SHIELD:
-                                        shield += (int)SetScale(scale, stats, unit);
-                                        break;
-                                }
+                                dmg.AddDmg(SetScaleDmg(scale, stats, unit));
                             }
 
                             float dmgMitigated = 0;
 
-                            if (phyDmg > 0)
+                            if (dmg.phyDmg > 0)
                             {
                                 if (isCrit == true)
                                 {
-                                    phyDmg += (phyDmg * (statsUser.critDmg + move.critDmgBonus));
+                                    dmg.phyDmg += (dmg.phyDmg * (statsUser.critDmg + move.critDmgBonus));
                                 }
                             }
                             else
@@ -1855,59 +1395,59 @@ public class BattleSystem : MonoBehaviour
                             {
                                 if (a.name == "huntingseason")
                                 {
-                                    phyDmg += phyDmg * a.num;
-                                    magicDmg += magicDmg * a.num;
-                                    trueDmg += trueDmg * a.num;
+                                    dmg.phyDmg += dmg.phyDmg * a.num;
+                                    dmg.magicDmg += dmg.magicDmg * a.num;
+                                    dmg.trueDmg += dmg.trueDmg * a.num;
                                 }
                             }
-                            
+
                             foreach (Dotdmg dot in move.dot)
                             {
                                 Dotdmg dotdmg = dot.ReturnDOT();
                                 switch (dotdmg.type)
                                 {
                                     case Dotdmg.DmgType.PHYSICAL:
-                                        dotdmg.Setup(phyDmg, isCrit);
-                                        phyDmg = 0;
+                                        dotdmg.Setup(dmg.phyDmg, isCrit, move.name, Dotdmg.SrcType.MOVE);
+                                        dmg.phyDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.MAGICAL:
-                                        dotdmg.Setup(magicDmg);
-                                        magicDmg = 0;
+                                        dotdmg.Setup(dmg.magicDmg, move.name, Dotdmg.SrcType.MOVE);
+                                        dmg.magicDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.TRUE:
-                                        dotdmg.Setup(trueDmg);
-                                        trueDmg = 0;
+                                        dotdmg.Setup(dmg.trueDmg, move.name, Dotdmg.SrcType.MOVE);
+                                        dmg.trueDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.SANITY:
-                                        dotdmg.Setup(sanityDmg);
-                                        sanityDmg = 0;
+                                        dotdmg.Setup(dmg.sanityDmg, move.name, Dotdmg.SrcType.MOVE);
+                                        dmg.sanityDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEAL:
-                                        dotdmg.Setup(heal);
-                                        heal = 0;
+                                        dotdmg.Setup(dmg.heal, move.name, Dotdmg.SrcType.MOVE);
+                                        dmg.heal = 0;
                                         user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALMANA:
-                                        dotdmg.Setup(healMana);
-                                        healMana = 0;
+                                        dotdmg.Setup(dmg.healMana, move.name, Dotdmg.SrcType.MOVE);
+                                        dmg.healMana = 0;
                                         user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALSTAMINA:
-                                        dotdmg.Setup(healStamina);
-                                        healStamina = 0;
+                                        dotdmg.Setup(dmg.healStamina, move.name, Dotdmg.SrcType.MOVE);
+                                        dmg.healStamina = 0;
                                         user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALSANITY:
-                                        dotdmg.Setup(healSanity);
-                                        healSanity = 0;
+                                        dotdmg.Setup(dmg.healSanity, move.name, Dotdmg.SrcType.MOVE);
+                                        dmg.healSanity = 0;
                                         user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.SHIELD:
-                                        dotdmg.Setup(shield);
+                                        dotdmg.Setup(dmg.shield, move.name, Dotdmg.SrcType.MOVE);
                                         user.dotDmg.Add(dotdmg);
                                         break;
                                     default:
@@ -1930,22 +1470,22 @@ public class BattleSystem : MonoBehaviour
                             }
 
 
-                            if (phyDmg > 0)
+                            if (dmg.phyDmg > 0)
                             {
-                                user.phyDmgDealt += phyDmg;
+                                user.phyDmgDealt += dmg.phyDmg;
                                 dmgMitigated = (float)((statsTarget.dmgResis - (statsTarget.dmgResis * statsUser.armourPen)) * 0.18);
-                                phyDmg -= dmgMitigated;
+                                dmg.phyDmg -= dmgMitigated;
                                 target.phyDmgMitigated += dmgMitigated;
                             }
 
                             if (statsUser.lifesteal > 0)
-                                heal += phyDmg * statsUser.lifesteal;
+                                dmg.heal += dmg.phyDmg * statsUser.lifesteal;
 
-                            if (magicDmg > 0)
+                            if (dmg.magicDmg > 0)
                             {
-                                user.magicDmgDealt += magicDmg;
+                                user.magicDmgDealt += dmg.magicDmg;
                                 dmgMitigated = (float)(statsTarget.magicResis * 0.12);
-                                magicDmg -= dmgMitigated;
+                                dmg.magicDmg -= dmgMitigated;
                                 target.magicDmgMitigated += dmgMitigated;
                             }
 
@@ -1959,9 +1499,9 @@ public class BattleSystem : MonoBehaviour
                                         //show passive popup
                                         target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
                                         //get the mitigated dmg
-                                        dmgMitigated = phyDmg * ((statsTarget.dmgResis * a.num) / 100);
+                                        dmgMitigated = dmg.phyDmg * ((statsTarget.dmgResis * a.num) / 100);
                                         //subtract mitigated dmg from the dmg
-                                        phyDmg -= dmgMitigated;
+                                        dmg.phyDmg -= dmgMitigated;
                                         //add mitigated dmg to the overview
                                         target.phyDmgMitigated += dmgMitigated;
                                     }
@@ -1970,17 +1510,17 @@ public class BattleSystem : MonoBehaviour
                                 if (a.name == "dreadofthesupernatural")
                                 {
                                     //if sanityDmg bellow 0
-                                    if (sanityDmg > 0)
+                                    if (dmg.sanityDmg > 0)
                                     {
                                         //show passive popup
                                         target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
                                         //get bonus sanityDmg
-                                        int bonusSanityDmg = (int)(sanityDmg * a.num);
+                                        int bonusSanityDmg = (int)(dmg.sanityDmg * a.num);
                                         //if bonus under a.maxNum, set to it
                                         if (bonusSanityDmg < a.maxNum)
                                             bonusSanityDmg = (int)a.maxNum;
                                         //add bonus damage
-                                        sanityDmg += bonusSanityDmg;
+                                        dmg.sanityDmg += bonusSanityDmg;
                                     }
                                 }
                             }
@@ -2011,39 +1551,39 @@ public class BattleSystem : MonoBehaviour
                                 }
                             }
 
-                            target.phyDmgTaken += phyDmg;
-                            target.magicDmgTaken += magicDmg;
-                            target.trueDmgTaken += trueDmg;
+                            target.phyDmgTaken += dmg.phyDmg;
+                            target.magicDmgTaken += dmg.magicDmg;
+                            target.trueDmgTaken += dmg.trueDmg;
 
-                            user.trueDmgDealt += trueDmg;
+                            user.trueDmgDealt += dmg.trueDmg;
 
-                            float dmg = phyDmg + magicDmg + trueDmg;
+                            float dmgT = dmg.phyDmg + dmg.magicDmg + dmg.trueDmg;
                             float shieldedDmg = 0;
 
                             if (move.healFromDmgType != Moves.HealFromDmg.NONE)
                             {
                                 if (move.healFromDmgType is Moves.HealFromDmg.PHYSICAL)
-                                    heal += phyDmg * move.healFromDmg;
+                                    dmg.heal += dmg.phyDmg * move.healFromDmg;
                                 else if (move.healFromDmgType is Moves.HealFromDmg.MAGICAL)
-                                    heal += magicDmg * move.healFromDmg;
+                                    dmg.heal += dmg.magicDmg * move.healFromDmg;
                                 else if (move.healFromDmgType is Moves.HealFromDmg.TRUE)
-                                    heal += trueDmg * move.healFromDmg;
+                                    dmg.heal += dmg.trueDmg * move.healFromDmg;
                                 else if (move.healFromDmgType is Moves.HealFromDmg.PHYSICAL_MAGICAL)
-                                    heal += (phyDmg + magicDmg) * move.healFromDmg;
+                                    dmg.heal += (dmg.phyDmg + dmg.magicDmg) * move.healFromDmg;
                                 else if (move.healFromDmgType is Moves.HealFromDmg.PHYSICAL_TRUE)
-                                    heal += (phyDmg + trueDmg) * move.healFromDmg;
+                                    dmg.heal += (dmg.phyDmg + dmg.trueDmg) * move.healFromDmg;
                                 else if (move.healFromDmgType is Moves.HealFromDmg.MAGICAL_TRUE)
-                                    heal += (magicDmg + trueDmg) * move.healFromDmg;
+                                    dmg.heal += (dmg.magicDmg + dmg.trueDmg) * move.healFromDmg;
                                 else if (move.healFromDmgType is Moves.HealFromDmg.ALL)
-                                    heal += (phyDmg + magicDmg + trueDmg) * move.healFromDmg;
+                                    dmg.heal += (dmg.phyDmg + dmg.magicDmg + dmg.trueDmg) * move.healFromDmg;
                             }
 
                             if (target.curShield > 0)
                             {
-                                float tempDmg = dmg;
+                                float tempDmg = dmgT;
                                 float tempShield = target.curShield;
 
-                                dmg -= target.curShield;
+                                dmgT -= target.curShield;
                                 target.curShield -= tempDmg;
 
                                 if (target.curShield < 0)
@@ -2052,38 +1592,38 @@ public class BattleSystem : MonoBehaviour
                                 shieldedDmg = tempShield - target.curShield;
                             }
 
-                            if (dmg > 0 || shieldedDmg > 0)
+                            if (dmgT > 0 || shieldedDmg > 0)
                             {
-                                isDead = target.TakeDamage(dmg, shieldedDmg, isCrit);
+                                isDead = target.TakeDamage(dmgT, shieldedDmg, isCrit);
                                 if (!(move.type is Moves.MoveType.ULT))
-                                    SetUltNumber(user, userHud, (dmg + shieldedDmg), true);
+                                    SetUltNumber(user, userHud, (dmgT + shieldedDmg), true);
 
                                 if (move.type is Moves.MoveType.ULT)
-                                    SetUltNumber(target, enemyHud, ((dmg + shieldedDmg) / 2), false);
+                                    SetUltNumber(target, enemyHud, ((dmgT + shieldedDmg) / 2), false);
                                 else
-                                    SetUltNumber(target, enemyHud, (dmg + shieldedDmg), false);
+                                    SetUltNumber(target, enemyHud, (dmgT + shieldedDmg), false);
                             }
 
-                            if (sanityDmg > 0)
+                            if (dmg.sanityDmg > 0)
                             {
-                                if ((target.curSanity - sanityDmg) >= 0)
+                                if ((target.curSanity - dmg.sanityDmg) >= 0)
                                 {
-                                    target.curSanity -= sanityDmg;
+                                    target.curSanity -= dmg.sanityDmg;
                                 }
                                 else
                                 {
-                                    sanityDmg = target.curSanity;
+                                    dmg.sanityDmg = target.curSanity;
                                     target.curSanity = 0;
                                 }
 
-                                user.sanityDmgDealt += sanityDmg;
-                                target.sanityDmgTaken += sanityDmg;
+                                user.sanityDmgDealt += dmg.sanityDmg;
+                                target.sanityDmgTaken += dmg.sanityDmg;
                             }
 
-                            if (heal > 0)
+                            if (dmg.heal > 0)
                             {
-                                user.healDone += heal;
-                                user.Heal(heal);
+                                user.healDone += dmg.heal;
+                                user.Heal(dmg.heal);
                             }
 
                             Stats statsU = user.charc.stats.ReturnStats();
@@ -2094,43 +1634,43 @@ public class BattleSystem : MonoBehaviour
                                     statsU = SetModifiers(statMod.ReturnStats(), statsU.ReturnStats(), user);
                                 }
 
-                            if (healMana > 0)
+                            if (dmg.healMana > 0)
                             {
-                                user.curMana += healMana;
+                                user.curMana += dmg.healMana;
                                 if (user.curMana > statsU.mana)
                                 {
                                     user.curMana = statsU.mana;
-                                    healMana = user.curMana - statsU.mana;
+                                    dmg.healMana = user.curMana - statsU.mana;
                                 }
-                                user.manaHealDone += healMana;
+                                user.manaHealDone += dmg.healMana;
                             }
 
-                            if (healStamina > 0)
+                            if (dmg.healStamina > 0)
                             {
-                                user.curStamina += healStamina;
+                                user.curStamina += dmg.healStamina;
                                 if (user.curStamina > statsU.stamina)
                                 {
                                     user.curStamina = statsU.stamina;
-                                    healStamina = user.curStamina - statsU.stamina;
+                                    dmg.healStamina = user.curStamina - statsU.stamina;
                                 }
-                                user.staminaHealDone += healStamina;
+                                user.staminaHealDone += dmg.healStamina;
                             }
 
-                            if (healSanity > 0)
+                            if (dmg.healSanity > 0)
                             {
-                                user.curSanity += healSanity;
+                                user.curSanity += dmg.healSanity;
                                 if (user.curSanity > statsU.sanity)
                                 {
                                     user.curSanity = statsU.sanity;
-                                    healSanity = user.curSanity - statsU.sanity;
+                                    dmg.healSanity = user.curSanity - statsU.sanity;
                                 }
-                                user.sanityHealDone += healSanity;
+                                user.sanityHealDone += dmg.healSanity;
                             }
 
-                            if (shield > 0)
+                            if (dmg.shield > 0)
                             {
-                                user.shieldDone += shield;
-                                user.curShield += shield;
+                                user.shieldDone += dmg.shield;
+                                user.curShield += dmg.shield;
                                 if (user.curShield > 1000)
                                     user.curShield = 1000;
                             }
@@ -2238,6 +1778,68 @@ public class BattleSystem : MonoBehaviour
             user.ult = value;
         }
     }
+
+    DMG SetScaleDmg(StatScale scale, Stats stats, Unit unit)
+    {
+        DMG dmg;
+
+        dmg.phyDmg = 0;
+        dmg.magicDmg = 0;
+        dmg.trueDmg = 0;
+        dmg.sanityDmg = 0;
+        dmg.heal = 0;
+        dmg.healMana = 0;
+        dmg.healStamina = 0;
+        dmg.healSanity = 0;
+        dmg.shield = 0;
+
+        switch (scale.type)
+        {
+            case StatScale.DmgType.PHYSICAL:
+                dmg.phyDmg += scale.flatValue;
+                dmg.phyDmg += SetScale(scale, stats, unit);
+                break;
+            case StatScale.DmgType.MAGICAL:
+                dmg.magicDmg += scale.flatValue;
+                dmg.magicDmg += SetScale(scale, stats, unit);
+                break;
+            case StatScale.DmgType.TRUE:
+                dmg.trueDmg += scale.flatValue;
+                dmg.trueDmg += SetScale(scale, stats, unit);
+                break;
+            case StatScale.DmgType.SANITY:
+                dmg.sanityDmg += scale.flatValue;
+                dmg.sanityDmg += (int)SetScale(scale, stats, unit);
+                break;
+            case StatScale.DmgType.HEAL:
+                dmg.heal += scale.flatValue;
+                dmg.heal += SetScale(scale, stats, unit);
+                break;
+            case StatScale.DmgType.HEALMANA:
+                dmg.healMana += scale.flatValue;
+                dmg.healMana += SetScale(scale, stats, unit);
+                break;
+            case StatScale.DmgType.HEALSTAMINA:
+                dmg.healStamina += scale.flatValue;
+                dmg.healStamina += SetScale(scale, stats, unit);
+                break;
+            case StatScale.DmgType.HEALSANITY:
+                dmg.healSanity += scale.flatValue;
+                dmg.healSanity += (int)SetScale(scale, stats, unit);
+                break;
+            case StatScale.DmgType.SHIELD:
+                dmg.shield += scale.flatValue;
+                dmg.shield += (int)SetScale(scale, stats, unit);
+                break;
+        }
+
+        return dmg;
+    }
+
+    /*bool SetDOT()
+    {
+        
+    }*/
 
     float SetScale(StatScale scale, Stats stats, Unit user)
     {
@@ -2688,26 +2290,19 @@ public class BattleSystem : MonoBehaviour
 
     public bool EffectCalcDmg(Effects a, Unit user)
     {
-        float phyDmg = 0;
-        float magicDmg = 0;
-        float trueDmg = 0;
-        int sanityDmg = 0;
-        float heal = 0;
-        float healMana = 0;
-        float healStamina = 0;
-        int healSanity = 0;
-        int shield = 0;
+        DMG dmg = default;
+        dmg.Reset();
         bool isDead = false;
 
-        phyDmg = Random.Range(a.phyDmgMin, a.phyDmgMax) + (a.phyDmgInc * a.timesInc);
-        magicDmg = Random.Range(a.magicDmgMin, a.magicDmgMax) + (a.magicDmgInc * a.timesInc);
-        trueDmg = Random.Range(a.trueDmgMin, a.trueDmgMax) + (a.trueDmgInc * a.timesInc);
-        sanityDmg = Random.Range(a.sanityDmgMin, a.sanityDmgMax) + (a.sanityDmgInc * a.timesInc);
-        heal = Random.Range(a.healMin, a.healMax) + (a.healInc * a.timesInc);
-        healMana = Random.Range(a.healManaMin, a.healManaMax) + (a.healManaInc * a.timesInc);
-        healStamina = Random.Range(a.healStaminaMin, a.healStaminaMax) + (a.healStaminaInc * a.timesInc);
-        healSanity = Random.Range(a.sanityHealMin, a.sanityHealMax) + (a.sanityHealInc * a.timesInc);
-        shield = Random.Range(a.shieldMin, a.shieldMax) + (a.shieldInc * a.timesInc);
+        dmg.phyDmg = Random.Range(a.phyDmgMin, a.phyDmgMax) + (a.phyDmgInc * a.timesInc);
+        dmg.magicDmg = Random.Range(a.magicDmgMin, a.magicDmgMax) + (a.magicDmgInc * a.timesInc);
+        dmg.trueDmg = Random.Range(a.trueDmgMin, a.trueDmgMax) + (a.trueDmgInc * a.timesInc);
+        dmg.sanityDmg = Random.Range(a.sanityDmgMin, a.sanityDmgMax) + (a.sanityDmgInc * a.timesInc);
+        dmg.heal = Random.Range(a.healMin, a.healMax) + (a.healInc * a.timesInc);
+        dmg.healMana = Random.Range(a.healManaMin, a.healManaMax) + (a.healManaInc * a.timesInc);
+        dmg.healStamina = Random.Range(a.healStaminaMin, a.healStaminaMax) + (a.healStaminaInc * a.timesInc);
+        dmg.healSanity = Random.Range(a.sanityHealMin, a.sanityHealMax) + (a.sanityHealInc * a.timesInc);
+        dmg.shield = Random.Range(a.shieldMin, a.shieldMax) + (a.shieldInc * a.timesInc);
 
         foreach (StatScale scale in a.scale.ToArray())
         {
@@ -2717,65 +2312,36 @@ public class BattleSystem : MonoBehaviour
             unit = user;
             stats = user.charc.stats.ReturnStats();
 
-            switch (scale.type)
-            {
-                case StatScale.DmgType.PHYSICAL:
-                    phyDmg += SetScale(scale, stats, unit);
-                    break;
-                case StatScale.DmgType.MAGICAL:
-                    magicDmg += SetScale(scale, stats, unit);
-                    break;
-                case StatScale.DmgType.TRUE:
-                    trueDmg += SetScale(scale, stats, unit);
-                    break;
-                case StatScale.DmgType.SANITY:
-                    sanityDmg += (int)SetScale(scale, stats, unit);
-                    break;
-                case StatScale.DmgType.HEAL:
-                    heal += SetScale(scale, stats, unit);
-                    break;
-                case StatScale.DmgType.HEALMANA:
-                    healMana += SetScale(scale, stats, unit);
-                    break;
-                case StatScale.DmgType.HEALSTAMINA:
-                    healStamina += SetScale(scale, stats, unit);
-                    break;
-                case StatScale.DmgType.HEALSANITY:
-                    healSanity += (int)SetScale(scale, stats, unit);
-                    break;
-                case StatScale.DmgType.SHIELD:
-                    shield += (int)SetScale(scale, stats, unit);
-                    break;
-            }
+            dmg.AddDmg(SetScaleDmg(scale, stats, unit));
         }
 
-        if (phyDmg > 0)
+        if (dmg.phyDmg > 0)
         {
             float dmgMitigated = (float)(user.charc.stats.dmgResis * 0.18);
-            phyDmg -= dmgMitigated;
+            dmg.phyDmg -= dmgMitigated;
             user.phyDmgMitigated += dmgMitigated;
-            user.phyDmgTaken += phyDmg - dmgMitigated;
+            user.phyDmgTaken += dmg.phyDmg - dmgMitigated;
         }
 
-        if (magicDmg > 0)
+        if (dmg.magicDmg > 0)
         {
             float dmgMitigated = (float)(user.charc.stats.magicResis * 0.12);
-            magicDmg -= dmgMitigated;
+            dmg.magicDmg -= dmgMitigated;
             user.magicDmgMitigated += dmgMitigated;
-            user.magicDmgTaken += magicDmg - dmgMitigated;
+            user.magicDmgTaken += dmg.magicDmg - dmgMitigated;
         }
 
-        user.trueDmgTaken += trueDmg;
+        user.trueDmgTaken += dmg.trueDmg;
 
-        float dmg = phyDmg + magicDmg + trueDmg;
+        float dmgT = dmg.phyDmg + dmg.magicDmg + dmg.trueDmg;
         float shieldedDmg = 0;
 
         if (user.curShield > 0)
         {
-            float tempDmg = dmg;
+            float tempDmg = dmgT;
             float tempShield = user.curShield;
 
-            dmg -= user.curShield;
+            dmgT -= user.curShield;
             user.curShield -= tempDmg;
 
             if (user.curShield < 0)
@@ -2784,55 +2350,55 @@ public class BattleSystem : MonoBehaviour
             shieldedDmg = tempShield - user.curShield;
         }
 
-        if (dmg > 0 || shieldedDmg > 0)
-            isDead = user.TakeDamage(dmg, shieldedDmg, false);
+        if (dmgT > 0 || shieldedDmg > 0)
+            isDead = user.TakeDamage(dmgT, shieldedDmg, false);
 
-        if (sanityDmg > 0)
+        if (dmg.sanityDmg > 0)
         {
-            if ((user.curSanity - sanityDmg) >= 0)
-                user.curSanity -= sanityDmg;
+            if ((user.curSanity - dmg.sanityDmg) >= 0)
+                user.curSanity -= dmg.sanityDmg;
             else
             {
-                sanityDmg = user.curSanity;
+                dmg.sanityDmg = user.curSanity;
                 user.curSanity = 0;
             }
         } 
 
-        user.sanityDmgTaken += sanityDmg;
+        user.sanityDmgTaken += dmg.sanityDmg;
 
-        user.healDone += heal;
-        user.manaHealDone += healMana;
-        user.staminaHealDone += healStamina;
-        user.sanityHealDone += healSanity;
-        user.shieldDone += shield;
+        user.healDone += dmg.heal;
+        user.manaHealDone += dmg.healMana;
+        user.staminaHealDone += dmg.healStamina;
+        user.sanityHealDone += dmg.healSanity;
+        user.shieldDone += dmg.shield;
 
-        if (heal > 0)
-            user.Heal(heal);
+        if (dmg.heal > 0)
+            user.Heal(dmg.heal);
 
-        if (healMana > 0)
+        if (dmg.healMana > 0)
         {
-            user.curMana += healMana;
+            user.curMana += dmg.healMana;
             if (user.curMana > user.charc.stats.mana)
                 user.curMana = user.charc.stats.mana;
         }
 
-        if (healStamina > 0)
+        if (dmg.healStamina > 0)
         {
-            user.curStamina += healStamina;
+            user.curStamina += dmg.healStamina;
             if (user.curStamina > user.charc.stats.stamina)
                 user.curStamina = user.charc.stats.stamina;
         }
 
-        if (healSanity > 0)
+        if (dmg.healSanity > 0)
         {
-            user.curSanity += healSanity;
+            user.curSanity += dmg.healSanity;
             if (user.curSanity > user.charc.stats.sanity)
                 user.curSanity = user.charc.stats.sanity;
         }
 
-        if (shield > 0)
+        if (dmg.shield > 0)
         {
-            user.curShield += shield;
+            user.curShield += dmg.shield;
             if (user.curShield > 1000)
                 user.curShield = 1000;
         }
@@ -3871,99 +3437,25 @@ public class BattleSystem : MonoBehaviour
             Instantiate(effectIconPrefab, panelEffectsE.transform);
         }
 
-        playerUnit.canUsePhysical = true;
-        playerUnit.canUseRanged = true;
-        playerUnit.canUseMagic = true;
-        playerUnit.canUseSupp = true;
-        playerUnit.canUseProtec = true;
-        playerUnit.canUseStatMod = true;
-        //playerUnit.canUseDeploy = true;
+        playerUnit.ResetCanUse();
+        enemyUnit.ResetCanUse();
 
-        enemyUnit.canUsePhysical = true;
-        enemyUnit.canUseRanged = true;
-        enemyUnit.canUseMagic = true;
-        enemyUnit.canUseSupp = true;
-        enemyUnit.canUseProtec = true;
-        enemyUnit.canUseStatMod = true;
-        //enemyUnit.canUseDeploy = true;
+        if (playerUnit.CountEffectTimer(panelEffectsP))
+            state = BattleState.LOSE;
 
-        foreach (Effects a in enemyUnit.effects.ToArray())
+        if (state == BattleState.WIN || state == BattleState.LOSE)
         {
-            a.duration--;
-            a.timesInc++;
-
-            bool isDead = EffectCalcDmg(a, enemyUnit);
-
-            yield return new WaitForSeconds(0.65f);
-
-            if (isDead)
-                state = BattleState.WIN;
-
-            if (a.duration <= 0)
-            {
-                enemyUnit.effects.Remove(a);
-
-                GameObject temp = panelEffectsE.transform.Find(a.id+"(Clone)").gameObject;
-
-                Destroy(temp.gameObject);
-            }
-            else
-            {
-                enemyUnit.canUsePhysical = enemyUnit.canUsePhysical && a.canUsePhysical;
-                enemyUnit.canUseRanged = enemyUnit.canUseRanged && a.canUseRanged;
-                enemyUnit.canUseMagic = enemyUnit.canUseMagic && a.canUseMagic;
-                enemyUnit.canUseSupp = enemyUnit.canUseSupp && a.canUseSupp;
-                enemyUnit.canUseProtec = enemyUnit.canUseProtec && a.canUseProtec;
-                enemyUnit.canUseStatMod = enemyUnit.canUseStatMod && a.canUseStatMod;
-                //enemyUnit.canUseDeploy = true;
-
-                panelEffectsE.transform.Find(a.id + "(Clone)").gameObject.transform.Find("time").GetComponent<Text>().text = a.duration.ToString();
-            }
-
-            if (state == BattleState.WIN || state == BattleState.LOSE)
-            {
-                StartCoroutine(EndBattle());
-                yield break;
-            }   
+            StartCoroutine(EndBattle());
+            yield break;
         }
 
-        foreach (Effects a in playerUnit.effects.ToArray())
+        if (enemyUnit.CountEffectTimer(panelEffectsE))
+            state = BattleState.WIN;
+
+        if (state == BattleState.WIN || state == BattleState.LOSE)
         {
-            a.duration--;
-            a.timesInc++;
-
-            bool isDead = EffectCalcDmg(a, playerUnit);
-            yield return new WaitForSeconds(0.65f);
-
-            if (isDead)
-                state = BattleState.LOSE;
-
-            if (a.duration <= 0)
-            {
-                playerUnit.effects.Remove(a);
-
-                GameObject temp = panelEffectsP.transform.Find(a.id + "(Clone)").gameObject;
-
-                Destroy(temp.gameObject);
-            }
-            else
-            {
-                playerUnit.canUsePhysical = playerUnit.canUsePhysical && a.canUsePhysical;
-                playerUnit.canUseRanged = playerUnit.canUseRanged && a.canUseRanged;
-                playerUnit.canUseMagic = playerUnit.canUseMagic && a.canUseMagic;
-                playerUnit.canUseSupp = playerUnit.canUseSupp && a.canUseSupp;
-                playerUnit.canUseProtec = playerUnit.canUseProtec && a.canUseProtec;
-                playerUnit.canUseStatMod = playerUnit.canUseStatMod && a.canUseStatMod;
-                //playerUnit.canUseDeploy = true;
-
-                panelEffectsP.transform.Find(a.id + "(Clone)").gameObject.transform.Find("time").gameObject.GetComponent<Text>().text = a.duration.ToString();
-            }
-
-            if (state == BattleState.WIN || state == BattleState.LOSE)
-            {
-                StartCoroutine(EndBattle());
-                yield break;
-            }
+            StartCoroutine(EndBattle());
+            yield break;
         }
 
         foreach (Dotdmg a in playerUnit.dotDmg.ToArray())

@@ -13,17 +13,25 @@ public class Dotdmg : ScriptableObject
     public int inTime;
     public bool isCrit=false;
 
-    public void Setup(float dmgT, bool crit)
+    public enum SrcType { MOVE, PASSIVE }
+    public string srcId;
+    public SrcType srcType;
+
+    public void Setup(float dmgT, bool crit, string srcId, SrcType srcType)
     {
         dmg = dmgT / time;
         inTime = time;
         isCrit = crit;
+        this.srcId = srcId;
+        this.srcType = srcType;
     }
 
-    public void Setup(float dmgT)
+    public void Setup(float dmgT, string srcId, SrcType srcType)
     {
         dmg = dmgT / time;
         inTime = time;
+        this.srcId = srcId;
+        this.srcType = srcType;
     }
 
     public Dotdmg ReturnDOT()
@@ -34,7 +42,8 @@ public class Dotdmg : ScriptableObject
         dot.time = time;
         dot.inTime = inTime;
         dot.type = type;
-        dot.isCrit = isCrit;
+        dot.srcId = srcId;
+        dot.srcType = srcType;
 
         return dot;
     }

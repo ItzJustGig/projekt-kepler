@@ -126,6 +126,63 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public void ResetCanUse()
+    {
+        canUsePhysical = true;
+        canUseRanged = true;
+        canUseMagic = true;
+        canUseSupp = true;
+        canUseProtec = true;
+        canUseStatMod = true;
+        //canUseDeploy = true;
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.65f);
+    }
+
+    public bool CountEffectTimer(GameObject panelEffects)
+    {
+        bool isDead = false;
+
+        foreach (Effects a in effects.ToArray())
+        {
+            a.duration--;
+            a.timesInc++;
+
+            isDead = GameObject.Find("GameManager").GetComponent<BattleSystem>().EffectCalcDmg(a, this);
+
+            if (isDead)
+                break;
+
+            Wait();
+
+            if (a.duration <= 0)
+            {
+                effects.Remove(a);
+
+                GameObject temp = panelEffects.transform.Find(a.id + "(Clone)").gameObject;
+
+                Destroy(temp.gameObject);
+            }
+            else
+            {
+                canUsePhysical = canUsePhysical && a.canUsePhysical;
+                canUseRanged = canUseRanged && a.canUseRanged;
+                canUseMagic = canUseMagic && a.canUseMagic;
+                canUseSupp = canUseSupp && a.canUseSupp;
+                canUseProtec = canUseProtec && a.canUseProtec;
+                canUseStatMod = canUseStatMod && a.canUseStatMod;
+                //canUseDeploy = true;
+
+                panelEffects.transform.Find(a.id + "(Clone)").gameObject.transform.Find("time").gameObject.GetComponent<Text>().text = a.duration.ToString();
+            }
+        }
+
+        return isDead;
+    }
+
     public bool TakeDamage (float dmgTaken, float shieldDmg, bool isCrit)
     {
         if (dmgTaken > 0 && shieldDmg > 0)
@@ -181,7 +238,7 @@ public class Unit : MonoBehaviour
         if (statMods.Count > 0)
             foreach (StatMod statMod in statMods.ToArray())
             {
-                statsP = SetModifiers(statMod.ReturnStats(), statsP.ReturnStats(), this.GetComponent<Unit>());
+                statsP = SetModifiers(statMod.ReturnStats(), statsP.ReturnStats());
             }
 
         if (!(curHp + heal >= statsP.hp))
@@ -194,7 +251,7 @@ public class Unit : MonoBehaviour
         dmg.transform.GetChild(0).GetComponent<TextMesh>().text = heal.ToString("0");
     }
 
-    Stats SetModifiers(StatMod scale, Stats user, Unit original)
+    Stats SetModifiers(StatMod scale, Stats user)
     {
         Stats temp = user.ReturnStats();
 
