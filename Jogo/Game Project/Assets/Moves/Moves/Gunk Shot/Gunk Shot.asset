@@ -16,6 +16,7 @@ MonoBehaviour:
   name: gunkshot
   hitTime: 1
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,6 +29,8 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 6
   inCooldown: 0
   manaCost: 40
@@ -39,6 +42,8 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: 70f7b757235e80f4db22394250d334c7, type: 2}
   - {fileID: 11400000, guid: 22aa07632f1697647a89e4a43ce97c0a, type: 2}
+  dot:
+  - {fileID: 11400000, guid: fc81b3d7e01b2464b9514bef4a193157, type: 2}
   effects:
   - {fileID: 11400000, guid: 2288e3463ac9dda4bb053fd71c6e8802, type: 2}
   grantPassive: {fileID: 0}

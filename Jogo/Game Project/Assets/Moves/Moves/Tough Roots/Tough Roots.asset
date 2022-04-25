@@ -16,6 +16,7 @@ MonoBehaviour:
   name: toughroots
   hitTime: 1
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -27,7 +28,7 @@ MonoBehaviour:
   healMana: 0
   healStamina: 0
   healSanity: 0
-  shield: 35
+  shield: 50
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 7
@@ -40,5 +41,6 @@ MonoBehaviour:
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: fad5fc8d807566f429c632b65048da0b, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
