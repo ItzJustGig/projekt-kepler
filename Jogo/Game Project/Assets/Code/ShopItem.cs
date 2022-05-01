@@ -27,14 +27,15 @@ public class ShopItem : MonoBehaviour
     {
         if (item != null)
         {
-            cardName.text = langmanag.GetInfo("items", item.name);
+            cardName.text = langmanag.GetInfo("items", "name", item.name);
+            Debug.Log(item.name);
             itemName = item.name;
             price = Random.Range(item.minPrice, item.maxPrice);
             goldText.text = price + langmanag.GetInfo("gui", "text", "goldinicial");
             itemSprite.sprite = item.icon;
 
-            this.gameObject.GetComponent<TooltipButton>().tooltipPopup = tooltip.GetComponent<TooltipPopUp>();
-            this.gameObject.GetComponent<TooltipButton>().text = item.GetTooltipText();
+            btnBuy.gameObject.GetComponent<TooltipButton>().tooltipPopup = tooltip.GetComponent<TooltipPopUp>();
+            btnBuy.gameObject.GetComponent<TooltipButton>().text = item.GetTooltipText();
 
             switch (item.rarity)
             {

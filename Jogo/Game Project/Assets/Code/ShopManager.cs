@@ -23,10 +23,11 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private EndlessInfo info;
     private ShopLangManager langmanag;
 
-    public List<Character> characters = new List<Character>();
-    public List<Character> monsters = new List<Character>();
-    public List<Items> items = new List<Items>();
-    public List<ItemEncounter> encounters = new List<ItemEncounter>();
+    [SerializeField] private StuffList champions;
+    [SerializeField] private StuffList monsters;
+    [SerializeField] private StuffList items;
+    [SerializeField] private StuffList shopEncounters;
+
     private Items.ShopRarity rarity;
 
     [SerializeField] GameObject loadPanel;
@@ -43,10 +44,22 @@ public class ShopManager : MonoBehaviour
         info.Load();
         gold.text = info.gold.ToString();
 
+        List<Character> champs = new List<Character>();
+        foreach (Character t in champions.returnStuff())
+        {
+            champs.Add(t.GetCharcInfo());
+        }
+
+        List<Character> mons = new List<Character>();
+        foreach (Character t in monsters.returnStuff())
+        {
+            mons.Add(t.GetCharcInfo());
+        }
+
         if (info.isPlayerChamp)
-            charcIcon.sprite = characters[info.playerId-1].charcIcon;
+            charcIcon.sprite = champs[info.playerId-1].charcIcon;
         else
-            charcIcon.sprite = monsters[info.playerId].charcIcon;
+            charcIcon.sprite = mons[info.playerId].charcIcon;
 
         if (info.items.Count > 0)
         {
@@ -58,13 +71,13 @@ public class ShopManager : MonoBehaviour
 
         if (info.generateShop == true)
         {
-            item1.SetUpCard(GenItem(), tooltip);
+            item1.SetUpCard(GenItem().returnItem(), tooltip);
 
             if (item1.itemName != "")
             {
                 do
                 {
-                    temp = GenItem();
+                    temp = GenItem().returnItem();
                     i++;
 
                     if (i == 40 || temp == null)
@@ -77,14 +90,14 @@ public class ShopManager : MonoBehaviour
                 } while (temp.name == item1.itemName);
             }
 
-            item2.SetUpCard(temp, tooltip);
+            item2.SetUpCard(temp.returnItem(), tooltip);
             temp = null;
 
             if (item1.itemName != "" && item2.itemName != "")
             {
                 do
                 {
-                    temp = GenItem();
+                    temp = GenItem().returnItem();
                     i++;
 
                     if (i == 40 || temp == null)
@@ -95,7 +108,7 @@ public class ShopManager : MonoBehaviour
                 } while (temp.name == item2.itemName || temp.name == item1.itemName);
             }
 
-            item3.SetUpCard(temp, tooltip);
+            item3.SetUpCard(temp.returnItem(), tooltip);
 
             info.itemShop.Add(item1.GetItemString());
             info.itemShop.Add(item2.GetItemString());
@@ -153,7 +166,7 @@ public class ShopManager : MonoBehaviour
         {
             if (info.items[i] != "")
             {
-                foreach (Items a in items)
+                foreach (Items a in items.returnStuff())
                 {
                     if (a.name == info.items[i])
                     {
@@ -197,7 +210,7 @@ public class ShopManager : MonoBehaviour
     {
         Items.ShopRarity selectedRarity = Items.ShopRarity.COMMON;
 
-        foreach (ItemEncounter enc in encounters)
+        foreach (ItemEncounter enc in shopEncounters.returnStuff())
         {
             if (info.round >= enc.startRound && info.round <= enc.endRound)
             {
@@ -217,8 +230,11 @@ public class ShopManager : MonoBehaviour
         List<int> num = new List<int>();
         int d = 0;
 
-        foreach (Items item in items)
+        List<Items> ite = new List<Items>();
+        foreach (Items item in items.returnStuff())
         {
+            ite.Add(item.returnItem());
+
             if (item.rarity == selectedRarity)
                 num.Add(d);
 
@@ -235,7 +251,7 @@ public class ShopManager : MonoBehaviour
             {
                 foreach (string a in info.items)
                 {
-                    if (items[itemId].name != a)
+                    if (ite[itemId].name != a)
                     {
                         conti = true;
                     }
@@ -260,7 +276,7 @@ public class ShopManager : MonoBehaviour
             conti = true;
 
         if (conti)
-            return GetItem(items[itemId].name);
+            return GetItem(ite[itemId].name).returnItem();
         else
             return null;
     }
@@ -268,10 +284,10 @@ public class ShopManager : MonoBehaviour
     Items GetItem(string item)
     {
         if (item != "")
-            foreach (Items a in items)
+            foreach (Items a in items.returnStuff())
             {
                 if (a.name == item)
-                    return a;
+                    return a.returnItem();
             }
         return null;
     }

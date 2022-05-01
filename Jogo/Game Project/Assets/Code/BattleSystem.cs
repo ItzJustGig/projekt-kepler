@@ -80,7 +80,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private float perUltReduce;
 
     [SerializeField] private EndlessFightStuff endlessStuff;
-    [SerializeField] private List<Items> items = new List<Items>();
+    [SerializeField] private StuffList items;
     [SerializeField] GameObject loadPanel;
     [SerializeField] Slider slider;
 
@@ -383,7 +383,7 @@ public class BattleSystem : MonoBehaviour
         {
             foreach (string b in info.items)
             {
-                foreach (Items a in items)
+                foreach (Items a in items.returnStuff())
                 {
                     if (b == a.name)
                     {

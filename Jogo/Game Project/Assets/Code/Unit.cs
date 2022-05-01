@@ -41,9 +41,9 @@ public class Unit : MonoBehaviour
     public List<Passives> passives = new List<Passives>();
     public List<Items> items = new List<Items>();
 
-    [SerializeField] private List<Character> characters = new List<Character>();
-    [SerializeField] private List<Character> monsters = new List<Character>();
-    
+    [SerializeField] private StuffList champions;
+    [SerializeField] private StuffList monsters;
+
     public Character charc;
     [SerializeField] private GameObject spriteDefault;
     [SerializeField] private GameObject dmgText;
@@ -68,19 +68,33 @@ public class Unit : MonoBehaviour
         int isPlayerChamp = PlayerPrefs.GetInt(playerchamp);
         int isEnemyChamp = PlayerPrefs.GetInt(enemychamp);
 
+        List<Character> champs = new List<Character>();
+        foreach (Character t in champions.returnStuff())
+        {
+            champs.Add(t.GetCharcInfo());
+        }
+        Debug.Log(champs[0].name);
+
+
+        List<Character> mons = new List<Character>();
+        foreach (Character t in monsters.returnStuff())
+        {
+            mons.Add(t.GetCharcInfo());
+        }
+
         if (!isEnemy)
         {
             if (isPlayerChamp == 1)
-                charc = characters[character-1].GetCharcInfo();
+                charc = champs[character-1];
             else
-                charc = monsters[character-1].GetCharcInfo();
+                charc = mons[character-1];
         }
         else
         {
             if (isEnemyChamp == 1)
-                charc = characters[bot-1].GetCharcInfo();
+                charc = champs[bot-1];
             else
-                charc = monsters[bot-1].GetCharcInfo();
+                charc = mons[bot-1];
         }
 
         foreach (Moves move in charc.moves.ToArray())

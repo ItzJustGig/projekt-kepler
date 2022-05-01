@@ -26,10 +26,9 @@ public class EndlessManager : MonoBehaviour
     private readonly string isEnemyBoss = "isEnemyBoss";
     private EndlessLanguageManager langmanag;
 
-    public List<Character> characters = new List<Character>();
-    public List<Character> monsters = new List<Character>();
-
-    public List<Encounters> encounters = new List<Encounters>();
+    [SerializeField] private StuffList champions;
+    [SerializeField] private StuffList monsters;
+    [SerializeField] private StuffList monsEncounters;
 
     [SerializeField] private List<BonusGold> bonusGold = new List<BonusGold>();
     [SerializeField] private BonusGold bonusGoldBoss;
@@ -72,6 +71,18 @@ public class EndlessManager : MonoBehaviour
             data.round++;
         }
 
+        List<Character> champs = new List<Character>();
+        foreach (Character t in champions.returnStuff())
+        {
+            champs.Add(t.GetCharcInfo());
+        }
+
+        List<Character> mons = new List<Character>();
+        foreach (Character t in monsters.returnStuff())
+        {
+            mons.Add(t.GetCharcInfo());
+        }
+
         if (data.wonLastRound == 1)
         {
             if (info.enemyIdNext != -1)
@@ -87,7 +98,7 @@ public class EndlessManager : MonoBehaviour
                     tempStrenght = Character.Strenght.BABY;
 
                 if (!(tempStrenght is Character.Strenght.CHAMPION))
-                    tempStrenght = monsters[tempId].strenght;
+                    tempStrenght = mons[tempId].strenght;
 
                 foreach (BonusGold a in bonusGold)
                 {
@@ -121,14 +132,14 @@ public class EndlessManager : MonoBehaviour
 
         if (strenght is Character.Strenght.CHAMPION)
         {
-            nextCard.charc = characters[enemyId];
+            nextCard.charc = champs[enemyId];
             data.isEnemyBossNext = isBoss;
             data.isEnemyChampNext = true;
             data.enemyIdNext = enemyId;
         }
         else
         {
-            nextCard.charc = monsters[enemyId];
+            nextCard.charc = mons[enemyId];
             data.isEnemyBossNext = isBoss;
             data.isEnemyChampNext = false;
             data.enemyIdNext = enemyId;
@@ -136,18 +147,18 @@ public class EndlessManager : MonoBehaviour
 
         if (info.enemyIdPrev <= -1)
         {
-            prevCard.charc = monsters[0];
+            prevCard.charc = mons[0];
             data.enemyIdPrev = 0;
         }
         else
         {
             if (info.isEnemyChampNext)
             {
-                prevCard.charc = characters[info.enemyIdNext];
+                prevCard.charc = champs[info.enemyIdNext];
             }
             else
             {
-                prevCard.charc = monsters[info.enemyIdNext];
+                prevCard.charc = mons[info.enemyIdNext];
             }
             data.isEnemyChampPrev = info.isEnemyChampNext;
             data.enemyIdPrev = info.enemyIdNext;
@@ -183,23 +194,35 @@ public class EndlessManager : MonoBehaviour
         gameObject.AddComponent<SceneLoader>();
         loader = gameObject.GetComponent<SceneLoader>();
 
+        List<Character> champs = new List<Character>();
+        foreach (Character t in champions.returnStuff())
+        {
+            champs.Add(t.GetCharcInfo());
+        }
+
+        List<Character> mons = new List<Character>();
+        foreach (Character t in monsters.returnStuff())
+        {
+            mons.Add(t.GetCharcInfo());
+        }
+
         Character charc;
         if (info.isPlayerChamp)
         {
-            charc = characters[info.playerId-1];
+            charc = champs[info.playerId-1];
         }
         else
         {
-            charc = monsters[info.playerId-1];
+            charc = mons[info.playerId-1];
         }
         battleHud.SetHud(charc, info, 0);
 
         goldTxt.text = info.gold.ToString();
         roundTxt.text = info.round.ToString();
 
-        nameChampTxt.text = langmanag.GetInfo("charc", "name", characters[info.playerId-1].name);
-        champIcon.sprite = characters[info.playerId-1].charcIcon;
-        titleChampTxt.text = langmanag.GetInfo("charc", "title", characters[info.playerId - 1].name);
+        nameChampTxt.text = langmanag.GetInfo("charc", "name", champs[info.playerId-1].name);
+        champIcon.sprite = champs[info.playerId-1].charcIcon;
+        titleChampTxt.text = langmanag.GetInfo("charc", "title", champs[info.playerId - 1].name);
 
         if (info.wonLastRound == 1)
         {
@@ -239,7 +262,7 @@ public class EndlessManager : MonoBehaviour
     {
         Character.Strenght selectedStre = Character.Strenght.BABY;
         
-        foreach (Encounters enc in encounters){
+        foreach (Encounters enc in monsEncounters.returnStuff()){
             if (round >= enc.startRound && round <= enc.endRound)
             {
                 for (int i = 0; i < enc.strenghts.Count; i++)
@@ -262,7 +285,7 @@ public class EndlessManager : MonoBehaviour
 
         if (selectedStre != Character.Strenght.CHAMPION)
         {
-            foreach (Character charc in monsters)
+            foreach (Character charc in monsters.returnStuff())
             {
                 if (charc.strenght == selectedStre)
                 {
@@ -278,14 +301,14 @@ public class EndlessManager : MonoBehaviour
             {
                 do
                 {
-                    enemyId = Random.Range(0, characters.Count);
+                    enemyId = Random.Range(0, champions.returnStuff().Count);
                     StartCoroutine(WaitWhile());
                 } while (enemyId == (info.playerId - 1) || enemyId == info.enemyIdPrev);
             } else
             {
                 do
                 {
-                    enemyId = Random.Range(0, characters.Count);
+                    enemyId = Random.Range(0, champions.returnStuff().Count);
                     StartCoroutine(WaitWhile());
                 } while (enemyId == (info.playerId - 1));
             }

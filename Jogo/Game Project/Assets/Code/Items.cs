@@ -17,6 +17,21 @@ public class Items : ScriptableObject
     public int minPrice;
     public int maxPrice;
 
+    public Items returnItem()
+    {
+        Items item = CreateInstance<Items>();
+        item.name = name;
+        item.icon = icon;
+        item.passives = passives;
+        item.statmod = statmod;
+        item.moves = moves;
+        item.rarity = rarity;
+        item.minPrice = minPrice;
+        item.maxPrice = maxPrice;
+
+        return item;
+    }
+
     private string GetLanguage()
     {
         if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
