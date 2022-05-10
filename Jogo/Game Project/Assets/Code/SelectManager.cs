@@ -28,7 +28,7 @@ public class SelectManager : MonoBehaviour
 
     [SerializeField] private TooltipPopUp tooltipPopup;
 
-    [SerializeField] private SpriteRenderer alexRender, leowindRender, bonsourRender, shineRender, sandewRender, isadoeRender, williamRender, hestiaRender;
+    private SpriteRenderer alexRender, leowindRender, bonsourRender, shineRender, sandewRender, isadoeRender, williamRender, hestiaRender;
     [SerializeField] private Sprite marksmanIcon, sourcererIcon, vanguardIcon, assassinIcon, tankIcon, brawlerIcon, duelistIcon, supportIcon, enchanterIcon;
     [SerializeField] private GameObject statsDisplay;
     [SerializeField] private Image classIcon;
