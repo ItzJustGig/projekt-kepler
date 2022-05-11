@@ -15,6 +15,7 @@ public class SelectManager : MonoBehaviour
     [SerializeField] private GameObject isadoe;
     [SerializeField] private GameObject william;
     [SerializeField] private GameObject hestia;
+    [SerializeField] private GameObject arts;
 
     [SerializeField] private Text nameDisplay;
     [SerializeField] private Text titleDisplay;
@@ -575,7 +576,7 @@ public class SelectManager : MonoBehaviour
 
     public void Return()
     {
-        DesablePortraits();
+        DisablePortraits();
         loader.LoadScene(0, slider, loadPanel);
     }
 
@@ -596,21 +597,21 @@ public class SelectManager : MonoBehaviour
         yield return null;
     }
 
-    private void DesablePortraits()
+    public void DisablePortraits()
     {
-        alexRender.enabled = false;
-        leowindRender.enabled = false;
-        bonsourRender.enabled = false;
-        shineRender.enabled = false;
-        sandewRender.enabled = false;
-        isadoeRender.enabled = false;
-        williamRender.enabled = false;
-        hestiaRender.enabled = false;
+        if (arts.activeInHierarchy)
+        {
+            arts.SetActive(false);
+        } else
+        {
+            arts.SetActive(true);
+        }
+        
     }
 
     public void ChangeScene()
     {
-        DesablePortraits();
+        DisablePortraits();
         if (PlayerPrefs.GetInt("isEndless") == 0)
         {
             int random;
