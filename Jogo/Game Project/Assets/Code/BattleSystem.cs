@@ -223,31 +223,7 @@ public class BattleSystem : MonoBehaviour
 
         SetStatus();
 
-        foreach (Items item in playerUnit.items)
-        {
-            foreach (Moves move in item.moves)
-            {
-                playerUnit.moves.Add(move.ReturnMove());
-            }
-
-            foreach (Passives passive in item.passives)
-            {
-                playerUnit.passives.Add(passive.ReturnPassive());
-            }
-        }
-
-        foreach (Items item in enemyUnit.items)
-        {
-            foreach (Moves move in item.moves)
-            {
-                enemyUnit.moves.Add(move.ReturnMove());
-            }
-
-            foreach (Passives passive in item.passives)
-            {
-                enemyUnit.passives.Add(passive.ReturnPassive());
-            }
-        }
+        
 
         playerHUD.SetStats(playerUnit.charc.stats, playerUnit.charc.stats, playerUnit.curSanity);
         enemyHUD.SetStats(enemyUnit.charc.stats, enemyUnit.charc.stats, enemyUnit.curSanity);
@@ -393,7 +369,31 @@ public class BattleSystem : MonoBehaviour
                         {
                             unit.passives.Add(p.ReturnPassive());
                         }
+
+                        foreach (Moves m in a.moves)
+                        {
+                            unit.moves.Add(m.ReturnMove());
+                        }
                     }   
+                }
+            }
+        } else
+        {
+            foreach (Items a in items.returnStuff())
+            {
+                if (PlayerPrefs.GetString("selectedItem1") == a.name || PlayerPrefs.GetString("selectedItem2") == a.name)
+                {
+                    unit.items.Add(a);
+
+                    foreach (Passives p in a.passives)
+                    {
+                        unit.passives.Add(p.ReturnPassive());
+                    }
+
+                    foreach (Moves m in a.moves)
+                    {
+                        unit.moves.Add(m.ReturnMove());
+                    }
                 }
             }
         }
@@ -3229,20 +3229,23 @@ public class BattleSystem : MonoBehaviour
 
             if (a.name == "manasword")
             {
-                StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
-                statMod.inTime = statMod.time;
-                user.statMods.Add(statMod);
-                user.usedBonusStuff = false;
-
-                if (a.stacks == a.maxStacks)
+                if (a.stacks > 0)
                 {
-                    StatMod statMod2 = a.statMod2.ReturnStats();
-                    statMod2.inTime = statMod2.time;
-                    user.statMods.Add(statMod2);
+                    StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
+                    statMod.inTime = statMod.time;
+                    user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
+
+                    if (a.stacks == a.maxStacks)
+                    {
+                        StatMod statMod2 = a.statMod2.ReturnStats();
+                        statMod2.inTime = statMod2.time;
+                        user.statMods.Add(statMod2);
+                        user.usedBonusStuff = false;
+                    }
+
+                    SetStatsHud(user, userHud);
                 }
-                    
-                SetStatsHud(user, userHud);
                 ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
             }
 
@@ -3253,7 +3256,6 @@ public class BattleSystem : MonoBehaviour
                     a.inCd = a.cd;
                     a.stacks++;
                     user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                    StatMod mod = a.ifConditionTrueMod();
 
                     StatMod statMod = a.statMod.ReturnStats();
                     statMod.inTime = statMod.time;

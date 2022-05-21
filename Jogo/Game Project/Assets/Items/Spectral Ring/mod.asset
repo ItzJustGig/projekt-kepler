@@ -19,7 +19,7 @@ MonoBehaviour:
   hp: 0
   hpRegen: 0
   mana: 25
-  manaRegen: 0.1
+  manaRegen: 0
   stamina: 0
   staminaRegen: 0
   sanity: 0
@@ -34,3 +34,4 @@ MonoBehaviour:
   lifesteal: 0
   accuracy: 0
   evasion: 0
+  armourPen: 0

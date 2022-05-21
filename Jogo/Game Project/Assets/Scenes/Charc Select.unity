@@ -1253,6 +1253,9 @@ MonoBehaviour:
   suppAtk: {fileID: 21300000, guid: 7e8c3244c112b3b43a26a1b635eed6f2, type: 3}
   defAtk: {fileID: 21300000, guid: 4918b5097ca207a4cbce8c2dff47577b, type: 3}
   statAtk: {fileID: 21300000, guid: 936908b1d1e44524f9d402eb684ac7da, type: 3}
+  itemSelect: {fileID: 1875012052}
+  item1: {fileID: 1580342961}
+  item2: {fileID: 1453012062}
   loadPanel: {fileID: 13714942}
   slider: {fileID: 1817443712}
 --- !u!4 &267788385
@@ -5939,7 +5942,7 @@ GameObject:
   - component: {fileID: 1453012064}
   - component: {fileID: 1453012063}
   m_Layer: 5
-  m_Name: Item2
+  m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6662,7 +6665,7 @@ GameObject:
   - component: {fileID: 1580342964}
   - component: {fileID: 1580342963}
   m_Layer: 5
-  m_Name: Item1
+  m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

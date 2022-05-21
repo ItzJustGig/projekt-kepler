@@ -16,6 +16,7 @@ MonoBehaviour:
   name: bloodpressure
   hitTime: 1
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -29,7 +30,7 @@ MonoBehaviour:
   healSanity: 0
   shield: 0
   healFromDmgType: 7
-  healFromDmg: 0.5
+  healFromDmg: 0.35
   cooldown: 0
   inCooldown: 0
   manaCost: 0
@@ -41,5 +42,6 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: c88ca280a2a014c4fb7ffa640b3ddf29, type: 2}
   - {fileID: 11400000, guid: ed8cadbfa38da7e4a8d5b5a5de872baf, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 11400000, guid: 4605a6c8a388e054fae070e58d7b8e88, type: 2}

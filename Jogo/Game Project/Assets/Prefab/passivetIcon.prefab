@@ -81,12 +81,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
-  text: "<size=25><align=center>Perfect Shooter</align></size>\r\n<size=19><align=center><color=#B2B2B2>Passive</color></align></size>\r\n\r\nEvery
-    <color=#f75145>8 critical ranged attacks</color> or <color=#ffaa00>basic attacks</color>,
-    the user gain  <color=#ffaa00>4% Attack Damage</color>  \r\n <color=#f75145>2,85%
-    Critical Chance</color>  \r\n <color=#f75145>1,7% Critical Damage</color>  \r\n
-    <color=#0984db>1,5% Timing</color>  \r\n <color=#c87c32>0,75% Armour Penetration</color> 
-    \r\n(stacks up to 4).\r\n"
+  text: '<size=25><align=center>Sharpshooter</align></size>
+
+    <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
+
+    
+
+    Every
+    <color=#f75145>8 ranged attacks</color>, the next <color=#f75145>ranged attack</color>
+    will crit and deal bonus <color=#a6a6a6>35 + (<color=#ffaa00>3%</color> of the
+    user''s <color=#ffaa00>Attack Damage</color>)</color> as<color=#a6a6a6> true
+    damage</color>.
+
+'
 --- !u!1 &7183899527544666275
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +159,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 902632ae439d16f43b28fcb2d2e50a78, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f5be396b16edb1458dfb2fa2b6b4554, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -240,4 +247,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0S8T
+  m_Text: 7

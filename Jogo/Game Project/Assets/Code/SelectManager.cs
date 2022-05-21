@@ -50,6 +50,12 @@ public class SelectManager : MonoBehaviour
     private readonly string selectedEnemy = "SelectedEnemy";
     private readonly string isPlayerChamp = "isPlayerChamp";
     private readonly string isEnemyChamp = "isEnemyChamp";
+    private readonly string selectedItem1 = "selectedItem1";
+    private readonly string selectedItem2 = "selectedItem2";
+
+    [SerializeField] private GameObject itemSelect;
+    [SerializeField] private GameObject item1;
+    [SerializeField] private GameObject item2;
 
     [SerializeField] GameObject loadPanel;
     [SerializeField] Slider slider;
@@ -87,6 +93,11 @@ public class SelectManager : MonoBehaviour
         SetText(i);
         SetPassives(i);
         SetMoves(i);
+
+        if (PlayerPrefs.GetInt("isEndless") != 0)
+        {
+            itemSelect.SetActive(false);
+        }
     }
 
     void Update()
@@ -625,6 +636,11 @@ public class SelectManager : MonoBehaviour
             PlayerPrefs.SetInt(selectedEnemy, random);
             PlayerPrefs.SetInt(isPlayerChamp, 1);
             PlayerPrefs.SetInt(isEnemyChamp, 1);
+            if (item1.name != "item")
+                PlayerPrefs.SetString(selectedItem1, item1.name);
+
+            if (item2.name != "item")
+                PlayerPrefs.SetString(selectedItem2, item2.name);
 
             loader.LoadScene(2, slider, loadPanel);
         } else

@@ -20,8 +20,8 @@ MonoBehaviour:
   maxNum: 0
   stacks: 0
   maxStacks: 7
-  cd: 5
-  inCd: 5
+  cd: 6
+  inCd: 6
   statScale: {fileID: 11400000, guid: 087416ae409c40f48bea199931941764, type: 2}
   statScale2: {fileID: 0}
   statMod: {fileID: 11400000, guid: c82adbdfd6ba6f844877f406507e1acb, type: 2}

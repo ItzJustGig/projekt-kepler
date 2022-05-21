@@ -44,9 +44,6 @@ TagManager:
   - name: LoadScene
     uniqueID: 1502641881
     locked: 0
-  - name: HUD
-    uniqueID: 1004447663
-    locked: 0
   - name: Background
     uniqueID: 70381815
     locked: 0
@@ -55,4 +52,7 @@ TagManager:
     locked: 0
   - name: Characters
     uniqueID: 1041099811
+    locked: 0
+  - name: HUD
+    uniqueID: 1004447663
     locked: 0
