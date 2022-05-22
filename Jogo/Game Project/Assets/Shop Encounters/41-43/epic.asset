@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: epic
   m_EditorClassIdentifier: 
   rarity: 3
-  chance: 0.35
+  chance: 0.3

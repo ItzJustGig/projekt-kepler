@@ -15,5 +15,6 @@ MonoBehaviour:
   rarity:
   - {fileID: 11400000, guid: 7870bf76598314b489f8dc83d36751fe, type: 2}
   - {fileID: 11400000, guid: 216032aa9a78cfc4bbbabf5c7ed68ea1, type: 2}
+  - {fileID: 11400000, guid: 221a87452d3073a44ba35ad792e7a4a5, type: 2}
   startRound: 21
   endRound: 25

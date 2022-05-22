@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: champion
   m_EditorClassIdentifier: 
   strenght: 6
-  chance: 0.18
+  chance: 0.22
