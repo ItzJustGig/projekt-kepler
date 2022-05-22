@@ -21,7 +21,8 @@
 			"start": "Start",
 			"leave": "Leave",
 			"delsave": "Delete Save",
-			"inventory": "Inventory"
+			"inventory": "Inventory",
+			"items": "Items"
 		},
 		"text": {
 			"game": "PROJEKT: KEPLER",

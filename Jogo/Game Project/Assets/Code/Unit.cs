@@ -199,7 +199,7 @@ public class Unit : MonoBehaviour
 
     public bool TakeDamage (float dmgTaken, float shieldDmg, bool isCrit)
     {
-        if (dmgTaken > 0 && shieldDmg > 0)
+        if (dmgTaken > 0 || shieldDmg > 0)
             DoAnim("takedmg");
 
         Vector3 pos;

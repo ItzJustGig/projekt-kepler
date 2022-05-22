@@ -40,16 +40,25 @@ public class CharcSelectLang : MonoBehaviour
     [SerializeField] private TooltipButton evasionTooltip;
     [SerializeField] private TooltipButton accuracyTooltip;
 
+    [SerializeField] private Text itemBtnText;
+    [SerializeField] private Text slcItemBtnText;
+    [SerializeField] private Text cancelItemBtnText;
+
     private void Awake()
     {
         language = PlayerPrefs.GetString("language", language);
 
         //buttons
+        //main menu
         moveBtnText.text = languageManager.GetText(language, "gui", "button", "moves");
         selectBtnText.text = languageManager.GetText(language, "gui", "button", "select");
         returnBtnText.text = languageManager.GetText(language, "gui", "button", "back");
         hideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
         ultimateBtnText.text = languageManager.GetText(language, "gui", "button", "ultimate");
+        //items
+        itemBtnText.text = languageManager.GetText(language, "gui", "button", "items");
+        slcItemBtnText.text = languageManager.GetText(language, "gui", "button", "select");
+        cancelItemBtnText.text = languageManager.GetText(language, "gui", "button", "cancel");
 
         //text boxes
         passiveText.text = languageManager.GetText(language, "gui", "text", "passives");

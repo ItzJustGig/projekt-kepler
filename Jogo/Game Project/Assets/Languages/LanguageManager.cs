@@ -490,6 +490,7 @@ public class LanguageManager : MonoBehaviour
         public string leave;
         public string delsave;
         public string inventory;
+        public string items;
 
         public string Get_ButtonCont(string a)
         {
@@ -546,6 +547,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "inventory":
                     returns = inventory;
+                    break;
+                case "items":
+                    returns = items;
                     break;
                 default:
                     returns = "null";
