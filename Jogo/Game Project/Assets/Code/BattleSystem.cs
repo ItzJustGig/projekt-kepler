@@ -1098,6 +1098,36 @@ public class BattleSystem : MonoBehaviour
                                 dmg.AddDmg(SetScaleDmg(scale, stats, unit));
                             }
                         }
+
+                        if (a.name == "huntersdirk")
+                        {
+                            if (a.inCd == 0)
+                            {
+                                float hpPer = (100 * target.curHp) / target.charc.stats.hp;
+                                if ((move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL) && hpPer >= a.num)
+                                {
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                    a.inCd = a.cd;
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmg.AddDmg(SetScaleDmg(scale, stats, unit));
+                                }
+                            }
+                        }
                     }
 
                     dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
@@ -3303,6 +3333,22 @@ public class BattleSystem : MonoBehaviour
                     a.inCd--;
 
                 ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+            }
+
+            if (a.name == "huntersdirk")
+            {
+                if (a.inCd > 0)
+                    a.inCd--;
+
+                float hpPer = (100 * target.curHp) / target.charc.stats.hp;
+
+                if (hpPer < a.num)
+                {
+                    DestroyPassiveIcon(a.name, user.isEnemy);
+                } else
+                {
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                }
             }
         }
     }

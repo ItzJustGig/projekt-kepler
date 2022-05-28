@@ -323,7 +323,8 @@
             "gravitybelt": "Cinto Gravitacional",
             "manasword": "Espada de Mana",
             "shadowdagger": "Adaga Sombria",
-            "spectralring": "Anel Espectral"
+            "spectralring": "Anel Espectral",
+            "huntersdirk": "Punhal do Ca\u00e7ador"
         },
         "desc": {
             "bloodbath": "Se um inimigo estiver a Sangrar, o utilizador vai ganhar %mod% e vai causar %scale% b\u00F3nus nos ataques.",
@@ -364,7 +365,8 @@
             "gravitybelt": "Quando o utilizador usa uma t\u00E9cnica f\u00EDsica ou um ataque b\u00E1sico e \u00E9 cr\u00EDtico, causa %num% dano verdadeiro b\u00F3nus e ganha %mod%.",
             "manasword": "A cada t\u00E9cnica f\u00EDsica que o utilizador usa, ganha %mod% at\u00E9 %maxStacks% vezes. \nQuando estiver completamente empilhado o utilizador ganha %mod2% e causa %scale% b\u00F3nus com t\u00E9cnicas f\u00EDsicas.",
             "shadowdagger": "As t\u00E9cnicas f\u00EDsicas do utilizador causam %scale% b\u00F3nus e ganha%mod%. (%cd% turnos de recarga)",
-            "spectralring": "O utilizador ganha%mod% a cada %cd% turnos, at\u00E9 %maxStacks% vezes. \nQuando o utilizador cai a baixo de %num%% vida, t\u00E9cnicas m\u00E1gicas causam %scale% b\u00F3nus."
+            "spectralring": "O utilizador ganha%mod% a cada %cd% turnos, at\u00E9 %maxStacks% vezes. \nQuando o utilizador cai a baixo de %num%% vida, t\u00E9cnicas m\u00E1gicas causam %scale% b\u00F3nus.",
+			"huntersdirk": "Se o inimigo estiver a cima de %num%% de vida, t\u00e9cnicas b\u00e1scas ou f\u00edsicas causam %scale% b\u00f3nus. (%cd% turnos de recarga)"
         }
     },
     "moves": {
@@ -488,7 +490,8 @@
         "manapotion": "Po\u00E7\u00E3o de Mana",
         "ravensfeather": "Pena do Corvo",
         "bigsteak": "Grande Bife",
-        "zap": "Zap"
+        "zap": "Zap",
+        "huntersdirk": "Punhal do Ca\u00e7ador"
     },
     "items": {
         "title": "Iten",
@@ -504,7 +507,7 @@
             "manapotion": "Po\u00E7\u00E3o de Mana",
             "healthpotion": "Po\u00E7\u00E3o de Vida",
             "rustyknife": "Faca Enferrujada",
-            "leechingstick": "Pau Sanguessuga",
+            "leechingbranch": "Ramo Sanguessuga",
             "longbow": "Arco Longo",
             "enchantedspear": "Lan\u00E7a Encantada",
             "sharpsword": "Espada Afiada",
@@ -525,7 +528,8 @@
 			"manapotion" : "O transportador usa uma %type% que %dmg%",
             "healthpotion" : "O transportador usa uma %type% que %dmg%",
 			"bigsteak": "O transportador usa uma %type% que %dmg%",
-			"ravensfeather" : "O transportador utiliza uma %type% que reduz %mode%"
+			"ravensfeather" : "O transportador utiliza uma %type% que reduz %mode%",
+			"huntersdirk": "O transportador usa uma %type% que %dmg% e tem %critdmg% dano cr\u00edtico b\u00f3nus"
 		}
     }
 }

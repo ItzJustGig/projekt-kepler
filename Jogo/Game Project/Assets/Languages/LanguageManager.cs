@@ -824,6 +824,7 @@ public class LanguageManager : MonoBehaviour
         public string manasword;
         public string shadowdagger;
         public string spectralring;
+        public string huntersdirk;
 
         public string Get_Cont(string a)
         {
@@ -947,6 +948,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "spectralring":
                     returns = spectralring;
+                    break;
+                case "huntersdirk":
+                    returns = huntersdirk;
                     break;
                 default:
                     returns = "null";
@@ -1463,6 +1467,7 @@ public class LanguageManager : MonoBehaviour
         public string ravensfeather;
         public string bigsteak;
         public string zap;
+        public string huntersdirk;
 
         public string Get_Moves(string a, string b)
         {
@@ -1811,6 +1816,9 @@ public class LanguageManager : MonoBehaviour
                 case "zap":
                     returns = zap;
                     break;
+                case "huntersdirk":
+                    returns = huntersdirk;
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -1918,7 +1926,7 @@ public class LanguageManager : MonoBehaviour
         public string manapotion;
         public string healthpotion;
         public string rustyknife;
-        public string leechingstick;
+        public string leechingbranch;
         public string longbow;
         public string enchantedspear;
         public string sharpsword;
@@ -1957,8 +1965,8 @@ public class LanguageManager : MonoBehaviour
                 case "rustyknife":
                     returns = rustyknife;
                     break;
-                case "leechingstick":
-                    returns = leechingstick;
+                case "leechingbranch":
+                    returns = leechingbranch;
                     break;
                 case "longbow":
                     returns = longbow;
@@ -2018,6 +2026,7 @@ public class LanguageManager : MonoBehaviour
         public string healthpotion;
         public string bigsteak;
         public string ravensfeather;
+        public string huntersdirk;
 
         public string Get_ItemMove(string a)
         {
@@ -2038,6 +2047,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "ravensfeather":
                     returns = ravensfeather;
+                    break;
+                case "huntersdirk":
+                    returns = huntersdirk;
                     break;
                 default:
                     returns = "null";

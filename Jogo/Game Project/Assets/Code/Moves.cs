@@ -506,8 +506,8 @@ public class Moves : ScriptableObject
         builder.Replace("%dmg%", GetDmgMove().ToString());
         builder.Replace("%mcost%", manaCost.ToString());
         builder.Replace("%scost%", staminaCost.ToString());
-        builder.Replace("%critdmg%", critDmgBonus.ToString());
-        builder.Replace("%critchance%", critChanceBonus.ToString());
+        builder.Replace("%critdmg%", (critDmgBonus*100).ToString());
+        builder.Replace("%critchance%", (critChanceBonus*100).ToString());
         builder.Replace("%prio%", priority.ToString());
         builder.Replace("%hit%", hitTime.ToString());
 
