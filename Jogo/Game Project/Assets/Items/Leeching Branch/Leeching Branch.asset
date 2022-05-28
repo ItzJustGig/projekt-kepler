@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f6ab09c0988f81449be8c5ce1f80558, type: 3}
-  m_Name: Leeching Stick
+  m_Name: Leeching Branch
   m_EditorClassIdentifier: 
-  name: leechingstick
+  name: leechingbranch
   icon: {fileID: 21300000, guid: 32d5874568e07f34192f036f93870c93, type: 3}
   passives: []
   statmod:

@@ -501,47 +501,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
-  text: '<size=24><align=center>Taunt</align></size>
-
-    Priority: 0
-
-    <s><align=center>|                
-    |</align></s>
-
-    100% chance to <color=#ffaa00>10% Attack Damage</color> to
-    the enemy for 4 turns
-
-    100% chance to <color=#1a66ff>10% Magic Power</color>
-    to the enemy for 4 turns
-
-    100% chance to <color=#f75145>-10% Critical Chance</color>
-    to the enemy for 4 turns
-
-    100% chance to <color=#f75145>-6% Critical Damage</color>
-    to the enemy for 4 turns
-
-    100% chance to <color=#937264>-32% Damage Resistance</color>
-    to the enemy for 4 turns
-
-    100% chance to <color=#946ACD>-28% Magic Resistance</color>
-    to the enemy for 4 turns
-
-    100% chance to <color=#0984db>-30% Timing</color>
-    to the enemy for 4 turns
-
-    <s><align=center>|                 |</align></s>
-
-    Deal
-    <color=#b829ff>5 sanity damage</color>
-
-    Recover <color=#1e68fc>5 mana</color>
-
-    Recover
-    <color=#f0dd0a>5 stamina</color>
-
-    Recover <color=#b641f0>1 sanity</color>
-
-'
+  text: "<size=24><align=center>Provocar</align></size>\r\nPrioridade: 0\r\n<s><align=center>|                
+    |</align></s>\r\n100% chance de <color=#ffaa00>10% Ataque</color> ao inimigo
+    por 4 turnos\r\n100% chance de <color=#1a66ff>10% Poder M\xE1gico</color> ao
+    inimigo por 4 turnos\r\n100% chance de <color=#f75145>-10% Chance de Cr\xEDtico</color>
+    ao inimigo por 4 turnos\r\n100% chance de <color=#f75145>-6% Dano Cr\xEDtico</color>
+    ao inimigo por 4 turnos\r\n100% chance de <color=#937264>-32% Defesa</color>
+    ao inimigo por 4 turnos\r\n100% chance de <color=#946ACD>-28% Defesa M\xE1gica</color>
+    ao inimigo por 4 turnos\r\n100% chance de <color=#0984db>-30% Cronometragem</color>
+    ao inimigo por 4 turnos\r\n<s><align=center>|                 |</align></s>\r\nCausa
+    <color=#b829ff>5 dano de sanidade</color>\r\nRecupera <color=#1e68fc>5 mana</color>\r\nRecupera
+    <color=#f0dd0a>5 energia</color>\r\nRecupera <color=#b641f0>1 sanidade</color>\r\n"
 --- !u!1 &7461933492413409170
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,4 +744,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Taunt
+  m_Text: Provocar

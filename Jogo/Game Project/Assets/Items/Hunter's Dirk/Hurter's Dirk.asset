@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6ab09c0988f81449be8c5ce1f80558, type: 3}
   m_Name: Hurter's Dirk
   m_EditorClassIdentifier: 
-  name: 
-  icon: {fileID: 0}
-  passives: []
-  statmod: []
-  moves: []
-  rarity: 0
-  minPrice: 0
-  maxPrice: 0
+  name: huntersdirk
+  icon: {fileID: 21300000, guid: 60a41e2dabd2f994a8c65bd72a3b9754, type: 3}
+  passives:
+  - {fileID: 11400000, guid: f5412a98b41f9204686673a9375a6779, type: 2}
+  statmod:
+  - {fileID: 11400000, guid: bf344f72af6876943975bb9da3f242d4, type: 2}
+  moves:
+  - {fileID: 11400000, guid: 237d6fc7d8c41f24099c7f8d91f2030b, type: 2}
+  rarity: 2
+  minPrice: 70
+  maxPrice: 90

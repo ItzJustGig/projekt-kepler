@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Hunter's Dirk
   m_EditorClassIdentifier: 
   type: 0
-  name: 
+  name: huntersdirk
   hitTime: 1
   priority: 0
   uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 0
+  phyDmg: 20
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
@@ -31,15 +31,16 @@ MonoBehaviour:
   shield: 0
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 0
+  cooldown: 7
   inCooldown: 0
   manaCost: 0
   staminaCost: 0
-  critDmgBonus: 0
+  critDmgBonus: 0.135
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
-  scale: []
+  scale:
+  - {fileID: 11400000, guid: f3f015e0be79119478d5101af7b119e4, type: 2}
   dot: []
   effects: []
   grantPassive: {fileID: 0}

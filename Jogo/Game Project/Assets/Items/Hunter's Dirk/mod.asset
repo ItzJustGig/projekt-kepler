@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25cbb6c1520490c4cbe5c685482d1204, type: 3}
   m_Name: mod
   m_EditorClassIdentifier: 
-  flat: 0
-  time: 0
-  inTime: 0
+  flat: 1
+  time: -1
+  inTime: -1
   chance: 0
   hp: 0
   hpRegen: 0
@@ -23,15 +23,15 @@ MonoBehaviour:
   stamina: 0
   staminaRegen: 0
   sanity: 0
-  atkDmg: 0
+  atkDmg: 14
   magicPower: 0
   critChance: 0
-  critDmg: 0
+  critDmg: 0.06
   dmgResis: 0
   magicResis: 0
   timing: 0
-  movSpeed: 0
+  movSpeed: 25
   lifesteal: 0
   accuracy: 0
   evasion: 0
-  armourPen: 0
+  armourPen: 0.04

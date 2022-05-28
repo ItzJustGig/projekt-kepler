@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40be94f130cb7f409300204aedd3b37, type: 3}
   m_Name: Hunter's Dirk
   m_EditorClassIdentifier: 
-  name: 
-  showNameOnInfo: 1
+  name: huntersdirk
+  showNameOnInfo: 0
   origin: 0
-  sprite: {fileID: 0}
-  num: 0
+  sprite: {fileID: 21300000, guid: 60a41e2dabd2f994a8c65bd72a3b9754, type: 3}
+  num: 65
   maxNum: 0
   stacks: 0
   maxStacks: 0
-  cd: 0
+  cd: 7
   inCd: 0
-  statScale: {fileID: 0}
+  statScale: {fileID: 11400000, guid: fabbbb58eb6de6047ba8d9094e3320e0, type: 2}
   statScale2: {fileID: 0}
   statMod: {fileID: 0}
   statMod2: {fileID: 0}
