@@ -15,7 +15,7 @@ MonoBehaviour:
   flat: 0
   time: 3
   inTime: 0
-  chance: 0.9
+  chance: 0.8
   hp: 0
   hpRegen: 0
   mana: 0
@@ -31,6 +31,7 @@ MonoBehaviour:
   magicResis: 0
   timing: 0
   movSpeed: 0
-  lifesteal: 0.15
+  lifesteal: 0.1
   accuracy: 0
   evasion: 0
+  armourPen: 0

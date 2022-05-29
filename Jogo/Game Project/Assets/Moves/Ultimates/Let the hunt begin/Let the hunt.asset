@@ -16,18 +16,21 @@ MonoBehaviour:
   name: letthehuntbegin
   hitTime: 1
   priority: 1
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
   magicDmg: 75
   trueDmg: 0
-  sanityDmg: 8
+  sanityDmg: 12
   heal: 0
   healMana: 0
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 0
   inCooldown: 0
   manaCost: 0
@@ -39,5 +42,7 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: f6958eccd70c7a64c936a81d0f9ee3a9, type: 2}
   - {fileID: 11400000, guid: 3b7181b79c14e21459c73b068431ada6, type: 2}
+  dot:
+  - {fileID: 11400000, guid: d82e7c0dcbfbbdc4aa932b5536922973, type: 2}
   effects: []
   grantPassive: {fileID: 11400000, guid: 2b046542b35a1d240b0c1d4e7d8b9ea8, type: 2}
