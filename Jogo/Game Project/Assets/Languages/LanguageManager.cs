@@ -1363,7 +1363,7 @@ public class LanguageManager : MonoBehaviour
         public string blooddrink;
         public string bonecrush;
         public string bullscharge;
-        public string chaosshield;
+        public string manabarrier;
         public string cursedrose;
         public string darkaura;
         public string defstand;
@@ -1510,8 +1510,8 @@ public class LanguageManager : MonoBehaviour
                 case "bullscharge":
                     returns = bullscharge;
                     break;
-                case "chaosshield":
-                    returns = chaosshield;
+                case "manabarrier":
+                    returns = manabarrier;
                     break;
                 case "cursedrose":
                     returns = cursedrose;

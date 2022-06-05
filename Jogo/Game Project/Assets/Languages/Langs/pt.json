@@ -389,7 +389,7 @@
         "blooddrink": "Bebida de Sangue",
         "bonecrush": "Esmaga Ossos",
         "bullscharge": "Investida do Touro",
-        "chaosshield": "Escudo do Caos",
+        "manabarrier": "Barreira de Mana",
         "cursedrose": "Rosa Amaldi\u00E7oada",
         "darkaura": "Aura Escura",
         "defstand": "Pose Defenciva",
@@ -529,7 +529,7 @@
             "healthpotion" : "O transportador usa uma %type% que %dmg%",
 			"bigsteak": "O transportador usa uma %type% que %dmg%",
 			"ravensfeather" : "O transportador utiliza uma %type% que reduz %mode%",
-			"huntersdirk": "O transportador usa uma %type% que %dmg% e tem %critdmg% dano cr\u00edtico b\u00f3nus"
+			"huntersdirk": "O transportador usa uma %type% que %dmg% e tem %critdmg%% dano cr\u00edtico b\u00f3nus"
 		}
     }
 }

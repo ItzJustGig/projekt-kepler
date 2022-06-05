@@ -389,7 +389,7 @@
 		"blooddrink": "Blood Drink",
 		"bonecrush": "Bone Crush",
 		"bullscharge": "Bull's Charge",
-		"chaosshield": "Chaos Shield",
+		"manabarrier": "Mana Barrier",
 		"cursedrose": "Cursed Rose",
 		"darkaura": "Dark Aura",
 		"defstand": "Defensive Stand",
@@ -529,7 +529,7 @@
 			"healthpotion" : "The carrier uses a %type% that %dmg%",
 			"bigsteak": "The carrier uses a %type%, that %dmg%",
 			"ravensfeather" : "The carrier casts a %type% reducing %mode%",
-			"huntersdirk": "use a %type% that %dmg% and have %critdmg% critical damage bonus"
+			"huntersdirk": "use a %type% that %dmg% and have %critdmg%% critical damage bonus"
 		}
 	}
 }
