@@ -41,6 +41,7 @@ public class FightLang : MonoBehaviour
     [SerializeField] private TooltipButton lifestealTooltipP;
     [SerializeField] private TooltipButton evasionTooltipP;
     [SerializeField] private TooltipButton accuracyTooltipP;
+    [SerializeField] private TooltipButton armourpenTooltipP;
 
     //stats enemy
     [SerializeField] private TooltipButton hpTooltipE;
@@ -61,6 +62,7 @@ public class FightLang : MonoBehaviour
     [SerializeField] private TooltipButton lifestealTooltipE;
     [SerializeField] private TooltipButton evasionTooltipE;
     [SerializeField] private TooltipButton accuracyTooltipE;
+    [SerializeField] private TooltipButton armourpenTooltipE;
 
     [SerializeField] private Text overviewText;
     //overview player
@@ -143,7 +145,8 @@ public class FightLang : MonoBehaviour
         lifestealTooltipP.text = languageManager.GetText(language, "stats", "name", "lifesteal") + "<br>" + languageManager.GetText(language, "stats", "desc", "lifesteal");
         evasionTooltipP.text = languageManager.GetText(language, "stats", "name", "evasion") + "<br>" + languageManager.GetText(language, "stats", "desc", "evasion");
         accuracyTooltipP.text = languageManager.GetText(language, "stats", "name", "accuracy") + "<br>" + languageManager.GetText(language, "stats", "desc", "accuracy");
-        
+        armourpenTooltipP.text = languageManager.GetText(language, "stats", "name", "armourpen") + "<br>" + languageManager.GetText(language, "stats", "desc", "armourpen");
+
         //stats enemy
         hpTooltipE.text = languageManager.GetText(language, "stats", "name", "hp") + "<br>" + languageManager.GetText(language, "stats", "desc", "hp");
         hpRegenTooltipE.text = languageManager.GetText(language, "stats", "name", "hpregen") + "<br>" + languageManager.GetText(language, "stats", "desc", "hpregen");
@@ -163,6 +166,7 @@ public class FightLang : MonoBehaviour
         lifestealTooltipE.text = languageManager.GetText(language, "stats", "name", "lifesteal") + "<br>" + languageManager.GetText(language, "stats", "desc", "lifesteal");
         evasionTooltipE.text = languageManager.GetText(language, "stats", "name", "evasion") + "<br>" + languageManager.GetText(language, "stats", "desc", "evasion");
         accuracyTooltipE.text = languageManager.GetText(language, "stats", "name", "accuracy") + "<br>" + languageManager.GetText(language, "stats", "desc", "accuracy");
+        armourpenTooltipE.text = languageManager.GetText(language, "stats", "name", "armourpen") + "<br>" + languageManager.GetText(language, "stats", "desc", "armourpen");
 
         //overview player
         physicDmgDealtP.text = languageManager.GetText(language, "gui", "text", "physicdmgdealt");

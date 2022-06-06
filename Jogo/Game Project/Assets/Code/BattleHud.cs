@@ -111,6 +111,7 @@ public class BattleHud : MonoBehaviour
         Text evasion = statsGO.transform.Find("evasion").GetChild(0).GetComponent<Text>();
         Text lifesteal = statsGO.transform.Find("lifesteal").GetChild(0).GetComponent<Text>();
         Text accuracy = statsGO.transform.Find("accuracy").GetChild(0).GetComponent<Text>();
+        Text armourpen = statsGO.transform.Find("armourpen").GetChild(0).GetComponent<Text>();
 
         Image sanityIcon = statsGO.transform.Find("sanity").GetComponent<Image>();
 
@@ -300,6 +301,15 @@ public class BattleHud : MonoBehaviour
             sanityIcon.sprite = sanity50;
         else if (sanityPer <= 25)
             sanityIcon.sprite = sanity25;
+
+        armourpen.text = stats.armourPen.ToString("0.0%");
+
+        if (stats.armourPen > original.armourPen)
+            armourpen.color = Color.green;
+        else if (stats.armourPen < original.armourPen)
+            armourpen.color = Color.red;
+        else
+            armourpen.color = Color.black;
     }
 
     public void OpenStatsMenu()

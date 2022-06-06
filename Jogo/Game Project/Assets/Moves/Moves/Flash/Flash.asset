@@ -16,11 +16,12 @@ MonoBehaviour:
   name: flash
   hitTime: 1
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 30
+  magicDmg: 15
   trueDmg: 0
   sanityDmg: 2
   heal: 0
@@ -28,9 +29,11 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 7
   inCooldown: 0
-  manaCost: 25
+  manaCost: 35
   staminaCost: 0
   critDmgBonus: 0
   critChanceBonus: 0
@@ -38,6 +41,7 @@ MonoBehaviour:
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: bf925d8fbce99614382b0a9c870b68fc, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: e8533635e3c2a7a4b9a2b7090bc4e56f, type: 2}
   grantPassive: {fileID: 0}
