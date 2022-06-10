@@ -219,6 +219,9 @@ public class BattleSystem : MonoBehaviour
         playerUnit.effects.Clear();
         enemyUnit.effects.Clear();
 
+        playerUnit.randomItems.Clear();
+        enemyUnit.randomItems.Clear();
+
         GetItems(playerUnit);
 
         GenItem(playerUnit, enemyUnit);
@@ -383,7 +386,7 @@ public class BattleSystem : MonoBehaviour
                         picked.Add(num);
 
                     Debug.Log("PICKED: " + num);
-                } while (!isPicked);
+                } while (isPicked);
             }
             Debug.Log("PICKED N: " + picked.Count);
             if (picked.Count > 0)
