@@ -40,6 +40,7 @@ public class Unit : MonoBehaviour
     public List<Moves> moves = new List<Moves>();
     public List<Passives> passives = new List<Passives>();
     public List<Items> items = new List<Items>();
+    public List<int> randomItems = new List<int>();
 
     [SerializeField] private StuffList champions;
     [SerializeField] private StuffList monsters;

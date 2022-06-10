@@ -221,9 +221,10 @@ public class BattleSystem : MonoBehaviour
 
         GetItems(playerUnit);
 
-        SetStatus();
+        GenItem(playerUnit, enemyUnit);
+        GetItems(enemyUnit);
 
-        
+        SetStatus();
 
         playerHUD.SetStats(playerUnit.charc.stats, playerUnit.charc.stats, playerUnit.curSanity);
         enemyHUD.SetStats(enemyUnit.charc.stats, enemyUnit.charc.stats, enemyUnit.curSanity);
@@ -353,6 +354,43 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(NewTurn());
     }
 
+    void GenItem(Unit player, Unit enemy)
+    {
+        int itemCountP = player.items.Count;
+        int itemCountE = enemy.charc.recItems.Count;
+
+        if (PlayerPrefs.GetInt("isEndless") == 0 && itemCountP > 0 && itemCountE > 0)
+        {
+            List<int> picked = new List<int>();
+
+            for (int i = 0; itemCountP > i; i++)
+            {
+                bool isPicked = false;
+                do
+                {
+                    isPicked = false;
+                    int num = Random.Range(0, itemCountE);
+                    if (picked.Count > 0)
+                    {
+                        foreach (int a in picked)
+                        {
+                            if (num == a)
+                                isPicked = true;
+                        }
+                    }
+
+                    if (!isPicked)
+                        picked.Add(num);
+
+                    Debug.Log("PICKED: " + num);
+                } while (!isPicked);
+            }
+            Debug.Log("PICKED N: " + picked.Count);
+            if (picked.Count > 0)
+                enemy.randomItems = picked;
+        }
+    }
+
     void GetItems(Unit unit)
     {
         if (PlayerPrefs.GetInt("isEndless") == 1)
@@ -363,7 +401,7 @@ public class BattleSystem : MonoBehaviour
                 {
                     if (b == a.name)
                     {
-                        unit.items.Add(a);
+                        unit.items.Add(a.returnItem());
 
                         foreach (Passives p in a.passives)
                         {
@@ -379,21 +417,49 @@ public class BattleSystem : MonoBehaviour
             }
         } else
         {
-            foreach (Items a in items.returnStuff())
+            if (!unit.isEnemy)
             {
-                if (PlayerPrefs.GetString("selectedItem1") == a.name || PlayerPrefs.GetString("selectedItem2") == a.name)
+                foreach (Items a in items.returnStuff())
                 {
-                    unit.items.Add(a);
-
-                    foreach (Passives p in a.passives)
+                    if (PlayerPrefs.GetString("selectedItem1") == a.name || PlayerPrefs.GetString("selectedItem2") == a.name)
                     {
-                        unit.passives.Add(p.ReturnPassive());
-                    }
+                        unit.items.Add(a.returnItem());
 
-                    foreach (Moves m in a.moves)
-                    {
-                        unit.moves.Add(m.ReturnMove());
+                        foreach (Passives p in a.passives)
+                        {
+                            unit.passives.Add(p.ReturnPassive());
+                        }
+
+                        foreach (Moves m in a.moves)
+                        {
+                            unit.moves.Add(m.ReturnMove());
+                        }
                     }
+                }
+            } else
+            {
+                int i = 0;
+                foreach (Items a in unit.charc.recItems)
+                {
+                    foreach (int b in unit.randomItems)
+                    {
+                        if (b == i)
+                        {
+                            unit.items.Add(a.returnItem());
+
+                            foreach (Passives p in a.passives)
+                            {
+                                unit.passives.Add(p.ReturnPassive());
+                            }
+
+                            foreach (Moves m in a.moves)
+                            {
+                                unit.moves.Add(m.ReturnMove());
+                            }
+                        }
+                            
+                    }
+                    i++;
                 }
             }
         }

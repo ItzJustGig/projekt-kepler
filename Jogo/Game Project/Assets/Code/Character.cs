@@ -20,6 +20,7 @@ public class Character : ScriptableObject
     public List<Passives> passives = new List<Passives>();
 
     public List<Moves> moves = new List<Moves>();
+    public List<Items> recItems = new List<Items>();
 
     public Moves ultimate;
 
@@ -37,6 +38,7 @@ public class Character : ScriptableObject
         charc.passives = passives;
         charc.moves = moves;
         charc.ultimate = ultimate;
+        charc.recItems = recItems;
 
         return charc;
     }
