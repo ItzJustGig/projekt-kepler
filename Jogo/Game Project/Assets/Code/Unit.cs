@@ -166,7 +166,14 @@ public class Unit : MonoBehaviour
             a.duration--;
             a.timesInc++;
 
-            isDead = GameObject.Find("GameManager").GetComponent<BattleSystem>().EffectCalcDmg(a, this);
+            if (!a.grantsOnRunOut)
+            {
+                isDead = GameObject.Find("GameManager").GetComponent<BattleSystem>().EffectCalcDmg(a, this);
+            } else
+            {
+                if (a.duration <= 0)
+                    isDead = GameObject.Find("GameManager").GetComponent<BattleSystem>().EffectCalcDmg(a, this);
+            }
 
             if (isDead)
                 break;

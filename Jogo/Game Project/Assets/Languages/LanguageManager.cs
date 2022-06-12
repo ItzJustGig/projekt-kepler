@@ -267,6 +267,7 @@ public class LanguageManager : MonoBehaviour
         public string cantstatmod;
         public string cantdefence;
         public string eachturn;
+        public string onend;
         public string increasedmg;
         public string chancetostop;
         public string chancetostopoptional;
@@ -391,6 +392,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "eachturn":
                     returns = eachturn;
+                    break;
+                case "onend":
+                    returns = onend;
                     break;
                 case "increasedmg":
                     returns = increasedmg;

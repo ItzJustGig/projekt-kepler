@@ -3422,42 +3422,103 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    void ApplyTired(Unit user, GameObject pannel)
+    {
+        bool isTired = false;
+
+        foreach (Effects a in user.effects)
+        {
+            if (a.id == "TRD")
+                isTired = true;
+        }
+
+        if (!isTired)
+        {
+
+            //get effect
+            Effects effect = tired.effect.ReturnEffect();
+            effect.duration = Random.Range(tired.durationMin, tired.durationMax);
+
+            //add effect to the player
+            user.effects.Add(effect);
+
+            //apply stat mod
+            foreach (StatMod b in effect.statMods)
+            {
+                //get statmod
+                StatMod statMod = b.ReturnStats();
+                statMod.inTime = effect.duration;
+
+                //add stat mod to player
+                user.statMods.Add(statMod);
+                user.usedBonusStuff = false;
+                SetModifiers(statMod, user.charc.stats.ReturnStats(), user);
+            }
+
+            effectIconPrefab.name = effect.id;
+
+            //display effect icon
+            Image icon = effectIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
+            icon.sprite = effect.sprite;
+            Text text = effectIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
+            text.text = effect.duration.ToString();
+            //display popup info on icon
+            TooltipButton tooltipButton = effectIconPrefab.transform.GetComponent<TooltipButton>();
+            tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
+            tooltipButton.text = effect.GetEffectInfo();
+
+            Instantiate(effectIconPrefab, pannel.transform);
+        }
+    }
+
     void ApplyFear(Unit user, GameObject pannel)
     {
-        Effects effect = fear.effect.ReturnEffect();
-        effect.duration = Random.Range(fear.durationMin, fear.durationMax);
-        user.effects.Add(effect);
+        bool isFeared = false;
 
-        foreach (Passives a in user.passives.ToArray())
+        foreach (Effects a in user.effects)
         {
-            if (a.name == "courage")
+            if (a.id == "FEA")
+                isFeared = true;
+        }
+
+        if (!isFeared)
+        {
+            Effects effect = fear.effect.ReturnEffect();
+            int duration = Random.Range(fear.durationMin, fear.durationMax);
+            effect.duration = duration;
+
+            foreach (Passives a in user.passives.ToArray())
             {
-                effect.duration -= (int)a.num;
-                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                if (a.name == "courage")
+                {
+                    effect.duration -= (int)a.num;
+                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                }
             }
+
+            user.effects.Add(effect);
+            foreach (StatMod b in effect.statMods)
+            {
+                StatMod statMod = b.ReturnStats();
+                statMod.inTime = effect.duration+1;
+
+                user.statMods.Add(statMod);
+                user.usedBonusStuff = false;
+                SetModifiers(statMod, user.charc.stats.ReturnStats(), user);
+            }
+
+            effectIconPrefab.name = effect.id;
+
+            Image icon = effectIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
+            icon.sprite = effect.sprite;
+            Text text = effectIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
+            text.text = effect.duration.ToString();
+            TooltipButton tooltipButton = effectIconPrefab.transform.GetComponent<TooltipButton>();
+            tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
+            tooltipButton.text = effect.GetEffectInfo();
+
+            Instantiate(effectIconPrefab, pannel.transform);
         }
-
-        foreach (StatMod b in effect.statMods)
-        {
-            StatMod statMod = b.ReturnStats();
-            statMod.inTime = effect.duration;
-
-            user.statMods.Add(statMod);
-            user.usedBonusStuff = false;
-            SetModifiers(statMod, user.charc.stats.ReturnStats(), user);
-        }
-
-        effectIconPrefab.name = effect.id;
-
-        Image icon = effectIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
-        icon.sprite = effect.sprite;
-        Text text = effectIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
-        text.text = effect.duration.ToString();
-        TooltipButton tooltipButton = effectIconPrefab.transform.GetComponent<TooltipButton>();
-        tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
-        tooltipButton.text = effect.GetEffectInfo();
-
-        Instantiate(effectIconPrefab, pannel.transform);
     }
 
     IEnumerator NewTurn()
@@ -3481,77 +3542,12 @@ public class BattleSystem : MonoBehaviour
         //apply tired
         if (playerUnit.curStamina <= tiredStamina && userCanTired)
         {
-            //get effect
-            Effects effect = tired.effect.ReturnEffect();
-            effect.duration = Random.Range(tired.durationMin, tired.durationMax);
-
-            //add effect to the player
-            playerUnit.effects.Add(effect);
-
-            //apply stat mod
-            foreach (StatMod b in effect.statMods)
-            {
-                //get statmod
-                StatMod statMod = b.ReturnStats();
-                statMod.inTime = effect.duration;
-
-                //add stat mod to player
-                playerUnit.statMods.Add(statMod);
-                playerUnit.usedBonusStuff = false;
-                SetModifiers(statMod, playerUnit.charc.stats.ReturnStats(), playerUnit);
-            }
-
-
-            effectIconPrefab.name = effect.id;
-
-            //display effect icon
-            Image icon = effectIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
-            icon.sprite = effect.sprite;
-            Text text = effectIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
-            text.text = effect.duration.ToString();
-            //display popup info on icon
-            TooltipButton tooltipButton = effectIconPrefab.transform.GetComponent<TooltipButton>();
-            tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
-            tooltipButton.text = effect.GetEffectInfo();
-
-            Instantiate(effectIconPrefab, panelEffectsP.transform);
+            ApplyTired(playerUnit, panelEffectsP);
         }
 
         if (enemyUnit.curStamina <= tiredStamina && enemyCanTired)
         {
-            //get effect
-            Effects effect = tired.effect.ReturnEffect();
-            effect.duration = Random.Range(tired.durationMin, tired.durationMax);
-
-            //add effect to the enemy
-            enemyUnit.effects.Add(effect);
-
-            //apply stat mod
-            foreach (StatMod b in effect.statMods)
-            {
-                //get statmod
-                StatMod statMod = b.ReturnStats();
-                statMod.inTime = effect.duration;
-
-                //add statmod to enemy
-                enemyUnit.statMods.Add(statMod);
-                enemyUnit.usedBonusStuff = false;
-                SetModifiers(statMod, enemyUnit.charc.stats.ReturnStats(), enemyUnit);
-            }
-
-            effectIconPrefab.name = effect.id;
-
-            //display effect icon
-            Image icon = effectIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
-            icon.sprite = effect.sprite;
-            Text text = effectIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
-            text.text = effect.duration.ToString();
-            //display popup info on icon
-            TooltipButton tooltipButton = effectIconPrefab.transform.GetComponent<TooltipButton>();
-            tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
-            tooltipButton.text = effect.GetEffectInfo();
-
-            Instantiate(effectIconPrefab, panelEffectsE.transform);
+            ApplyTired(enemyUnit, panelEffectsE);
         }
 
         playerUnit.ResetCanUse();

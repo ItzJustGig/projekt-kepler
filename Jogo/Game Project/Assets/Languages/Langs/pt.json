@@ -104,6 +104,7 @@
         "cantsupport": "%c%T\u00E9cnicas de suporte%c/%",
         "cantdefence": "%c%T\u00E9cnicas defencivas%c/%",
         "eachturn": " cada turno.",
+        "onend": " quando o efeito acabar.",
         "increasedmg": " (+ %val% por turno)",
         "chancetostop": "O utilizador tem %chance%% de chance de %optional%parar o ataque.",
         "chancetostopoptional": "sofre %c%%val% dano verdadeiro%c/% e ",

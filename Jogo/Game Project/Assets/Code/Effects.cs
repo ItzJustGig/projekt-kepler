@@ -10,6 +10,7 @@ public class Effects : ScriptableObject
     public Sprite sprite;
 
     public int duration;
+    public bool grantsOnRunOut = false;
     public int timesInc = 0;
 
     public bool canUsePhysical = true;
@@ -71,6 +72,7 @@ public class Effects : ScriptableObject
         effect.sprite = sprite;
         effect.timesInc = timesInc;
 
+        effect.grantsOnRunOut = grantsOnRunOut;
         effect.duration = duration;
 
         effect.canUsePhysical = canUsePhysical;
@@ -189,7 +191,7 @@ public class Effects : ScriptableObject
         return builder;
     }
 
-    private StringBuilder GetInfo(LanguageManager languageManager, string language, string whatIs, string colour, float valmin, float valmax, float valinc, string scale)
+    private StringBuilder GetInfo(LanguageManager languageManager, string language, string whatIs, string colour, float valmin, float valmax, float valinc, string scale, bool grantEnd)
     {
         StringBuilder builder = new StringBuilder();
         builder.Append(languageManager.GetText(language, "showdetail", whatIs));
@@ -211,7 +213,10 @@ public class Effects : ScriptableObject
             builder.Replace("%val%", "");
 
         //builder.Remove(builder.Length-1, 1);
-        builder.Append(GetInfo(languageManager, language, "eachturn").ToString()).AppendLine();
+        if (!grantEnd)
+            builder.Append(GetInfo(languageManager, language, "eachturn").ToString()).AppendLine();
+        else
+            builder.Append(GetInfo(languageManager, language, "onend").ToString()).AppendLine();
 
         return builder;
     }
@@ -291,7 +296,7 @@ public class Effects : ScriptableObject
                 if (a.type is StatScale.DmgType.PHYSICAL)
                     tempB.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetInfo(languageManager, language, "takephysicdmg", "ffaa00", phyDmgMin, phyDmgMax, phyDmgInc, tempB.ToString()));
+            builder.Append(GetInfo(languageManager, language, "takephysicdmg", "ffaa00", phyDmgMin, phyDmgMax, phyDmgInc, tempB.ToString(), grantsOnRunOut));
         }
 
         if (magicDmgMin > 0)
@@ -304,7 +309,7 @@ public class Effects : ScriptableObject
                     tempB.Append(a.GetStatScaleInfo());
             }
 
-            builder.Append(GetInfo(languageManager, language, "takemagicdmg", "1a66ff", magicDmgMin, magicDmgMax, magicDmgInc, tempB.ToString()));
+            builder.Append(GetInfo(languageManager, language, "takemagicdmg", "1a66ff", magicDmgMin, magicDmgMax, magicDmgInc, tempB.ToString(), grantsOnRunOut));
         }
 
         if (trueDmgMin > 0)
@@ -316,7 +321,7 @@ public class Effects : ScriptableObject
                 if (a.type is StatScale.DmgType.TRUE)
                     tempB.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetInfo(languageManager, language, "taketruedmg", "a6a6a6", trueDmgMin, trueDmgMax, trueDmgInc, tempB.ToString()));
+            builder.Append(GetInfo(languageManager, language, "taketruedmg", "a6a6a6", trueDmgMin, trueDmgMax, trueDmgInc, tempB.ToString(), grantsOnRunOut));
         }
 
         if (sanityDmgMin > 0)
@@ -329,7 +334,7 @@ public class Effects : ScriptableObject
                 if (a.type is StatScale.DmgType.SANITY)
                     tempB.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetInfo(languageManager, language, "takesanitydmg", "b829ff", sanityDmgMin, sanityDmgMax, sanityDmgInc, tempB.ToString()));
+            builder.Append(GetInfo(languageManager, language, "takesanitydmg", "b829ff", sanityDmgMin, sanityDmgMax, sanityDmgInc, tempB.ToString(), grantsOnRunOut));
         }
 
         if (healMin > 0)
@@ -342,7 +347,7 @@ public class Effects : ScriptableObject
                 if (a.type is StatScale.DmgType.HEAL)
                     tempB.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetInfo(languageManager, language, "heal", "00ff11", healMin, healMax, healInc, tempB.ToString()));
+            builder.Append(GetInfo(languageManager, language, "heal", "00ff11", healMin, healMax, healInc, tempB.ToString(), grantsOnRunOut));
         }
 
         if (healManaMin > 0)
@@ -355,7 +360,7 @@ public class Effects : ScriptableObject
                 if (a.type is StatScale.DmgType.HEALMANA)
                     tempB.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetInfo(languageManager, language, "healmana", "1e68fc", healManaMin, healManaMax, healManaInc, tempB.ToString()));
+            builder.Append(GetInfo(languageManager, language, "healmana", "1e68fc", healManaMin, healManaMax, healManaInc, tempB.ToString(), grantsOnRunOut));
         }
 
         if (healStaminaMin > 0)
@@ -368,7 +373,7 @@ public class Effects : ScriptableObject
                 if (a.type is StatScale.DmgType.HEALSTAMINA)
                     tempB.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetInfo(languageManager, language, "healstamina", "f0dd0a", healStaminaMin, healStaminaMax, healStaminaInc, tempB.ToString()));
+            builder.Append(GetInfo(languageManager, language, "healstamina", "f0dd0a", healStaminaMin, healStaminaMax, healStaminaInc, tempB.ToString(), grantsOnRunOut));
         }
 
         if (sanityHealMin > 0)
@@ -381,7 +386,7 @@ public class Effects : ScriptableObject
                 if (a.type is StatScale.DmgType.HEALSANITY)
                     tempB.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetInfo(languageManager, language, "healsanity", "b641f0", sanityHealMin, sanityHealMax, sanityHealInc, tempB.ToString()));
+            builder.Append(GetInfo(languageManager, language, "healsanity", "b641f0", sanityHealMin, sanityHealMax, sanityHealInc, tempB.ToString(), grantsOnRunOut));
         }
 
         if (shieldMin > 0)
@@ -394,7 +399,7 @@ public class Effects : ScriptableObject
                 if (a.type is StatScale.DmgType.SHIELD)
                     tempB.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetInfo(languageManager, language, "shield", "787878", shieldMin, shieldMax, shieldInc, tempB.ToString()));
+            builder.Append(GetInfo(languageManager, language, "shield", "787878", shieldMin, shieldMax, shieldInc, tempB.ToString(), grantsOnRunOut));
         }
 
         if (showDmg && (cancelAtkChance > 0 || statMods.Count > 0))

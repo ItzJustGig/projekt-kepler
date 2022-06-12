@@ -104,6 +104,7 @@
 		"cantsupport": "%c%Supportive moves%c/%",
 		"cantdefence": "%c%Defencive moves%c/%",
 		"eachturn": " each turn.",
+		"onend": " when the effect runs out.",
 		"increasedmg": " (+ %val% per turn)",
 		"chancetostop": "The user have %chance%% to %optional%stop the attack.",
 		"chancetostopoptional": "take %c%%val% true damage%c/% and ",

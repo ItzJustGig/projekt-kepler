@@ -32,5 +32,6 @@ MonoBehaviour:
   timing: -0.2
   movSpeed: -0.15
   lifesteal: 0
-  accuracy: -0.15
+  accuracy: -0.1
   evasion: -0.005
+  armourPen: 0

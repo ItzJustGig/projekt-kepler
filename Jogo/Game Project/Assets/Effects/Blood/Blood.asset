@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
   m_Name: Blood
   m_EditorClassIdentifier: 
-  name: Blood
   id: BLD
   sprite: {fileID: 21300000, guid: 8e875b4bdff69114da8a5b832d9cf08c, type: 3}
   duration: 0
+  grantsOnRunOut: 0
   timesInc: 0
   canUsePhysical: 1
   canUseRanged: 1
@@ -52,7 +52,6 @@ MonoBehaviour:
   shieldInc: 0
   cancelAtkChance: 0
   recoil: 0
-  cancelMsg: 
   scale: []
   statMods:
   - {fileID: 11400000, guid: 2d136227bf2200843a277d7671b068a1, type: 2}

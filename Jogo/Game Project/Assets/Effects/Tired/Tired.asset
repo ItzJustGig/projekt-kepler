@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
   m_Name: Tired
   m_EditorClassIdentifier: 
-  name: Tired
   id: TRD
   sprite: {fileID: 21300000, guid: 554ececede4055a4ab042e77225dcc6f, type: 3}
   duration: 0
+  grantsOnRunOut: 1
   timesInc: 0
   canUsePhysical: 0
   canUseRanged: 1
@@ -44,15 +44,14 @@ MonoBehaviour:
   healManaMin: 0
   healManaMax: 0
   healManaInc: 0
-  healStaminaMin: 4
-  healStaminaMax: 6
+  healStaminaMin: 10
+  healStaminaMax: 30
   healStaminaInc: 6
   shieldMin: 0
   shieldMax: 0
   shieldInc: 0
   cancelAtkChance: 0
   recoil: 0
-  cancelMsg: 
   scale:
   - {fileID: 11400000, guid: 1eb08a2fc9974a44aa93f6f93f13a183, type: 2}
   statMods:

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   playerStat: 1
-  flatDmg: 0
+  flatValue: 0
   curHp: 0
   missHp: 0
   maxHp: 0
@@ -25,8 +25,8 @@ MonoBehaviour:
   manaRegen: 0
   maxStamina: 0
   curStamina: 0
-  missStamina: 0.2
-  staminaRegen: 0.9
+  missStamina: 0.75
+  staminaRegen: 1
   curSanity: 0
   missSanity: 0
   maxSanity: 0

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
   m_Name: Fear
   m_EditorClassIdentifier: 
-  name: Fear
   id: FEA
   sprite: {fileID: 21300000, guid: fec2aec64e5a1e940b7c4e8aed396b6c, type: 3}
   duration: 0
+  grantsOnRunOut: 1
   timesInc: 0
   canUsePhysical: 1
   canUseRanged: 1
@@ -37,7 +37,7 @@ MonoBehaviour:
   sanityDmgInc: 0
   sanityHealMin: 9
   sanityHealMax: 12
-  sanityHealInc: 5
+  sanityHealInc: 4
   healMin: 0
   healMax: 0
   healInc: 0
@@ -50,9 +50,8 @@ MonoBehaviour:
   shieldMin: 0
   shieldMax: 0
   shieldInc: 0
-  cancelAtkChance: 0.6
-  recoil: 10
-  cancelMsg: is in fear.
+  cancelAtkChance: 0.4
+  recoil: 0
   scale:
   - {fileID: 11400000, guid: 7818a7f011497c440b7d6f13345538eb, type: 2}
   statMods:
