@@ -15,8 +15,8 @@ MonoBehaviour:
   strenght: 1
   classe: 8
   name: skulltroop
-  sprite: {fileID: 5806852883944117854, guid: e14ff431356231f42bbc0411eccf6784, type: 3}
-  charcIcon: {fileID: 21300000, guid: 2d5bbf26b90bbce48aae3dfbf3653c46, type: 3}
+  sprite: {fileID: 5806852883944117854, guid: 26f9595a142d0364ea86dcfe54cc211d, type: 3}
+  charcIcon: {fileID: 21300000, guid: dd002203b2e7d504fb70ad3bbf4af29e, type: 3}
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
   stats: {fileID: 11400000, guid: 26af295ac4342f142990f8b250ff07bb, type: 2}
   passives: []
@@ -28,4 +28,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dd70720f45a5ecb40b4c03fe9fa5f545, type: 2}
   - {fileID: 11400000, guid: aced7cc3181320640950c58e6737306f, type: 2}
   - {fileID: 11400000, guid: fef52cc412939224991b411c02cf541c, type: 2}
+  recItems: []
   ultimate: {fileID: 11400000, guid: e09b81d81d8fa554ba54657928af0219, type: 2}

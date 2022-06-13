@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: boss
   m_EditorClassIdentifier: 
   id: 7
-  minGold: 8
-  maxGold: 11
+  minGold: 9
+  maxGold: 13
