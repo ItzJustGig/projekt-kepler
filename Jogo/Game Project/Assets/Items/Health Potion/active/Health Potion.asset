@@ -24,14 +24,14 @@ MonoBehaviour:
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
-  heal: 40
+  heal: 30
   healMana: 0
   healStamina: 0
   healSanity: 0
   shield: 0
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 12
+  cooldown: 13
   inCooldown: 0
   manaCost: 0
   staminaCost: 0

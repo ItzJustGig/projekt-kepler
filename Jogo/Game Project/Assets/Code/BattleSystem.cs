@@ -2221,6 +2221,7 @@ public class BattleSystem : MonoBehaviour
                 PlayerPrefs.SetInt("wonLastRound", 1);
                 info.round++;
 
+
                 float health = playerUnit.curHp + (playerUnit.charc.stats.hp - playerUnit.curHp) * perHealthRegenEndless;
                 float mana = playerUnit.curMana + (playerUnit.charc.stats.mana - playerUnit.curMana) * perCostsRegenEndless;
                 float stamina = playerUnit.curStamina + (playerUnit.charc.stats.stamina - playerUnit.curStamina) * perCostsRegenEndless;
@@ -2657,10 +2658,10 @@ public class BattleSystem : MonoBehaviour
 
                 shieldedDmg = tempShield - user.curShield;
             }
-        }
 
-        if (a.dmg > 0 || shieldedDmg > 0)
-            isDead = user.TakeDamage(a.dmg, shieldedDmg, a.isCrit);
+            if (a.dmg > 0 || shieldedDmg > 0)
+                isDead = user.TakeDamage(a.dmg, shieldedDmg, a.isCrit);
+        }
 
         return isDead;
     }
