@@ -81,11 +81,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
-  text: "<size=25><align=center>Punhal do Ca\xE7ador</align></size>\r\n<size=19><align=center><color=#B2B2B2>Passiva</color></align></size>\r\n\r\nSe
-    o inimigo estiver a cima de 65% de vida, t\xE9cnicas b\xE1scas ou f\xEDsicas
-    causam <color=#ffaa00>4 + (<color=#ffaa00>35%</color> do/a <color=#ffaa00>Ataque</color>
-    do utilizador)</color><color=#ffaa00> dano f\xEDsico</color> b\xF3nus. (7 turnos
-    de recarga)\r\n"
+  text: '<size=25><align=center>Baby Enemy Debuff</align></size>
+
+    <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
+
+    
+
+    But
+    its just a baby! (Some of your stats were lowered by -76,8%)
+
+'
 --- !u!1 &7183899527544666275
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +156,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 60a41e2dabd2f994a8c65bd72a3b9754, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6a0d706974739014ea267df5d4898e78, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

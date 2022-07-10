@@ -16,7 +16,9 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private Transform enemyBattleStation;
 
     [SerializeField] private BattleState state;
-    [SerializeField] private int tiredStamina = 25;
+    [SerializeField] private float tiredStart = 0.05f;
+    [SerializeField] private float tiredGrowth = 0.015f;
+    [SerializeField] private int tiredStacks = 0;
     [SerializeField] private Text dialogText;
 
     Unit playerUnit;
@@ -182,9 +184,6 @@ public class BattleSystem : MonoBehaviour
 
         dialogText.text = langmanag.GetInfo("gui", "text", "wantfight", langmanag.GetInfo("charc", "name", enemyUnit.charc.name));
 
-        playerHUD.SetHud(playerUnit, tiredStamina);
-        enemyHUD.SetHud(enemyUnit, tiredStamina);
-
         movesBtn.interactable = false;
         basicBtn.interactable = false;
         healManaBtn.interactable = false;
@@ -209,6 +208,9 @@ public class BattleSystem : MonoBehaviour
             playerUnit.curStamina = playerUnit.charc.stats.stamina;
             playerUnit.curSanity = playerUnit.charc.stats.sanity;
         }
+
+        playerHUD.SetHud(playerUnit, (int)(playerUnit.curStamina * (tiredStart + (tiredGrowth * tiredStacks))));
+        enemyHUD.SetHud(enemyUnit, (int)(enemyUnit.curStamina * (tiredStart + (tiredGrowth * tiredStacks))));
 
         playerUnit.curShield = 0;
         enemyUnit.curShield = 0;
@@ -2084,8 +2086,8 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(enemyHUD.SetHp(enemyUnit.curHp, statsE.hp));
         StartCoroutine(playerHUD.SetMana(playerUnit.curMana, statsP.mana));
         StartCoroutine(enemyHUD.SetMana(enemyUnit.curMana, statsE.mana));
-        StartCoroutine(playerHUD.SetStamina(playerUnit.curStamina, statsP.stamina, tiredStamina));
-        StartCoroutine(enemyHUD.SetStamina(enemyUnit.curStamina, statsE.stamina, tiredStamina));
+        StartCoroutine(playerHUD.SetStamina(playerUnit.curStamina, statsP.stamina, (int)(statsP.stamina * (tiredStart + (tiredGrowth * tiredStacks)))));
+        StartCoroutine(enemyHUD.SetStamina(enemyUnit.curStamina, statsE.stamina, (int)(statsE.stamina * (tiredStart + (tiredGrowth * tiredStacks)))));
         StartCoroutine(playerHUD.SetShield(playerUnit.curShield));
         StartCoroutine(enemyHUD.SetShield(enemyUnit.curShield));
         playerHUD.SetUlt(playerUnit.ult);
@@ -3540,16 +3542,22 @@ public class BattleSystem : MonoBehaviour
                 enemyCanTired = false;
         }
 
+        
+        Stats statsP = playerUnit.charc.stats.ReturnStats();
+        Stats statsE = enemyUnit.charc.stats.ReturnStats();
+
         //apply tired
-        if (playerUnit.curStamina <= tiredStamina && userCanTired)
+        if (playerUnit.curStamina <= (int)(statsP.stamina * (tiredStart + (tiredGrowth * tiredStacks))) && userCanTired)
         {
             ApplyTired(playerUnit, panelEffectsP);
         }
 
-        if (enemyUnit.curStamina <= tiredStamina && enemyCanTired)
+        if (enemyUnit.curStamina <= (int)(statsE.stamina * (tiredStart + (tiredGrowth * tiredStacks))) && enemyCanTired)
         {
             ApplyTired(enemyUnit, panelEffectsE);
         }
+        
+        
 
         playerUnit.ResetCanUse();
         enemyUnit.ResetCanUse();
@@ -3643,9 +3651,9 @@ public class BattleSystem : MonoBehaviour
         turnsText.text = langmanag.GetInfo("gui", "text", "turn", turnCount);
 
         //change needed stamina to be tired (increases with the number of turns)
-        if (turnCount > 25 && turnCount%10 == 0 && turnCount <= 100)
+        if (turnCount > 25 && turnCount%10 == 0 && tiredStacks < 10)
         {
-            tiredStamina += 5;
+            tiredStacks++;
         }
 
         if (playerUnit.moves.Count > 0)
@@ -3704,8 +3712,8 @@ public class BattleSystem : MonoBehaviour
         if (recoverManaMoveP.inCooldown > 0)
             recoverManaMoveP.inCooldown--;
 
-        Stats statsP = playerUnit.charc.stats.ReturnStats();
-        Stats statsE = enemyUnit.charc.stats.ReturnStats();
+        statsP = playerUnit.charc.stats.ReturnStats();
+        statsE = enemyUnit.charc.stats.ReturnStats();
 
         if (playerUnit.statMods.Count > 0)
             foreach (StatMod statMod in playerUnit.statMods.ToArray())

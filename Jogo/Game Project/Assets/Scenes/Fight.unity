@@ -12133,7 +12133,9 @@ MonoBehaviour:
   playerBattleStation: {fileID: 224652448}
   enemyBattleStation: {fileID: 1720866901}
   state: 0
-  tiredStamina: 25
+  tiredStart: 0.025
+  tiredGrowth: 0.0075
+  tiredStacks: 0
   dialogText: {fileID: 2435926}
   playerHUD: {fileID: 1220544893}
   enemyHUD: {fileID: 178673193}
