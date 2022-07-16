@@ -15,8 +15,8 @@ MonoBehaviour:
   strenght: 1
   classe: 8
   name: goblin
-  sprite: {fileID: 5806852883944117854, guid: e14ff431356231f42bbc0411eccf6784, type: 3}
-  charcIcon: {fileID: 21300000, guid: 2d5bbf26b90bbce48aae3dfbf3653c46, type: 3}
+  sprite: {fileID: 5806852883944117854, guid: f88cf1d4d8213924092e12b04b36b804, type: 3}
+  charcIcon: {fileID: 21300000, guid: a62594550d6fd604f8fe8e59fd698cca, type: 3}
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
   stats: {fileID: 11400000, guid: 376da9b92922ecb48b846fea63cfc490, type: 2}
   passives: []
@@ -28,4 +28,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6eee52437e1e9934e88cbe25c2afeeee, type: 2}
   - {fileID: 11400000, guid: c265a13f84e503644810691054576b8b, type: 2}
   - {fileID: 11400000, guid: 8b28ea64c04d0dd4cbae745a5b0d8537, type: 2}
+  recItems: []
   ultimate: {fileID: 11400000, guid: fef52cc412939224991b411c02cf541c, type: 2}

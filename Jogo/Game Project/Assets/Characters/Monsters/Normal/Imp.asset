@@ -15,8 +15,8 @@ MonoBehaviour:
   strenght: 2
   classe: 2
   name: imp
-  sprite: {fileID: 5806852883944117854, guid: e14ff431356231f42bbc0411eccf6784, type: 3}
-  charcIcon: {fileID: 21300000, guid: 2d5bbf26b90bbce48aae3dfbf3653c46, type: 3}
+  sprite: {fileID: 5806852883944117854, guid: 466cc66a7035df34bb43217789369cbd, type: 3}
+  charcIcon: {fileID: 21300000, guid: 67775b4a7b7c20747986285cd99e75e1, type: 3}
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
   stats: {fileID: 11400000, guid: dff5a8d4a51087f408478ec0bb74b792, type: 2}
   passives: []
@@ -29,4 +29,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c265a13f84e503644810691054576b8b, type: 2}
   - {fileID: 11400000, guid: 9231fd6c7911b7f4098a5fd215b44376, type: 2}
   - {fileID: 11400000, guid: 2e92d42a9db6721489ee495e0ef300af, type: 2}
+  recItems: []
   ultimate: {fileID: 11400000, guid: 709578c464b54f94881d2ef3ebeee214, type: 2}
