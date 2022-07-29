@@ -218,6 +218,8 @@ public class Effects : ScriptableObject
         else
             builder.Append(GetInfo(languageManager, language, "onend").ToString()).AppendLine();
 
+        builder.Replace("%dot%", "");
+
         return builder;
     }
     

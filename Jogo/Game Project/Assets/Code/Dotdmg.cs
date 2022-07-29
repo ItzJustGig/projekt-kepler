@@ -58,6 +58,58 @@ public class Dotdmg : ScriptableObject
         return builder;
     }
 
+    public static StringBuilder ReplaceDot(StringBuilder builder, string whatIs, List<Dotdmg> dot)
+    {
+        StringBuilder temp = new StringBuilder();
+        foreach (Dotdmg a in dot)
+        {
+            if (whatIs == "dealphysicdmg" && a.type is Dotdmg.DmgType.PHYSICAL)
+            {
+                temp = a.GetDOTInfo();
+            }
+            else if (whatIs == "dealmagicdmg" && a.type is Dotdmg.DmgType.MAGICAL)
+            {
+                temp = a.GetDOTInfo();
+            }
+            else if (whatIs == "dealtruedmg" && a.type is Dotdmg.DmgType.TRUE)
+            {
+                temp = a.GetDOTInfo();
+            }
+            else if (whatIs == "dealsanitydmg" && a.type is Dotdmg.DmgType.SANITY)
+            {
+                temp = a.GetDOTInfo();
+            }
+            else if (whatIs == "heal" && a.type is Dotdmg.DmgType.HEAL)
+            {
+                temp = a.GetDOTInfo();
+            }
+            else if (whatIs == "healmana" && a.type is Dotdmg.DmgType.HEALMANA)
+            {
+                temp = a.GetDOTInfo();
+            }
+            else if (whatIs == "healstamina" && a.type is Dotdmg.DmgType.HEALSTAMINA)
+            {
+                temp = a.GetDOTInfo();
+            }
+            else if (whatIs == "healsanity" && a.type is Dotdmg.DmgType.HEALSANITY)
+            {
+                temp = a.GetDOTInfo();
+            }
+            else if (whatIs == "shield" && a.type is Dotdmg.DmgType.SHIELD)
+            {
+                temp = a.GetDOTInfo();
+            }
+            else
+            {
+                temp.Append("");
+            }
+        }
+
+        builder.Replace("%dot%", temp.ToString());
+
+        return builder;
+    }
+
     private string GetLanguage()
     {
         if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())

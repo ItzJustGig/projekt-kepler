@@ -12240,7 +12240,9 @@ MonoBehaviour:
   statsPBtnText: {fileID: 223055086}
   statsEBtnText: {fileID: 947422669}
   overviewBtnText: {fileID: 1380457908}
-  hideBtnText: {fileID: 1065878109}
+  sumHideBtnText: {fileID: 1065878109}
+  pHideBtnText: {fileID: 1819875872}
+  eHideBtnText: {fileID: 761515765}
   leaveBtnText: {fileID: 1835748351}
   chooseMoveText: {fileID: 2103978274}
   cancelMoveBtnText: {fileID: 102065898}

@@ -16,7 +16,9 @@ public class FightLang : MonoBehaviour
     [SerializeField] private Text statsPBtnText;
     [SerializeField] private Text statsEBtnText;
     [SerializeField] private Text overviewBtnText;
-    [SerializeField] private Text hideBtnText;
+    [SerializeField] private Text sumHideBtnText;
+    [SerializeField] private Text pHideBtnText;
+    [SerializeField] private Text eHideBtnText;
     [SerializeField] private Text leaveBtnText;
     [SerializeField] private Text chooseMoveText;
     [SerializeField] private Text cancelMoveBtnText;
@@ -116,7 +118,9 @@ public class FightLang : MonoBehaviour
         statsPBtnText.text = languageManager.GetText(language, "gui", "button", "stats");
         statsEBtnText.text = languageManager.GetText(language, "gui", "button", "stats");
         overviewBtnText.text = languageManager.GetText(language, "gui", "button", "overview");
-        hideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
+        sumHideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
+        pHideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
+        eHideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
         leaveBtnText.text = languageManager.GetText(language, "gui", "button", "leave");
         cancelMoveBtnText.text = languageManager.GetText(language, "gui", "button", "cancel");
 

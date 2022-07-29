@@ -3614,7 +3614,7 @@ public class BattleSystem : MonoBehaviour
             yield return new WaitForSeconds(0.65f);
 
             if (isDead)
-                state = BattleState.LOSE;
+                state = BattleState.WIN;
 
             if (a.inTime <= 0)
             {
