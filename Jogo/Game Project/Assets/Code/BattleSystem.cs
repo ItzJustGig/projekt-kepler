@@ -125,6 +125,44 @@ public class BattleSystem : MonoBehaviour
             healSanity += dmg.healSanity;
             shield += dmg.shield;
         }
+
+        public void AddBaseDmg(Moves move)
+        {
+            phyDmg += move.phyDmg;
+            magicDmg += move.magicDmg;
+            trueDmg += move.trueDmg;
+            sanityDmg += move.sanityDmg;
+        }
+
+        public void AddBaseDmgHeal(Moves move)
+        {
+            phyDmg += move.phyDmg;
+            magicDmg += move.magicDmg;
+            trueDmg += move.trueDmg;
+            sanityDmg += move.sanityDmg;
+
+            heal += move.heal;
+            healMana += move.healMana;
+            healStamina += move.healStamina;
+            healSanity += move.healSanity;
+
+            shield += move.shield;
+        }
+
+        public void Multiply(int num)
+        {
+            phyDmg *= num;
+            magicDmg *= num;
+            trueDmg *= num;
+            sanityDmg *= num;
+
+            heal *= num;
+            healMana *= num;
+            healStamina *= num;
+            healSanity *= num;
+
+            shield *= num;
+        }
     };
 
     void Start()
@@ -1277,10 +1315,7 @@ public class BattleSystem : MonoBehaviour
                         }
                         else
                         {
-                            dmg.phyDmg += move.phyDmg;
-                            dmg.magicDmg += move.magicDmg;
-                            dmg.trueDmg += move.trueDmg;
-                            dmg.sanityDmg += move.sanityDmg;
+                            dmg.AddBaseDmg(move);
 
                             blockPhysical = move.blocksPhysical;
                             blockMagic = move.blocksMagical;
@@ -2132,7 +2167,21 @@ public class BattleSystem : MonoBehaviour
                 }
                 else
                 {
-                    random = Random.Range(0, enemyUnit.moves.Count);
+                    Stats statsU = enemyUnit.charc.stats.ReturnStats();
+                    if (enemyUnit.statMods.Count > 0)
+                        foreach (StatMod statMod in enemyUnit.statMods.ToArray())
+                        {
+                            statsU = SetModifiers(statMod.ReturnStats(), statsU.ReturnStats(), enemyUnit);
+                        }
+
+                    Stats statsT = playerUnit.charc.stats.ReturnStats();
+                    if (enemyUnit.statMods.Count > 0)
+                        foreach (StatMod statMod in playerUnit.statMods.ToArray())
+                        {
+                            statsT = SetModifiers(statMod.ReturnStats(), statsT.ReturnStats(), playerUnit);
+                        }
+
+                    random = enemyUnit.charc.ai.chooseMove(enemyUnit.moves, enemyUnit, playerUnit, statsU, statsT);
                 }
 
                 foreach (Moves a in enemyUnit.moves)

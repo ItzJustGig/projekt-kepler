@@ -335,4 +335,69 @@ public class StatMod : ScriptableObject
 
         return builder;
     }
+
+    public bool HowPositive()
+    {
+        bool change = false;
+
+        if (atkDmg < 0)
+            change  = true;
+
+        if (magicPower < 0)
+            change  = true;
+
+        if (hp < 0)
+            change  = true;
+
+        if (hpRegen < 0)
+            change  = true;
+
+        if (mana < 0)
+            change  = true;
+
+        if (manaRegen < 0)
+            change  = true;
+
+        if (stamina < 0)
+            change  = true;
+
+        if (staminaRegen < 0)
+            change  = true;
+
+        if (sanity < 0)
+            change  = true;
+
+        if (dmgResis < 0)
+            change  = true;
+
+        if (magicResis < 0)
+            change  = true;
+
+        if (critChance < 0)
+            change  = true;
+
+        if (critDmg < 0)
+            change  = true;
+
+        if (evasion < 0)
+            change  = true;
+
+        if (movSpeed < 0)
+            change  = true;
+
+        if (timing < 0)
+            change  = true;
+
+        if (accuracy < 0)
+            change  = true;
+
+        if (armourPen < 0)
+            change  = true;
+
+        if (lifesteal < 0)
+            change  = true;
+ 
+
+        return change;
+    }
 }

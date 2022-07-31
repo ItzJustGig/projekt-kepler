@@ -24,6 +24,8 @@ public class Character : ScriptableObject
 
     public Moves ultimate;
 
+    public AI ai;
+
     public Character GetCharcInfo()
     {
         Character charc = CreateInstance<Character>();
@@ -39,6 +41,7 @@ public class Character : ScriptableObject
         charc.moves = moves;
         charc.ultimate = ultimate;
         charc.recItems = recItems;
+        charc.ai = ai;
 
         return charc;
     }

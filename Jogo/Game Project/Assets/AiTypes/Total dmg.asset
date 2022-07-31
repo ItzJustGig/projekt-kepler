@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8f43cc6e3e0fc4e941dd4a34b15aec, type: 3}
+  m_Name: Total dmg
+  m_EditorClassIdentifier: 
+  totalPhyDmg: 15
+  totalMagicDmg: 15
+  totalSanityDmg: 10
+  totalDmg: 30
+  totalHealing: 5
+  totalShielding: 5
+  applySelectedEffects: 0
+  applyAnyEffect: 4
+  block: 3
+  selectedStatUp: 0
+  anyStatUp: 10
+  anyStatDown: 2
