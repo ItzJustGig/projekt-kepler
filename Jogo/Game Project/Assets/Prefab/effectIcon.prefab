@@ -81,12 +81,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
-  text: "<size=25><align=center>Blindness</align></size>\r\n<size=19><align=center><color=#B2B2B2>Effect</color></align></size>\r\n<s><align=center>|                
-    |</align></s>\r\nDoesn't allow the user to use:\r\n<color=#f75145>Ranged moves</color>\r\n<s><align=center>|                
-    |</align></s>\r\nTake <color=#b829ff>3-5 sanity damage</color> each turn.\r\n<s><align=center>|                
-    |</align></s>\r\n <color=#0095ff>-5% Movement Speed</color> to the user \r\n
-    <color=#227da1>-1,5% Evasion</color> to the user \r\n <color=#e04419>-40% Accuracy</color>
-    to the user \r\n"
+  text: "<size=25><align=center>Silence</align></size>\r\n<size=19><align=center><color=#B2B2B2>Effect</color></align></size>\r\n<s><align=center>|                
+    |</align></s>\r\nDoesn't allow the user to use:\r\n<color=#1a66ff>Magical moves</color>\r\n<color=#f0dd0a>Stat
+    Modifier moves</color>\r\n<color=#00ff11>Supportive moves</color>\r\n<s><align=center>|                
+    |</align></s>\r\n <color=#2d71fa>-15% Mana Regen</color> to the user \r\n"
 --- !u!1 &7183899527544666275
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +150,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c0b2803a4f1bfe3478d46974b26a66c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 66914981c69a85c43a71c542f5c98ac6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -240,4 +238,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3
+  m_Text: 5

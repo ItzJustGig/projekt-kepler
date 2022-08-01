@@ -110,6 +110,9 @@ public class AI : ScriptableObject
         foreach (Moves a in moves)
         {
             float chance = 0;
+            if (a.type == Moves.MoveType.ULT)
+                chance += 20;
+            
             if (a.inCooldown <= 0)
             {
                 BattleSystem.DMG it = default;

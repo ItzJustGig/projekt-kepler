@@ -40,3 +40,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b1c532fb12d09e54985832f3f7b92165, type: 2}
   - {fileID: 11400000, guid: e6874207e539c054cbbfe92c319c5e7d, type: 2}
   ultimate: {fileID: 11400000, guid: 4eac4fb07462e2644ac10a17e117c0a7, type: 2}
+  ai: {fileID: 11400000, guid: 60da61962b5c69f4f8e413ed01661356, type: 2}

@@ -2134,122 +2134,124 @@ public class BattleSystem : MonoBehaviour
         Moves move = null;
         bool skip = false;
 
-        if (enemyUnit.ult == 100)
+        if (enemyUnit.curMana < (enemyUnit.charc.stats.mana * 0.12) && !enemyUnit.moves.Contains(recoverManaMoveE))
+            enemyUnit.moves.Add(recoverManaMoveE);
+        else if (enemyUnit.curMana > (enemyUnit.charc.stats.mana * 0.12) && enemyUnit.moves.Contains(recoverManaMoveE))
+            enemyUnit.moves.Remove(recoverManaMoveE);
+
+        if (enemyUnit.ult == 100 && !enemyUnit.moves.Contains(enemyUnit.ultMove))
+            enemyUnit.moves.Add(enemyUnit.ultMove);
+        else if (enemyUnit.ult < 100 && enemyUnit.moves.Contains(enemyUnit.ultMove))
+            enemyUnit.moves.Remove(enemyUnit.ultMove);
+
+        int random = 0;
+        int i = 0;
+
+        foreach (Effects a in enemyUnit.effects)
         {
-            move = enemyUnit.charc.ultimate;
-            enemyUnit.ult = 0;
-        } else
+            if (!a.canUseMagic && !a.canUsePhysical && !a.canUseRanged && !a.canUseStatMod && !a.canUseSupp && !a.canUseProtec)
+                skip = true;
+        }
+
+        do
         {
-            if (enemyUnit.curMana < (enemyUnit.charc.stats.mana * 0.12) && !enemyUnit.moves.Contains(recoverManaMoveE))
-                enemyUnit.moves.Add(recoverManaMoveE);
-            else if (enemyUnit.curMana > (enemyUnit.charc.stats.mana * 0.12) && enemyUnit.moves.Contains(recoverManaMoveE))
-                enemyUnit.moves.Remove(recoverManaMoveE);
-
-            int random = 0;
-            int i = 0;
-
-            foreach (Effects a in enemyUnit.effects)
+            if (enemyUnit.curMana <= (enemyUnit.charc.stats.mana * 0.08))
             {
-                if (!a.canUseMagic && !a.canUsePhysical && !a.canUseRanged && !a.canUseStatMod && !a.canUseSupp && !a.canUseProtec)
-                    skip = true;
-            }
-
-            do
-            {
-                if (enemyUnit.curMana <= (enemyUnit.charc.stats.mana * 0.08))
+                if (Random.Range(0f, 1f) <= 0.95)
                 {
-                    if (Random.Range(0f, 1f) <= 0.95)
-                    {
-                        random = enemyUnit.moves.Count - 1;
-                    }
-                    else
-                        random = Random.Range(0, enemyUnit.moves.Count - 2);
+                    random = enemyUnit.moves.Count - 1;
                 }
                 else
-                {
-                    Stats statsU = enemyUnit.charc.stats.ReturnStats();
-                    if (enemyUnit.statMods.Count > 0)
-                        foreach (StatMod statMod in enemyUnit.statMods.ToArray())
-                        {
-                            statsU = SetModifiers(statMod.ReturnStats(), statsU.ReturnStats(), enemyUnit);
-                        }
-
-                    Stats statsT = playerUnit.charc.stats.ReturnStats();
-                    if (enemyUnit.statMods.Count > 0)
-                        foreach (StatMod statMod in playerUnit.statMods.ToArray())
-                        {
-                            statsT = SetModifiers(statMod.ReturnStats(), statsT.ReturnStats(), playerUnit);
-                        }
-
-                    random = enemyUnit.charc.ai.chooseMove(enemyUnit.moves, enemyUnit, playerUnit, statsU, statsT);
-                }
-
-                foreach (Moves a in enemyUnit.moves)
-                {
-                    if (!skip)
+                    random = Random.Range(0, enemyUnit.moves.Count - 2);
+            }
+            else
+            {
+                Stats statsU = enemyUnit.charc.stats.ReturnStats();
+                if (enemyUnit.statMods.Count > 0)
+                    foreach (StatMod statMod in enemyUnit.statMods.ToArray())
                     {
-                        if (i == random)
-                            if (enemyUnit.curMana >= a.manaCost && enemyUnit.curStamina >= a.staminaCost)
+                        statsU = SetModifiers(statMod.ReturnStats(), statsU.ReturnStats(), enemyUnit);
+                    }
+
+                Stats statsT = playerUnit.charc.stats.ReturnStats();
+                if (enemyUnit.statMods.Count > 0)
+                    foreach (StatMod statMod in playerUnit.statMods.ToArray())
+                    {
+                        statsT = SetModifiers(statMod.ReturnStats(), statsT.ReturnStats(), playerUnit);
+                    }
+
+                random = enemyUnit.charc.ai.chooseMove(enemyUnit.moves, enemyUnit, playerUnit, statsU, statsT);
+            }
+
+            foreach (Moves a in enemyUnit.moves)
+            {
+                if (!skip)
+                {
+                    if (i == random)
+                        if (enemyUnit.curMana >= a.manaCost && enemyUnit.curStamina >= a.staminaCost)
+                        {
+                            int inCd = a.inCooldown;
+
+                            if (inCd <= 0)
                             {
-                                int inCd = a.inCooldown;
+                                bool canUse = true;
 
-                                if (inCd <= 0)
+                                switch (a.type)
                                 {
-                                    bool canUse = true;
-
-                                    switch (a.type)
-                                    {
-                                        case Moves.MoveType.PHYSICAL:
-                                            if (!enemyUnit.canUsePhysical)
+                                    case Moves.MoveType.PHYSICAL:
+                                        if (!enemyUnit.canUsePhysical)
+                                            canUse = false;
+                                        break;
+                                    case Moves.MoveType.MAGICAL:
+                                        if (!enemyUnit.canUseMagic)
+                                            canUse = false;
+                                        break;
+                                    case Moves.MoveType.RANGED:
+                                        if (!enemyUnit.canUseRanged)
+                                            canUse = false;
+                                        break;
+                                    case Moves.MoveType.DEFFENCIVE:
+                                        if (!enemyUnit.canUseProtec)
+                                            canUse = false;
+                                        break;
+                                    case Moves.MoveType.SUPPORT:
+                                        if (!enemyUnit.canUseSupp)
+                                            canUse = false;
+                                        break;
+                                    case Moves.MoveType.STATMOD:
+                                        if (!enemyUnit.canUseStatMod)
+                                            canUse = false;
+                                        break;
+                                        /*case Moves.MoveType.DEPLOYABLE:
+                                            if (!enemyUnit.canUseDeploy)
                                                 canUse = false;
-                                            break;
-                                        case Moves.MoveType.MAGICAL:
-                                            if (!enemyUnit.canUseMagic)
-                                                canUse = false;
-                                            break;
-                                        case Moves.MoveType.RANGED:
-                                            if (!enemyUnit.canUseRanged)
-                                                canUse = false;
-                                            break;
-                                        case Moves.MoveType.DEFFENCIVE:
-                                            if (!enemyUnit.canUseProtec)
-                                                canUse = false;
-                                            break;
-                                        case Moves.MoveType.SUPPORT:
-                                            if (!enemyUnit.canUseSupp)
-                                                canUse = false;
-                                            break;
-                                        case Moves.MoveType.STATMOD:
-                                            if (!enemyUnit.canUseStatMod)
-                                                canUse = false;
-                                            break;
-                                            /*case Moves.MoveType.DEPLOYABLE:
-                                                if (!enemyUnit.canUseDeploy)
-                                                    canUse = false;
-                                                break;*/
-                                    }
-
-                                    if (canUse)
-                                        move = a;
+                                            break;*/
+                                    case Moves.MoveType.ULT:
+                                        enemyUnit.ult = 0;
+                                        break;
                                 }
-                                else
-                                    move = null;
+
+                                if (canUse)
+                                    move = a;
                             }
                             else
-                            {
                                 move = null;
-                            }
-                    }
-                    else
-                        move = a;
-
-                    i++;
+                        }
+                        else
+                        {
+                            move = null;
+                        }
                 }
-                i = 0;
-                StartCoroutine(WaitWhile());
-            } while (move == null);
+                else
+                    move = a;
 
-        }
+                i++;
+            }
+            i = 0;
+            StartCoroutine(WaitWhile());
+        } while (move == null);
+
+        
 
         if (skip)
             return null;

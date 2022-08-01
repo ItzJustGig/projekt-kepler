@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 2720
   hpRegen: 26
-  mana: 655
+  mana: 675
   manaRegen: 0.85
   stamina: 475
   staminaRegen: 1.2
   sanity: 200
-  atkDmg: 68
+  atkDmg: 70
   magicPower: 45
   critChance: 0.38
   critDmg: 0.5

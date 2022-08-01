@@ -38,6 +38,7 @@ public class Unit : MonoBehaviour
     public List<Dotdmg> dotDmg = new List<Dotdmg>();
 
     public List<Moves> moves = new List<Moves>();
+    public Moves ultMove;
     public List<Passives> passives = new List<Passives>();
     public List<Items> items = new List<Items>();
     public List<int> randomItems = new List<int>();
@@ -102,6 +103,8 @@ public class Unit : MonoBehaviour
         {
             moves.Add(move.ReturnMove());
         }
+        
+        ultMove = charc.ultimate.ReturnMove();
     }
 
     void Start()

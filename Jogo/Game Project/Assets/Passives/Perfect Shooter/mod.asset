@@ -23,7 +23,7 @@ MonoBehaviour:
   stamina: 0
   staminaRegen: 0
   sanity: 0
-  atkDmg: 0.04
+  atkDmg: 0.06
   magicPower: 0
   critChance: 0.0285
   critDmg: 0.017
