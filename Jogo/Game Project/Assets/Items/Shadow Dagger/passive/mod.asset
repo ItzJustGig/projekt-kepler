@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: mod
   m_EditorClassIdentifier: 
   flat: 1
-  time: 3
+  time: 2
   inTime: 0
   chance: 0
   hp: 0
@@ -34,4 +34,4 @@ MonoBehaviour:
   lifesteal: 0
   accuracy: 0
   evasion: 0
-  armourPen: 0.15
+  armourPen: 0.12

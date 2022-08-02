@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88548b2442bb3a547adf43b5c3d57278, type: 3}
   m_Name: TiredEffect
   m_EditorClassIdentifier: 
-  durationMin: 4
+  durationMin: 5
   durationMax: 6
   chance: 1
   targetPlayer: 1

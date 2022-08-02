@@ -650,7 +650,7 @@ public class BattleSystem : MonoBehaviour
             StartCoroutine(NewTurn());
     }
 
-    IEnumerator Attack(Moves move, Unit user, Unit target)
+    IEnumerator Attack(Moves move, Unit user, Unit target, string summonName = null)
     {
         if (move == null)
         {
@@ -663,7 +663,7 @@ public class BattleSystem : MonoBehaviour
             int staminaCost = move.staminaCost;
             foreach (Passives a in user.passives.ToArray())
             {
-                if (a.name == "zenmode")
+                if (a.name == "zenmode" && a.stacks == 1)
                 {
                     manaCost = manaCost / 2;
                     staminaCost = staminaCost / 2;
@@ -723,7 +723,11 @@ public class BattleSystem : MonoBehaviour
 
             if ((target.isBlockingPhysical && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)) || (target.isBlockingMagical && move.type is Moves.MoveType.MAGICAL) || (target.isBlockingRanged && move.type is Moves.MoveType.RANGED))
             {
-                dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
+                if (summonName != null)
+                    dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", summonName, langmanag.GetInfo("moves", move.name));
+                else
+                    dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
+
                 yield return new WaitForSeconds(1.15f);
                 target.TakeDamage(0, 0, false);
                 yield return new WaitForSeconds(0.8f);
@@ -1239,7 +1243,11 @@ public class BattleSystem : MonoBehaviour
                         }
                     }
 
-                    dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
+                    if (summonName != null)
+                        dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", summonName, langmanag.GetInfo("moves", move.name));
+                    else
+                        dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
+
                     dmg.heal += move.heal;
                     dmg.healMana += move.healMana;
                     dmg.healStamina += move.healStamina;

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-
 [CreateAssetMenu(fileName = "New Passive", menuName = "Passive")]
 public class Passives : ScriptableObject
 {
@@ -40,6 +39,8 @@ public class Passives : ScriptableObject
     {
         return statMod;
     }
+
+    
 
     public Passives ReturnPassive()
     {
