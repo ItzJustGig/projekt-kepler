@@ -58,8 +58,7 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] private GameObject panelEffectsP;
     [SerializeField] private GameObject panelEffectsE;
-    [SerializeField] private GameObject effectIconPrefab;
-    [SerializeField] private GameObject passiveIconPrefab;
+    [SerializeField] private GameObject barIconPrefab;
 
     [SerializeField] private Sprite phyAtk;
     [SerializeField] private Sprite magiAtk;
@@ -262,6 +261,18 @@ public class BattleSystem : MonoBehaviour
         playerUnit.randomItems.Clear();
         enemyUnit.randomItems.Clear();
 
+        //setup preset player items (testing porpuse)
+        foreach (Items a in playerUnit.items)
+        {
+            SetupItems(a, playerUnit);
+        }
+
+        //setup preset enemy items (testing porpuse)
+        foreach (Items a in enemyUnit.items)
+        {
+            SetupItems(a, enemyUnit);
+        }
+
         GetItems(playerUnit);
 
         GenItem(playerUnit, enemyUnit);
@@ -434,6 +445,19 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    void SetupItems(Items a, Unit unit)
+    {
+        foreach (Passives p in a.passives)
+        {
+            unit.passives.Add(p.ReturnPassive());
+        }
+
+        foreach (Moves m in a.moves)
+        {
+            unit.moves.Add(m.ReturnMove());
+        }
+    }
+
     void GetItems(Unit unit)
     {
         if (PlayerPrefs.GetInt("isEndless") == 1)
@@ -446,15 +470,7 @@ public class BattleSystem : MonoBehaviour
                     {
                         unit.items.Add(a.returnItem());
 
-                        foreach (Passives p in a.passives)
-                        {
-                            unit.passives.Add(p.ReturnPassive());
-                        }
-
-                        foreach (Moves m in a.moves)
-                        {
-                            unit.moves.Add(m.ReturnMove());
-                        }
+                        SetupItems(a, unit);
                     }   
                 }
             }
@@ -468,15 +484,7 @@ public class BattleSystem : MonoBehaviour
                     {
                         unit.items.Add(a.returnItem());
 
-                        foreach (Passives p in a.passives)
-                        {
-                            unit.passives.Add(p.ReturnPassive());
-                        }
-
-                        foreach (Moves m in a.moves)
-                        {
-                            unit.moves.Add(m.ReturnMove());
-                        }
+                        SetupItems(a, unit);
                     }
                 }
             } else
@@ -490,15 +498,7 @@ public class BattleSystem : MonoBehaviour
                         {
                             unit.items.Add(a.returnItem());
 
-                            foreach (Passives p in a.passives)
-                            {
-                                unit.passives.Add(p.ReturnPassive());
-                            }
-
-                            foreach (Moves m in a.moves)
-                            {
-                                unit.moves.Add(m.ReturnMove());
-                            }
+                            SetupItems(a, unit);
                         }
                             
                     }
@@ -1362,7 +1362,6 @@ public class BattleSystem : MonoBehaviour
 
                                         if (!skipEffect)
                                         {
-
                                             effect.duration = Random.Range(a.durationMin, a.durationMax) + 1;
 
                                             if (a.targetPlayer)
@@ -1371,31 +1370,11 @@ public class BattleSystem : MonoBehaviour
 
                                                 if (!user.isEnemy)
                                                 {
-                                                    effectIconPrefab.name = effect.id;
-
-                                                    Image icon = effectIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
-                                                    icon.sprite = effect.sprite;
-                                                    Text text = effectIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
-                                                    text.text = effect.duration.ToString();
-                                                    TooltipButton tooltipButton = effectIconPrefab.transform.GetComponent<TooltipButton>();
-                                                    tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
-                                                    tooltipButton.text = effect.GetEffectInfo();
-
-                                                    Instantiate(effectIconPrefab, panelEffectsP.transform);
+                                                    SetEffectIcon(effect, panelEffectsP);
                                                 }
                                                 else
                                                 {
-                                                    effectIconPrefab.name = effect.id;
-
-                                                    Image icon = effectIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
-                                                    icon.sprite = effect.sprite;
-                                                    Text text = effectIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
-                                                    text.text = effect.duration.ToString();
-                                                    TooltipButton tooltipButton = effectIconPrefab.transform.GetComponent<TooltipButton>();
-                                                    tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
-                                                    tooltipButton.text = effect.GetEffectInfo();
-
-                                                    Instantiate(effectIconPrefab, panelEffectsE.transform);
+                                                    SetEffectIcon(effect, panelEffectsE);
                                                 }
 
                                                 foreach (StatMod b in effect.statMods)
@@ -1417,31 +1396,11 @@ public class BattleSystem : MonoBehaviour
 
                                                 if (!target.isEnemy)
                                                 {
-                                                    effectIconPrefab.name = effect.id;
-
-                                                    Image icon = effectIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
-                                                    icon.sprite = effect.sprite;
-                                                    Text text = effectIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
-                                                    text.text = effect.duration.ToString();
-                                                    TooltipButton tooltipButton = effectIconPrefab.transform.GetComponent<TooltipButton>();
-                                                    tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
-                                                    tooltipButton.text = effect.GetEffectInfo();
-
-                                                    Instantiate(effectIconPrefab, panelEffectsP.transform);
+                                                    SetEffectIcon(effect, panelEffectsP);
                                                 }
                                                 else
                                                 {
-                                                    effectIconPrefab.name = effect.id;
-
-                                                    Image icon = effectIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
-                                                    icon.sprite = effect.sprite;
-                                                    Text text = effectIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
-                                                    text.text = effect.duration.ToString();
-                                                    TooltipButton tooltipButton = effectIconPrefab.transform.GetComponent<TooltipButton>();
-                                                    tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
-                                                    tooltipButton.text = effect.GetEffectInfo();
-
-                                                    Instantiate(effectIconPrefab, panelEffectsE.transform);
+                                                    SetEffectIcon(effect, panelEffectsE);
                                                 }
 
                                                 foreach (StatMod b in effect.statMods)
@@ -1503,6 +1462,11 @@ public class BattleSystem : MonoBehaviour
                                         usedEnMod = true;
                                     }
                                 }
+                            }
+
+                            if (move.summon != null)
+                            {
+                                user.summons.Add(move.summon.ReturnSummon());
                             }
 
                             foreach (StatScale scale in move.scale)
@@ -1902,6 +1866,21 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    void SetEffectIcon(Effects effect, GameObject pannel)
+    {
+        barIconPrefab.name = effect.id;
+
+        Image icon = barIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
+        icon.sprite = effect.sprite;
+        Text text = barIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
+        text.text = effect.duration.ToString();
+        TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
+        tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
+        tooltipButton.text = effect.GetEffectInfo();
+
+        Instantiate(barIconPrefab, pannel.transform);
+    }
+
     void SetUltNumber(Unit user, BattleHud hud, float dmg, bool isDealt)
     {
         if (user.ult < 100)
@@ -1979,11 +1958,6 @@ public class BattleSystem : MonoBehaviour
 
         return dmg;
     }
-
-    /*bool SetDOT()
-    {
-        
-    }*/
 
     float SetScale(StatScale scale, Stats stats, Unit user)
     {
@@ -2729,21 +2703,21 @@ public class BattleSystem : MonoBehaviour
 
     void CreatePassiveIcon(Sprite pIcon, string name, string num, bool isEnemy, string passiveDesc)
     {
-        passiveIconPrefab.name = name;
+        barIconPrefab.name = name;
 
-        Image icon = passiveIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
+        Image icon = barIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
         icon.sprite = pIcon;
-        Text text = passiveIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
+        Text text = barIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
         text.text = num.ToString();
 
-        TooltipButton tooltipButton = passiveIconPrefab.transform.GetComponent<TooltipButton>();
+        TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
         tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
         tooltipButton.text = passiveDesc;
 
         if (!isEnemy)
-            Instantiate(passiveIconPrefab, panelEffectsP.transform);
+            Instantiate(barIconPrefab, panelEffectsP.transform);
         else
-            Instantiate(passiveIconPrefab, panelEffectsE.transform);
+            Instantiate(barIconPrefab, panelEffectsE.transform);
     }
 
     void ManagePassiveIcon(Sprite pIcon, string name, string num, bool isEnemy, string passiveDesc)
@@ -3366,28 +3340,6 @@ public class BattleSystem : MonoBehaviour
                 }
             }
 
-            if (a.name == "fighterinstinct")
-            {
-                //hp in %
-                int hpPer = (int)((100 * user.curHp) / user.charc.stats.hp);
-
-                if (hpPer < 100)
-                {
-                    a.stacks = (int)(100 - hpPer);
-
-                    StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
-                    ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
-                }
-                else if (hpPer > (a.num * 100))
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                }
-            }
-
             if (a.name == "manasword")
             {
                 if (a.stacks > 0)
@@ -3496,7 +3448,6 @@ public class BattleSystem : MonoBehaviour
 
         if (!isTired)
         {
-
             //get effect
             Effects effect = tired.effect.ReturnEffect();
             effect.duration = Random.Range(tired.durationMin, tired.durationMax);
@@ -3517,19 +3468,19 @@ public class BattleSystem : MonoBehaviour
                 SetModifiers(statMod, user.charc.stats.ReturnStats(), user);
             }
 
-            effectIconPrefab.name = effect.id;
+            barIconPrefab.name = effect.id;
 
             //display effect icon
-            Image icon = effectIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
+            Image icon = barIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
             icon.sprite = effect.sprite;
-            Text text = effectIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
+            Text text = barIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
             text.text = effect.duration.ToString();
             //display popup info on icon
-            TooltipButton tooltipButton = effectIconPrefab.transform.GetComponent<TooltipButton>();
+            TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
             tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
             tooltipButton.text = effect.GetEffectInfo();
 
-            Instantiate(effectIconPrefab, pannel.transform);
+            Instantiate(barIconPrefab, pannel.transform);
         }
     }
 
@@ -3569,18 +3520,103 @@ public class BattleSystem : MonoBehaviour
                 SetModifiers(statMod, user.charc.stats.ReturnStats(), user);
             }
 
-            effectIconPrefab.name = effect.id;
+            barIconPrefab.name = effect.id;
 
-            Image icon = effectIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
+            Image icon = barIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
             icon.sprite = effect.sprite;
-            Text text = effectIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
+            Text text = barIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
             text.text = effect.duration.ToString();
-            TooltipButton tooltipButton = effectIconPrefab.transform.GetComponent<TooltipButton>();
+            TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
             tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
             tooltipButton.text = effect.GetEffectInfo();
 
-            Instantiate(effectIconPrefab, pannel.transform);
+            Instantiate(barIconPrefab, pannel.transform);
         }
+    }
+
+    public bool SummonDmg(int sdmg, Unit user)
+    {
+        Stats stats = user.charc.stats.ReturnStats();
+        if (user.statMods.Count > 0)
+            foreach (StatMod statMod in user.statMods.ToArray())
+            {
+                stats = SetModifiers(statMod.ReturnStats(), stats.ReturnStats(), user);
+            }
+
+        
+
+        float shieldedDmg = 0;
+        bool isDead = false;
+
+        /*if (a.type is Dotdmg.DmgType.PHYSICAL || a.type is Dotdmg.DmgType.MAGICAL || a.type is Dotdmg.DmgType.TRUE)
+        {*/
+            if (user.curShield > 0)
+            {
+                float tempDmg = sdmg;
+                float tempShield = user.curShield;
+
+                sdmg -= (int)user.curShield;
+                user.curShield -= tempDmg;
+
+                if (user.curShield < 0)
+                    user.curShield = 0;
+
+                shieldedDmg = tempShield - user.curShield;
+            }
+
+            if (sdmg > 0 || shieldedDmg > 0)
+                isDead = user.TakeDamage(sdmg, shieldedDmg, false);
+        //}
+
+        return isDead;
+    }
+
+    bool SpawnSummon(Summon sum, Unit summoner, Unit target, GameObject pannel)
+    {
+        if (sum.summonTurn == 0)
+        {
+            Debug.Log("I REACH");
+            Stats statsSum = summoner.charc.stats.ReturnStats();
+
+            if (summoner.statMods.Count > 0)
+                foreach (StatMod statMod in summoner.statMods.ToArray())
+                {
+                    statsSum = SetModifiers(statMod.ReturnStats(), statsSum.ReturnStats(), summoner);
+                }
+
+            sum.SetupStats(statsSum);
+            sum.summonTurn = turnCount;
+            string name = sum.name + sum.summonTurn;
+
+            if (!pannel.transform.Find(name + "(Clone)"))
+            {
+                barIconPrefab.name = name;
+                Image icon = barIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
+                icon.sprite = sum.icon;
+                Text text = barIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
+                text.text = sum.stats.hp.ToString();
+                TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
+                tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
+                tooltipButton.text = sum.name;
+                Instantiate(barIconPrefab, pannel.transform);
+            }
+        }
+        else
+        {
+            string name = sum.name + sum.summonTurn;
+            if (sum.stats.hp > 0)
+            {
+                pannel.transform.Find(name + "(Clone)").gameObject.transform.Find("time").gameObject.GetComponent<Text>().text = sum.stats.hp.ToString();
+                return SummonDmg((int)(sum.stats.atkDmg + sum.stats.magicPower), target);
+            }
+            else
+            {
+                Destroy(pannel.transform.Find(name + "(Clone)").gameObject);
+                summoner.summons.Remove(sum);
+            }
+        }
+
+        return false;
     }
 
     IEnumerator NewTurn()
@@ -3601,9 +3637,26 @@ public class BattleSystem : MonoBehaviour
                 enemyCanTired = false;
         }
 
-        
         Stats statsP = playerUnit.charc.stats.ReturnStats();
         Stats statsE = enemyUnit.charc.stats.ReturnStats();
+
+        foreach (Summon a in playerUnit.summons.ToArray())
+        {
+            bool isDead = SpawnSummon(a, playerUnit, enemyUnit, panelEffectsP);
+            yield return new WaitForSeconds(0.45f);
+
+            if (isDead)
+                state = BattleState.WIN;
+        }
+
+        foreach (Summon a in enemyUnit.summons.ToArray())
+        {
+            bool isDead = SpawnSummon(a, enemyUnit, playerUnit, panelEffectsE);
+            yield return new WaitForSeconds(0.45f);
+
+            if (isDead)
+                state = BattleState.LOSE;
+        }
 
         //apply tired
         if (playerUnit.curStamina <= (int)(statsP.stamina * (tiredStart + (tiredGrowth * tiredStacks))) && userCanTired)
@@ -3615,8 +3668,6 @@ public class BattleSystem : MonoBehaviour
         {
             ApplyTired(enemyUnit, panelEffectsE);
         }
-        
-        
 
         playerUnit.ResetCanUse();
         enemyUnit.ResetCanUse();

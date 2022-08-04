@@ -68,8 +68,11 @@ MonoBehaviour:
   effects: []
   dotDmg: []
   moves: []
+  ultMove: {fileID: 0}
   passives: []
-  items: []
+  items:
+  - {fileID: 11400000, guid: 4b56fe408866778478e92eb4df412ba2, type: 2}
+  randomItems: 
   champions: {fileID: 2608767493649050923, guid: 90529f41d877af04ea013531ad0f93be,
     type: 3}
   monsters: {fileID: 6444865754111552574, guid: 650d656b1a6955b40b1d832e38f12b8a,

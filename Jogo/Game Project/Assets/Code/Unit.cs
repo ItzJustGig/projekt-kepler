@@ -36,6 +36,7 @@ public class Unit : MonoBehaviour
     public List<StatMod> statMods = new List<StatMod>();
     public List<Effects> effects = new List<Effects>();
     public List<Dotdmg> dotDmg = new List<Dotdmg>();
+    public List<Summon> summons = new List<Summon>();
 
     public List<Moves> moves = new List<Moves>();
     public Moves ultMove;
@@ -249,6 +250,12 @@ public class Unit : MonoBehaviour
         }
 
         curHp -= dmgTaken;
+
+        foreach (Summon sum in summons)
+        {
+            if (sum.summonTurn > 0)
+                sum.stats.hp -= dmgTaken;
+        }
 
         if (curHp <= 0)
             return true;

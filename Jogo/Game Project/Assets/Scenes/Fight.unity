@@ -12165,9 +12165,7 @@ MonoBehaviour:
     type: 3}
   panelEffectsP: {fileID: 585844292}
   panelEffectsE: {fileID: 1631584764}
-  effectIconPrefab: {fileID: 1160273495328443001, guid: d80e3307e8973cd45ac041defbdf3877,
-    type: 3}
-  passiveIconPrefab: {fileID: 1160273495328443001, guid: 615a876614a902c47a0f1897a499aa4f,
+  barIconPrefab: {fileID: 1160273495328443001, guid: 615a876614a902c47a0f1897a499aa4f,
     type: 3}
   phyAtk: {fileID: 21300000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
   magiAtk: {fileID: 21300000, guid: a9d8d1d7eee74734990bceef438f0a17, type: 3}
@@ -23226,6 +23224,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 246563765}
     m_Modifications:
+    - target: {fileID: 1366766335801785088, guid: 80e82e60849bd724190529b9dab9ce4f,
+        type: 3}
+      propertyPath: list.Array.size
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366766335801785088, guid: 80e82e60849bd724190529b9dab9ce4f,
+        type: 3}
+      propertyPath: list.Array.data[19]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1366766335801785089, guid: 80e82e60849bd724190529b9dab9ce4f,
         type: 3}
       propertyPath: m_Name

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5402589726835618836}
   - component: {fileID: 4546396695150761900}
   - component: {fileID: 5967449665590307584}
-  - component: {fileID: 3638789322598327904}
+  - component: {fileID: 536263649935217228}
   m_Layer: 5
-  m_Name: effectIcon
+  m_Name: barIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &3638789322598327904
+--- !u!114 &536263649935217228
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,10 +81,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
-  text: "<size=25><align=center>Silence</align></size>\r\n<size=19><align=center><color=#B2B2B2>Effect</color></align></size>\r\n<s><align=center>|                
-    |</align></s>\r\nDoesn't allow the user to use:\r\n<color=#1a66ff>Magical moves</color>\r\n<color=#f0dd0a>Stat
-    Modifier moves</color>\r\n<color=#00ff11>Supportive moves</color>\r\n<s><align=center>|                
-    |</align></s>\r\n <color=#2d71fa>-15% Mana Regen</color> to the user \r\n"
+  text: "<size=25><align=center>Bull's Rage</align></size>\r\n<size=19><align=center><color=#B2B2B2>Passive</color></align></size>\r\n\r\nWhen
+    the user is below <color=#00ff11>30% health</color> gain  <color=#ffaa00>30%
+    Attack Damage</color>  \r\n <color=#f75145>14% Critical Chance</color>  \r\n
+    <color=#f75145>20% Critical Damage</color>  \r\n <color=#946ACD>13% Magic Resistance</color> 
+    \r\n <color=#0095ff>8% Movement Speed</color>  \r\n <color=#227da1>-2,9% Evasion</color> 
+    \r\n\r\n"
 --- !u!1 &7183899527544666275
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +152,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 66914981c69a85c43a71c542f5c98ac6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: abef0f4889b19254a99eb2b94280c7fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -194,8 +196,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015259, y: -6.6}
-  m_SizeDelta: {x: 25.00003, y: 16.159058}
+  m_AnchoredPosition: {x: 0.0019428, y: -6.6}
+  m_SizeDelta: {x: 25.003937, y: 16.159058}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3892656255660345959
 CanvasRenderer:
@@ -218,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 1}
+  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -227,15 +229,15 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b03279c5f598ca845b5882dfca378369, type: 3}
-    m_FontSize: 14
+    m_FontSize: 16
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 8
     m_AlignByGeometry: 1
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: 

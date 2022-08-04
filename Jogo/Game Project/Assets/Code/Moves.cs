@@ -48,6 +48,7 @@ public class Moves : ScriptableObject
     public List<EffectsMove> effects = new List<EffectsMove>();
 
     public Passives grantPassive;
+    public Summon summon;
 
     public Moves ReturnMove()
     {
@@ -93,6 +94,7 @@ public class Moves : ScriptableObject
         move.scale = scale;
         move.dot = dot;
         move.effects = effects;
+        move.summon = summon;
 
         return move;
     }
