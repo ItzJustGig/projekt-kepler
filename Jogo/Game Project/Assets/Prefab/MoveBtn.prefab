@@ -807,6 +807,8 @@ MonoBehaviour:
     <s><align=center>|                
     |</align></s>
 
+    Deal <color=#ffaa00>50 physical damage</color>
+
 '
 --- !u!1 &7954924222130100152
 GameObject:
@@ -886,7 +888,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 2
 --- !u!1 &7954924222182827413
 GameObject:
   m_ObjectHideFlags: 0

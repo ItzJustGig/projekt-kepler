@@ -31,7 +31,7 @@ MonoBehaviour:
   shield: 0
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 0
+  cooldown: 2
   inCooldown: 0
   manaCost: 0
   staminaCost: 0
@@ -43,4 +43,4 @@ MonoBehaviour:
   dot: []
   effects: []
   grantPassive: {fileID: 0}
-  summon: {fileID: 0}
+  summon: {fileID: 11400000, guid: be6c8457b774cf44cb9b2a0fa38516cc, type: 2}

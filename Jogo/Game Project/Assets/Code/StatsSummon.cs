@@ -11,9 +11,6 @@ public class StatsSummon : ScriptableObject
     public float magicPower;
 
     public float movSpeed;
-    public float lifesteal;
-
-    public float armourPen;
 
     public StatsSummon ReturnStats()
     {
@@ -22,8 +19,6 @@ public class StatsSummon : ScriptableObject
         stats.atkDmg = atkDmg;
         stats.magicPower = magicPower;
         stats.movSpeed = movSpeed;
-        stats.lifesteal = lifesteal;
-        stats.armourPen = armourPen;
 
         return stats;
     }

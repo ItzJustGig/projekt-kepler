@@ -15,5 +15,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 5ead55c0144e0f64f9ec67c5151449d3, type: 3}
   name: Banana
   stats: {fileID: 11400000, guid: 789dc5b2113f39348b0680d7b44af4c4, type: 2}
-  move: {fileID: 11400000, guid: 387b042a5e925e14d8f240e185586f1d, type: 2}
+  move: {fileID: 11400000, guid: 47251a17e6e2e2448afad7f5d536b9c4, type: 2}
   summonTurn: 0

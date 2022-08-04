@@ -19,7 +19,7 @@ public class Effects : ScriptableObject
     public bool canUseSupp = true;
     public bool canUseProtec = true;
     public bool canUseStatMod = true;
-    //public bool canUseDeploy = true;
+    public bool canUseSummon = true;
 
     public int phyDmgMin;
     public int phyDmgMax;

@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392d994d87c0d7c408e70a78e83a6ef7, type: 3}
   m_Name: stats
   m_EditorClassIdentifier: 
-  hp: 0.2
-  atkDmg: 10
-  magicPower: 10
+  hp: 0.85
+  atkDmg: 0.65
+  magicPower: 0.8
   movSpeed: 0.35
-  lifesteal: 0.1
-  armourPen: 0.1

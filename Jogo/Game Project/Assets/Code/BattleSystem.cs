@@ -1243,10 +1243,7 @@ public class BattleSystem : MonoBehaviour
                         }
                     }
 
-                    if (summonName != null)
-                        dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", summonName, langmanag.GetInfo("moves", move.name));
-                    else
-                        dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
+                    dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
 
                     dmg.heal += move.heal;
                     dmg.healMana += move.healMana;
@@ -1486,7 +1483,7 @@ public class BattleSystem : MonoBehaviour
 
                                 dmg.AddDmg(SetScaleDmg(scale, stats, unit));
                             }
-
+    
                             float dmgMitigated = 0;
 
                             if (dmg.phyDmg > 0)
@@ -3534,39 +3531,116 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public bool SummonDmg(int sdmg, Unit user)
+    public bool SummonDmg(SumMove move, StatsSummon statsSum, Unit target, Unit summoner, BattleHud targetHud)
     {
-        Stats stats = user.charc.stats.ReturnStats();
-        if (user.statMods.Count > 0)
-            foreach (StatMod statMod in user.statMods.ToArray())
+        Stats statsT = target.charc.stats.ReturnStats();
+        if (target.statMods.Count > 0)
+            foreach (StatMod statMod in target.statMods.ToArray())
             {
-                stats = SetModifiers(statMod.ReturnStats(), stats.ReturnStats(), user);
+                statsT = SetModifiers(statMod.ReturnStats(), statsT.ReturnStats(), target);
             }
 
-        
+        Stats statsS = summoner.charc.stats.ReturnStats();
+        if (target.statMods.Count > 0)
+            foreach (StatMod statMod in target.statMods.ToArray())
+            {
+                statsS = SetModifiers(statMod.ReturnStats(), statsS.ReturnStats(), target);
+            }
+
+        bool isDead = false;
+        bool isCrit = false;
+        float dmg = move.getDmg(statsSum);
+
+        float dmgMitigated = 0;
+
+        switch (move.dmgType)
+        {
+            case SumMove.DmgType.PHYSICAL:
+
+                if (Random.Range(0f, 1f) < statsS.critChance)
+                    isCrit = true;
+
+                if (dmg > 0)
+                {
+                    if (isCrit == true)
+                    {
+                        dmg += dmg * statsS.critDmg;
+                    }
+                }
+                else
+                    isCrit = false;
+
+                if (dmg > 0)
+                {
+                    summoner.phyDmgDealt += dmg;
+                    dmgMitigated = (float)(statsT.dmgResis * 0.18);
+                    dmg -= dmgMitigated;
+                    target.phyDmgMitigated += dmgMitigated;
+                }
+
+                target.phyDmgTaken += dmg;
+
+                break;
+            case SumMove.DmgType.MAGICAL:
+                if (dmg > 0)
+                {
+                    summoner.magicDmgDealt += dmg;
+                    dmgMitigated = (float)(statsT.magicResis * 0.12);
+                    dmg -= dmgMitigated;
+                    target.magicDmgMitigated += dmgMitigated;
+                }
+
+                target.magicDmgTaken += dmg;
+                break;
+            case SumMove.DmgType.TRUE:
+                target.trueDmgTaken += dmg;
+                break;
+            case SumMove.DmgType.HEAL:
+                if (dmg > 0)
+                {
+                    summoner.healDone += dmg;
+                    summoner.Heal(dmg);
+                }
+                break;
+        }
 
         float shieldedDmg = 0;
-        bool isDead = false;
 
-        /*if (a.type is Dotdmg.DmgType.PHYSICAL || a.type is Dotdmg.DmgType.MAGICAL || a.type is Dotdmg.DmgType.TRUE)
-        {*/
-            if (user.curShield > 0)
+        if (target.curShield > 0)
+        {
+            float tempDmg = dmg;
+            float tempShield = target.curShield;
+
+            dmg -= target.curShield;
+            target.curShield -= tempDmg;
+
+            if (target.curShield < 0)
+                target.curShield = 0;
+
+            shieldedDmg = tempShield - target.curShield;
+        }
+
+        if ((dmg > 0 && (move.dmgType != SumMove.DmgType.HEAL)) || shieldedDmg > 0)
+        {
+            isDead = target.TakeDamage(dmg, shieldedDmg, isCrit);
+            SetUltNumber(target, targetHud, (dmg + shieldedDmg), false);
+        }
+
+        if (move.sanityDmg > 0)
+        {
+            if ((target.curSanity - move.sanityDmg) >= 0)
             {
-                float tempDmg = sdmg;
-                float tempShield = user.curShield;
-
-                sdmg -= (int)user.curShield;
-                user.curShield -= tempDmg;
-
-                if (user.curShield < 0)
-                    user.curShield = 0;
-
-                shieldedDmg = tempShield - user.curShield;
+                target.curSanity -= move.sanityDmg;
+            }
+            else
+            {
+                move.sanityDmg = target.curSanity;
+                target.curSanity = 0;
             }
 
-            if (sdmg > 0 || shieldedDmg > 0)
-                isDead = user.TakeDamage(sdmg, shieldedDmg, false);
-        //}
+            summoner.sanityDmgDealt += move.sanityDmg;
+            target.sanityDmgTaken += move.sanityDmg;
+        }
 
         return isDead;
     }
@@ -3575,7 +3649,6 @@ public class BattleSystem : MonoBehaviour
     {
         if (sum.summonTurn == 0)
         {
-            Debug.Log("I REACH");
             Stats statsSum = summoner.charc.stats.ReturnStats();
 
             if (summoner.statMods.Count > 0)
@@ -3607,7 +3680,18 @@ public class BattleSystem : MonoBehaviour
             if (sum.stats.hp > 0)
             {
                 pannel.transform.Find(name + "(Clone)").gameObject.transform.Find("time").gameObject.GetComponent<Text>().text = sum.stats.hp.ToString();
-                return SummonDmg((int)(sum.stats.atkDmg + sum.stats.magicPower), target);
+                if (sum.move.inCd <= 0)
+                {
+                    dialogText.text = name + " is attacking.";//langmanag.GetInfo("gui", "text", "turn", turnCount);
+                    sum.move.inCd = sum.move.cd;
+                    if (target.isEnemy)
+                        return SummonDmg(sum.move, sum.stats, target, summoner, enemyHUD);
+                    else
+                        return SummonDmg(sum.move, sum.stats, target, summoner, playerHUD);
+                } else
+                {
+                    sum.move.inCd--;
+                }
             }
             else
             {
@@ -3643,7 +3727,7 @@ public class BattleSystem : MonoBehaviour
         foreach (Summon a in playerUnit.summons.ToArray())
         {
             bool isDead = SpawnSummon(a, playerUnit, enemyUnit, panelEffectsP);
-            yield return new WaitForSeconds(0.45f);
+            yield return new WaitForSeconds(0.5f);
 
             if (isDead)
                 state = BattleState.WIN;
@@ -3652,7 +3736,7 @@ public class BattleSystem : MonoBehaviour
         foreach (Summon a in enemyUnit.summons.ToArray())
         {
             bool isDead = SpawnSummon(a, enemyUnit, playerUnit, panelEffectsE);
-            yield return new WaitForSeconds(0.45f);
+            yield return new WaitForSeconds(0.5f);
 
             if (isDead)
                 state = BattleState.LOSE;

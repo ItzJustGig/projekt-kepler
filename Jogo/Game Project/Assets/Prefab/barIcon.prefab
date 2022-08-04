@@ -81,12 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
-  text: "<size=25><align=center>Bull's Rage</align></size>\r\n<size=19><align=center><color=#B2B2B2>Passive</color></align></size>\r\n\r\nWhen
-    the user is below <color=#00ff11>30% health</color> gain  <color=#ffaa00>30%
-    Attack Damage</color>  \r\n <color=#f75145>14% Critical Chance</color>  \r\n
-    <color=#f75145>20% Critical Damage</color>  \r\n <color=#946ACD>13% Magic Resistance</color> 
-    \r\n <color=#0095ff>8% Movement Speed</color>  \r\n <color=#227da1>-2,9% Evasion</color> 
-    \r\n\r\n"
+  text: Banana
 --- !u!1 &7183899527544666275
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: abef0f4889b19254a99eb2b94280c7fd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ead55c0144e0f64f9ec67c5151449d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -240,4 +235,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 2652

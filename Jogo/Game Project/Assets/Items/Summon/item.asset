@@ -17,7 +17,7 @@ MonoBehaviour:
   passives: []
   statmod: []
   moves:
-  - {fileID: 11400000, guid: 47251a17e6e2e2448afad7f5d536b9c4, type: 2}
+  - {fileID: 11400000, guid: 387b042a5e925e14d8f240e185586f1d, type: 2}
   rarity: 0
   minPrice: 0
   maxPrice: 0

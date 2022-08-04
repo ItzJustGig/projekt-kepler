@@ -31,7 +31,7 @@ public class Unit : MonoBehaviour
     public bool canUseSupp = true;
     public bool canUseProtec = true;
     public bool canUseStatMod = true;
-    //public bool canUseDeploy = true;
+    public bool canUseSummon = true;
 
     public List<StatMod> statMods = new List<StatMod>();
     public List<Effects> effects = new List<Effects>();
@@ -200,7 +200,7 @@ public class Unit : MonoBehaviour
                 canUseSupp = canUseSupp && a.canUseSupp;
                 canUseProtec = canUseProtec && a.canUseProtec;
                 canUseStatMod = canUseStatMod && a.canUseStatMod;
-                //canUseDeploy = true;
+                canUseSummon = canUseSummon && a.canUseSummon;
 
                 panelEffects.transform.Find(a.id + "(Clone)").gameObject.transform.Find("time").gameObject.GetComponent<Text>().text = a.duration.ToString();
             }
@@ -254,7 +254,7 @@ public class Unit : MonoBehaviour
         foreach (Summon sum in summons)
         {
             if (sum.summonTurn > 0)
-                sum.stats.hp -= dmgTaken;
+                sum.stats.hp -= dmgTaken+shieldDmg;
         }
 
         if (curHp <= 0)

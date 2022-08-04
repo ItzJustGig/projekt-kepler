@@ -9,7 +9,7 @@ public class Summon : ScriptableObject
     public Sprite icon;
     public new string name;
     public StatsSummon stats;
-    public Moves move;
+    public SumMove move;
     public int summonTurn = 0;
 
     public Summon ReturnSummon()
@@ -18,7 +18,7 @@ public class Summon : ScriptableObject
         summon.name = name;
         summon.icon = icon;
         summon.stats = stats.ReturnStats();
-        summon.move = move;
+        summon.move = move.ReturnMove();
         summon.summonTurn = summonTurn;
 
         return summon;
