@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: stats
   m_EditorClassIdentifier: 
   hp: 0.85
-  atkDmg: 0.65
-  magicPower: 0.8
+  atkDmg: 0.2
+  magicPower: 1.2
   movSpeed: 0.35

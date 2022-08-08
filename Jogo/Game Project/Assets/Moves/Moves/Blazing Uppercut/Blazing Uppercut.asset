@@ -16,6 +16,7 @@ MonoBehaviour:
   name: blazinguppercut
   hitTime: 1
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -30,7 +31,7 @@ MonoBehaviour:
   shield: 0
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 5
+  cooldown: 6
   inCooldown: 0
   manaCost: 30
   staminaCost: 85
@@ -41,6 +42,8 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: 97d382f16c7b0c74bb89ebef8b26764f, type: 2}
   - {fileID: 11400000, guid: ac5fc6f863a6370459ff3ee03fe4abfa, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: 4379fe44145b4b74fab3d8e195d12bd8, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}

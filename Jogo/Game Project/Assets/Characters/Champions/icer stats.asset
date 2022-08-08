@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
-  m_Name: hestia stats
+  m_Name: icer stats
   m_EditorClassIdentifier: 
-  hp: 3040
-  hpRegen: 29
-  mana: 490
-  manaRegen: 0.6
-  stamina: 655
-  staminaRegen: 0.9
-  sanity: 160
-  atkDmg: 53
-  magicPower: 43
+  hp: 2350
+  hpRegen: 25
+  mana: 755
+  manaRegen: 1.5
+  stamina: 460
+  staminaRegen: 0.5
+  sanity: 175
+  atkDmg: 38
+  magicPower: 78
   critChance: 0.2
-  critDmg: 0.22
-  dmgResis: 86
-  magicResis: 54
-  timing: 3
+  critDmg: 0.1
+  dmgResis: 64
+  magicResis: 56
+  timing: 3.5
   movSpeed: 290
   lifesteal: 0
   accuracy: 1

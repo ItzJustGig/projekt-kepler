@@ -21,14 +21,14 @@ MonoBehaviour:
   mana: 0
   manaRegen: 0
   stamina: 0
-  staminaRegen: 0
+  staminaRegen: 0.15
   sanity: 0
-  atkDmg: 0
+  atkDmg: 0.24
   magicPower: 0
-  critChance: 0.003
-  critDmg: 0
-  dmgResis: 0
-  magicResis: 0
+  critChance: 0.15
+  critDmg: 0.1
+  dmgResis: -0.14
+  magicResis: -0.18
   timing: 0
   movSpeed: 0
   lifesteal: 0

@@ -352,7 +352,7 @@
 			"bloodpumping": "The user regen %scale% every turn for %cd% turns, but if its with Blood loses the same amount of health.",
 			"huntingseason": "The user deal bonus <color=#f75145>%num%% damage</color> for %cd% turns.",
 			"blazingfists": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> or <color=#ffaa00>basic attacks</color> for %cd% turns.",
-			"fighterinstinct": "The user gain %mod%per <color=#00ff11>1% of missing health</color>",
+			"fighterinstinct": "When the user is below %num%% health, gain %mod% and deal bonus %scale% on physical moves and basic attacks.",
 			"successoroffire": "The user deal bonus %scale% to Burn enemies with <color=#ffaa00>physical</color>, <color=#0055ff>magical</color> and <color=#f75145>ranged moves</color>, also gain bonus <color=#ffaa00>+(<color=#0055ff>%num%% magic power</color>) attack damage</color>.",
 			"zenmode": "The user is immune to Tired, but when is bellow %num%% stamina, gain %mod%, the user's moves have its costs halved and regen %scale% and %scale2% until the user is at %maxNum%% stamina.",
 			"baby": "But its just a baby! (Some of your stats were lowered by %num%%)",

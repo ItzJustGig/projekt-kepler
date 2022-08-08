@@ -16,6 +16,7 @@ MonoBehaviour:
   name: calmmind
   hitTime: 1
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -23,7 +24,7 @@ MonoBehaviour:
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
-  heal: 5
+  heal: 0
   healMana: 0
   healStamina: 0
   healSanity: 4
@@ -40,5 +41,7 @@ MonoBehaviour:
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 3304af37e54c1e143b97f11bbebfc438, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}

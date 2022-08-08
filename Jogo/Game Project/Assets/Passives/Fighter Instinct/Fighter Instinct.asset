@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: fighterinstinct
   showNameOnInfo: 1
+  origin: 0
   sprite: {fileID: 21300000, guid: 6343279e54aea40468c965df95d99977, type: 3}
-  num: 0
+  num: 0.25
   maxNum: 0
   stacks: 0
   maxStacks: 0
   cd: 0
   inCd: 0
-  statScale: {fileID: 0}
+  statScale: {fileID: 11400000, guid: b75f987c2e7d08043bc24b460c4ac1f1, type: 2}
   statScale2: {fileID: 0}
   statMod: {fileID: 11400000, guid: dad547c34df38544e88c43a32e4be554, type: 2}
   statMod2: {fileID: 0}

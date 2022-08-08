@@ -1241,6 +1241,31 @@ public class BattleSystem : MonoBehaviour
                                 }
                             }
                         }
+
+                        if (a.name == "fighterinstinct")
+                        {
+                            if (a.stacks == 1)
+                            {
+                                if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
+                                {
+                                    StatScale scale = a.ifConditionTrueScale();
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmg.AddDmg(SetScaleDmg(scale, stats, unit));
+                                }
+                            }
+                        }
                     }
 
                     dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
@@ -3254,20 +3279,24 @@ public class BattleSystem : MonoBehaviour
                 //hp in %
                 int hpPer = (int)((100 * user.curHp) / user.charc.stats.hp);
 
-                if (hpPer < 100)
+                if (hpPer <= (a.num*100) && a.stacks != 1)
                 {
-                    a.stacks = (int)(100 - hpPer);
+                    a.stacks = 1;
+                }
+                else if (hpPer > (a.num * 100))
+                {
+                    a.stacks = 0;
+                    DestroyPassiveIcon(a.name, user.isEnemy);
+                }
 
-                    StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
+                if (a.stacks == 1)
+                {
+                    StatMod statMod = a.statMod.ReturnStats();
                     statMod.inTime = statMod.time;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
                     SetStatsHud(user, userHud);
                     ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
-                }
-                else if (hpPer > (a.num * 100))
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
                 }
             }
 
@@ -3602,6 +3631,15 @@ public class BattleSystem : MonoBehaviour
                     summoner.Heal(dmg);
                 }
                 break;
+            case SumMove.DmgType.SHIELD:
+                if (dmg > 0)
+                {
+                    summoner.curShield += dmg;
+                    if (summoner.curShield > 1000)
+                        summoner.curShield = 1000;
+                }
+                summoner.shieldDone += dmg;
+                break;
         }
 
         float shieldedDmg = 0;
@@ -3620,7 +3658,7 @@ public class BattleSystem : MonoBehaviour
             shieldedDmg = tempShield - target.curShield;
         }
 
-        if ((dmg > 0 && (move.dmgType != SumMove.DmgType.HEAL)) || shieldedDmg > 0)
+        if ((dmg > 0 && (move.dmgType != SumMove.DmgType.HEAL) && (move.dmgType != SumMove.DmgType.SHIELD)) || shieldedDmg > 0)
         {
             isDead = target.TakeDamage(dmg, shieldedDmg, isCrit);
             SetUltNumber(target, targetHud, (dmg + shieldedDmg), false);
