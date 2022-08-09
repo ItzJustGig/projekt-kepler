@@ -325,7 +325,8 @@
             "manasword": "Espada de Mana",
             "shadowdagger": "Adaga Sombria",
             "spectralring": "Anel Espectral",
-            "huntersdirk": "Punhal do Ca\u00e7ador"
+            "huntersdirk": "Punhal do Ca\u00e7ador",
+            "gravitychange": "Mundan\u00e7a de Gravidade"
         },
         "desc": {
             "bloodbath": "Se um inimigo estiver a Sangrar, o utilizador vai ganhar %mod% e vai causar %scale% b\u00F3nus nos ataques.",
@@ -341,7 +342,7 @@
             "musicup": "A cada %cd% turnos, o utilizador ganha %mod%(empilha at\u00E9 %maxStacks% vezes).",
             "onewiththeshadows": "Se o utilizador n\u00E3o for acertado %cd% vezes ganha %mod% at\u00E9 voltar a ser acertado.",
             "perfectshooter": "A cada <color=#f75145>%maxNum% ataques de longa dist\u00E2ncia</color> ou <color=#ffaa00>ataques b\u00E1sicos</color> cr\u00EDticos, o utilizador ganha %mod%(empilha at\u00E9 %maxStacks% vezes).",
-            "plasmablade": "Os ataques b\u00E1sicos ou f\u00EDsicos do utilizador causam %scale% b\u00F3nus. Se o utilizador estiver abaixo de %stacks%% de vida, o dano m\u00E1gico b\u00F3nus \u00E9 aumentado em %num%%, causa %scale2% b\u00F3nus e ganha %mod% (Se estiver Silenciado ou a mana estiver abaixo de %maxNum%%, a passiva n\u00E3o ativa-se)",
+            "plasmablade": "Os <color=#ffaa00>ataques b\u00E1sicos</color> ou <color=#ffaa00>f\u00EDsicos</color> do utilizador causam %scale% b\u00F3nus. Se o utilizador estiver abaixo de %stacks%% de vida, o <color=#0055ff>dano m\u00E1gico</color> b\u00F3nus \u00E9 aumentado em %num%%, causa %scale2% b\u00F3nus e ganha %mod% (Se estiver Silenciado ou quando estiver abaixo de <color=#1e68fc>%maxNum%% de mana</color>, a passiva n\u00E3o ativa-se)",
             "roughskin": "O utilizador mitiga <color=#f75145>(%num%% da defesa do utilizador)% do dano</color> de <color=#ffaa00>t\u00E9cnicas f\u00EDsicas</color> e <color=#f75145>t\u00E9cnicas de longa dist\u00E2ncia</color>.",
             "sharpshooter": "A cada <color=#f75145>%maxNum% ataques de longa dist\u00E2ncia</color>, o pr\u00F3ximo <color=#f75145>ataques de longa dist\u00E2ncia</color> vai ser cr\u00EDtico e causa %scale% b\u00F3nus.",
             "strongmind": "O utilizador \u00E9 imune a Confus\u00E3o, Charme e Dormir.",
@@ -353,8 +354,8 @@
             "huntingseason": "O utilizador causa <color=#f75145>%num%% dano</color> b\u00F3nus por %cd% turnos.",
             "blazingfists": "O utilizador causa %scale% b\u00F3nus com <color=#ffaa00>ataques f\u00EDsicos</color> ou <color=#ffaa00>ataques b\u00E1sicos</color> por %cd% turnos.",
             "fighterinstinct": "O utilizador ganha %mod%por <color=#00ff11>1% de vida em falta</color>",
-            "successoroffire": "O utilizador causa %scale% b\u00F3nus a inimigos que est\u00E3o a queimar com t\u00E9cnicas <color=#ffaa00>f\u00EDsicas</color>, <color=#0055ff>m\u00E1gicas</color> e <color=#f75145>de alcance</color>, tamb\u00E9m ganha b\u00F3nus <color=#ffaa00>+(<color=#0055ff>%num%% poder m\u00E1gico</color>) ataque</color>.",
-            "zenmode": "O utilizador \u00E9 imune a can\u00E7aso, mas quando est\u00E1 abaixo de %num%% energia, ganha %mod%, as suas t\u00E9cnicas t\u00EAm o custo curtado pela metade e recupera %scale% e %scale2% at\u00E9 estar com %maxNum%% energia.",
+            "successoroffire": "O utilizador causa %scale% b\u00F3nus a inimigos que est\u00E3o a queimar com <color=#ffaa00>ataques b\u00E1sicos</color>, t\u00E9cnicas <color=#ffaa00>f\u00EDsicas</color>, <color=#0055ff>m\u00E1gicas</color> e <color=#f75145>de alcance</color>, tamb\u00E9m ganha b\u00F3nus <color=#ffaa00>+(<color=#0055ff>%num%% poder m\u00E1gico</color>) ataque</color>.",
+            "zenmode": "O utilizador \u00E9 imune a can\u00E7aso, mas quando est\u00E1 abaixo de <color=#f0dd0a>%num%% energia</color>, ganha %mod%, as suas t\u00E9cnicas t\u00EAm o custo curtado pela metade e recupera %scale% e %scale2% at\u00E9 estar com %maxNum%% energia.",
             "baby": "Mas \u00E9 s\u00F3 um b\u00E9b\u00E9! (Algumas das tuas estat\u00EDsticas foram reduzidas em %num%%)",
             "weak": "O inimigo \u00E9 muito fraco. (Algumas das tuas estat\u00EDsticas foram reduzidas em %num%%)",
             "normal": "\u00C9 apenas um inimigo normal, nada de especial. (Algumas das tuas estat\u00EDsticas foram reduzidas em %num%%)",
@@ -363,11 +364,12 @@
             "legendary": "\u00C9 um inimigo forte, isso enche-te de determina\u00E7\u00E3o. (Algumas das tuas estat\u00EDsticas foram aumentadas em %num%%)",
             "boss": "Isto \u00E9 um grande rapaz. (Algumas das tuas estat\u00EDsticas foram reduzidas em %num%%)",
             "toxicteeth": "O utilizador causa %scale% b\u00F3nus com <color=#ffaa00>ataques f\u00EDsicos</color> ou <color=#ffaa00>ataques b\u00E1sicos</color> por %cd% turnos.",
-            "gravitybelt": "Quando o utilizador usa uma t\u00E9cnica f\u00EDsica ou um ataque b\u00E1sico e \u00E9 cr\u00EDtico, causa %num% dano verdadeiro b\u00F3nus e ganha %mod%.",
-            "manasword": "A cada t\u00E9cnica f\u00EDsica que o utilizador usa, ganha %mod% at\u00E9 %maxStacks% vezes. \nQuando estiver completamente empilhado o utilizador ganha %mod2% e causa %scale% b\u00F3nus com t\u00E9cnicas f\u00EDsicas.",
-            "shadowdagger": "As t\u00E9cnicas f\u00EDsicas do utilizador causam %scale% b\u00F3nus e ganha%mod%. (%cd% turnos de recarga)",
-            "spectralring": "O utilizador ganha%mod% a cada %cd% turnos, at\u00E9 %maxStacks% vezes. \nQuando o utilizador cai a baixo de %num%% vida, t\u00E9cnicas m\u00E1gicas causam %scale% b\u00F3nus.",
-			"huntersdirk": "Se o inimigo estiver a cima de %num%% de vida, t\u00e9cnicas b\u00e1scas ou f\u00edsicas causam %scale% b\u00f3nus. (%cd% turnos de recarga)"
+            "gravitybelt": "Quando o utilizador usa uma <color=#ffaa00>t\u00E9cnica f\u00EDsica</color> ou um <color=#ffaa00>ataque b\u00E1sico</color> e \u00E9 cr\u00EDtico, causa %num% dano verdadeiro b\u00F3nus e ganha %mod%.",
+            "manasword": "A cada <color=#ffaa00>t\u00E9cnica f\u00EDsica</color> que o utilizador usa, ganha %mod% at\u00E9 %maxStacks% vezes. \nQuando estiver completamente empilhado o utilizador ganha %mod2% e causa %scale% b\u00F3nus com <color=#ffaa00>t\u00E9cnicas f\u00EDsicas</color>.",
+            "shadowdagger": "As <color=#ffaa00>t\u00E9cnicas f\u00EDsicas</color> do utilizador causam %scale% b\u00F3nus e ganha%mod%. (%cd% turnos de recarga)",
+            "spectralring": "O utilizador ganha%mod% a cada %cd% turnos, at\u00E9 %maxStacks% vezes. \nQuando o utilizador cai abaixo de <color=#00ff11>%num%% vida</color>, <color=#0055ff>t\u00E9cnicas m\u00E1gicas</color> causam %scale% b\u00F3nus.",
+			"huntersdirk": "Se o inimigo estiver a cima de %num%% de vida, <color=#ffaa00>t\u00e9cnicas b\u00e1scas</color> ou <color=#ffaa00>f\u00edsicas</color> causam %scale% b\u00f3nus. (%cd% turnos de recarga)",
+            "gravitychange": "O utilizador causa %scale% b\u00F3nus com <color=#ffaa00>ataques f\u00EDsicos</color> por %cd% turnos."
         }
     },
     "moves": {

@@ -30,9 +30,9 @@ MonoBehaviour:
   curSanity: 0
   missSanity: 0
   maxSanity: 0
-  atkDmg: 0.48
+  atkDmg: 0.45
   magicPower: 0
   dmgResis: 0
   magicResis: 0
   timing: 0
-  movSpeed: 0.12
+  movSpeed: 0.14

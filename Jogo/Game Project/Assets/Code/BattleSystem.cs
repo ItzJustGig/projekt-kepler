@@ -1266,6 +1266,31 @@ public class BattleSystem : MonoBehaviour
                                 }
                             }
                         }
+
+                        if (a.name == "gravitychange")
+                        {
+                            if (move.type is Moves.MoveType.PHYSICAL)
+                            {
+                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                StatScale scale = a.ifConditionTrueScale();
+
+                                Unit unit;
+                                Stats stats;
+                                if (scale.playerStat)
+                                {
+                                    unit = user;
+                                    stats = statsUser;
+                                }
+                                else
+                                {
+                                    unit = target;
+                                    stats = statsTarget;
+                                }
+
+                                dmg.AddDmg(SetScaleDmg(scale, stats, unit));
+                            }
+                        }
                     }
 
                     dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
@@ -3458,6 +3483,20 @@ public class BattleSystem : MonoBehaviour
                 {
                     ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
                 }
+            }
+
+            if (a.name == "gravitychange")
+            {
+                if (a.inCd > 0)
+                    a.inCd--;
+
+                if (a.inCd <= 0)
+                {
+                    DestroyPassiveIcon(a.name, user.isEnemy);
+                    user.passives.Remove(a);
+                }
+
+                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
             }
         }
     }

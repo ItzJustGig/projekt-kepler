@@ -325,7 +325,8 @@
 			"manasword": "Mana Sword",
 			"shadowdagger": "Shadow Dagger",
 			"spectralring": "Spectral Ring",
-			"huntersdirk": "Hunter's Dirk"
+			"huntersdirk": "Hunter's Dirk",
+			"gravitychange": "Gravity Change"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain %mod% and deal bonus %scale% on attacks.",
@@ -341,7 +342,7 @@
 			"musicup": "Every %cd% turns, the user get %mod%(stacks up to %maxStacks%).",
 			"onewiththeshadows": "If the user is not hit %cd% times gain %mod% until is hit again.",
 			"perfectshooter": "Every <color=#f75145>%maxNum% critical ranged attacks</color> or <color=#ffaa00>basic attacks</color>, the user gain %mod%(stacks up to %maxStacks%).",
-			"plasmablade": "The user's physical or basic attacks deal bonus %scale%. If the user is below %stacks%% health, the bonus magic damage is increased by %num%%, deal bonus %scale2% and gain %mod% (If the user is silenced or the mana is bellow %maxNum%%, the passive won't activate)",
+			"plasmablade": "The user's <color=#ffaa00>physical</color> or <color=#ffaa00>basic attacks</color> deal bonus %scale%. If the user is below <color=#00ff11>%stacks%% health</color>, the bonus <color=#0055ff>magic damage</color> is increased by %num%%, deal bonus %scale2% and gain %mod% (If the user is silenced or bellow <color=#1e68fc>%maxNum%% mana</color>, the passive won't activate)",
 			"roughskin": "The user blocks <color=#f75145>(%num%% of the user's damage resistance)% of the damage</color> from <color=#ffaa00>physical moves</color> and <color=#f75145>ranged moves</color>.",
 			"sharpshooter": "Every <color=#f75145>%maxNum% ranged attacks</color>, the next <color=#f75145>ranged attack</color> will crit and deal bonus %scale%.",
 			"strongmind": "The user is immune to Confusion, Charm and Sleep.",
@@ -352,9 +353,9 @@
 			"bloodpumping": "The user regen %scale% every turn for %cd% turns, but if its with Blood loses the same amount of health.",
 			"huntingseason": "The user deal bonus <color=#f75145>%num%% damage</color> for %cd% turns.",
 			"blazingfists": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> or <color=#ffaa00>basic attacks</color> for %cd% turns.",
-			"fighterinstinct": "When the user is below %num%% health, gain %mod% and deal bonus %scale% on physical moves and basic attacks.",
-			"successoroffire": "The user deal bonus %scale% to Burn enemies with <color=#ffaa00>physical</color>, <color=#0055ff>magical</color> and <color=#f75145>ranged moves</color>, also gain bonus <color=#ffaa00>+(<color=#0055ff>%num%% magic power</color>) attack damage</color>.",
-			"zenmode": "The user is immune to Tired, but when is bellow %num%% stamina, gain %mod%, the user's moves have its costs halved and regen %scale% and %scale2% until the user is at %maxNum%% stamina.",
+			"fighterinstinct": "When the user is below <color=#00ff11>%num%% health</color>, gain %mod% and deal bonus %scale% on <color=#ffaa00>physical moves</color> and <color=#ffaa00>basic attacks</color>.",
+			"successoroffire": "The user deal bonus %scale% to Burn enemies with <color=#ffaa00>basic</color>, <color=#ffaa00>physical</color>, <color=#0055ff>magical</color> and <color=#f75145>ranged moves</color>, also gain bonus <color=#ffaa00>+(<color=#0055ff>%num%% magic power</color>) attack damage</color>.",
+			"zenmode": "The user is immune to Tired, but when is bellow <color=#f0dd0a>%num%% stamina</color>, gain %mod%, the user's moves have its costs halved and regen %scale% and %scale2% until the user is at %maxNum%% stamina.",
 			"baby": "But its just a baby! (Some of your stats were lowered by %num%%)",
 			"weak": "The enemy is too weak. (Some of your stats were lowered by %num%%)",
 			"normal": "Avarage normal enemy, nothing special. (Some of your stats were lowered by %num%%)",
@@ -363,11 +364,12 @@
 			"legendary": "This is a tough oponent, you are filled with determination. (Some of your stats were increased by %num%%)",
 			"boss": "That is a big boi. (Some of the user's stats were increased by %num%%)",
 			"toxicteeth": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> or <color=#ffaa00>basic attacks</color> for %cd% turns.",
-			"gravitybelt": "When the carrier uses a physical move or basic attack and crits, deal bonus %num% as true damage and gain %mod%.",
-			"manasword": "Every physical moves the carrier gain %mod% up to %maxStacks% times. \nWhen its at maximum stacks the user gain %mod2% and deal bonus %scale% on physical moves.",
-			"shadowdagger": "The user's physical moves deal bonus %scale% and gain %mod%. (%cd% turns cooldown)",
-			"spectralring": "The user gain %mod% every %cd% turns up to %maxStacks% times. \nWhen the user drops below %num%% health, magic moves deal bonus %scale%.",
-			"huntersdirk": "If the enemy is above %num%% health, basic or physical moves deal bonus %scale%. (%cd% turns cooldown)"
+			"gravitybelt": "When the carrier uses a <color=#ffaa00>physical move</color> or <color=#ffaa00>basic attack</color> and crits, deal bonus %num% as true damage and gain %mod%.",
+			"manasword": "Every <color=#ffaa00>physical moves</color> the carrier gain %mod% up to %maxStacks% times. \nWhen its at maximum stacks the user gain %mod2% and deal bonus %scale% on <color=#ffaa00>physical moves</color>.",
+			"shadowdagger": "The user's <color=#ffaa00>physical moves</color> deal bonus %scale% and gain %mod%. (%cd% turns cooldown)",
+			"spectralring": "The user gain %mod% every %cd% turns up to %maxStacks% times. \nWhen the user drops below <color=#00ff11>%num%% health</color>, <color=#0055ff>magic moves</color> deal bonus %scale%.",
+			"huntersdirk": "If the enemy is above <color=#00ff11>%num%% health</color>, <color=#ffaa00>basic</color> or <color=#ffaa00>physical moves</color> deal bonus %scale%. (%cd% turns cooldown)",
+			"gravitychange": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> for %cd% turns"
 		}
 	},
 	"moves": {

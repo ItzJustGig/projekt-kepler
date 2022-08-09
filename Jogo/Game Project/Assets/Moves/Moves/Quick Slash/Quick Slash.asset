@@ -16,10 +16,11 @@ MonoBehaviour:
   name: quickslash
   hitTime: 1
   priority: 1
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 55
+  phyDmg: 30
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
@@ -28,6 +29,8 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 5
   inCooldown: 0
   manaCost: 0
@@ -38,5 +41,7 @@ MonoBehaviour:
   statModEnemy: {fileID: 11400000, guid: 150a5e3897a008d49a9184c5df6a759d, type: 2}
   scale:
   - {fileID: 11400000, guid: 34fb8e836de994640a51c28b91f87be7, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}

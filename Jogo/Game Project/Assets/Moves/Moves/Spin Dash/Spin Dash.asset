@@ -16,10 +16,11 @@ MonoBehaviour:
   name: spindash
   hitTime: 3
   priority: 1
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 40
+  phyDmg: 30
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
@@ -28,6 +29,8 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 6
   inCooldown: 0
   manaCost: 0
@@ -38,5 +41,7 @@ MonoBehaviour:
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 42d6531b79fae994e9553ddb54905bae, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}

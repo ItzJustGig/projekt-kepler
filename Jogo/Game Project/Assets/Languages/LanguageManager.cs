@@ -829,6 +829,7 @@ public class LanguageManager : MonoBehaviour
         public string shadowdagger;
         public string spectralring;
         public string huntersdirk;
+        public string gravitychange;
 
         public string Get_Cont(string a)
         {
@@ -955,6 +956,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "huntersdirk":
                     returns = huntersdirk;
+                    break;
+                case "gravitychange":
+                    returns = gravitychange;
                     break;
                 default:
                     returns = "null";

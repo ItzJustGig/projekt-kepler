@@ -176,6 +176,7 @@ public class Passives : ScriptableObject
         desc.Replace("%maxStacks%", maxStacks.ToString());
 
         desc.Replace("%cd%", cd.ToString());
+        desc.Replace("%incd%", inCd.ToString());
 
         if (statScale)
         {
