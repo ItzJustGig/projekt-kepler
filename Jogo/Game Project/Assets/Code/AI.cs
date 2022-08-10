@@ -111,7 +111,7 @@ public class AI : ScriptableObject
         {
             float chance = 0;
             if (a.type == Moves.MoveType.ULT)
-                chance += 20;
+                chance += 250;
             
             if (a.inCooldown <= 0)
             {
