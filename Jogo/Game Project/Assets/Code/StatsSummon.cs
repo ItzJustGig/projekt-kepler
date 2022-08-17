@@ -12,13 +12,18 @@ public class StatsSummon : ScriptableObject
 
     public float movSpeed;
 
+    public StatScale hpScale;
+    public StatScale atkScale;
+    public StatScale mpScale;
+    public StatScale movScale;
+
     public StatsSummon ReturnStats()
     {
         StatsSummon stats = CreateInstance<StatsSummon>();
-        stats.hp = hp;
-        stats.atkDmg = atkDmg;
-        stats.magicPower = magicPower;
-        stats.movSpeed = movSpeed;
+        stats.hpScale = hpScale;
+        stats.atkScale = atkScale;
+        stats.mpScale = mpScale;
+        stats.movScale = movScale;
 
         return stats;
     }

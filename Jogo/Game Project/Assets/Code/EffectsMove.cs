@@ -22,9 +22,20 @@ public class EffectsMove : ScriptableObject
 
     public void SetApply(bool a)
     {
-        if (!applied)
-            applied = a;
+        applied = a;
     }
+
+    /*public EffectsMove GetEffectsMove()
+    {
+        EffectsMove effect = CreateInstance<EffectsMove>();
+        effect.durationMax = durationMax;
+        effect.durationMin = durationMin;
+        effect.chance = chance;
+        effect.targetPlayer = targetPlayer;
+        effect.effect = this.effect;
+
+        return effect;
+    }*/
 
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string detail, string chance, string effect, string user, string time)
     {

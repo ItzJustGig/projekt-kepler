@@ -266,6 +266,7 @@ public class LanguageManager : MonoBehaviour
         public string cantsupport;
         public string cantstatmod;
         public string cantdefence;
+        public string cantsummon;
         public string eachturn;
         public string onend;
         public string increasedmg;
@@ -386,6 +387,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "cantdefence":
                     returns = cantdefence;
+                    break;
+                case "cantsummon":
+                    returns = cantsummon;
                     break;
                 case "cantstatmod":
                     returns = cantstatmod;

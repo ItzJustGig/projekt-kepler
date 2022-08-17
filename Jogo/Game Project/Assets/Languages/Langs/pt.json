@@ -103,6 +103,7 @@
         "cantstatmod": "%c%T\u00E9cnicas de modifica\u00E7\u00E3o de estat\u00EDstica%c/%",
         "cantsupport": "%c%T\u00E9cnicas de suporte%c/%",
         "cantdefence": "%c%T\u00E9cnicas defencivas%c/%",
+        "cantsummon": "%c%Invoca\u00e7\u00f5es%c/%",
         "eachturn": " cada turno.",
         "onend": " quando o efeito acabar.",
         "increasedmg": " (+ %val% por turno)",

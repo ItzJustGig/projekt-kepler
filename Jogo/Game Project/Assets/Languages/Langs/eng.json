@@ -103,6 +103,7 @@
 		"cantstatmod": "%c%Stat Modifier moves%c/%",
 		"cantsupport": "%c%Supportive moves%c/%",
 		"cantdefence": "%c%Defencive moves%c/%",
+		"cantsummon": "%c%Summon moves%c/%",
 		"eachturn": " each turn.",
 		"onend": " when the effect runs out.",
 		"increasedmg": " (+ %val% per turn)",

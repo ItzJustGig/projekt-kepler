@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5913529bceac162458813b9397f0af50, type: 3}
   m_Name: move
   m_EditorClassIdentifier: 
-  cd: 1
+  cd: 3
   inCd: 0
-  dmgType: 1
-  atkScale: 1
-  mpScale: 1.1
+  dmgType: 3
+  atkScale: 0.85
+  mpScale: 0.95
   sanityDmg: 0

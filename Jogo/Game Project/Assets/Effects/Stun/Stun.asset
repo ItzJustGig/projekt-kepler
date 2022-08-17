@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
   m_Name: Stun
   m_EditorClassIdentifier: 
-  name: Stun
   id: STN
   sprite: {fileID: 21300000, guid: d217ce846b518494ca27d24f3e521f0c, type: 3}
   duration: 0
+  grantsOnRunOut: 0
   timesInc: 0
   canUsePhysical: 0
   canUseRanged: 0
@@ -23,6 +23,7 @@ MonoBehaviour:
   canUseSupp: 0
   canUseProtec: 0
   canUseStatMod: 0
+  canUseSummon: 0
   phyDmgMin: 0
   phyDmgMax: 0
   phyDmgInc: 0
@@ -52,7 +53,6 @@ MonoBehaviour:
   shieldInc: 0
   cancelAtkChance: 0
   recoil: 0
-  cancelMsg: 
   scale: []
   statMods:
   - {fileID: 11400000, guid: 119e07fa73eb11e4c9275beb9489d899, type: 2}

@@ -66,6 +66,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private Sprite suppAtk;
     [SerializeField] private Sprite defAtk;
     [SerializeField] private Sprite statAtk;
+    [SerializeField] private Sprite summAtk;
 
     [SerializeField] private GameObject tooltip;
 
@@ -286,6 +287,11 @@ public class BattleSystem : MonoBehaviour
         int i = 0;
         foreach (Moves move in enemyUnit.moves)
         {
+            foreach (EffectsMove a in move.effects)
+            {
+                a.SetApply(false);
+            }
+
             if (move.name != "recovmana")
                 move.inCooldown = 0;
         }
@@ -335,6 +341,11 @@ public class BattleSystem : MonoBehaviour
         foreach (Moves move in playerUnit.moves)
         {
             i++;
+
+            foreach (EffectsMove a in move.effects)
+            {
+                a.SetApply(false);
+            }
 
             if (move.name != "basicattack")
             {
@@ -389,6 +400,9 @@ public class BattleSystem : MonoBehaviour
                         break;
                     case Moves.MoveType.STATMOD:
                         icon.sprite = statAtk;
+                        break;
+                    case Moves.MoveType.SUMMON:
+                        icon.sprite = summAtk;
                         break;
                 }
 
@@ -1347,7 +1361,7 @@ public class BattleSystem : MonoBehaviour
                     if ((Random.Range(0f, 1f) > statsUser.accuracy) || (state is BattleState.LOSE || state is BattleState.WIN) && !isStoped)
                         isStoped = true;
 
-                    if (!isStoped || move.type == Moves.MoveType.DEFFENCIVE || move.type == Moves.MoveType.SUPPORT || move.type == Moves.MoveType.STATMOD || move.type == Moves.MoveType.ULT)
+                    if (!isStoped || move.type == Moves.MoveType.DEFFENCIVE || move.type == Moves.MoveType.SUPPORT || move.type == Moves.MoveType.STATMOD || move.type == Moves.MoveType.ULT || move.type == Moves.MoveType.SUMMON)
                     {
                         if (Random.Range(0f, 1f) < (evasion + statsTarget.evasion) && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.RANGED))
                         {
@@ -1381,9 +1395,9 @@ public class BattleSystem : MonoBehaviour
                             if (move.effects.Count > 0)
                             {
                                 foreach (EffectsMove a in move.effects)
-                                {
+                                {                                    
                                     Effects effect = a.effect.ReturnEffect();
-                                    
+
                                     if (Random.Range(0f, 1f) < a.chance && !a.WasApplied())
                                     {
                                         foreach (Passives b in target.passives.ToArray())
@@ -1399,7 +1413,7 @@ public class BattleSystem : MonoBehaviour
 
                                             if (b.name == "strongmind")
                                             {
-                                                if (effect.id == "CFS" || effect.id == "SLP" /*|| effect.id == "CHR"*/)
+                                                if (effect.id == "CFS" || effect.id == "SLP" || effect.id == "CHR")
                                                 {
                                                     skipEffect = true;
                                                     target.PassivePopup(langmanag.GetInfo("passive", "name", b.name));
@@ -1409,6 +1423,7 @@ public class BattleSystem : MonoBehaviour
 
                                         if (!skipEffect)
                                         {
+                                            Debug.Log("I EFFECT");
                                             effect.duration = Random.Range(a.durationMin, a.durationMax) + 1;
 
                                             if (a.targetPlayer)
@@ -1552,7 +1567,6 @@ public class BattleSystem : MonoBehaviour
                                 {
                                     dmg.phyDmg += dmg.phyDmg * a.num;
                                     dmg.magicDmg += dmg.magicDmg * a.num;
-                                    dmg.trueDmg += dmg.trueDmg * a.num;
                                 }
                             }
 
@@ -2178,7 +2192,7 @@ public class BattleSystem : MonoBehaviour
 
         foreach (Effects a in enemyUnit.effects)
         {
-            if (!a.canUseMagic && !a.canUsePhysical && !a.canUseRanged && !a.canUseStatMod && !a.canUseSupp && !a.canUseProtec)
+            if (!a.canUseMagic && !a.canUsePhysical && !a.canUseRanged && !a.canUseStatMod && !a.canUseSupp && !a.canUseProtec && !a.canUseSummon)
                 skip = true;
         }
 
@@ -2251,10 +2265,10 @@ public class BattleSystem : MonoBehaviour
                                         if (!enemyUnit.canUseStatMod)
                                             canUse = false;
                                         break;
-                                        /*case Moves.MoveType.DEPLOYABLE:
-                                            if (!enemyUnit.canUseDeploy)
-                                                canUse = false;
-                                            break;*/
+                                    case Moves.MoveType.SUMMON:
+                                        if (!enemyUnit.canUseSummon)
+                                            canUse = false;
+                                        break;
                                     case Moves.MoveType.ULT:
                                         enemyUnit.ult = 0;
                                         break;
@@ -2429,10 +2443,10 @@ public class BattleSystem : MonoBehaviour
                         if (!playerUnit.canUseStatMod)
                             canUse = false;
                         break;
-                        /*case Moves.MoveType.DEPLOYABLE:
-                            if (!playerUnit.canUseDeploy)
-                                canUse = false;
-                            break;*/
+                    case Moves.MoveType.SUMMON:
+                        if (!playerUnit.canUseSummon)
+                            canUse = false;
+                        break;
                 }
 
                 if (playerUnit.curMana < move.manaCost || playerUnit.curStamina < move.staminaCost || inCd > 0)
@@ -3734,7 +3748,7 @@ public class BattleSystem : MonoBehaviour
                     statsSum = SetModifiers(statMod.ReturnStats(), statsSum.ReturnStats(), summoner);
                 }
 
-            sum.SetupStats(statsSum);
+            sum.SetupStats(statsSum, summoner);
             sum.summonTurn = turnCount;
             string name = sum.name + sum.summonTurn;
 
@@ -4096,7 +4110,7 @@ public class BattleSystem : MonoBehaviour
 
         foreach (Effects a in playerUnit.effects)
         {
-            if (!a.canUseMagic && !a.canUsePhysical && !a.canUseRanged && !a.canUseStatMod && !a.canUseSupp && !a.canUseProtec)
+            if (!a.canUseMagic && !a.canUsePhysical && !a.canUseRanged && !a.canUseStatMod && !a.canUseSupp && !a.canUseProtec && !a.canUseSummon)
                 skip = true;
         }
 

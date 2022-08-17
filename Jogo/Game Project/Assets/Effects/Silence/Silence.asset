@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
   m_Name: Silence
   m_EditorClassIdentifier: 
-  name: Silence
   id: SLC
   sprite: {fileID: 21300000, guid: 66914981c69a85c43a71c542f5c98ac6, type: 3}
   duration: 0
+  grantsOnRunOut: 0
   timesInc: 0
   canUsePhysical: 1
   canUseRanged: 1
@@ -23,6 +23,7 @@ MonoBehaviour:
   canUseSupp: 0
   canUseProtec: 1
   canUseStatMod: 0
+  canUseSummon: 0
   phyDmgMin: 0
   phyDmgMax: 0
   phyDmgInc: 0
@@ -35,6 +36,9 @@ MonoBehaviour:
   sanityDmgMin: 0
   sanityDmgMax: 0
   sanityDmgInc: 0
+  sanityHealMin: 0
+  sanityHealMax: 0
+  sanityHealInc: 0
   healMin: 0
   healMax: 0
   healInc: 0
@@ -49,7 +53,6 @@ MonoBehaviour:
   shieldInc: 0
   cancelAtkChance: 0
   recoil: 0
-  cancelMsg: 
   scale: []
   statMods:
   - {fileID: 11400000, guid: cf22cc6eb1c5b294189333e6e29ccf9d, type: 2}

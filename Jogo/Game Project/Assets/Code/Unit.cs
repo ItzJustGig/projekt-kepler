@@ -153,7 +153,7 @@ public class Unit : MonoBehaviour
         canUseSupp = true;
         canUseProtec = true;
         canUseStatMod = true;
-        //canUseDeploy = true;
+        canUseSummon = true;
     }
 
     IEnumerator Wait()

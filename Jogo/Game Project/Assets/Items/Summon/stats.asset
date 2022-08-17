@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392d994d87c0d7c408e70a78e83a6ef7, type: 3}
   m_Name: stats
   m_EditorClassIdentifier: 
-  hp: 0.85
-  atkDmg: 0.2
-  magicPower: 1.2
-  movSpeed: 0.35
+  hp: 0
+  atkDmg: 0
+  magicPower: 0
+  movSpeed: 0
+  hpScale: {fileID: 11400000, guid: b2b398f28f61d274e9b8ba737e38f813, type: 2}
+  atkScale: {fileID: 11400000, guid: f96ae69bdeeec744b9f7277246005fbf, type: 2}
+  mpScale: {fileID: 11400000, guid: 5739f174afab1ec4b99f2911800743c5, type: 2}
+  movScale: {fileID: 11400000, guid: 677d33783283b2543bef2ddd7ca6a03e, type: 2}

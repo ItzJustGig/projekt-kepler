@@ -81,7 +81,7 @@ public class Effects : ScriptableObject
         effect.canUseSupp = canUseSupp;
         effect.canUseProtec = canUseProtec;
         effect.canUseStatMod = canUseStatMod;
-        //effect.canUseDeploy = canUseDeploy;
+        effect.canUseSummon = canUseSummon;
 
         effect.phyDmgMin = phyDmgMin;
         effect.phyDmgMax = phyDmgMax;
@@ -283,6 +283,9 @@ public class Effects : ScriptableObject
 
             if (!canUseSupp)
                 builder.Append(GetInfo(languageManager, language, "cantsupport", "00ff11")).AppendLine();
+
+            if (!canUseSummon)
+                builder.Append(GetInfo(languageManager, language, "cantsummon", "B266FF")).AppendLine();
 
             builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
         }

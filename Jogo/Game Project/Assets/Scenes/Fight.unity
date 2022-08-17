@@ -12173,6 +12173,7 @@ MonoBehaviour:
   suppAtk: {fileID: 21300000, guid: 7e8c3244c112b3b43a26a1b635eed6f2, type: 3}
   defAtk: {fileID: 21300000, guid: 4918b5097ca207a4cbce8c2dff47577b, type: 3}
   statAtk: {fileID: 21300000, guid: 936908b1d1e44524f9d402eb684ac7da, type: 3}
+  summAtk: {fileID: 21300000, guid: 8a533c86e4ab38b49a6945f1d64f9b78, type: 3}
   tooltip: {fileID: 3422808952827454667}
   cameraAudio: {fileID: 519420030}
   bossfightMusic: {fileID: 8300000, guid: aaa62555fba57c54c91430a342e1d0aa, type: 3}

@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
-  m_Name: summove
+  m_Name: charc move
   m_EditorClassIdentifier: 
-  type: 0
-  name: move
+  type: 6
+  name: summon
   hitTime: 1
   priority: 0
-  uses: -1
+  uses: 5
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 50
+  phyDmg: 10
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
   shield: 0
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 2
+  cooldown: 15
   inCooldown: 0
   manaCost: 0
   staminaCost: 0
