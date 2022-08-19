@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88548b2442bb3a547adf43b5c3d57278, type: 3}
-  m_Name: haunt
+  m_Script: {fileID: 11500000, guid: 162ff384d3b463541a5c7fe0731c0cd1, type: 3}
+  m_Name: dotsanity
   m_EditorClassIdentifier: 
-  durationMin: 2
-  durationMax: 5
-  chance: 1
-  targetPlayer: 0
-  effect: {fileID: 11400000, guid: 179c6e51a2d7dc145b9ea8880bab5a50, type: 2}
+  type: 3
+  dmg: 0
+  time: 4
+  inTime: 0
+  isCrit: 0
+  srcId: 
+  srcType: 0

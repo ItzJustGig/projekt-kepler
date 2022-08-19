@@ -23,7 +23,7 @@ MonoBehaviour:
   phyDmg: 0
   magicDmg: 55
   trueDmg: 0
-  sanityDmg: 6
+  sanityDmg: 8
   heal: 0
   healMana: 0
   healStamina: 0
@@ -31,9 +31,9 @@ MonoBehaviour:
   shield: 0
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 8
+  cooldown: 9
   inCooldown: 0
-  manaCost: 45
+  manaCost: 55
   staminaCost: 0
   critDmgBonus: 0
   critChanceBonus: 0
@@ -43,6 +43,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d4efd0cbf5151c344a6c0f1a70788d72, type: 2}
   dot:
   - {fileID: 11400000, guid: a60d3816f3072c54ca626a23a285e33b, type: 2}
+  - {fileID: 11400000, guid: 31e497c96d6a3e641a91488fa9a74bf7, type: 2}
   effects:
   - {fileID: 11400000, guid: 0e0075ad21edc9c428f3ea08f6018303, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}

@@ -16,11 +16,12 @@ MonoBehaviour:
   name: cursedrose
   hitTime: 1
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 30
+  magicDmg: 45
   trueDmg: 0
   sanityDmg: 2
   heal: 0
@@ -28,6 +29,8 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 6
   inCooldown: 0
   manaCost: 60
@@ -38,7 +41,9 @@ MonoBehaviour:
   statModEnemy: {fileID: 11400000, guid: a355a32582ac3434ab1a410fbe7e584d, type: 2}
   scale:
   - {fileID: 11400000, guid: 5be4f5f3d65dea146bc44b89aa64e5f7, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: 8945198444edb094482b2ef5c50d4bae, type: 2}
   - {fileID: 11400000, guid: d444e634ad2fad74b99b121226074ae2, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}

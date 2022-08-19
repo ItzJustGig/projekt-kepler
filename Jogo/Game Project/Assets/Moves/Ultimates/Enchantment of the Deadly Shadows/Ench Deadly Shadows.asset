@@ -16,11 +16,12 @@ MonoBehaviour:
   name: enchdeadlyshadow
   hitTime: 2
   priority: 2
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 60
-  magicDmg: 25
+  phyDmg: 40
+  magicDmg: 20
   trueDmg: 2
   sanityDmg: 2
   heal: 0
@@ -44,6 +45,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d0ca81d053d5874fa63ed2b8ebf3247, type: 2}
   - {fileID: 11400000, guid: 83d203d5ebc175e4f837e87ff1988ed0, type: 2}
   - {fileID: 11400000, guid: e53fe2ad204624b40a88b451d92ed55d, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: 5e53fb4b6c5955f4aa98bf0b66eca9b8, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}

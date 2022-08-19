@@ -72,8 +72,7 @@ MonoBehaviour:
   moves: []
   ultMove: {fileID: 0}
   passives: []
-  items:
-  - {fileID: 11400000, guid: 4b56fe408866778478e92eb4df412ba2, type: 2}
+  items: []
   randomItems: 
   champions: {fileID: 2608767493649050923, guid: 90529f41d877af04ea013531ad0f93be,
     type: 3}

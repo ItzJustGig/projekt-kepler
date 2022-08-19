@@ -16,29 +16,34 @@ MonoBehaviour:
   name: shadowsneak
   hitTime: 1
   priority: 1
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 80
+  phyDmg: 45
   magicDmg: 0
-  trueDmg: 20
+  trueDmg: 10
   sanityDmg: 6
   heal: 0
   healMana: 0
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 6
   inCooldown: 0
   manaCost: 35
   staminaCost: 65
-  critDmgBonus: 0
+  critDmgBonus: 0.07
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 8ea0a463466963c48bbda49c0115c724, type: 2}
   - {fileID: 11400000, guid: a0606a65453051244af6af319f081877, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: b5e0bfc0bfafe2248b133eba036828f0, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
