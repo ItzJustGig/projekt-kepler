@@ -41,6 +41,7 @@ public class SelectManager : MonoBehaviour
     [SerializeField] private Sprite suppAtk;
     [SerializeField] private Sprite defAtk;
     [SerializeField] private Sprite statAtk;
+    [SerializeField] private Sprite summonAtk;
 
     private CharcSelectLang thisLangManager;
 
@@ -346,6 +347,9 @@ public class SelectManager : MonoBehaviour
                 break;
             case Moves.MoveType.STATMOD:
                 icon.sprite = statAtk;
+                break;
+            case Moves.MoveType.SUMMON:
+                icon.sprite = summonAtk;
                 break;
         }
 

@@ -81,11 +81,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
-  text: "<size=25><align=center>Silence</align></size>\r\n<size=19><align=center><color=#B2B2B2>Effect</color></align></size>\r\n<s><align=center>|                
-    |</align></s>\r\nDoesn't allow the user to use:\r\n<color=#1a66ff>Magical moves</color>\r\n<color=#f0dd0a>Stat
-    Modifier moves</color>\r\n<color=#00ff11>Supportive moves</color>\r\n<color=#B266FF>Summon
-    moves</color>\r\n<s><align=center>|                 |</align></s>\r\n <color=#2d71fa>-15%
-    Mana Regen</color> to the user \r\n"
+  text: '<size=25><align=center>Confusion</align></size>
+
+    <size=19><align=center><color=#B2B2B2>Effect</color></align></size>
+
+    <s><align=center>|                
+    |</align></s>
+
+    Take <color=#b829ff>2-3 (+ 4 per turn) sanity damage</color>
+    each turn.
+
+    <s><align=center>|                 |</align></s>
+
+    The user
+    have 30% to take <color=#a6a6a6>110 true damage</color> and stop the attack.
+
+'
 --- !u!1 &7183899527544666275
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +162,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 66914981c69a85c43a71c542f5c98ac6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 204b887f483372a4a81e3e30dc50c9fb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
