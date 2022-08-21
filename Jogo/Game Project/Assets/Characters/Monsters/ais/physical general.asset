@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab812b6afc14cfc4c8069604834f300d, type: 3}
   m_Name: physical general
   m_EditorClassIdentifier: 
-  aiType: {fileID: 0}
+  aiType: {fileID: 11400000, guid: b40c5fe5374a07b4f8d51d532ebc0aa5, type: 2}
   preferedEffects: []
   preferedStats: []

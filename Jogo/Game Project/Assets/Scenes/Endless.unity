@@ -2031,7 +2031,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 2051814573}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &692825676
 GameObject:
   m_ObjectHideFlags: 0
@@ -3300,6 +3303,7 @@ MonoBehaviour:
   champions: {fileID: 203568565}
   monsters: {fileID: 846067774}
   monsEncounters: {fileID: 1090020106}
+  baseGold: 8
   bonusGold:
   - {fileID: 11400000, guid: 0cc4fb48b9e75da448a462c78ff1e81a, type: 2}
   - {fileID: 11400000, guid: 5fc9ab78639147e41b61d14b6ab93983, type: 2}
@@ -3802,7 +3806,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!114 &1538541743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3962,7 +3969,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 2051814573}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &1577775802
 GameObject:
   m_ObjectHideFlags: 0
@@ -4136,7 +4146,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 2051814573}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1001 &1714895123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4467,7 +4480,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 2051814573}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &1990776127
 GameObject:
   m_ObjectHideFlags: 0
@@ -4520,7 +4536,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 2051814573}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1001 &2051814572
 PrefabInstance:
   m_ObjectHideFlags: 0

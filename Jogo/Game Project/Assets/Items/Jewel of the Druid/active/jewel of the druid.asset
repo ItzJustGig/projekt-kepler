@@ -31,7 +31,7 @@ MonoBehaviour:
   shield: 0
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 15
+  cooldown: 16
   inCooldown: 0
   manaCost: 0
   staminaCost: 0

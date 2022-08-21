@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab812b6afc14cfc4c8069604834f300d, type: 3}
   m_Name: magic general
   m_EditorClassIdentifier: 
-  aiType: {fileID: 0}
+  aiType: {fileID: 11400000, guid: 8c3a0ea1b2ec30c4fa680f8d559c8351, type: 2}
   preferedEffects: []
   preferedStats: []

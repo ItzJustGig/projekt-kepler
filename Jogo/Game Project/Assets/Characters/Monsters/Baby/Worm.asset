@@ -27,4 +27,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1969a027ecfa3c848aedcbf6476a0780, type: 2}
   - {fileID: 11400000, guid: b597c68ce43a7c3438b0c18bdb6d04cf, type: 2}
   - {fileID: 11400000, guid: fc0d3e66d0e2cf34db76858f6de109ae, type: 2}
+  recItems: []
   ultimate: {fileID: 11400000, guid: d5a4bf7b0b173264498e119043ba1586, type: 2}
+  ai: {fileID: 11400000, guid: 5716c3f0d24136843b6e581bee45e0c4, type: 2}

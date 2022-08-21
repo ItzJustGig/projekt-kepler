@@ -30,3 +30,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fef52cc412939224991b411c02cf541c, type: 2}
   recItems: []
   ultimate: {fileID: 11400000, guid: e09b81d81d8fa554ba54657928af0219, type: 2}
+  ai: {fileID: 11400000, guid: 5716c3f0d24136843b6e581bee45e0c4, type: 2}
