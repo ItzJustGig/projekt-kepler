@@ -11,6 +11,7 @@ public class TooltipPopUp : MonoBehaviour
     public TextMeshProUGUI infoText;
     public Vector3 offset;
     public float padding;
+    public bool isMain = true;
 
     private Canvas popupCanvas;
 

@@ -106,6 +106,7 @@ public class Unit : MonoBehaviour
         }
         
         ultMove = charc.ultimate.ReturnMove();
+        ultMove.type = Moves.MoveType.ULT;
     }
 
     void Start()

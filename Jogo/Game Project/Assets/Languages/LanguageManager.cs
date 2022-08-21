@@ -1480,6 +1480,7 @@ public class LanguageManager : MonoBehaviour
         public string bigsteak;
         public string zap;
         public string huntersdirk;
+        public string jewelofthedruid;
 
         public string Get_Moves(string a, string b)
         {
@@ -1831,6 +1832,9 @@ public class LanguageManager : MonoBehaviour
                 case "huntersdirk":
                     returns = huntersdirk;
                     break;
+                case "jewelofthedruid":
+                    returns = jewelofthedruid;
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -1953,6 +1957,7 @@ public class LanguageManager : MonoBehaviour
         public string bootsoftherunner;
         public string shadowmushroom;
         public string huntersdirk;
+        public string jewelofthedruid;
 
         public string Get_ItemName(string a)
         {
@@ -2022,6 +2027,9 @@ public class LanguageManager : MonoBehaviour
                 case "huntersdirk":
                     returns = huntersdirk;
                     break;
+                case "jewelofthedruid":
+                    returns = jewelofthedruid;
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -2039,6 +2047,7 @@ public class LanguageManager : MonoBehaviour
         public string bigsteak;
         public string ravensfeather;
         public string huntersdirk;
+        public string jewelofthedruid;
 
         public string Get_ItemMove(string a)
         {
@@ -2062,6 +2071,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "huntersdirk":
                     returns = huntersdirk;
+                    break;
+                case "jewelofthedruid":
+                    returns = jewelofthedruid;
                     break;
                 default:
                     returns = "null";

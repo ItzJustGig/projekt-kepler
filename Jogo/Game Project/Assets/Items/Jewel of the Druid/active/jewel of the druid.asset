@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
-  m_Name: charc move
+  m_Name: jewel of the druid
   m_EditorClassIdentifier: 
   type: 6
-  name: summon
+  name: jewelofthedruid
   hitTime: 1
   priority: 0
-  uses: 5
+  uses: 3
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 10
+  phyDmg: 0
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0

@@ -495,7 +495,8 @@
 		"ravensfeather": "Raven's Feather",
 		"bigsteak": "Big Steak",
 		"zap": "Zap",
-		"huntersdirk": "Hunter's Dirk"
+		"huntersdirk": "Hunter's Dirk",
+		"jewelofthedruid": "Jewel of the Druid"
 	},
 	"items": {
 		"title": "Item",
@@ -525,7 +526,8 @@
 			"bookofdisaster": "Book of Disaster",
 			"bootsoftherunner": "Boots of the Runner",
 			"shadowmushroom": "Shadow Mushroom",
-			"huntersdirk": "Hunter's Dirk"
+			"huntersdirk": "Hunter's Dirk",
+			"jewelofthedruid": "Jewel of the Druid"
 		},
 		"move": {
 			"zap": "the carrier will <color=#ffdf00>zap</color> an enemy with an %type% to %dmg%",
@@ -533,7 +535,8 @@
 			"healthpotion" : "The carrier uses a %type% that %dmg%",
 			"bigsteak": "The carrier uses a %type%, that %dmg%",
 			"ravensfeather" : "The carrier casts a %type% reducing %mode%",
-			"huntersdirk": "use a %type% that %dmg% and have %critdmg%% critical damage bonus"
+			"huntersdirk": "use a %type% that %dmg% and have %critdmg%% critical damage bonus",
+			"jewelofthedruid": "use a %type% that %summon%"
 		}
 	}
 }

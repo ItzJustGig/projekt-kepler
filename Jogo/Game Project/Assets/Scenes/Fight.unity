@@ -213,8 +213,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Lifesteal<br>The user converts this stat amount of the physical damage dealt
     into health. '
+  textSec: 
+  wantSec: 0
 --- !u!1 &2435924
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +329,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!114 &13994052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +559,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Mana Regen<br>Amount of mana regenerated per turn. '
+  textSec: 
+  wantSec: 0
 --- !u!1 &28040045
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +695,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Movement Speed<br>This stat decides who attacks first.
+  textSec: 
+  wantSec: 0
 --- !u!114 &40389210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1412,7 +1424,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Critical Chance
+  textSec: 
+  wantSec: 0
 --- !u!1 &112962881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,8 +1757,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Damage Resistance<br>Use 18% of this stat and subtracts to the physical
     damage that the user takes. '
+  textSec: 
+  wantSec: 0
 --- !u!1 &146831641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1796,7 +1814,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Sanity<br>If the sanity reach 0, the user is Feared. '
+  textSec: 
+  wantSec: 0
 --- !u!114 &146831644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2040,8 +2061,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Critical Damage<br>The damage that the user deals is multiplied by this
     stat if its a critical hit. Usualy only physical damage can crit. '
+  textSec: 
+  wantSec: 0
 --- !u!1 &170884890
 GameObject:
   m_ObjectHideFlags: 0
@@ -2635,7 +2659,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!114 &191638935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3127,7 +3154,7 @@ Transform:
   m_LocalScale: {x: 4.2081866, y: 4.401452, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &238531280
 GameObject:
@@ -3181,7 +3208,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Timing
+  textSec: 
+  wantSec: 0
 --- !u!114 &238531283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3249,7 +3279,7 @@ Transform:
   m_Children:
   - {fileID: 648629777}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &249862974
 GameObject:
@@ -3420,7 +3450,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Mana
+  textSec: 
+  wantSec: 0
 --- !u!1 &262840280
 GameObject:
   m_ObjectHideFlags: 0
@@ -3882,7 +3915,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Stamina<br> If the stamina is low, the user gets tired.
+  textSec: 
+  wantSec: 0
 --- !u!114 &296567739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3973,7 +4009,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Attack Damage
+  textSec: 
+  wantSec: 0
 --- !u!114 &299256223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4428,7 +4467,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Stamina<br> If the stamina is low, the user gets tired.
+  textSec: 
+  wantSec: 0
 --- !u!1 &334435333
 GameObject:
   m_ObjectHideFlags: 0
@@ -4481,7 +4523,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Health
+  textSec: 
+  wantSec: 0
 --- !u!114 &334435336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4826,7 +4871,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &351965027
 GameObject:
   m_ObjectHideFlags: 0
@@ -6104,8 +6152,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Evasion<br>Let the user dodge attacks. <br> 3,5% of the movement speed +
     50% of the timing + 1% of the sanity '
+  textSec: 
+  wantSec: 0
 --- !u!114 &479267609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6578,7 +6629,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &541406917 stripped
 RectTransform:
@@ -7332,8 +7383,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Magic Resistance<br>Get 12% of this stat and subtracts to the magic damage
     the user takes. '
+  textSec: 
+  wantSec: 0
 --- !u!114 &595076897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7527,6 +7581,145 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596242264}
   m_CullTransparentMesh: 0
+--- !u!1001 &596512776
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1217040612873812677, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: isMain
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217040613610025390, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217040613610025391, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_Name
+      value: ToolTipSec
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808952502061967, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 3422808953885299110, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_Name
+      value: ToolTip
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422808953885299111, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0f237443123e1cd4bafc39390dff8ba7, type: 3}
 --- !u!1 &621994915
 GameObject:
   m_ObjectHideFlags: 0
@@ -7990,8 +8183,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Lifesteal<br>The user converts this stat amount of the physical damage dealt
     into health. '
+  textSec: 
+  wantSec: 0
 --- !u!114 &655680035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8508,7 +8704,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!114 &723553272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9072,7 +9271,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!114 &777323386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9471,7 +9673,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!114 &826650905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9581,8 +9786,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Critical Damage<br>The damage that the user deals is multiplied by this
     stat if its a critical hit. Usualy only physical damage can crit. '
+  textSec: 
+  wantSec: 0
 --- !u!114 &827178177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11386,8 +11594,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Magic Resistance<br>Get 12% of this stat and subtracts to the magic damage
     the user takes. '
+  textSec: 
+  wantSec: 0
 --- !u!1 &941798429
 GameObject:
   m_ObjectHideFlags: 0
@@ -12090,7 +12301,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Sanity<br>If the sanity reach 0, the user is Feared. '
+  textSec: 
+  wantSec: 0
 --- !u!1 &1001587204
 GameObject:
   m_ObjectHideFlags: 0
@@ -12174,7 +12388,8 @@ MonoBehaviour:
   defAtk: {fileID: 21300000, guid: 4918b5097ca207a4cbce8c2dff47577b, type: 3}
   statAtk: {fileID: 21300000, guid: 936908b1d1e44524f9d402eb684ac7da, type: 3}
   summAtk: {fileID: 21300000, guid: edc4bbb7d32a9024b81094d5d9894628, type: 3}
-  tooltip: {fileID: 3422808952827454667}
+  tooltipMain: {fileID: 3422808952827454667}
+  tooltipSec: {fileID: 1544077368}
   cameraAudio: {fileID: 519420030}
   bossfightMusic: {fileID: 8300000, guid: aaa62555fba57c54c91430a342e1d0aa, type: 3}
   info: {fileID: 1001587210}
@@ -12198,7 +12413,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1001587207
 MonoBehaviour:
@@ -12658,7 +12873,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!114 &1026474224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12768,8 +12986,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Damage Resistance<br>Use 18% of this stat and subtracts to the physical
     damage that the user takes. '
+  textSec: 
+  wantSec: 0
 --- !u!114 &1029686162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13085,8 +13306,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Magic Resistance<br>Get 12% of this stat and subtracts to the magic damage
     the user takes. '
+  textSec: 
+  wantSec: 0
 --- !u!114 &1048420262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13304,7 +13528,7 @@ RectTransform:
   - {fileID: 1193448246}
   - {fileID: 819221287}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13667,7 +13891,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!114 &1108610083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13769,7 +13996,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!114 &1121215396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15035,7 +15265,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Accuracy<br>This stat let the user hit its physical and magical attacks
+  textSec: 
+  wantSec: 0
 --- !u!1 &1190378085
 GameObject:
   m_ObjectHideFlags: 0
@@ -15088,7 +15321,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Accuracy<br>This stat let the user hit its physical and magical attacks
+  textSec: 
+  wantSec: 0
 --- !u!114 &1190378088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16092,7 +16328,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!114 &1240326387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16356,7 +16595,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Health Regen<br>Amount of health regenerated per turn. '
+  textSec: 
+  wantSec: 0
 --- !u!114 &1256859318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17139,7 +17381,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1317248017
 GameObject:
@@ -17347,7 +17589,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Stamina Regen<br>Amount of stamina regenerated per turn. '
+  textSec: 
+  wantSec: 0
 --- !u!1 &1346689707
 GameObject:
   m_ObjectHideFlags: 0
@@ -18011,7 +18256,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Magic Power
+  textSec: 
+  wantSec: 0
 --- !u!114 &1427332420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18235,7 +18483,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Magic Power
+  textSec: 
+  wantSec: 0
 --- !u!1 &1452912726
 GameObject:
   m_ObjectHideFlags: 0
@@ -18442,8 +18693,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Magic Resistance<br>Get 12% of this stat and subtracts to the magic damage
     the user takes. '
+  textSec: 
+  wantSec: 0
 --- !u!114 &1488963498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18904,7 +19158,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Timing
+  textSec: 
+  wantSec: 0
 --- !u!1 &1531985613
 GameObject:
   m_ObjectHideFlags: 0
@@ -18937,7 +19194,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!114 &1531985615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19075,6 +19335,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542268237}
   m_CullTransparentMesh: 0
+--- !u!1 &1544077368 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1217040613610025391, guid: 0f237443123e1cd4bafc39390dff8ba7,
+    type: 3}
+  m_PrefabInstance: {fileID: 596512776}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1544182643
 GameObject:
   m_ObjectHideFlags: 0
@@ -19499,7 +19765,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Mana
+  textSec: 
+  wantSec: 0
 --- !u!114 &1582884966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20095,7 +20364,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!114 &1690455798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20686,7 +20958,7 @@ Transform:
   m_LocalScale: {x: 4.2081866, y: 4.401452, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1724694633
 GameObject:
@@ -21243,7 +21515,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Health
+  textSec: 
+  wantSec: 0
 --- !u!1 &1807932598
 GameObject:
   m_ObjectHideFlags: 0
@@ -21659,7 +21934,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Health Regen<br>Amount of health regenerated per turn. '
+  textSec: 
+  wantSec: 0
 --- !u!1 &1830524493
 GameObject:
   m_ObjectHideFlags: 0
@@ -21908,8 +22186,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Evasion<br>Let the user dodge attacks. <br> 3,5% of the movement speed +
     50% of the timing + 1% of the sanity '
+  textSec: 
+  wantSec: 0
 --- !u!1 &1853184606
 GameObject:
   m_ObjectHideFlags: 0
@@ -22121,7 +22402,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Critical Chance
+  textSec: 
+  wantSec: 0
 --- !u!114 &1856559615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22408,7 +22692,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Attack Damage
+  textSec: 
+  wantSec: 0
 --- !u!1 &1884637198
 GameObject:
   m_ObjectHideFlags: 0
@@ -22460,7 +22747,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!114 &1884637201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22634,7 +22924,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Stamina Regen<br>Amount of stamina regenerated per turn. '
+  textSec: 
+  wantSec: 0
 --- !u!114 &1920214475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22896,7 +23189,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: Movement Speed<br>This stat decides who attacks first.
+  textSec: 
+  wantSec: 0
 --- !u!850595691 &1940996413
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -23142,7 +23438,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &1986530549
 GameObject:
   m_ObjectHideFlags: 0
@@ -23225,16 +23524,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 246563765}
     m_Modifications:
-    - target: {fileID: 1366766335801785088, guid: 80e82e60849bd724190529b9dab9ce4f,
-        type: 3}
-      propertyPath: list.Array.size
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 1366766335801785088, guid: 80e82e60849bd724190529b9dab9ce4f,
-        type: 3}
-      propertyPath: list.Array.data[19]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1366766335801785089, guid: 80e82e60849bd724190529b9dab9ce4f,
         type: 3}
       propertyPath: m_Name
@@ -23243,7 +23532,7 @@ PrefabInstance:
     - target: {fileID: 1366766335801785091, guid: 80e82e60849bd724190529b9dab9ce4f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1366766335801785091, guid: 80e82e60849bd724190529b9dab9ce4f,
         type: 3}
@@ -25018,7 +25307,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 3422808952827454668}
+  tooltipPopupSec: {fileID: 0}
   text: 'Mana Regen<br>Amount of mana regenerated per turn. '
+  textSec: 
+  wantSec: 0
 --- !u!114 &2128870900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25143,6 +25435,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1217040613610025391, guid: 0f237443123e1cd4bafc39390dff8ba7,
+        type: 3}
+      propertyPath: m_Name
+      value: ToolTipMain
+      objectReference: {fileID: 0}
     - target: {fileID: 3422808952502061967, guid: 0f237443123e1cd4bafc39390dff8ba7,
         type: 3}
       propertyPath: m_Camera

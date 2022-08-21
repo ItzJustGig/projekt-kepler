@@ -495,7 +495,8 @@
         "ravensfeather": "Pena do Corvo",
         "bigsteak": "Grande Bife",
         "zap": "Zap",
-        "huntersdirk": "Punhal do Ca\u00e7ador"
+        "huntersdirk": "Punhal do Ca\u00e7ador",
+        "jewelofthedruid": "J\u00f3ia do Druida"
     },
     "items": {
         "title": "Iten",
@@ -525,7 +526,8 @@
             "bookofdisaster": "Livro do Desastre",
 			"bootsoftherunner": "Botas do Corredor",
 			"shadowmushroom": "Cogulemos das Sombras",
-			"huntersdirk": "Punhal do Ca\u00e7ador"
+			"huntersdirk": "Punhal do Ca\u00e7ador",
+            "jewelofthedruid": "J\u00f3ia do Druida"
 		},
 		"move": {
 			"zap": "O transportador usa um <color=#ffdf00>zap</color> num inimgo com uma %type% que %dmg%",
@@ -533,7 +535,8 @@
             "healthpotion" : "O transportador usa uma %type% que %dmg%",
 			"bigsteak": "O transportador usa uma %type% que %dmg%",
 			"ravensfeather" : "O transportador utiliza uma %type% que reduz %mode%",
-			"huntersdirk": "O transportador usa uma %type% que %dmg% e tem %critdmg%% dano cr\u00edtico b\u00f3nus"
+			"huntersdirk": "O transportador usa uma %type% que %dmg% e tem %critdmg%% dano cr\u00edtico b\u00f3nus",
+			"jewelofthedruid": "O transportador usa uma %type% que %summon%"
 		}
     }
 }

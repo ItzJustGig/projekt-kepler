@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
   m_Name: Blood Pressure
   m_EditorClassIdentifier: 
-  type: 7
+  type: 1
   name: bloodpressure
   hitTime: 1
   priority: 0
@@ -45,3 +45,4 @@ MonoBehaviour:
   dot: []
   effects: []
   grantPassive: {fileID: 11400000, guid: 4605a6c8a388e054fae070e58d7b8e88, type: 2}
+  summon: {fileID: 0}

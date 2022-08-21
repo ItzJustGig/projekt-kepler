@@ -68,7 +68,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private Sprite statAtk;
     [SerializeField] private Sprite summAtk;
 
-    [SerializeField] private GameObject tooltip;
+    [SerializeField] private GameObject tooltipMain;
+    [SerializeField] private GameObject tooltipSec;
 
     [SerializeField] private AudioSource cameraAudio;
     [SerializeField] private AudioClip bossfightMusic;
@@ -302,10 +303,10 @@ public class BattleSystem : MonoBehaviour
         if (playerUnit.moves.Contains(recoverManaMoveE))
             playerUnit.moves.Remove(recoverManaMoveE);
 
-        healManaBtn.GetComponent<TooltipButton>().tooltipPopup = tooltip.GetComponent<TooltipPopUp>();
+        healManaBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
         healManaBtn.GetComponent<TooltipButton>().text = recoverManaMoveP.GetTooltipText();
 
-        ultBtn.GetComponent<TooltipButton>().tooltipPopup = tooltip.GetComponent<TooltipPopUp>();
+        ultBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
         ultBtn.GetComponent<TooltipButton>().text = playerUnit.charc.ultimate.GetTooltipText();
 
         if (PlayerPrefs.GetInt("isEndless") == 1)
@@ -351,7 +352,7 @@ public class BattleSystem : MonoBehaviour
             {
                 move.inCooldown = 0;
 
-                moveButton.GetComponent<TooltipButton>().tooltipPopup = tooltip.GetComponent<TooltipPopUp>();
+                moveButton.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
                 moveButton.GetComponent<TooltipButton>().text = move.GetTooltipText();
 
                 moveButton.name = move.name;
@@ -525,7 +526,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator Combat(Moves movePlayer)
     {
         panelMoves.SetActive(false);
-        tooltip.transform.Find("TooltipCanvas").gameObject.SetActive(false);
+        tooltipMain.transform.Find("TooltipCanvas").gameObject.SetActive(false);
         movesBtn.interactable = false;
         basicBtn.interactable = false;
         healManaBtn.interactable = false;
@@ -664,7 +665,7 @@ public class BattleSystem : MonoBehaviour
             StartCoroutine(NewTurn());
     }
 
-    IEnumerator Attack(Moves move, Unit user, Unit target, string summonName = null)
+    IEnumerator Attack(Moves move, Unit user, Unit target)
     {
         if (move == null)
         {
@@ -737,10 +738,8 @@ public class BattleSystem : MonoBehaviour
 
             if ((target.isBlockingPhysical && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)) || (target.isBlockingMagical && move.type is Moves.MoveType.MAGICAL) || (target.isBlockingRanged && move.type is Moves.MoveType.RANGED))
             {
-                if (summonName != null)
-                    dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", summonName, langmanag.GetInfo("moves", move.name));
-                else
-                    dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
+
+                dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
 
                 yield return new WaitForSeconds(1.15f);
                 target.TakeDamage(0, 0, false);
@@ -1936,7 +1935,7 @@ public class BattleSystem : MonoBehaviour
         Text text = barIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
         text.text = effect.duration.ToString();
         TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
-        tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
+        tooltipButton.tooltipPopup = tooltipMain.transform.GetComponent<TooltipPopUp>();
         tooltipButton.text = effect.GetEffectInfo();
 
         Instantiate(barIconPrefab, pannel.transform);
@@ -2293,8 +2292,6 @@ public class BattleSystem : MonoBehaviour
             i = 0;
             StartCoroutine(WaitWhile());
         } while (move == null);
-
-        
 
         if (skip)
             return null;
@@ -2772,7 +2769,7 @@ public class BattleSystem : MonoBehaviour
         text.text = num.ToString();
 
         TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
-        tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
+        tooltipButton.tooltipPopup = tooltipMain.transform.GetComponent<TooltipPopUp>();
         tooltipButton.text = passiveDesc;
 
         if (!isEnemy)
@@ -3556,7 +3553,7 @@ public class BattleSystem : MonoBehaviour
             text.text = effect.duration.ToString();
             //display popup info on icon
             TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
-            tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
+            tooltipButton.tooltipPopup = tooltipMain.transform.GetComponent<TooltipPopUp>();
             tooltipButton.text = effect.GetEffectInfo();
 
             Instantiate(barIconPrefab, pannel.transform);
@@ -3606,7 +3603,7 @@ public class BattleSystem : MonoBehaviour
             Text text = barIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
             text.text = effect.duration.ToString();
             TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
-            tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
+            tooltipButton.tooltipPopup = tooltipMain.transform.GetComponent<TooltipPopUp>();
             tooltipButton.text = effect.GetEffectInfo();
 
             Instantiate(barIconPrefab, pannel.transform);
@@ -3760,7 +3757,7 @@ public class BattleSystem : MonoBehaviour
                 Text text = barIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
                 text.text = sum.stats.hp.ToString();
                 TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
-                tooltipButton.tooltipPopup = tooltip.transform.GetComponent<TooltipPopUp>();
+                tooltipButton.tooltipPopup = tooltipMain.transform.GetComponent<TooltipPopUp>();
                 tooltipButton.text = sum.name;
                 Instantiate(barIconPrefab, pannel.transform);
             }

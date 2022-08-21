@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
   m_Name: Light Speed Plasma Cut
   m_EditorClassIdentifier: 
-  type: 7
+  type: 1
   name: lightspeedplasmacut
   hitTime: 1
   priority: 1
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,6 +29,8 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 0
   inCooldown: 0
   manaCost: 0
@@ -40,6 +43,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1121b478831b77d4188316a3b9d02282, type: 2}
   - {fileID: 11400000, guid: 56fc34cfd0e371142bae5b96a226da66, type: 2}
   - {fileID: 11400000, guid: 189aa66cbd1bf8b4b9e7a68c63d5b0cd, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: bc69ea7a8e8481c4f817eee1b4c5cf4a, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}

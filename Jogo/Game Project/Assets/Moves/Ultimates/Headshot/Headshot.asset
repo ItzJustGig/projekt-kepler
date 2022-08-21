@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
   m_Name: Headshot
   m_EditorClassIdentifier: 
-  type: 7
+  type: 0
   name: headshot
   hitTime: 1
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,6 +29,8 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 0
   inCooldown: 0
   manaCost: 0
@@ -39,5 +42,7 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: 0b1a0512f55ab644ca612e5862579f77, type: 2}
   - {fileID: 11400000, guid: 77635e6f3aff2f84eacab8e32be02b22, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}

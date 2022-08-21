@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
   m_Name: Windy Valley Tornado
   m_EditorClassIdentifier: 
-  type: 7
+  type: 1
   name: windyvalleytornado
   hitTime: 5
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,6 +29,8 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 10
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 0
   inCooldown: 0
   manaCost: 0
@@ -39,6 +42,8 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: 2a4d7f1014d12a74eaea5ffe614d2e89, type: 2}
   - {fileID: 11400000, guid: 093ff1ee47bacde45839c4ca234c22a5, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: 764f1eefb32d81a4e8a3821426ad2091, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
