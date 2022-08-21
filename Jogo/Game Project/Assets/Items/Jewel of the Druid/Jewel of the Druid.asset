@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Jewel of the Druid
   m_EditorClassIdentifier: 
   name: jewelofthedruid
-  icon: {fileID: 21300000, guid: fea3700a7b486f84d86ec9fe0aada3f8, type: 3}
+  icon: {fileID: 21300000, guid: ecfdc32236a472e4cb2e6aee552cc85f, type: 3}
   passives: []
   statmod:
   - {fileID: 11400000, guid: b08ad842d6b694a45b6bcf6437bdeb18, type: 2}

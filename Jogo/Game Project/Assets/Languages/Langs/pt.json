@@ -380,7 +380,8 @@
             "ranged": "%c%T\u00E9cnica de longa dist\u00E2ncia%c/%",
             "statmod": "%c%T\u00E9cnica de modifica\u00E7\u00E3o de estat\u00EDstica%c/%",
             "support": "%c%T\u00E9cnica de suporte%c/%",
-            "defence": "%c%T\u00E9cnica defenciva%c/%"
+            "defence": "%c%T\u00E9cnica defenciva%c/%",
+			"summon": "%c%Invoca\u00E7\u00E3o%c/%"
         },
         "basicattack": "Ataque B\u00E1sico",
         "recovmana": "Recupera\u00E7\u00E3o de Mana",
@@ -536,7 +537,19 @@
 			"bigsteak": "O transportador usa uma %type% que %dmg%",
 			"ravensfeather" : "O transportador utiliza uma %type% que reduz %mode%",
 			"huntersdirk": "O transportador usa uma %type% que %dmg% e tem %critdmg%% dano cr\u00edtico b\u00f3nus",
-			"jewelofthedruid": "O transportador usa uma %type% que %summon%"
+			"jewelofthedruid": "O transportador usa uma %type% que %summondesc%"
 		}
-    }
+    },
+	"summon": {
+		"desc": "invoca uma %summonname%, que %summonaction% a cada %summonactioncd% turnos",
+		"physical":"dano f\u00edsico",
+		"magic":"dano m\u00e1gico",
+		"trued":"dano verdadeiro",
+		"heal":"cura",
+		"shield":"d\u00e1 escudo",
+		"name":{
+			"fairy":"Fada",
+			"turret":"Torreta"
+		}
+	}
 }

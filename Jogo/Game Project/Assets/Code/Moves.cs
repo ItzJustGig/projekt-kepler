@@ -266,9 +266,11 @@ public class Moves : ScriptableObject
         string language = GetLanguage();
 
         StringBuilder builder = new StringBuilder();
+        bool hasText = false;
 
         if (phyDmg > 0)
         {
+            hasText = true;
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
@@ -280,6 +282,7 @@ public class Moves : ScriptableObject
 
         if (magicDmg > 0)
         {
+            hasText = true;
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
@@ -291,6 +294,7 @@ public class Moves : ScriptableObject
 
         if (trueDmg > 0)
         {
+            hasText = true;
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
@@ -302,6 +306,7 @@ public class Moves : ScriptableObject
 
         if (sanityDmg > 0)
         {
+            hasText = true;
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
@@ -313,6 +318,7 @@ public class Moves : ScriptableObject
 
         if (heal > 0 || (!(healFromDmgType is HealFromDmg.NONE) && healFromDmg > 0))
         {
+            hasText = true;
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
@@ -330,6 +336,7 @@ public class Moves : ScriptableObject
 
         if (healMana > 0)
         {
+            hasText = true;
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
@@ -341,6 +348,7 @@ public class Moves : ScriptableObject
 
         if (healStamina > 0)
         {
+            hasText = true;
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
@@ -352,6 +360,7 @@ public class Moves : ScriptableObject
 
         if (healSanity > 0)
         {
+            hasText = true;
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
@@ -363,6 +372,7 @@ public class Moves : ScriptableObject
 
         if (shield > 0)
         {
+            hasText = true;
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
@@ -371,6 +381,9 @@ public class Moves : ScriptableObject
             }
             builder.Append(GetDmg(languageManager, language, "shield", shield, "787878", temp.ToString())).AppendLine();
         }
+
+        if (!hasText)
+            builder.Append("NULL");
 
         return builder;
     }
@@ -431,9 +444,17 @@ public class Moves : ScriptableObject
                 builder.Append(a.GetEffectMoveInfo());
             }
         }
-        builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
 
-        builder.Append(GetDmgMove());
+        {
+            StringBuilder temp = new StringBuilder();
+            temp.Append(GetDmgMove());
+
+            if (temp.ToString() != "NULL")
+            {
+                builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
+                builder.Append(temp);
+            }
+        }
 
         if (grantPassive)
         {
@@ -441,10 +462,64 @@ public class Moves : ScriptableObject
             builder.Append(grantPassive.GetPassiveInfo());
         }
 
+        if (summon)
+        {
+            builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
+            {
+                StringBuilder temp = new StringBuilder();
+                temp = GetMoveInfoSummon(languageManager, language);
+                builder.Append(char.ToUpper(temp[0])).Append(temp.Remove(0, 1));
+
+            }
+        }
+
         return builder.ToString();
     }
 
     //vv ITEMS vv
+    public StringBuilder GetMoveInfoSummon(LanguageManager languageManager, string language)
+    {
+        StringBuilder builder = new StringBuilder();
+        builder.Append(languageManager.GetText(language, "summon", "desc"));
+        builder.Replace("%summonname%", languageManager.GetText(language, "summon", "name", summon.name.ToString()));
+        builder.Replace("%summonactioncd%", summon.move.cd.ToString());
+        StringBuilder temp = new StringBuilder();
+
+        switch (summon.move.dmgType)
+        {
+            case SumMove.DmgType.PHYSICAL:
+                temp.Append(GetSummonInfo(languageManager, language, "ffaa00", "physic"));
+                break;
+            case SumMove.DmgType.MAGICAL:
+                temp.Append(GetSummonInfo(languageManager, language, "1a66ff", "magic"));
+                break;
+            case SumMove.DmgType.TRUE:
+                temp.Append(GetSummonInfo(languageManager, language, "a6a6a6", "trued"));
+                break;
+            case SumMove.DmgType.SHIELD:
+                temp.Append(GetSummonInfo(languageManager, language, "787878", "shield"));
+                break;
+            case SumMove.DmgType.HEAL:
+                temp.Append(GetSummonInfo(languageManager, language, "00ff11", "heal"));
+                break;
+        }
+
+        builder.Replace("%summonaction%", temp.ToString());
+        builder.AppendLine().Append(summon.GetSummonInfo(languageManager, language));
+
+        return builder;
+    }
+
+    public StringBuilder GetSummonInfo(LanguageManager languageManager, string language, string colour, string whatis)
+    {
+        StringBuilder summonaction = new StringBuilder();
+        summonaction.Append("<color=#" + colour + ">");
+        summonaction.Append(languageManager.GetText(language, "summon", whatis));
+        summonaction.Append("</color>");
+
+        return summonaction;
+    }
+
     public string GetMoveInfo()
     {
         LanguageManager languageManager = GetLanguageMan();
@@ -460,6 +535,11 @@ public class Moves : ScriptableObject
         builder.Replace("%critchance%", (critChanceBonus*100).ToString());
         builder.Replace("%prio%", priority.ToString());
         builder.Replace("%hit%", hitTime.ToString());
+        
+        if (summon != null)
+        {
+            builder.Replace("%summondesc%", GetMoveInfoSummon(languageManager, language).ToString());
+        }
 
         {
             StringBuilder temp = new StringBuilder();
@@ -502,6 +582,10 @@ public class Moves : ScriptableObject
                 case MoveType.DEFFENCIVE:
                     temp.Append(languageManager.GetText(language, "moves", "type", "defence"));
                     temp.Replace("%c%", "<color=#787878>");
+                    break;
+                case MoveType.SUMMON:
+                    temp.Append(languageManager.GetText(language, "moves", "type", "summon"));
+                    temp.Replace("%c%", "<color=#B266FF>");
                     break;
             }
 

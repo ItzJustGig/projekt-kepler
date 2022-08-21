@@ -21,6 +21,7 @@ public class LanguageManager : MonoBehaviour
         public Moves moves;
         public Passive passive;
         public Items items;
+        public Summon summon;
 
         public string GetStuff(string main, string sec, string tri)
         {
@@ -56,6 +57,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "items":
                     returns = items.Get_Item(sec, tri);
+                    break;
+                case "summon":
+                    returns = summon.Get_Summon(sec, tri);
                     break;
                 default:
                     returns = "null";
@@ -1852,6 +1856,7 @@ public class LanguageManager : MonoBehaviour
         public string statmod;
         public string support;
         public string defence;
+        public string summon;
 
         public string Get_Move_Type(string a)
         {
@@ -1875,6 +1880,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "defence":
                     returns = defence;
+                    break;
+                case "summon":
+                    returns = summon;
                     break;
                 default:
                     returns = "null";
@@ -2074,6 +2082,75 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "jewelofthedruid":
                     returns = jewelofthedruid;
+                    break;
+                default:
+                    returns = "null";
+                    break;
+            }
+            return returns;
+        }
+    }
+
+    [Serializable]
+    public class Summon
+    {
+        public string desc;
+        public string physic;
+        public string magic;
+        public string trued;
+        public string heal;
+        public string shield;
+        public Summon_Name name;
+        public string Get_Summon(string a, string b)
+        {
+            string returns;
+            switch (a)
+            {
+                case "desc":
+                    returns = desc;
+                    break;
+                case "physic":
+                    returns = physic;
+                    break;
+                case "magic":
+                    returns = magic;
+                    break;
+                case "trued":
+                    returns = trued;
+                    break;
+                case "heal":
+                    returns = heal;
+                    break;
+                case "shield":
+                    returns = shield;
+                    break;
+                case "name":
+                    returns = name.Get_Summon_Name(b);
+                    break;
+                default:
+                    returns = "null";
+                    break;
+            }
+            return returns;
+        }
+    }
+
+    [Serializable]
+    public class Summon_Name
+    {
+        public string fairy;
+        public string turret;
+
+        public string Get_Summon_Name(string a)
+        {
+            string returns;
+            switch (a)
+            {
+                case "fairy":
+                    returns = fairy;
+                    break;
+                case "turret":
+                    returns = turret;
                     break;
                 default:
                     returns = "null";

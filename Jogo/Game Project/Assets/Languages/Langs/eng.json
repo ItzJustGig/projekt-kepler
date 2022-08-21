@@ -87,7 +87,7 @@
 		"healmana": "Recover %c%%val% mana%c/%%dot%",
 		"healstamina": "Recover %c%%val% stamina%c/%%dot%",
 		"healsanity": "Recover %c%%val% sanity%c/%%dot%",
-		"shield": "Grants a %c%%val% health shield%c/%%dot%",
+		"shield": "Grants a %c%shield%c/% with %c%%val% health %c/%%dot%",
 		"bonuscritchance": "%c%Bonus critical chance: %val%%%c/%",
 		"bonuscritdmg": "%c%Bonus critical damage: %val%%%c/%",
 		"blockphysic": "Blocks %c%physical%c/% moves",
@@ -380,7 +380,8 @@
 			"ranged": "%c%Ranged move%c/%",
 			"statmod": "%c%Stat Modifier move%c/%",
 			"support": "%c%Supportive move%c/%",
-			"defence": "%c%Defencive move%c/%"
+			"defence": "%c%Defencive move%c/%",
+			"summon": "%c%Summoning move%c/%"
 		},
 		"basicattack": "Basic Attack",
 		"recovmana": "Recover Mana",
@@ -530,13 +531,25 @@
 			"jewelofthedruid": "Jewel of the Druid"
 		},
 		"move": {
-			"zap": "the carrier will <color=#ffdf00>zap</color> an enemy with an %type% to %dmg%",
+			"zap": "The carrier will <color=#ffdf00>zap</color> an enemy with an %type% to %dmg%",
 			"manapotion" : "The carrier uses a %type% to %dmg%",
 			"healthpotion" : "The carrier uses a %type% that %dmg%",
 			"bigsteak": "The carrier uses a %type%, that %dmg%",
 			"ravensfeather" : "The carrier casts a %type% reducing %mode%",
 			"huntersdirk": "use a %type% that %dmg% and have %critdmg%% critical damage bonus",
-			"jewelofthedruid": "use a %type% that %summon%"
+			"jewelofthedruid": "The carrier uses a %type% that %summondesc%" 
+		}
+	},
+	"summon": {
+		"desc": "summons a %summonname%, that will %summonaction% every %summonactioncd% turns",
+		"physic":"physical damage",
+		"magic":"magical damage",
+		"trued":"true damage",
+		"heal":"heal",
+		"shield":"shield",
+		"name":{
+			"fairy":"Fairy",
+			"turret":"Turret"
 		}
 	}
 }

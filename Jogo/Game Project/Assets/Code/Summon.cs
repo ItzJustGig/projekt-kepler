@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Summon", menuName = "Summon/Summon")]
@@ -22,6 +23,72 @@ public class Summon : ScriptableObject
         summon.summonTurn = summonTurn;
 
         return summon;
+    }
+
+    public string GetMoveTypeLangId()
+    {
+        string whatis = "";
+        switch (move.dmgType)
+        {
+            case SumMove.DmgType.PHYSICAL:
+                whatis = "physic";
+                break;
+            case SumMove.DmgType.MAGICAL:
+                whatis = "magic";
+                break;
+            case SumMove.DmgType.TRUE:
+                whatis = "trued";
+                break;
+            case SumMove.DmgType.HEAL:
+                whatis = "heal";
+                break;
+            case SumMove.DmgType.SHIELD:
+                whatis = "shield";
+                break;
+        }
+        return whatis;
+    }
+
+    public StringBuilder GetSummonInfo(LanguageManager languageManager, string language)
+    {
+        StringBuilder text = new StringBuilder();
+
+        text.Append("<color=#00ff11>" + languageManager.GetText(language, "stats", "name", "hp") + ": " + stats.hpScale.GetStatScaleInfo().Remove(0, 2) + "</color>").AppendLine();
+        text.Append("<color=#ffaa00>" + languageManager.GetText(language, "stats", "name", "attack") + ": " + stats.atkScale.GetStatScaleInfo().Remove(0, 2) + "</color>").AppendLine();
+        text.Append("<color=#1a66ff>" + languageManager.GetText(language, "stats", "name", "magicpower") + ": " + stats.mpScale.GetStatScaleInfo().Remove(0, 2) + "</color>").AppendLine().AppendLine();
+
+        string color = "";
+        string whatis = "";
+        switch (move.dmgType)
+        {
+            case SumMove.DmgType.PHYSICAL:
+                color = "ffaa00";
+                whatis = "physic";
+                break;
+            case SumMove.DmgType.MAGICAL:
+                color = "1a66ff";
+                whatis = "magic";
+                break;
+            case SumMove.DmgType.TRUE:
+                color = "a6a6a6";
+                whatis = "trued";
+                break;
+            case SumMove.DmgType.HEAL:
+                color = "00ff11";
+                whatis = "heal";
+                break;
+            case SumMove.DmgType.SHIELD:
+                color = "787878";
+                whatis = "shield";
+                break;
+        }
+        whatis = languageManager.GetText(language, "summon", whatis);
+
+        text.Append("<color=#" + color + ">" + char.ToUpper(whatis[0]) + whatis.Remove(0, 1) + ": ");
+        text.Append("<color=#ffaa00>" + (move.atkScale * 100).ToString() + "% " + languageManager.GetText(language, "stats", "name", "attack") + "</color>");
+        text.Append(" + <color=#1a66ff>" + (move.mpScale*100).ToString() + "% " + languageManager.GetText(language, "stats", "name", "magicpower") + "</color>");
+
+        return text;
     }
     
     public void SetupStats(Stats summStats, Unit summoner)

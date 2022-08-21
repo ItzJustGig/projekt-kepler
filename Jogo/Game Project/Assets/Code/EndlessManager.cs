@@ -30,6 +30,7 @@ public class EndlessManager : MonoBehaviour
     [SerializeField] private StuffList monsters;
     [SerializeField] private StuffList monsEncounters;
 
+    [SerializeField] private int baseGold;
     [SerializeField] private List<BonusGold> bonusGold = new List<BonusGold>();
     [SerializeField] private BonusGold bonusGoldBoss;
 
@@ -87,7 +88,7 @@ public class EndlessManager : MonoBehaviour
         {
             if (info.enemyIdNext != -1)
             {
-                int gold = 5;
+                int gold = baseGold;
                 int tempId = info.enemyIdNext;
                 bool tempIsBoss = info.isEnemyBossNext;
                 Character.Strenght tempStrenght;

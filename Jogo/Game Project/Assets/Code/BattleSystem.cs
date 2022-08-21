@@ -477,16 +477,19 @@ public class BattleSystem : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("isEndless") == 1)
         {
-            foreach (string b in info.items)
+            if (!unit.isEnemy)
             {
-                foreach (Items a in items.returnStuff())
+                foreach (string b in info.items)
                 {
-                    if (b == a.name)
+                    foreach (Items a in items.returnStuff())
                     {
-                        unit.items.Add(a.returnItem());
+                        if (b == a.name)
+                        {
+                            unit.items.Add(a.returnItem());
 
-                        SetupItems(a, unit);
-                    }   
+                            SetupItems(a, unit);
+                        }
+                    }
                 }
             }
         } else
@@ -3758,19 +3761,20 @@ public class BattleSystem : MonoBehaviour
                 text.text = sum.stats.hp.ToString();
                 TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
                 tooltipButton.tooltipPopup = tooltipMain.transform.GetComponent<TooltipPopUp>();
-                tooltipButton.text = sum.name;
+                tooltipButton.text = langmanag.GetInfo("summon", "name", sum.name);
                 Instantiate(barIconPrefab, pannel.transform);
             }
         }
         else
         {
-            string name = sum.name + sum.summonTurn;
+            string name = langmanag.GetInfo("summon", "name", sum.name);
+            string debugname = sum.name + sum.summonTurn;
             if (sum.stats.hp > 0)
             {
-                pannel.transform.Find(name + "(Clone)").gameObject.transform.Find("time").gameObject.GetComponent<Text>().text = sum.stats.hp.ToString();
+                pannel.transform.Find(debugname + "(Clone)").gameObject.transform.Find("time").gameObject.GetComponent<Text>().text = sum.stats.hp.ToString();
                 if (sum.move.inCd <= 0)
                 {
-                    dialogText.text = name + " is attacking.";//langmanag.GetInfo("gui", "text", "turn", turnCount);
+                    dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", name, langmanag.GetInfo("summon", sum.GetMoveTypeLangId()));
                     sum.move.inCd = sum.move.cd;
                     if (target.isEnemy)
                         return SummonDmg(sum.move, sum.stats, target, summoner, enemyHUD);
@@ -3783,7 +3787,8 @@ public class BattleSystem : MonoBehaviour
             }
             else
             {
-                Destroy(pannel.transform.Find(name + "(Clone)").gameObject);
+                dialogText.text = langmanag.GetInfo("gui", "text", "defeat", name);
+                Destroy(pannel.transform.Find(debugname + "(Clone)").gameObject);
                 summoner.summons.Remove(sum);
             }
         }

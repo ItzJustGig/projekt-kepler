@@ -16,6 +16,7 @@ MonoBehaviour:
   name: blazingfists
   hitTime: 1
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -39,5 +40,7 @@ MonoBehaviour:
   statModUser: {fileID: 11400000, guid: 4170a565031bb264cb7e631bf7f153e9, type: 2}
   statModEnemy: {fileID: 0}
   scale: []
+  dot: []
   effects: []
   grantPassive: {fileID: 11400000, guid: 8759809e781aa004f9f9c5e1e79cb2b2, type: 2}
+  summon: {fileID: 0}
