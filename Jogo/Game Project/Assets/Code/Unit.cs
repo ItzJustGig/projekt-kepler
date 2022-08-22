@@ -162,6 +162,16 @@ public class Unit : MonoBehaviour
         yield return new WaitForSeconds(0.65f);
     }
 
+    public Effects CheckIfEffectExists(string id)
+    {
+        foreach (Effects a in effects)
+        {
+            if (a.id == id)
+                return a;
+        }
+        return null;
+    }
+
     public bool CountEffectTimer(GameObject panelEffects)
     {
         bool isDead = false;

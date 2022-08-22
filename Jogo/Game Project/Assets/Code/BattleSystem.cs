@@ -1430,54 +1430,69 @@ public class BattleSystem : MonoBehaviour
 
                                             if (a.targetPlayer)
                                             {
-                                                user.effects.Add(effect);
+                                                Effects check = user.CheckIfEffectExists(effect.id);
+                                                if (check == null)
+                                                {
+                                                    user.effects.Add(effect);
 
-                                                if (!user.isEnemy)
-                                                {
-                                                    SetEffectIcon(effect, panelEffectsP);
-                                                }
-                                                else
-                                                {
-                                                    SetEffectIcon(effect, panelEffectsE);
-                                                }
+                                                    if (!user.isEnemy)
+                                                    {
+                                                        SetEffectIcon(effect, panelEffectsP);
+                                                    }
+                                                    else
+                                                    {
+                                                        SetEffectIcon(effect, panelEffectsE);
+                                                    }
 
-                                                foreach (StatMod b in effect.statMods)
+                                                    foreach (StatMod b in effect.statMods)
+                                                    {
+                                                        StatMod statMod = b.ReturnStats();
+                                                        statMod.inTime = effect.duration;
+                                                        dmg.heal += (int)((user.charc.stats.hp * statMod.hp) / 2);
+                                                        dmg.healMana += (int)((user.charc.stats.mana * statMod.mana) / 2);
+                                                        dmg.healStamina += (int)((user.charc.stats.stamina * statMod.stamina) / 2);
+                                                        dmg.healSanity += (int)((user.charc.stats.sanity * statMod.sanity) / 2);
+                                                        user.statMods.Add(statMod);
+                                                        user.usedBonusStuff = false;
+                                                        SetModifiers(statMod, statsUser, user);
+                                                    }
+                                                } else
                                                 {
-                                                    StatMod statMod = b.ReturnStats();
-                                                    statMod.inTime = effect.duration;
-                                                    dmg.heal += (int)((user.charc.stats.hp * statMod.hp) / 2);
-                                                    dmg.healMana += (int)((user.charc.stats.mana * statMod.mana) / 2);
-                                                    dmg.healStamina += (int)((user.charc.stats.stamina * statMod.stamina) / 2);
-                                                    dmg.healSanity += (int)((user.charc.stats.sanity * statMod.sanity) / 2);
-                                                    user.statMods.Add(statMod);
-                                                    user.usedBonusStuff = false;
-                                                    SetModifiers(statMod, statsUser, user);
+                                                    check.duration += effect.duration;
                                                 }
+                                               
                                             }
                                             else
                                             {
-                                                target.effects.Add(effect);
+                                                Effects check = target.CheckIfEffectExists(effect.id);
+                                                if (check == null)
+                                                {
+                                                    target.effects.Add(effect);
 
-                                                if (!target.isEnemy)
-                                                {
-                                                    SetEffectIcon(effect, panelEffectsP);
-                                                }
-                                                else
-                                                {
-                                                    SetEffectIcon(effect, panelEffectsE);
-                                                }
+                                                    if (!target.isEnemy)
+                                                    {
+                                                        SetEffectIcon(effect, panelEffectsP);
+                                                    }
+                                                    else
+                                                    {
+                                                        SetEffectIcon(effect, panelEffectsE);
+                                                    }
 
-                                                foreach (StatMod b in effect.statMods)
+                                                    foreach (StatMod b in effect.statMods)
+                                                    {
+                                                        StatMod statMod = b.ReturnStats();
+                                                        statMod.inTime = effect.duration;
+                                                        dmg.heal += (int)((target.charc.stats.hp * statMod.hp) / 2);
+                                                        dmg.healMana += (int)((target.charc.stats.mana * statMod.mana) / 2);
+                                                        dmg.healStamina += (int)((target.charc.stats.stamina * statMod.stamina) / 2);
+                                                        dmg.healSanity += (int)((target.charc.stats.sanity * statMod.sanity) / 2);
+                                                        target.statMods.Add(statMod);
+                                                        target.usedBonusStuff = false;
+                                                        SetModifiers(statMod, statsTarget, target);
+                                                    }
+                                                } else
                                                 {
-                                                    StatMod statMod = b.ReturnStats();
-                                                    statMod.inTime = effect.duration;
-                                                    dmg.heal += (int)((target.charc.stats.hp * statMod.hp) / 2);
-                                                    dmg.healMana += (int)((target.charc.stats.mana * statMod.mana) / 2);
-                                                    dmg.healStamina += (int)((target.charc.stats.stamina * statMod.stamina) / 2);
-                                                    dmg.healSanity += (int)((target.charc.stats.sanity * statMod.sanity) / 2);
-                                                    target.statMods.Add(statMod);
-                                                    target.usedBonusStuff = false;
-                                                    SetModifiers(statMod, statsTarget, target);
+                                                    check.duration += effect.duration;
                                                 }
                                             }
                                         }
@@ -2057,7 +2072,7 @@ public class BattleSystem : MonoBehaviour
         return temp;
     }
 
-    Stats SetModifiers(StatMod scale, Stats user, Unit original)
+    public Stats SetModifiers(StatMod scale, Stats user, Unit original)
     {
         Stats temp = user.ReturnStats();
 
