@@ -1307,6 +1307,34 @@ public class BattleSystem : MonoBehaviour
                                 dmg.AddDmg(SetScaleDmg(scale, stats, unit));
                             }
                         }
+
+                        if (a.name == "bullsrage")
+                        {
+                            if (a.stacks >= a.maxStacks && (a.inCd > 0 || a.inCd < 0))
+                            {
+                                if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
+                                {
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmg.AddDmg(SetScaleDmg(scale, stats, unit));
+                                }
+                            }
+                        }
                     }
 
                     dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
@@ -1707,6 +1735,18 @@ public class BattleSystem : MonoBehaviour
                                             bonusSanityDmg = (int)a.maxNum;
                                         //add bonus damage
                                         dmg.sanityDmg += bonusSanityDmg;
+                                    }
+                                }
+
+                                if (a.name == "bullsrage")
+                                {
+                                    if (isCrit)
+                                    {
+                                        if (a.stacks < a.maxStacks && a.stacks >= 0)
+                                        {
+                                            a.stacks++;
+                                            ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), target.isEnemy, a.GetPassiveInfo());
+                                        }
                                     }
                                 }
                             }
@@ -2960,18 +3000,57 @@ public class BattleSystem : MonoBehaviour
                 //hp in %
                 int hpPer = (int)((100 * user.curHp) / user.charc.stats.hp);
 
-                if (hpPer < (a.num * 100))
+                if (hpPer <= (a.num * 100))
+                {
+                    if (a.stacks < a.maxStacks + 1)
+                    {
+                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                        a.stacks = a.maxStacks + 1;
+                    }
+                } else if (a.stacks > a.maxStacks && hpPer > (a.num * 100))
+                {
+                    a.stacks = 0;
+                    a.inCd = -1;
+                }
+
+                if ((a.stacks == a.maxStacks && a.inCd == 0) || a.stacks > a.maxStacks)
                 {
                     StatMod statMod = a.statMod.ReturnStats();
-                    statMod.inTime = statMod.time;
+                    if (a.stacks == a.maxStacks)
+                    {
+                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                        statMod.inTime = a.cd;
+                        a.inCd = a.cd+1;
+                    }
+                    else
+                    {
+                        statMod.inTime = 1;
+                    }
+
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
                     SetStatsHud(user, userHud);
+                }
+                
+                if (a.inCd > 0 || a.stacks > a.maxStacks)
+                {
+                    if (a.stacks > a.maxStacks)
+                        ManagePassiveIcon(a.sprite, a.name, "!", user.isEnemy, a.GetPassiveInfo());
+                    else
+                    {
+                        a.inCd--;
+                        ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    }
+                } else
+                {
                     ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
                 }
-                else if (hpPer > (a.num * 100))
+
+                if (a.inCd == 0 && a.stacks >= a.maxStacks)
                 {
+                    a.stacks = 0;
                     DestroyPassiveIcon(a.name, user.isEnemy);
+                    ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                 }
             }
 
@@ -2999,11 +3078,11 @@ public class BattleSystem : MonoBehaviour
                 if (sanityPer < (a.num * 100))
                 {
                     StatMod statMod = a.statMod.ReturnStats();
-                    statMod.inTime = statMod.time;
+                    statMod.inTime = 1;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
                     SetStatsHud(user, userHud);
-                    ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    ManagePassiveIcon(a.sprite, a.name,"", user.isEnemy, a.GetPassiveInfo());
                 }
 
 
@@ -3018,11 +3097,11 @@ public class BattleSystem : MonoBehaviour
                         {
                             a.stacks++;
                             StatMod statMod2 = a.statMod2.ReturnStats();
-                            statMod2.inTime = statMod2.time;
+                            statMod2.inTime = a.cd;
                             user.statMods.Add(statMod2);
                             user.usedBonusStuff = false;
                             SetStatsHud(user, userHud);
-                            ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+                            ManagePassiveIcon(a.sprite, a.name, "!", user.isEnemy, a.GetPassiveInfo());
                         }
                     }
                 }
@@ -3074,7 +3153,7 @@ public class BattleSystem : MonoBehaviour
                         user.statMods.Add(statMod);
                         user.usedBonusStuff = false;
                         SetStatsHud(user, userHud);
-                        ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo());
+                        ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     }
                 }
 
@@ -3526,6 +3605,11 @@ public class BattleSystem : MonoBehaviour
                 }
 
                 ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+            }
+
+            if (a.name == "roughskin")
+            {
+                ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
             }
         }
     }

@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: bullsrage
   showNameOnInfo: 1
+  origin: 0
   sprite: {fileID: 21300000, guid: abef0f4889b19254a99eb2b94280c7fd, type: 3}
-  num: 0.3
+  num: 0.2
   maxNum: 0
   stacks: 0
-  maxStacks: 0
-  cd: 0
+  maxStacks: 8
+  cd: 3
   inCd: 0
-  statScale: {fileID: 0}
+  statScale: {fileID: 11400000, guid: 514b56050d249a845a140f893c9e3686, type: 2}
   statScale2: {fileID: 0}
   statMod: {fileID: 11400000, guid: 324857d7f7cde0a48b0cc3e4a8f3ad70, type: 2}
   statMod2: {fileID: 0}

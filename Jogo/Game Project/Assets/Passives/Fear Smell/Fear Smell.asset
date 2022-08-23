@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: fearsmell
   showNameOnInfo: 1
+  origin: 0
   sprite: {fileID: 21300000, guid: 3a382abc2609333458a53313dbb7da68, type: 3}
   num: 0.35
   maxNum: 4
   stacks: 0
   maxStacks: 0
-  cd: 0
+  cd: 4
   inCd: 0
   statScale: {fileID: 0}
   statScale2: {fileID: 0}

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25cbb6c1520490c4cbe5c685482d1204, type: 3}
   m_Name: mod2
   m_EditorClassIdentifier: 
-  time: 4
+  flat: 0
+  time: 0
   inTime: 0
   chance: 0
   hp: 0
@@ -33,3 +34,4 @@ MonoBehaviour:
   lifesteal: 0
   accuracy: 0
   evasion: 0
+  armourPen: 0
