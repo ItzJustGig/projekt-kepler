@@ -1688,8 +1688,17 @@ public class BattleSystem : MonoBehaviour
                             {
                                 user.phyDmgDealt += dmg.phyDmg;
                                 dmgMitigated = (float)((statsTarget.dmgResis - (statsTarget.dmgResis * statsUser.armourPen)) * 0.18);
-                                dmg.phyDmg -= dmgMitigated;
-                                target.phyDmgMitigated += dmgMitigated;
+                                if (dmgMitigated < dmg.phyDmg)
+                                {
+                                    dmg.phyDmg -= dmgMitigated;
+                                    target.phyDmgMitigated += dmgMitigated;
+                                }
+                                else
+                                {
+                                    dmgMitigated = dmg.phyDmg;
+                                    dmg.phyDmg = 0;
+                                    target.phyDmgMitigated += dmgMitigated;
+                                }
                             }
 
                             if (statsUser.lifesteal > 0)
@@ -1699,8 +1708,17 @@ public class BattleSystem : MonoBehaviour
                             {
                                 user.magicDmgDealt += dmg.magicDmg;
                                 dmgMitigated = (float)(statsTarget.magicResis * 0.12);
-                                dmg.magicDmg -= dmgMitigated;
-                                target.magicDmgMitigated += dmgMitigated;
+                                if (dmgMitigated < dmg.magicDmg)
+                                {
+                                    dmg.magicDmg -= dmgMitigated;
+                                    target.magicDmgMitigated += dmgMitigated;
+                                }
+                                else
+                                {
+                                    dmgMitigated = dmg.magicDmg;
+                                    dmg.magicDmg = 0;
+                                    target.magicDmgMitigated += dmgMitigated;
+                                }
                             }
 
                             foreach (Passives a in target.passives.ToArray())
@@ -1713,9 +1731,15 @@ public class BattleSystem : MonoBehaviour
                                         //show passive popup
                                         target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
                                         //get the mitigated dmg
-                                        dmgMitigated = dmg.phyDmg * ((statsTarget.dmgResis * a.num) / 100);
+                                        dmgMitigated += dmg.phyDmg * ((statsTarget.dmgResis * a.num) / 100);
                                         //subtract mitigated dmg from the dmg
-                                        dmg.phyDmg -= dmgMitigated;
+                                        if (dmgMitigated < dmg.phyDmg)
+                                            dmg.phyDmg -= dmgMitigated;
+                                        else
+                                        {
+                                            dmgMitigated = dmg.phyDmg;
+                                            dmg.phyDmg = 0;
+                                        }
                                         //add mitigated dmg to the overview
                                         target.phyDmgMitigated += dmgMitigated;
                                     }
@@ -1777,9 +1801,14 @@ public class BattleSystem : MonoBehaviour
                                 }
                             }
 
-                            target.phyDmgTaken += dmg.phyDmg;
-                            target.magicDmgTaken += dmg.magicDmg;
-                            target.trueDmgTaken += dmg.trueDmg;
+                            if (dmg.phyDmg > 0)
+                                target.phyDmgTaken += dmg.phyDmg;
+
+                            if (dmg.magicDmg > 0)
+                                target.magicDmgTaken += dmg.magicDmg;
+
+                            if (dmg.trueDmg > 0)
+                                target.trueDmgTaken += dmg.trueDmg;
 
                             user.trueDmgDealt += dmg.trueDmg;
 
@@ -2569,17 +2598,37 @@ public class BattleSystem : MonoBehaviour
         if (dmg.phyDmg > 0)
         {
             float dmgMitigated = (float)(user.charc.stats.dmgResis * 0.18);
-            dmg.phyDmg -= dmgMitigated;
-            user.phyDmgMitigated += dmgMitigated;
-            user.phyDmgTaken += dmg.phyDmg - dmgMitigated;
+            if (dmgMitigated < dmg.phyDmg)
+            {
+                dmg.phyDmg -= dmgMitigated;
+                user.phyDmgMitigated += dmgMitigated;
+                user.phyDmgTaken += dmg.phyDmg - dmgMitigated;
+            } 
+            else
+            {
+                dmgMitigated = dmg.phyDmg;
+                dmg.phyDmg = 0;
+                user.phyDmgMitigated += dmgMitigated;
+                user.phyDmgTaken += 0;
+            }
         }
 
         if (dmg.magicDmg > 0)
         {
             float dmgMitigated = (float)(user.charc.stats.magicResis * 0.12);
-            dmg.magicDmg -= dmgMitigated;
-            user.magicDmgMitigated += dmgMitigated;
-            user.magicDmgTaken += dmg.magicDmg - dmgMitigated;
+
+            if (dmgMitigated < dmg.phyDmg)
+            {
+                dmg.magicDmg -= dmgMitigated;
+                user.magicDmgMitigated += dmgMitigated;
+                user.magicDmgTaken += dmg.magicDmg - dmgMitigated;
+            }
+            else
+            {
+                dmgMitigated = dmg.phyDmg;
+                dmg.magicDmg = 0;
+                user.magicDmgMitigated += dmgMitigated;
+            }
         }
 
         user.trueDmgTaken += dmg.trueDmg;
@@ -2674,9 +2723,18 @@ public class BattleSystem : MonoBehaviour
                 if (a.dmg > 0)
                 {
                     float dmgMitigated = (float)(stats.dmgResis * 0.12);
-                    a.dmg -= dmgMitigated;
-                    user.phyDmgMitigated += dmgMitigated;
-                    user.phyDmgTaken += a.dmg - dmgMitigated;
+                    if (dmgMitigated < a.dmg)
+                    {
+                        a.dmg -= dmgMitigated;
+                        user.phyDmgMitigated += dmgMitigated;
+                        user.phyDmgTaken += a.dmg - dmgMitigated;
+                    }
+                    else
+                    {
+                        dmgMitigated = a.dmg;
+                        a.dmg = 0;
+                        user.phyDmgMitigated += dmgMitigated;
+                    }
 
                     Stats statsUser = user.charc.stats.ReturnStats();
                     if (statsUser.lifesteal > 0)
@@ -2691,9 +2749,19 @@ public class BattleSystem : MonoBehaviour
                 if (a.dmg > 0)
                 {
                     float dmgMitigated = (float)(stats.magicResis * 0.06);
-                    a.dmg -= dmgMitigated;
-                    user.magicDmgMitigated += dmgMitigated;
-                    user.magicDmgTaken += a.dmg - dmgMitigated;
+                    if (dmgMitigated < a.dmg)
+                    {
+                        a.dmg -= dmgMitigated;
+                        user.magicDmgMitigated += dmgMitigated;
+                        user.magicDmgTaken += a.dmg - dmgMitigated;
+                    }
+                    else
+                    {
+                        dmgMitigated = a.dmg;
+                        a.dmg = 0;
+                        user.magicDmgMitigated += dmgMitigated;
+                        user.magicDmgTaken += a.dmg;
+                    }
                 }
                 break;
             case Dotdmg.DmgType.TRUE:
@@ -2766,10 +2834,13 @@ public class BattleSystem : MonoBehaviour
                     user.PassivePopup(langmanag.GetInfo("passive", "name", p.name));
                     //get the mitigated dmg
                     float dmgMitigated = a.dmg * ((stats.dmgResis * p.num) / 100);
-                    //subtract mitigated dmg from the dmg
-                    a.dmg -= dmgMitigated;
-                    //add mitigated dmg to the overview
-                    user.phyDmgMitigated += dmgMitigated;
+                    if (dmgMitigated < a.dmg)
+                        a.dmg -= dmgMitigated;
+                    else
+                    {
+                        dmgMitigated = a.dmg;
+                        a.dmg = 0;
+                    }
                 }
             }
 
@@ -3755,7 +3826,15 @@ public class BattleSystem : MonoBehaviour
                 {
                     summoner.phyDmgDealt += dmg;
                     dmgMitigated = (float)(statsT.dmgResis * 0.18);
-                    dmg -= dmgMitigated;
+
+                    if (dmgMitigated < dmg)
+                        dmg -= dmgMitigated;
+                    else
+                    {
+                        dmgMitigated = dmg;
+                        dmg = 0;
+                    }
+                    
                     target.phyDmgMitigated += dmgMitigated;
                 }
 
@@ -3767,7 +3846,13 @@ public class BattleSystem : MonoBehaviour
                 {
                     summoner.magicDmgDealt += dmg;
                     dmgMitigated = (float)(statsT.magicResis * 0.12);
-                    dmg -= dmgMitigated;
+                    if (dmgMitigated < dmg)
+                        dmg -= dmgMitigated;
+                    else
+                    {
+                        dmgMitigated = dmg;
+                        dmg = 0;
+                    }
                     target.magicDmgMitigated += dmgMitigated;
                 }
 

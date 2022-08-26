@@ -16,10 +16,11 @@ MonoBehaviour:
   name: bullscharge
   hitTime: 1
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 55
+  phyDmg: 40
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
@@ -28,16 +29,20 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 5
   inCooldown: 0
   manaCost: 0
-  staminaCost: 60
+  staminaCost: 85
   critDmgBonus: 0
   critChanceBonus: 0
-  statModUser: {fileID: 0}
+  statModUser: {fileID: 11400000, guid: cc311e0e3dbc91348a71ac204328b4eb, type: 2}
   statModEnemy: {fileID: 11400000, guid: 902cb8ce0f2ccd940951a30c3a02b784, type: 2}
   scale:
   - {fileID: 11400000, guid: 1d3941656a34fe14c8540b10d09c6980, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: 10d8490213468c54b83711e8c7f1a25f, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}

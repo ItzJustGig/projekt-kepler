@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25cbb6c1520490c4cbe5c685482d1204, type: 3}
-  m_Name: stats
+  m_Name: user
   m_EditorClassIdentifier: 
-  flat: 0
+  flat: 1
   time: 3
   inTime: 0
-  chance: 0.4
+  chance: 1
   hp: 0
   hpRegen: 0
   mana: 0
@@ -27,10 +27,11 @@ MonoBehaviour:
   magicPower: 0
   critChance: 0
   critDmg: 0
-  dmgResis: -0.25
+  dmgResis: 0
   magicResis: 0
-  timing: 0
-  movSpeed: 0
+  timing: 1.15
+  movSpeed: 20
   lifesteal: 0
   accuracy: 0
   evasion: 0
+  armourPen: 0

@@ -23,14 +23,15 @@ MonoBehaviour:
   stamina: 0
   staminaRegen: 0
   sanity: 0
-  atkDmg: 0.22
+  atkDmg: 0.18
   magicPower: 0
-  critChance: 0.15
-  critDmg: 0.12
+  critChance: 0.1
+  critDmg: 0.08
   dmgResis: 0
   magicResis: 0
   timing: 0
-  movSpeed: 0.18
+  movSpeed: 0.15
   lifesteal: 0
   accuracy: 0
   evasion: 0
+  armourPen: 0

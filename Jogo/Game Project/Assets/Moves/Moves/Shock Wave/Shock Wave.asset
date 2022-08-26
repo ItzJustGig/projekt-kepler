@@ -16,6 +16,7 @@ MonoBehaviour:
   name: shockwave
   hitTime: 1
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,10 +29,12 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 6
   inCooldown: 0
   manaCost: 20
-  staminaCost: 55
+  staminaCost: 65
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
@@ -39,6 +42,8 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: 3e981f7bd2ae30447b76227679ddde4d, type: 2}
   - {fileID: 11400000, guid: 91cada9d890a5a14b818cc2bf971b49f, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: 4cae29b4655fbf14094ea6be2d7a5baa, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}

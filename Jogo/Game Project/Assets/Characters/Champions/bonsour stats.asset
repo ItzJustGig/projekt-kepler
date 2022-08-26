@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: bonsour stats
   m_EditorClassIdentifier: 
-  hp: 5460
+  hp: 5230
   hpRegen: 30
   mana: 375
   manaRegen: 0.9
   stamina: 990
   staminaRegen: 1.45
   sanity: 140
-  atkDmg: 59
+  atkDmg: 54
   magicPower: 25
   critChance: 0.16
-  critDmg: 0.24
+  critDmg: 0.22
   dmgResis: 90
   magicResis: 27
   timing: 0.5
-  movSpeed: 200
+  movSpeed: 210
   lifesteal: 0
   accuracy: 1
   evasion: 0

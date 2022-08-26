@@ -16,6 +16,7 @@ MonoBehaviour:
   name: warmup
   hitTime: 1
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -25,18 +26,22 @@ MonoBehaviour:
   sanityDmg: 0
   heal: 0
   healMana: 0
-  healStamina: 10
+  healStamina: 3
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 7
   inCooldown: 0
   manaCost: 0
-  staminaCost: 10
+  staminaCost: 20
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: a7e4fb90b8e1c584199516097ecb5936, type: 2}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: a3f13439c09d4354ea0f1d65cb26ada5, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
