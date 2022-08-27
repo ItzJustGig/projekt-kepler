@@ -327,7 +327,8 @@
             "shadowdagger": "Adaga Sombria",
             "spectralring": "Anel Espectral",
             "huntersdirk": "Punhal do Ca\u00e7ador",
-            "gravitychange": "Mundan\u00e7a de Gravidade"
+            "gravitychange": "Mundan\u00e7a de Gravidade",
+            "prismaticstaff": "Cajato Prism\u00e1tico"
         },
         "desc": {
             "bloodbath": "Se um inimigo estiver a Sangrar, o utilizador vai ganhar %mod% e vai causar %scale% b\u00F3nus nos ataques.",
@@ -370,7 +371,8 @@
             "shadowdagger": "As <color=#ffaa00>t\u00E9cnicas f\u00EDsicas</color> do utilizador causam %scale% b\u00F3nus e ganha%mod%. (%cd% turnos de recarga)",
             "spectralring": "O utilizador ganha%mod% a cada %cd% turnos, at\u00E9 %maxStacks% vezes. \nQuando o utilizador cai abaixo de <color=#00ff11>%num%% vida</color>, <color=#0055ff>t\u00E9cnicas m\u00E1gicas</color> causam %scale% b\u00F3nus.",
 			"huntersdirk": "Se o inimigo estiver a cima de %num%% de vida, <color=#ffaa00>t\u00e9cnicas b\u00e1scas</color> ou <color=#ffaa00>f\u00edsicas</color> causam %scale% b\u00f3nus. (%cd% turnos de recarga)",
-            "gravitychange": "O utilizador causa %scale% b\u00F3nus com <color=#ffaa00>ataques f\u00EDsicos</color> por %cd% turnos."
+            "gravitychange": "O utilizador causa %scale% b\u00F3nus com <color=#ffaa00>ataques f\u00EDsicos</color> por %cd% turnos.",
+            "prismaticstaff": "A cada %maxStacks% <color=#0055ff>t\u00E9cnica m\u00E1gicas</color>, a pr\u00F3xima vai ser crit\u00EDco (tamb\u00e9m aplica ao <color=#0055ff>dano m\u00E1gico</color>) e cause %scale% b\u00F3nus"
         }
     },
     "moves": {
@@ -497,7 +499,9 @@
         "bigsteak": "Grande Bife",
         "zap": "Zap",
         "huntersdirk": "Punhal do Ca\u00e7ador",
-        "jewelofthedruid": "J\u00f3ia do Druida"
+        "jewelofthedruid": "J\u00f3ia do Druida",
+        "shadowshroom": "Cogulemo das Sombras",
+        "prismaticstaff": "Cajato Prism\u00e1tico"
     },
     "items": {
         "title": "Iten",
@@ -526,18 +530,21 @@
             "shadowdagger": "Adaga das Sombras",
             "bookofdisaster": "Livro do Desastre",
 			"bootsoftherunner": "Botas do Corredor",
-			"shadowmushroom": "Cogulemos das Sombras",
+			"shadowshroom": "Cogulemo das Sombras",
 			"huntersdirk": "Punhal do Ca\u00e7ador",
-            "jewelofthedruid": "J\u00f3ia do Druida"
+            "jewelofthedruid": "J\u00f3ia do Druida",
+            "prismaticstaff": "Cajato Prism\u00e1tico"
 		},
 		"move": {
-			"zap": "O transportador usa um <color=#ffdf00>zap</color> num inimgo com uma %type% que %dmg%",
+			"zap": "O transportador usa um <color=#ffdf00>zap</color> num inimigo com uma %type% que %dmg%",
 			"manapotion" : "O transportador usa uma %type% que %dmg%",
             "healthpotion" : "O transportador usa uma %type% que %dmg%",
 			"bigsteak": "O transportador usa uma %type% que %dmg%",
 			"ravensfeather" : "O transportador utiliza uma %type% que reduz %mode%",
 			"huntersdirk": "O transportador usa uma %type% que %dmg% e tem %critdmg%% dano cr\u00edtico b\u00f3nus",
-			"jewelofthedruid": "O transportador usa uma %type% que %summondesc%"
+			"jewelofthedruid": "O transportador usa uma %type% que %summondesc%",
+			"shadowshroom": "O transportador usa uma %type% que %dmg% e aumenta %modu%",
+			"prismaticstaff": "O transportador usa uma %type% que %dmg% e tem %critdmg%% dano cr\u00edtico b\u00f3nus"
 		}
     },
 	"summon": {

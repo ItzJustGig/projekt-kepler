@@ -327,7 +327,7 @@
 			"shadowdagger": "Shadow Dagger",
 			"spectralring": "Spectral Ring",
 			"huntersdirk": "Hunter's Dirk",
-			"gravitychange": "Gravity Change"
+			"prismaticstaff": "Prismatic Staff"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain %mod% and deal bonus %scale% on attacks.",
@@ -370,7 +370,8 @@
 			"shadowdagger": "The user's <color=#ffaa00>physical moves</color> deal bonus %scale% and gain %mod%. (%cd% turns cooldown)",
 			"spectralring": "The user gain %mod% every %cd% turns up to %maxStacks% times. \nWhen the user drops below <color=#00ff11>%num%% health</color>, <color=#0055ff>magic moves</color> deal bonus %scale%.",
 			"huntersdirk": "If the enemy is above <color=#00ff11>%num%% health</color>, <color=#ffaa00>basic</color> or <color=#ffaa00>physical moves</color> deal bonus %scale%. (%cd% turns cooldown)",
-			"gravitychange": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> for %cd% turns"
+			"gravitychange": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> for %cd% turns",
+			"prismaticstaff": "Every %maxStacks% magic moves, the next will crit (also applies to the <color=#0055ff>magic damage</color>) and deal bonus %scale%"
 		}
 	},
 	"moves": {
@@ -497,7 +498,9 @@
 		"bigsteak": "Big Steak",
 		"zap": "Zap",
 		"huntersdirk": "Hunter's Dirk",
-		"jewelofthedruid": "Jewel of the Druid"
+		"jewelofthedruid": "Jewel of the Druid",
+		"shadowshroom": "Shadow Shroom",
+		"prismaticstaff": "Prismatic Staff"
 	},
 	"items": {
 		"title": "Item",
@@ -526,9 +529,10 @@
 			"shadowdagger": "Shadow Dagger",
 			"bookofdisaster": "Book of Disaster",
 			"bootsoftherunner": "Boots of the Runner",
-			"shadowmushroom": "Shadow Mushroom",
+			"shadowshroom": "Shadow Shroom",
 			"huntersdirk": "Hunter's Dirk",
-			"jewelofthedruid": "Jewel of the Druid"
+			"jewelofthedruid": "Jewel of the Druid",
+			"prismaticstaff": "Prismatic Staff"
 		},
 		"move": {
 			"zap": "The carrier will <color=#ffdf00>zap</color> an enemy with an %type% to %dmg%",
@@ -537,7 +541,9 @@
 			"bigsteak": "The carrier uses a %type%, that %dmg%",
 			"ravensfeather" : "The carrier casts a %type% reducing %mode%",
 			"huntersdirk": "use a %type% that %dmg% and have %critdmg%% critical damage bonus",
-			"jewelofthedruid": "The carrier uses a %type% that %summondesc%" 
+			"jewelofthedruid": "The carrier uses a %type% that %summondesc%",
+			"shadowshroom": "The carrier uses a %type% that %dmg% and grants %modu%",
+			"prismaticstaff": "use a %type% that %dmg% and have %critdmg%% critical damage bonus"
 		}
 	},
 	"summon": {

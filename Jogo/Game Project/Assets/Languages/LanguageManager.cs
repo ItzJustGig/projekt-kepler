@@ -838,6 +838,7 @@ public class LanguageManager : MonoBehaviour
         public string spectralring;
         public string huntersdirk;
         public string gravitychange;
+        public string prismaticstaff;
 
         public string Get_Cont(string a)
         {
@@ -967,6 +968,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "gravitychange":
                     returns = gravitychange;
+                    break;
+                case "prismaticstaff":
+                    returns = prismaticstaff;
                     break;
                 default:
                     returns = "null";
@@ -1485,6 +1489,8 @@ public class LanguageManager : MonoBehaviour
         public string zap;
         public string huntersdirk;
         public string jewelofthedruid;
+        public string shadowshroom;
+        public string prismaticstaff;
 
         public string Get_Moves(string a, string b)
         {
@@ -1839,6 +1845,12 @@ public class LanguageManager : MonoBehaviour
                 case "jewelofthedruid":
                     returns = jewelofthedruid;
                     break;
+                case "shadowshroom":
+                    returns = shadowshroom;
+                    break;
+                case "prismaticstaff":
+                    returns = prismaticstaff;
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -1963,9 +1975,10 @@ public class LanguageManager : MonoBehaviour
         public string shadowdagger;
         public string bookofdisaster;
         public string bootsoftherunner;
-        public string shadowmushroom;
+        public string shadowshroom;
         public string huntersdirk;
         public string jewelofthedruid;
+        public string prismaticstaff;
 
         public string Get_ItemName(string a)
         {
@@ -2029,14 +2042,17 @@ public class LanguageManager : MonoBehaviour
                 case "bootsoftherunner":
                     returns = bootsoftherunner;
                     break;
-                case "shadowmushroom":
-                    returns = shadowmushroom;
+                case "shadowshroom":
+                    returns = shadowshroom;
                     break;
                 case "huntersdirk":
                     returns = huntersdirk;
                     break;
                 case "jewelofthedruid":
                     returns = jewelofthedruid;
+                    break;
+                case "prismaticstaff":
+                    returns = prismaticstaff;
                     break;
                 default:
                     returns = "null";
@@ -2056,6 +2072,8 @@ public class LanguageManager : MonoBehaviour
         public string ravensfeather;
         public string huntersdirk;
         public string jewelofthedruid;
+        public string shadowshroom;
+        public string prismaticstaff;
 
         public string Get_ItemMove(string a)
         {
@@ -2082,6 +2100,12 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "jewelofthedruid":
                     returns = jewelofthedruid;
+                    break;
+                case "shadowshroom":
+                    returns = shadowshroom;
+                    break;
+                case "prismaticstaff":
+                    returns = prismaticstaff;
                     break;
                 default:
                     returns = "null";

@@ -708,6 +708,7 @@ public class BattleSystem : MonoBehaviour
             bool blockMagic = false;
             bool blockRanged = false;
             bool isCrit = false;
+            bool isMagicCrit = false;
 
             Stats statsUser = user.charc.stats.ReturnStats();
 
@@ -1335,6 +1336,42 @@ public class BattleSystem : MonoBehaviour
                                 }
                             }
                         }
+
+                        if (a.name == "prismaticstaff")
+                        {
+                            if (move.type is Moves.MoveType.MAGICAL)
+                            {
+                                a.stacks++;
+                                ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+                            }
+
+
+                            if (a.stacks == a.maxStacks)
+                            {
+                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                a.stacks = 0;
+                                StatScale scale = a.ifConditionTrueScale();
+
+                                Unit unit;
+                                Stats stats;
+                                if (scale.playerStat)
+                                {
+                                    unit = user;
+                                    stats = statsUser;
+                                }
+                                else
+                                {
+                                    unit = target;
+                                    stats = statsTarget;
+                                }
+
+                                dmg.AddDmg(SetScaleDmg(scale, stats, unit));
+
+                                isMagicCrit = true;
+                                DestroyPassiveIcon(a.name, user.isEnemy);
+                            }
+                        }
                     }
 
                     dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
@@ -1593,7 +1630,10 @@ public class BattleSystem : MonoBehaviour
 
                                 dmg.AddDmg(SetScaleDmg(scale, stats, unit));
                             }
-    
+
+                            if (isMagicCrit && !isCrit)
+                                isCrit = true;
+
                             float dmgMitigated = 0;
 
                             if (dmg.phyDmg > 0)
@@ -1604,7 +1644,16 @@ public class BattleSystem : MonoBehaviour
                                 }
                             }
                             else
-                                isCrit = false;
+                            {
+                                if (!isMagicCrit)
+                                    isCrit = false;
+                            }
+
+                            if (dmg.magicDmg > 0 && isMagicCrit)
+                            {
+                                dmg.magicDmg += (dmg.magicDmg * (statsUser.critDmg + move.critDmgBonus));
+                            }
+                                
 
                             foreach (Passives a in user.passives.ToArray())
                             {
@@ -1626,7 +1675,7 @@ public class BattleSystem : MonoBehaviour
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.MAGICAL:
-                                        dotdmg.Setup(dmg.magicDmg, move.name, Dotdmg.SrcType.MOVE);
+                                        dotdmg.Setup(dmg.magicDmg, isMagicCrit, move.name, Dotdmg.SrcType.MOVE);
                                         dmg.magicDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
@@ -1662,6 +1711,7 @@ public class BattleSystem : MonoBehaviour
                                         break;
                                     case Dotdmg.DmgType.SHIELD:
                                         dotdmg.Setup(dmg.shield, move.name, Dotdmg.SrcType.MOVE);
+                                        dmg.shield = 0;
                                         user.dotDmg.Add(dotdmg);
                                         break;
                                     default:

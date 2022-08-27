@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
-  m_Name: Mana Blast
+  m_Name: prismatic staff
   m_EditorClassIdentifier: 
   type: 1
-  name: manablast
+  name: prismaticstaff
   hitTime: 1
   priority: 0
   uses: -1
@@ -21,7 +21,7 @@ MonoBehaviour:
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 30
+  magicDmg: 20
   trueDmg: 0
   sanityDmg: 0
   heal: 0
@@ -33,16 +33,15 @@ MonoBehaviour:
   healFromDmg: 0
   cooldown: 8
   inCooldown: 0
-  manaCost: 110
+  manaCost: 0
   staminaCost: 0
-  critDmgBonus: 0
+  critDmgBonus: 0.2
   critChanceBonus: 0
-  statModUser: {fileID: 11400000, guid: 01cf11162c7db3a48b43f1a7e8453e84, type: 2}
+  statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
   scale:
-  - {fileID: 11400000, guid: cc0b31ab3271cef46be6d7d6f4de03f2, type: 2}
+  - {fileID: 11400000, guid: 67a62b02933341f48be8c0f2b2918b52, type: 2}
   dot: []
-  effects:
-  - {fileID: 11400000, guid: 348df176be0331a4f89b5ab8df5b9f23, type: 2}
+  effects: []
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
