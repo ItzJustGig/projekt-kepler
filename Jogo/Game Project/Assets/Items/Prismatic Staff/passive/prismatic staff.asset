@@ -15,7 +15,7 @@ MonoBehaviour:
   name: prismaticstaff
   showNameOnInfo: 0
   origin: 1
-  sprite: {fileID: 21300000, guid: 7619eeceae94e5c4f8d676c0cae02987, type: 3}
+  sprite: {fileID: 21300000, guid: e5f87d80bc043034f972d0c43ac193f3, type: 3}
   num: 0
   maxNum: 0
   stacks: 0

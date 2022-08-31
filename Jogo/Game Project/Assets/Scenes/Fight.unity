@@ -12350,6 +12350,9 @@ MonoBehaviour:
   tiredStart: 0.025
   tiredGrowth: 0.0075
   tiredStacks: 0
+  dmgResisPer: 0.18
+  magicResisPer: 0.12
+  dotReduc: 0.6
   dialogText: {fileID: 2435926}
   playerHUD: {fileID: 1220544893}
   enemyHUD: {fileID: 178673193}

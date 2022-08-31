@@ -64,16 +64,23 @@ MonoBehaviour:
   canUseSupp: 1
   canUseProtec: 1
   canUseStatMod: 1
+  canUseSummon: 1
   statMods: []
   effects: []
   dotDmg: []
+  summons: []
   moves: []
+  ultMove: {fileID: 0}
   passives: []
   items: []
+  randomItems: 
   champions: {fileID: 2608767493649050923, guid: 90529f41d877af04ea013531ad0f93be,
     type: 3}
   monsters: {fileID: 6444865754111552574, guid: 650d656b1a6955b40b1d832e38f12b8a,
     type: 3}
+  statGrowth: {fileID: 11400000, guid: 3dd9f73843fa3c1408c9a0d9f9a60fad, type: 2}
+  statsLevel: {fileID: 11400000, guid: d07f674b388067d45ab5fa059c125640, type: 2}
+  maxStatLevel: 20
   charc: {fileID: 0}
   spriteDefault: {fileID: 5806852883944117854, guid: e14ff431356231f42bbc0411eccf6784,
     type: 3}

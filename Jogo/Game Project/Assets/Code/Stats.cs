@@ -57,4 +57,34 @@ public class Stats : ScriptableObject
 
         return stats;
     }
+
+    public Stats ReturnStatsLevel(Stats level, Stats growth)
+    {
+        //level is Stats with level per stat
+        //maxLevelStat is max level a stat can have
+        //growth is how much a stat increases per level
+        Stats stats = CreateInstance<Stats>();
+        stats.hp = hp + (growth.hp*level.hp);
+        stats.hpRegen = hpRegen + (growth.hpRegen * level.hpRegen);
+        stats.mana = mana + (growth.mana * level.mana);
+        stats.manaRegen = manaRegen + (growth.manaRegen * level.manaRegen);
+        stats.stamina = stamina + (growth.stamina * level.stamina);
+        stats.staminaRegen = staminaRegen + (growth.staminaRegen * level.staminaRegen);
+        stats.sanity = sanity + (growth.sanity *  level.sanity);
+        stats.atkDmg = atkDmg + (growth.atkDmg * level.atkDmg);
+        stats.magicPower = magicPower + (growth.magicPower *  level.magicPower);
+        stats.critChance = critChance + (growth.critChance *level.critChance);
+        stats.critDmg = critDmg + (growth.critDmg * level.critDmg);
+        stats.dmgResis = dmgResis + (growth.dmgResis * level.dmgResis);
+        stats.magicResis = magicResis + (growth.magicResis * level.magicResis);
+        stats.timing = timing + (growth.timing * level.timing);
+        stats.movSpeed = movSpeed + (growth.movSpeed * level.movSpeed);
+
+        stats.lifesteal = lifesteal;
+        stats.evasion = evasion;
+        stats.accuracy = accuracy;
+        stats.armourPen = armourPen;
+
+        return stats;
+    }
 }

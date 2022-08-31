@@ -46,6 +46,8 @@ public class Unit : MonoBehaviour
 
     [SerializeField] private StuffList champions;
     [SerializeField] private StuffList monsters;
+    [SerializeField] private Stats statGrowth;
+    [SerializeField] private Stats statsLevel;
 
     public Character charc;
     [SerializeField] private GameObject spriteDefault;
@@ -76,8 +78,6 @@ public class Unit : MonoBehaviour
         {
             champs.Add(t.GetCharcInfo());
         }
-        Debug.Log(champs[0].name);
-
 
         List<Character> mons = new List<Character>();
         foreach (Character t in monsters.returnStuff())
@@ -107,6 +107,10 @@ public class Unit : MonoBehaviour
         
         ultMove = charc.ultimate.ReturnMove();
         ultMove.type = Moves.MoveType.ULT;
+
+
+        charc.stats = charc.stats.ReturnStatsLevel(statsLevel, statGrowth);
+
     }
 
     void Start()
@@ -178,8 +182,7 @@ public class Unit : MonoBehaviour
 
         foreach (Effects a in effects.ToArray())
         {
-            a.duration--;
-            a.timesInc++;
+            
 
             if (!a.grantsOnRunOut)
             {
@@ -194,6 +197,8 @@ public class Unit : MonoBehaviour
                 break;
 
             Wait();
+            a.duration--;
+            a.timesInc++;
 
             if (a.duration <= 0)
             {

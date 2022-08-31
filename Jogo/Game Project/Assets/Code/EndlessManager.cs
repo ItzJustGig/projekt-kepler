@@ -207,16 +207,7 @@ public class EndlessManager : MonoBehaviour
             mons.Add(t.GetCharcInfo());
         }
 
-        Character charc;
-        if (info.isPlayerChamp)
-        {
-            charc = champs[info.playerId-1];
-        }
-        else
-        {
-            charc = mons[info.playerId-1];
-        }
-        battleHud.SetHud(charc, info, 0);
+        battleHud.SetHud(info);
 
         goldTxt.text = info.gold.ToString();
         roundTxt.text = info.round.ToString();

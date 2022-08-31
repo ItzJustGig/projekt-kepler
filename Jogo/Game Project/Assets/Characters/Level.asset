@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
+  m_Name: Level
+  m_EditorClassIdentifier: 
+  hp: 20
+  hpRegen: 20
+  mana: 20
+  manaRegen: 20
+  stamina: 20
+  staminaRegen: 20
+  sanity: 20
+  atkDmg: 20
+  magicPower: 20
+  critChance: 20
+  critDmg: 20
+  dmgResis: 20
+  magicResis: 20
+  timing: 20
+  movSpeed: 20
+  lifesteal: 0
+  accuracy: 0
+  evasion: 0
+  armourPen: 0

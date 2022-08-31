@@ -43,6 +43,10 @@ public class SelectManager : MonoBehaviour
     [SerializeField] private Sprite statAtk;
     [SerializeField] private Sprite summonAtk;
 
+    [SerializeField] private Stats statsGrowth;
+    [SerializeField] private Stats statsLevels;
+    [SerializeField] private int maxLevelStats;
+
     private CharcSelectLang thisLangManager;
 
     private int i = 1;
@@ -361,7 +365,7 @@ public class SelectManager : MonoBehaviour
         nameDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "name", charc.GetComponent<CharacterInfo>().character.name);
         titleDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "title", charc.GetComponent<CharacterInfo>().character.name);
         charcIcon.sprite = charc.GetComponent<CharacterInfo>().character.charcIcon;
-        SetStats(charc.GetComponent<CharacterInfo>().character.stats);
+        SetStats(charc.GetComponent<CharacterInfo>().character.stats.ReturnStatsLevel(statsLevels, statsGrowth));
         SetClassIcon(charc.GetComponent<CharacterInfo>().character.classe);
     }
 

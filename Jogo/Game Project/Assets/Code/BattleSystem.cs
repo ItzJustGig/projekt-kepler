@@ -19,6 +19,9 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private float tiredStart = 0.05f;
     [SerializeField] private float tiredGrowth = 0.015f;
     [SerializeField] private int tiredStacks = 0;
+    [SerializeField] private float dmgResisPer = 0.18f;
+    [SerializeField] private float magicResisPer = 0.12f;
+    [SerializeField] private float dotReduc = 0.3f;
     [SerializeField] private Text dialogText;
 
     Unit playerUnit;
@@ -2647,7 +2650,7 @@ public class BattleSystem : MonoBehaviour
 
         if (dmg.phyDmg > 0)
         {
-            float dmgMitigated = (float)(user.charc.stats.dmgResis * 0.18);
+            float dmgMitigated = (float)(user.charc.stats.dmgResis * dmgResisPer) - (user.charc.stats.dmgResis * dmgResisPer) * dotReduc;
             if (dmgMitigated < dmg.phyDmg)
             {
                 dmg.phyDmg -= dmgMitigated;
@@ -2665,9 +2668,9 @@ public class BattleSystem : MonoBehaviour
 
         if (dmg.magicDmg > 0)
         {
-            float dmgMitigated = (float)(user.charc.stats.magicResis * 0.12);
-
-            if (dmgMitigated < dmg.phyDmg)
+            float dmgMitigated = (float)(user.charc.stats.magicResis * magicResisPer) - (user.charc.stats.magicResis * magicResisPer) * dotReduc;
+            
+            if (dmgMitigated < dmg.magicDmg)
             {
                 dmg.magicDmg -= dmgMitigated;
                 user.magicDmgMitigated += dmgMitigated;
@@ -2675,7 +2678,7 @@ public class BattleSystem : MonoBehaviour
             }
             else
             {
-                dmgMitigated = dmg.phyDmg;
+                dmgMitigated = dmg.magicDmg;
                 dmg.magicDmg = 0;
                 user.magicDmgMitigated += dmgMitigated;
             }
@@ -2772,7 +2775,7 @@ public class BattleSystem : MonoBehaviour
             case Dotdmg.DmgType.PHYSICAL:
                 if (a.dmg > 0)
                 {
-                    float dmgMitigated = (float)(stats.dmgResis * 0.12);
+                    float dmgMitigated = (float)(stats.dmgResis * dmgResisPer) - (stats.dmgResis * dmgResisPer) * dotReduc;
                     if (dmgMitigated < a.dmg)
                     {
                         a.dmg -= dmgMitigated;
@@ -2798,7 +2801,7 @@ public class BattleSystem : MonoBehaviour
             case Dotdmg.DmgType.MAGICAL:
                 if (a.dmg > 0)
                 {
-                    float dmgMitigated = (float)(stats.magicResis * 0.06);
+                    float dmgMitigated = (float)(stats.magicResis * magicResisPer) - (stats.magicResis * magicResisPer) * dotReduc;
                     if (dmgMitigated < a.dmg)
                     {
                         a.dmg -= dmgMitigated;
@@ -2875,25 +2878,6 @@ public class BattleSystem : MonoBehaviour
 
         foreach (Passives p in user.passives.ToArray())
         {
-            if (p.name == "roughskin")
-            {
-                //if move is physical
-                if (dot.type is Dotdmg.DmgType.PHYSICAL)
-                {
-                    //show passive popup
-                    user.PassivePopup(langmanag.GetInfo("passive", "name", p.name));
-                    //get the mitigated dmg
-                    float dmgMitigated = a.dmg * ((stats.dmgResis * p.num) / 100);
-                    if (dmgMitigated < a.dmg)
-                        a.dmg -= dmgMitigated;
-                    else
-                    {
-                        dmgMitigated = a.dmg;
-                        a.dmg = 0;
-                    }
-                }
-            }
-
             if (p.name == "dreadofthesupernatural")
             {
                 //if sanityDmg bellow 0
@@ -3875,7 +3859,7 @@ public class BattleSystem : MonoBehaviour
                 if (dmg > 0)
                 {
                     summoner.phyDmgDealt += dmg;
-                    dmgMitigated = (float)(statsT.dmgResis * 0.18);
+                    dmgMitigated = (float)(statsT.dmgResis * dmgResisPer);
 
                     if (dmgMitigated < dmg)
                         dmg -= dmgMitigated;
@@ -3895,7 +3879,8 @@ public class BattleSystem : MonoBehaviour
                 if (dmg > 0)
                 {
                     summoner.magicDmgDealt += dmg;
-                    dmgMitigated = (float)(statsT.magicResis * 0.12);
+                    dmgMitigated = (float)(statsT.magicResis * magicResisPer);
+
                     if (dmgMitigated < dmg)
                         dmg -= dmgMitigated;
                     else

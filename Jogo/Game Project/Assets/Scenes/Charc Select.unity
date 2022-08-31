@@ -681,7 +681,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &171859270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,7 +1105,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &265515554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,6 +1259,10 @@ MonoBehaviour:
   suppAtk: {fileID: 21300000, guid: 7e8c3244c112b3b43a26a1b635eed6f2, type: 3}
   defAtk: {fileID: 21300000, guid: 4918b5097ca207a4cbce8c2dff47577b, type: 3}
   statAtk: {fileID: 21300000, guid: 936908b1d1e44524f9d402eb684ac7da, type: 3}
+  summonAtk: {fileID: 21300000, guid: edc4bbb7d32a9024b81094d5d9894628, type: 3}
+  statsGrowth: {fileID: 11400000, guid: 3dd9f73843fa3c1408c9a0d9f9a60fad, type: 2}
+  statsLevels: {fileID: 11400000, guid: d07f674b388067d45ab5fa059c125640, type: 2}
+  maxLevelStats: 20
   itemSelect: {fileID: 1875012052}
   item1: {fileID: 1580342961}
   item2: {fileID: 1453012062}
@@ -1458,7 +1468,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &300240442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2538,7 +2551,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &560383486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,7 +2981,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &686943328
 GameObject:
   m_ObjectHideFlags: 0
@@ -3135,7 +3154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &706378073
 GameObject:
   m_ObjectHideFlags: 0
@@ -3591,7 +3613,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &798296923
 GameObject:
   m_ObjectHideFlags: 0
@@ -3757,7 +3782,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &870289246
 GameObject:
   m_ObjectHideFlags: 0
@@ -4083,7 +4111,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &953367079
 GameObject:
   m_ObjectHideFlags: 0
@@ -4174,7 +4205,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &973663229
 GameObject:
   m_ObjectHideFlags: 0
@@ -4514,7 +4548,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &1080376326
 GameObject:
   m_ObjectHideFlags: 0
@@ -4827,7 +4864,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &1169552549
 GameObject:
   m_ObjectHideFlags: 0
@@ -5209,7 +5249,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &1216232607
 GameObject:
   m_ObjectHideFlags: 0
@@ -5422,7 +5465,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &1301459078
 GameObject:
   m_ObjectHideFlags: 0
@@ -6430,7 +6476,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &1534996505
 GameObject:
   m_ObjectHideFlags: 0
@@ -6521,7 +6570,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &1575958899
 GameObject:
   m_ObjectHideFlags: 0
@@ -7024,7 +7076,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &1630478393
 GameObject:
   m_ObjectHideFlags: 0
@@ -7115,7 +7170,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &1636988691
 GameObject:
   m_ObjectHideFlags: 0
@@ -9351,7 +9409,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 1004943920}
+  tooltipPopupSec: {fileID: 0}
   text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &2133720718
 GameObject:
   m_ObjectHideFlags: 0
@@ -9606,6 +9667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
+  tooltipPopupSec: {fileID: 0}
   text: '<size=25><align=center>Taunt</align></size>
 
     Priority: 0
@@ -9647,6 +9709,8 @@ MonoBehaviour:
     <color=#b641f0>Restore 1 sanity</color>
 
 '
+  textSec: 
+  wantSec: 0
 --- !u!222 &5889085126887189180
 CanvasRenderer:
   m_ObjectHideFlags: 0

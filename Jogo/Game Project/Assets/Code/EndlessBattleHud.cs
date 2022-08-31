@@ -46,40 +46,36 @@ public class EndlessBattleHud : MonoBehaviour
         //language = langmang.language;
     }
 
-    public void SetHud(Character charc, EndlessInfo info, int staminaTired)
+    public void SetHud(EndlessInfo info)
     {
         //language = langmang.language;
 
-        hpText.text = (charc.stats.hp * info.playerHp).ToString("0") + "/" + charc.stats.hp;
-        hpSlider.maxValue = charc.stats.hp;
-        hpSlider.value = charc.stats.hp * info.playerHp;
+        hpText.text = (info.playerHp*100).ToString("0.00") + "%";
+        hpSlider.maxValue = 1;
+        hpSlider.value = info.playerHp;
         fillHp.color = gradientHp.Evaluate(1f);
         //hpInfo.text = langmang.languageManager.GetText(language, "stats", "name", "hp");
 
-        manaText.text = (charc.stats.mana * info.playerMn).ToString("0") + "/" + charc.stats.mana;
-        manaSlider.maxValue = charc.stats.mana;
-        manaSlider.value = charc.stats.mana * info.playerMn;
+        manaText.text = (info.playerMn*100).ToString("0.00") + "%";
+        manaSlider.maxValue = 1;
+        manaSlider.value = info.playerMn;
         fillMana.color = gradientMana.Evaluate(1f);
         //manaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "mana");
 
-        staminaText.text = (charc.stats.stamina * info.playerSta).ToString("0") + "/" + charc.stats.stamina;
-        staminaSlider.maxValue = charc.stats.stamina;
-        staminaSlider.value = charc.stats.stamina * info.playerSta;
+        staminaText.text = (info.playerSta*100).ToString("0.00") + "%";
+        staminaSlider.maxValue = 1;
+        staminaSlider.value = info.playerSta;
         fillStamina.color = gradientStamina.Evaluate(1f);
 
-        /*staminaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "stamina");
-        staminaInfo.text += "\n" + langmang.languageManager.GetText(language, "gui", "text", "staminatired");
-        staminaInfo.text = staminaInfo.text.Replace("%v%", staminaTired.ToString());*/
-
         //ultInfo.text = langmang.languageManager.GetText(language, "gui", "text", "ultimate");
-        ultText.text = (info.playerUlt).ToString("0.00")+"%";
+        ultText.text = info.playerUlt.ToString("0.00")+"%";
         ultSlider.maxValue = 100;
         ultSlider.value = info.playerUlt;
 
         //sanityInfo.text = langmang.languageManager.GetText(language, "stats", "name", "sanity");
-        sanityText.text = (int)(charc.stats.sanity * info.playerSan) + "/" + charc.stats.sanity;
-        float sanityPer = info.playerSan*100;
-
+        float sanityPer = info.playerSan * 100;
+        sanityText.text = sanityPer.ToString("0.00") + "%";
+        
         if (sanityPer > 75)
             sanityIcon.sprite = sanity100;
         else if (sanityPer <= 75 && sanityPer > 50)

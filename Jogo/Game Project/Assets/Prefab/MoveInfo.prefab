@@ -303,7 +303,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 20
+  m_Text: 0
 --- !u!1 &7461933490601653143
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +382,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 6
+  m_Text: 7
 --- !u!1 &7461933490921630933
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,46 +501,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
-  text: '<size=24><align=center>Shadow Warp</align></size>
+  tooltipPopupSec: {fileID: 0}
+  text: '<size=24><align=center>Warm Up</align></size>
 
-    Priority: 1
+    Priority: 0
 
     <s><align=center>|                
     |</align></s>
 
-    Blocks <color=#ffaa00>physical</color> moves
+    100% chance to <color=#ffaa00>18% Attack Damage</color> to
+    the user for 3 turns
 
-    Blocks
-    <color=#1a66ff>magic</color> moves
+    100% chance to <color=#f75145>10% Critical Chance</color>
+    to the user for 3 turns
 
-    Blocks <color=#f75145>ranged</color>
-    moves
+    100% chance to <color=#f75145>8% Critical Damage</color>
+    to the user for 3 turns
+
+    100% chance to <color=#0095ff>15% Movement Speed</color>
+    to the user for 3 turns
 
     <s><align=center>|                 |</align></s>
 
-    45% chance
-    to <color=#946ACD>9,5% Magic Resistance</color> to the user for 2 turns
-
-    45%
-    chance to <color=#0984db>10% Timing</color> to the user for 2 turns
-
-    45%
-    chance to <color=#0095ff>10% Movement Speed</color> to the user for 2 turns
-
-    <s><align=center>|                
-    |</align></s>
-
-    Deal <color=#b829ff>2 sanity damage</color>
-
     Recover
-    <color=#f0dd0a>8 stamina</color>
-
-    Recover <color=#b641f0>4 sanity</color>
-
-    Grants
-    a <color=#787878>20 health shield</color>
+    <color=#f0dd0a>3 + (<color=#ebdb28>190%</color> of the user''s <color=#ebdb28>Stamina
+    Regen</color>) stamina</color>
 
 '
+  textSec: 
+  wantSec: 0
 --- !u!1 &7461933492413409170
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,7 +608,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: 20
 --- !u!1 &7461933492528101758
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,4 +762,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shadow Warp
+  m_Text: Warm Up
