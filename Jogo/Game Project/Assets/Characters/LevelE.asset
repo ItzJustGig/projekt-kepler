@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
-  m_Name: Level
+  m_Name: LevelE
   m_EditorClassIdentifier: 
   hp: 0
   hpRegen: 0
   mana: 0
   manaRegen: 0
   stamina: 0
-  staminaRegen: 1
+  staminaRegen: 0
   sanity: 0
-  atkDmg: 20
-  magicPower: 5
-  critChance: 20
-  critDmg: 20
+  atkDmg: 0
+  magicPower: 0
+  critChance: 0
+  critDmg: 0
   dmgResis: 0
   magicResis: 0
   timing: 0
-  movSpeed: 4
+  movSpeed: 0
   lifesteal: 0
-  accuracy: 0
+  accuracy: 1
   evasion: 0
   armourPen: 0
