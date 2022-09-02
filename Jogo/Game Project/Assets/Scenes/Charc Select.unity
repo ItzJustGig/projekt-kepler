@@ -2671,6 +2671,7 @@ MonoBehaviour:
   maxLevel: 20
   curPoints: 0
   maxPoints: 70
+  levelBtn: {fileID: 1203040404}
   statsLevelsBtns: {fileID: 447163925}
   itemSelect: {fileID: 1875012052}
   item1: {fileID: 1580342961}
@@ -4824,7 +4825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &447163926
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6208,8 +6209,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -153.64001, y: 0}
-  m_SizeDelta: {x: 307.27, y: 450}
+  m_AnchoredPosition: {x: -158.07, y: 0}
+  m_SizeDelta: {x: 316.12, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &560383488
 MonoBehaviour:

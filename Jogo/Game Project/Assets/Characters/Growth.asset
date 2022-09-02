@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: Growth
   m_EditorClassIdentifier: 
-  hp: 8
-  hpRegen: 0.5
-  mana: 3
+  hp: 12
+  hpRegen: 0.4
+  mana: 5
   manaRegen: 0.05
   stamina: 3
   staminaRegen: 0.1
   sanity: 1
   atkDmg: 1
   magicPower: 1
-  critChance: 0.006
-  critDmg: 0.012
+  critChance: 0.0045
+  critDmg: 0.009
   dmgResis: 2
   magicResis: 2
   timing: 0.06
-  movSpeed: 10
+  movSpeed: 9
   lifesteal: 0
   accuracy: 0
   evasion: 0

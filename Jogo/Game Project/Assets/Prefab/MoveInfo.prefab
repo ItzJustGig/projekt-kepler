@@ -502,45 +502,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Taunt</align></size>
+  text: '<size=24><align=center>Warm Up</align></size>
 
     Priority: 0
 
     <s><align=center>|                
     |</align></s>
 
-    100% chance to <color=#ffaa00>10% Attack Damage</color> to
-    the enemy for 4 turns
+    100% chance to <color=#ffaa00>18% Attack Damage</color> to
+    the user for 3 turns
 
-    100% chance to <color=#1a66ff>10% Magic Power</color>
-    to the enemy for 4 turns
+    100% chance to <color=#f75145>10% Critical Chance</color>
+    to the user for 3 turns
 
-    100% chance to <color=#f75145>-10% Critical Chance</color>
-    to the enemy for 4 turns
+    100% chance to <color=#f75145>8% Critical Damage</color>
+    to the user for 3 turns
 
-    100% chance to <color=#f75145>-6% Critical Damage</color>
-    to the enemy for 4 turns
-
-    100% chance to <color=#937264>-32% Damage Resistance</color>
-    to the enemy for 4 turns
-
-    100% chance to <color=#946ACD>-28% Magic Resistance</color>
-    to the enemy for 4 turns
-
-    100% chance to <color=#0984db>-30% Timing</color>
-    to the enemy for 4 turns
+    100% chance to <color=#0095ff>15% Movement Speed</color>
+    to the user for 3 turns
 
     <s><align=center>|                 |</align></s>
 
-    Deal
-    <color=#b829ff>5 sanity damage</color>
-
-    Recover <color=#1e68fc>5 mana</color>
-
     Recover
-    <color=#f0dd0a>5 stamina</color>
-
-    Recover <color=#b641f0>1 sanity</color>
+    <color=#f0dd0a>3 + (<color=#ebdb28>190%</color> of the user''s <color=#ebdb28>Stamina
+    Regen</color>) stamina</color>
 
 '
   textSec: 
@@ -623,7 +608,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 20
 --- !u!1 &7461933492528101758
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,4 +762,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Taunt
+  m_Text: Warm Up
