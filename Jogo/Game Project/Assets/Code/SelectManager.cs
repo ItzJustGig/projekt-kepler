@@ -46,6 +46,7 @@ public class SelectManager : MonoBehaviour
     [SerializeField] private int maxLevel;
     [SerializeField] private int curPoints;
     [SerializeField] private int maxPoints;
+    [SerializeField] private GameObject levelBtn;
 
     [SerializeField] private GameObject statsLevelsBtns;
 
@@ -124,6 +125,7 @@ public class SelectManager : MonoBehaviour
         if (PlayerPrefs.GetInt("isEndless") != 0)
         {
             itemSelect.SetActive(false);
+            levelBtn.SetActive(false);
         }
     }
 
@@ -387,7 +389,11 @@ public class SelectManager : MonoBehaviour
         nameDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "name", charc.GetComponent<CharacterInfo>().character.name);
         titleDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "title", charc.GetComponent<CharacterInfo>().character.name);
         charcIcon.sprite = charc.GetComponent<CharacterInfo>().character.charcIcon;
-        SetStats(charc.GetComponent<CharacterInfo>().character.stats.ReturnStatsLevel(statsLevels, statsGrowth));
+        if (PlayerPrefs.GetInt("isEndless") != 0)
+            SetStats(charc.GetComponent<CharacterInfo>().character.stats.ReturnStats());
+        else
+            SetStats(charc.GetComponent<CharacterInfo>().character.stats.ReturnStatsLevel(statsLevels, statsGrowth));
+
         SetClassIcon(charc.GetComponent<CharacterInfo>().character.classe);
     }
 
@@ -488,7 +494,6 @@ public class SelectManager : MonoBehaviour
         stamina.text = stats.stamina.ToString();
         staminaRegen.text = stats.staminaRegen.ToString();
         sanity.text = stats.sanity.ToString();
-        accuracy.text = (stats.accuracy * 100).ToString() + "%";
         dmgResis.text = stats.dmgResis.ToString();
         magicResis.text = stats.magicResis.ToString();
         atkDmg.text = stats.atkDmg.ToString();
@@ -497,7 +502,9 @@ public class SelectManager : MonoBehaviour
         critDmg.text = (stats.critDmg * 100).ToString() + "%";
         timing.text = stats.timing.ToString();
         movSpeed.text = stats.movSpeed.ToString();
+
         lifesteal.text = (stats.lifesteal * 100).ToString() + "%";
+        accuracy.text = (stats.accuracy * 100).ToString() + "%";
 
         if ((stats.movSpeed * 0.035) + (stats.timing * 0.5) + (stats.sanity * 0.01) + stats.evasion > 0)
             evasion.text = ((stats.movSpeed * 0.035) + (stats.timing * 0.5) + (stats.sanity * 0.01) + stats.evasion).ToString("0.00") + "%";
@@ -693,6 +700,17 @@ public class SelectManager : MonoBehaviour
             moveHud.SetActive(true);
     }
 
+    public void ManageLevelHud()
+    {
+        if (statsLevelsBtns.activeInHierarchy)
+        {
+            statsLevelsBtns.SetActive(false);
+            SetText(i);
+        } 
+        else
+            statsLevelsBtns.SetActive(true);
+    }
+
     private void CountPoints()
     {
         curPoints += (int)statsLevels.hp;
@@ -817,7 +835,7 @@ public class SelectManager : MonoBehaviour
         else
             LockButtons(true, false, "timing");
     }
-
+    
     private void LockButtons(bool lockPlus, bool lockMinus, string name)
     {
         if (lockPlus)

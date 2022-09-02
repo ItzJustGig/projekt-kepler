@@ -108,8 +108,10 @@ public class Unit : MonoBehaviour
         ultMove = charc.ultimate.ReturnMove();
         ultMove.type = Moves.MoveType.ULT;
 
-
-        charc.stats = charc.stats.ReturnStatsLevel(statsLevel, statGrowth);
+        if (PlayerPrefs.GetInt("isEndless") != 0)
+            charc.stats = charc.stats.ReturnStats();
+        else
+            charc.stats = charc.stats.ReturnStatsLevel(statsLevel, statGrowth);
 
     }
 

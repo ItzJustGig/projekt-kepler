@@ -28,6 +28,6 @@ MonoBehaviour:
   timing: 0.06
   movSpeed: 10
   lifesteal: 0
-  accuracy: 1
+  accuracy: 0
   evasion: 0
   armourPen: 0
