@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 266200e1cfac25c4aa7c5a406a38c002, type: 3}
-  m_Name: shield
+  m_Name: atk scale
   m_EditorClassIdentifier: 
-  type: 8
+  type: 0
   playerStat: 1
   flatValue: 0
   curHp: 0
@@ -20,7 +20,7 @@ MonoBehaviour:
   maxHp: 0
   hpRegen: 0
   missMana: 0
-  curMana: 0.11
+  curMana: 0
   maxMana: 0
   manaRegen: 0
   maxStamina: 0
@@ -33,6 +33,6 @@ MonoBehaviour:
   atkDmg: 0
   magicPower: 0
   dmgResis: 0
-  magicResis: 0
+  magicResis: 0.6
   timing: 0
   movSpeed: 0

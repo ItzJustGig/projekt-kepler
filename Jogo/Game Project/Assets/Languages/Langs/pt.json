@@ -210,6 +210,7 @@
             "shine": "Shine",
             "william": "William",
             "hestia": "Hestia",
+            "icer": "Icer",
             "babymimi": "Mimi B\u00E9b\u00E9",
             "seedling": "Plantinha",
             "blob": "Blob",
@@ -237,7 +238,8 @@
             "sandew": "o Rafeiro do Deserto",
             "shine": "a Espadachim Futurista",
             "william": "o Vampiro Malicioso",
-            "hestia": "a Dobradora de Fogo"
+            "hestia": "a Dobradora de Fogo",
+            "icer": "o Pinguim Ganancionso"
         }
     },
     "effect": {
@@ -485,6 +487,12 @@
         "triggerupdate": "Atualiza\u00E7\u00E3o de Gatilho",
         "suddenjab": "Golpe Repentino",
         "crosscut": "Corte em Cruz",
+		"blizzard": "Nevasca",
+		"forcefield": "Campo de For\u00e7as",
+		"icepunch": "Soco de Gelo",
+		"iceshards": "Fragmentos de Gelo",
+		"turret": "Turreta",
+		"frostbarrier": "Barreira de Gelo",
         "bloodpressure": "Press\u00E3o Sangu\u00EDnea",
         "enchdeadlyshadow": "Encantamento de Sombras Mortais",
         "gigaimpact": "Giga Impacto",
@@ -493,6 +501,7 @@
         "lightspeedplasmacut": "Corte de Plasma a Velocidade da Luz",
         "windyvalleytornado": "Tornado do Vale Ventoso",
         "feirydance": "Dan\u00E7a do Fogo",
+        "mechasuit": "Fato Mec\u00e2nico",
         "healthpotion": "Po\u00E7\u00E3o de Vida",
         "manapotion": "Po\u00E7\u00E3o de Mana",
         "ravensfeather": "Pena do Corvo",

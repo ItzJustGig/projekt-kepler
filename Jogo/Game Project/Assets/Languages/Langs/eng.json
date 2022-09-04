@@ -210,6 +210,7 @@
 			"shine": "Shine",
 			"william": "William",
 			"hestia": "Hestia",
+			"icer": "Icer",
 			"babymimi": "Baby Mimi",
 			"seedling": "Seedling",
 			"blob": "Blob",
@@ -237,7 +238,8 @@
 			"sandew": "the Mutt of the Desert",
 			"shine": "the Futuristic SwordsPlayer",
 			"william": "the Malicious Vampire",
-			"hestia": "the Firebender"
+			"hestia": "the Firebender",
+			"icer": "the Greedy Penguin"
 		}
 	},
 	"effect": {
@@ -484,6 +486,12 @@
 		"triggerupdate": "Trigger Update",
 		"suddenjab": "Sudden Jab",
 		"crosscut": "Cross Cut",
+		"blizzard": "Blizzard",
+		"forcefield": "Force Field",
+		"icepunch": "Ice Punch",
+		"iceshards": "Ice Shards",
+		"turret": "Turret",
+		"frostbarrier": "Frost Barrier",
 		"bloodpressure": "Blood Pressure",
 		"enchdeadlyshadow": "Enchantment of the Deadly Shadows",
 		"gigaimpact": "Giga Impact",
@@ -492,6 +500,7 @@
 		"lightspeedplasmacut": "Light Speed Plasma Cut",
 		"windyvalleytornado": "Windy Valley Tornado",
 		"feirydance": "Feiry Dance",
+		"mechasuit": "Mecha Suit",
 		"healthpotion": "Health Potion",
 		"manapotion": "Mana Potion",
 		"ravensfeather": "Raven's Feather",

@@ -1138,6 +1138,7 @@ public class LanguageManager : MonoBehaviour
         public string sandew;
         public string william;
         public string hestia;
+        public string icer;
         public string babymimi;
         public string seedling;
         public string blob;
@@ -1185,6 +1186,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "hestia":
                     returns = hestia;
+                    break;
+                case "icer":
+                    returns = icer;
                     break;
                 case "babymimi":
                     returns = babymimi;
@@ -1472,6 +1476,12 @@ public class LanguageManager : MonoBehaviour
         public string triggerupdate;
         public string suddenjab;
         public string crosscut;
+        public string blizzard;
+        public string forcefield;
+        public string icepunch;
+        public string iceshards;
+        public string turret;
+        public string frostbarrier;
 
         public string bloodpressure;
         public string enchdeadlyshadow;
@@ -1481,6 +1491,7 @@ public class LanguageManager : MonoBehaviour
         public string lightspeedplasmacut;
         public string windyvalleytornado;
         public string feirydance;
+        public string mechasuit;
 
         public string healthpotion;
         public string manapotion;
@@ -1800,6 +1811,24 @@ public class LanguageManager : MonoBehaviour
                 case "crosscut":
                     returns = crosscut;
                     break;
+                case "blizzard":
+                    returns = blizzard;
+                    break;
+                case "forcefield":
+                    returns = forcefield;
+                    break;
+                case "icepunch":
+                    returns = icepunch;
+                    break;
+                case "iceshards":
+                    returns = iceshards;
+                    break;
+                case "turret":
+                    returns = turret;
+                    break;
+                case "frostbarrier":
+                    returns = frostbarrier;
+                    break;
                 case "bloodpressure":
                     returns = bloodpressure;
                     break;
@@ -1823,6 +1852,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "feirydance":
                     returns = feirydance;
+                    break;
+                case "mechasuit":
+                    returns = mechasuit;
                     break;
                 case "healthpotion":
                     returns = healthpotion;

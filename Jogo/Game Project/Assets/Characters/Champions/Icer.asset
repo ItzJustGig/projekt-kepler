@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d789de254ec901741a8cedbf21aabeda, type: 3}
+  m_Name: Icer
+  m_EditorClassIdentifier: 
+  strenght: 6
+  classe: 10
+  name: icer
+  sprite: {fileID: 5806852883944117854, guid: e14ff431356231f42bbc0411eccf6784, type: 3}
+  charcIcon: {fileID: 21300000, guid: 3e1b74db64dcba44bad88d8720a500c1, type: 3}
+  audio: {fileID: 8300000, guid: ebf7c04897d4fa8478373b6dfb925661, type: 3}
+  stats: {fileID: 11400000, guid: e5af636c87fa973409a202f2c6af6d0c, type: 2}
+  passives:
+  - {fileID: 11400000, guid: fd2a57b19bb94664eb114c5e312689c4, type: 2}
+  moves:
+  - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
+  - {fileID: 11400000, guid: a3895fb67c58a6249825428c0cac1d91, type: 2}
+  - {fileID: 11400000, guid: 2a71c9b8201dcc94a80b92b5f3af6af5, type: 2}
+  - {fileID: 11400000, guid: 7eb6bda027eda53419687101053221a0, type: 2}
+  - {fileID: 11400000, guid: d9c1789565bfe7649aa48c0b977e1ccc, type: 2}
+  - {fileID: 11400000, guid: f589408c0026e8440ab4dd3be4beee51, type: 2}
+  - {fileID: 11400000, guid: 1b67ecd335953934e857528377990a79, type: 2}
+  - {fileID: 11400000, guid: 92fbe2979c32d3f4cb3ec1625313c505, type: 2}
+  - {fileID: 11400000, guid: 6fc447a741959f0448d7f6ed6df17792, type: 2}
+  recItems: []
+  ultimate: {fileID: 11400000, guid: 29313426fae3f0542afc75f968174fad, type: 2}
+  ai: {fileID: 11400000, guid: f0534861214dc3c42a7242fc6109d4a2, type: 2}
