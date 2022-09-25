@@ -834,6 +834,7 @@ public class LanguageManager : MonoBehaviour
         public string toxicteeth;
         public string gravitybelt;
         public string manasword;
+        public string manascepter;
         public string shadowdagger;
         public string spectralring;
         public string huntersdirk;
@@ -956,6 +957,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "manasword":
                     returns = manasword;
+                    break;
+                case "manascepter":
+                    returns = manascepter;
                     break;
                 case "shadowdagger":
                     returns = shadowdagger;
@@ -2004,6 +2008,7 @@ public class LanguageManager : MonoBehaviour
         public string spectralring;
         public string gravitybelt;
         public string manasword;
+        public string manascepter;
         public string shadowdagger;
         public string bookofdisaster;
         public string bootsoftherunner;
@@ -2064,6 +2069,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "manasword":
                     returns = manasword;
+                    break;
+                case "manascepter":
+                    returns = manascepter;
                     break;
                 case "shadowdagger":
                     returns = shadowdagger;

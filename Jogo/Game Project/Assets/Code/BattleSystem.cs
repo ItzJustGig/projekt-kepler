@@ -921,6 +921,33 @@ public class BattleSystem : MonoBehaviour
                             } 
                         }
 
+                        if (a.name == "manascepter")
+                        {
+                            if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.STATMOD) && a.stacks == a.maxStacks)
+                            {
+                                StatScale scale = a.ifConditionTrueScale();
+                                Unit unit;
+                                Stats stats;
+                                if (scale.playerStat)
+                                {
+                                    unit = user;
+                                    stats = statsUser;
+                                }
+                                else
+                                {
+                                    unit = target;
+                                    stats = statsTarget;
+                                }
+
+                                dmg.AddDmg(SetScaleDmg(scale, stats, unit));
+                            }
+
+                            if (move.type is Moves.MoveType.MAGICAL && a.stacks < a.maxStacks)
+                            {
+                                a.stacks++;
+                            }
+                        }
+
                         if (a.name == "gravitybelt")
                         {
                             if (a.inCd == 0)
@@ -3605,6 +3632,28 @@ public class BattleSystem : MonoBehaviour
             }
 
             if (a.name == "manasword")
+            {
+                if (a.stacks > 0)
+                {
+                    StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
+                    statMod.inTime = statMod.time;
+                    user.statMods.Add(statMod);
+                    user.usedBonusStuff = false;
+
+                    if (a.stacks == a.maxStacks)
+                    {
+                        StatMod statMod2 = a.statMod2.ReturnStats();
+                        statMod2.inTime = statMod2.time;
+                        user.statMods.Add(statMod2);
+                        user.usedBonusStuff = false;
+                    }
+
+                    SetStatsHud(user, userHud);
+                }
+                ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+            }
+
+            if (a.name == "manascepter")
             {
                 if (a.stacks > 0)
                 {

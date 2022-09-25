@@ -28,7 +28,7 @@ MonoBehaviour:
   healMana: 0
   healStamina: 0
   healSanity: 0
-  shield: 10
+  shield: 15
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 0

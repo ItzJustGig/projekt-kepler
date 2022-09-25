@@ -17,16 +17,16 @@ MonoBehaviour:
   mana: 0
   manaRegen: 0
   stamina: 0
-  staminaRegen: 1
+  staminaRegen: 0
   sanity: 0
-  atkDmg: 20
-  magicPower: 5
-  critChance: 20
-  critDmg: 20
+  atkDmg: 0
+  magicPower: 0
+  critChance: 0
+  critDmg: 0
   dmgResis: 0
   magicResis: 0
   timing: 0
-  movSpeed: 4
+  movSpeed: 0
   lifesteal: 0
   accuracy: 0
   evasion: 0

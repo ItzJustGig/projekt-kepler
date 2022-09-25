@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: galeglide
   showNameOnInfo: 1
+  origin: 0
   sprite: {fileID: 21300000, guid: f077c3c258f10aa488d24729631506f6, type: 3}
-  num: 0.65
-  maxNum: 4
+  num: 0.7
+  maxNum: 3
   stacks: 0
   maxStacks: 0
-  cd: 8
-  inCd: 8
+  cd: 10
+  inCd: 10
   statScale: {fileID: 0}
   statScale2: {fileID: 0}
   statMod: {fileID: 11400000, guid: e5dffebbf3b1e54489b4da31e71c7ea8, type: 2}

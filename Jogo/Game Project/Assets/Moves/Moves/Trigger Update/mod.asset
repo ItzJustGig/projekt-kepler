@@ -17,11 +17,11 @@ MonoBehaviour:
   inTime: 0
   chance: 1
   hp: 0
-  hpRegen: 0.15
+  hpRegen: 0.08
   mana: 0
-  manaRegen: 0.25
+  manaRegen: 0.17
   stamina: 0
-  staminaRegen: 0.25
+  staminaRegen: 0.2
   sanity: 0
   atkDmg: 0.18
   magicPower: 0.2
@@ -30,7 +30,7 @@ MonoBehaviour:
   dmgResis: 0
   magicResis: 0
   timing: 0
-  movSpeed: 0.1
+  movSpeed: 0.08
   lifesteal: 0
   accuracy: 0.05
   evasion: 0
