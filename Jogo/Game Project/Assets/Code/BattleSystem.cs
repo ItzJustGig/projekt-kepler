@@ -897,7 +897,7 @@ public class BattleSystem : MonoBehaviour
 
                         if (a.name == "manascepter")
                         {
-                            if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.STATMOD) && a.stacks == a.maxStacks)
+                            if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.STATMOD || move.type is Moves.MoveType.DEFFENCIVE) && a.stacks == a.maxStacks)
                             {
                                 StatScale scale = a.ifConditionTrueScale();
                                 Unit unit;
@@ -2230,7 +2230,6 @@ public class BattleSystem : MonoBehaviour
                 enemyUnit.curMana = statsE.mana;
                 enemyUnit.curStamina = statsE.stamina;
             }
-            
         }
 
         StartCoroutine(playerHUD.SetHp(playerUnit.curHp, statsP.hp));

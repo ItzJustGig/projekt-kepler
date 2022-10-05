@@ -17,7 +17,7 @@ MonoBehaviour:
   inTime: 0
   chance: 1
   hp: 0
-  hpRegen: 0.08
+  hpRegen: 0
   mana: 0
   manaRegen: 0.17
   stamina: 0
@@ -35,3 +35,4 @@ MonoBehaviour:
   accuracy: 0.05
   evasion: 0
   armourPen: 0
+  ultrate: 0
