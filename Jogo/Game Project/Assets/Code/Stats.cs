@@ -31,6 +31,7 @@ public class Stats : ScriptableObject
 
     public float evasion;
     public float armourPen;
+    public float ultrate = 1;
 
     public Stats ReturnStats()
     {
@@ -54,6 +55,7 @@ public class Stats : ScriptableObject
         stats.evasion = evasion;
         stats.accuracy = accuracy;
         stats.armourPen = armourPen;
+        stats.ultrate = ultrate;
 
         return stats;
     }
@@ -84,6 +86,7 @@ public class Stats : ScriptableObject
         stats.evasion = evasion;
         stats.accuracy = accuracy;
         stats.armourPen = armourPen;
+        stats.ultrate = ultrate;
 
         return stats;
     }

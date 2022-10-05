@@ -15,12 +15,13 @@ MonoBehaviour:
   strenght: 6
   classe: 10
   name: icer
-  sprite: {fileID: 5806852883944117854, guid: e14ff431356231f42bbc0411eccf6784, type: 3}
+  sprite: {fileID: 5806852883944117854, guid: ca86673fd549be54d9a3f069c2704411, type: 3}
   charcIcon: {fileID: 21300000, guid: 3e1b74db64dcba44bad88d8720a500c1, type: 3}
   audio: {fileID: 8300000, guid: ebf7c04897d4fa8478373b6dfb925661, type: 3}
   stats: {fileID: 11400000, guid: e5af636c87fa973409a202f2c6af6d0c, type: 2}
   passives:
   - {fileID: 11400000, guid: fd2a57b19bb94664eb114c5e312689c4, type: 2}
+  - {fileID: 11400000, guid: 59b7b0d8f4bd3214fbc2f029535b3d92, type: 2}
   moves:
   - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
   - {fileID: 11400000, guid: a3895fb67c58a6249825428c0cac1d91, type: 2}
@@ -31,6 +32,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1b67ecd335953934e857528377990a79, type: 2}
   - {fileID: 11400000, guid: 92fbe2979c32d3f4cb3ec1625313c505, type: 2}
   - {fileID: 11400000, guid: 6fc447a741959f0448d7f6ed6df17792, type: 2}
-  recItems: []
+  recItems:
+  - {fileID: 11400000, guid: 30ad6b253706994479f8a4c7c7915a5a, type: 2}
+  - {fileID: 11400000, guid: 5e76c4b4da194f1449550922f404dc59, type: 2}
+  - {fileID: 11400000, guid: 5eda90cbd562ff64eb375376c646f526, type: 2}
+  - {fileID: 11400000, guid: 4b56fe408866778478e92eb4df412ba2, type: 2}
+  - {fileID: 11400000, guid: 429fce6b4bace0a439742be56b0bde17, type: 2}
   ultimate: {fileID: 11400000, guid: 29313426fae3f0542afc75f968174fad, type: 2}
   ai: {fileID: 11400000, guid: f0534861214dc3c42a7242fc6109d4a2, type: 2}

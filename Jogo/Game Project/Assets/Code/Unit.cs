@@ -283,13 +283,7 @@ public class Unit : MonoBehaviour
 
     public void Heal (float heal)
     {
-        Stats statsP = charc.stats.ReturnStats();
-
-        if (statMods.Count > 0)
-            foreach (StatMod statMod in statMods.ToArray())
-            {
-                statsP = SetModifiers(statMod.ReturnStats(), statsP.ReturnStats());
-            }
+        Stats statsP = SetModifiers();
 
         if (!(curHp + heal >= statsP.hp))
             curHp += heal;
@@ -301,57 +295,60 @@ public class Unit : MonoBehaviour
         dmg.transform.GetChild(0).GetComponent<TextMesh>().text = heal.ToString("0");
     }
 
-    Stats SetModifiers(StatMod scale, Stats user)
+    public Stats SetModifiers()
     {
-        Stats temp = user.ReturnStats();
-
-        if (!scale.flat)
+        Stats temp = charc.stats.ReturnStats();
+        foreach (StatMod mod in statMods.ToArray())
         {
-            temp.hp += (int)((user.hp + temp.hp) * scale.hp);
-            temp.mana += (int)((user.mana + temp.mana) * scale.mana);
-            temp.stamina += (int)((user.stamina + temp.stamina) * scale.stamina);
-            temp.sanity += (int)((user.sanity + temp.sanity) * scale.sanity);
+            if (!mod.flat)
+            {
+                temp.hp += (int)((temp.hp + temp.hp) * mod.hp);
+                temp.mana += (int)((temp.mana + temp.mana) * mod.mana);
+                temp.stamina += (int)((temp.stamina + temp.stamina) * mod.stamina);
+                temp.sanity += (int)((temp.sanity + temp.sanity) * mod.sanity);
 
-            temp.hpRegen += (user.hpRegen * scale.hpRegen);
-            temp.manaRegen += user.manaRegen * scale.manaRegen;
-            temp.staminaRegen += user.staminaRegen * scale.staminaRegen;
+                temp.hpRegen += (temp.hpRegen * mod.hpRegen);
+                temp.manaRegen += temp.manaRegen * mod.manaRegen;
+                temp.staminaRegen += temp.staminaRegen * mod.staminaRegen;
 
-            temp.atkDmg += (user.atkDmg * scale.atkDmg);
-            temp.magicPower += (user.magicPower * scale.magicPower);
+                temp.atkDmg += (temp.atkDmg * mod.atkDmg);
+                temp.magicPower += (temp.magicPower * mod.magicPower);
 
-            temp.dmgResis += (user.dmgResis * scale.dmgResis);
-            temp.magicResis += (user.magicResis * scale.magicResis);
+                temp.dmgResis += (temp.dmgResis * mod.dmgResis);
+                temp.magicResis += (temp.magicResis * mod.magicResis);
 
-            temp.timing += (user.timing * scale.timing);
-            temp.movSpeed += (user.movSpeed * scale.movSpeed);
+                temp.timing += (temp.timing * mod.timing);
+                temp.movSpeed += (temp.movSpeed * mod.movSpeed);
 
+            }
+            else
+            {
+                temp.hp += mod.hp;
+                temp.mana += mod.mana;
+                temp.stamina += mod.stamina;
+                temp.sanity += (int)mod.sanity;
+
+                temp.hpRegen += mod.hpRegen;
+                temp.manaRegen += mod.manaRegen;
+                temp.staminaRegen += mod.staminaRegen;
+
+                temp.atkDmg += mod.atkDmg;
+                temp.magicPower += mod.magicPower;
+
+                temp.dmgResis += mod.dmgResis;
+                temp.magicResis += mod.magicResis;
+
+                temp.timing += mod.timing;
+                temp.movSpeed += mod.movSpeed;
+            }
+
+            temp.critChance += mod.critChance;
+            temp.critDmg += mod.critDmg;
+            temp.lifesteal += mod.lifesteal;
+            temp.evasion += mod.evasion;
+            temp.accuracy += mod.accuracy;
+            temp.ultrate += mod.ultrate;
         }
-        else
-        {
-            temp.hp += scale.hp;
-            temp.mana += scale.mana;
-            temp.stamina += scale.stamina;
-            temp.sanity += (int)scale.sanity;
-
-            temp.hpRegen += scale.hpRegen;
-            temp.manaRegen += scale.manaRegen;
-            temp.staminaRegen += scale.staminaRegen;
-
-            temp.atkDmg += scale.atkDmg;
-            temp.magicPower += scale.magicPower;
-
-            temp.dmgResis += scale.dmgResis;
-            temp.magicResis += scale.magicResis;
-
-            temp.timing += scale.timing;
-            temp.movSpeed += scale.movSpeed;
-        }
-
-        temp.critChance += scale.critChance;
-        temp.critDmg += scale.critDmg;
-        temp.lifesteal += scale.lifesteal;
-        temp.evasion += scale.evasion;
-        temp.accuracy += scale.accuracy;
 
         return temp;
     }

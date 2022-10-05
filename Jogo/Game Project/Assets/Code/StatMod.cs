@@ -37,6 +37,7 @@ public class StatMod : ScriptableObject
 
     public float evasion;
     public float armourPen;
+    public float ultrate;
 
     public StatMod ReturnStats()
     {
@@ -65,6 +66,7 @@ public class StatMod : ScriptableObject
         stats.evasion = evasion;
         stats.accuracy = accuracy;
         stats.armourPen = armourPen;
+        stats.ultrate = ultrate;
 
         return stats;
     }
@@ -96,6 +98,7 @@ public class StatMod : ScriptableObject
         stats.evasion += evasion * times;
         stats.accuracy += accuracy * times;
         stats.armourPen += armourPen * times;
+        stats.ultrate += ultrate * times;
 
         return stats;
     }
@@ -266,6 +269,9 @@ public class StatMod : ScriptableObject
         if (armourPen != 0)
             builder.Append(GetInfo(languageManager, language, "c87c32", armourPen, languageManager.GetText(language, "stats", "name", "armourpen"), onWho, true)).AppendLine();
 
+        if (ultrate != 0)
+            builder.Append(GetInfo(languageManager, language, "E6E6E6", ultrate, languageManager.GetText(language, "stats", "name", "ultrate"), onWho, true)).AppendLine();
+
         return builder;
     }
 
@@ -333,6 +339,9 @@ public class StatMod : ScriptableObject
         if (armourPen != 0)
             builder.Append(GetInfo(languageManager, language, "c87c32", armourPen, languageManager.GetText(language, "stats", "name", "armourpen"), true)).AppendLine();
 
+        if (ultrate != 0)
+            builder.Append(GetInfo(languageManager, language, "E6E6E6", ultrate, languageManager.GetText(language, "stats", "name", "ultrate"), true)).AppendLine();
+
         return builder;
     }
 
@@ -341,61 +350,64 @@ public class StatMod : ScriptableObject
         bool change = false;
 
         if (atkDmg < 0)
-            change  = true;
+            change = true;
 
         if (magicPower < 0)
-            change  = true;
+            change = true;
 
         if (hp < 0)
-            change  = true;
+            change = true;
 
         if (hpRegen < 0)
-            change  = true;
+            change = true;
 
         if (mana < 0)
-            change  = true;
+            change = true;
 
         if (manaRegen < 0)
-            change  = true;
+            change = true;
 
         if (stamina < 0)
-            change  = true;
+            change = true;
 
         if (staminaRegen < 0)
-            change  = true;
+            change = true;
 
         if (sanity < 0)
-            change  = true;
+            change = true;
 
         if (dmgResis < 0)
-            change  = true;
+            change = true;
 
         if (magicResis < 0)
-            change  = true;
+            change = true;
 
         if (critChance < 0)
-            change  = true;
+            change = true;
 
         if (critDmg < 0)
-            change  = true;
+            change = true;
 
         if (evasion < 0)
-            change  = true;
+            change = true;
 
         if (movSpeed < 0)
-            change  = true;
+            change = true;
 
         if (timing < 0)
-            change  = true;
+            change = true;
 
         if (accuracy < 0)
-            change  = true;
+            change = true;
 
         if (armourPen < 0)
-            change  = true;
+            change = true;
 
         if (lifesteal < 0)
-            change  = true;
+            change = true;
+
+        if (ultrate < 0)
+            change = true;
  
 
         return change;

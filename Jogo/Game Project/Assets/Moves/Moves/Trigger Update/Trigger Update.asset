@@ -25,13 +25,13 @@ MonoBehaviour:
   trueDmg: 0
   sanityDmg: 0
   heal: 10
-  healMana: 5
+  healMana: 8
   healStamina: 3
   healSanity: 2
   shield: 10
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 12
+  cooldown: 11
   inCooldown: 0
   manaCost: 40
   staminaCost: 20

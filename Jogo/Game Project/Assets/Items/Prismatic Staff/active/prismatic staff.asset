@@ -21,7 +21,7 @@ MonoBehaviour:
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 20
+  magicDmg: 25
   trueDmg: 0
   sanityDmg: 0
   heal: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 0
   staminaCost: 0
-  critDmgBonus: 0.2
+  critDmgBonus: 0.3
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}

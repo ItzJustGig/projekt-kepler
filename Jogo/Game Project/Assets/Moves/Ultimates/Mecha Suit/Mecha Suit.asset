@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
   m_Name: Mecha Suit
   m_EditorClassIdentifier: 
-  type: 5
+  type: 4
   name: mechasuit
   hitTime: 1
   priority: 0
@@ -23,12 +23,12 @@ MonoBehaviour:
   phyDmg: 0
   magicDmg: 0
   trueDmg: 0
-  sanityDmg: 0
+  sanityDmg: 10
   heal: 0
   healMana: 0
   healStamina: 0
   healSanity: 0
-  shield: 600
+  shield: 620
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 0
@@ -39,7 +39,8 @@ MonoBehaviour:
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
-  scale: []
+  scale:
+  - {fileID: 11400000, guid: c0b4198ba6d160f4db1e0a865901b1c4, type: 2}
   dot: []
   effects: []
   grantPassive: {fileID: 0}

@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: magicremains
   showNameOnInfo: 1
+  origin: 0
   sprite: {fileID: 21300000, guid: 0f8b72b1c2a756b4ca1d151cb382216c, type: 3}
   num: 0
   maxNum: 0
   stacks: 0
   maxStacks: 0
-  cd: 15
-  inCd: 15
+  cd: 13
+  inCd: 16
   statScale: {fileID: 11400000, guid: 88e1687aafcfadb4cab7da5246749dfe, type: 2}
   statScale2: {fileID: 0}
   statMod: {fileID: 0}

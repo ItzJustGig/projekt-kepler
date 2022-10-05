@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: icer stats
   m_EditorClassIdentifier: 
-  hp: 2240
+  hp: 2070
   hpRegen: 23
   mana: 760
   manaRegen: 1.65
@@ -20,11 +20,11 @@ MonoBehaviour:
   staminaRegen: 0.5
   sanity: 175
   atkDmg: 36
-  magicPower: 76
+  magicPower: 78
   critChance: 0.2
   critDmg: 0.1
-  dmgResis: 45
-  magicResis: 54
+  dmgResis: 48
+  magicResis: 52
   timing: 3.2
   movSpeed: 295
   lifesteal: 0

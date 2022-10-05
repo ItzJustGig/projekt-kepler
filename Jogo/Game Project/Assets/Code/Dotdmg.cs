@@ -34,6 +34,15 @@ public class Dotdmg : ScriptableObject
         this.srcType = srcType;
     }
 
+    public void Setup(float dmgT, float time, string srcId, SrcType srcType, DmgType dmgType)
+    {
+        dmg = dmgT / (int)time;
+        inTime = (int)time;
+        this.srcId = srcId;
+        this.srcType = srcType;
+        this.type = dmgType;
+    }
+
     public Dotdmg ReturnDOT()
     {
         Dotdmg dot = CreateInstance<Dotdmg>();

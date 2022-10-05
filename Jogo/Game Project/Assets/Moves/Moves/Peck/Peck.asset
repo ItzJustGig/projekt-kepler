@@ -16,10 +16,11 @@ MonoBehaviour:
   name: peck
   hitTime: 1
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 35
+  phyDmg: 40
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
@@ -30,15 +31,18 @@ MonoBehaviour:
   shield: 0
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 5
+  cooldown: 3
   inCooldown: 0
   manaCost: 0
-  staminaCost: 45
+  staminaCost: 40
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 22e776084f92e9b46b577c27b69802db, type: 2}
+  - {fileID: 11400000, guid: ceebd3aab2089e144b7da00d81669745, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}

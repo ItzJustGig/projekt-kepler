@@ -42,6 +42,7 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: b30a0b2e6a3bddd448fdcffde1ce4c8f, type: 2}
   dot: []
-  effects: []
+  effects:
+  - {fileID: 11400000, guid: 01bf56cfa1f11734b980d143ae6ce977, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}

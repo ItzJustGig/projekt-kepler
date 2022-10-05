@@ -19,7 +19,7 @@ MonoBehaviour:
   hp: 0
   hpRegen: 0
   mana: 0
-  manaRegen: 0
+  manaRegen: 0.3
   stamina: 0
   staminaRegen: 0
   sanity: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
   magicPower: 0
   critChance: 0
   critDmg: 0
-  dmgResis: 10
+  dmgResis: 14
   magicResis: 5
   timing: 0
   movSpeed: 0

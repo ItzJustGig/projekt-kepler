@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
   m_Name: Paralized
   m_EditorClassIdentifier: 
-  name: Paralized
   id: PLZ
   sprite: {fileID: 21300000, guid: a2446039734503548b91cfc129668bef, type: 3}
   duration: 0
+  grantsOnRunOut: 0
   timesInc: 0
   canUsePhysical: 1
   canUseRanged: 1
@@ -23,6 +23,7 @@ MonoBehaviour:
   canUseSupp: 1
   canUseProtec: 1
   canUseStatMod: 1
+  canUseSummon: 1
   phyDmgMin: 0
   phyDmgMax: 0
   phyDmgInc: 0
@@ -33,7 +34,7 @@ MonoBehaviour:
   trueDmgMax: 0
   trueDmgInc: 0
   sanityDmgMin: 1
-  sanityDmgMax: 2
+  sanityDmgMax: 3
   sanityDmgInc: 0
   sanityHealMin: 0
   sanityHealMax: 0
@@ -50,9 +51,8 @@ MonoBehaviour:
   shieldMin: 0
   shieldMax: 0
   shieldInc: 0
-  cancelAtkChance: 0.15
+  cancelAtkChance: 0.25
   recoil: 0
-  cancelMsg: cannot move due to the paralize.
   scale: []
   statMods:
   - {fileID: 11400000, guid: b1525069daed3a84cbcb1bbd5ab0c06e, type: 2}

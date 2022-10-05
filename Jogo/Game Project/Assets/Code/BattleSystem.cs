@@ -552,14 +552,14 @@ public class BattleSystem : MonoBehaviour
 
         foreach (StatMod a in playerUnit.statMods)
         {
-            Stats stat = SetModifiers(a.ReturnStats(), playerUnit.charc.stats.ReturnStats(), playerUnit).ReturnStats();
+            Stats stat = playerUnit.SetModifiers();
             stat.movSpeed -= playerUnit.charc.stats.movSpeed;
             movPlayer += stat.movSpeed;
         }
 
         foreach (StatMod a in enemyUnit.statMods)
         {
-            Stats stat = SetModifiers(a.ReturnStats(), enemyUnit.charc.stats.ReturnStats(), enemyUnit).ReturnStats();
+            Stats stat = enemyUnit.SetModifiers();
             stat.movSpeed -= enemyUnit.charc.stats.movSpeed;
             movEnemy += stat.movSpeed;
         }
@@ -713,25 +713,8 @@ public class BattleSystem : MonoBehaviour
             bool isCrit = false;
             bool isMagicCrit = false;
 
-            Stats statsUser = user.charc.stats.ReturnStats();
-
-            Stats statsTarget = target.charc.stats.ReturnStats();
-
-            float evasion = 0;
-            bool isStoped = false;       
-
-            //apply stat modifiers
-            if (user.statMods.Count > 0)
-                foreach (StatMod statMod in user.statMods.ToArray())
-                {
-                    statsUser = SetModifiers(statMod, statsUser, user);
-                }
-
-            if (target.statMods.Count > 0)
-                foreach (StatMod statMod in target.statMods.ToArray())
-                {
-                    statsTarget = SetModifiers(statMod, statsTarget, target);
-                }
+            Stats statsUser = user.SetModifiers();
+            Stats statsTarget = target.SetModifiers();
 
             //set timing to 5 if timing > 5
             if (statsTarget.timing > 5)
@@ -739,6 +722,9 @@ public class BattleSystem : MonoBehaviour
 
             if (statsUser.timing > 5)
                 statsUser.timing = 5;
+
+            float evasion = 0;
+            bool isStoped = false;       
 
             //calculate evasion
             evasion = (float)((statsTarget.movSpeed * 0.035) + (statsTarget.timing * 0.5) + (target.curSanity * 0.01))/100;
@@ -802,7 +788,7 @@ public class BattleSystem : MonoBehaviour
                                 mod.inTime = mod.time;
                                 //apply the evasion
                                 target.statMods.Add(mod);
-                                statsTarget = SetModifiers(mod, statsTarget, target);
+                                statsTarget = target.SetModifiers();
                             }
                         }
                     }
@@ -1228,7 +1214,7 @@ public class BattleSystem : MonoBehaviour
                                 StatMod mod = a.statMod.ReturnStats();
                                 mod.inTime = mod.time+1;
                                 user.statMods.Add(mod);
-                                statsUser = SetModifiers(mod, statsUser, user);
+                                statsUser = user.SetModifiers();
 
                                 ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
                             }
@@ -1549,7 +1535,6 @@ public class BattleSystem : MonoBehaviour
                                                         dmg.healSanity += (int)((user.charc.stats.sanity * statMod.sanity) / 2);
                                                         user.statMods.Add(statMod);
                                                         user.usedBonusStuff = false;
-                                                        SetModifiers(statMod, statsUser, user);
                                                     }
                                                 } else
                                                 {
@@ -1583,7 +1568,6 @@ public class BattleSystem : MonoBehaviour
                                                         dmg.healSanity += (int)((target.charc.stats.sanity * statMod.sanity) / 2);
                                                         target.statMods.Add(statMod);
                                                         target.usedBonusStuff = false;
-                                                        SetModifiers(statMod, statsTarget, target);
                                                     }
                                                 } else
                                                 {
@@ -1613,7 +1597,6 @@ public class BattleSystem : MonoBehaviour
                                         dmg.healSanity += (int)((user.charc.stats.sanity * statMod.sanity) / 2);
                                         user.statMods.Add(statMod);
                                         user.usedBonusStuff = false;
-                                        SetModifiers(statMod, statsUser, user);
                                         usedUsMod = true;
                                     }
                                 }
@@ -1632,7 +1615,6 @@ public class BattleSystem : MonoBehaviour
                                         dmg.healSanity += (int)((target.charc.stats.sanity * statMod.sanity) / 2);
                                         target.statMods.Add(statMod);
                                         target.usedBonusStuff = false;
-                                        SetModifiers(statMod, statsTarget, target);
                                         usedEnMod = true;
                                     }
                                 }
@@ -1961,13 +1943,7 @@ public class BattleSystem : MonoBehaviour
                                 user.Heal(dmg.heal);
                             }
 
-                            Stats statsU = user.charc.stats.ReturnStats();
-
-                            if (user.statMods.Count > 0)
-                                foreach (StatMod statMod in user.statMods.ToArray())
-                                {
-                                    statsU = SetModifiers(statMod.ReturnStats(), statsU.ReturnStats(), user);
-                                }
+                            Stats statsU = user.SetModifiers();
 
                             if (dmg.healMana > 0)
                             {
@@ -2004,12 +1980,21 @@ public class BattleSystem : MonoBehaviour
 
                             if (dmg.shield > 0)
                             {
+                                foreach (Passives a in user.passives.ToArray())
+                                {
+                                    if (a.name == "combatrepair")
+                                    {
+                                        Dotdmg dot = new Dotdmg();
+                                        dot.Setup(dmg.shield, a.maxNum, move.name, Dotdmg.SrcType.MOVE, Dotdmg.DmgType.SHIELD);
+                                        dmg.shield = 0;
+                                        user.dotDmg.Add(dot);
+                                    }
+                                }
                                 user.shieldDone += dmg.shield;
                                 user.curShield += dmg.shield;
                                 if (user.curShield > 1000)
                                     user.curShield = 1000;
                             }
-                            
 
                             if (blockPhysical)
                             {
@@ -2110,6 +2095,8 @@ public class BattleSystem : MonoBehaviour
 
     void SetUltNumber(Unit user, BattleHud hud, float dmg, bool isDealt)
     {
+        
+
         if (user.ult < 100)
         {
             float value = user.ult;
@@ -2221,87 +2208,16 @@ public class BattleSystem : MonoBehaviour
         return temp;
     }
 
-    public Stats SetModifiers(StatMod scale, Stats user, Unit original)
-    {
-        Stats temp = user.ReturnStats();
-
-        if (!scale.flat)
-        {
-            temp.hp += (int)((user.hp + temp.hp) * scale.hp);
-            temp.mana += (int)((user.mana + temp.mana) * scale.mana);
-            temp.stamina += (int)((user.stamina + temp.stamina) * scale.stamina);
-            temp.sanity += (int)((user.sanity + temp.sanity) * scale.sanity);
-
-            temp.hpRegen += (user.hpRegen * scale.hpRegen);
-            temp.manaRegen += user.manaRegen * scale.manaRegen;
-            temp.staminaRegen += user.staminaRegen * scale.staminaRegen;
-
-            temp.atkDmg += (user.atkDmg * scale.atkDmg);
-            temp.magicPower += (user.magicPower * scale.magicPower);
-
-            temp.dmgResis += (user.dmgResis * scale.dmgResis);
-            temp.magicResis += (user.magicResis * scale.magicResis);
-
-            temp.timing += (user.timing * scale.timing);
-            temp.movSpeed += (user.movSpeed * scale.movSpeed);
-
-        } else
-        {
-            temp.hp += scale.hp;
-            temp.mana += scale.mana;
-            temp.stamina += scale.stamina;
-            temp.sanity += (int)scale.sanity;
-
-            temp.hpRegen += scale.hpRegen;
-            temp.manaRegen += scale.manaRegen;
-            temp.staminaRegen += scale.staminaRegen;
-
-            temp.atkDmg += scale.atkDmg;
-            temp.magicPower += scale.magicPower;
-
-            temp.dmgResis += scale.dmgResis;
-            temp.magicResis += scale.magicResis;
-
-            temp.timing += scale.timing;
-            temp.movSpeed += scale.movSpeed;
-        }
-
-        temp.critChance += scale.critChance;
-        temp.critDmg += scale.critDmg;
-        temp.lifesteal += scale.lifesteal;
-        temp.evasion += scale.evasion;
-        temp.accuracy += scale.accuracy;
-        temp.armourPen += scale.armourPen;
-
-        return temp;
-    }
-
     void SetStatsHud(Unit user, BattleHud userHud)
     {
-        Stats stats = user.charc.stats.ReturnStats();
-        foreach (StatMod statMod in user.statMods.ToArray())
-        {
-            stats = SetModifiers(statMod.ReturnStats(), stats.ReturnStats(), user);
-        }
-
+        Stats stats = user.SetModifiers();
         userHud.SetStats(stats.ReturnStats(), user.charc.stats.ReturnStats(), user.curSanity);
     }
 
     void SetStatus()
     {
-        Stats statsP = playerUnit.charc.stats.ReturnStats();
-
-        foreach (StatMod statMod in playerUnit.statMods.ToArray())
-        {
-            statsP = SetModifiers(statMod.ReturnStats(), statsP.ReturnStats(), playerUnit);
-        }
-
-        Stats statsE = enemyUnit.charc.stats.ReturnStats();
-
-        foreach (StatMod statMod in enemyUnit.statMods.ToArray())
-        {
-            statsE = SetModifiers(statMod.ReturnStats(), statsE.ReturnStats(), enemyUnit);
-        }
+        Stats statsP = playerUnit.SetModifiers();
+        Stats statsE = enemyUnit.SetModifiers();
 
         if (turnCount == 1 && state is BattleState.START)
         {
@@ -2375,19 +2291,8 @@ public class BattleSystem : MonoBehaviour
             }
             else
             {
-                Stats statsU = enemyUnit.charc.stats.ReturnStats();
-                if (enemyUnit.statMods.Count > 0)
-                    foreach (StatMod statMod in enemyUnit.statMods.ToArray())
-                    {
-                        statsU = SetModifiers(statMod.ReturnStats(), statsU.ReturnStats(), enemyUnit);
-                    }
-
-                Stats statsT = playerUnit.charc.stats.ReturnStats();
-                if (enemyUnit.statMods.Count > 0)
-                    foreach (StatMod statMod in playerUnit.statMods.ToArray())
-                    {
-                        statsT = SetModifiers(statMod.ReturnStats(), statsT.ReturnStats(), playerUnit);
-                    }
+                Stats statsU = enemyUnit.SetModifiers();
+                Stats statsT = playerUnit.SetModifiers();
 
                 random = enemyUnit.charc.ai.chooseMove(enemyUnit.moves, enemyUnit, playerUnit, statsU, statsT);
             }
@@ -2778,6 +2683,16 @@ public class BattleSystem : MonoBehaviour
 
         if (dmg.shield > 0)
         {
+            foreach (Passives b in user.passives.ToArray())
+            {
+                if (b.name == "combatrepair")
+                {
+                    Dotdmg dot = new Dotdmg();
+                    dot.Setup(dmg.shield, b.maxNum, a.name, Dotdmg.SrcType.MOVE, Dotdmg.DmgType.SHIELD);
+                    dmg.shield = 0;
+                    user.dotDmg.Add(dot);
+                }
+            }
             user.curShield += dmg.shield;
             if (user.curShield > 1000)
                 user.curShield = 1000;
@@ -2788,12 +2703,7 @@ public class BattleSystem : MonoBehaviour
 
     public bool DotCalc(Dotdmg dot, Unit user)
     {
-        Stats stats = user.charc.stats.ReturnStats();
-        if (user.statMods.Count > 0)
-            foreach (StatMod statMod in user.statMods.ToArray())
-            {
-                stats = SetModifiers(statMod.ReturnStats(), stats.ReturnStats(), user);
-            }
+        Stats stats = user.SetModifiers();
 
         Dotdmg a = dot.ReturnDOT();
 
@@ -3581,12 +3491,7 @@ public class BattleSystem : MonoBehaviour
                 {
                     ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo());
 
-                    Stats statsUser = user.charc.stats.ReturnStats();
-                    if (user.statMods.Count > 0)
-                        foreach (StatMod b in user.statMods.ToArray())
-                        {
-                            statsUser = SetModifiers(b, statsUser, user);
-                        }
+                    Stats statsUser = user.SetModifiers();
 
                     StatMod statMod = a.statMod.ReturnStats();
                     statMod.inTime = statMod.time;
@@ -3765,6 +3670,25 @@ public class BattleSystem : MonoBehaviour
             {
                 ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
             }
+
+            if (a.name == "combatrepair")
+            {
+                if (a.stacks > 0)
+                {
+                    StatMod mod = a.ifConditionTrueMod();
+
+                    StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
+                    statMod.inTime = statMod.time;
+                    user.statMods.Add(statMod);
+                    user.usedBonusStuff = false;
+                    SetStatsHud(user, userHud);
+                }
+
+                if (a.stacks <= 0)
+                    DestroyPassiveIcon(a.name, user.isEnemy);
+                else 
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+            }
         }
     }
 
@@ -3797,7 +3721,6 @@ public class BattleSystem : MonoBehaviour
                 //add stat mod to player
                 user.statMods.Add(statMod);
                 user.usedBonusStuff = false;
-                SetModifiers(statMod, user.charc.stats.ReturnStats(), user);
             }
 
             barIconPrefab.name = effect.id;
@@ -3849,7 +3772,6 @@ public class BattleSystem : MonoBehaviour
 
                 user.statMods.Add(statMod);
                 user.usedBonusStuff = false;
-                SetModifiers(statMod, user.charc.stats.ReturnStats(), user);
             }
 
             barIconPrefab.name = effect.id;
@@ -3868,19 +3790,9 @@ public class BattleSystem : MonoBehaviour
 
     public bool SummonDmg(SumMove move, StatsSummon statsSum, Unit target, Unit summoner, BattleHud targetHud)
     {
-        Stats statsT = target.charc.stats.ReturnStats();
-        if (target.statMods.Count > 0)
-            foreach (StatMod statMod in target.statMods.ToArray())
-            {
-                statsT = SetModifiers(statMod.ReturnStats(), statsT.ReturnStats(), target);
-            }
+        Stats statsT = target.SetModifiers();
 
-        Stats statsS = summoner.charc.stats.ReturnStats();
-        if (target.statMods.Count > 0)
-            foreach (StatMod statMod in target.statMods.ToArray())
-            {
-                statsS = SetModifiers(statMod.ReturnStats(), statsS.ReturnStats(), target);
-            }
+        Stats statsS = summoner.SetModifiers();
 
         bool isDead = false;
         bool isCrit = false;
@@ -4008,13 +3920,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (sum.summonTurn == 0)
         {
-            Stats statsSum = summoner.charc.stats.ReturnStats();
-
-            if (summoner.statMods.Count > 0)
-                foreach (StatMod statMod in summoner.statMods.ToArray())
-                {
-                    statsSum = SetModifiers(statMod.ReturnStats(), statsSum.ReturnStats(), summoner);
-                }
+            Stats statsSum = summoner.SetModifiers();
 
             sum.SetupStats(statsSum, summoner);
             sum.summonTurn = turnCount;
@@ -4031,6 +3937,15 @@ public class BattleSystem : MonoBehaviour
                 tooltipButton.tooltipPopup = tooltipMain.transform.GetComponent<TooltipPopUp>();
                 tooltipButton.text = langmanag.GetInfo("summon", "name", sum.name);
                 Instantiate(barIconPrefab, pannel.transform);
+            }
+
+            foreach (Passives a in summoner.passives.ToArray())
+            {
+                if (a.name == "combatrepair")
+                {
+                    a.stacks++;
+                    summoner.PassivePopup(langmanag.GetInfo("passive", "name", a.name, a.stacks));
+                }
             }
         }
         else
@@ -4055,6 +3970,13 @@ public class BattleSystem : MonoBehaviour
             }
             else
             {
+                foreach (Passives a in summoner.passives.ToArray())
+                {
+                    if (a.name == "combatrepair")
+                    {
+                        a.stacks--;
+                    }
+                }
                 dialogText.text = langmanag.GetInfo("gui", "text", "defeat", name);
                 Destroy(pannel.transform.Find(debugname + "(Clone)").gameObject);
                 summoner.summons.Remove(sum);
@@ -4267,15 +4189,9 @@ public class BattleSystem : MonoBehaviour
         if (recoverManaMoveP.inCooldown > 0)
             recoverManaMoveP.inCooldown--;
 
-        statsP = playerUnit.charc.stats.ReturnStats();
-        statsE = enemyUnit.charc.stats.ReturnStats();
-
         if (playerUnit.statMods.Count > 0)
             foreach (StatMod statMod in playerUnit.statMods.ToArray())
             {
-                if (statMod.inTime > 0 || statMod.inTime == -1)
-                    statsP = SetModifiers(statMod.ReturnStats(), statsP.ReturnStats(), playerUnit);
-
                 if (statMod.inTime > 0)
                     statMod.inTime--;
 
@@ -4286,15 +4202,15 @@ public class BattleSystem : MonoBehaviour
         if (enemyUnit.statMods.Count > 0)
             foreach (StatMod statMod in enemyUnit.statMods.ToArray())
             {
-                if (statMod.inTime > 0 || statMod.inTime == -1)
-                    statsE = SetModifiers(statMod.ReturnStats(), statsE.ReturnStats(), enemyUnit);
-
                 if (statMod.inTime > 0)
                     statMod.inTime--;
 
                 if (statMod.inTime == 0)
                     enemyUnit.statMods.Remove(statMod);
             }
+
+        statsP = playerUnit.SetModifiers();
+        statsE = enemyUnit.SetModifiers();
 
         SetStatsHud(playerUnit, playerHUD);
         SetStatsHud(enemyUnit, enemyHUD);

@@ -303,7 +303,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 120
+  m_Text: 130
 --- !u!1 &7461933490601653143
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,21 +512,21 @@ MonoBehaviour:
     Summons a Turret, that will <color=#1a66ff>magical damage</color>
     every 0 turns
 
-    <color=#00ff11>Health:  (<color=#3366ff>145%</color> of the
-    user''s <color=#3366ff>Maximum Mana</color>) + (<color=#1a66ff>120%</color> of
-    the user''s <color=#1a66ff>Magic Power</color>) + (<color=#946ACD>80%</color>
+    <color=#00ff11>Health:  (<color=#3366ff>130%</color> of the
+    user''s <color=#3366ff>Maximum Mana</color>) + (<color=#1a66ff>160%</color> of
+    the user''s <color=#1a66ff>Magic Power</color>) + (<color=#946ACD>105%</color>
     of the user''s <color=#946ACD>Magic Resistance</color>)</color>
 
     <color=#ffaa00>Attack
-    Damage:  (<color=#946ACD>60%</color> of the user''s <color=#946ACD>Magic Resistance</color>)</color>
+    Damage:  (<color=#946ACD>50%</color> of the user''s <color=#946ACD>Magic Resistance</color>)</color>
 
     <color=#1a66ff>Magic
-    Power:  (<color=#1a66ff>80%</color> of the user''s <color=#1a66ff>Magic Power</color>)</color>
+    Power:  (<color=#1a66ff>75%</color> of the user''s <color=#1a66ff>Magic Power</color>)</color>
 
     
 
     <color=#1a66ff>Magical
-    damage: <color=#ffaa00>75% Attack Damage</color> + <color=#1a66ff>90% Magic Power</color>'
+    damage: <color=#ffaa00>75% Attack Damage</color> + <color=#1a66ff>80% Magic Power</color>'
   textSec: 
   wantSec: 0
 --- !u!1 &7461933492413409170
