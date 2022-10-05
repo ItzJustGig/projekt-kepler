@@ -386,7 +386,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 12
+  m_Text: 9
 --- !u!1 &7954924221204952151
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hunter's Dirk
+  m_Text: Turret
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: edc4bbb7d32a9024b81094d5d9894628, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -801,21 +801,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Hunter''s Dirk</align></size>
+  text: '<size=24><align=center>Turret</align></size>
 
     Priority: 0
 
-    <color=#f75145>Bonus
-    critical damage: 8%</color>
+    <s><align=center>|                
+    |</align></s>
 
-    <s><align=center>|                 |</align></s>
+    Summons a Turret, that will <color=#1a66ff>magical damage</color>
+    every 0 turns
 
-    Deal
-    <color=#ffaa00>25 + (<color=#ffaa00>60%</color> of the user''s <color=#ffaa00>Attack
-    Damage</color>) + (<color=#0095ff>14%</color> of the user''s <color=#0095ff>Movement
-    Speed</color>) physical damage</color>
+    <color=#00ff11>Health:  (<color=#3366ff>130%</color> of the
+    user''s <color=#3366ff>Maximum Mana</color>) + (<color=#1a66ff>160%</color> of
+    the user''s <color=#1a66ff>Magic Power</color>) + (<color=#946ACD>105%</color>
+    of the user''s <color=#946ACD>Magic Resistance</color>)</color>
 
-'
+    <color=#ffaa00>Attack
+    Damage:  (<color=#946ACD>50%</color> of the user''s <color=#946ACD>Magic Resistance</color>)</color>
+
+    <color=#1a66ff>Magic
+    Power:  (<color=#1a66ff>75%</color> of the user''s <color=#1a66ff>Magic Power</color>)</color>
+
+    
+
+    <color=#1a66ff>Magical
+    damage: <color=#ffaa00>75% Attack Damage</color> + <color=#1a66ff>80% Magic Power</color>'
   textSec: 
   wantSec: 0
 --- !u!1 &7954924222130100152
@@ -896,7 +906,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 7
+  m_Text: 10
 --- !u!1 &7954924222182827413
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,7 +985,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 130
 --- !u!1 &7970126842544643455
 GameObject:
   m_ObjectHideFlags: 0

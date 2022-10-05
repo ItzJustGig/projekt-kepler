@@ -40,7 +40,7 @@
 			"turn": "Turn %n%",
 			"staminatired": "Stamina for Tired: %v%",
 			"shield": "Shield",
-			"ultimate": "Ultimate: %v%",
+			"ultimate": "Ultimate: %v% \nUlti Rate: %r%",
 			"misspop": "Miss",
 			"dodgepop": "Dodged",
 			"physicdmgdealt": "Physical Damage Dealt:",

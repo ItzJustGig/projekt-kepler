@@ -61,19 +61,19 @@ public class BattleHud : MonoBehaviour
         nameText.text = langmang.languageManager.GetText(language, "charc", "name", unit.charc.name);
 
         hpText.text = unit.curHp + "/" + unit.charc.stats.hp;
-        hpSlider.maxValue = unit.charc.stats.hp;
+        hpSlider.maxValue = unit.SetModifiers().hp;
         hpSlider.value = unit.curHp;
         fillHp.color = gradientHp.Evaluate(1f);
         hpInfo.text = langmang.languageManager.GetText(language, "stats", "name", "hp");
 
         manaText.text = unit.curMana + "/" + unit.charc.stats.mana;
-        manaSlider.maxValue = unit.charc.stats.mana;
+        manaSlider.maxValue = unit.SetModifiers().mana;
         manaSlider.value = unit.curMana;
         fillMana.color = gradientMana.Evaluate(1f);
         manaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "mana");
 
         staminaText.text = unit.curStamina + "/" + unit.charc.stats.stamina;
-        staminaSlider.maxValue = unit.charc.stats.stamina;
+        staminaSlider.maxValue = unit.SetModifiers().stamina;
         staminaSlider.value = unit.curStamina;
         fillStamina.color = gradientStamina.Evaluate(1f);
 
@@ -88,6 +88,7 @@ public class BattleHud : MonoBehaviour
 
         ultInfo.text = langmang.languageManager.GetText(language, "gui", "text", "ultimate");
         ultInfo.text = ultInfo.text.Replace("%v%", ultSlider.value.ToString("0.00") +"%");
+        ultInfo.text = ultInfo.text.Replace("%r%", unit.SetModifiers().ultrate.ToString("0.00") +"%");
 
     }
 
@@ -464,10 +465,11 @@ public class BattleHud : MonoBehaviour
         shieldInfo.text = langmang.languageManager.GetText(language, "gui", "text", "shield");
     }
 
-    public void SetUlt(float value)
+    public void SetUlt(float value, float ultrate)
     {
         ultSlider.value = value;
         ultInfo.text = langmang.languageManager.GetText(language, "gui", "text", "ultimate");
         ultInfo.text = ultInfo.text.Replace("%v%", ultSlider.value.ToString("0.00") + "%");
+        ultInfo.text = ultInfo.text.Replace("%r%", (ultrate*100).ToString("0.00") + "%");
     }
 }

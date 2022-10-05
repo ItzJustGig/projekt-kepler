@@ -549,22 +549,8 @@ public class BattleSystem : MonoBehaviour
             moveEnemy.inCooldown = moveEnemy.cooldown;
 
         bool canUseNormal = true;
-        float movPlayer = playerUnit.charc.stats.movSpeed;
-        float movEnemy = enemyUnit.charc.stats.movSpeed;
-
-        foreach (StatMod a in playerUnit.statMods)
-        {
-            Stats stat = playerUnit.SetModifiers();
-            stat.movSpeed -= playerUnit.charc.stats.movSpeed;
-            movPlayer += stat.movSpeed;
-        }
-
-        foreach (StatMod a in enemyUnit.statMods)
-        {
-            Stats stat = enemyUnit.SetModifiers();
-            stat.movSpeed -= enemyUnit.charc.stats.movSpeed;
-            movEnemy += stat.movSpeed;
-        }
+        float movPlayer = playerUnit.SetModifiers().movSpeed;
+        float movEnemy = enemyUnit.SetModifiers().movSpeed;
 
         if (movePlayer == null || moveEnemy == null)
             canUseNormal = false;
@@ -785,7 +771,7 @@ public class BattleSystem : MonoBehaviour
                                 DestroyPassiveIcon(a.name, target.isEnemy);
                                 //get evasion bonus
                                 StatMod mod = a.statMod.ReturnStats();
-                                float evasionBonus = a.maxNum * target.charc.stats.timing;
+                                float evasionBonus = a.maxNum * target.SetModifiers().timing;
                                 mod.evasion += a.num * evasionBonus;
                                 mod.inTime = mod.time;
                                 //apply the evasion
@@ -835,7 +821,7 @@ public class BattleSystem : MonoBehaviour
 
                         if (a.name == "vendetta")
                         {
-                            if (target.charc.stats.hp >= (user.charc.stats.hp + (user.charc.stats.hp * a.num)) && a.stacks != 1)
+                            if (target.SetModifiers().hp >= (user.SetModifiers().hp + (user.SetModifiers().hp * a.num)) && a.stacks != 1)
                             {
                                 a.stacks = 1;
                                 ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
@@ -1026,7 +1012,7 @@ public class BattleSystem : MonoBehaviour
                                     isSilence = true;
                             }
 
-                            int manaPer = (int)((100 * user.curMana) / user.charc.stats.mana);
+                            int manaPer = (int)((100 * user.curMana) / user.SetModifiers().mana);
                             bool enoughMana = false;
 
                             if (manaPer > a.maxNum * 100)
@@ -1061,7 +1047,7 @@ public class BattleSystem : MonoBehaviour
                                 magicBonus += scale.flatValue;
                                 magicBonus += SetScale(scale, stats, unit);
 
-                                int hpPer = (int)((100 * user.curHp) / user.charc.stats.hp);
+                                int hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
 
                                 if (hpPer <= a.num * 100)
                                 {
@@ -1164,7 +1150,7 @@ public class BattleSystem : MonoBehaviour
                         if (a.name == "spectralring")
                         {
                             //hp in %
-                            int hpPer = (int)((100 * user.curHp) / user.charc.stats.hp);
+                            int hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
 
                             if (hpPer <= (a.num * 100) && move.type is Moves.MoveType.MAGICAL)
                             {
@@ -1251,7 +1237,7 @@ public class BattleSystem : MonoBehaviour
                         {
                             if (a.inCd == 0)
                             {
-                                float hpPer = (100 * target.curHp) / target.charc.stats.hp;
+                                float hpPer = (100 * target.curHp) / target.SetModifiers().hp;
                                 if ((move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL) && hpPer >= a.num)
                                 {
                                     user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
@@ -1531,10 +1517,10 @@ public class BattleSystem : MonoBehaviour
                                                     {
                                                         StatMod statMod = b.ReturnStats();
                                                         statMod.inTime = effect.duration;
-                                                        dmg.heal += (int)((user.charc.stats.hp * statMod.hp) / 2);
-                                                        dmg.healMana += (int)((user.charc.stats.mana * statMod.mana) / 2);
-                                                        dmg.healStamina += (int)((user.charc.stats.stamina * statMod.stamina) / 2);
-                                                        dmg.healSanity += (int)((user.charc.stats.sanity * statMod.sanity) / 2);
+                                                        dmg.heal += (int)((user.SetModifiers().hp * statMod.hp) / 2);
+                                                        dmg.healMana += (int)((user.SetModifiers().mana * statMod.mana) / 2);
+                                                        dmg.healStamina += (int)((user.SetModifiers().stamina * statMod.stamina) / 2);
+                                                        dmg.healSanity += (int)((user.SetModifiers().sanity * statMod.sanity) / 2);
                                                         user.statMods.Add(statMod);
                                                         user.usedBonusStuff = false;
                                                     }
@@ -1564,10 +1550,10 @@ public class BattleSystem : MonoBehaviour
                                                     {
                                                         StatMod statMod = b.ReturnStats();
                                                         statMod.inTime = effect.duration;
-                                                        dmg.heal += (int)((target.charc.stats.hp * statMod.hp) / 2);
-                                                        dmg.healMana += (int)((target.charc.stats.mana * statMod.mana) / 2);
-                                                        dmg.healStamina += (int)((target.charc.stats.stamina * statMod.stamina) / 2);
-                                                        dmg.healSanity += (int)((target.charc.stats.sanity * statMod.sanity) / 2);
+                                                        dmg.heal += (int)((target.SetModifiers().hp * statMod.hp) / 2);
+                                                        dmg.healMana += (int)((target.SetModifiers().mana * statMod.mana) / 2);
+                                                        dmg.healStamina += (int)((target.SetModifiers().stamina * statMod.stamina) / 2);
+                                                        dmg.healSanity += (int)((target.SetModifiers().sanity * statMod.sanity) / 2);
                                                         target.statMods.Add(statMod);
                                                         target.usedBonusStuff = false;
                                                     }
@@ -1593,10 +1579,10 @@ public class BattleSystem : MonoBehaviour
                                     {
                                         StatMod statMod = move.statModUser.ReturnStats();
                                         statMod.inTime = statMod.time + 1;
-                                        dmg.heal += ((user.charc.stats.hp * statMod.hp) / 2);
-                                        dmg.healMana += ((user.charc.stats.mana * statMod.mana) / 2);
-                                        dmg.healStamina += ((user.charc.stats.stamina * statMod.stamina) / 2);
-                                        dmg.healSanity += (int)((user.charc.stats.sanity * statMod.sanity) / 2);
+                                        dmg.heal += ((user.SetModifiers().hp * statMod.hp) / 2);
+                                        dmg.healMana += ((user.SetModifiers().mana * statMod.mana) / 2);
+                                        dmg.healStamina += ((user.SetModifiers().stamina * statMod.stamina) / 2);
+                                        dmg.healSanity += (int)((user.SetModifiers().sanity * statMod.sanity) / 2);
                                         user.statMods.Add(statMod);
                                         user.usedBonusStuff = false;
                                         usedUsMod = true;
@@ -1611,10 +1597,10 @@ public class BattleSystem : MonoBehaviour
                                     {
                                         StatMod statMod = move.statModEnemy.ReturnStats();
                                         statMod.inTime = statMod.time + 1;
-                                        dmg.heal += ((target.charc.stats.hp * statMod.hp) / 2);
-                                        dmg.healMana += ((target.charc.stats.mana * statMod.mana) / 2);
-                                        dmg.healStamina += ((target.charc.stats.stamina * statMod.stamina) / 2);
-                                        dmg.healSanity += (int)((target.charc.stats.sanity * statMod.sanity) / 2);
+                                        dmg.heal += ((target.SetModifiers().hp * statMod.hp) / 2);
+                                        dmg.healMana += ((target.SetModifiers().mana * statMod.mana) / 2);
+                                        dmg.healStamina += ((target.SetModifiers().stamina * statMod.stamina) / 2);
+                                        dmg.healSanity += (int)((target.SetModifiers().sanity * statMod.sanity) / 2);
                                         target.statMods.Add(statMod);
                                         target.usedBonusStuff = false;
                                         usedEnMod = true;
@@ -2255,8 +2241,8 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(enemyHUD.SetStamina(enemyUnit.curStamina, statsE.stamina, (int)(statsE.stamina * (tiredStart + (tiredGrowth * tiredStacks)))));
         StartCoroutine(playerHUD.SetShield(playerUnit.curShield));
         StartCoroutine(enemyHUD.SetShield(enemyUnit.curShield));
-        playerHUD.SetUlt(playerUnit.ult);
-        enemyHUD.SetUlt(enemyUnit.ult);
+        playerHUD.SetUlt(playerUnit.ult, playerUnit.SetModifiers().ultrate);
+        enemyHUD.SetUlt(enemyUnit.ult, enemyUnit.SetModifiers().ultrate);
     }
 
     Moves EnemyChooseMove()
@@ -2264,9 +2250,9 @@ public class BattleSystem : MonoBehaviour
         Moves move = null;
         bool skip = false;
 
-        if (enemyUnit.curMana < (enemyUnit.charc.stats.mana * aiManaRecover) && !enemyUnit.moves.Contains(recoverManaMoveE))
+        if (enemyUnit.curMana < (enemyUnit.SetModifiers().mana * aiManaRecover) && !enemyUnit.moves.Contains(recoverManaMoveE))
             enemyUnit.moves.Add(recoverManaMoveE);
-        else if (enemyUnit.curMana > (enemyUnit.charc.stats.mana * aiManaRecover) && enemyUnit.moves.Contains(recoverManaMoveE))
+        else if (enemyUnit.curMana > (enemyUnit.SetModifiers().mana * aiManaRecover) && enemyUnit.moves.Contains(recoverManaMoveE))
             enemyUnit.moves.Remove(recoverManaMoveE);
 
         if (((enemyUnit.ult == 100 && enemyUnit.ultMove.needFullUlt) || 
@@ -2289,7 +2275,7 @@ public class BattleSystem : MonoBehaviour
 
         do
         {
-            if (enemyUnit.curMana <= (enemyUnit.charc.stats.mana * aiGaranteedManaRecover))
+            if (enemyUnit.curMana <= (enemyUnit.SetModifiers().mana * aiGaranteedManaRecover))
             {
                 if (Random.Range(0f, 1f) <= 0.95)
                 {
@@ -2394,7 +2380,6 @@ public class BattleSystem : MonoBehaviour
             {
                 PlayerPrefs.SetInt("wonLastRound", 1);
                 info.round++;
-
 
                 float health = playerUnit.curHp + (playerUnit.charc.stats.hp - playerUnit.curHp) * perHealthRegenEndless;
                 float mana = playerUnit.curMana + (playerUnit.charc.stats.mana - playerUnit.curMana) * perCostsRegenEndless;
@@ -2586,14 +2571,14 @@ public class BattleSystem : MonoBehaviour
             Stats stats;
 
             unit = user;
-            stats = user.charc.stats.ReturnStats();
+            stats = user.SetModifiers().ReturnStats();
 
             dmg.AddDmg(SetScaleDmg(scale, stats, unit));
         }
 
         if (dmg.phyDmg > 0)
         {
-            float dmgMitigated = (float)(user.charc.stats.dmgResis * dmgResisPer) - (user.charc.stats.dmgResis * dmgResisPer) * dotReduc;
+            float dmgMitigated = (float)(user.SetModifiers().dmgResis * dmgResisPer) - (user.SetModifiers().dmgResis * dmgResisPer) * dotReduc;
             if (dmgMitigated < dmg.phyDmg)
             {
                 dmg.phyDmg -= dmgMitigated;
@@ -2611,7 +2596,7 @@ public class BattleSystem : MonoBehaviour
 
         if (dmg.magicDmg > 0)
         {
-            float dmgMitigated = (float)(user.charc.stats.magicResis * magicResisPer) - (user.charc.stats.magicResis * magicResisPer) * dotReduc;
+            float dmgMitigated = (float)((user.SetModifiers().magicResis * magicResisPer) - (user.SetModifiers().magicResis * magicResisPer) * dotReduc);
             
             if (dmgMitigated < dmg.magicDmg)
             {
@@ -2666,7 +2651,6 @@ public class BattleSystem : MonoBehaviour
         user.manaHealDone += dmg.healMana;
         user.staminaHealDone += dmg.healStamina;
         user.sanityHealDone += dmg.healSanity;
-        user.shieldDone += dmg.shield;
 
         if (dmg.heal > 0)
             user.Heal(dmg.heal);
@@ -2674,22 +2658,22 @@ public class BattleSystem : MonoBehaviour
         if (dmg.healMana > 0)
         {
             user.curMana += dmg.healMana;
-            if (user.curMana > user.charc.stats.mana)
-                user.curMana = user.charc.stats.mana;
+            if (user.curMana > user.SetModifiers().mana)
+                user.curMana = user.SetModifiers().mana;
         }
 
         if (dmg.healStamina > 0)
         {
             user.curStamina += dmg.healStamina;
-            if (user.curStamina > user.charc.stats.stamina)
-                user.curStamina = user.charc.stats.stamina;
+            if (user.curStamina > user.SetModifiers().stamina)
+                user.curStamina = user.SetModifiers().stamina;
         }
 
         if (dmg.healSanity > 0)
         {
             user.curSanity += dmg.healSanity;
-            if (user.curSanity > user.charc.stats.sanity)
-                user.curSanity = user.charc.stats.sanity;
+            if (user.curSanity > user.SetModifiers().sanity)
+                user.curSanity = user.SetModifiers().sanity;
         }
 
         if (dmg.shield > 0)
@@ -2704,9 +2688,12 @@ public class BattleSystem : MonoBehaviour
                     user.dotDmg.Add(dot);
                 }
             }
+
             user.curShield += dmg.shield;
             if (user.curShield > 1000)
                 user.curShield = 1000;
+
+            user.shieldDone += dmg.shield;
         }
 
         return isDead;
@@ -2737,7 +2724,7 @@ public class BattleSystem : MonoBehaviour
                         user.phyDmgMitigated += dmgMitigated;
                     }
 
-                    Stats statsUser = user.charc.stats.ReturnStats();
+                    Stats statsUser = user.SetModifiers();
                     if (statsUser.lifesteal > 0)
                     {
                         float heal = a.dmg * statsUser.lifesteal;
@@ -2973,12 +2960,12 @@ public class BattleSystem : MonoBehaviour
 
             if (a.name == "manathirst")
             {
-                if (a.inCd == 0 && (user.curMana <= (user.charc.stats.mana * a.num)))
+                if (a.inCd == 0 && (user.curMana <= (user.SetModifiers().mana * a.num)))
                 {
                     a.inCd = a.cd;
                     user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
 
-                    float healMana = SetScale(a.statScale, user.charc.stats, user);
+                    float healMana = SetScale(a.statScale, user.SetModifiers(), user);
                     healMana = a.statScale.flatValue;
                     user.curMana += healMana;
                     user.manaHealDone += healMana;
@@ -2998,7 +2985,7 @@ public class BattleSystem : MonoBehaviour
             if (a.name == "wildinstinct")
             {
                 //hp in %
-                int hpPer = (int)((100 * user.curHp) / user.charc.stats.hp);
+                int hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
 
                 if (hpPer < (a.num * 100))
                 {
@@ -3031,7 +3018,7 @@ public class BattleSystem : MonoBehaviour
             if (a.name == "lastbreath")
             {
                 //hp in %
-                int hpPer = (int)((100 * user.curHp) / user.charc.stats.hp);
+                int hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
 
                 if (hpPer < (a.num * 100))
                 {
@@ -3051,7 +3038,7 @@ public class BattleSystem : MonoBehaviour
             if (a.name == "bullsrage")
             {
                 //hp in %
-                int hpPer = (int)((100 * user.curHp) / user.charc.stats.hp);
+                int hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
 
                 if (hpPer <= (a.num * 100))
                 {
@@ -3126,7 +3113,7 @@ public class BattleSystem : MonoBehaviour
             if (a.name == "fearsmell")
             {
                 //enemy sanity in %
-                int sanityPer = (int)((100 * target.curSanity) / target.charc.stats.sanity);
+                int sanityPer = (int)((100 * target.curSanity) / target.SetModifiers().sanity);
 
                 if (sanityPer < (a.num * 100))
                 {
@@ -3226,7 +3213,7 @@ public class BattleSystem : MonoBehaviour
                         isSilence = true;
                 }
 
-                int manaPer = (int)((100 * user.curMana) / user.charc.stats.mana);
+                int manaPer = (int)((100 * user.curMana) / user.SetModifiers().mana);
                 bool enoughMana = false;
 
                 if (manaPer > a.maxNum * 100)
@@ -3240,7 +3227,7 @@ public class BattleSystem : MonoBehaviour
                     DestroyPassiveIcon(a.name, user.isEnemy);
                 }
 
-                int healthPer = (int)((100 * user.curHp) / user.charc.stats.hp);
+                int healthPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
 
                 if (healthPer <= a.stacks)
                 {
@@ -3328,10 +3315,10 @@ public class BattleSystem : MonoBehaviour
                     a.inCd--;
 
                 //if cooldown is 0
-                if (a.inCd <= 0 && user.curSanity < user.charc.stats.sanity)
+                if (a.inCd <= 0 && user.curSanity < user.SetModifiers().sanity)
                 {
                     //get sanity heal from the passive's scale
-                    float healSanity = SetScale(a.statScale, user.charc.stats, user);
+                    float healSanity = SetScale(a.statScale, user.SetModifiers(), user);
                     //get the flat value sanity heal from the passive's scale
                     healSanity += a.statScale.flatValue;
                     //heal sanity
@@ -3354,7 +3341,7 @@ public class BattleSystem : MonoBehaviour
                         if (a.stacks < 1)
                         {
                             //get sanity heal from the passive's scale
-                            float healSanity = SetScale(a.statScale2, user.charc.stats, user);
+                            float healSanity = SetScale(a.statScale2, user.SetModifiers(), user);
                             //get the flat value sanity heal from the passive's scale
                             healSanity += a.statScale2.flatValue;
                             //heal sanity
@@ -3376,7 +3363,7 @@ public class BattleSystem : MonoBehaviour
 
             if (a.name == "bloodpumping")
             {
-                if (a.inCd > 0 && user.curHp < user.charc.stats.hp)
+                if (a.inCd > 0 && user.curHp < user.SetModifiers().hp)
                 {
                     bool foundEffect = false;
 
@@ -3391,7 +3378,7 @@ public class BattleSystem : MonoBehaviour
                     
                     if (foundEffect)
                     {
-                        float trueDmg = SetScale(a.statScale, user.charc.stats, user);
+                        float trueDmg = SetScale(a.statScale, user.SetModifiers(), user);
                         trueDmg += a.statScale.flatValue;
 
                         user.curHp -= trueDmg;
@@ -3399,17 +3386,17 @@ public class BattleSystem : MonoBehaviour
                         user.TakeDamage(trueDmg, 0, false);
                     } else
                     {
-                        float heal = SetScale(a.statScale, user.charc.stats, user);
+                        float heal = SetScale(a.statScale, user.SetModifiers(), user);
                         heal += a.statScale.flatValue;
 
-                        if ((user.curHp + heal) < user.charc.stats.hp)
+                        if ((user.curHp + heal) < user.SetModifiers().hp)
                         {
                             user.curHp += heal;
                             user.healDone += heal;
                         } else
                         {
-                            heal = user.curHp - user.charc.stats.hp;
-                            user.curHp = user.charc.stats.hp;
+                            heal = user.curHp - user.SetModifiers().hp;
+                            user.curHp = user.SetModifiers().hp;
 
                             if (heal < 0)
                                 heal = 0;
@@ -3463,7 +3450,7 @@ public class BattleSystem : MonoBehaviour
             if (a.name == "fighterinstinct")
             {
                 //hp in %
-                int hpPer = (int)((100 * user.curHp) / user.charc.stats.hp);
+                int hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
 
                 if (hpPer <= (a.num*100) && a.stacks != 1)
                 {
@@ -3518,7 +3505,7 @@ public class BattleSystem : MonoBehaviour
             if (a.name == "zenmode")
             {
                 //stamina in %
-                int staPer = (int)((100 * user.curStamina) / user.charc.stats.stamina);
+                int staPer = (int)((100 * user.curStamina) / user.SetModifiers().stamina);
 
                 if (staPer <= a.num*100)
                 {
@@ -3652,7 +3639,7 @@ public class BattleSystem : MonoBehaviour
                 if (a.inCd > 0)
                     a.inCd--;
 
-                float hpPer = (100 * target.curHp) / target.charc.stats.hp;
+                float hpPer = (100 * target.curHp) / target.SetModifiers().hp;
 
                 if (hpPer < a.num)
                 {
@@ -3699,6 +3686,39 @@ public class BattleSystem : MonoBehaviour
                     DestroyPassiveIcon(a.name, user.isEnemy);
                 else 
                     ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+            }
+
+            if (a.name == "mechashield")
+            {
+                if (user.curShield > 0)
+                {
+                    StatMod statMod = a.statMod.ReturnStats();
+                    statMod.inTime = statMod.time;
+                    user.statMods.Add(statMod);
+                    user.usedBonusStuff = false;
+
+                    if (user.ult >= a.stacks)
+                    {
+                        StatMod statMod2 = a.statMod2.ReturnStats();
+                        statMod2.inTime = statMod2.time;
+                        user.statMods.Add(statMod2);
+                        user.usedBonusStuff = false;
+
+                        float shield = SetScale(a.statScale, user.SetModifiers(), user);
+                        shield += a.statScale.flatValue;
+                        user.curShield += shield;
+                        user.shieldDone += shield;
+
+                        user.ult -= a.stacks;
+                    }
+
+                    SetStatsHud(user, userHud);
+                    ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+                } else
+                {
+                    DestroyPassiveIcon(a.name, user.isEnemy);
+                    user.passives.Remove(a);
+                }
             }
         }
     }
@@ -4015,8 +4035,8 @@ public class BattleSystem : MonoBehaviour
                 enemyCanTired = false;
         }
 
-        Stats statsP = playerUnit.charc.stats.ReturnStats();
-        Stats statsE = enemyUnit.charc.stats.ReturnStats();
+        Stats statsP = playerUnit.SetModifiers();
+        Stats statsE = enemyUnit.SetModifiers();
 
         foreach (Summon a in playerUnit.summons.ToArray())
         {

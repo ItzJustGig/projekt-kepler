@@ -9,30 +9,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25cbb6c1520490c4cbe5c685482d1204, type: 3}
-  m_Name: mod
+  m_Script: {fileID: 11500000, guid: 266200e1cfac25c4aa7c5a406a38c002, type: 3}
+  m_Name: shield
   m_EditorClassIdentifier: 
-  flat: 1
-  time: 1
-  inTime: 0
-  chance: 0
-  hp: 0
+  type: 0
+  playerStat: 1
+  flatValue: 0
+  curHp: 0
+  missHp: 0
+  maxHp: 0
   hpRegen: 0
-  mana: 0
-  manaRegen: 0.15
-  stamina: 0
+  missMana: 0
+  curMana: 0
+  maxMana: 0
+  manaRegen: 0
+  maxStamina: 0
+  curStamina: 0
+  missStamina: 0
   staminaRegen: 0
-  sanity: 0
+  curSanity: 0
+  missSanity: 0
+  maxSanity: 0
   atkDmg: 0
-  magicPower: 2
-  critChance: 0
-  critDmg: 0
+  magicPower: 0
   dmgResis: 0
   magicResis: 0
   timing: 0
   movSpeed: 0
-  lifesteal: 0
-  accuracy: 0
-  evasion: 0
-  armourPen: 0
-  ultrate: 0.025

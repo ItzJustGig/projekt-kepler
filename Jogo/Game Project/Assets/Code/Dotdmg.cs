@@ -19,6 +19,9 @@ public class Dotdmg : ScriptableObject
 
     public void Setup(float dmgT, bool crit, string srcId, SrcType srcType)
     {
+        if (time < 1)
+            time = 1;
+
         dmg = dmgT / time;
         inTime = time;
         isCrit = crit;
@@ -28,6 +31,9 @@ public class Dotdmg : ScriptableObject
 
     public void Setup(float dmgT, string srcId, SrcType srcType)
     {
+        if (time < 1)
+            time = 1;
+
         dmg = dmgT / time;
         inTime = time;
         this.srcId = srcId;
@@ -36,6 +42,9 @@ public class Dotdmg : ScriptableObject
 
     public void Setup(float dmgT, float time, string srcId, SrcType srcType, DmgType dmgType)
     {
+        if (time < 1)
+            time = 1;
+
         dmg = dmgT / (int)time;
         inTime = (int)time;
         this.srcId = srcId;

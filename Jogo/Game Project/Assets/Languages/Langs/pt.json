@@ -40,7 +40,7 @@
             "turn": "%n%\u00BA Turno",
             "staminatired": "Energia para ficar cansado: %v%",
             "shield": "Escudo",
-            "ultimate": "Poder Supremo: %v%",
+            "ultimate": "Poder Supremo: %v% \nCarga Suprema: %r%",
             "misspop": "Falhou",
             "dodgepop": "Esquivou",
             "physicdmgdealt": "Dano F\u00EDsico Causado:",
