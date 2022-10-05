@@ -36,6 +36,8 @@ public class Moves : ScriptableObject
     public int inCooldown = 0;
     public int manaCost;
     public int staminaCost;
+    public int ultCost = 100;
+    public bool needFullUlt = true;
 
     public float critDmgBonus;
     public float critChanceBonus;
@@ -84,6 +86,8 @@ public class Moves : ScriptableObject
 
         move.manaCost = manaCost;
         move.staminaCost = staminaCost;
+        move.ultCost = ultCost;
+        move.needFullUlt = needFullUlt;
 
         move.critChanceBonus = critChanceBonus;
         move.critDmgBonus = critDmgBonus;

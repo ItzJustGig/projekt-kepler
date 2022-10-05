@@ -16,6 +16,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private Transform enemyBattleStation;
 
     [SerializeField] private BattleState state;
+    [SerializeField] private float aiManaRecover = 0.12f;
+    [SerializeField] private float aiGaranteedManaRecover = 0.08f;
     [SerializeField] private float tiredStart = 0.05f;
     [SerializeField] private float tiredGrowth = 0.015f;
     [SerializeField] private int tiredStacks = 0;
@@ -2095,7 +2097,7 @@ public class BattleSystem : MonoBehaviour
 
     void SetUltNumber(Unit user, BattleHud hud, float dmg, bool isDealt)
     {
-        
+        Stats temp = user.SetModifiers();
 
         if (user.ult < 100)
         {
@@ -2108,6 +2110,9 @@ public class BattleSystem : MonoBehaviour
                 else
                     value += dmg * ultEnergyTaken;
             }
+
+            if (value > 0)
+                value = value * temp.ultrate;
 
             if (value > 100)
                 value = 100;
@@ -2259,14 +2264,18 @@ public class BattleSystem : MonoBehaviour
         Moves move = null;
         bool skip = false;
 
-        if (enemyUnit.curMana < (enemyUnit.charc.stats.mana * 0.12) && !enemyUnit.moves.Contains(recoverManaMoveE))
+        if (enemyUnit.curMana < (enemyUnit.charc.stats.mana * aiManaRecover) && !enemyUnit.moves.Contains(recoverManaMoveE))
             enemyUnit.moves.Add(recoverManaMoveE);
-        else if (enemyUnit.curMana > (enemyUnit.charc.stats.mana * 0.12) && enemyUnit.moves.Contains(recoverManaMoveE))
+        else if (enemyUnit.curMana > (enemyUnit.charc.stats.mana * aiManaRecover) && enemyUnit.moves.Contains(recoverManaMoveE))
             enemyUnit.moves.Remove(recoverManaMoveE);
 
-        if (enemyUnit.ult == 100 && !enemyUnit.moves.Contains(enemyUnit.ultMove))
+        if (((enemyUnit.ult == 100 && enemyUnit.ultMove.needFullUlt) || 
+        (enemyUnit.ult == enemyUnit.ultMove.ultCost && !enemyUnit.ultMove.needFullUlt))
+        && !enemyUnit.moves.Contains(enemyUnit.ultMove))
             enemyUnit.moves.Add(enemyUnit.ultMove);
-        else if (enemyUnit.ult < 100 && enemyUnit.moves.Contains(enemyUnit.ultMove))
+        else if (((enemyUnit.ult < 100 && enemyUnit.ultMove.needFullUlt) ||
+        (enemyUnit.ult < enemyUnit.ultMove.ultCost && !enemyUnit.ultMove.needFullUlt))
+        && enemyUnit.moves.Contains(enemyUnit.ultMove))
             enemyUnit.moves.Remove(enemyUnit.ultMove);
 
         int random = 0;
@@ -2280,7 +2289,7 @@ public class BattleSystem : MonoBehaviour
 
         do
         {
-            if (enemyUnit.curMana <= (enemyUnit.charc.stats.mana * 0.08))
+            if (enemyUnit.curMana <= (enemyUnit.charc.stats.mana * aiGaranteedManaRecover))
             {
                 if (Random.Range(0f, 1f) <= 0.95)
                 {
@@ -2341,7 +2350,7 @@ public class BattleSystem : MonoBehaviour
                                             canUse = false;
                                         break;
                                     case Moves.MoveType.ULT:
-                                        enemyUnit.ult = 0;
+                                        enemyUnit.ult -= enemyUnit.ultMove.ultCost;
                                         break;
                                 }
 
@@ -2432,7 +2441,9 @@ public class BattleSystem : MonoBehaviour
         dialogText.text = langmanag.GetInfo("gui", "text", "choosemove");
         movesBtn.interactable = true;
         basicBtn.interactable = true;
-        if (playerUnit.ult == 100)
+
+        if ((playerUnit.ult == 100 && playerUnit.ultMove.needFullUlt) ||
+        (playerUnit.ult == playerUnit.ultMove.ultCost && !playerUnit.ultMove.needFullUlt))
             ultBtn.interactable = true;
 
         if (recoverManaMoveP.inCooldown <= 0)
@@ -2540,7 +2551,7 @@ public class BattleSystem : MonoBehaviour
     public void OnUltBtn()
     {
         StartCoroutine(Combat(playerUnit.charc.ultimate));
-        playerUnit.ult = 0;
+        playerUnit.ult -= playerUnit.ultMove.ultCost;
     }
 
     public void OnBasicBtn()
