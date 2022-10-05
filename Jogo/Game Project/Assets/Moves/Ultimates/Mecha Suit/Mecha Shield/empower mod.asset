@@ -13,24 +13,24 @@ MonoBehaviour:
   m_Name: empower mod
   m_EditorClassIdentifier: 
   flat: 0
-  time: 0
+  time: 1
   inTime: 0
   chance: 0
   hp: 0
   hpRegen: 0
   mana: 0
-  manaRegen: 0
+  manaRegen: 0.15
   stamina: 0
   staminaRegen: 0
   sanity: 0
   atkDmg: 0
-  magicPower: 0
+  magicPower: 0.2
   critChance: 0
   critDmg: 0
   dmgResis: 0
   magicResis: 0
   timing: 0
-  movSpeed: 0
+  movSpeed: 0.05
   lifesteal: 0
   accuracy: 0
   evasion: 0

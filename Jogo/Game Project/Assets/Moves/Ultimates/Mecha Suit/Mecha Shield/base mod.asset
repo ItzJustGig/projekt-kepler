@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: base mod
   m_EditorClassIdentifier: 
   flat: 0
-  time: 0
+  time: 1
   inTime: 0
   chance: 0
   hp: 0
@@ -24,13 +24,13 @@ MonoBehaviour:
   staminaRegen: 0
   sanity: 0
   atkDmg: 0
-  magicPower: 0
+  magicPower: 0.4
   critChance: 0
   critDmg: 0
-  dmgResis: 0
-  magicResis: 0
-  timing: 0
-  movSpeed: 0
+  dmgResis: 0.25
+  magicResis: 0.1
+  timing: -0.25
+  movSpeed: -0.15
   lifesteal: 0
   accuracy: 0
   evasion: 0

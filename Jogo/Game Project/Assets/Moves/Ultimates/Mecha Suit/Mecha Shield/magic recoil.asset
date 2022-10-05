@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266200e1cfac25c4aa7c5a406a38c002, type: 3}
   m_Name: magic recoil
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   playerStat: 1
-  flatValue: 0
+  flatValue: 120
   curHp: 0
   missHp: 0
   maxHp: 0
   hpRegen: 0
   missMana: 0
   curMana: 0
-  maxMana: 0
+  maxMana: 0.0125
   manaRegen: 0
   maxStamina: 0
   curStamina: 0
