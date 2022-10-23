@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 1
   classe: 1
+  size: 1
   name: crobus
   sprite: {fileID: 5806852883944117854, guid: 487c227fe5a8c0d4a93c5d7270969460, type: 3}
   charcIcon: {fileID: 21300000, guid: e967fb62050b0da479015ab6d9d3374c, type: 3}

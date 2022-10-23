@@ -6,6 +6,7 @@ using UnityEditor;
 
 public class Unit : MonoBehaviour
 {
+    
     public bool isEnemy;
     public float curHp;
     public float curMana;
@@ -64,6 +65,8 @@ public class Unit : MonoBehaviour
     public float phyDmgMitigated, magicDmgMitigated;
 
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject sprite;
+    public int size = 2;
 
     void Awake()
     {
@@ -113,43 +116,44 @@ public class Unit : MonoBehaviour
         else
             charc.stats = charc.stats.ReturnStatsLevel(statsLevel, statGrowth);
 
+        size = charc.size;
     }
 
     void Start()
     {
         //int character = PlayerPrefs.GetInt(selectedCharacter);
         //int bot = PlayerPrefs.GetInt(selectedEnemy);
-        
-
+       
         if (charc.sprite)
         {
-            GameObject temp = Instantiate(charc.sprite, this.transform) as GameObject;
+            sprite = Instantiate(charc.sprite, this.transform) as GameObject;
+            LoadSize();
             Vector3 tempCord = new Vector3(0, 0.4f, 0);
-            temp.transform.position += tempCord;
-            temp.transform.localScale = new Vector3(0.2433822f, 0.2433822f, 0);
-
-            //if (bot == character && isEnemy)
-            //{
-            //    temp.GetComponent<SpriteRenderer>().color = Color.grey;
-            //}
-
-            animator = temp.gameObject.GetComponent<Animator>();
+            sprite.transform.position += tempCord;
+            animator = sprite.gameObject.GetComponent<Animator>();
         }
         else
         {
-            GameObject temp = Instantiate(spriteDefault, this.transform) as GameObject;
+            sprite = Instantiate(spriteDefault, this.transform) as GameObject;
+            LoadSize();
             Vector3 tempCord = new Vector3(0, -0.6f, 0);
-            temp.transform.position += tempCord;
+            sprite.transform.position += tempCord;
             if (isEnemy)
-                temp.transform.localScale += new Vector3(-2, 0, 0);
+                sprite.transform.localScale += new Vector3(-2, 0, 0);
 
-            animator = temp.gameObject.GetComponent<Animator>();
+            animator = sprite.gameObject.GetComponent<Animator>();
         }
 
         foreach (Passives a in charc.passives.ToArray())
         {
             passives.Add(a.ReturnPassive());
         }
+    }
+
+    public void LoadSize()
+    {
+        float val = (float)(0.18 + (0.02*size));
+        sprite.transform.localScale = new Vector3(val, val, 0);
     }
 
     public void ResetCanUse()

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 1
   classe: 3
+  size: -1
   name: haunteddoll
   sprite: {fileID: 5806852883944117854, guid: 71009d672d2ed2b4385b36a67340c46e, type: 3}
   charcIcon: {fileID: 21300000, guid: f7eb29fb81a4a1a458ecee14bbe27594, type: 3}

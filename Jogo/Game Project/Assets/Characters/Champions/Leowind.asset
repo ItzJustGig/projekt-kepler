@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 6
   classe: 8
+  size: 2
   name: leowind
   sprite: {fileID: 402143169715320279, guid: ceb691d06880eaa4eb1963359361d90d, type: 3}
   charcIcon: {fileID: 21300000, guid: be60a4d1f06e68440980d42257197af6, type: 3}

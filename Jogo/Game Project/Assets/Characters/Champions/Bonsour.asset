@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 6
   classe: 1
+  size: 4
   name: bonsour
   sprite: {fileID: 402143169715320279, guid: b811e2a07e085fe488c4dfd1f1bbf515, type: 3}
   charcIcon: {fileID: 21300000, guid: 6c726e232e5152948874d13b9697561c, type: 3}

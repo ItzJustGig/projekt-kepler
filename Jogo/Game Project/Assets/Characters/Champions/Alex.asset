@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 6
   classe: 4
+  size: 2
   name: alex
   sprite: {fileID: 402143169715320279, guid: e9de94f1cdfbe4d459d3b057c983f09b, type: 3}
   charcIcon: {fileID: 21300000, guid: b912f0286f8ebb54ab9a80312fae0da9, type: 3}

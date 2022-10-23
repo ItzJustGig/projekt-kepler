@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 0
   classe: 3
+  size: 0
   name: childinfernus
   sprite: {fileID: 5806852883944117854, guid: cc6e0f2e536db9d49ae8e440a402b82e, type: 3}
   charcIcon: {fileID: 21300000, guid: 05daf7065d00189449c9a7a9c63570c4, type: 3}

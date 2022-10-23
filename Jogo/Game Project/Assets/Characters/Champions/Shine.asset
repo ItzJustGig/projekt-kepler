@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 6
   classe: 6
+  size: 2
   name: shine
   sprite: {fileID: 402143169715320279, guid: 957328262f66b3e47ac2d340a24a6ead, type: 3}
   charcIcon: {fileID: 21300000, guid: c87a83c8fd4ca094fb32d608f5af0382, type: 3}

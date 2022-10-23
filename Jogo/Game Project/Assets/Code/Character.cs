@@ -9,7 +9,8 @@ public class Character : ScriptableObject
     public enum Strenght { BABY, WEAK, NORMAL, STRONG, SUPERSTRONG, LEGENDARY, CHAMPION, MYTHIC }
 
     public Strenght strenght;
-    public Class classe; 
+    public Class classe;
+    public int size = 2;
     public new string name;
 
     public GameObject sprite;
@@ -31,6 +32,7 @@ public class Character : ScriptableObject
         Character charc = CreateInstance<Character>();
 
         charc.classe = classe;
+        charc.size = size;
         charc.name = name;
         charc.strenght = strenght;
         charc.charcIcon = charcIcon;

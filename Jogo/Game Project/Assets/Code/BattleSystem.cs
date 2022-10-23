@@ -1044,7 +1044,6 @@ public class BattleSystem : MonoBehaviour
                                 }
 
                                 float magicBonus = 0;
-                                magicBonus += scale.flatValue;
                                 magicBonus += SetScale(scale, stats, unit);
 
                                 int hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
@@ -1054,7 +1053,6 @@ public class BattleSystem : MonoBehaviour
                                     StatScale scale2 = a.ifConditionTrueScale2();
                                     
                                     magicBonus += magicBonus * a.num;
-                                    dmg.trueDmg += scale2.flatValue;
                                     dmg.trueDmg += SetScale(scale2, stats, unit);
                                 }
 
@@ -1081,8 +1079,6 @@ public class BattleSystem : MonoBehaviour
                                     unit = target;
                                     stats = statsTarget;
                                 }
-
-                                dmg.sanityDmg += scale.flatValue;
                                 dmg.sanityDmg += (int)SetScale(scale, stats, unit);
                             }
                         }
@@ -1662,6 +1658,14 @@ public class BattleSystem : MonoBehaviour
                                     dmg.phyDmg += dmg.phyDmg * a.num;
                                     dmg.magicDmg += dmg.magicDmg * a.num;
                                 }
+
+                                if (a.name == "mechashield")
+                                {
+                                    //convert physical damage into magic damage
+                                    float con = dmg.phyDmg * a.num;
+                                    dmg.phyDmg -= con;
+                                    dmg.magicDmg += con;
+                                }
                             }
 
                             foreach (Dotdmg dot in move.dot)
@@ -2124,39 +2128,30 @@ public class BattleSystem : MonoBehaviour
         switch (scale.type)
         {
             case StatScale.DmgType.PHYSICAL:
-                dmg.phyDmg += scale.flatValue;
                 dmg.phyDmg += SetScale(scale, stats, unit);
                 break;
             case StatScale.DmgType.MAGICAL:
-                dmg.magicDmg += scale.flatValue;
                 dmg.magicDmg += SetScale(scale, stats, unit);
                 break;
             case StatScale.DmgType.TRUE:
-                dmg.trueDmg += scale.flatValue;
                 dmg.trueDmg += SetScale(scale, stats, unit);
                 break;
             case StatScale.DmgType.SANITY:
-                dmg.sanityDmg += scale.flatValue;
                 dmg.sanityDmg += (int)SetScale(scale, stats, unit);
                 break;
             case StatScale.DmgType.HEAL:
-                dmg.heal += scale.flatValue;
                 dmg.heal += SetScale(scale, stats, unit);
                 break;
             case StatScale.DmgType.HEALMANA:
-                dmg.healMana += scale.flatValue;
                 dmg.healMana += SetScale(scale, stats, unit);
                 break;
             case StatScale.DmgType.HEALSTAMINA:
-                dmg.healStamina += scale.flatValue;
                 dmg.healStamina += SetScale(scale, stats, unit);
                 break;
             case StatScale.DmgType.HEALSANITY:
-                dmg.healSanity += scale.flatValue;
                 dmg.healSanity += (int)SetScale(scale, stats, unit);
                 break;
             case StatScale.DmgType.SHIELD:
-                dmg.shield += scale.flatValue;
                 dmg.shield += (int)SetScale(scale, stats, unit);
                 break;
         }
@@ -2166,7 +2161,7 @@ public class BattleSystem : MonoBehaviour
 
     float SetScale(StatScale scale, Stats stats, Unit user)
     {
-        float temp = 0;
+        float temp = scale.flatValue;
 
         temp += (user.curHp * scale.curHp);
         temp += ((stats.hp - user.curHp) * scale.missHp);
@@ -2965,7 +2960,6 @@ public class BattleSystem : MonoBehaviour
                     user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
 
                     float healMana = SetScale(a.statScale, user.SetModifiers(), user);
-                    healMana = a.statScale.flatValue;
                     user.curMana += healMana;
                     user.manaHealDone += healMana;
 
@@ -3318,8 +3312,6 @@ public class BattleSystem : MonoBehaviour
                 {
                     //get sanity heal from the passive's scale
                     float healSanity = SetScale(a.statScale, user.SetModifiers(), user);
-                    //get the flat value sanity heal from the passive's scale
-                    healSanity += a.statScale.flatValue;
                     //heal sanity
                     user.curSanity += (int)healSanity;
                     //add the heal to the overview
@@ -3341,8 +3333,6 @@ public class BattleSystem : MonoBehaviour
                         {
                             //get sanity heal from the passive's scale
                             float healSanity = SetScale(a.statScale2, user.SetModifiers(), user);
-                            //get the flat value sanity heal from the passive's scale
-                            healSanity += a.statScale2.flatValue;
                             //heal sanity
                             user.curSanity += (int)healSanity;
                             //add the heal to the overview
@@ -3378,7 +3368,6 @@ public class BattleSystem : MonoBehaviour
                     if (foundEffect)
                     {
                         float trueDmg = SetScale(a.statScale, user.SetModifiers(), user);
-                        trueDmg += a.statScale.flatValue;
 
                         user.curHp -= trueDmg;
                         user.trueDmgTaken += trueDmg;
@@ -3386,7 +3375,6 @@ public class BattleSystem : MonoBehaviour
                     } else
                     {
                         float heal = SetScale(a.statScale, user.SetModifiers(), user);
-                        heal += a.statScale.flatValue;
 
                         if ((user.curHp + heal) < user.SetModifiers().hp)
                         {
@@ -3704,7 +3692,6 @@ public class BattleSystem : MonoBehaviour
                         user.usedBonusStuff = false;
 
                         float shield = SetScale(a.statScale, user.SetModifiers(), user);
-                        shield += a.statScale.flatValue;
                         user.curShield += shield;
                         user.shieldDone += shield;
 
@@ -3715,6 +3702,41 @@ public class BattleSystem : MonoBehaviour
                     ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                 } else
                 {
+                    float dmg = SetScale(a.statScale2, user.SetModifiers(), user);
+                    float shieldDmg = 0;
+                    if (dmg > 0)
+                    {
+                        user.magicDmgDealt += dmg;
+                        float dmgMitigated = (float)(user.SetModifiers().magicResis * magicResisPer);
+
+                        if (dmgMitigated < dmg)
+                            dmg -= dmgMitigated;
+                        else
+                        {
+                            dmgMitigated = dmg;
+                            dmg = 0;
+                        }
+
+                        if (user.curShield > 0)
+                        {
+                            float tempDmg = dmg;
+                            float tempShield = target.curShield;
+
+                            dmg -= target.curShield;
+                            target.curShield -= tempDmg;
+
+                            if (target.curShield < 0)
+                                target.curShield = 0;
+
+                            shieldDmg = tempShield - target.curShield;
+                        }
+
+                        user.magicDmgMitigated += dmgMitigated;
+                        user.magicDmgTaken += dmg;
+                        user.TakeDamage(dmg, shieldDmg, false);
+                    }
+
+                    SetStatsHud(user, userHud);
                     DestroyPassiveIcon(a.name, user.isEnemy);
                     user.passives.Remove(a);
                 }

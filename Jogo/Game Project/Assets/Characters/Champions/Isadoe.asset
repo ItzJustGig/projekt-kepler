@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 6
   classe: 2
+  size: 2
   name: isadoe
   sprite: {fileID: 5806852883944117854, guid: 91392ed0248f74440a3f097c91313d7d, type: 3}
   charcIcon: {fileID: 21300000, guid: f131333acc0026942b5e88e77b3b7a79, type: 3}

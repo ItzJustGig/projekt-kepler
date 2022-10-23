@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 3
   classe: 1
+  size: 5
   name: golem
   sprite: {fileID: 5806852883944117854, guid: 9d9634d4aa12c6a489511009eb1fee3f, type: 3}
   charcIcon: {fileID: 21300000, guid: 4bbd149be44d05049b2c4023eb5e0f29, type: 3}
