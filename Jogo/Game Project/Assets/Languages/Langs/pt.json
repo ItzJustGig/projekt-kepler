@@ -162,7 +162,8 @@
             "evasion": "Evas\u00E3o",
             "accuracy": "Pricis\u00E3o",
             "armourpen": "Penetra\u00E7\u00E3o de Armadura",
-            "ultimate": "Poder Supremo"
+            "ultimate": "Poder Supremo",
+            "attackpower": "Poder de Ataque"
         },
         "desc": {
             "hp": "",
@@ -184,7 +185,8 @@
             "evasion": "Faz o utilizador esquivar de ataques. (3.5% da Velocidade + 50% da Cronometragem + 1% da Sanidade Atual)",
             "accuracy": "Esta estat\u00EDstica faz o utilizador acertar ou falhar as suas t\u00E9cnicas de ataque.",
             "armourpen": "Esta estat\u00EDstica permite ignorar a defesa do inimigo.",
-            "ultimate": "Permite ao utilizador utilizar uma t\u00E9cnica poderosa."
+            "ultimate": "Permite ao utilizador utilizar uma t\u00E9cnica poderosa.",
+            "attackpower": ""
         }
     },
     "classe": {

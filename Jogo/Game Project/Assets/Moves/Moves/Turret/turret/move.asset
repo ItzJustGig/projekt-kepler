@@ -15,6 +15,5 @@ MonoBehaviour:
   cd: 0
   inCd: 0
   dmgType: 1
-  atkScale: 0.75
-  mpScale: 0.8
+  scale: 0.75
   sanityDmg: 0

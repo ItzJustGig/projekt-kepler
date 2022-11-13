@@ -162,7 +162,8 @@
 			"evasion": "Evasion",
 			"accuracy": "Accuracy",
 			"armourpen": "Armour Penetration",
-			"ultimate": "Ultimate"
+			"ultimate": "Ultimate",
+			"attackpower": "Attack Power"
 		},
 		"desc": {
 			"hp": "",
@@ -184,7 +185,8 @@
 			"evasion": "Let the user dodge the attacks. (3.5% of the movement speed + 50% of the timing + 1% of the cur sanity)",
 			"accuracy": "This stat let the user hit or miss its attacking moves.",
 			"armourpen": "This stat ignores the armour of the enemy when attacking",
-			"ultimate": "Allows the user to unleash a powerful move."
+			"ultimate": "Allows the user to unleash a powerful move.",
+			"attackpower": ""
 		}
 	},
 	"classe": {

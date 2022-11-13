@@ -6,15 +6,11 @@ using UnityEngine;
 public class StatsSummon : ScriptableObject
 {
     public float hp;
-
-    public float atkDmg;
-    public float magicPower;
-
+    public float atkPower;
     public float movSpeed;
 
     public StatScale hpScale;
     public StatScale atkScale;
-    public StatScale mpScale;
     public StatScale movScale;
 
     public StatsSummon ReturnStats()
@@ -22,7 +18,6 @@ public class StatsSummon : ScriptableObject
         StatsSummon stats = CreateInstance<StatsSummon>();
         stats.hpScale = hpScale;
         stats.atkScale = atkScale;
-        stats.mpScale = mpScale;
         stats.movScale = movScale;
 
         return stats;

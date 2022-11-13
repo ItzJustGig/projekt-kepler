@@ -1020,6 +1020,7 @@ public class LanguageManager : MonoBehaviour
         public string accuracy;
         public string armourpen;
         public string ultimate;
+        public string attackpower;
 
         public string Get_StatCont(string a)
         {
@@ -1121,6 +1122,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "ultimate":
                     returns = ultimate;
+                    break;
+                case "attackpower":
+                    returns = attackpower;
                     break;
                 default:
                     returns = "null";

@@ -21,7 +21,7 @@ MonoBehaviour:
   hpRegen: 0
   missMana: 0
   curMana: 0
-  maxMana: 0
+  maxMana: 0.1
   manaRegen: 0
   maxStamina: 0
   curStamina: 0

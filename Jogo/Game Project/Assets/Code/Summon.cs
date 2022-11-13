@@ -54,8 +54,7 @@ public class Summon : ScriptableObject
         StringBuilder text = new StringBuilder();
 
         text.Append("<color=#00ff11>" + languageManager.GetText(language, "stats", "name", "hp") + ": " + stats.hpScale.GetStatScaleInfo().Remove(0, 2) + "</color>").AppendLine();
-        text.Append("<color=#ffaa00>" + languageManager.GetText(language, "stats", "name", "attack") + ": " + stats.atkScale.GetStatScaleInfo().Remove(0, 2) + "</color>").AppendLine();
-        text.Append("<color=#1a66ff>" + languageManager.GetText(language, "stats", "name", "magicpower") + ": " + stats.mpScale.GetStatScaleInfo().Remove(0, 2) + "</color>").AppendLine().AppendLine();
+        text.Append("<color=#ffaa00>" + languageManager.GetText(language, "stats", "name", "attackpower") + ": " + stats.atkScale.GetStatScaleInfo().Remove(0, 2) + "</color>").AppendLine();
 
         string color = "";
         string whatis = "";
@@ -85,8 +84,7 @@ public class Summon : ScriptableObject
         whatis = languageManager.GetText(language, "summon", whatis);
 
         text.Append("<color=#" + color + ">" + char.ToUpper(whatis[0]) + whatis.Remove(0, 1) + ": ");
-        text.Append("<color=#ffaa00>" + (move.atkScale * 100).ToString() + "% " + languageManager.GetText(language, "stats", "name", "attack") + "</color>");
-        text.Append(" + <color=#1a66ff>" + (move.mpScale*100).ToString() + "% " + languageManager.GetText(language, "stats", "name", "magicpower") + "</color>");
+        text.Append("<color=#ffaa00>" + (move.scale * 100).ToString() + "% " + languageManager.GetText(language, "stats", "name", "attackpower") + "</color>");
 
         return text;
     }
@@ -94,8 +92,7 @@ public class Summon : ScriptableObject
     public void SetupStats(Stats summStats, Unit summoner)
     {
         stats.hp += SetScale(stats.hpScale, summStats, summoner);
-        stats.atkDmg += SetScale(stats.atkScale, summStats, summoner);
-        stats.magicPower += SetScale(stats.mpScale, summStats, summoner);
+        stats.atkPower += SetScale(stats.atkScale, summStats, summoner);
         stats.movSpeed += SetScale(stats.movScale, summStats, summoner);
     }
 
