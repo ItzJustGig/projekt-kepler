@@ -840,6 +840,8 @@ public class LanguageManager : MonoBehaviour
         public string huntersdirk;
         public string gravitychange;
         public string prismaticstaff;
+        public string mechashield;
+        public string combatrepair;
 
         public string Get_Cont(string a)
         {
@@ -976,6 +978,12 @@ public class LanguageManager : MonoBehaviour
                 case "prismaticstaff":
                     returns = prismaticstaff;
                     break;
+                case "mechashield":
+                    returns = mechashield;
+                    break;
+                case "combatrepair":
+                    returns = combatrepair;
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -1020,6 +1028,7 @@ public class LanguageManager : MonoBehaviour
         public string accuracy;
         public string armourpen;
         public string ultimate;
+        public string ultrate;
         public string attackpower;
 
         public string Get_StatCont(string a)
@@ -1122,6 +1131,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "ultimate":
                     returns = ultimate;
+                    break;
+                case "ultrate":
+                    returns = ultrate;
                     break;
                 case "attackpower":
                     returns = attackpower;

@@ -40,7 +40,7 @@
 			"turn": "Turn %n%",
 			"staminatired": "Stamina for Tired: %v%",
 			"shield": "Shield",
-			"ultimate": "Ultimate: %v% \nUlti Rate: %r%",
+			"ultimate": "Ultimate: %v% \nUltimate Rate: %r%",
 			"misspop": "Miss",
 			"dodgepop": "Dodged",
 			"physicdmgdealt": "Physical Damage Dealt:",
@@ -163,6 +163,7 @@
 			"accuracy": "Accuracy",
 			"armourpen": "Armour Penetration",
 			"ultimate": "Ultimate",
+			"ultrate": "Ultimate Rate",
 			"attackpower": "Attack Power"
 		},
 		"desc": {
@@ -332,7 +333,9 @@
 			"shadowdagger": "Shadow Dagger",
 			"spectralring": "Spectral Ring",
 			"huntersdirk": "Hunter's Dirk",
-			"prismaticstaff": "Prismatic Staff"
+			"prismaticstaff": "Prismatic Staff",
+			"mechashield": "Mecha Shield",
+			"combatrepair": "Combat Repair"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain %mod% and deal bonus %scale% on attacks.",
@@ -377,7 +380,9 @@
 			"spectralring": "The user gain %mod% every %cd% turns up to %maxStacks% times. \nWhen the user drops below <color=#00ff11>%num%% health</color>, <color=#0055ff>magic moves</color> deal bonus %scale%.",
 			"huntersdirk": "If the enemy is above <color=#00ff11>%num%% health</color>, <color=#ffaa00>basic</color> or <color=#ffaa00>physical moves</color> deal bonus %scale%. (%cd% turns cooldown)",
 			"gravitychange": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> for %cd% turns",
-			"prismaticstaff": "Every %maxStacks% magic moves, the next will crit (also applies to the <color=#0055ff>magic damage</color>) and deal bonus %scale%"
+			"prismaticstaff": "Every %maxStacks% magic moves, the next will crit (also applies to the <color=#0055ff>magic damage</color>) and deal bonus %scale%",
+			"mechashield": "The user gain %mod% and converts %num%% of the <color=#ffaa00>physical damage</color> dealt into <color=#0055ff>magic damage</color> while <color=#787878>shielded</color>, when runs out of <color=#787878>shield</color> take %scale2%. Also gain %mod2% and %scale% at the cost of %stacks% ultimate energy every turn.",
+			"combatrepair": "The user gain %mod% per <color=#946ACD>summon</color> alive (stack up to %maxStacks% times). When the user gains a <color=#787878>shield</color> that is not earned from the user’s ultimate move, gain that <color=#787878>shield</color> over %num% turns."
 		}
 	},
 	"moves": {

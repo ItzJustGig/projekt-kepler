@@ -16,10 +16,10 @@ MonoBehaviour:
   showNameOnInfo: 1
   origin: 0
   sprite: {fileID: 21300000, guid: 9046616f82b55234cb90ca770b40e555, type: 3}
-  num: 0.3
-  maxNum: 4
+  num: 4
+  maxNum: 0
   stacks: 0
-  maxStacks: 0
+  maxStacks: 3
   cd: 0
   inCd: 0
   statScale: {fileID: 0}

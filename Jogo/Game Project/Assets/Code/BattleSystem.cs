@@ -1977,7 +1977,7 @@ public class BattleSystem : MonoBehaviour
                                     if (a.name == "combatrepair")
                                     {
                                         Dotdmg dot = new Dotdmg();
-                                        dot.Setup(dmg.shield, a.maxNum, move.name, Dotdmg.SrcType.MOVE, Dotdmg.DmgType.SHIELD);
+                                        dot.Setup(dmg.shield, a.num, move.name, Dotdmg.SrcType.MOVE, Dotdmg.DmgType.SHIELD);
                                         dmg.shield = 0;
                                         user.dotDmg.Add(dot);
                                     }
@@ -2677,7 +2677,7 @@ public class BattleSystem : MonoBehaviour
                 if (b.name == "combatrepair")
                 {
                     Dotdmg dot = new Dotdmg();
-                    dot.Setup(dmg.shield, b.maxNum, a.name, Dotdmg.SrcType.MOVE, Dotdmg.DmgType.SHIELD);
+                    dot.Setup(dmg.shield, b.num, a.name, Dotdmg.SrcType.MOVE, Dotdmg.DmgType.SHIELD);
                     dmg.shield = 0;
                     user.dotDmg.Add(dot);
                 }
@@ -3995,6 +3995,7 @@ public class BattleSystem : MonoBehaviour
             {
                 if (a.name == "combatrepair")
                 {
+                    if (a.stacks < a.maxStacks)
                     a.stacks++;
                     summoner.PassivePopup(langmanag.GetInfo("passive", "name", a.name, a.stacks));
                 }
