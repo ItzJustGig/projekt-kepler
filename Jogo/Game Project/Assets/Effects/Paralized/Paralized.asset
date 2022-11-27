@@ -27,8 +27,8 @@ MonoBehaviour:
   phyDmgMin: 0
   phyDmgMax: 0
   phyDmgInc: 0
-  magicDmgMin: 0
-  magicDmgMax: 0
+  magicDmgMin: 10
+  magicDmgMax: 30
   magicDmgInc: 0
   trueDmgMin: 0
   trueDmgMax: 0
@@ -53,6 +53,7 @@ MonoBehaviour:
   shieldInc: 0
   cancelAtkChance: 0.25
   recoil: 0
-  scale: []
+  scale:
+  - {fileID: 11400000, guid: f1ae9dc64d55a304fa8898d8e85056c6, type: 2}
   statMods:
   - {fileID: 11400000, guid: b1525069daed3a84cbcb1bbd5ab0c06e, type: 2}

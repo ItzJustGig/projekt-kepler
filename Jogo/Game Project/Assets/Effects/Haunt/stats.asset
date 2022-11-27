@@ -28,9 +28,11 @@ MonoBehaviour:
   critChance: -0.05
   critDmg: 0
   dmgResis: -0.15
-  magicResis: -0.15
-  timing: -0.5
+  magicResis: -0.12
+  timing: 0
   movSpeed: 0
   lifesteal: 0
   accuracy: 0
   evasion: -0.01
+  armourPen: 0
+  ultrate: 0

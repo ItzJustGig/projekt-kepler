@@ -15,6 +15,7 @@ MonoBehaviour:
   id: SLP
   sprite: {fileID: 21300000, guid: 083c200147a58c446bad607132a4d093, type: 3}
   duration: 0
+  grantsOnRunOut: 0
   timesInc: 0
   canUsePhysical: 0
   canUseRanged: 0
@@ -22,6 +23,7 @@ MonoBehaviour:
   canUseSupp: 0
   canUseProtec: 0
   canUseStatMod: 0
+  canUseSummon: 1
   phyDmgMin: 0
   phyDmgMax: 0
   phyDmgInc: 0
@@ -34,8 +36,8 @@ MonoBehaviour:
   sanityDmgMin: 0
   sanityDmgMax: 0
   sanityDmgInc: 0
-  sanityHealMin: 1
-  sanityHealMax: 2
+  sanityHealMin: 0
+  sanityHealMax: 0
   sanityHealInc: 0
   healMin: 0
   healMax: 0

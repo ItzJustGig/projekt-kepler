@@ -23,17 +23,18 @@ MonoBehaviour:
   canUseSupp: 1
   canUseProtec: 1
   canUseStatMod: 1
-  phyDmgMin: 0
-  phyDmgMax: 0
+  canUseSummon: 1
+  phyDmgMin: 45
+  phyDmgMax: 65
   phyDmgInc: 0
   magicDmgMin: 0
   magicDmgMax: 0
   magicDmgInc: 0
-  trueDmgMin: 25
-  trueDmgMax: 55
+  trueDmgMin: 0
+  trueDmgMax: 0
   trueDmgInc: 0
   sanityDmgMin: 2
-  sanityDmgMax: 4
+  sanityDmgMax: 3
   sanityDmgInc: 0
   sanityHealMin: 0
   sanityHealMax: 0
