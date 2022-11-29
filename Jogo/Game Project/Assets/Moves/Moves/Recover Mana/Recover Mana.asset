@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
-  m_Name: Recover Mana P
+  m_Name: Recover Mana
   m_EditorClassIdentifier: 
   type: 3
   name: recovmana
   hitTime: 1
   priority: 0
+  uses: -1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,15 +29,22 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 14
-  inCooldown: 13
+  inCooldown: 5
   manaCost: 0
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: d9924a0780ea949439fd61bf3d337ae4, type: 2}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 13d832e5bb4e6c249ae1930eb8c67df5, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  owner: {fileID: 0}

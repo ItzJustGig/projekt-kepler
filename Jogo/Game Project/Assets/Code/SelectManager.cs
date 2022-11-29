@@ -304,7 +304,8 @@ public class SelectManager : MonoBehaviour
             i++;
         }
         ultInfo.GetComponent<TooltipButton>().tooltipPopup = tooltipPopup.GetComponent<TooltipPopUp>();
-        ultInfo.GetComponent<TooltipButton>().text = charac.GetComponent<CharacterInfo>().character.ultimate.GetTooltipText();
+        ultInfo.GetComponent<TooltipButton>().text = charac.GetComponent<CharacterInfo>().character.ultimate.GetTooltipText(false);
+        ultInfo.GetComponent<TooltipButton>().textSec = charac.GetComponent<CharacterInfo>().character.ultimate.GetTooltipText(true);
     }
 
     public void SetMoves(int n)
@@ -358,7 +359,7 @@ public class SelectManager : MonoBehaviour
     private void ShowMove(Moves a)
     {
         movePrefab.GetComponent<TooltipButton>().tooltipPopup = tooltipPopup.GetComponent<TooltipPopUp>();
-        movePrefab.GetComponent<TooltipButton>().text = a.GetTooltipText();
+        movePrefab.GetComponent<TooltipButton>().text = a.GetTooltipText(false);
 
         movePrefab.name = a.name;
 

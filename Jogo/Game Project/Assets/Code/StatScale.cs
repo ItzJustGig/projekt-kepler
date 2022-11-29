@@ -162,17 +162,6 @@ public class StatScale : ScriptableObject
         return builder;
     }
 
-    public StringBuilder GetStatScaleValueInfo(float flat)
-    {
-        LanguageManager languageManager = GetLanguageMan();
-        string language = GetLanguage();
-
-        StringBuilder builder = new StringBuilder();
-        builder.Append(SetScale())
-
-        return builder;
-    }
-
     public float SetScale(Stats stats, Unit user)
     {
         float temp = 0;

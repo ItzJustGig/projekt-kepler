@@ -71,6 +71,8 @@ MonoBehaviour:
   summons: []
   moves: []
   ultMove: {fileID: 0}
+  recoverMana: {fileID: 11400000, guid: 44b7010c0d3793645bcb9d1a122e3569, type: 2}
+  basicAttack: {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
   passives: []
   items: []
   randomItems: 
@@ -102,3 +104,5 @@ MonoBehaviour:
   phyDmgMitigated: 0
   magicDmgMitigated: 0
   animator: {fileID: 0}
+  sprite: {fileID: 0}
+  size: 2

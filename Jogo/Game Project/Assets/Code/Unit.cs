@@ -41,6 +41,8 @@ public class Unit : MonoBehaviour
 
     public List<Moves> moves = new List<Moves>();
     public Moves ultMove;
+    public Moves recoverMana;
+    public Moves basicAttack;
     public List<Passives> passives = new List<Passives>();
     public List<Items> items = new List<Items>();
     public List<int> randomItems = new List<int>();
@@ -103,13 +105,22 @@ public class Unit : MonoBehaviour
                 charc = mons[bot-1];
         }
 
+        ultMove = charc.ultimate.ReturnMove();
+        ultMove.SetOwner(this);
+        ultMove.type = Moves.MoveType.ULT;
+
+        basicAttack = basicAttack.ReturnMove();
+        basicAttack.SetOwner(this);
+
+        recoverMana = recoverMana.ReturnMove();
+        recoverMana.inCooldown = 5;
+        recoverMana.SetOwner(this);
+
         foreach (Moves move in charc.moves.ToArray())
         {
+            move.SetOwner(this);
             moves.Add(move.ReturnMove());
         }
-        
-        ultMove = charc.ultimate.ReturnMove();
-        ultMove.type = Moves.MoveType.ULT;
 
         if (PlayerPrefs.GetInt("isEndless") != 0)
             charc.stats = charc.stats.ReturnStats();

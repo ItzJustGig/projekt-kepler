@@ -49,9 +49,6 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private Button ultBtn;
     [SerializeField] private Text healBtnText;
 
-    [SerializeField] private Moves recoverManaMoveP;
-    [SerializeField] private Moves recoverManaMoveE;
-    [SerializeField] private Moves basicMove;
     [SerializeField] private EffectsMove tired;
     [SerializeField] private EffectsMove fear;
 
@@ -226,19 +223,15 @@ public class BattleSystem : MonoBehaviour
                 move.inCooldown = 0;
         }
 
-        recoverManaMoveE.inCooldown = 5;
-        recoverManaMoveP.inCooldown = 5;
-
-        if (playerUnit.moves.Contains(recoverManaMoveE))
-            playerUnit.moves.Remove(recoverManaMoveE);
-
         healManaBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
         healManaBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
-        healManaBtn.GetComponent<TooltipButton>().text = recoverManaMoveP.GetTooltipText();
+        healManaBtn.GetComponent<TooltipButton>().text = playerUnit.recoverMana.GetTooltipText(false);
+        healManaBtn.GetComponent<TooltipButton>().textSec = playerUnit.recoverMana.GetTooltipText(true);
 
         ultBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
         ultBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
-        ultBtn.GetComponent<TooltipButton>().text = playerUnit.charc.ultimate.GetTooltipText();
+        ultBtn.GetComponent<TooltipButton>().text = playerUnit.charc.ultimate.GetTooltipText(false);
+        ultBtn.GetComponent<TooltipButton>().textSec = playerUnit.charc.ultimate.GetTooltipText(true);
 
         if (PlayerPrefs.GetInt("isEndless") == 1)
         {
@@ -285,7 +278,8 @@ public class BattleSystem : MonoBehaviour
 
                 moveButton.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
                 moveButton.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
-                moveButton.GetComponent<TooltipButton>().text = move.GetTooltipText();
+                moveButton.GetComponent<TooltipButton>().text = move.GetTooltipText(false);
+                moveButton.GetComponent<TooltipButton>().textSec = move.GetTooltipText(true);
 
                 moveButton.name = move.name;
 
@@ -2088,10 +2082,10 @@ public class BattleSystem : MonoBehaviour
         Moves move = null;
         bool skip = false;
 
-        if (enemyUnit.curMana < (enemyUnit.SetModifiers().mana * aiManaRecover) && !enemyUnit.moves.Contains(recoverManaMoveE))
-            enemyUnit.moves.Add(recoverManaMoveE);
-        else if (enemyUnit.curMana > (enemyUnit.SetModifiers().mana * aiManaRecover) && enemyUnit.moves.Contains(recoverManaMoveE))
-            enemyUnit.moves.Remove(recoverManaMoveE);
+        if (enemyUnit.curMana < (enemyUnit.SetModifiers().mana * aiManaRecover) && !enemyUnit.moves.Contains(enemyUnit.recoverMana))
+            enemyUnit.moves.Add(enemyUnit.recoverMana);
+        else if (enemyUnit.curMana > (enemyUnit.SetModifiers().mana * aiManaRecover) && enemyUnit.moves.Contains(enemyUnit.recoverMana))
+            enemyUnit.moves.Remove(enemyUnit.recoverMana);
 
         if (((enemyUnit.ult == 100 && enemyUnit.ultMove.needFullUlt) || 
         (enemyUnit.ult == enemyUnit.ultMove.ultCost && !enemyUnit.ultMove.needFullUlt))
@@ -2269,7 +2263,7 @@ public class BattleSystem : MonoBehaviour
         (playerUnit.ult == playerUnit.ultMove.ultCost && !playerUnit.ultMove.needFullUlt))
             ultBtn.interactable = true;
 
-        if (recoverManaMoveP.inCooldown <= 0)
+        if (playerUnit.recoverMana.inCooldown <= 0)
         {
             healManaBtn.interactable = true;
             healBtnText.text = langmanag.GetInfo("moves", "recovmana");
@@ -2279,7 +2273,7 @@ public class BattleSystem : MonoBehaviour
         else
         {
             healManaBtn.interactable = false;
-            healBtnText.text = langmanag.GetInfo("moves", "recovmana") + " (" + recoverManaMoveP.inCooldown + ")";
+            healBtnText.text = langmanag.GetInfo("moves", "recovmana") + " (" + playerUnit.recoverMana.inCooldown + ")";
         }  
     }
 
@@ -2368,7 +2362,7 @@ public class BattleSystem : MonoBehaviour
 
     public void OnHealBtn()
     {
-        StartCoroutine(Combat(recoverManaMoveP));
+        StartCoroutine(Combat(playerUnit.recoverMana));
     }
 
     public void OnUltBtn()
@@ -2379,7 +2373,7 @@ public class BattleSystem : MonoBehaviour
 
     public void OnBasicBtn()
     {
-        StartCoroutine(Combat(basicMove));
+        StartCoroutine(Combat(playerUnit.basicAttack));
     }
 
     public void CancelBtn()
@@ -4061,8 +4055,8 @@ public class BattleSystem : MonoBehaviour
             }
         }   
 
-        if (recoverManaMoveE.inCooldown > 0)
-            recoverManaMoveE.inCooldown--;
+        if (enemyUnit.recoverMana.inCooldown > 0)
+            enemyUnit.recoverMana.inCooldown--;
 
         if (enemyUnit.moves.Count > 0)
             foreach (Moves move in enemyUnit.moves.ToArray())
@@ -4079,8 +4073,8 @@ public class BattleSystem : MonoBehaviour
                 }
             }
 
-        if (recoverManaMoveP.inCooldown > 0)
-            recoverManaMoveP.inCooldown--;
+        if (playerUnit.recoverMana.inCooldown > 0)
+            playerUnit.recoverMana.inCooldown--;
 
         if (playerUnit.statMods.Count > 0)
             foreach (StatMod statMod in playerUnit.statMods.ToArray())
@@ -4238,11 +4232,15 @@ public class BattleSystem : MonoBehaviour
                 i++;
                 if (i == id)
                 {
-                    
-                    child.GetComponent<BtnMoveSetup>().UpdateToolTip(a.GetTooltipText());
+                    child.GetComponent<BtnMoveSetup>().UpdateToolTip(a.GetTooltipText(false), a.GetTooltipText(true));
                 }
             }
-            
         }
+
+        healManaBtn.GetComponent<TooltipButton>().text = playerUnit.recoverMana.GetTooltipText(false);
+        healManaBtn.GetComponent<TooltipButton>().textSec = playerUnit.recoverMana.GetTooltipText(true);
+
+        ultBtn.GetComponent<TooltipButton>().text = playerUnit.charc.ultimate.GetTooltipText(false);
+        ultBtn.GetComponent<TooltipButton>().textSec = playerUnit.charc.ultimate.GetTooltipText(true);
     }
 }

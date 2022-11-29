@@ -27,6 +27,12 @@ public class BtnMoveSetup : MonoBehaviour
         this.GetComponent<TooltipButton>().text = text;
     }
 
+    public void UpdateToolTip(string text, string sec)
+    {
+        this.GetComponent<TooltipButton>().text = text;
+        this.GetComponent<TooltipButton>().textSec = sec;
+    }
+
     public int GetId()
     {
         return i;
