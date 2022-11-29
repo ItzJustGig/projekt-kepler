@@ -278,7 +278,7 @@ public class Moves : ScriptableObject
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.PHYSICAL)
+                if (a.type is DmgType.PHYSICAL)
                     temp.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetDmg(languageManager, language, "dealphysicdmg", phyDmg, "ffaa00", temp.ToString())).AppendLine();
@@ -290,7 +290,7 @@ public class Moves : ScriptableObject
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.MAGICAL)
+                if (a.type is DmgType.MAGICAL)
                     temp.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetDmg(languageManager, language, "dealmagicdmg", magicDmg, "1a66ff", temp.ToString())).AppendLine();
@@ -302,7 +302,7 @@ public class Moves : ScriptableObject
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.TRUE)
+                if (a.type is DmgType.TRUE)
                     temp.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetDmg(languageManager, language, "dealtruedmg", trueDmg, "a6a6a6", temp.ToString())).AppendLine();
@@ -314,7 +314,7 @@ public class Moves : ScriptableObject
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.SANITY)
+                if (a.type is DmgType.SANITY)
                     temp.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetDmg(languageManager, language, "dealsanitydmg", sanityDmg, "b829ff", temp.ToString())).AppendLine();
@@ -326,7 +326,7 @@ public class Moves : ScriptableObject
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.HEAL)
+                if (a.type is DmgType.HEAL)
                     temp.Append(a.GetStatScaleInfo());
             }
 
@@ -344,7 +344,7 @@ public class Moves : ScriptableObject
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.HEALMANA)
+                if (a.type is DmgType.HEALMANA)
                     temp.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetDmg(languageManager, language, "healmana", healMana, "1e68fc", temp.ToString())).AppendLine();
@@ -356,7 +356,7 @@ public class Moves : ScriptableObject
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.HEALSTAMINA)
+                if (a.type is DmgType.HEALSTAMINA)
                     temp.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetDmg(languageManager, language, "healstamina", healStamina, "f0dd0a", temp.ToString())).AppendLine();
@@ -368,7 +368,7 @@ public class Moves : ScriptableObject
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.HEALSANITY)
+                if (a.type is DmgType.HEALSANITY)
                     temp.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetDmg(languageManager, language, "healsanity", healSanity, "b641f0", temp.ToString())).AppendLine();
@@ -380,7 +380,7 @@ public class Moves : ScriptableObject
             StringBuilder temp = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.SHIELD)
+                if (a.type is DmgType.SHIELD)
                     temp.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetDmg(languageManager, language, "shield", shield, "787878", temp.ToString())).AppendLine();

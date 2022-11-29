@@ -6,14 +6,29 @@ using UnityEngine.UI;
 public class BtnMoveSetup : MonoBehaviour
 {
     BattleSystem battleSystem;
-
+    int i = -1;
 
     void Start()
     {
         battleSystem = FindObjectOfType<BattleSystem>();
 
-        int i = int.Parse(this.transform.Find("Id").gameObject.GetComponent<Text>().text);
+        SetId(int.Parse(this.transform.Find("Id").gameObject.GetComponent<Text>().text));
 
         this.gameObject.GetComponent<Button>().onClick.AddListener(delegate { battleSystem.OnMoveBtn(i); });
+    }
+
+    void SetId(int id)
+    {
+        i = id;
+    }
+
+    public void UpdateToolTip(string text)
+    {
+        this.GetComponent<TooltipButton>().text = text;
+    }
+
+    public int GetId()
+    {
+        return i;
     }
 }

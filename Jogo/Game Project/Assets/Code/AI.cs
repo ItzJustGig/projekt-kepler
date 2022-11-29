@@ -10,99 +10,6 @@ public class AI : ScriptableObject
     [SerializeField] private List<Effects> preferedEffects;
     [SerializeField] private List<string> preferedStats;
 
-    float SetScale(StatScale scale, Stats stats, Unit user)
-    {
-        float temp = 0;
-
-        temp += (user.curHp * scale.curHp);
-        temp += ((stats.hp - user.curHp) * scale.missHp);
-        temp += (stats.hp * scale.maxHp);
-        temp += (stats.hpRegen * scale.hpRegen);
-
-        temp += (user.curMana * scale.curMana);
-        temp += ((stats.mana - user.curMana) * scale.missMana);
-        temp += (stats.mana * scale.maxMana);
-        temp += (stats.manaRegen * scale.manaRegen);
-
-        temp += (user.curStamina * scale.curStamina);
-        temp += ((stats.stamina - user.curStamina) * scale.missStamina);
-        temp += (stats.stamina * scale.maxStamina);
-        temp += (stats.staminaRegen * scale.staminaRegen);
-
-        temp += (user.curSanity * scale.curSanity);
-        temp += (stats.sanity - user.curSanity) * scale.missSanity;
-        temp += (stats.sanity * scale.maxSanity);
-
-        temp += (stats.atkDmg * scale.atkDmg);
-        temp += (stats.magicPower * scale.magicPower);
-
-        temp += (stats.dmgResis * scale.dmgResis);
-        temp += (stats.magicResis * scale.magicResis);
-
-        temp += (stats.timing * scale.timing);
-        temp += (stats.movSpeed * scale.movSpeed);
-
-        return temp;
-    }
-
-
-    BattleSystem.DMG SetScaleDmg(StatScale scale, Stats stats, Unit unit)
-    {
-        BattleSystem.DMG dmg;
-
-        dmg.phyDmg = 0;
-        dmg.magicDmg = 0;
-        dmg.trueDmg = 0;
-        dmg.sanityDmg = 0;
-        dmg.heal = 0;
-        dmg.healMana = 0;
-        dmg.healStamina = 0;
-        dmg.healSanity = 0;
-        dmg.shield = 0;
-
-        switch (scale.type)
-        {
-            case StatScale.DmgType.PHYSICAL:
-                dmg.phyDmg += scale.flatValue;
-                dmg.phyDmg += SetScale(scale, stats, unit);
-                break;
-            case StatScale.DmgType.MAGICAL:
-                dmg.magicDmg += scale.flatValue;
-                dmg.magicDmg += SetScale(scale, stats, unit);
-                break;
-            case StatScale.DmgType.TRUE:
-                dmg.trueDmg += scale.flatValue;
-                dmg.trueDmg += SetScale(scale, stats, unit);
-                break;
-            case StatScale.DmgType.SANITY:
-                dmg.sanityDmg += scale.flatValue;
-                dmg.sanityDmg += (int)SetScale(scale, stats, unit);
-                break;
-            case StatScale.DmgType.HEAL:
-                dmg.heal += scale.flatValue;
-                dmg.heal += SetScale(scale, stats, unit);
-                break;
-            case StatScale.DmgType.HEALMANA:
-                dmg.healMana += scale.flatValue;
-                dmg.healMana += SetScale(scale, stats, unit);
-                break;
-            case StatScale.DmgType.HEALSTAMINA:
-                dmg.healStamina += scale.flatValue;
-                dmg.healStamina += SetScale(scale, stats, unit);
-                break;
-            case StatScale.DmgType.HEALSANITY:
-                dmg.healSanity += scale.flatValue;
-                dmg.healSanity += (int)SetScale(scale, stats, unit);
-                break;
-            case StatScale.DmgType.SHIELD:
-                dmg.shield += scale.flatValue;
-                dmg.shield += (int)SetScale(scale, stats, unit);
-                break;
-        }
-
-        return dmg;
-    }
-
     public int chooseMove(List<Moves> moves, Unit user, Unit target, Stats statsU, Stats statsT)
     {
         AiType ai = this.aiType;
@@ -115,7 +22,7 @@ public class AI : ScriptableObject
             
             if (a.inCooldown <= 0)
             {
-                BattleSystem.DMG it = default;
+                DMG it = default;
                 it.AddBaseDmgHeal(a);
                 foreach (StatScale scale in a.scale)
                 {
@@ -132,7 +39,7 @@ public class AI : ScriptableObject
                         stats = statsT;
                     }
 
-                    it.AddDmg(SetScaleDmg(scale, stats, unit));
+                    it.AddDmg(scale.SetScaleDmg(stats, unit));
                 }
 
                 it.Multiply(a.hitTime);

@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class StatScale : ScriptableObject
 {
-    public enum DmgType { PHYSICAL, MAGICAL, TRUE, SANITY, HEAL, HEALMANA, HEALSTAMINA, HEALSANITY, SHIELD }
-
     public DmgType type;
     public bool playerStat = true;
     //only for passive
@@ -161,5 +159,97 @@ public class StatScale : ScriptableObject
             builder.Append(GetStat(languageManager, language, "movspeed", movSpeed, "0095ff", onWho));
 
         return builder;
+    }
+
+    public float SetScale(Stats stats, Unit user)
+    {
+        float temp = 0;
+
+        temp += (user.curHp * curHp);
+        temp += ((stats.hp - user.curHp) * missHp);
+        temp += (stats.hp * maxHp);
+        temp += (stats.hpRegen * hpRegen);
+
+        temp += (user.curMana * curMana);
+        temp += ((stats.mana - user.curMana) * missMana);
+        temp += (stats.mana * maxMana);
+        temp += (stats.manaRegen * manaRegen);
+
+        temp += (user.curStamina * curStamina);
+        temp += ((stats.stamina - user.curStamina) * missStamina);
+        temp += (stats.stamina * maxStamina);
+        temp += (stats.staminaRegen * staminaRegen);
+
+        temp += (user.curSanity * curSanity);
+        temp += (stats.sanity - user.curSanity) * missSanity;
+        temp += (stats.sanity * maxSanity);
+
+        temp += (stats.atkDmg * atkDmg);
+        temp += (stats.magicPower * magicPower);
+
+        temp += (stats.dmgResis * dmgResis);
+        temp += (stats.magicResis * magicResis);
+
+        temp += (stats.timing * timing);
+        temp += (stats.movSpeed * movSpeed);
+
+        return temp;
+    }
+
+    public DMG SetScaleDmg(Stats stats, Unit unit)
+    {
+        DMG dmg;
+
+        dmg.phyDmg = 0;
+        dmg.magicDmg = 0;
+        dmg.trueDmg = 0;
+        dmg.sanityDmg = 0;
+        dmg.heal = 0;
+        dmg.healMana = 0;
+        dmg.healStamina = 0;
+        dmg.healSanity = 0;
+        dmg.shield = 0;
+
+        switch (type)
+        {
+            case DmgType.PHYSICAL:
+                dmg.phyDmg += flatValue;
+                dmg.phyDmg += SetScale(stats, unit);
+                break;
+            case DmgType.MAGICAL:
+                dmg.magicDmg += flatValue;
+                dmg.magicDmg += SetScale(stats, unit);
+                break;
+            case DmgType.TRUE:
+                dmg.trueDmg += flatValue;
+                dmg.trueDmg += SetScale(stats, unit);
+                break;
+            case DmgType.SANITY:
+                dmg.sanityDmg += flatValue;
+                dmg.sanityDmg += (int)SetScale(stats, unit);
+                break;
+            case DmgType.HEAL:
+                dmg.heal += flatValue;
+                dmg.heal += SetScale(stats, unit);
+                break;
+            case DmgType.HEALMANA:
+                dmg.healMana += flatValue;
+                dmg.healMana += SetScale(stats, unit);
+                break;
+            case DmgType.HEALSTAMINA:
+                dmg.healStamina += flatValue;
+                dmg.healStamina += SetScale(stats, unit);
+                break;
+            case DmgType.HEALSANITY:
+                dmg.healSanity += flatValue;
+                dmg.healSanity += (int)SetScale(stats, unit);
+                break;
+            case DmgType.SHIELD:
+                dmg.shield += flatValue;
+                dmg.shield += (int)SetScale(stats, unit);
+                break;
+        }
+
+        return dmg;
     }
 }

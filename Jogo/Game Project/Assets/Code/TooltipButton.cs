@@ -10,23 +10,44 @@ public class TooltipButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public string text;
     public string textSec;
     public bool wantSec = false;
+    bool isShowing = false;
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.LeftShift))
             wantSec = true;
         else
             wantSec = false;
+
+        if (isShowing)
+            ShowTooltip();
+    }
+
+    void ShowTooltip()
+    {
+        try
+        {
+            tooltipPopup.HideInfo();
+            if (tooltipPopupSec != null)
+            tooltipPopupSec.HideInfo();
+
+            if (wantSec && tooltipPopupSec != null)
+                tooltipPopupSec.DisplayInfo(textSec);
+            else
+                tooltipPopup.DisplayInfo(text);
+        }
+        catch
+        {
+
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         try
         {
-            if (wantSec)
-                tooltipPopupSec.DisplayInfo(textSec);
-            else
-                tooltipPopup.DisplayInfo(text);
+            ShowTooltip();
+            isShowing = true;
         }
         catch
         {
@@ -45,6 +66,7 @@ public class TooltipButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
 
         }
-        
+
+        isShowing = false;
     }
 }

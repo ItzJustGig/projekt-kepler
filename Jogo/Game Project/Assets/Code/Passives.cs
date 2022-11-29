@@ -182,31 +182,31 @@ public class Passives : ScriptableObject
         {
             switch (statScale.type)
             {
-                case StatScale.DmgType.PHYSICAL:
+                case DmgType.PHYSICAL:
                     desc.Replace("%scale%", GetInfo(languageManager, language, "physicdmg", statScale.GetStatScaleInfo().ToString(), "ffaa00").ToString());
                     break;
-                case StatScale.DmgType.MAGICAL:
+                case DmgType.MAGICAL:
                     desc.Replace("%scale%", GetInfo(languageManager, language, "magicdmg", statScale.GetStatScaleInfo().ToString(), "1a66ff").ToString()); 
                     break;
-                case StatScale.DmgType.TRUE:
+                case DmgType.TRUE:
                     desc.Replace("%scale%", GetInfo(languageManager, language, "truedmg", statScale.GetStatScaleInfo().ToString(), "a6a6a6").ToString());
                     break;
-                case StatScale.DmgType.SANITY:
+                case DmgType.SANITY:
                     desc.Replace("%scale%", GetInfo(languageManager, language, "sanitydmg", statScale.GetStatScaleInfo().ToString(), "b829ff").ToString());
                     break;
-                case StatScale.DmgType.SHIELD:
+                case DmgType.SHIELD:
                     desc.Replace("%scale%", GetInfo(languageManager, language, "shielddmg", statScale.GetStatScaleInfo().ToString(), "787878").ToString());
                     break;
-                case StatScale.DmgType.HEAL:
+                case DmgType.HEAL:
                     desc.Replace("%scale%", GetInfo(languageManager, language, "healdmg", statScale.GetStatScaleInfo().ToString(), "00ff11").ToString());
                     break;
-                case StatScale.DmgType.HEALMANA:
+                case DmgType.HEALMANA:
                     desc.Replace("%scale%", GetInfo(languageManager, language, "healmanadmg", statScale.GetStatScaleInfo().ToString(), "1e68fc").ToString());
                     break;
-                case StatScale.DmgType.HEALSTAMINA:
+                case DmgType.HEALSTAMINA:
                     desc.Replace("%scale%", GetInfo(languageManager, language, "healstaminadmg", statScale.GetStatScaleInfo().ToString(), "f0dd0a").ToString());
                     break;
-                case StatScale.DmgType.HEALSANITY:
+                case DmgType.HEALSANITY:
                     desc.Replace("%scale%", GetInfo(languageManager, language, "healsanitydmg", statScale.GetStatScaleInfo().ToString(), "b641f0").ToString());
                     break;
             }
@@ -216,31 +216,31 @@ public class Passives : ScriptableObject
         {
             switch (statScale2.type)
             {
-                case StatScale.DmgType.PHYSICAL:
+                case DmgType.PHYSICAL:
                     desc.Replace("%scale2%", GetInfo(languageManager, language, "physicdmg", statScale2.GetStatScaleInfo().ToString(), "ffaa00").ToString());
                     break;
-                case StatScale.DmgType.MAGICAL:
+                case DmgType.MAGICAL:
                     desc.Replace("%scale2%", GetInfo(languageManager, language, "magicdmg", statScale2.GetStatScaleInfo().ToString(), "1a66ff").ToString());
                     break;
-                case StatScale.DmgType.TRUE:
+                case DmgType.TRUE:
                     desc.Replace("%scale2%", GetInfo(languageManager, language, "truedmg", statScale2.GetStatScaleInfo().ToString(), "a6a6a6").ToString());
                     break;
-                case StatScale.DmgType.SANITY:
+                case DmgType.SANITY:
                     desc.Replace("%scale2%", GetInfo(languageManager, language, "sanitydmg", statScale2.GetStatScaleInfo().ToString(), "b829ff").ToString());
                     break;
-                case StatScale.DmgType.SHIELD:
+                case DmgType.SHIELD:
                     desc.Replace("%scale2%", GetInfo(languageManager, language, "shieldmg", statScale2.GetStatScaleInfo().ToString(), "787878").ToString());
                     break;
-                case StatScale.DmgType.HEAL:
+                case DmgType.HEAL:
                     desc.Replace("%scale2%", GetInfo(languageManager, language, "healdmg", statScale2.GetStatScaleInfo().ToString(), "00ff11").ToString());
                     break;
-                case StatScale.DmgType.HEALMANA:
+                case DmgType.HEALMANA:
                     desc.Replace("%scale2%", GetInfo(languageManager, language, "healmanadmg", statScale2.GetStatScaleInfo().ToString(), "1e68fc").ToString());
                     break;
-                case StatScale.DmgType.HEALSTAMINA:
+                case DmgType.HEALSTAMINA:
                     desc.Replace("%scale2%", GetInfo(languageManager, language, "healstaminadmg", statScale2.GetStatScaleInfo().ToString(), "f0dd0a").ToString());
                     break;
-                case StatScale.DmgType.HEALSANITY:
+                case DmgType.HEALSANITY:
                     desc.Replace("%scale2%", GetInfo(languageManager, language, "healsanitydmg", statScale2.GetStatScaleInfo().ToString(), "b641f0").ToString());
                     break;
             }

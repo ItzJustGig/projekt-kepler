@@ -298,7 +298,7 @@ public class Effects : ScriptableObject
             StringBuilder tempB = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.PHYSICAL)
+                if (a.type is DmgType.PHYSICAL)
                     tempB.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetInfo(languageManager, language, "takephysicdmg", "ffaa00", phyDmgMin, phyDmgMax, phyDmgInc, tempB.ToString(), grantsOnRunOut));
@@ -310,7 +310,7 @@ public class Effects : ScriptableObject
             StringBuilder tempB = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.MAGICAL)
+                if (a.type is DmgType.MAGICAL)
                     tempB.Append(a.GetStatScaleInfo());
             }
 
@@ -323,7 +323,7 @@ public class Effects : ScriptableObject
             StringBuilder tempB = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.TRUE)
+                if (a.type is DmgType.TRUE)
                     tempB.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetInfo(languageManager, language, "taketruedmg", "a6a6a6", trueDmgMin, trueDmgMax, trueDmgInc, tempB.ToString(), grantsOnRunOut));
@@ -336,7 +336,7 @@ public class Effects : ScriptableObject
             StringBuilder tempB = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.SANITY)
+                if (a.type is DmgType.SANITY)
                     tempB.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetInfo(languageManager, language, "takesanitydmg", "b829ff", sanityDmgMin, sanityDmgMax, sanityDmgInc, tempB.ToString(), grantsOnRunOut));
@@ -349,7 +349,7 @@ public class Effects : ScriptableObject
             StringBuilder tempB = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.HEAL)
+                if (a.type is DmgType.HEAL)
                     tempB.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetInfo(languageManager, language, "heal", "00ff11", healMin, healMax, healInc, tempB.ToString(), grantsOnRunOut));
@@ -362,7 +362,7 @@ public class Effects : ScriptableObject
             StringBuilder tempB = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.HEALMANA)
+                if (a.type is DmgType.HEALMANA)
                     tempB.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetInfo(languageManager, language, "healmana", "1e68fc", healManaMin, healManaMax, healManaInc, tempB.ToString(), grantsOnRunOut));
@@ -375,7 +375,7 @@ public class Effects : ScriptableObject
             StringBuilder tempB = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.HEALSTAMINA)
+                if (a.type is DmgType.HEALSTAMINA)
                     tempB.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetInfo(languageManager, language, "healstamina", "f0dd0a", healStaminaMin, healStaminaMax, healStaminaInc, tempB.ToString(), grantsOnRunOut));
@@ -388,7 +388,7 @@ public class Effects : ScriptableObject
             StringBuilder tempB = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.HEALSANITY)
+                if (a.type is DmgType.HEALSANITY)
                     tempB.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetInfo(languageManager, language, "healsanity", "b641f0", sanityHealMin, sanityHealMax, sanityHealInc, tempB.ToString(), grantsOnRunOut));
@@ -401,7 +401,7 @@ public class Effects : ScriptableObject
             StringBuilder tempB = new StringBuilder();
             foreach (StatScale a in scale)
             {
-                if (a.type is StatScale.DmgType.SHIELD)
+                if (a.type is DmgType.SHIELD)
                     tempB.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetInfo(languageManager, language, "shield", "787878", shieldMin, shieldMax, shieldInc, tempB.ToString(), grantsOnRunOut));
