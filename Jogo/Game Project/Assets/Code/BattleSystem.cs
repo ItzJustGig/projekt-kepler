@@ -3166,7 +3166,6 @@ public class BattleSystem : MonoBehaviour
                     user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
                 }
 
-
                 bool isFear = false;
                 foreach (Effects b in user.effects)
                 {

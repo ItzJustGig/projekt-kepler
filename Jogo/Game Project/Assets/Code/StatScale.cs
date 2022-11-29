@@ -55,6 +55,7 @@ public class StatScale : ScriptableObject
         return builder;
     }
 
+
     private string GetLanguage()
     {
         if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
@@ -161,9 +162,55 @@ public class StatScale : ScriptableObject
         return builder;
     }
 
+    public StringBuilder GetStatScaleValueInfo(float flat)
+    {
+        LanguageManager languageManager = GetLanguageMan();
+        string language = GetLanguage();
+
+        StringBuilder builder = new StringBuilder();
+        builder.Append(SetScale())
+
+        return builder;
+    }
+
     public float SetScale(Stats stats, Unit user)
     {
         float temp = 0;
+
+        temp += (user.curHp * curHp);
+        temp += ((stats.hp - user.curHp) * missHp);
+        temp += (stats.hp * maxHp);
+        temp += (stats.hpRegen * hpRegen);
+
+        temp += (user.curMana * curMana);
+        temp += ((stats.mana - user.curMana) * missMana);
+        temp += (stats.mana * maxMana);
+        temp += (stats.manaRegen * manaRegen);
+
+        temp += (user.curStamina * curStamina);
+        temp += ((stats.stamina - user.curStamina) * missStamina);
+        temp += (stats.stamina * maxStamina);
+        temp += (stats.staminaRegen * staminaRegen);
+
+        temp += (user.curSanity * curSanity);
+        temp += (stats.sanity - user.curSanity) * missSanity;
+        temp += (stats.sanity * maxSanity);
+
+        temp += (stats.atkDmg * atkDmg);
+        temp += (stats.magicPower * magicPower);
+
+        temp += (stats.dmgResis * dmgResis);
+        temp += (stats.magicResis * magicResis);
+
+        temp += (stats.timing * timing);
+        temp += (stats.movSpeed * movSpeed);
+
+        return temp;
+    }
+
+    public float SetScaleFlat(Stats stats, Unit user)
+    {
+        float temp = flatValue;
 
         temp += (user.curHp * curHp);
         temp += ((stats.hp - user.curHp) * missHp);

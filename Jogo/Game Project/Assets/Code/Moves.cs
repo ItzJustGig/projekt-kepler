@@ -52,6 +52,8 @@ public class Moves : ScriptableObject
     public Passives grantPassive;
     public Summon summon;
 
+    Unit owner;
+
     public Moves ReturnMove()
     {
         Moves move = CreateInstance<Moves>();
@@ -112,6 +114,24 @@ public class Moves : ScriptableObject
         builder.Replace("%c/%", "</color>");
         builder.Replace("%val%", val.ToString());
         builder.Replace("%n%", val.ToString());
+
+        return builder;
+    }
+
+    private StringBuilder GetDmg(LanguageManager languageManager, string language, string whatIs, float val, string colour, float scale)
+    {
+        StringBuilder builder = new StringBuilder();
+        builder.Append(languageManager.GetText(language, "showdetail", whatIs));
+
+        builder.Replace("%c%", "<color=#" + colour + ">");
+        builder.Replace("%c/%", "</color>");
+
+        if (scale != 0)
+            builder.Replace("%val%", (val+scale).ToString());
+        else
+            builder.Replace("%val%", val.ToString());
+
+        builder = Dotdmg.ReplaceDot(builder, whatIs, dot);
 
         return builder;
     }
@@ -262,6 +282,134 @@ public class Moves : ScriptableObject
             return GameObject.Find("GameManager").GetComponent<ShopLangManager>().languageManager;
         else
             return null;
+    }
+
+    private StringBuilder GetDmgMoveValue()
+    {
+        LanguageManager languageManager = GetLanguageMan();
+        string language = GetLanguage();
+
+        StringBuilder builder = new StringBuilder();
+        bool hasText = false;
+
+        if (phyDmg > 0)
+        {
+            hasText = true;
+            StringBuilder temp = new StringBuilder();
+            foreach (StatScale a in scale)
+            {
+                if (a.type is DmgType.PHYSICAL)
+                    temp.Append(a.GetStatScaleValueInfo(phyDmg));
+            }
+            builder.Append(GetDmg(languageManager, language, "dealphysicdmg", phyDmg, "ffaa00", temp.ToString())).AppendLine();
+        }
+
+        if (magicDmg > 0)
+        {
+            hasText = true;
+            StringBuilder temp = new StringBuilder();
+            foreach (StatScale a in scale)
+            {
+                if (a.type is DmgType.MAGICAL)
+                    temp.Append(a.GetStatScaleValueInfo(magicDmg));
+            }
+            builder.Append(GetDmg(languageManager, language, "dealmagicdmg", magicDmg, "1a66ff", temp.ToString())).AppendLine();
+        }
+
+        if (trueDmg > 0)
+        {
+            hasText = true;
+            StringBuilder temp = new StringBuilder();
+            foreach (StatScale a in scale)
+            {
+                if (a.type is DmgType.TRUE)
+                    temp.Append(a.GetStatScaleValueInfo(trueDmg));
+            }
+            builder.Append(GetDmg(languageManager, language, "dealtruedmg", trueDmg, "a6a6a6", temp.ToString())).AppendLine();
+        }
+
+        if (sanityDmg > 0)
+        {
+            hasText = true;
+            StringBuilder temp = new StringBuilder();
+            foreach (StatScale a in scale)
+            {
+                if (a.type is DmgType.SANITY)
+                    temp.Append(a.GetStatScaleValueInfo(sanityDmg));
+            }
+            builder.Append(GetDmg(languageManager, language, "dealsanitydmg", sanityDmg, "b829ff", temp.ToString())).AppendLine();
+        }
+
+        if (heal > 0 || (!(healFromDmgType is HealFromDmg.NONE) && healFromDmg > 0))
+        {
+            hasText = true;
+            StringBuilder temp = new StringBuilder();
+            foreach (StatScale a in scale)
+            {
+                if (a.type is DmgType.HEAL)
+                    temp.Append(a.GetStatScaleValueInfo(heal));
+            }
+
+            if (!(healFromDmgType is HealFromDmg.NONE) && healFromDmg > 0)
+            {
+                temp.Append(GetHealFromDmg(languageManager, language, healFromDmg, healFromDmgType));
+            }
+
+            builder.Append(GetDmg(languageManager, language, "heal", heal, "00ff11", temp.ToString())).AppendLine();
+        }
+
+        if (healMana > 0)
+        {
+            hasText = true;
+            StringBuilder temp = new StringBuilder();
+            foreach (StatScale a in scale)
+            {
+                if (a.type is DmgType.HEALMANA)
+                    temp.Append(a.GetStatScaleValueInfo(healMana));
+            }
+            builder.Append(GetDmg(languageManager, language, "healmana", healMana, "1e68fc", temp.ToString())).AppendLine();
+        }
+
+        if (healStamina > 0)
+        {
+            hasText = true;
+            StringBuilder temp = new StringBuilder();
+            foreach (StatScale a in scale)
+            {
+                if (a.type is DmgType.HEALSTAMINA)
+                    temp.Append(a.GetStatScaleValueInfo(healStamina));
+            }
+            builder.Append(GetDmg(languageManager, language, "healstamina", healStamina, "f0dd0a", temp.ToString())).AppendLine();
+        }
+
+        if (healSanity > 0)
+        {
+            hasText = true;
+            StringBuilder temp = new StringBuilder();
+            foreach (StatScale a in scale)
+            {
+                if (a.type is DmgType.HEALSANITY)
+                    temp.Append(a.GetStatScaleValueInfo(healSanity));
+            }
+            builder.Append(GetDmg(languageManager, language, "healsanity", healSanity, "b641f0", temp.ToString())).AppendLine();
+        }
+
+        if (shield > 0)
+        {
+            hasText = true;
+            StringBuilder temp = new StringBuilder();
+            foreach (StatScale a in scale)
+            {
+                if (a.type is DmgType.SHIELD)
+                    temp.Append(a.GetStatScaleValueInfo(shield));
+            }
+            builder.Append(GetDmg(languageManager, language, "shield", shield, "787878", temp.ToString())).AppendLine();
+        }
+
+        if (!hasText)
+            builder.Append("NULL");
+
+        return builder;
     }
 
     private StringBuilder GetDmgMove()
