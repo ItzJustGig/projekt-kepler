@@ -2360,8 +2360,8 @@ public class BattleSystem : MonoBehaviour
 
         panelMoves.SetActive(true);
         scrollbar.value = 1;
-        tooltipMain.GetComponent<TooltipPopUp>().HideInfo();
-        tooltipSec.GetComponent<TooltipPopUp>().HideInfo();
+        tooltipMain.GetComponent<TooltipPopUp>().ForceHideInfo();
+        tooltipSec.GetComponent<TooltipPopUp>().ForceHideInfo();
     }
 
     public void OnHealBtn()

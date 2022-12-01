@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 266200e1cfac25c4aa7c5a406a38c002, type: 3}
-  m_Name: true
+  m_Name: true p
   m_EditorClassIdentifier: 
   type: 2
   playerStat: 1
@@ -18,7 +18,7 @@ MonoBehaviour:
   curHp: 0
   missHp: 0
   maxHp: 0
-  hpRegen: 2.1
+  hpRegen: 0
   missMana: 0
   curMana: 0
   maxMana: 0

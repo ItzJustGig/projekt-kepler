@@ -386,7 +386,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 12
+  m_Text: 10
 --- !u!1 &7954924221204952151
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Magic Slash
+  m_Text: Iron Fangs
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a9d8d1d7eee74734990bceef438f0a17, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -619,7 +619,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 45
 --- !u!1 &7954924221810379002
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,43 +801,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Magic Slash</align></size>
+  text: '<size=24><align=center>Iron Fangs</align></size>
 
     Priority: 0
 
     <s><align=center>|                
     |</align></s>
 
-    80% chance to <color=#1a66ff>27% Magic Power</color> to the
-    user for 2 turns
+    30% chance to inflict Blood to the enemy for 1-2 turns.
 
-    60% chance to <color=#946ACD>-20% Magic Resistance</color>
-    to the enemy for 3 turns
+    <s><align=center>|                
+    |</align></s>
 
-    <s><align=center>|                 |</align></s>
+    Deal <color=#ffaa00>77,8 physical damage</color>
 
-    Deal
-    <color=#1a66ff>94,1 magical damage</color>
+    Grants
+    a <color=#787878>shield</color> with <color=#787878>33,6 health </color>
 
 '
-  textSec: '<size=24><align=center>Magic Slash</align></size>
+  textSec: '<size=24><align=center>Iron Fangs</align></size>
 
     Priority: 0
 
     <s><align=center>|                
     |</align></s>
 
-    80% chance to <color=#1a66ff>27% Magic Power</color> to the
-    user for 2 turns
+    30% chance to inflict Blood to the enemy for 1-2 turns.
 
-    60% chance to <color=#946ACD>-20% Magic Resistance</color>
-    to the enemy for 3 turns
+    <s><align=center>|                
+    |</align></s>
 
-    <s><align=center>|                 |</align></s>
+    Deal <color=#ffaa00>40 + (<color=#ffaa00>70%</color> of the
+    user''s <color=#ffaa00>Attack Damage</color>) physical damage</color>
 
-    Deal
-    <color=#1a66ff>60 + (<color=#1a66ff>55%</color> of the user''s <color=#1a66ff>Magic
-    Power</color>) magical damage</color>
+    Grants
+    a <color=#787878>shield</color> with <color=#787878>15 + (<color=#937264>11%</color>
+    of the user''s <color=#937264>Damage Resistance</color>) + (<color=#946ACD>13%</color>
+    of the user''s <color=#946ACD>Magic Resistance</color>) health </color>
 
 '
   wantSec: 0
@@ -998,7 +998,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 55
+  m_Text: 10
 --- !u!1 &7970126842544643455
 GameObject:
   m_ObjectHideFlags: 0

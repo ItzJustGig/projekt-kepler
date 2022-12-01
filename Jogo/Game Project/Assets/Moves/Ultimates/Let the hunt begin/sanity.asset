@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: sanity
   m_EditorClassIdentifier: 
   type: 3
-  playerStat: 1
+  playerStat: 0
   flatValue: 0
   curHp: 0
   missHp: 0

@@ -35,6 +35,8 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 0
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
@@ -42,7 +44,9 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: c88ca280a2a014c4fb7ffa640b3ddf29, type: 2}
   - {fileID: 11400000, guid: ed8cadbfa38da7e4a8d5b5a5de872baf, type: 2}
+  - {fileID: 11400000, guid: b16b1f661d78bc046b624c491938ef06, type: 2}
   dot: []
   effects: []
   grantPassive: {fileID: 11400000, guid: 4605a6c8a388e054fae070e58d7b8e88, type: 2}
   summon: {fileID: 0}
+  owner: {fileID: 0}

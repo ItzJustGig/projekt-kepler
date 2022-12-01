@@ -66,10 +66,15 @@ public class TooltipPopUp : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(popupObj);
     }
 
-    public void HideInfo()
+    public void ForceHideInfo()
     {
         popupCanvasObj.SetActive(false);
         if (lastBtn)
             lastBtn.ResetIsShowing();
+    }
+
+    public void HideInfo()
+    {
+        popupCanvasObj.SetActive(false);
     }
 }

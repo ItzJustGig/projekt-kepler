@@ -28,10 +28,10 @@ public class TooltipButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         try
         {
             tooltipPopup.HideInfo();
-            if (tooltipPopupSec != null)
+            if (tooltipPopupSec)
                 tooltipPopupSec.HideInfo();
 
-            if (wantSec && tooltipPopupSec != null)
+            if (wantSec && tooltipPopupSec)
                 tooltipPopupSec.DisplayInfo(textSec, this);
             else
                 tooltipPopup.DisplayInfo(text, this);
