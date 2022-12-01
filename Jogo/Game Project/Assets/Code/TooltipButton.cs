@@ -29,17 +29,22 @@ public class TooltipButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             tooltipPopup.HideInfo();
             if (tooltipPopupSec != null)
-            tooltipPopupSec.HideInfo();
+                tooltipPopupSec.HideInfo();
 
             if (wantSec && tooltipPopupSec != null)
-                tooltipPopupSec.DisplayInfo(textSec);
+                tooltipPopupSec.DisplayInfo(textSec, this);
             else
-                tooltipPopup.DisplayInfo(text);
+                tooltipPopup.DisplayInfo(text, this);
         }
         catch
         {
 
         }
+    }
+
+    public void ResetIsShowing()
+    {
+        isShowing = false;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

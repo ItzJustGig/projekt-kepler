@@ -321,10 +321,13 @@ public class Moves : ScriptableObject
                 foreach (StatScale a in scale)
                 {
                     if (a.type is DmgType.PHYSICAL)
-                        val += a.SetScale(owner.SetModifiers(), owner);
+                        if (a.playerStat)
+                            val += a.SetScale(owner.SetModifiers(), owner);
+                        else
+                            temp.Append(a.GetStatScaleInfo());
+
                 }
-                temp.Append(val.ToString("0.0"));
-                builder.Append(GetDmg(languageManager, language, "dealphysicdmg", "ffaa00", temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "dealphysicdmg", "ffaa00", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (magicDmg > 0)
@@ -335,10 +338,12 @@ public class Moves : ScriptableObject
                 foreach (StatScale a in scale)
                 {
                     if (a.type is DmgType.MAGICAL)
-                        val += a.SetScale(owner.SetModifiers(), owner);
+                        if (a.playerStat)
+                            val += a.SetScale(owner.SetModifiers(), owner);
+                        else
+                            temp.Append(a.GetStatScaleInfo());
                 }
-                temp.Append(val.ToString("0.0"));
-                builder.Append(GetDmg(languageManager, language, "dealmagicdmg", "1a66ff", temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "dealmagicdmg", "1a66ff", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (trueDmg > 0)
@@ -349,10 +354,12 @@ public class Moves : ScriptableObject
                 foreach (StatScale a in scale)
                 {
                     if (a.type is DmgType.TRUE)
-                        val += a.SetScale(owner.SetModifiers(), owner);
+                        if (a.playerStat)
+                            val += a.SetScale(owner.SetModifiers(), owner);
+                        else
+                            temp.Append(a.GetStatScaleInfo());
                 }
-                temp.Append(val.ToString("0.0"));
-                builder.Append(GetDmg(languageManager, language, "dealtruedmg", "a6a6a6", temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "dealtruedmg", "a6a6a6", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (sanityDmg > 0)
@@ -363,10 +370,12 @@ public class Moves : ScriptableObject
                 foreach (StatScale a in scale)
                 {
                     if (a.type is DmgType.SANITY)
-                        val += a.SetScale(owner.SetModifiers(), owner);
+                        if (a.playerStat)
+                            val += a.SetScale(owner.SetModifiers(), owner);
+                        else
+                            temp.Append(a.GetStatScaleInfo());
                 }
-                temp.Append(val.ToString("0.0"));
-                builder.Append(GetDmg(languageManager, language, "dealsanitydmg", "b829ff", temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "dealsanitydmg", "b829ff", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (heal > 0 || (!(healFromDmgType is HealFromDmg.NONE) && healFromDmg > 0))
@@ -377,15 +386,17 @@ public class Moves : ScriptableObject
                 foreach (StatScale a in scale)
                 {
                     if (a.type is DmgType.HEAL)
-                        val += a.SetScale(owner.SetModifiers(), owner);
+                        if (a.playerStat)
+                            val += a.SetScale(owner.SetModifiers(), owner);
+                        else
+                            temp.Append(a.GetStatScaleInfo());
                 }
-                temp.Append(val.ToString("0.0"));
                 if (!(healFromDmgType is HealFromDmg.NONE) && healFromDmg > 0)
                 {
                     temp.Append(GetHealFromDmg(languageManager, language, healFromDmg, healFromDmgType));
                 }
 
-                builder.Append(GetDmg(languageManager, language, "heal", "00ff11", temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "heal", "00ff11", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (healMana > 0)
@@ -396,10 +407,12 @@ public class Moves : ScriptableObject
                 foreach (StatScale a in scale)
                 {
                     if (a.type is DmgType.HEALMANA)
-                        val += a.SetScale(owner.SetModifiers(), owner);
+                        if (a.playerStat)
+                            val += a.SetScale(owner.SetModifiers(), owner);
+                        else
+                            temp.Append(a.GetStatScaleInfo());
                 }
-                temp.Append(val.ToString("0.0"));
-                builder.Append(GetDmg(languageManager, language, "healmana", "1e68fc", temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "healmana", "1e68fc", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (healStamina > 0)
@@ -410,10 +423,12 @@ public class Moves : ScriptableObject
                 foreach (StatScale a in scale)
                 {
                     if (a.type is DmgType.HEALSTAMINA)
-                        val += a.SetScale(owner.SetModifiers(), owner);
+                        if (a.playerStat)
+                            val += a.SetScale(owner.SetModifiers(), owner);
+                        else
+                            temp.Append(a.GetStatScaleInfo());
                 }
-                temp.Append(val.ToString("0.0"));
-                builder.Append(GetDmg(languageManager, language, "healstamina", "f0dd0a", temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "healstamina", "f0dd0a", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (healSanity > 0)
@@ -424,10 +439,12 @@ public class Moves : ScriptableObject
                 foreach (StatScale a in scale)
                 {
                     if (a.type is DmgType.HEALSANITY)
-                        val += a.SetScale(owner.SetModifiers(), owner);
+                        if (a.playerStat)
+                            val += a.SetScale(owner.SetModifiers(), owner);
+                        else
+                            temp.Append(a.GetStatScaleInfo());
                 }
-                temp.Append(val.ToString("0.0"));
-                builder.Append(GetDmg(languageManager, language, "healsanity", "b641f0", temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "healsanity", "b641f0", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (shield > 0)
@@ -438,10 +455,12 @@ public class Moves : ScriptableObject
                 foreach (StatScale a in scale)
                 {
                     if (a.type is DmgType.SHIELD)
-                        val += a.SetScale(owner.SetModifiers(), owner);
+                        if (a.playerStat)
+                            val += a.SetScale(owner.SetModifiers(), owner);
+                        else
+                            temp.Append(a.GetStatScaleInfo());
                 }
-                temp.Append(val.ToString("0.0"));
-                builder.Append(GetDmg(languageManager, language, "shield", "787878", temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "shield", "787878", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
         } catch
         {

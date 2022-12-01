@@ -230,8 +230,8 @@ public class BattleSystem : MonoBehaviour
 
         ultBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
         ultBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
-        ultBtn.GetComponent<TooltipButton>().text = playerUnit.charc.ultimate.GetTooltipText(false);
-        ultBtn.GetComponent<TooltipButton>().textSec = playerUnit.charc.ultimate.GetTooltipText(true);
+        ultBtn.GetComponent<TooltipButton>().text = playerUnit.ultMove.GetTooltipText(false);
+        ultBtn.GetComponent<TooltipButton>().textSec = playerUnit.ultMove.GetTooltipText(true);
 
         if (PlayerPrefs.GetInt("isEndless") == 1)
         {
@@ -395,7 +395,9 @@ public class BattleSystem : MonoBehaviour
 
         foreach (Moves m in a.moves)
         {
-            unit.moves.Add(m.ReturnMove());
+            Moves temp = m.ReturnMove();
+            temp.SetOwner(unit);
+            unit.moves.Add(temp);
         }
     }
 
@@ -2358,6 +2360,8 @@ public class BattleSystem : MonoBehaviour
 
         panelMoves.SetActive(true);
         scrollbar.value = 1;
+        tooltipMain.GetComponent<TooltipPopUp>().HideInfo();
+        tooltipSec.GetComponent<TooltipPopUp>().HideInfo();
     }
 
     public void OnHealBtn()
@@ -4240,7 +4244,7 @@ public class BattleSystem : MonoBehaviour
         healManaBtn.GetComponent<TooltipButton>().text = playerUnit.recoverMana.GetTooltipText(false);
         healManaBtn.GetComponent<TooltipButton>().textSec = playerUnit.recoverMana.GetTooltipText(true);
 
-        ultBtn.GetComponent<TooltipButton>().text = playerUnit.charc.ultimate.GetTooltipText(false);
-        ultBtn.GetComponent<TooltipButton>().textSec = playerUnit.charc.ultimate.GetTooltipText(true);
+        ultBtn.GetComponent<TooltipButton>().text = playerUnit.ultMove.GetTooltipText(false);
+        ultBtn.GetComponent<TooltipButton>().textSec = playerUnit.ultMove.GetTooltipText(true);
     }
 }

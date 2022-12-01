@@ -9,6 +9,7 @@ public class TooltipPopUp : MonoBehaviour
     public GameObject popupCanvasObj;
     public RectTransform popupObj;
     public TextMeshProUGUI infoText;
+    private TooltipButton lastBtn;
     public Vector3 offset;
     public float padding;
     public bool isMain = true;
@@ -56,8 +57,9 @@ public class TooltipPopUp : MonoBehaviour
         popupObj.transform.position = newpos;
     }
 
-    public void DisplayInfo(string text)
+    public void DisplayInfo(string text, TooltipButton btn)
     {
+        lastBtn = btn;
         infoText.text = text;
         popupCanvasObj.SetActive(true);
 
@@ -67,5 +69,7 @@ public class TooltipPopUp : MonoBehaviour
     public void HideInfo()
     {
         popupCanvasObj.SetActive(false);
+        if (lastBtn)
+            lastBtn.ResetIsShowing();
     }
 }

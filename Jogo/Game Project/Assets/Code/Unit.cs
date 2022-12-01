@@ -428,6 +428,9 @@ public class Unit : MonoBehaviour
             case Moves.MoveType.STATMOD:
                 animator.SetTrigger("statmod");
                 break;
+            case Moves.MoveType.SUMMON:
+                animator.SetTrigger("summon");
+                break;
         }
     }
 

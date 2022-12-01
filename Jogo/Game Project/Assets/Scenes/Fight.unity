@@ -12347,6 +12347,8 @@ MonoBehaviour:
   playerBattleStation: {fileID: 224652448}
   enemyBattleStation: {fileID: 1720866901}
   state: 0
+  aiManaRecover: 0.12
+  aiGaranteedManaRecover: 0.08
   tiredStart: 0.025
   tiredGrowth: 0.0075
   tiredStacks: 0
@@ -12370,9 +12372,6 @@ MonoBehaviour:
   basicBtn: {fileID: 371652340}
   ultBtn: {fileID: 191638935}
   healBtnText: {fileID: 1964910204}
-  recoverManaMoveP: {fileID: 11400000, guid: 44b7010c0d3793645bcb9d1a122e3569, type: 2}
-  recoverManaMoveE: {fileID: 11400000, guid: 4ea5ec9f07356d34fa1e8f5c94980bc3, type: 2}
-  basicMove: {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
   tired: {fileID: 11400000, guid: f145d54ae3b6380428cb3c44d9b7b651, type: 2}
   fear: {fileID: 11400000, guid: ddbc508468aaf18469eacabd381c1203, type: 2}
   scrollbar: {fileID: 943014294}
