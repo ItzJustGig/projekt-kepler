@@ -78,6 +78,10 @@ public class AI : ScriptableObject
                 if (ai.anyStatDown > 0)
                     if (a.statModEnemy != null && a.statModEnemy.HowPositive())
                         chance += ai.anyStatDown;
+
+                if (ai.hasSummon > 0)
+                    if (a.summon != null)
+                        chance += ai.hasSummon;
             }
 
             chances.Add(chance);

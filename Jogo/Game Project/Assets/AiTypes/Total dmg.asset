@@ -24,3 +24,4 @@ MonoBehaviour:
   selectedStatUp: 0
   anyStatUp: 10
   anyStatDown: 2
+  hasSummon: 30

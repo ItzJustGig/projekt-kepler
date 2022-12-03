@@ -197,9 +197,11 @@ public class Unit : MonoBehaviour
     {
         bool isDead = false;
 
+
         foreach (Effects a in effects.ToArray())
         {
-            
+            a.duration--;
+            a.timesInc++;
 
             if (!a.grantsOnRunOut)
             {
@@ -214,8 +216,6 @@ public class Unit : MonoBehaviour
                 break;
 
             Wait();
-            a.duration--;
-            a.timesInc++;
 
             if (a.duration <= 0)
             {
