@@ -89,7 +89,7 @@ public class Summon : ScriptableObject
     {
         StringBuilder text = new StringBuilder();
 
-        text.Append("<color=#00ff11>" + languageManager.GetText(language, "stats", "name", "hp") + ": " + stats.hpScale.SetScale(owner.SetModifiers(), owner).ToString("0.0") + "</color>").AppendLine();
+        text.Append("<color=#00ff11>" + languageManager.GetText(language, "stats", "name", "hp") + ": " + stats.hpScale.SetScale(owner.SetModifiers(), owner).ToString("0") + "</color>").AppendLine();
         text.Append("<color=#ffaa00>" + languageManager.GetText(language, "stats", "name", "attackpower") + ": " + stats.atkScale.SetScale(owner.SetModifiers(), owner).ToString("0.0") + "</color>").AppendLine();
 
         return text;

@@ -10,6 +10,7 @@ public class TooltipPopUp : MonoBehaviour
     public RectTransform popupObj;
     public TextMeshProUGUI infoText;
     private TooltipButton lastBtn;
+    [SerializeField] private TooltipPopUp otherTooltip;
     public Vector3 offset;
     public float padding;
     public bool isMain = true;
@@ -59,7 +60,7 @@ public class TooltipPopUp : MonoBehaviour
 
     public void DisplayInfo(string text, TooltipButton btn)
     {
-        if (lastBtn)
+        if (lastBtn && !otherTooltip.gameObject.activeInHierarchy)
             lastBtn.ResetIsShowing();
 
         lastBtn = btn;

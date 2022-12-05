@@ -3825,7 +3825,7 @@ public class BattleSystem : MonoBehaviour
                 Image icon = barIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
                 icon.sprite = sum.icon;
                 Text text = barIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
-                text.text = sum.stats.hp.ToString();
+                text.text = sum.stats.hp.ToString("0");
                 TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
                 tooltipButton.tooltipPopup = tooltipMain.transform.GetComponent<TooltipPopUp>();
 
