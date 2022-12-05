@@ -3828,8 +3828,9 @@ public class BattleSystem : MonoBehaviour
                 text.text = sum.stats.hp.ToString();
                 TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
                 tooltipButton.tooltipPopup = tooltipMain.transform.GetComponent<TooltipPopUp>();
-                tooltipButton.text = langmanag.GetInfo("summon", "name", sum.name);
-                Instantiate(barIconPrefab, pannel.transform);
+
+                sum.SetIconCombat(Instantiate(barIconPrefab, pannel.transform));
+                UpdateSummonTooltip(summoner);
             }
 
             foreach (Passives a in summoner.passives.ToArray())
@@ -4217,14 +4218,14 @@ public class BattleSystem : MonoBehaviour
 
         sumPlayerHud.UpdateValues(playerUnit, langmanag.GetInfo("charc", "name", playerUnit.charc.name));
         sumEnemyHud.UpdateValues(enemyUnit, langmanag.GetInfo("charc", "name", enemyUnit.charc.name));
-        UpdateMoveTooltips();
+        UpdateTooltips();
         if (skip)
             StartCoroutine(Combat(null));
         else
             PlayerTurn();
     } 
 
-    void UpdateMoveTooltips()
+    void UpdateTooltips()
     {
         foreach (Transform child in moveListHud.transform)
         {
@@ -4246,5 +4247,16 @@ public class BattleSystem : MonoBehaviour
 
         ultBtn.GetComponent<TooltipButton>().text = playerUnit.ultMove.GetTooltipText(false);
         ultBtn.GetComponent<TooltipButton>().textSec = playerUnit.ultMove.GetTooltipText(true);
+
+        UpdateSummonTooltip(playerUnit);
+        UpdateSummonTooltip(enemyUnit);
+    }
+
+    void UpdateSummonTooltip(Unit unit)
+    {
+        foreach(Summon sum in unit.summons)
+        {
+            sum.UpdateInfoCombat();
+        }
     }
 }

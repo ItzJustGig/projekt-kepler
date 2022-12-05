@@ -52,11 +52,13 @@ public class Moves : ScriptableObject
     public Passives grantPassive;
     public Summon summon;
 
-    public Unit owner;
+    Unit owner;
 
     public void SetOwner(Unit owner)
     {
         this.owner = owner;
+        if (summon)
+            summon.SetOwner(this.owner);
     }
 
     public Moves ReturnMove()
@@ -684,7 +686,7 @@ public class Moves : ScriptableObject
             builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
             {
                 StringBuilder temp = new StringBuilder();
-                temp = GetMoveInfoSummon(languageManager, language);
+                temp = GetMoveInfoSummon(languageManager, language, showVal);
                 builder.Append(char.ToUpper(temp[0])).Append(temp.Remove(0, 1));
 
             }
@@ -694,7 +696,7 @@ public class Moves : ScriptableObject
     }
 
     //vv ITEMS vv
-    public StringBuilder GetMoveInfoSummon(LanguageManager languageManager, string language)
+    public StringBuilder GetMoveInfoSummon(LanguageManager languageManager, string language, bool showvalue)
     {
         StringBuilder builder = new StringBuilder();
         builder.Append(languageManager.GetText(language, "summon", "desc"));
@@ -722,7 +724,10 @@ public class Moves : ScriptableObject
         }
 
         builder.Replace("%summonaction%", temp.ToString());
-        builder.AppendLine().Append(summon.GetSummonInfo(languageManager, language));
+        if (showvalue)
+            builder.AppendLine().Append(summon.GetSummonInfo(languageManager, language));
+        else
+            builder.AppendLine().Append(summon.GetSummonInfoSec(languageManager, language));
 
         return builder;
     }
@@ -755,7 +760,7 @@ public class Moves : ScriptableObject
         
         if (summon != null)
         {
-            builder.Replace("%summondesc%", GetMoveInfoSummon(languageManager, language).ToString());
+            builder.Replace("%summondesc%", GetMoveInfoSummon(languageManager, language, false).ToString());
         }
 
         {

@@ -567,7 +567,10 @@
 		}
     },
 	"summon": {
+        "title": "Summon",
 		"desc": "invoca uma %summonname%, que %summonaction% a cada %summonactioncd% turnos",
+		"descsum": "Causa %c%%dmg% %summonaction%%c/% a cada %summonactioncd% turno/s%cd%",
+		"cd": " (Recarga %num%)",
 		"physical":"dano f\u00edsico",
 		"magic":"dano m\u00e1gico",
 		"trued":"dano verdadeiro",

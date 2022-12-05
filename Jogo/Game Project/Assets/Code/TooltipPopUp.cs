@@ -59,6 +59,9 @@ public class TooltipPopUp : MonoBehaviour
 
     public void DisplayInfo(string text, TooltipButton btn)
     {
+        if (lastBtn)
+            lastBtn.ResetIsShowing();
+
         lastBtn = btn;
         infoText.text = text;
         popupCanvasObj.SetActive(true);
@@ -69,8 +72,6 @@ public class TooltipPopUp : MonoBehaviour
     public void ForceHideInfo()
     {
         popupCanvasObj.SetActive(false);
-        if (lastBtn)
-            lastBtn.ResetIsShowing();
     }
 
     public void HideInfo()

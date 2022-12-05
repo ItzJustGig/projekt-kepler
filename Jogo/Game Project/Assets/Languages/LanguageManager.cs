@@ -2174,7 +2174,10 @@ public class LanguageManager : MonoBehaviour
     [Serializable]
     public class Summon
     {
+        public string title;
         public string desc;
+        public string descsum;
+        public string cd;
         public string physic;
         public string magic;
         public string trued;
@@ -2186,8 +2189,17 @@ public class LanguageManager : MonoBehaviour
             string returns;
             switch (a)
             {
+                case "title":
+                    returns = title;
+                    break;
                 case "desc":
                     returns = desc;
+                    break;
+                case "descsum":
+                    returns = descsum;
+                    break;
+                case "cd":
+                    returns = cd;
                     break;
                 case "physic":
                     returns = physic;

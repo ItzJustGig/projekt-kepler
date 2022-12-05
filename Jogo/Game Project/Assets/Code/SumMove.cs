@@ -12,7 +12,6 @@ public class SumMove : ScriptableObject
     public int inCd = 0;
 
     public DmgType dmgType;
-    public float scale = 0;
     public int sanityDmg = 0;
 
     public SumMove ReturnMove()
@@ -20,7 +19,6 @@ public class SumMove : ScriptableObject
         SumMove move = CreateInstance<SumMove>();
         move.cd = cd;
         move.dmgType = dmgType;
-        move.scale = scale;
         move.sanityDmg = sanityDmg;
 
         return move;
@@ -28,6 +26,6 @@ public class SumMove : ScriptableObject
 
     public float getDmg(StatsSummon sum)
     {
-        return sum.atkPower * scale;
+        return sum.atkPower;
     }
 }

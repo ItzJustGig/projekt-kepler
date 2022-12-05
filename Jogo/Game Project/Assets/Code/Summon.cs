@@ -12,6 +12,32 @@ public class Summon : ScriptableObject
     public StatsSummon stats;
     public SumMove move;
     public int summonTurn = 0;
+    GameObject iconInGame;
+    Unit owner;
+
+    public string GetLanguage()
+    {
+        if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
+            return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().language;
+        else if (GameObject.Find("GameManager").GetComponent<FightLang>())
+            return GameObject.Find("GameManager").GetComponent<FightLang>().language;
+        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
+            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().language;
+        else
+            return null;
+    }
+
+    public LanguageManager GetLanguageMan()
+    {
+        if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
+            return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().languageManager;
+        else if (GameObject.Find("GameManager").GetComponent<FightLang>())
+            return GameObject.Find("GameManager").GetComponent<FightLang>().languageManager;
+        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
+            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().languageManager;
+        else
+            return null;
+    }
 
     public Summon ReturnSummon()
     {
@@ -56,35 +82,86 @@ public class Summon : ScriptableObject
         text.Append("<color=#00ff11>" + languageManager.GetText(language, "stats", "name", "hp") + ": " + stats.hpScale.GetStatScaleInfo().Remove(0, 2) + "</color>").AppendLine();
         text.Append("<color=#ffaa00>" + languageManager.GetText(language, "stats", "name", "attackpower") + ": " + stats.atkScale.GetStatScaleInfo().Remove(0, 2) + "</color>").AppendLine();
 
-        string color = "";
+        return text;
+    }
+
+    public StringBuilder GetSummonInfoSec(LanguageManager languageManager, string language)
+    {
+        StringBuilder text = new StringBuilder();
+
+        text.Append("<color=#00ff11>" + languageManager.GetText(language, "stats", "name", "hp") + ": " + stats.hpScale.SetScale(owner.SetModifiers(), owner).ToString("0.0") + "</color>").AppendLine();
+        text.Append("<color=#ffaa00>" + languageManager.GetText(language, "stats", "name", "attackpower") + ": " + stats.atkScale.SetScale(owner.SetModifiers(), owner).ToString("0.0") + "</color>").AppendLine();
+
+        return text;
+    }
+
+    public void SetIconCombat(GameObject icon)
+    {
+        iconInGame = icon;
+    }
+
+    public void SetOwner(Unit unit)
+    {
+        owner = unit;
+    }
+
+    public void UpdateInfoCombat()
+    {
+        LanguageManager languageManager = GetLanguageMan();
+        string language = GetLanguage();
+
+        iconInGame.gameObject.GetComponent<TooltipButton>().text = GetSummonInfoCombat(languageManager, language).ToString();
+    }
+
+    public StringBuilder GetSummonInfoCombat(LanguageManager languageManager, string language)
+    {
+        StringBuilder text = new StringBuilder();
+        text.Append("<size=25><align=center>").Append(languageManager.GetText(language, "summon", "name", name)).Append("</align></size>").AppendLine();
+        text.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(language, "summon", "title")).Append("</color></align></size>").AppendLine().AppendLine();
+
+        text.Append(languageManager.GetText(language, "summon", "descsum"));
+
+        string colour = "";
         string whatis = "";
         switch (move.dmgType)
         {
             case SumMove.DmgType.PHYSICAL:
-                color = "ffaa00";
+                colour = "ffaa00";
                 whatis = "physic";
                 break;
             case SumMove.DmgType.MAGICAL:
-                color = "1a66ff";
+                colour = "1a66ff";
                 whatis = "magic";
                 break;
             case SumMove.DmgType.TRUE:
-                color = "a6a6a6";
+                colour = "a6a6a6";
                 whatis = "trued";
                 break;
             case SumMove.DmgType.HEAL:
-                color = "00ff11";
+                colour = "00ff11";
                 whatis = "heal";
                 break;
             case SumMove.DmgType.SHIELD:
-                color = "787878";
+                colour = "787878";
                 whatis = "shield";
                 break;
         }
         whatis = languageManager.GetText(language, "summon", whatis);
 
-        text.Append("<color=#" + color + ">" + char.ToUpper(whatis[0]) + whatis.Remove(0, 1) + ": ");
-        text.Append("<color=#ffaa00>" + (move.scale * 100).ToString() + "% " + languageManager.GetText(language, "stats", "name", "attackpower") + "</color>");
+        text.Replace("%c%", "<color=#" + colour + ">");
+        text.Replace("%c/%", "</color>");
+        text.Replace("%dmg%", stats.atkPower.ToString("0.0"));
+
+        if (move.inCd <= 0)
+            text.Replace("%cd%", "");
+        else
+        {
+            text.Replace("%cd%", languageManager.GetText(language, "summon", "cd"));
+            text.Replace("%num%", move.inCd.ToString());
+        }
+
+        text.Replace("%summonaction%", (char.ToUpper(whatis[0]) + whatis.Remove(0, 1)).ToString());
+        text.Replace("%summonactioncd%", move.cd.ToString());
 
         return text;
     }

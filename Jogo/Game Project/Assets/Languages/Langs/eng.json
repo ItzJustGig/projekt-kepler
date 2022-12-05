@@ -567,7 +567,10 @@
 		}
 	},
 	"summon": {
+		"title": "Summon",
 		"desc": "summons a %summonname%, that will %summonaction% every %summonactioncd% turns",
+		"descsum": "Deal %c%%dmg% %summonaction%%c/% every %summonactioncd% turns%cd%",
+		"cd": " (Cooldown %num%)",
 		"physic":"physical damage",
 		"magic":"magical damage",
 		"trued":"true damage",
