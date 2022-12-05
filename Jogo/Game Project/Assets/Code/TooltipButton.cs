@@ -21,9 +21,6 @@ public class TooltipButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         if (isShowing)
             ShowTooltip();
-
-        if ((tooltipPopup && !tooltipPopup.gameObject.activeInHierarchy) && (tooltipPopupSec && !tooltipPopupSec.gameObject.activeInHierarchy))
-            ResetIsShowing();
     }
 
     void ShowTooltip()
