@@ -178,6 +178,84 @@ public class Unit : MonoBehaviour
         canUseSummon = true;
     }
 
+    public void SetupItem(Items a)
+    {
+        foreach (Passives p in a.passives)
+        {
+            passives.Add(p.ReturnPassive());
+        }
+
+        foreach (Moves m in a.moves)
+        {
+            Moves temp = m.ReturnMove();
+            temp.SetOwner(this);
+            moves.Add(temp);
+        }
+    }
+
+    public void LoadItems()
+    {
+        foreach (Items a in items)
+        {
+            SetupItem(a);
+        }
+    }
+
+    public void GetItems(EndlessInfo info, StuffList items)
+    {
+        if (PlayerPrefs.GetInt("isEndless") == 1)
+        {
+            if (!isEnemy)
+            {
+                foreach (string b in info.items)
+                {
+                    foreach (Items a in items.returnStuff())
+                    {
+                        if (b == a.name)
+                        {
+                            this.items.Add(a.returnItem());
+
+                            SetupItem(a);
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (!isEnemy)
+            {
+                foreach (Items a in items.returnStuff())
+                {
+                    if (PlayerPrefs.GetString("selectedItem1") == a.name || PlayerPrefs.GetString("selectedItem2") == a.name)
+                    {
+                        this.items.Add(a.returnItem());
+
+                        SetupItem(a);
+                    }
+                }
+            }
+            else
+            {
+                int i = 0;
+                foreach (Items a in charc.recItems)
+                {
+                    foreach (int b in randomItems)
+                    {
+                        if (b == i)
+                        {
+                            this.items.Add(a.returnItem());
+
+                            SetupItem(a);
+                        }
+
+                    }
+                    i++;
+                }
+            }
+        }
+    }
+
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(0.65f);

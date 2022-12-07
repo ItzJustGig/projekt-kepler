@@ -190,21 +190,15 @@ public class BattleSystem : MonoBehaviour
         enemyUnit.randomItems.Clear();
 
         //setup preset player items (testing porpuse)
-        foreach (Items a in playerUnit.items)
-        {
-            SetupItems(a, playerUnit);
-        }
+        playerUnit.LoadItems();
 
         //setup preset enemy items (testing porpuse)
-        foreach (Items a in enemyUnit.items)
-        {
-            SetupItems(a, enemyUnit);
-        }
+        enemyUnit.LoadItems();
 
-        GetItems(playerUnit);
+        playerUnit.GetItems(info, items);
 
         GenItem(playerUnit, enemyUnit);
-        GetItems(enemyUnit);
+        enemyUnit.GetItems(info, items);
 
         SetStatus();
 
@@ -377,80 +371,10 @@ public class BattleSystem : MonoBehaviour
                     if (!isPicked)
                         picked.Add(num);
 
-                    Debug.Log("PICKED: " + num);
                 } while (isPicked);
             }
-            Debug.Log("PICKED N: " + picked.Count);
             if (picked.Count > 0)
                 enemy.randomItems = picked;
-        }
-    }
-
-    void SetupItems(Items a, Unit unit)
-    {
-        foreach (Passives p in a.passives)
-        {
-            unit.passives.Add(p.ReturnPassive());
-        }
-
-        foreach (Moves m in a.moves)
-        {
-            Moves temp = m.ReturnMove();
-            temp.SetOwner(unit);
-            unit.moves.Add(temp);
-        }
-    }
-
-    void GetItems(Unit unit)
-    {
-        if (PlayerPrefs.GetInt("isEndless") == 1)
-        {
-            if (!unit.isEnemy)
-            {
-                foreach (string b in info.items)
-                {
-                    foreach (Items a in items.returnStuff())
-                    {
-                        if (b == a.name)
-                        {
-                            unit.items.Add(a.returnItem());
-
-                            SetupItems(a, unit);
-                        }
-                    }
-                }
-            }
-        } else
-        {
-            if (!unit.isEnemy)
-            {
-                foreach (Items a in items.returnStuff())
-                {
-                    if (PlayerPrefs.GetString("selectedItem1") == a.name || PlayerPrefs.GetString("selectedItem2") == a.name)
-                    {
-                        unit.items.Add(a.returnItem());
-
-                        SetupItems(a, unit);
-                    }
-                }
-            } else
-            {
-                int i = 0;
-                foreach (Items a in unit.charc.recItems)
-                {
-                    foreach (int b in unit.randomItems)
-                    {
-                        if (b == i)
-                        {
-                            unit.items.Add(a.returnItem());
-
-                            SetupItems(a, unit);
-                        }
-                            
-                    }
-                    i++;
-                }
-            }
         }
     }
 
@@ -2034,11 +1958,6 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    void SetStatsHud(Unit user, BattleHud userHud)
-    {
-        Stats stats = user.SetModifiers();
-        userHud.SetStats(stats.ReturnStats(), user.charc.stats.ReturnStats(), user.curSanity);
-    }
 
     void SetStatus()
     {
@@ -3695,7 +3614,7 @@ public class BattleSystem : MonoBehaviour
 
         switch (move.dmgType)
         {
-            case SumMove.DmgType.PHYSICAL:
+            case DmgType.PHYSICAL:
 
                 if (Random.Range(0f, 1f) < statsS.critChance)
                     isCrit = true;
@@ -3729,7 +3648,7 @@ public class BattleSystem : MonoBehaviour
                 target.phyDmgTaken += dmg;
 
                 break;
-            case SumMove.DmgType.MAGICAL:
+            case DmgType.MAGICAL:
                 if (dmg > 0)
                 {
                     summoner.magicDmgDealt += dmg;
@@ -3747,17 +3666,17 @@ public class BattleSystem : MonoBehaviour
 
                 target.magicDmgTaken += dmg;
                 break;
-            case SumMove.DmgType.TRUE:
+            case DmgType.TRUE:
                 target.trueDmgTaken += dmg;
                 break;
-            case SumMove.DmgType.HEAL:
+            case DmgType.HEAL:
                 if (dmg > 0)
                 {
                     summoner.healDone += dmg;
                     summoner.Heal(dmg);
                 }
                 break;
-            case SumMove.DmgType.SHIELD:
+            case DmgType.SHIELD:
                 if (dmg > 0)
                 {
                     summoner.curShield += dmg;
@@ -3784,7 +3703,7 @@ public class BattleSystem : MonoBehaviour
             shieldedDmg = tempShield - target.curShield;
         }
 
-        if ((dmg > 0 && (move.dmgType != SumMove.DmgType.HEAL) && (move.dmgType != SumMove.DmgType.SHIELD)) || shieldedDmg > 0)
+        if ((dmg > 0 && (move.dmgType != DmgType.HEAL) && (move.dmgType != DmgType.SHIELD)) || shieldedDmg > 0)
         {
             isDead = target.TakeDamage(dmg, shieldedDmg, isCrit);
             SetUltNumber(target, targetHud, (dmg + shieldedDmg), false);

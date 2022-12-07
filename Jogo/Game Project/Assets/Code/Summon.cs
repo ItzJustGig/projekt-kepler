@@ -56,19 +56,19 @@ public class Summon : ScriptableObject
         string whatis = "";
         switch (move.dmgType)
         {
-            case SumMove.DmgType.PHYSICAL:
+            case DmgType.PHYSICAL:
                 whatis = "physic";
                 break;
-            case SumMove.DmgType.MAGICAL:
+            case DmgType.MAGICAL:
                 whatis = "magic";
                 break;
-            case SumMove.DmgType.TRUE:
+            case DmgType.TRUE:
                 whatis = "trued";
                 break;
-            case SumMove.DmgType.HEAL:
+            case DmgType.HEAL:
                 whatis = "heal";
                 break;
-            case SumMove.DmgType.SHIELD:
+            case DmgType.SHIELD:
                 whatis = "shield";
                 break;
         }
@@ -125,23 +125,23 @@ public class Summon : ScriptableObject
         string whatis = "";
         switch (move.dmgType)
         {
-            case SumMove.DmgType.PHYSICAL:
+            case DmgType.PHYSICAL:
                 colour = "ffaa00";
                 whatis = "physic";
                 break;
-            case SumMove.DmgType.MAGICAL:
+            case DmgType.MAGICAL:
                 colour = "1a66ff";
                 whatis = "magic";
                 break;
-            case SumMove.DmgType.TRUE:
+            case DmgType.TRUE:
                 colour = "a6a6a6";
                 whatis = "trued";
                 break;
-            case SumMove.DmgType.HEAL:
+            case DmgType.HEAL:
                 colour = "00ff11";
                 whatis = "heal";
                 break;
-            case SumMove.DmgType.SHIELD:
+            case DmgType.SHIELD:
                 colour = "787878";
                 whatis = "shield";
                 break;

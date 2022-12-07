@@ -6,8 +6,6 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Summon Move", menuName = "Summon/Move")]
 public class SumMove : ScriptableObject
 {
-    public enum DmgType { PHYSICAL, MAGICAL, TRUE, HEAL, SHIELD }
-
     public int cd = 0;
     public int inCd = 0;
 

@@ -706,19 +706,19 @@ public class Moves : ScriptableObject
 
         switch (summon.move.dmgType)
         {
-            case SumMove.DmgType.PHYSICAL:
+            case DmgType.PHYSICAL:
                 temp.Append(GetSummonInfo(languageManager, language, "ffaa00", "physic"));
                 break;
-            case SumMove.DmgType.MAGICAL:
+            case DmgType.MAGICAL:
                 temp.Append(GetSummonInfo(languageManager, language, "1a66ff", "magic"));
                 break;
-            case SumMove.DmgType.TRUE:
+            case DmgType.TRUE:
                 temp.Append(GetSummonInfo(languageManager, language, "a6a6a6", "trued"));
                 break;
-            case SumMove.DmgType.SHIELD:
+            case DmgType.SHIELD:
                 temp.Append(GetSummonInfo(languageManager, language, "787878", "shield"));
                 break;
-            case SumMove.DmgType.HEAL:
+            case DmgType.HEAL:
                 temp.Append(GetSummonInfo(languageManager, language, "00ff11", "heal"));
                 break;
         }
