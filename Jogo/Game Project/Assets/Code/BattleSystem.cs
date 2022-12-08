@@ -408,30 +408,30 @@ public class BattleSystem : MonoBehaviour
             {
                 state = BattleState.PLAYERTURN;
                 yield return StartCoroutine(Attack(movePlayer, playerUnit, enemyUnit));
-                SetStatsHud(playerUnit, playerHUD);
-                SetStatsHud(enemyUnit, enemyHUD);
+                playerHUD.SetStatsHud(playerUnit);
+                enemyHUD.SetStatsHud(enemyUnit);
 
                 if (state == BattleState.PLAYERTURN)
                 {
                     state = BattleState.ENEMYTURN;
                     yield return StartCoroutine(Attack(moveEnemy, enemyUnit, playerUnit));
-                    SetStatsHud(playerUnit, playerHUD);
-                    SetStatsHud(enemyUnit, enemyHUD);
+                    playerHUD.SetStatsHud(playerUnit);
+                    enemyHUD.SetStatsHud(enemyUnit);
                 }
             }
             else if (moveEnemy.priority > movePlayer.priority)
             {
                 state = BattleState.ENEMYTURN;
                 yield return StartCoroutine(Attack(moveEnemy, enemyUnit, playerUnit));
-                SetStatsHud(playerUnit, playerHUD);
-                SetStatsHud(enemyUnit, enemyHUD);
+                playerHUD.SetStatsHud(playerUnit);
+                enemyHUD.SetStatsHud(enemyUnit);
 
                 if (state == BattleState.ENEMYTURN)
                 {
                     state = BattleState.PLAYERTURN;
                     yield return StartCoroutine(Attack(movePlayer, playerUnit, enemyUnit));
-                    SetStatsHud(playerUnit, playerHUD);
-                    SetStatsHud(enemyUnit, enemyHUD);
+                    playerHUD.SetStatsHud(playerUnit);
+                    enemyHUD.SetStatsHud(enemyUnit);
                 }
             }
             else if (moveEnemy.priority == movePlayer.priority)
@@ -440,45 +440,45 @@ public class BattleSystem : MonoBehaviour
                 {
                     state = BattleState.PLAYERTURN;
                     yield return StartCoroutine(Attack(movePlayer, playerUnit, enemyUnit));
-                    SetStatsHud(playerUnit, playerHUD);
-                    SetStatsHud(enemyUnit, enemyHUD);
+                    playerHUD.SetStatsHud(playerUnit);
+                    enemyHUD.SetStatsHud(enemyUnit);
 
                     if (state == BattleState.PLAYERTURN)
                     {
                         state = BattleState.ENEMYTURN;
                         yield return StartCoroutine(Attack(moveEnemy, enemyUnit, playerUnit));
-                        SetStatsHud(playerUnit, playerHUD);
-                        SetStatsHud(enemyUnit, enemyHUD);
+                        playerHUD.SetStatsHud(playerUnit);
+                        enemyHUD.SetStatsHud(enemyUnit);
                     }
                 }
                 else if (movPlayer < movEnemy)
                 {
                     state = BattleState.ENEMYTURN;
                     yield return StartCoroutine(Attack(moveEnemy, enemyUnit, playerUnit));
-                    SetStatsHud(playerUnit, playerHUD);
-                    SetStatsHud(enemyUnit, enemyHUD);
+                    playerHUD.SetStatsHud(playerUnit);
+                    enemyHUD.SetStatsHud(enemyUnit);
 
                     if (state == BattleState.ENEMYTURN)
                     {
                         state = BattleState.PLAYERTURN;
                         yield return StartCoroutine(Attack(movePlayer, playerUnit, enemyUnit));
-                        SetStatsHud(playerUnit, playerHUD);
-                        SetStatsHud(enemyUnit, enemyHUD);
+                        playerHUD.SetStatsHud(playerUnit);
+                        enemyHUD.SetStatsHud(enemyUnit);
                     }
                 }
                 else
                 {
                     state = BattleState.PLAYERTURN;
                     yield return StartCoroutine(Attack(movePlayer, playerUnit, enemyUnit));
-                    SetStatsHud(playerUnit, playerHUD);
-                    SetStatsHud(enemyUnit, enemyHUD);
+                    playerHUD.SetStatsHud(playerUnit);
+                    enemyHUD.SetStatsHud(enemyUnit);
 
                     if (state == BattleState.PLAYERTURN)
                     {
                         state = BattleState.ENEMYTURN;
                         yield return StartCoroutine(Attack(moveEnemy, enemyUnit, playerUnit));
-                        SetStatsHud(playerUnit, playerHUD);
-                        SetStatsHud(enemyUnit, enemyHUD);
+                        playerHUD.SetStatsHud(playerUnit);
+                        enemyHUD.SetStatsHud(enemyUnit);
                     }
                 }
             }
@@ -487,15 +487,15 @@ public class BattleSystem : MonoBehaviour
         {
             state = BattleState.PLAYERTURN;
             yield return StartCoroutine(Attack(movePlayer, playerUnit, enemyUnit));
-            SetStatsHud(playerUnit, playerHUD);
-            SetStatsHud(enemyUnit, enemyHUD);
+            playerHUD.SetStatsHud(playerUnit);
+            enemyHUD.SetStatsHud(enemyUnit);
 
             if (state == BattleState.PLAYERTURN)
             {
                 state = BattleState.ENEMYTURN;
                 yield return StartCoroutine(Attack(moveEnemy, enemyUnit, playerUnit));
-                SetStatsHud(playerUnit, playerHUD);
-                SetStatsHud(enemyUnit, enemyHUD);
+                playerHUD.SetStatsHud(playerUnit);
+                enemyHUD.SetStatsHud(enemyUnit);
             }
         }
 
@@ -787,9 +787,9 @@ public class BattleSystem : MonoBehaviour
                                     user.usedBonusStuff = false;
 
                                     if (user.isEnemy)
-                                        SetStatsHud(user, enemyHUD);
+                                        enemyHUD.SetStatsHud(user);
                                     else
-                                        SetStatsHud(user, playerHUD);
+                                        playerHUD.SetStatsHud(user);
                                 }
                             }
                         }
@@ -1694,7 +1694,7 @@ public class BattleSystem : MonoBehaviour
                                         statMod.inTime = statMod.time;
                                         user.statMods.Add(statMod);
                                         user.usedBonusStuff = false;
-                                        SetStatsHud(user, userHud);
+                                        userHud.SetStatsHud(user);
                                         DestroyPassiveIcon(a.name, user.isEnemy);
                                     }
 
@@ -2680,7 +2680,7 @@ public class BattleSystem : MonoBehaviour
                     statMod.inTime = statMod.time;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                     ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
                     a.stacks++;
                 }
@@ -2699,7 +2699,7 @@ public class BattleSystem : MonoBehaviour
                     statMod.inTime = statMod.time;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                 }
                 else if (a.inCd > 0)
                     a.inCd--;
@@ -2728,7 +2728,7 @@ public class BattleSystem : MonoBehaviour
                     statMod.inTime = statMod.time;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                 }
                 else if (a.inCd > 0)
                     a.inCd--;
@@ -2749,7 +2749,7 @@ public class BattleSystem : MonoBehaviour
                     statMod.inTime = statMod.time;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                     ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
                 }
                 else if (hpPer > (a.num * 100))
@@ -2780,7 +2780,7 @@ public class BattleSystem : MonoBehaviour
                     statMod.inTime = statMod.time;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                     ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
                 }
                 else if (hpPer > (a.num * 100))
@@ -2823,7 +2823,7 @@ public class BattleSystem : MonoBehaviour
 
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                 }
                 
                 if (a.inCd > 0 || a.stacks > a.maxStacks)
@@ -2875,7 +2875,7 @@ public class BattleSystem : MonoBehaviour
                     statMod.inTime = 1;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                     ManagePassiveIcon(a.sprite, a.name,"", user.isEnemy, a.GetPassiveInfo());
                 }
 
@@ -2894,7 +2894,7 @@ public class BattleSystem : MonoBehaviour
                             statMod2.inTime = a.cd;
                             user.statMods.Add(statMod2);
                             user.usedBonusStuff = false;
-                            SetStatsHud(user, userHud);
+                            userHud.SetStatsHud(user);
                             ManagePassiveIcon(a.sprite, a.name, "!", user.isEnemy, a.GetPassiveInfo());
                         }
                     }
@@ -2946,7 +2946,7 @@ public class BattleSystem : MonoBehaviour
                         statMod.inTime = statMod.time;
                         user.statMods.Add(statMod);
                         user.usedBonusStuff = false;
-                        SetStatsHud(user, userHud);
+                        userHud.SetStatsHud(user);
                         ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     }
                 }
@@ -2989,7 +2989,7 @@ public class BattleSystem : MonoBehaviour
                     statMod.inTime = statMod.time;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
 
                     ManagePassiveIcon(a.sprite, a.name, 1.ToString(), user.isEnemy, a.GetPassiveInfo());
                 }
@@ -3020,7 +3020,7 @@ public class BattleSystem : MonoBehaviour
                         statMod.inTime = statMod.time;
                         user.statMods.Add(statMod);
                         user.usedBonusStuff = false;
-                        SetStatsHud(user, userHud);
+                        userHud.SetStatsHud(user);
 
                         //display icon
                         ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo());
@@ -3054,7 +3054,7 @@ public class BattleSystem : MonoBehaviour
                     statMod.inTime = statMod.time;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
 
                     //display icon
                     ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo());
@@ -3215,7 +3215,7 @@ public class BattleSystem : MonoBehaviour
                     statMod.inTime = statMod.time;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                     ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
                 }
             }
@@ -3243,7 +3243,7 @@ public class BattleSystem : MonoBehaviour
                     statMod.atkDmg = statsUser.magicPower * a.num;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                 }
                 else
                     DestroyPassiveIcon(a.name, user.isEnemy);
@@ -3274,7 +3274,7 @@ public class BattleSystem : MonoBehaviour
                     statMod.inTime = statMod.time;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                 } else
                 {
                     DestroyPassiveIcon(a.name, user.isEnemy);
@@ -3298,7 +3298,7 @@ public class BattleSystem : MonoBehaviour
                         user.usedBonusStuff = false;
                     }
 
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                 }
                 ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
             }
@@ -3320,7 +3320,7 @@ public class BattleSystem : MonoBehaviour
                         user.usedBonusStuff = false;
                     }
 
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                 }
                 ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
             }
@@ -3337,7 +3337,7 @@ public class BattleSystem : MonoBehaviour
                     statMod.inTime = statMod.time;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                 }
                 else if (a.inCd > 0)
                     a.inCd--;
@@ -3426,7 +3426,7 @@ public class BattleSystem : MonoBehaviour
                     statMod.inTime = statMod.time;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                 }
 
                 if (a.stacks <= 0)
@@ -3458,7 +3458,7 @@ public class BattleSystem : MonoBehaviour
                         user.ult -= a.stacks;
                     }
 
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                     ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                 } else
                 {
@@ -3496,7 +3496,7 @@ public class BattleSystem : MonoBehaviour
                         user.TakeDamage(dmg, shieldDmg, false);
                     }
 
-                    SetStatsHud(user, userHud);
+                    userHud.SetStatsHud(user);
                     DestroyPassiveIcon(a.name, user.isEnemy);
                     user.passives.Remove(a);
                 }
@@ -4023,8 +4023,8 @@ public class BattleSystem : MonoBehaviour
         statsP = playerUnit.SetModifiers();
         statsE = enemyUnit.SetModifiers();
 
-        SetStatsHud(playerUnit, playerHUD);
-        SetStatsHud(enemyUnit, enemyHUD);
+        playerHUD.SetStatsHud(playerUnit);
+        enemyHUD.SetStatsHud(enemyUnit);
 
         CheckPassiveTurn(playerUnit, playerHUD, enemyUnit);
         CheckPassiveTurn(enemyUnit, enemyHUD, playerUnit);
@@ -4132,8 +4132,8 @@ public class BattleSystem : MonoBehaviour
         }
 
         SetStatus();
-        SetStatsHud(playerUnit, playerHUD);
-        SetStatsHud(enemyUnit, enemyHUD);
+        playerHUD.SetStatsHud(playerUnit);
+        enemyHUD.SetStatsHud(enemyUnit);
 
         sumPlayerHud.UpdateValues(playerUnit, langmanag.GetInfo("charc", "name", playerUnit.charc.name));
         sumEnemyHud.UpdateValues(enemyUnit, langmanag.GetInfo("charc", "name", enemyUnit.charc.name));
