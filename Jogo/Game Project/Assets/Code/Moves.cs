@@ -760,7 +760,7 @@ public class Moves : ScriptableObject
         
         if (summon != null)
         {
-            builder.Replace("%summondesc%", GetMoveInfoSummon(languageManager, language, false).ToString());
+            builder.Replace("%summondesc%", GetMoveInfoSummon(languageManager, language, true).ToString());
         }
 
         {

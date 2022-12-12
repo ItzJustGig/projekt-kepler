@@ -60,14 +60,19 @@ public class TooltipPopUp : MonoBehaviour
 
     public void DisplayInfo(string text, TooltipButton btn)
     {
-        if (lastBtn && !otherTooltip.gameObject.activeInHierarchy)
-            lastBtn.ResetIsShowing();
+        ResetLastBtn();
 
         lastBtn = btn;
         infoText.text = text;
         popupCanvasObj.SetActive(true);
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(popupObj);
+    }
+
+    public void ResetLastBtn()
+    {
+        if (lastBtn || (otherTooltip && !otherTooltip.gameObject.activeInHierarchy))
+            lastBtn.ResetIsShowing();
     }
 
     public void ForceHideInfo()

@@ -4146,6 +4146,9 @@ public class BattleSystem : MonoBehaviour
 
     void UpdateTooltips()
     {
+        tooltipMain.GetComponent<TooltipPopUp>().ResetLastBtn();
+        tooltipSec.GetComponent<TooltipPopUp>().ResetLastBtn();
+
         foreach (Transform child in moveListHud.transform)
         {
             int id = child.GetComponent<BtnMoveSetup>().GetId();
