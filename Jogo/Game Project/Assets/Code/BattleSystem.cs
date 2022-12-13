@@ -24,6 +24,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private float dmgResisPer = 0.18f;
     [SerializeField] private float magicResisPer = 0.12f;
     [SerializeField] private float dotReduc = 0.3f;
+    [SerializeField] private float ultComp = 0.25f;
+    [SerializeField] private int ultCompDuration = 6;
     [SerializeField] private Text dialogText;
 
     Unit playerUnit;
@@ -1275,11 +1277,18 @@ public class BattleSystem : MonoBehaviour
                     if ((Random.Range(0f, 1f) > statsUser.accuracy) || (state is BattleState.LOSE || state is BattleState.WIN) && !isStoped)
                         isStoped = true;
 
-                    if (!isStoped || move.type == Moves.MoveType.DEFFENCIVE || move.type == Moves.MoveType.SUPPORT || move.type == Moves.MoveType.STATMOD || move.type == Moves.MoveType.ULT || move.type == Moves.MoveType.SUMMON)
+                    if (!isStoped || 
+                        move.type == Moves.MoveType.DEFFENCIVE || move.type == Moves.MoveType.SUPPORT || 
+                        move.type == Moves.MoveType.STATMOD || move.type == Moves.MoveType.SUMMON)
                     {
-                        if (Random.Range(0f, 1f) < (evasion + statsTarget.evasion) && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.RANGED))
+                        if (Random.Range(0f, 1f) < (evasion + statsTarget.evasion) && 
+                            (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.RANGED))
                         {
                             target.Miss(true);
+
+                            if (move.isUlt)
+                                GrantUltCompansation(user);
+
                             yield return new WaitForSeconds(1.15f);
                             dialogText.text = langmanag.GetInfo("gui", "text", "dodge", langmanag.GetInfo("charc", "name", target.charc.name));
                             yield return new WaitForSeconds(1.1f);
@@ -1751,10 +1760,10 @@ public class BattleSystem : MonoBehaviour
                             if (dmgT > 0 || shieldedDmg > 0)
                             {
                                 isDead = target.TakeDamage(dmgT, shieldedDmg, isCrit);
-                                if (!(move.type is Moves.MoveType.ULT))
+                                if (!(move.isUlt))
                                     SetUltNumber(user, userHud, (dmgT + shieldedDmg), true);
 
-                                if (move.type is Moves.MoveType.ULT)
+                                if (move.isUlt)
                                     SetUltNumber(target, enemyHud, ((dmgT + shieldedDmg) / 2), false);
                                 else
                                     SetUltNumber(target, enemyHud, (dmgT + shieldedDmg), false);
@@ -1892,6 +1901,12 @@ public class BattleSystem : MonoBehaviour
                     else
                     {
                         target.Miss(false);
+
+                        if (move.isUlt)
+                        {
+                            GrantUltCompansation(user);
+                        }
+
                         yield return new WaitForSeconds(1.15f);
 
                         if (cancelText == "")
@@ -2058,39 +2073,42 @@ public class BattleSystem : MonoBehaviour
                             {
                                 bool canUse = true;
 
-                                switch (a.type)
+                                if (!a.isUlt)
                                 {
-                                    case Moves.MoveType.PHYSICAL:
-                                        if (!enemyUnit.canUsePhysical)
-                                            canUse = false;
-                                        break;
-                                    case Moves.MoveType.MAGICAL:
-                                        if (!enemyUnit.canUseMagic)
-                                            canUse = false;
-                                        break;
-                                    case Moves.MoveType.RANGED:
-                                        if (!enemyUnit.canUseRanged)
-                                            canUse = false;
-                                        break;
-                                    case Moves.MoveType.DEFFENCIVE:
-                                        if (!enemyUnit.canUseProtec)
-                                            canUse = false;
-                                        break;
-                                    case Moves.MoveType.SUPPORT:
-                                        if (!enemyUnit.canUseSupp)
-                                            canUse = false;
-                                        break;
-                                    case Moves.MoveType.STATMOD:
-                                        if (!enemyUnit.canUseStatMod)
-                                            canUse = false;
-                                        break;
-                                    case Moves.MoveType.SUMMON:
-                                        if (!enemyUnit.canUseSummon)
-                                            canUse = false;
-                                        break;
-                                    case Moves.MoveType.ULT:
-                                        enemyUnit.ult -= enemyUnit.ultMove.ultCost;
-                                        break;
+                                    switch (a.type)
+                                    {
+                                        case Moves.MoveType.PHYSICAL:
+                                            if (!enemyUnit.canUsePhysical)
+                                                canUse = false;
+                                            break;
+                                        case Moves.MoveType.MAGICAL:
+                                            if (!enemyUnit.canUseMagic)
+                                                canUse = false;
+                                            break;
+                                        case Moves.MoveType.RANGED:
+                                            if (!enemyUnit.canUseRanged)
+                                                canUse = false;
+                                            break;
+                                        case Moves.MoveType.DEFFENCIVE:
+                                            if (!enemyUnit.canUseProtec)
+                                                canUse = false;
+                                            break;
+                                        case Moves.MoveType.SUPPORT:
+                                            if (!enemyUnit.canUseSupp)
+                                                canUse = false;
+                                            break;
+                                        case Moves.MoveType.STATMOD:
+                                            if (!enemyUnit.canUseStatMod)
+                                                canUse = false;
+                                            break;
+                                        case Moves.MoveType.SUMMON:
+                                            if (!enemyUnit.canUseSummon)
+                                                canUse = false;
+                                            break;
+                                    }
+                                } else
+                                {
+                                    enemyUnit.ult -= enemyUnit.ultMove.ultCost;
                                 }
 
                                 if (canUse)
@@ -2200,6 +2218,11 @@ public class BattleSystem : MonoBehaviour
 
     public void OnMoveBtn(int moveId)
     {
+        tooltipMain.GetComponent<TooltipPopUp>().HideInfo();
+        tooltipMain.GetComponent<TooltipPopUp>().ForceResetLastBtn();
+        tooltipSec.GetComponent<TooltipPopUp>().HideInfo();
+        tooltipSec.GetComponent<TooltipPopUp>().ForceResetLastBtn();
+
         Moves move = null;
         int i = 0;
 
@@ -2279,29 +2302,38 @@ public class BattleSystem : MonoBehaviour
 
         panelMoves.SetActive(true);
         scrollbar.value = 1;
-        tooltipMain.GetComponent<TooltipPopUp>().ForceHideInfo();
-        tooltipSec.GetComponent<TooltipPopUp>().ForceHideInfo();
     }
 
     public void OnHealBtn()
     {
-        StartCoroutine(Combat(playerUnit.recoverMana));
+        StartCoroutine(Combat(playerUnit.recoverMana.ReturnMove()));
     }
 
     public void OnUltBtn()
     {
-        StartCoroutine(Combat(playerUnit.charc.ultimate));
+        StartCoroutine(Combat(playerUnit.ultMove));
         playerUnit.ult -= playerUnit.ultMove.ultCost;
     }
 
     public void OnBasicBtn()
     {
-        StartCoroutine(Combat(playerUnit.basicAttack));
+        StartCoroutine(Combat(playerUnit.basicAttack.ReturnMove()));
     }
 
     public void CancelBtn()
     {
         panelMoves.SetActive(false);
+    }
+
+    public void GrantUltCompansation(Unit user)
+    {
+        StatMod mod = new StatMod();
+
+        mod.time = ultCompDuration;
+        mod.inTime = ultCompDuration;
+        mod.ultrate = ultComp;
+
+        user.statMods.Add(mod);
     }
 
     public bool EffectCalcDmg(Effects a, Unit user)
@@ -4153,7 +4185,6 @@ public class BattleSystem : MonoBehaviour
         {
             int id = child.GetComponent<BtnMoveSetup>().GetId();
             int i = 0;
-            Debug.Log(id);
             foreach (Moves a in playerUnit.moves)
             {
                 i++;

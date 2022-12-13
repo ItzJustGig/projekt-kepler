@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: user
   m_EditorClassIdentifier: 
   flat: 0
-  time: 7
+  time: 6
   inTime: 0
   chance: 1
   hp: 0
@@ -30,8 +30,9 @@ MonoBehaviour:
   dmgResis: 0
   magicResis: 0
   timing: 0
-  movSpeed: 0.22
+  movSpeed: 0.24
   lifesteal: 0
   accuracy: 0
   evasion: 0
   armourPen: 0.09
+  ultrate: 0

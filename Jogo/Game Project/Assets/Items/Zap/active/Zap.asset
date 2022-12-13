@@ -21,7 +21,7 @@ MonoBehaviour:
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 10
+  magicDmg: 15
   trueDmg: 0
   sanityDmg: 0
   heal: 0
@@ -35,6 +35,8 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 0
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
@@ -44,3 +46,4 @@ MonoBehaviour:
   dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}

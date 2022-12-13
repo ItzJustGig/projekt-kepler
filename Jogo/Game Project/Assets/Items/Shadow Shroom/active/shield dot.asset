@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 8
   dmg: 0
-  time: 3
+  time: 4
   inTime: 0
   isCrit: 0
   srcId: 

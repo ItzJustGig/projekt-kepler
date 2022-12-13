@@ -16,7 +16,7 @@ MonoBehaviour:
   name: shadowshroom
   hitTime: 1
   priority: 0
-  uses: 2
+  uses: 3
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -26,20 +26,24 @@ MonoBehaviour:
   sanityDmg: 0
   heal: 0
   healMana: 0
-  healStamina: 80
+  healStamina: 60
   healSanity: 0
   shield: 120
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 14
+  cooldown: 13
   inCooldown: 0
   manaCost: 0
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: fb2dca00ce25a4b47adad72b8c3516c6, type: 2}
   statModEnemy: {fileID: 0}
-  scale: []
+  scale:
+  - {fileID: 11400000, guid: 890350e9893c83148a7fda8ff446a0b1, type: 2}
+  - {fileID: 11400000, guid: fabc5496e2e785741a25dd9975d2ac4e, type: 2}
   dot:
   - {fileID: 11400000, guid: de8b270a8bad03a46bdbefb19b7f9e74, type: 2}
   - {fileID: 11400000, guid: 87730c05c846c794d80c5a7bcbaf1bac, type: 2}

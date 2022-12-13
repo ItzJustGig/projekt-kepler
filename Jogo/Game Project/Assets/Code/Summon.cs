@@ -51,6 +51,35 @@ public class Summon : ScriptableObject
         return summon;
     }
 
+    //Used on AI
+    public DMG ReturnSummonDmg(Stats stats, Unit unit)
+    {
+        DMG dmg = default;
+        dmg.Reset();
+        float atk = this.stats.atkScale.SetScale(stats, unit);
+
+        switch (move.dmgType)
+        {
+            case DmgType.PHYSICAL:
+                dmg.phyDmg += atk;
+                break;
+            case DmgType.MAGICAL:
+                dmg.magicDmg += atk;
+                break;
+            case DmgType.HEAL:
+                dmg.heal += atk;
+                break;
+            case DmgType.SHIELD:
+                dmg.shield += atk;
+                break;
+            case DmgType.TRUE:
+                dmg.trueDmg += atk;
+                break;
+        }
+
+        return dmg;
+    }
+
     public string GetMoveTypeLangId()
     {
         string whatis = "";

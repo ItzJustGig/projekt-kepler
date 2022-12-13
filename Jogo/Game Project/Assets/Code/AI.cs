@@ -17,7 +17,7 @@ public class AI : ScriptableObject
         foreach (Moves a in moves)
         {
             float chance = 0;
-            if (a.type == Moves.MoveType.ULT)
+            if (a.isUlt)
                 chance += 250;
             
             if (a.inCooldown <= 0)
@@ -43,6 +43,15 @@ public class AI : ScriptableObject
                 }
 
                 it.Multiply(a.hitTime);
+
+                if (a.summon)
+                {
+                    Unit unit = user;
+                    Stats stats = statsU;
+
+                    it.AddDmg(a.summon.ReturnSummonDmg(stats, unit));
+                }
+
                 float totalDmg = it.phyDmg + it.magicDmg + it.trueDmg;
 
                 if (ai.totalPhyDmg > 0)

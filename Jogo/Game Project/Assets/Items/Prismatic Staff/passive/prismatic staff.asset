@@ -19,7 +19,7 @@ MonoBehaviour:
   num: 0
   maxNum: 0
   stacks: 0
-  maxStacks: 9
+  maxStacks: 8
   cd: 0
   inCd: 0
   statScale: {fileID: 11400000, guid: dbda19dad4a59f4408b846856cf8af06, type: 2}

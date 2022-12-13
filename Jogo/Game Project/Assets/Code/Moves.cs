@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Moves : ScriptableObject
 {
-    public enum MoveType { PHYSICAL, MAGICAL, RANGED, SUPPORT, DEFFENCIVE, STATMOD, SUMMON, BASIC, ULT }
+    public enum MoveType { PHYSICAL, MAGICAL, RANGED, SUPPORT, DEFFENCIVE, STATMOD, SUMMON, BASIC }
     public enum HealFromDmg { NONE, PHYSICAL, MAGICAL, TRUE, PHYSICAL_MAGICAL, PHYSICAL_TRUE, MAGICAL_TRUE, ALL }
 
     public MoveType type;
@@ -16,6 +16,7 @@ public class Moves : ScriptableObject
     public int hitTime = 1;
     public int priority = 0;
     public int uses = -1;
+    public bool isUlt = false;
     public bool blocksPhysical = false;
     public bool blocksMagical = false;
     public bool blocksRanged = false;

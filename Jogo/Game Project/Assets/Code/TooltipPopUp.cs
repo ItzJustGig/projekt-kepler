@@ -9,7 +9,7 @@ public class TooltipPopUp : MonoBehaviour
     public GameObject popupCanvasObj;
     public RectTransform popupObj;
     public TextMeshProUGUI infoText;
-    private TooltipButton lastBtn;
+    [SerializeField] private TooltipButton lastBtn;
     [SerializeField] private TooltipPopUp otherTooltip;
     public Vector3 offset;
     public float padding;
@@ -71,13 +71,27 @@ public class TooltipPopUp : MonoBehaviour
 
     public void ResetLastBtn()
     {
-        if (lastBtn || (otherTooltip && !otherTooltip.gameObject.activeInHierarchy))
-            lastBtn.ResetIsShowing();
+        if (lastBtn)
+        {
+            if (otherTooltip) {
+                if (!otherTooltip.gameObject.activeInHierarchy)
+                {
+                    lastBtn.ResetIsShowing();
+                }
+            } else
+            {
+                lastBtn.ResetIsShowing();
+            }
+        }
     }
 
-    public void ForceHideInfo()
+    public void ForceResetLastBtn()
     {
-        popupCanvasObj.SetActive(false);
+        if (lastBtn)
+        {
+            lastBtn.ResetIsShowing();
+            lastBtn = null;
+        }
     }
 
     public void HideInfo()

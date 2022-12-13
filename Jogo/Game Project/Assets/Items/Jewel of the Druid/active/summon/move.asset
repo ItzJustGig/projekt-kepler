@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cd: 3
   inCd: 0
-  dmgType: 3
-  scale: 0.85
+  dmgType: 4
   sanityDmg: 0

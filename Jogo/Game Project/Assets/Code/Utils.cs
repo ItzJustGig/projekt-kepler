@@ -10,7 +10,7 @@ public struct DMG
     public float healMana;
     public float healStamina;
     public int healSanity;
-    public int shield;
+    public float shield;
 
     public void Reset()
     {

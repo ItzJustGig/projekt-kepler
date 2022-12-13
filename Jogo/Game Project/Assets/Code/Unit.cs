@@ -107,7 +107,7 @@ public class Unit : MonoBehaviour
 
         ultMove = charc.ultimate.ReturnMove();
         ultMove.SetOwner(this);
-        ultMove.type = Moves.MoveType.ULT;
+        ultMove.isUlt = true;
 
         basicAttack = basicAttack.ReturnMove();
         basicAttack.SetOwner(this);
@@ -440,6 +440,7 @@ public class Unit : MonoBehaviour
             temp.lifesteal += mod.lifesteal;
             temp.evasion += mod.evasion;
             temp.accuracy += mod.accuracy;
+            temp.armourPen += mod.armourPen;
             temp.ultrate += mod.ultrate;
         }
 
