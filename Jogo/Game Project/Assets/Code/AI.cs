@@ -18,7 +18,7 @@ public class AI : ScriptableObject
         {
             float chance = 0;
             if (a.isUlt)
-                chance += 250;
+                chance += 80;
             
             if (a.inCooldown <= 0)
             {
@@ -55,7 +55,7 @@ public class AI : ScriptableObject
                 float totalDmg = it.phyDmg + it.magicDmg + it.trueDmg;
 
                 if (ai.totalPhyDmg > 0)
-                    chance = it.phyDmg / ai.totalPhyDmg;
+                    chance += it.phyDmg / ai.totalPhyDmg;
 
                 if (ai.totalMagicDmg > 0)
                     chance += it.magicDmg / ai.totalMagicDmg;

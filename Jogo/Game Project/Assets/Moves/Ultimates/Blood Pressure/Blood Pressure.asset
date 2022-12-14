@@ -17,6 +17,7 @@ MonoBehaviour:
   hitTime: 1
   priority: 0
   uses: -1
+  isUlt: 1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -33,7 +34,7 @@ MonoBehaviour:
   healFromDmg: 0.35
   cooldown: 0
   inCooldown: 0
-  manaCost: 0
+  manaCost: 50
   staminaCost: 0
   ultCost: 100
   needFullUlt: 1
@@ -49,4 +50,3 @@ MonoBehaviour:
   effects: []
   grantPassive: {fileID: 11400000, guid: 4605a6c8a388e054fae070e58d7b8e88, type: 2}
   summon: {fileID: 0}
-  owner: {fileID: 0}

@@ -108,6 +108,8 @@ public class Unit : MonoBehaviour
         ultMove = charc.ultimate.ReturnMove();
         ultMove.SetOwner(this);
         ultMove.isUlt = true;
+        ultMove.manaCost = 0;
+        ultMove.staminaCost = 0;
 
         basicAttack = basicAttack.ReturnMove();
         basicAttack.SetOwner(this);

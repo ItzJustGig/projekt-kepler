@@ -2035,22 +2035,23 @@ public class BattleSystem : MonoBehaviour
         int random = 0;
         int i = 0;
 
-        foreach (Effects a in enemyUnit.effects)
-        {
-            if (!a.canUseMagic && !a.canUsePhysical && !a.canUseRanged && !a.canUseStatMod && !a.canUseSupp && !a.canUseProtec && !a.canUseSummon)
-                skip = true;
-        }
+        if (!enemyUnit.canUseMagic && !enemyUnit.canUsePhysical && !enemyUnit.canUseRanged && !enemyUnit.canUseStatMod && !enemyUnit.canUseSupp
+            && !enemyUnit.canUseProtec && !enemyUnit.canUseSummon)
+            skip = true;
 
         do
         {
             if (enemyUnit.curMana <= (enemyUnit.SetModifiers().mana * aiGaranteedManaRecover))
             {
-                if (Random.Range(0f, 1f) <= 0.95)
-                {
+                if (enemyUnit.canUseSupp && enemyUnit.moves.Contains(enemyUnit.recoverMana) && enemyUnit.recoverMana.inCooldown == 0)
                     random = enemyUnit.moves.Count - 1;
-                }
                 else
-                    random = Random.Range(0, enemyUnit.moves.Count - 2);
+                {
+                    Stats statsU = enemyUnit.SetModifiers();
+                    Stats statsT = playerUnit.SetModifiers();
+
+                    random = enemyUnit.charc.ai.chooseMove(enemyUnit.moves, enemyUnit, playerUnit, statsU, statsT);
+                }
             }
             else
             {
@@ -2200,7 +2201,46 @@ public class BattleSystem : MonoBehaviour
 
         if ((playerUnit.ult == 100 && playerUnit.ultMove.needFullUlt) ||
         (playerUnit.ult == playerUnit.ultMove.ultCost && !playerUnit.ultMove.needFullUlt))
-            ultBtn.interactable = true;
+        {
+            bool canUse = true;
+
+            switch (playerUnit.ultMove.type)
+            {
+                case Moves.MoveType.PHYSICAL:
+                    if (!playerUnit.canUsePhysical)
+                        canUse = false;
+                    break;
+                case Moves.MoveType.MAGICAL:
+                    if (!playerUnit.canUseMagic)
+                        canUse = false;
+                    break;
+                case Moves.MoveType.RANGED:
+                    if (!playerUnit.canUseRanged)
+                        canUse = false;
+                    break;
+                case Moves.MoveType.DEFFENCIVE:
+                    if (!playerUnit.canUseProtec)
+                        canUse = false;
+                    break;
+                case Moves.MoveType.SUPPORT:
+                    if (!playerUnit.canUseSupp)
+                        canUse = false;
+                    break;
+                case Moves.MoveType.STATMOD:
+                    if (!playerUnit.canUseStatMod)
+                        canUse = false;
+                    break;
+                case Moves.MoveType.SUMMON:
+                    if (!playerUnit.canUseSummon)
+                        canUse = false;
+                    break;
+            }
+
+            if (canUse)
+                ultBtn.interactable = true;
+            else
+                ultBtn.interactable = false;
+        }
 
         if (playerUnit.recoverMana.inCooldown <= 0)
         {
@@ -2306,6 +2346,7 @@ public class BattleSystem : MonoBehaviour
 
     public void OnHealBtn()
     {
+        playerUnit.recoverMana.inCooldown = playerUnit.recoverMana.cooldown;
         StartCoroutine(Combat(playerUnit.recoverMana.ReturnMove()));
     }
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8f43cc6e3e0fc4e941dd4a34b15aec, type: 3}
   m_Name: Total Mag Dmg
   m_EditorClassIdentifier: 
-  totalPhyDmg: 5
+  totalPhyDmg: 7
   totalMagicDmg: 30
   totalSanityDmg: 5
   totalDmg: 10

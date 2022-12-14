@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Total Phy Dmg
   m_EditorClassIdentifier: 
   totalPhyDmg: 20
-  totalMagicDmg: 5
-  totalSanityDmg: 2
+  totalMagicDmg: 7
+  totalSanityDmg: 4
   totalDmg: 8
   totalHealing: 5
   totalShielding: 5
@@ -22,6 +22,6 @@ MonoBehaviour:
   applyAnyEffect: 4
   block: 3
   selectedStatUp: 0
-  anyStatUp: 10
+  anyStatUp: 13
   anyStatDown: 5
   hasSummon: 30

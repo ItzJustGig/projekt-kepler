@@ -386,7 +386,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 12
+  m_Text: 11
 --- !u!1 &7954924221204952151
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Magic Slash
+  m_Text: Taunt
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a9d8d1d7eee74734990bceef438f0a17, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 936908b1d1e44524f9d402eb684ac7da, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -801,43 +801,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Magic Slash</align></size>
+  text: '<size=24><align=center>Taunt</align></size>
 
     Priority: 0
 
     <s><align=center>|                
     |</align></s>
 
-    80% chance to <color=#1a66ff>27% Magic Power</color> to the
-    user for 2 turns
-
-    60% chance to <color=#946ACD>-20% Magic Resistance</color>
-    to the enemy for 3 turns
+    100% chance to <color=#ffaa00>10% Attack Damage</color>,
+    <color=#1a66ff>10% Magic Power</color>, <color=#f75145>-10% Critical Chance</color>,
+    <color=#f75145>-6% Critical Damage</color>, <color=#937264>-32% Damage Resistance</color>,
+    <color=#946ACD>-28% Magic Resistance</color> and <color=#0984db>-30% Timing</color>
+    to the enemy for 4 turns
 
     <s><align=center>|                 |</align></s>
 
     Deal
-    <color=#1a66ff>94,1 magical damage</color>
+    <color=#b829ff>5,0 sanity damage</color>
+
+    Recover <color=#1e68fc>5,0 mana</color>
+
+    Recover
+    <color=#f0dd0a>5,0 stamina</color>
 
 '
-  textSec: '<size=24><align=center>Magic Slash</align></size>
+  textSec: '<size=24><align=center>Taunt</align></size>
 
     Priority: 0
 
     <s><align=center>|                
     |</align></s>
 
-    80% chance to <color=#1a66ff>27% Magic Power</color> to the
-    user for 2 turns
-
-    60% chance to <color=#946ACD>-20% Magic Resistance</color>
-    to the enemy for 3 turns
+    100% chance to <color=#ffaa00>10% Attack Damage</color>,
+    <color=#1a66ff>10% Magic Power</color>, <color=#f75145>-10% Critical Chance</color>,
+    <color=#f75145>-6% Critical Damage</color>, <color=#937264>-32% Damage Resistance</color>,
+    <color=#946ACD>-28% Magic Resistance</color> and <color=#0984db>-30% Timing</color>
+    to the enemy for 4 turns
 
     <s><align=center>|                 |</align></s>
 
     Deal
-    <color=#1a66ff>60 + (<color=#1a66ff>55%</color> of the user''s <color=#1a66ff>Magic
-    Power</color>) magical damage</color>
+    <color=#b829ff>5 sanity damage</color>
+
+    Recover <color=#1e68fc>5 mana</color>
+
+    Recover
+    <color=#f0dd0a>5 stamina</color>
 
 '
   wantSec: 0
@@ -919,7 +928,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: 7
 --- !u!1 &7954924222182827413
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,7 +1007,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 55
+  m_Text: 0
 --- !u!1 &7970126842544643455
 GameObject:
   m_ObjectHideFlags: 0

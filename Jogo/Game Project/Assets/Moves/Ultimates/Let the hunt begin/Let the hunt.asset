@@ -17,6 +17,7 @@ MonoBehaviour:
   hitTime: 1
   priority: 1
   uses: -1
+  isUlt: 1
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -35,6 +36,8 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 0
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: 01a3e9e28421ce149a6ae8dd80b7fc9f, type: 2}

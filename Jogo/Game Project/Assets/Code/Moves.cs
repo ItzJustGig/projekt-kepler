@@ -69,6 +69,7 @@ public class Moves : ScriptableObject
         move.owner = owner;
         move.type = type;
         move.name = name;
+        move.isUlt = isUlt;
 
         move.hitTime = hitTime;
         move.priority = priority;
