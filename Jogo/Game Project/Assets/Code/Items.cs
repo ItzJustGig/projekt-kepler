@@ -104,10 +104,18 @@ public class Items : ScriptableObject
         {
             builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
             if (statmod.Count > 0)
-                foreach(StatMod s in statmod)
+            {
+                int i = statmod.Count;
+                foreach (StatMod s in statmod)
                 {
-                    builder.Append(s.GetStatModInfo()).AppendLine();
+                    i--;
+                    builder.Append(s.GetStatModInfo());
                 }
+
+                if (i == 0)
+                    builder.AppendLine();
+            }
+                
 
             if (passives.Count > 0) 
                 foreach(Passives p in passives)

@@ -103,6 +103,73 @@ public class StatMod : ScriptableObject
         return stats;
     }
 
+    public int GetStatNumber()
+    {
+        int i = 0;
+
+        if (hp != 0)
+            i++;
+
+        if (hpRegen != 0)
+            i++;
+
+        if (mana != 0)
+            i++;
+
+        if (manaRegen != 0)
+            i++;
+
+        if (stamina != 0)
+            i++;
+
+        if (staminaRegen != 0)
+            i++;
+
+        if (sanity != 0)
+            i++;
+
+        if (atkDmg != 0)
+            i++;
+
+        if (magicPower != 0)
+            i++;
+
+        if (dmgResis != 0)
+            i++;
+
+        if (magicResis != 0)
+            i++;
+
+        if (movSpeed != 0)
+            i++;
+
+        if (timing != 0)
+            i++;
+
+        if (critChance != 0)
+            i++;
+
+        if (critDmg != 0)
+            i++;
+
+        if (lifesteal != 0)
+            i++;
+
+        if (armourPen != 0)
+            i++;
+
+        if (ultrate != 0)
+            i++;
+
+        if (accuracy != 0)
+            i++;
+
+        if (evasion != 0)
+            i++;
+
+        return i;
+    }
+
     public StringBuilder GetChance(LanguageManager languageManager, string language)
     {
         StringBuilder builder = new StringBuilder();
@@ -133,43 +200,47 @@ public class StatMod : ScriptableObject
             return builder;
     }
 
-    private StringBuilder GetInfo(LanguageManager languageManager, string language, string colour, float val, string stat, string user, bool statNeedPerc)
+    private StringBuilder GetInfo(LanguageManager languageManager, string language, string colour, float val, string stat, bool statNeedPerc, int i, bool isItem)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", "statmod"));
-
-        builder.Replace("%chance%", GetChance(languageManager, language).ToString());
-        builder.Replace("%c%", "<color=#" + colour + ">");
-        builder.Replace("%c/%", "</color>");
-        if (!flat || statNeedPerc)
-            builder.Replace("%val%", (val*100).ToString());
-        else
-            builder.Replace("%val%%", val.ToString());
-        
-        builder.Replace("%stat%", stat);
-        builder.Replace("%who%", languageManager.GetText(language, "showdetail", "statmodwho"));
-        builder.Replace("%u%", user);
-        builder.Replace("%time%", GetTime(languageManager, language).ToString());
-
-        return builder;
-    }
-
-    private StringBuilder GetInfo(LanguageManager languageManager, string language, string colour, float val, string stat, bool statNeedPerc)
-    {
-        StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "items", "stat"));
+        builder.Append(languageManager.GetText(language, "showdetail", "statmodstat"));
 
         builder.Replace("%c%", "<color=#" + colour + ">");
-        builder.Replace("%c/%", "</color>");
-        if (!flat || statNeedPerc)
-            builder.Replace("%val%", (val * 100).ToString());
-        else
-            builder.Replace("%val%%", val.ToString());
 
-        if (val < 0)
-            builder.Replace("+", "");
+        builder.Replace("%c/%", "</color>");
+
+        if (!isItem)
+        {
+            if (!flat || statNeedPerc)
+                builder.Replace("%val%", (val * 100).ToString());
+            else
+                builder.Replace("%val%%", val.ToString());
+        } else
+        {
+            if (!flat || statNeedPerc)
+                if (val > 0)
+                    builder.Replace("%val%", "+" + (val * 100).ToString());
+                else
+                    builder.Replace("%val%", (val * 100).ToString());
+            else
+                if (val > 0)
+                    builder.Replace("%val%%", "+" + val.ToString());
+                else
+                    builder.Replace("%val%%", val.ToString());
+        }
 
         builder.Replace("%stat%", stat);
+
+        if (!isItem)
+        {
+            if (i > 1)
+                builder.Append(", ");
+            else if (i == 1)
+                builder.Append(languageManager.GetText(language, "showdetail", "and") + " ");
+        } else
+        {
+            builder.AppendLine();
+        }
 
         return builder;
     }
@@ -203,7 +274,7 @@ public class StatMod : ScriptableObject
         LanguageManager languageManager = GetLanguageMan();
         string language = GetLanguage();
 
-        StringBuilder builder = new StringBuilder();
+        StringBuilder main = new StringBuilder();
 
         string onWho = "";
 
@@ -212,67 +283,139 @@ public class StatMod : ScriptableObject
         else
             onWho = languageManager.GetText(language, "showdetail", "enemy");
 
+        main.Append(languageManager.GetText(language, "showdetail", "statmod"));
+        main.Replace("%chance%", GetChance(languageManager, language).ToString() + " ");
+
+        int i = GetStatNumber();
+
+        StringBuilder builder = new StringBuilder();
         if (hp != 0)
-            builder.Append(GetInfo(languageManager, language, "00ff11", hp, languageManager.GetText(language, "stats", "name", "hp"), onWho, false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "00ff11", hp, languageManager.GetText(language, "stats", "name", "hp"), false, i, false));
+        }
 
         if (hpRegen != 0)
-            builder.Append(GetInfo(languageManager, language, "2ffa3d", hpRegen, languageManager.GetText(language, "stats", "name", "hpregen"), onWho, false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "2ffa3d", hpRegen, languageManager.GetText(language, "stats", "name", "hpregen"), false, i, false));
+        }
 
         if (mana != 0)
-            builder.Append(GetInfo(languageManager, language, "3366ff", mana, languageManager.GetText(language, "stats", "name", "mana"), onWho, false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "3366ff", mana, languageManager.GetText(language, "stats", "name", "mana"), false, i, false));
+        }
 
         if (manaRegen != 0)
-            builder.Append(GetInfo(languageManager, language, "2d71fa", manaRegen, languageManager.GetText(language, "stats", "name", "manaregen"), onWho, false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "2d71fa", manaRegen, languageManager.GetText(language, "stats", "name", "manaregen"), false, i, false));
+        }
 
         if (stamina != 0)
-            builder.Append(GetInfo(languageManager, language, "f0dd0a", stamina, languageManager.GetText(language, "stats", "name", "stamina"), onWho, false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "f0dd0a", stamina, languageManager.GetText(language, "stats", "name", "stamina"), false, i, false));
+        }
 
         if (staminaRegen != 0)
-            builder.Append(GetInfo(languageManager, language, "ebdb28", staminaRegen, languageManager.GetText(language, "stats", "name", "staminaregen"), onWho, false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "ebdb28", staminaRegen, languageManager.GetText(language, "stats", "name", "staminaregen"), false, i, false));
+        }
 
         if (sanity != 0)
-            builder.Append(GetInfo(languageManager, language, "b641f0", sanity, languageManager.GetText(language, "stats", "name", "sanity"), onWho, false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "b641f0", sanity, languageManager.GetText(language, "stats", "name", "sanity"), false, i, false));
+        }
 
         if (atkDmg != 0)
-            builder.Append(GetInfo(languageManager, language, "ffaa00", atkDmg, languageManager.GetText(language, "stats", "name", "attack"), onWho, false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "ffaa00", atkDmg, languageManager.GetText(language, "stats", "name", "attack"), false, i, false));
+        }
 
         if (magicPower != 0)
-            builder.Append(GetInfo(languageManager, language, "1a66ff", magicPower, languageManager.GetText(language, "stats", "name", "magicpower"), onWho, false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "1a66ff", magicPower, languageManager.GetText(language, "stats", "name", "magicpower"), false, i, false));
+        }
 
         if (critChance != 0)
-            builder.Append(GetInfo(languageManager, language, "f75145", critChance, languageManager.GetText(language, "stats", "name", "critchance"), onWho, true)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "f75145", critChance, languageManager.GetText(language, "stats", "name", "critchance"), true, i, false));
+        }
 
         if (critDmg != 0)
-            builder.Append(GetInfo(languageManager, language, "f75145", critDmg, languageManager.GetText(language, "stats", "name", "critdmg"), onWho, true)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "f75145", critDmg, languageManager.GetText(language, "stats", "name", "critdmg"), true, i, false));
+        }
 
         if (dmgResis != 0)
-            builder.Append(GetInfo(languageManager, language, "937264", dmgResis, languageManager.GetText(language, "stats", "name", "def"), onWho, false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "937264", dmgResis, languageManager.GetText(language, "stats", "name", "def"), false, i, false));
+        }
 
         if (magicResis != 0)
-            builder.Append(GetInfo(languageManager, language, "946ACD", magicResis, languageManager.GetText(language, "stats", "name", "magicdef"), onWho, false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "946ACD", magicResis, languageManager.GetText(language, "stats", "name", "magicdef"), false, i, false));
+        }
 
         if (timing != 0)
-            builder.Append(GetInfo(languageManager, language, "0984db", timing, languageManager.GetText(language, "stats", "name", "timing"), onWho, false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "0984db", timing, languageManager.GetText(language, "stats", "name", "timing"), false, i, false));
+        }
 
         if (movSpeed != 0)
-            builder.Append(GetInfo(languageManager, language, "0095ff", movSpeed, languageManager.GetText(language, "stats", "name", "movspeed"), onWho, false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "0095ff", movSpeed, languageManager.GetText(language, "stats", "name", "movspeed"), false, i, false));
+        }
 
         if (lifesteal != 0)
-            builder.Append(GetInfo(languageManager, language, "078f10", lifesteal, languageManager.GetText(language, "stats", "name", "lifesteal"), onWho, true)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "078f10", lifesteal, languageManager.GetText(language, "stats", "name", "lifesteal"), true, i, false));
+        }
 
         if (evasion != 0)
-            builder.Append(GetInfo(languageManager, language, "227da1", evasion, languageManager.GetText(language, "stats", "name", "evasion"), onWho, true)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "227da1", evasion, languageManager.GetText(language, "stats", "name", "evasion"), true, i, false));
+        }
 
         if (accuracy != 0)
-            builder.Append(GetInfo(languageManager, language, "e04419", accuracy, languageManager.GetText(language, "stats", "name", "accuracy"), onWho, true)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "e04419", accuracy, languageManager.GetText(language, "stats", "name", "accuracy"), true, i, false));
+        }
 
         if (armourPen != 0)
-            builder.Append(GetInfo(languageManager, language, "c87c32", armourPen, languageManager.GetText(language, "stats", "name", "armourpen"), onWho, true)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "c87c32", armourPen, languageManager.GetText(language, "stats", "name", "armourpen"), true, i, false));
+        }
 
         if (ultrate != 0)
-            builder.Append(GetInfo(languageManager, language, "E6E6E6", ultrate, languageManager.GetText(language, "stats", "name", "ultrate"), onWho, true)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "E6E6E6", ultrate, languageManager.GetText(language, "stats", "name", "ultrate"), true, i, false));
+        }
 
-        return builder;
+        main.Replace("%stat%", builder.ToString());
+        main.Replace("%who%", languageManager.GetText(language, "showdetail", "statmodwho"));
+        main.Replace("%u%", onWho);
+        main.Replace("%time%", GetTime(languageManager, language).ToString());
+        main.AppendLine();
+
+        return main;
     }
 
     public StringBuilder GetStatModInfo()
@@ -282,67 +425,138 @@ public class StatMod : ScriptableObject
 
         StringBuilder builder = new StringBuilder();
 
+        int i = GetStatNumber();
+
+        StringBuilder main = new StringBuilder();
+        main.Append(languageManager.GetText(language, "showdetail", "statmod"));
+        main.Replace("%chance%", "");
+
         if (hp != 0)
-            builder.Append(GetInfo(languageManager, language, "00ff11", hp, languageManager.GetText(language, "stats", "name", "maxhp"), false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "00ff11", hp, languageManager.GetText(language, "stats", "name", "maxhp"), false, i, true));
+        }
 
         if (hpRegen != 0)
-            builder.Append(GetInfo(languageManager, language, "2ffa3d", hpRegen, languageManager.GetText(language, "stats", "name", "hpregen"), false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "2ffa3d", hpRegen, languageManager.GetText(language, "stats", "name", "hpregen"), false, i, true));
+        }
 
         if (mana != 0)
-            builder.Append(GetInfo(languageManager, language, "3366ff", mana, languageManager.GetText(language, "stats", "name", "maxmana"), false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "3366ff", mana, languageManager.GetText(language, "stats", "name", "maxmana"), false, i, true));
+        }
 
         if (manaRegen != 0)
-            builder.Append(GetInfo(languageManager, language, "2d71fa", manaRegen, languageManager.GetText(language, "stats", "name", "manaregen"), false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "2d71fa", manaRegen, languageManager.GetText(language, "stats", "name", "manaregen"), false, i, true));
+        }
 
         if (stamina != 0)
-            builder.Append(GetInfo(languageManager, language, "f0dd0a", stamina, languageManager.GetText(language, "stats", "name", "maxstamina"), false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "f0dd0a", stamina, languageManager.GetText(language, "stats", "name", "maxstamina"), false, i, true));
+        }
 
         if (staminaRegen != 0)
-            builder.Append(GetInfo(languageManager, language, "ebdb28", staminaRegen, languageManager.GetText(language, "stats", "name", "staminaregen"), false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "ebdb28", staminaRegen, languageManager.GetText(language, "stats", "name", "staminaregen"), false, i, true));
+        }
 
         if (sanity != 0)
-            builder.Append(GetInfo(languageManager, language, "b641f0", sanity, languageManager.GetText(language, "stats", "name", "maxsanity"), false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "b641f0", sanity, languageManager.GetText(language, "stats", "name", "maxsanity"), false, i, true));
+        }
 
         if (atkDmg != 0)
-            builder.Append(GetInfo(languageManager, language, "ffaa00", atkDmg, languageManager.GetText(language, "stats", "name", "attack"), false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "ffaa00", atkDmg, languageManager.GetText(language, "stats", "name", "attack"), false, i, true));
+        }
 
         if (magicPower != 0)
-            builder.Append(GetInfo(languageManager, language, "1a66ff", magicPower, languageManager.GetText(language, "stats", "name", "magicpower"), false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "1a66ff", magicPower, languageManager.GetText(language, "stats", "name", "magicpower"), false, i, true));
+        }
 
         if (critChance != 0)
-            builder.Append(GetInfo(languageManager, language, "f75145", critChance, languageManager.GetText(language, "stats", "name", "critchance"), true)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "f75145", critChance, languageManager.GetText(language, "stats", "name", "critchance"), true, i, true));
+        }
 
         if (critDmg != 0)
-            builder.Append(GetInfo(languageManager, language, "f75145", critDmg, languageManager.GetText(language, "stats", "name", "critdmg"), true)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "f75145", critDmg, languageManager.GetText(language, "stats", "name", "critdmg"), true, i, true));
+        }
 
         if (dmgResis != 0)
-            builder.Append(GetInfo(languageManager, language, "937264", dmgResis, languageManager.GetText(language, "stats", "name", "def"), false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "937264", dmgResis, languageManager.GetText(language, "stats", "name", "def"), false, i, true));
+        }
 
         if (magicResis != 0)
-            builder.Append(GetInfo(languageManager, language, "946ACD", magicResis, languageManager.GetText(language, "stats", "name", "magicdef"), false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "946ACD", magicResis, languageManager.GetText(language, "stats", "name", "magicdef"), false, i, true));
+        }
 
         if (timing != 0)
-            builder.Append(GetInfo(languageManager, language, "0984db", timing, languageManager.GetText(language, "stats", "name", "timing"), false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "0984db", timing, languageManager.GetText(language, "stats", "name", "timing"), false, i, true));
+        }
 
         if (movSpeed != 0)
-            builder.Append(GetInfo(languageManager, language, "0095ff", movSpeed, languageManager.GetText(language, "stats", "name", "movspeed"), false)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "0095ff", movSpeed, languageManager.GetText(language, "stats", "name", "movspeed"), false, i, true));
+        }
 
         if (lifesteal != 0)
-            builder.Append(GetInfo(languageManager, language, "078f10", lifesteal, languageManager.GetText(language, "stats", "name", "lifesteal"), true)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "078f10", lifesteal, languageManager.GetText(language, "stats", "name", "lifesteal"), true, i, true));
+        }
 
         if (evasion != 0)
-            builder.Append(GetInfo(languageManager, language, "227da1", evasion, languageManager.GetText(language, "stats", "name", "evasion"), true)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "227da1", evasion, languageManager.GetText(language, "stats", "name", "evasion"), true, i, true));
+        }
 
         if (accuracy != 0)
-            builder.Append(GetInfo(languageManager, language, "e04419", accuracy, languageManager.GetText(language, "stats", "name", "accuracy"), true)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "e04419", accuracy, languageManager.GetText(language, "stats", "name", "accuracy"), true, i, true));
+        }
 
         if (armourPen != 0)
-            builder.Append(GetInfo(languageManager, language, "c87c32", armourPen, languageManager.GetText(language, "stats", "name", "armourpen"), true)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "c87c32", armourPen, languageManager.GetText(language, "stats", "name", "armourpen"), true, i, true));
+        }
 
         if (ultrate != 0)
-            builder.Append(GetInfo(languageManager, language, "E6E6E6", ultrate, languageManager.GetText(language, "stats", "name", "ultrate"), true)).AppendLine();
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "E6E6E6", ultrate, languageManager.GetText(language, "stats", "name", "ultrate"), true, i, true));
+        }
 
-        return builder;
+        main.Replace("%stat%", builder.ToString());
+        main.Replace("%who%", "");
+        main.Replace("%u%", "");
+        main.Replace("%time%", "");
+
+        return main;
     }
 
     public bool HowPositive()

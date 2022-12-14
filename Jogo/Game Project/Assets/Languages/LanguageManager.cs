@@ -278,6 +278,7 @@ public class LanguageManager : MonoBehaviour
         public string chancetostopoptional;
         public string chancetostatmod;
         public string statmodtime;
+        public string statmodstat;
         public string statmod;
         public string statmodwho;
         public string physicdmg;
@@ -415,6 +416,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "chancetostatmod":
                     returns = chancetostatmod;
+                    break;
+                case "statmodstat":
+                    returns = statmodstat;
                     break;
                 case "statmodtime":
                     returns = statmodtime;
