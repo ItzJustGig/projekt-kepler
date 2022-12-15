@@ -386,7 +386,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 11
+  m_Text: 10
 --- !u!1 &7954924221204952151
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Taunt
+  m_Text: Fire Breath
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 936908b1d1e44524f9d402eb684ac7da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9d8d1d7eee74734990bceef438f0a17, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -619,7 +619,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 10
 --- !u!1 &7954924221810379002
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,52 +801,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Taunt</align></size>
+  text: '<size=24><align=center>Fire Breath</align></size>
 
-    Priority: 0
+    Hit 4 times
+
+    Priority:
+    0
+
+    <s><align=center>|                 |</align></s>
+
+    20% chance to
+    <color=#0984db>-20% Timing</color> to the user for 2 turns
 
     <s><align=center>|                
     |</align></s>
 
-    100% chance to <color=#ffaa00>10% Attack Damage</color>,
-    <color=#1a66ff>10% Magic Power</color>, <color=#f75145>-10% Critical Chance</color>,
-    <color=#f75145>-6% Critical Damage</color>, <color=#937264>-32% Damage Resistance</color>,
-    <color=#946ACD>-28% Magic Resistance</color> and <color=#0984db>-30% Timing</color>
-    to the enemy for 4 turns
+    12% chance to inflict Burn to the target for 1-2 turns.
 
-    <s><align=center>|                 |</align></s>
+    <s><align=center>|                
+    |</align></s>
 
-    Deal
-    <color=#b829ff>5,0 sanity damage</color>
-
-    Recover <color=#1e68fc>5,0 mana</color>
-
-    Recover
-    <color=#f0dd0a>5,0 stamina</color>
+    Deal <color=#1a66ff>55,2 magical damage</color>
 
 '
-  textSec: '<size=24><align=center>Taunt</align></size>
+  textSec: '<size=24><align=center>Fire Breath</align></size>
 
-    Priority: 0
+    Hit 4 times
+
+    Priority:
+    0
+
+    <s><align=center>|                 |</align></s>
+
+    20% chance to
+    <color=#0984db>-20% Timing</color> to the user for 2 turns
 
     <s><align=center>|                
     |</align></s>
 
-    100% chance to <color=#ffaa00>10% Attack Damage</color>,
-    <color=#1a66ff>10% Magic Power</color>, <color=#f75145>-10% Critical Chance</color>,
-    <color=#f75145>-6% Critical Damage</color>, <color=#937264>-32% Damage Resistance</color>,
-    <color=#946ACD>-28% Magic Resistance</color> and <color=#0984db>-30% Timing</color>
-    to the enemy for 4 turns
+    12% chance to inflict Burn to the target for 1-2 turns.
 
-    <s><align=center>|                 |</align></s>
+    <s><align=center>|                
+    |</align></s>
 
-    Deal
-    <color=#b829ff>5 sanity damage</color>
-
-    Recover <color=#1e68fc>5 mana</color>
-
-    Recover
-    <color=#f0dd0a>5 stamina</color>
+    Deal <color=#1a66ff>10 + (<color=#1a66ff>105%</color> of
+    the user''s <color=#1a66ff>Magic Power</color>) magical damage</color>
 
 '
   wantSec: 0
@@ -928,7 +927,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 7
+  m_Text: 5
 --- !u!1 &7954924222182827413
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1006,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 65
 --- !u!1 &7970126842544643455
 GameObject:
   m_ObjectHideFlags: 0

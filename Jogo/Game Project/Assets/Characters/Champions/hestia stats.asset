@@ -16,7 +16,7 @@ MonoBehaviour:
   hpRegen: 29
   mana: 490
   manaRegen: 0.6
-  stamina: 655
+  stamina: 670
   staminaRegen: 0.9
   sanity: 160
   atkDmg: 53
@@ -31,3 +31,4 @@ MonoBehaviour:
   accuracy: 1
   evasion: 0
   armourPen: 0
+  ultrate: 1

@@ -25,7 +25,7 @@ MonoBehaviour:
   sanity: 0
   atkDmg: 0.2
   magicPower: 0
-  critChance: 0.14
+  critChance: 0.16
   critDmg: 0.1
   dmgResis: 0
   magicResis: 0
@@ -35,3 +35,4 @@ MonoBehaviour:
   accuracy: 0
   evasion: -0.0425
   armourPen: 0
+  ultrate: 0

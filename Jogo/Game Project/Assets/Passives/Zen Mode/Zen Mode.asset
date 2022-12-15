@@ -17,7 +17,7 @@ MonoBehaviour:
   origin: 0
   sprite: {fileID: 21300000, guid: c9b1b4a3c1b09a148baebe820be7cb96, type: 3}
   num: 0.12
-  maxNum: 0.8
+  maxNum: 0.75
   stacks: 0
   maxStacks: 0
   cd: 0
