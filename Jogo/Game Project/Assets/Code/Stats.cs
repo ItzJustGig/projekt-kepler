@@ -10,9 +10,11 @@ public class Stats : ScriptableObject
 
     public float mana;
     public float manaRegen;
+    public float manaCost = 1;
 
     public float stamina;
     public float staminaRegen;
+    public float staminaCost = 1;
 
     public int sanity;
 
@@ -27,6 +29,8 @@ public class Stats : ScriptableObject
     public float timing;
     public float movSpeed;
     public float lifesteal;
+    public float healBonus = 0;
+    public float shieldBonus = 0;
     public float accuracy = 1;
 
     public float evasion;
@@ -56,6 +60,10 @@ public class Stats : ScriptableObject
         stats.accuracy = accuracy;
         stats.armourPen = armourPen;
         stats.ultrate = ultrate;
+        stats.healBonus = healBonus;
+        stats.shieldBonus = shieldBonus;
+        stats.manaCost = manaCost;
+        stats.staminaCost = staminaCost;
 
         return stats;
     }

@@ -1034,6 +1034,10 @@ public class LanguageManager : MonoBehaviour
         public string ultimate;
         public string ultrate;
         public string attackpower;
+        public string manacost;
+        public string staminacost;
+        public string healbonus;
+        public string shieldbonus;
 
         public string Get_StatCont(string a)
         {
@@ -1141,6 +1145,18 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "attackpower":
                     returns = attackpower;
+                    break;
+                case "manacost":
+                    returns = manacost;
+                    break;
+                case "staminacost":
+                    returns = staminacost;
+                    break;
+                case "healbonus":
+                    returns = healbonus;
+                    break;
+                case "shieldbonus":
+                    returns = shieldbonus;
                     break;
                 default:
                     returns = "null";

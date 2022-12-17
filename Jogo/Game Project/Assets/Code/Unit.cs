@@ -444,6 +444,10 @@ public class Unit : MonoBehaviour
             temp.accuracy += mod.accuracy;
             temp.armourPen += mod.armourPen;
             temp.ultrate += mod.ultrate;
+            temp.manaCost += mod.manaCost;
+            temp.staminaCost += mod.staminaCost;
+            temp.healBonus += mod.healBonus;
+            temp.shieldBonus += mod.shieldBonus;
         }
 
         return temp;

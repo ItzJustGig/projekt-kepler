@@ -16,9 +16,11 @@ public class StatMod : ScriptableObject
 
     public float mana;
     public float manaRegen;
+    public float manaCost;
 
     public float stamina;
     public float staminaRegen;
+    public float staminaCost;
 
     public float sanity;
 
@@ -33,6 +35,8 @@ public class StatMod : ScriptableObject
     public float timing;
     public float movSpeed;
     public float lifesteal;
+    public float healBonus;
+    public float shieldBonus;
     public float accuracy;
 
     public float evasion;
@@ -67,6 +71,10 @@ public class StatMod : ScriptableObject
         stats.accuracy = accuracy;
         stats.armourPen = armourPen;
         stats.ultrate = ultrate;
+        stats.manaCost = manaCost;
+        stats.staminaCost = staminaCost;
+        stats.healBonus = healBonus;
+        stats.shieldBonus = shieldBonus;
 
         return stats;
     }
@@ -165,6 +173,18 @@ public class StatMod : ScriptableObject
             i++;
 
         if (evasion != 0)
+            i++;
+
+        if (manaCost != 0)
+            i++;
+
+        if (staminaCost != 0)
+            i++;
+
+        if (healBonus != 0)
+            i++;
+
+        if (shieldBonus != 0)
             i++;
 
         return i;
@@ -409,6 +429,30 @@ public class StatMod : ScriptableObject
             builder.Append(GetInfo(languageManager, language, "E6E6E6", ultrate, languageManager.GetText(language, "stats", "name", "ultrate"), true, i, false));
         }
 
+        if (manaCost != 0)
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "3366ff", manaCost, languageManager.GetText(language, "stats", "name", "manacost"), true, i, false));
+        }
+
+        if (staminaCost != 0)
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "f0dd0a", staminaCost, languageManager.GetText(language, "stats", "name", "staminacost"), true, i, false));
+        }
+
+        if (healBonus != 0)
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "00ff11", healBonus, languageManager.GetText(language, "stats", "name", "healbonus"), true, i, false));
+        }
+
+        if (shieldBonus != 0)
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "787878", shieldBonus, languageManager.GetText(language, "stats", "name", "shieldbonus"), true, i, false));
+        }
+
         main.Replace("%stat%", builder.ToString());
         main.Replace("%who%", languageManager.GetText(language, "showdetail", "statmodwho"));
         main.Replace("%u%", onWho);
@@ -549,6 +593,30 @@ public class StatMod : ScriptableObject
         {
             i--;
             builder.Append(GetInfo(languageManager, language, "E6E6E6", ultrate, languageManager.GetText(language, "stats", "name", "ultrate"), true, i, true));
+        }
+
+        if (manaCost != 0)
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "3366ff", manaCost, languageManager.GetText(language, "stats", "name", "manacost"), true, i, true));
+        }
+
+        if (staminaCost != 0)
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "f0dd0a", staminaCost, languageManager.GetText(language, "stats", "name", "staminacost"), true, i, true));
+        }
+
+        if (healBonus != 0)
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "00ff11", healBonus, languageManager.GetText(language, "stats", "name", "healbonus"), true, i, true));
+        }
+
+        if (shieldBonus != 0)
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "787878", shieldBonus, languageManager.GetText(language, "stats", "name", "shieldbonus"), true, i, true));
         }
 
         main.Replace("%stat%", builder.ToString());

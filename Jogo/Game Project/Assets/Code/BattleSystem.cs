@@ -517,16 +517,8 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
-            int manaCost = move.manaCost;
-            int staminaCost = move.staminaCost;
-            foreach (Passives a in user.passives.ToArray())
-            {
-                if (a.name == "zenmode" && a.stacks == 1)
-                {
-                    manaCost = manaCost / 2;
-                    staminaCost = staminaCost / 2;
-                }
-            }
+            int manaCost = (int)(move.manaCost*user.SetModifiers().manaCost);
+            int staminaCost = (int)(move.staminaCost*user.SetModifiers().staminaCost);
 
             user.curMana -= manaCost;
 
@@ -639,7 +631,6 @@ public class BattleSystem : MonoBehaviour
                                 a.num++;
                                 ManagePassiveIcon(a.sprite, a.name, (a.maxNum - a.num).ToString(), user.isEnemy, a.GetPassiveInfo());
                             }
-                                
 
                             if (a.num == a.maxNum)
                             {
@@ -1787,6 +1778,7 @@ public class BattleSystem : MonoBehaviour
 
                             if (dmg.heal > 0)
                             {
+                                dmg.heal += dmg.heal * user.SetModifiers().healBonus;
                                 user.healDone += dmg.heal;
                                 user.Heal(dmg.heal);
                             }
@@ -1828,6 +1820,7 @@ public class BattleSystem : MonoBehaviour
 
                             if (dmg.shield > 0)
                             {
+                                dmg.shield += dmg.shield * user.SetModifiers().shieldBonus;
                                 foreach (Passives a in user.passives.ToArray())
                                 {
                                     if (a.name == "combatrepair")
@@ -2291,6 +2284,12 @@ public class BattleSystem : MonoBehaviour
                 Text cd = moveBtnGO.transform.Find("Cooldown").gameObject.GetComponent<Text>();
                 int inCd = move.inCooldown;
 
+                Text sta = moveBtnGO.transform.Find("Stamina").gameObject.GetComponent<Text>();
+                Text mn = moveBtnGO.transform.Find("Mana").gameObject.GetComponent<Text>();
+
+                mn.text = ((int)(move.manaCost * playerUnit.SetModifiers().manaCost)).ToString();
+                sta.text = ((int)(move.staminaCost * playerUnit.SetModifiers().staminaCost)).ToString();
+
                 if (inCd <= 0)
                     cd.text = move.cooldown.ToString();
                 else
@@ -2330,7 +2329,8 @@ public class BattleSystem : MonoBehaviour
                         break;
                 }
 
-                if (playerUnit.curMana < move.manaCost || playerUnit.curStamina < move.staminaCost || inCd > 0)
+                if (playerUnit.curMana < (move.manaCost*playerUnit.SetModifiers().manaCost) 
+                    || playerUnit.curStamina < (move.staminaCost * playerUnit.SetModifiers().staminaCost) || inCd > 0)
                     canUse = false;
 
                 if (canUse)
@@ -2480,6 +2480,7 @@ public class BattleSystem : MonoBehaviour
         user.staminaHealDone += dmg.healStamina;
         user.sanityHealDone += dmg.healSanity;
 
+        dmg.heal += dmg.heal * user.SetModifiers().healBonus;
         if (dmg.heal > 0)
             user.Heal(dmg.heal);
 
@@ -2517,6 +2518,7 @@ public class BattleSystem : MonoBehaviour
                 }
             }
 
+            dmg.shield += dmg.shield * user.SetModifiers().shieldBonus;
             user.curShield += dmg.shield;
             if (user.curShield > 1000)
                 user.curShield = 1000;
@@ -2556,6 +2558,7 @@ public class BattleSystem : MonoBehaviour
                     if (statsUser.lifesteal > 0)
                     {
                         float heal = a.dmg * statsUser.lifesteal;
+                        heal += heal * user.SetModifiers().healBonus;
                         user.Heal(heal);
                         user.healDone += heal;
                     } 
@@ -2597,6 +2600,7 @@ public class BattleSystem : MonoBehaviour
                 user.sanityDmgTaken += a.dmg;
                 break;
             case Dotdmg.DmgType.HEAL:
+                a.dmg += a.dmg * user.SetModifiers().healBonus;
                 if (a.dmg > 0)
                     user.Heal(a.dmg);
                 user.healDone += a.dmg;
@@ -2635,6 +2639,7 @@ public class BattleSystem : MonoBehaviour
                     if (user.curShield > 1000)
                         user.curShield = 1000;
                 }
+                a.dmg += a.dmg * user.SetModifiers().shieldBonus;
                 user.shieldDone += a.dmg;
                 break;
         }
@@ -3211,6 +3216,7 @@ public class BattleSystem : MonoBehaviour
 
                         if ((user.curHp + heal) < user.SetModifiers().hp)
                         {
+                            heal += heal * user.SetModifiers().healBonus;
                             user.curHp += heal;
                             user.healDone += heal;
                         } else
@@ -3525,6 +3531,7 @@ public class BattleSystem : MonoBehaviour
                         user.usedBonusStuff = false;
 
                         float shield = a.statScale.SetScale(user.SetModifiers(), user);
+                        shield += shield * user.SetModifiers().shieldBonus;
                         user.curShield += shield;
                         user.shieldDone += shield;
 

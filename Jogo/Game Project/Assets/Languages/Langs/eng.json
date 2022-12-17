@@ -165,7 +165,11 @@
 			"armourpen": "Armour Penetration",
 			"ultimate": "Ultimate",
 			"ultrate": "Ultimate Rate",
-			"attackpower": "Attack Power"
+			"attackpower": "Attack Power",
+			"healbonus": "Healing Bonus",
+			"shieldbonus": "Shielding Bonus",
+			"manacost": "Mana Cost",
+			"staminacost": "Stamina Cost"
 		},
 		"desc": {
 			"hp": "",
@@ -366,7 +370,7 @@
 			"blazingfists": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> or <color=#ffaa00>basic attacks</color> for %cd% turns.",
 			"fighterinstinct": "When the user is below <color=#00ff11>%num%% health</color>, gain %mod% and deal bonus %scale% on <color=#ffaa00>physical moves</color> and <color=#ffaa00>basic attacks</color>.",
 			"successoroffire": "The user deal bonus %scale% to Burn enemies with <color=#ffaa00>basic</color>, <color=#ffaa00>physical</color>, <color=#0055ff>magical</color> and <color=#f75145>ranged moves</color>, also gain bonus <color=#ffaa00>+(<color=#0055ff>%num%% magic power</color>) attack damage</color>.",
-			"zenmode": "The user is immune to Tired, but when is bellow <color=#f0dd0a>%num%% stamina</color>, gain %mod%, the user's moves have its costs halved and regen %scale% and %scale2% until the user is at %maxNum%% stamina.",
+			"zenmode": "The user is immune to Tired, but when is bellow <color=#f0dd0a>%num%% stamina</color>, gain %mod% and regen %scale% and %scale2% until the user is at %maxNum%% stamina.",
 			"baby": "But its just a baby! (Some of your stats were lowered by %num%%)",
 			"weak": "The enemy is too weak. (Some of your stats were lowered by %num%%)",
 			"normal": "Avarage normal enemy, nothing special. (Some of your stats were lowered by %num%%)",
