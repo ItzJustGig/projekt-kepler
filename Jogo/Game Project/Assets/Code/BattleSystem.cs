@@ -4100,22 +4100,22 @@ public class BattleSystem : MonoBehaviour
                     enemyUnit.statMods.Remove(statMod);
             }
 
-        statsP = playerUnit.SetModifiers();
-        statsE = enemyUnit.SetModifiers();
-
         playerHUD.SetStatsHud(playerUnit);
         enemyHUD.SetStatsHud(enemyUnit);
 
         CheckPassiveTurn(playerUnit, playerHUD, enemyUnit);
         CheckPassiveTurn(enemyUnit, enemyHUD, playerUnit);
 
-        playerUnit.Heal(statsP.hpRegen);
-        if (turnCount > 1)
-            playerUnit.healDone += statsP.hpRegen;
+        statsP = playerUnit.SetModifiers();
+        statsE = enemyUnit.SetModifiers();
 
-        enemyUnit.Heal(statsE.hpRegen);
+        playerUnit.Heal(statsP.hpRegen * (1+statsP.healBonus));
         if (turnCount > 1)
-            enemyUnit.healDone += statsE.hpRegen;
+            playerUnit.healDone += statsP.hpRegen * statsP.healBonus;
+
+        enemyUnit.Heal(statsE.hpRegen * (1+statsE.healBonus));
+        if (turnCount > 1)
+            enemyUnit.healDone += statsE.hpRegen * statsE.healBonus;
 
         if (playerUnit.curMana < statsP.mana)
             if ((playerUnit.curMana + statsP.manaRegen) > statsP.mana)

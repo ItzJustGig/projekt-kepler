@@ -16,6 +16,8 @@ MonoBehaviour:
   name: keeneye
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,14 +30,20 @@ MonoBehaviour:
   healStamina: 10
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 5
   inCooldown: 0
   manaCost: 10
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 11400000, guid: b9203276deee55849ab5edb39861e268, type: 2}
   scale: []
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}

@@ -324,6 +324,9 @@ public class Unit : MonoBehaviour
 
     public bool TakeDamage (float dmgTaken, float shieldDmg, bool isCrit)
     {
+        if (curHp > SetModifiers().hp)
+            curHp = SetModifiers().hp;
+
         if (dmgTaken > 0 || shieldDmg > 0)
             DoAnim("takedmg");
 
@@ -378,12 +381,10 @@ public class Unit : MonoBehaviour
 
     public void Heal (float heal)
     {
-        Stats statsP = SetModifiers();
-
-        if (!(curHp + heal >= statsP.hp))
+        if (!(curHp + heal >= SetModifiers().hp))
             curHp += heal;
         else
-            heal = statsP.hp - curHp;
+            heal = SetModifiers().hp - curHp;
 
         GameObject dmg = Instantiate(dmgText, transform.position, Quaternion.identity) as GameObject;
         dmg.transform.GetChild(0).GetComponent<TextMesh>().color = Color.green;
@@ -397,10 +398,10 @@ public class Unit : MonoBehaviour
         {
             if (!mod.flat)
             {
-                temp.hp += (int)((temp.hp + temp.hp) * mod.hp);
-                temp.mana += (int)((temp.mana + temp.mana) * mod.mana);
-                temp.stamina += (int)((temp.stamina + temp.stamina) * mod.stamina);
-                temp.sanity += (int)((temp.sanity + temp.sanity) * mod.sanity);
+                temp.hp += (int)(temp.hp * mod.hp);
+                temp.mana += (int)(temp.mana * mod.mana);
+                temp.stamina += (int)(temp.stamina * mod.stamina);
+                temp.sanity += (int)(temp.sanity * mod.sanity);
 
                 temp.hpRegen += (temp.hpRegen * mod.hpRegen);
                 temp.manaRegen += temp.manaRegen * mod.manaRegen;
