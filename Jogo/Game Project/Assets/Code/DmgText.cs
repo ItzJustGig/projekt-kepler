@@ -11,7 +11,6 @@ public class DmgText : MonoBehaviour
     {
         AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(0);
         Destroy(gameObject, clipInfo[0].clip.length);
-
         transform.localPosition += new Vector3(0, 0.5f, 0);
     }
 }

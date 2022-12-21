@@ -12360,6 +12360,8 @@ MonoBehaviour:
   dmgResisPer: 0.18
   magicResisPer: 0.12
   dotReduc: 0.6
+  ultComp: 0.25
+  ultCompDuration: 6
   dialogText: {fileID: 2435926}
   playerHUD: {fileID: 1220544893}
   enemyHUD: {fileID: 178673193}

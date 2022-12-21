@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using TMPro;
 
 public class Unit : MonoBehaviour
 {
@@ -322,61 +323,306 @@ public class Unit : MonoBehaviour
         return isDead;
     }
 
-    public bool TakeDamage (float dmgTaken, float shieldDmg, bool isCrit)
+    public DMG MitigateDmg(DMG dmg, float dmgResisPer, float magicResisPer, float armourPen, float magicPen, float dotReduc = 1)
     {
+        if (dmg.phyDmg > 0)
+        {
+            float dmgMitigated = (float)(((SetModifiers().dmgResis - (SetModifiers().dmgResis * armourPen)) * dmgResisPer)*dotReduc);
+            if (dmgMitigated < dmg.phyDmg)
+            {
+                dmg.phyDmg -= dmgMitigated;
+                phyDmgMitigated += dmgMitigated;
+                phyDmgTaken += dmg.phyDmg - dmgMitigated;
+            }
+            else
+            {
+                dmgMitigated = dmg.phyDmg;
+                dmg.phyDmg = 0;
+                phyDmgMitigated += dmgMitigated;
+                phyDmgTaken += 0;
+            }
+        }
+
+        if (dmg.magicDmg > 0)
+        {
+            float dmgMitigated = (float)(((SetModifiers().magicResis - (SetModifiers().magicResis * magicPen)) * magicResisPer)*dotReduc);
+
+            if (dmgMitigated < dmg.magicDmg)
+            {
+                dmg.magicDmg -= dmgMitigated;
+                magicDmgMitigated += dmgMitigated;
+                magicDmgTaken += dmg.magicDmg - dmgMitigated;
+            }
+            else
+            {
+                dmgMitigated = dmg.magicDmg;
+                dmg.magicDmg = 0;
+                magicDmgMitigated += dmgMitigated;
+            }
+        }
+
+        return dmg;
+    }
+
+    public DMG ApplyHealFrom(DMG dmg, Moves.HealFromDmg healFrom, float healFromPer)
+    {
+        if (healFrom != Moves.HealFromDmg.NONE)
+        {
+            if (healFrom is Moves.HealFromDmg.PHYSICAL)
+                dmg.heal += dmg.phyDmg * healFromPer;
+            else if (healFrom is Moves.HealFromDmg.MAGICAL)
+                dmg.heal += dmg.magicDmg * healFromPer;
+            else if (healFrom is Moves.HealFromDmg.TRUE)
+                dmg.heal += dmg.trueDmg * healFromPer;
+            else if (healFrom is Moves.HealFromDmg.PHYSICAL_MAGICAL)
+                dmg.heal += (dmg.phyDmg + dmg.magicDmg) * healFromPer;
+            else if (healFrom is Moves.HealFromDmg.PHYSICAL_TRUE)
+                dmg.heal += (dmg.phyDmg + dmg.trueDmg) * healFromPer;
+            else if (healFrom is Moves.HealFromDmg.MAGICAL_TRUE)
+                dmg.heal += (dmg.magicDmg + dmg.trueDmg) * healFromPer;
+            else if (healFrom is Moves.HealFromDmg.ALL)
+                dmg.heal += (dmg.phyDmg + dmg.magicDmg + dmg.trueDmg) * healFromPer;
+        }
+
+        return dmg;
+    }
+
+    public DMG ApplyLifesteal(DMG dmg)
+    {
+        if (SetModifiers().lifesteal > 0)
+            dmg.ApplyLifesteal(false, SetModifiers().lifesteal);
+
+        return dmg;
+    }
+
+    public DMG CalcRegens(DMG dmg, string moveName="")
+    {
+        if (dmg.heal > 0)
+        {
+            dmg.heal += dmg.heal * SetModifiers().healBonus;
+        }
+
+        if (dmg.healMana > 0)
+        {
+            if (curMana > SetModifiers().mana)
+            {
+                curMana = SetModifiers().mana;
+                dmg.healMana = curMana - SetModifiers().mana;
+            }
+        }
+
+        if (dmg.healStamina > 0)
+        {
+            curStamina += dmg.healStamina;
+            if (curStamina > SetModifiers().stamina)
+            {
+                curStamina = SetModifiers().stamina;
+                dmg.healStamina = curStamina - SetModifiers().stamina;
+            }
+        }
+
+        if (dmg.healSanity > 0)
+        {
+            curSanity += dmg.healSanity;
+            if (curSanity > SetModifiers().sanity)
+            {
+                curSanity = SetModifiers().sanity;
+                dmg.healSanity = curSanity - SetModifiers().sanity;
+            }
+        }
+
+        if (dmg.shield > 0)
+        {
+            dmg.shield += dmg.shield * SetModifiers().shieldBonus;
+            if (moveName != "")
+                foreach (Passives a in passives.ToArray())
+                {
+                    if (a.name == "combatrepair")
+                    {
+                        Dotdmg dot = new Dotdmg();
+                        dot.Setup(dmg.shield, a.num, moveName, Dotdmg.SrcType.MOVE, Dotdmg.DmgType.SHIELD);
+                        dmg.shield = 0;
+                        dotDmg.Add(dot);
+                    }
+                }
+
+            if (curShield > 1000)
+                curShield = 1000;
+        }
+
+        return dmg;
+    }
+
+    public bool TakeDamage (DMG dmg, bool isCrit, bool magicCrit, Unit attacker, string movename = "")
+    {
+        if (dmg.phyDmg > 0)
+        {
+            attacker.phyDmgDealt += dmg.phyDmg;
+            phyDmgTaken += dmg.phyDmg;
+        }
+
+        if (dmg.magicDmg > 0)
+        {
+            attacker.magicDmgDealt += dmg.phyDmg;
+            magicDmgTaken += dmg.magicDmg;
+        }
+
+        if (dmg.trueDmg > 0)
+        {
+            attacker.trueDmgDealt += dmg.trueDmg;
+            trueDmgTaken += dmg.trueDmg;
+        }
+
+        if (dmg.sanityDmg > 0)
+        {
+            if ((curSanity - dmg.sanityDmg) >= 0)
+            {
+                curSanity -= dmg.sanityDmg;
+            }
+            else
+            {
+                dmg.sanityDmg = curSanity;
+                curSanity = 0;
+            }
+            attacker.sanityDmgDealt += dmg.sanityDmg;
+            sanityDmgTaken += dmg.sanityDmg;
+        }
+
+        dmg = CalcRegens(dmg, movename);
+
         if (curHp > SetModifiers().hp)
             curHp = SetModifiers().hp;
 
-        if (dmgTaken > 0 || shieldDmg > 0)
+        float dmgTaken = dmg.phyDmg + dmg.magicDmg + dmg.trueDmg;
+
+        float shieldedDmg = 0;
+
+        if (curShield > 0)
+        {
+            float tempDmg = dmg.phyDmg + dmg.magicDmg + dmg.trueDmg;
+            float tempShield = curShield;
+
+            curShield -= tempDmg;
+
+            if (curShield < 0)
+                curShield = 0;
+
+            shieldedDmg = tempShield - curShield;
+        }
+
+        if (dmgTaken > 0 || shieldedDmg > 0)
             DoAnim("takedmg");
 
-        Vector3 pos;
-
-        if (shieldDmg > 0)
+        if (shieldedDmg > 0)
         {
-            if (isEnemy)
-                pos = new Vector3(Random.Range(4, 6), Random.Range(-1, 0.5f));
-            else
-                pos = new Vector3(Random.Range(-4, -6), Random.Range(-1, 0.5f));
-
-            GameObject shielded = Instantiate(dmgText, pos, Quaternion.identity) as GameObject;
-            shielded.transform.GetChild(0).GetComponent<TextMesh>().text = "-" + shieldDmg.ToString("0");
-            shielded.transform.GetChild(0).GetComponent<TextMesh>().color = Color.white;
+            DmgNumber("-" + shieldedDmg.ToString("0"), Color.white);
 
             if (dmgTaken <= 0)
                 dmgTaken = 0;
         }
 
-        if (isEnemy)
-            pos = new Vector3(Random.Range(4, 6), Random.Range(-1, 0.5f));
-        else
-            pos = new Vector3(Random.Range(-4, -6), Random.Range(-1, 0.5f));
-
-        GameObject dmg = Instantiate(dmgText, pos, Quaternion.identity) as GameObject;
-        dmg.transform.GetChild(0).GetComponent<TextMesh>().text = dmgTaken.ToString("0");
+        Color tempColor;
+        string tempText;
 
         if (isCrit)
         {
-            dmg.transform.GetChild(0).GetComponent<TextMesh>().color = Color.red;
+            tempColor = Color.red;
+            tempText = dmg.phyDmg.ToString("0") + "!";
         }
-
-        if (dmgTaken <= 0 && shieldDmg <= 0)
+        else
         {
-            dmg.transform.GetChild(0).GetComponent<TextMesh>().color = Color.white;
+            tempColor = new Color (.94f, .6f, .33f);
+            tempText = dmg.phyDmg.ToString("0");
+        }
+            
+        if (dmg.phyDmg > 0)
+            DmgNumber(tempText, tempColor);
+
+        if (magicCrit)
+        {
+            tempColor = new Color(.77f, .22f, .71f);
+            tempText = dmg.magicDmg.ToString("0")+"!";
+        }
+        else
+        {
+            tempColor = new Color(.6f, .66f, .97f);
+            tempText = dmg.magicDmg.ToString("0");
         }
 
-        curHp -= dmgTaken;
+        if (dmg.magicDmg > 0)
+            DmgNumber(tempText, tempColor);
+
+        if (dmg.trueDmg > 0)
+            DmgNumber(dmg.trueDmg.ToString("0"), new Color(.64f, .71f, .73f));
+
+        if (dmgTaken > 0)
+            curHp -= dmgTaken;
 
         foreach (Summon sum in summons)
         {
             if (sum.summonTurn > 0)
-                sum.stats.hp -= dmgTaken+shieldDmg;
+                sum.stats.hp -= dmgTaken;
+        }
+
+        if (dmg.heal > 0)
+        {
+            healDone += dmg.heal;
+            Heal(dmg.heal);
+        }
+
+        if (dmg.healMana > 0)
+        {
+            manaHealDone += dmg.healMana;
+            curMana += dmg.healMana;
+        }
+
+        if (dmg.healStamina > 0)
+        {
+            staminaHealDone += dmg.healStamina;
+            curStamina += dmg.healStamina;
+        }
+
+        if (dmg.healSanity > 0)
+        {
+            sanityHealDone += dmg.healSanity;
+            curSanity += dmg.healSanity;
+        }
+
+        if (dmg.shield > 0)
+        {
+            shieldDone += dmg.shield;
+            curShield += dmg.shield;
         }
 
         if (curHp <= 0)
             return true;
         else
             return false;
+    }
+
+    public void DmgNumber(string msg, Color color, int size = 2)
+    {
+        Vector3 pos;
+
+        if (isEnemy)
+            pos = new Vector3(Random.Range(4, 6), Random.Range(-1, 0.5f));
+        else
+            pos = new Vector3(Random.Range(-4, -6), Random.Range(-1, 0.5f));
+
+        GameObject go = Instantiate(dmgText, pos, Quaternion.identity) as GameObject;
+        go.transform.GetChild(0).GetComponent<TextMesh>().text = msg;
+        go.transform.GetChild(0).GetComponent<TextMesh>().color = color;
+        string sizeText = "normal";
+        switch (size)
+        {
+            case 1:
+                sizeText = "small";
+                break;
+            case 3:
+                sizeText = "big";
+                break;
+        }
+        //go.transform.GetComponent<DmgText>().Pop(sizeText);
     }
 
     public void Heal (float heal)
@@ -386,9 +632,7 @@ public class Unit : MonoBehaviour
         else
             heal = SetModifiers().hp - curHp;
 
-        GameObject dmg = Instantiate(dmgText, transform.position, Quaternion.identity) as GameObject;
-        dmg.transform.GetChild(0).GetComponent<TextMesh>().color = Color.green;
-        dmg.transform.GetChild(0).GetComponent<TextMesh>().text = heal.ToString("0");
+        DmgNumber(heal.ToString("0"), Color.green);
     }
 
     public Stats SetModifiers()
@@ -470,14 +714,13 @@ public class Unit : MonoBehaviour
     public void Miss(bool isDodge)
     {
         FightLang langmanag = GameObject.Find("GameManager").GetComponent<FightLang>();
-
-        GameObject miss = Instantiate(dmgText, transform.position, Quaternion.identity) as GameObject;
-        miss.transform.GetChild(0).GetComponent<TextMesh>().color = Color.white;
-
+        string msg;
         if (isDodge)
-            miss.transform.GetChild(0).GetComponent<TextMesh>().text = langmanag.GetInfo("gui", "text", "dodgepop");
+            msg = langmanag.GetInfo("gui", "text", "dodgepop");
         else
-            miss.transform.GetChild(0).GetComponent<TextMesh>().text = langmanag.GetInfo("gui", "text", "misspop");
+            msg = langmanag.GetInfo("gui", "text", "misspop");
+
+        DmgNumber(msg, Color.white);
     }
 
     public void WonLost(bool win)

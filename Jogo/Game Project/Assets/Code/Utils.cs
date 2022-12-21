@@ -46,43 +46,50 @@ public struct DMG
         sanityDmg += move.sanityDmg;
     }
 
-    public void Mitigate(float dmgResisPer, float magicResisPer, Unit user)
+    public void ApplyCrit(bool magicCanCrit, float critDmg)
     {
         if (phyDmg > 0)
-        {
-            float dmgMitigated = (float)(user.SetModifiers().dmgResis * dmgResisPer);
-            if (dmgMitigated < phyDmg)
-            {
-                phyDmg -= dmgMitigated;
-                user.phyDmgMitigated += dmgMitigated;
-                user.phyDmgTaken += phyDmg - dmgMitigated;
-            }
-            else
-            {
-                dmgMitigated = phyDmg;
-                phyDmg = 0;
-                user.phyDmgMitigated += dmgMitigated;
-                user.phyDmgTaken += 0;
-            }
-        }
+            phyDmg += phyDmg * critDmg;
+
+        if (magicCanCrit && magicDmg > 0)
+            magicDmg += magicDmg * critDmg;
+    }
+
+    public void ApplyLifesteal(bool magicCanSteal, float lifesteal)
+    {
+        if (phyDmg > 0)
+        heal += phyDmg * lifesteal;
+
+        if (magicCanSteal && magicDmg > 0)
+            heal += magicDmg * lifesteal;
+    }
+
+    public void ApplyBonusDmg(float bonusPhy, float bonusMag, float bonusHeal)
+    {
+        if (phyDmg > 0)
+            phyDmg += phyDmg * bonusPhy;
 
         if (magicDmg > 0)
-        {
-            float dmgMitigated = (float)(user.SetModifiers().magicResis * magicResisPer);
+            magicDmg += magicDmg * bonusMag;
 
-            if (dmgMitigated < magicDmg)
-            {
-                magicDmg -= dmgMitigated;
-                user.magicDmgMitigated += dmgMitigated;
-                user.magicDmgTaken += magicDmg - dmgMitigated;
-            }
-            else
-            {
-                dmgMitigated = magicDmg;
-                magicDmg = 0;
-                user.magicDmgMitigated += dmgMitigated;
-            }
-        }
+        if (heal > 0)
+            heal += heal * bonusHeal;
+    }
+
+    public DMG TransferHeals(DMG dmg)
+    {
+        heal += dmg.heal;
+        dmg.heal = 0;
+        healMana += dmg.healMana;
+        dmg.healMana = 0;
+        healStamina += dmg.healStamina;
+        dmg.healStamina = 0;
+        healSanity += dmg.healSanity;
+        dmg.healSanity = 0;
+        shield += dmg.shield;
+        dmg.shield = 0;
+
+        return dmg;
     }
 
     //used on AI

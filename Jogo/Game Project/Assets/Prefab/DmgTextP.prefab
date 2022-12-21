@@ -49,6 +49,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -73,6 +74,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!102 &6660151446367786191
 TextMesh:
   serializedVersion: 3
@@ -104,7 +106,7 @@ SortingGroup:
   m_GameObject: {fileID: 6660151446367786195}
   m_Enabled: 1
   m_SortingLayerID: 1004447663
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 10
 --- !u!95 &180054724985639185
 Animator:
