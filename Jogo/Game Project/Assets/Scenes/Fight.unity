@@ -12381,6 +12381,7 @@ MonoBehaviour:
   healBtnText: {fileID: 1964910204}
   tired: {fileID: 11400000, guid: f145d54ae3b6380428cb3c44d9b7b651, type: 2}
   fear: {fileID: 11400000, guid: ddbc508468aaf18469eacabd381c1203, type: 2}
+  scorch: {fileID: 11400000, guid: 983ebd0871409c8479821ec897d313bd, type: 2}
   scrollbar: {fileID: 943014294}
   panelMoves: {fileID: 1179446540}
   moveListHud: {fileID: 1157309042}

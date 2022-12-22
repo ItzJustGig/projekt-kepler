@@ -1298,6 +1298,7 @@ public class LanguageManager : MonoBehaviour
         public string title;
         public Effect_Info name;
         public Effect_Info cancelmsg;
+        public Effect_Info desc;
 
         public string Get_Effect(string a, string b)
         {
@@ -1312,6 +1313,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "cancelmsg":
                     returns = cancelmsg.Get_EffectInfo(b);
+                    break;
+                case "desc":
+                    returns = desc.Get_EffectInfo(b);
                     break;
                 default:
                     returns = "null";
@@ -1343,6 +1347,7 @@ public class LanguageManager : MonoBehaviour
         public string stn;
         public string trd;
         public string ulk;
+        public string sch;
 
         public string Get_EffectInfo(string a)
         {
@@ -1402,6 +1407,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "ulk":
                     returns = ulk;
+                    break;
+                case "sch":
+                    returns = sch;
                     break;
                 default:
                     returns = "null";

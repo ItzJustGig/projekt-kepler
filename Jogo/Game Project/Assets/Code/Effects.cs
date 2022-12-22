@@ -8,6 +8,7 @@ public class Effects : ScriptableObject
 {
     public string id;
     public Sprite sprite;
+    public bool haveSpecialDesc = false;
 
     public int duration;
     public bool grantsOnRunOut = false;
@@ -70,6 +71,7 @@ public class Effects : ScriptableObject
         effect.name = name;
         effect.id = id;
         effect.sprite = sprite;
+        effect.haveSpecialDesc = haveSpecialDesc;
         effect.timesInc = timesInc;
 
         effect.grantsOnRunOut = grantsOnRunOut;
@@ -407,8 +409,15 @@ public class Effects : ScriptableObject
             builder.Append(GetInfo(languageManager, language, "shield", "787878", shieldMin, shieldMax, shieldInc, tempB.ToString(), grantsOnRunOut));
         }
 
-        if (showDmg && (cancelAtkChance > 0 || statMods.Count > 0))
+        if (showDmg && (cancelAtkChance > 0 || statMods.Count > 0 || haveSpecialDesc))
             builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
+
+        if (haveSpecialDesc)
+        {
+            builder.Append(GetEffect(languageManager, language, "desc", id.ToLower()));
+            if (cancelAtkChance > 0)
+                builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
+        }
 
         if (cancelAtkChance > 0)
         {

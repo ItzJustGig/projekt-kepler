@@ -53,6 +53,7 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] private EffectsMove tired;
     [SerializeField] private EffectsMove fear;
+    [SerializeField] private Effects scorch;
 
     [SerializeField] private Scrollbar scrollbar;
     [SerializeField] private GameObject panelMoves;
@@ -930,7 +931,7 @@ public class BattleSystem : MonoBehaviour
                             bool isBurn = false;
                             foreach (Effects b in target.effects)
                             {
-                                if (b.id == "BRN")
+                                if (b.id == "BRN" || b.id == "SCH")
                                     isBurn = true;
                             }
 
@@ -1374,7 +1375,28 @@ public class BattleSystem : MonoBehaviour
                                                     }
                                                 } else
                                                 {
-                                                    check.duration += effect.duration;
+                                                    if (check.id == "BRN" && effect.id == "BRN")
+                                                    {
+                                                        Effects newScorch = scorch.ReturnEffect();
+                                                        newScorch.duration = check.duration + effect.duration;
+                                                        user.effects.Add(newScorch);
+                                                        user.effects.Remove(check);
+
+                                                        if (!user.isEnemy)
+                                                        {
+                                                            GameObject temp = panelEffectsP.transform.Find(check.id + "(Clone)").gameObject;
+                                                            Destroy(temp.gameObject);
+                                                            SetEffectIcon(newScorch, panelEffectsP);
+                                                        }
+                                                        else
+                                                        {
+                                                            GameObject temp = panelEffectsE.transform.Find(check.id + "(Clone)").gameObject;
+                                                            Destroy(temp.gameObject);
+                                                            SetEffectIcon(newScorch, panelEffectsE);
+                                                        }
+
+                                                    } else
+                                                        check.duration += effect.duration;
                                                 }
                                                
                                             }
@@ -1407,7 +1429,30 @@ public class BattleSystem : MonoBehaviour
                                                     }
                                                 } else
                                                 {
-                                                    check.duration += effect.duration;
+                                                    if (check.id == "BRN" && effect.id == "BRN")
+                                                    {
+                                                        Effects newScorch = scorch.ReturnEffect();
+                                                        newScorch.duration = check.duration + effect.duration;
+                                                        target.effects.Add(newScorch);
+                                                        target.effects.Remove(check);
+
+                                                        if (!target.isEnemy)
+                                                        {
+                                                            GameObject temp = panelEffectsP.transform.Find(check.id + "(Clone)").gameObject;
+                                                            Destroy(temp.gameObject);
+                                                            SetEffectIcon(newScorch, panelEffectsP);
+                                                        }
+                                                        else
+                                                        {
+                                                            GameObject temp = panelEffectsE.transform.Find(check.id + "(Clone)").gameObject;
+                                                            Destroy(temp.gameObject);
+                                                            SetEffectIcon(newScorch, panelEffectsE);
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        check.duration += effect.duration;
+                                                    }
                                                 }
                                             }
                                         }
@@ -1515,47 +1560,47 @@ public class BattleSystem : MonoBehaviour
                                 switch (dotdmg.type)
                                 {
                                     case Dotdmg.DmgType.PHYSICAL:
-                                        dotdmg.Setup(dmgTarget.phyDmg, isCrit, move.name, Dotdmg.SrcType.MOVE);
+                                        dotdmg.Setup(dmgTarget.phyDmg, isCrit, move.name, Dotdmg.SrcType.MOVE, user);
                                         dmgTarget.phyDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.MAGICAL:
-                                        dotdmg.Setup(dmgTarget.magicDmg, isMagicCrit, move.name, Dotdmg.SrcType.MOVE);
+                                        dotdmg.Setup(dmgTarget.magicDmg, isMagicCrit, move.name, Dotdmg.SrcType.MOVE, user);
                                         dmgTarget.magicDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.TRUE:
-                                        dotdmg.Setup(dmgTarget.trueDmg, move.name, Dotdmg.SrcType.MOVE);
+                                        dotdmg.Setup(dmgTarget.trueDmg, move.name, Dotdmg.SrcType.MOVE, user);
                                         dmgTarget.trueDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.SANITY:
-                                        dotdmg.Setup(dmgTarget.sanityDmg, move.name, Dotdmg.SrcType.MOVE);
+                                        dotdmg.Setup(dmgTarget.sanityDmg, move.name, Dotdmg.SrcType.MOVE, user);
                                         dmgTarget.sanityDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEAL:
-                                        dotdmg.Setup(dmgTarget.heal, move.name, Dotdmg.SrcType.MOVE);
+                                        dotdmg.Setup(dmgTarget.heal, move.name, Dotdmg.SrcType.MOVE, user);
                                         dmgTarget.heal = 0;
                                         user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALMANA:
-                                        dotdmg.Setup(dmgTarget.healMana, move.name, Dotdmg.SrcType.MOVE);
+                                        dotdmg.Setup(dmgTarget.healMana, move.name, Dotdmg.SrcType.MOVE, user);
                                         dmgTarget.healMana = 0;
                                         user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALSTAMINA:
-                                        dotdmg.Setup(dmgTarget.healStamina, move.name, Dotdmg.SrcType.MOVE);
+                                        dotdmg.Setup(dmgTarget.healStamina, move.name, Dotdmg.SrcType.MOVE, user);
                                         dmgTarget.healStamina = 0;
                                         user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALSANITY:
-                                        dotdmg.Setup(dmgTarget.healSanity, move.name, Dotdmg.SrcType.MOVE);
+                                        dotdmg.Setup(dmgTarget.healSanity, move.name, Dotdmg.SrcType.MOVE, user);
                                         dmgTarget.healSanity = 0;
                                         user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.SHIELD:
-                                        dotdmg.Setup(dmgTarget.shield, move.name, Dotdmg.SrcType.MOVE);
+                                        dotdmg.Setup(dmgTarget.shield, move.name, Dotdmg.SrcType.MOVE, user);
                                         dmgTarget.shield = 0;
                                         user.dotDmg.Add(dotdmg);
                                         break;
@@ -1659,7 +1704,7 @@ public class BattleSystem : MonoBehaviour
                             }
 
                             //magic pen for 0
-                            dmgTarget = target.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, 0);
+                            dmgTarget = target.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, 0, user);
 
                             dmgTarget = user.ApplyHealFrom(dmgTarget, move.healFromDmgType, move.healFromDmg);
                             dmgTarget = user.ApplyLifesteal(dmgTarget);
@@ -2248,7 +2293,7 @@ public class BattleSystem : MonoBehaviour
             dmg.AddDmg(scale.SetScaleDmg(stats, unit));
         }
 
-        dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, dotReduc);
+        dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, null, dotReduc);
         dmg = user.CalcRegens(dmg);
 
         isDead = user.TakeDamage(dmg, false, false, user);
@@ -2265,8 +2310,6 @@ public class BattleSystem : MonoBehaviour
 
     public bool DotCalc(Dotdmg dot, Unit user)
     {
-        Stats stats = user.SetModifiers();
-
         Dotdmg a = dot.ReturnDOT();
         DMG dmg = default;
         dmg.Reset();
@@ -2277,7 +2320,7 @@ public class BattleSystem : MonoBehaviour
                 if (a.dmg > 0)
                 {
                     dmg.phyDmg += a.dmg;
-                    dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, dotReduc);
+                    dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, a.source, dotReduc);
                     user.ApplyLifesteal(dmg);
                 }
                 break;
@@ -2285,7 +2328,7 @@ public class BattleSystem : MonoBehaviour
                 if (a.dmg > 0)
                 {
                     dmg.magicDmg += a.dmg;
-                    dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, dotReduc);
+                    dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, a.source, dotReduc);
                 }
                 break;
             case Dotdmg.DmgType.TRUE:
@@ -2952,7 +2995,7 @@ public class BattleSystem : MonoBehaviour
 
                 foreach (Effects b in target.effects)
                 {
-                    if (b.id == "BRN")
+                    if (b.id == "BRN" || b.id == "SCH")
                     {
                         foundEffect = true;
                     }
@@ -3349,7 +3392,7 @@ public class BattleSystem : MonoBehaviour
             //magic pen = 0
             if (isCrit)
                 dmgT.ApplyCrit(false, statsS.critDmg);
-            dmgT = target.MitigateDmg(dmgT, dmgResisPer, magicResisPer, statsS.armourPen, 0);
+            dmgT = target.MitigateDmg(dmgT, dmgResisPer, magicResisPer, statsS.armourPen, 0, summoner);
         }
 
         isDead = target.TakeDamage(dmgT, isCrit, false, summoner);
@@ -3662,11 +3705,11 @@ public class BattleSystem : MonoBehaviour
 
         playerUnit.Heal(statsP.hpRegen * (1+statsP.healBonus));
         if (turnCount > 1)
-            playerUnit.healDone += statsP.hpRegen * statsP.healBonus;
+            playerUnit.healDone += statsP.hpRegen * (1+statsP.healBonus);
 
         enemyUnit.Heal(statsE.hpRegen * (1+statsE.healBonus));
         if (turnCount > 1)
-            enemyUnit.healDone += statsE.hpRegen * statsE.healBonus;
+            enemyUnit.healDone += statsE.hpRegen * (1 + statsE.healBonus);
 
         if (playerUnit.curMana < statsP.mana)
             if ((playerUnit.curMana + statsP.manaRegen) > statsP.mana)

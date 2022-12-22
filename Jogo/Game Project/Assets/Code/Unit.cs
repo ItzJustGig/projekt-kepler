@@ -268,7 +268,7 @@ public class Unit : MonoBehaviour
     {
         foreach (Effects a in effects)
         {
-            if (a.id == id)
+            if ((id == "BRN" && a.id == "SCH") || a.id == id)
                 return a;
         }
         return null;
@@ -323,35 +323,37 @@ public class Unit : MonoBehaviour
         return isDead;
     }
 
-    public DMG MitigateDmg(DMG dmg, float dmgResisPer, float magicResisPer, float armourPen, float magicPen, float dotReduc = 1)
+    public DMG MitigateDmg(DMG dmg, float dmgResisPer, float magicResisPer, float armourPen, float magicPen, Unit attacker=null, float dotReduc = 1)
     {
         if (dmg.phyDmg > 0)
         {
+            if (attacker != null)
+                attacker.phyDmgDealt = dmg.phyDmg;
+
             float dmgMitigated = (float)(((SetModifiers().dmgResis - (SetModifiers().dmgResis * armourPen)) * dmgResisPer)*dotReduc);
             if (dmgMitigated < dmg.phyDmg)
             {
                 dmg.phyDmg -= dmgMitigated;
                 phyDmgMitigated += dmgMitigated;
-                phyDmgTaken += dmg.phyDmg - dmgMitigated;
             }
             else
             {
                 dmgMitigated = dmg.phyDmg;
                 dmg.phyDmg = 0;
                 phyDmgMitigated += dmgMitigated;
-                phyDmgTaken += 0;
             }
         }
 
         if (dmg.magicDmg > 0)
         {
-            float dmgMitigated = (float)(((SetModifiers().magicResis - (SetModifiers().magicResis * magicPen)) * magicResisPer)*dotReduc);
+            if (attacker != null)
+                attacker.magicDmgDealt = dmg.magicDmg;
 
+            float dmgMitigated = (float)(((SetModifiers().magicResis - (SetModifiers().magicResis * magicPen)) * magicResisPer)*dotReduc);
             if (dmgMitigated < dmg.magicDmg)
             {
                 dmg.magicDmg -= dmgMitigated;
                 magicDmgMitigated += dmgMitigated;
-                magicDmgTaken += dmg.magicDmg - dmgMitigated;
             }
             else
             {
@@ -440,7 +442,7 @@ public class Unit : MonoBehaviour
                     if (a.name == "combatrepair")
                     {
                         Dotdmg dot = new Dotdmg();
-                        dot.Setup(dmg.shield, a.num, moveName, Dotdmg.SrcType.MOVE, Dotdmg.DmgType.SHIELD);
+                        dot.Setup(dmg.shield, a.num, moveName, Dotdmg.SrcType.MOVE, Dotdmg.DmgType.SHIELD, this);
                         dmg.shield = 0;
                         dotDmg.Add(dot);
                     }
@@ -457,13 +459,11 @@ public class Unit : MonoBehaviour
     {
         if (dmg.phyDmg > 0)
         {
-            attacker.phyDmgDealt += dmg.phyDmg;
             phyDmgTaken += dmg.phyDmg;
         }
 
         if (dmg.magicDmg > 0)
         {
-            attacker.magicDmgDealt += dmg.phyDmg;
             magicDmgTaken += dmg.magicDmg;
         }
 
@@ -531,7 +531,7 @@ public class Unit : MonoBehaviour
         }
         else
         {
-            tempColor = new Color (.94f, .6f, .33f);
+            tempColor = new Color (1f, .4431f, 0f);
             tempText = dmg.phyDmg.ToString("0");
         }
             
@@ -545,7 +545,7 @@ public class Unit : MonoBehaviour
         }
         else
         {
-            tempColor = new Color(.6f, .66f, .97f);
+            tempColor = new Color(.4941f, .5764f, 1f);
             tempText = dmg.magicDmg.ToString("0");
         }
 
@@ -553,7 +553,7 @@ public class Unit : MonoBehaviour
             DmgNumber(tempText, tempColor);
 
         if (dmg.trueDmg > 0)
-            DmgNumber(dmg.trueDmg.ToString("0"), new Color(.64f, .71f, .73f));
+            DmgNumber(dmg.trueDmg.ToString("0"), new Color(0.8113208f, 0.8113208f, 0.8113208f));
 
         if (dmgTaken > 0)
             curHp -= dmgTaken;
@@ -612,7 +612,7 @@ public class Unit : MonoBehaviour
         GameObject go = Instantiate(dmgText, pos, Quaternion.identity) as GameObject;
         go.transform.GetChild(0).GetComponent<TextMesh>().text = msg;
         go.transform.GetChild(0).GetComponent<TextMesh>().color = color;
-        string sizeText = "normal";
+        /*string sizeText = "normal";
         switch (size)
         {
             case 1:
@@ -622,7 +622,7 @@ public class Unit : MonoBehaviour
                 sizeText = "big";
                 break;
         }
-        //go.transform.GetComponent<DmgText>().Pop(sizeText);
+        go.transform.GetComponent<DmgText>().Pop(sizeText);*/
     }
 
     public void Heal (float heal)

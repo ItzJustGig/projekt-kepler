@@ -12,12 +12,12 @@ public class Dotdmg : ScriptableObject
     public int time;
     public int inTime;
     public bool isCrit=false;
-
+    public Unit source;
     public enum SrcType { MOVE, PASSIVE }
     public string srcId;
     public SrcType srcType;
 
-    public void Setup(float dmgT, bool crit, string srcId, SrcType srcType)
+    public void Setup(float dmgT, bool crit, string srcId, SrcType srcType, Unit source)
     {
         if (time < 1)
             time = 1;
@@ -27,9 +27,10 @@ public class Dotdmg : ScriptableObject
         isCrit = crit;
         this.srcId = srcId;
         this.srcType = srcType;
+        this.source = source;
     }
 
-    public void Setup(float dmgT, string srcId, SrcType srcType)
+    public void Setup(float dmgT, string srcId, SrcType srcType, Unit source)
     {
         if (time < 1)
             time = 1;
@@ -38,9 +39,10 @@ public class Dotdmg : ScriptableObject
         inTime = time;
         this.srcId = srcId;
         this.srcType = srcType;
+        this.source = source;
     }
 
-    public void Setup(float dmgT, float time, string srcId, SrcType srcType, DmgType dmgType)
+    public void Setup(float dmgT, float time, string srcId, SrcType srcType, DmgType dmgType, Unit source)
     {
         if (time < 1)
             time = 1;
@@ -50,12 +52,14 @@ public class Dotdmg : ScriptableObject
         this.srcId = srcId;
         this.srcType = srcType;
         this.type = dmgType;
+        this.source = source;
     }
 
     public Dotdmg ReturnDOT()
     {
         Dotdmg dot = CreateInstance<Dotdmg>();
 
+        dot.source = source;
         dot.dmg = dmg;
         dot.time = time;
         dot.inTime = inTime;
