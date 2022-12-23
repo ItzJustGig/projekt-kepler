@@ -37,6 +37,7 @@ public class Unit : MonoBehaviour
 
     public List<StatMod> statMods = new List<StatMod>();
     public List<Effects> effects = new List<Effects>();
+    public int bloodStacks = 0;
     public List<Dotdmg> dotDmg = new List<Dotdmg>();
     public List<Summon> summons = new List<Summon>();
 
@@ -268,16 +269,17 @@ public class Unit : MonoBehaviour
     {
         foreach (Effects a in effects)
         {
+            
+
             if ((id == "BRN" && a.id == "SCH") || a.id == id)
                 return a;
         }
         return null;
     }
 
-    public bool CountEffectTimer(GameObject panelEffects)
+    public bool CountEffectTimer(GameObject panelEffects, int bloodLossStacks, float dmgResisPer, float magicResisPer, float dotReduc)
     {
         bool isDead = false;
-
 
         foreach (Effects a in effects.ToArray())
         {
@@ -287,10 +289,37 @@ public class Unit : MonoBehaviour
             if (!a.grantsOnRunOut)
             {
                 isDead = GameObject.Find("GameManager").GetComponent<BattleSystem>().EffectCalcDmg(a, this);
+
+                if (a.id == "BLD")
+                {
+                    bloodStacks++;
+                    if (bloodStacks == bloodLossStacks)
+                    {
+                        foreach (StatScale b in a.scale)
+                        {
+                            DMG dmg = default;
+                            foreach (StatScale scale in a.scale.ToArray())
+                            {
+                                Stats stats = this.SetModifiers().ReturnStats();
+
+                                dmg.AddDmg(scale.SetScaleDmg(stats, this));
+                            }
+
+                            dmg = this.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, null, dotReduc);
+                            dmg = this.CalcRegens(dmg);
+
+                            isDead = this.TakeDamage(dmg, false, false, this);
+                        }
+                        bloodStacks = 0;
+                    }
+                }
             } else
             {
                 if (a.duration <= 0)
+                {
                     isDead = GameObject.Find("GameManager").GetComponent<BattleSystem>().EffectCalcDmg(a, this);
+
+                }
             }
 
             if (isDead)
@@ -328,7 +357,7 @@ public class Unit : MonoBehaviour
         if (dmg.phyDmg > 0)
         {
             if (attacker != null)
-                attacker.phyDmgDealt = dmg.phyDmg;
+                attacker.phyDmgDealt += dmg.phyDmg;
 
             float dmgMitigated = (float)(((SetModifiers().dmgResis - (SetModifiers().dmgResis * armourPen)) * dmgResisPer)*dotReduc);
             if (dmgMitigated < dmg.phyDmg)
@@ -347,7 +376,7 @@ public class Unit : MonoBehaviour
         if (dmg.magicDmg > 0)
         {
             if (attacker != null)
-                attacker.magicDmgDealt = dmg.magicDmg;
+                attacker.magicDmgDealt += dmg.magicDmg;
 
             float dmgMitigated = (float)(((SetModifiers().magicResis - (SetModifiers().magicResis * magicPen)) * magicResisPer)*dotReduc);
             if (dmgMitigated < dmg.magicDmg)

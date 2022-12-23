@@ -26,6 +26,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private float dotReduc = 0.3f;
     [SerializeField] private float ultComp = 0.25f;
     [SerializeField] private int ultCompDuration = 6;
+    [SerializeField] private int bloodLossStacks = 10;
+    //Change blood special tooltip if changed ^
     [SerializeField] private Text dialogText;
 
     Unit playerUnit;
@@ -2282,16 +2284,17 @@ public class BattleSystem : MonoBehaviour
         dmg.healSanity = Random.Range(a.sanityHealMin, a.sanityHealMax) + (a.sanityHealInc * a.timesInc);
         dmg.shield = Random.Range(a.shieldMin, a.shieldMax) + (a.shieldInc * a.timesInc);
 
-        foreach (StatScale scale in a.scale.ToArray())
-        {
-            Unit unit;
-            Stats stats;
+        if (!a.isScaleSpecial)
+            foreach (StatScale scale in a.scale.ToArray())
+            {
+                Unit unit;
+                Stats stats;
 
-            unit = user;
-            stats = user.SetModifiers().ReturnStats();
+                unit = user;
+                stats = user.SetModifiers().ReturnStats();
 
-            dmg.AddDmg(scale.SetScaleDmg(stats, unit));
-        }
+                dmg.AddDmg(scale.SetScaleDmg(stats, unit));
+            }
 
         dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, null, dotReduc);
         dmg = user.CalcRegens(dmg);
@@ -3527,7 +3530,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.ResetCanUse();
         enemyUnit.ResetCanUse();
 
-        if (playerUnit.CountEffectTimer(panelEffectsP))
+        if (playerUnit.CountEffectTimer(panelEffectsP, bloodLossStacks, dmgResisPer, magicResisPer, dotReduc))
             state = BattleState.LOSE;
 
         if (state == BattleState.WIN || state == BattleState.LOSE)
@@ -3536,7 +3539,7 @@ public class BattleSystem : MonoBehaviour
             yield break;
         }
 
-        if (enemyUnit.CountEffectTimer(panelEffectsE))
+        if (enemyUnit.CountEffectTimer(panelEffectsE, bloodLossStacks, dmgResisPer, magicResisPer, dotReduc))
             state = BattleState.WIN;
 
         if (state == BattleState.WIN || state == BattleState.LOSE)

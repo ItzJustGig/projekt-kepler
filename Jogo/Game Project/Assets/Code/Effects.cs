@@ -61,6 +61,7 @@ public class Effects : ScriptableObject
     public float cancelAtkChance;
     public int recoil;
 
+    public bool isScaleSpecial = false;
     public List<StatScale> scale = new List<StatScale>();
     public List<StatMod> statMods = new List<StatMod>();
 
@@ -124,6 +125,7 @@ public class Effects : ScriptableObject
         effect.cancelAtkChance = cancelAtkChance;
         effect.recoil = recoil;
 
+        effect.isScaleSpecial = isScaleSpecial;
         effect.scale = scale;
         effect.statMods = statMods;
 
@@ -209,7 +211,7 @@ public class Effects : ScriptableObject
         if (valinc > 0)
             builder.Replace("%val%", (GetInfo(languageManager, language, "increasedmg", colour, valinc) + "%val%").ToString());
 
-        if (scale != "")
+        if (scale != "" && !isScaleSpecial)
             builder.Replace("%val%", scale);
         else
             builder.Replace("%val%", "");
@@ -415,8 +417,14 @@ public class Effects : ScriptableObject
         if (haveSpecialDesc)
         {
             builder.Append(GetEffect(languageManager, language, "desc", id.ToLower()));
-            if (cancelAtkChance > 0)
-                builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
+            StringBuilder tempC = new StringBuilder();
+            foreach (StatScale a in scale)
+            {
+                tempC.Append(a.GetStatScaleInfo());
+            }
+            builder.Replace("%scale%", tempC.ToString());
+            if (cancelAtkChance > 0 || statMods.Count > 0)
+                builder.AppendLine().Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
         }
 
         if (cancelAtkChance > 0)

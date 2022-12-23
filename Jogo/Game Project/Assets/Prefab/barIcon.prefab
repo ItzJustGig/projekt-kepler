@@ -82,16 +82,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=25><align=center>Magic Remains</align></size>
+  text: '<size=25><align=center>Confusion</align></size>
 
-    <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
+    <size=19><align=center><color=#B2B2B2>Effect</color></align></size>
 
-    
+    <s><align=center>|                
+    |</align></s>
 
-    The
-    user recovers <color=#1e68fc>20 + (<color=#3366ff>2%</color> of the user''s <color=#3366ff>Missing
-    Mana</color>) mana</color> when uses a <color=#0055ff>magical</color> or <color=#1e68fc>stat
-    modifier</color> move (13 turns cooldown).
+    Take <color=#b829ff>2-3 (+ 4 per turn) sanity damage</color>
+    each turn.
+
+    <s><align=center>|                 |</align></s>
+
+    The user
+    have 30% to take <color=#a6a6a6>110 true damage</color> and stop the attack.
 
 '
   textSec: 
@@ -161,7 +165,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0f8b72b1c2a756b4ca1d151cb382216c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 204b887f483372a4a81e3e30dc50c9fb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -249,4 +253,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 15
+  m_Text: 2

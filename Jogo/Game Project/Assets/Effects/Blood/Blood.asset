@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: BLD
   sprite: {fileID: 21300000, guid: 8e875b4bdff69114da8a5b832d9cf08c, type: 3}
+  haveSpecialDesc: 1
   duration: 0
   grantsOnRunOut: 0
   timesInc: 0
@@ -24,8 +25,8 @@ MonoBehaviour:
   canUseProtec: 1
   canUseStatMod: 1
   canUseSummon: 1
-  phyDmgMin: 45
-  phyDmgMax: 65
+  phyDmgMin: 40
+  phyDmgMax: 55
   phyDmgInc: 0
   magicDmgMin: 0
   magicDmgMax: 0
@@ -53,6 +54,8 @@ MonoBehaviour:
   shieldInc: 0
   cancelAtkChance: 0
   recoil: 0
-  scale: []
+  isScaleSpecial: 1
+  scale:
+  - {fileID: 11400000, guid: 699a536b66e96f243991f78455c52226, type: 2}
   statMods:
   - {fileID: 11400000, guid: 2d136227bf2200843a277d7671b068a1, type: 2}

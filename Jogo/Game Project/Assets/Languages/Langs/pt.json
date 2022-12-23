@@ -296,7 +296,8 @@
         },
         "desc":{
             "brn": "Quando aplica-se outra Queimadura transforma-se em Chamuscado",
-            "sch": "O tempo do efeito aumenta quando Queimadura \u00e9 aplicado."
+            "sch": "O tempo do efeito aumenta quando Queimadura \u00e9 aplicado.",
+			"bld": "Depois de 10 turnos a Sangrar, o utilizador leva <color=#ffaa00>%scale% dano f\u00edsico</color>"
         }
     },
     "passive": {
@@ -355,7 +356,7 @@
             "courage": "O utilizador ganhar %scale% a cada %cd% turnos e Medo tem menos %num% turnos. Quando fica com Medo recupera %scale2%",
             "dreadofthesupernatural": "O utilizador sofre +%num%% dano de sanidade de t\u00E9cnicas inimigas. (b\u00F3nus m\u00EDnimo \u00E9 %maxNum%)",
             "ecolocation": "O utilizador \u00E9 imune a Cegueira.",
-            "fearsmell": "Se um inimigo estiver abaixo de <color=#b641f0>%num%% de sanity</color>, ganha%mod%Se um inimigo estiver com <color=#b641f0>Medo</color>, o utilizador ganha%mod2% por %cd% turnos",
+            "fearsmell": "Se um inimigo estiver abaixo de <color=#b641f0>%num%% de sanidade</color>, ganha%mod%Se um inimigo estiver com <color=#b641f0>Medo</color>, o utilizador ganha%mod2% por %cd% turnos",
             "galeglide": "O utilizador ganha <color=#227da1>%mod% + (%maxNum% * %num%% da cronometragem do utilizador)</color> para o pr\u00F3ximo de ataque (8 turnos de recarga)",
             "lastbreath": "Quando o utilizador est\u00E1 abaixo de <color=#00ff11>%num%% de vida</color> ganha %mod%",
             "magicremains": "O utilizador recupera %scale% quando usa uma t\u00E9cnica <color=#0055ff>m\u00E1gica</color> ou de <color=#1e68fc>moficador de estat\u00EDstica</color> (%cd% turnos de recarga).",

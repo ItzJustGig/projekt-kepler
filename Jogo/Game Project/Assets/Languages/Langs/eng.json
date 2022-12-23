@@ -296,7 +296,8 @@
         },
         "desc":{
             "brn": "When applied another Burn on top, transform into Scorched",
-            "sch": "The time of the effect is increased when Burn is applied"
+            "sch": "The time of the effect is increased when Burn is applied",
+			"bld": "After 10 turns of bleeding, the user takes <color=#ffaa00>%scale% physical damage</color>"
         }
 	},
 	"passive": {
