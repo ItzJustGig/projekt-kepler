@@ -533,6 +533,8 @@ public class BattleSystem : MonoBehaviour
             if (user.curStamina < 0)
                 user.curStamina = 0;
 
+            SetStatus();
+
             if (move.name == "recovmana")
                 move.inCooldown = move.cooldown;
 
@@ -1895,6 +1897,8 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(enemyHUD.SetShield(enemyUnit.curShield));
         playerHUD.SetUlt(playerUnit.ult, playerUnit.SetModifiers().ultrate);
         enemyHUD.SetUlt(enemyUnit.ult, enemyUnit.SetModifiers().ultrate);
+        playerHUD.SetBlood(playerUnit.bloodStacks);
+        enemyHUD.SetBlood(enemyUnit.bloodStacks);
     }
 
     Moves EnemyChooseMove()

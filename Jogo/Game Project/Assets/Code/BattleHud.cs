@@ -34,6 +34,8 @@ public class BattleHud : MonoBehaviour
     [SerializeField] private Slider ultSlider;
     [SerializeField] private TooltipButton ultInfo;
 
+    [SerializeField] private Slider bloodSlider;
+
     [SerializeField] private GameObject statsGO;
 
     [SerializeField] private Sprite sanity100;
@@ -41,8 +43,11 @@ public class BattleHud : MonoBehaviour
     [SerializeField] private Sprite sanity50;
     [SerializeField] private Sprite sanity25;
 
+    [SerializeField] private int maxShield;
+
+
     private float lerpTimer;
-    [SerializeField] private float chipSpeed = 2f;
+    //[SerializeField] private float chipSpeed = 2f;
     private FightLang langmang;
     private string language;
 
@@ -51,6 +56,7 @@ public class BattleHud : MonoBehaviour
         langmang = GameObject.Find("GameManager").GetComponent<FightLang>();
         language = langmang.language;
 
+        bloodSlider.value = 0;
         ultSlider.value = 0;
         shieldSlider.value = 0;
     }
@@ -82,7 +88,7 @@ public class BattleHud : MonoBehaviour
         staminaInfo.text = staminaInfo.text.Replace("%v%", staminaTired.ToString());
 
         shieldText.text = unit.curShield.ToString();
-        shieldSlider.maxValue = 1000;
+        shieldSlider.maxValue = maxShield;
         shieldSlider.value = unit.curShield;
         shieldInfo.text = langmang.languageManager.GetText(language, "gui", "text", "shield");
 
@@ -90,6 +96,7 @@ public class BattleHud : MonoBehaviour
         ultInfo.text = ultInfo.text.Replace("%v%", ultSlider.value.ToString("0.00") +"%");
         ultInfo.text = ultInfo.text.Replace("%r%", unit.SetModifiers().ultrate.ToString("0.00") +"%");
 
+        bloodSlider.value = unit.bloodStacks;
     }
 
     public void SetStatsHud(Unit user)
@@ -334,7 +341,7 @@ public class BattleHud : MonoBehaviour
         if (hp < 0)
             hp = 0;
 
-        lerpTimer = 0f;
+        /*lerpTimer = 0f;
         while (lerpTimer < chipSpeed)
         {
             lerpTimer += Time.deltaTime;
@@ -353,15 +360,14 @@ public class BattleHud : MonoBehaviour
                 hpSlider.value = Mathf.Lerp(hp, curHp, completedPercent);
                 hpText.text = hpSlider.value.ToString("0") + "/" + maxHp;
             }
+        }*/
 
-            fillHp.color = gradientHp.Evaluate(hpSlider.normalizedValue);
-            yield return null;
-        }
-        
+        yield return null;
         hpSlider.maxValue = maxHp;
         hpSlider.value = hp;
         hpText.text = hpSlider.value.ToString("0") + "/" + maxHp;
-        hpInfo.text = langmang.languageManager.GetText(language, "stats", "name", "hp"); ;
+        hpInfo.text = langmang.languageManager.GetText(language, "stats", "name", "hp");
+        fillHp.color = gradientHp.Evaluate(hpSlider.normalizedValue);
     }
 
     public IEnumerator SetMana(float mana, float maxMana)
@@ -369,7 +375,7 @@ public class BattleHud : MonoBehaviour
         if (mana < 0)
             mana = 0;
 
-        lerpTimer = 0f;
+        /*lerpTimer = 0f;
         while (lerpTimer < chipSpeed)
         {
             lerpTimer += Time.deltaTime;
@@ -388,15 +394,14 @@ public class BattleHud : MonoBehaviour
                 manaSlider.value = Mathf.Lerp(mana, curMana, completedPercent);
                 manaText.text = manaSlider.value.ToString("0") + "/" + maxMana;
             }
+        }*/
 
-            fillMana.color = gradientMana.Evaluate(manaSlider.normalizedValue);
-            yield return null;
-        }
-
+        yield return null;
         manaSlider.maxValue = maxMana;
         manaSlider.value = mana;
         manaText.text = manaSlider.value.ToString("0") + "/" + maxMana;
-        manaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "mana"); ;
+        manaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "mana");
+        fillMana.color = gradientMana.Evaluate(manaSlider.normalizedValue);
     }
 
     public IEnumerator SetStamina(float stamina, float maxStamina, int staminaTired)
@@ -404,7 +409,7 @@ public class BattleHud : MonoBehaviour
         if (stamina < 0)
             stamina = 0;
 
-        lerpTimer = 0f;
+        /*lerpTimer = 0f;
         while (lerpTimer < chipSpeed)
         {
             lerpTimer += Time.deltaTime;
@@ -423,17 +428,16 @@ public class BattleHud : MonoBehaviour
                 staminaSlider.value = Mathf.Lerp(stamina, curStamina, completedPercent);
                 staminaText.text = staminaSlider.value.ToString("0") + "/" + maxStamina;
             }
+        }*/
 
-            fillStamina.color = gradientStamina.Evaluate(staminaSlider.normalizedValue);
-            yield return null;
-        }
-
+        yield return null;
         staminaSlider.maxValue = maxStamina;
         staminaSlider.value = stamina;
         staminaText.text = staminaSlider.value.ToString("0") + "/" + maxStamina; 
         staminaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "stamina");
         staminaInfo.text += "\n" + langmang.languageManager.GetText(language, "gui", "text", "staminatired");
         staminaInfo.text = staminaInfo.text.Replace("%v%", staminaTired.ToString());
+        fillStamina.color = gradientStamina.Evaluate(staminaSlider.normalizedValue);
     }
 
     public IEnumerator SetShield(float shield)
@@ -444,7 +448,7 @@ public class BattleHud : MonoBehaviour
         if (shield > shieldSlider.maxValue)
             shield = shieldSlider.maxValue;
 
-        lerpTimer = 0f;
+        /*lerpTimer = 0f;
         while (lerpTimer < chipSpeed)
         {
             lerpTimer += Time.deltaTime;
@@ -463,9 +467,9 @@ public class BattleHud : MonoBehaviour
                 shieldSlider.value = Mathf.Lerp(shield, curShield, completedPercent);
                 shieldText.text = shieldSlider.value.ToString("0");
             }
-            yield return null;
-        }
+        }*/
 
+        yield return null;
         shieldSlider.value = shield;
         shieldText.text = shieldSlider.value.ToString("0");
         shieldInfo.text = langmang.languageManager.GetText(language, "gui", "text", "shield");
@@ -477,5 +481,10 @@ public class BattleHud : MonoBehaviour
         ultInfo.text = langmang.languageManager.GetText(language, "gui", "text", "ultimate");
         ultInfo.text = ultInfo.text.Replace("%v%", ultSlider.value.ToString("0.00") + "%");
         ultInfo.text = ultInfo.text.Replace("%r%", (ultrate*100).ToString("0.00") + "%");
+    }
+
+    public void SetBlood(float value)
+    {
+        bloodSlider.value = value;
     }
 }

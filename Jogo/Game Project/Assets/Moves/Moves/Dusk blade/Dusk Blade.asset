@@ -17,10 +17,11 @@ MonoBehaviour:
   hitTime: 1
   priority: 0
   uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 40
+  phyDmg: 50
   magicDmg: 40
   trueDmg: 10
   sanityDmg: 0
@@ -35,7 +36,9 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 30
   staminaCost: 70
-  critDmgBonus: 0.12
+  ultCost: 100
+  needFullUlt: 1
+  critDmgBonus: 0.14
   critChanceBonus: 0.1
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
