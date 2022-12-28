@@ -730,11 +730,12 @@ public class Unit : MonoBehaviour
     public void PassivePopup(string name)
     {
         Vector3 pos;
+        float hight = Random.Range(0.5f, 1.5f);
 
         if (isEnemy)
-            pos = new Vector3(6, 1);
+            pos = new Vector3(6, hight);
         else
-            pos = new Vector3(-6, 1);
+            pos = new Vector3(-6, hight);
 
         GameObject passive = Instantiate(passiveText, pos, Quaternion.identity) as GameObject;
         passive.transform.GetChild(0).GetChild(0).GetComponent<TextMesh>().text = name;

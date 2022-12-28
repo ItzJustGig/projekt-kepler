@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ed72fab49f5154f94a638a0b79aa43, type: 3}
   m_Name: turret
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 152bc73575c137d4c8faefe152f79767, type: 3}
+  icon: {fileID: 21300000, guid: 4f0037672ef95684783c246309ff9a8f, type: 3}
   name: turret
   stats: {fileID: 11400000, guid: 40d744d9202686f4f91e4bfc18bfffd3, type: 2}
   move: {fileID: 11400000, guid: 540a2da5fe0c2a6439b3b3b508bf38d4, type: 2}

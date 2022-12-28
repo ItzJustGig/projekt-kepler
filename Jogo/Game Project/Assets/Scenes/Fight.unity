@@ -2414,6 +2414,36 @@ MonoBehaviour:
   ultSlider: {fileID: 586701429}
   ultInfo: {fileID: 826650904}
   bloodSlider: {fileID: 886306515}
+  gradientBlood:
+    serializedVersion: 2
+    key0: {r: 0.5660378, g: 0, b: 0, a: 1}
+    key1: {r: 0.8867924, g: 0.09620863, b: 0.09620863, a: 1}
+    key2: {r: 1, g: 0.495283, b: 0.495283, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 32768
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  fillBlood: {fileID: 924362811}
   statsGO: {fileID: 624147461}
   sanity100: {fileID: 21300000, guid: 5ad5e23eace581b439911d3ed8b898da, type: 3}
   sanity75: {fileID: 21300000, guid: b3539ffb6503be04d871823c4ff12bfc, type: 3}
@@ -16317,6 +16347,36 @@ MonoBehaviour:
   ultSlider: {fileID: 462388589}
   ultInfo: {fileID: 1690455797}
   bloodSlider: {fileID: 204890213}
+  gradientBlood:
+    serializedVersion: 2
+    key0: {r: 0.5660378, g: 0, b: 0, a: 1}
+    key1: {r: 0.8867924, g: 0.09620863, b: 0.09620863, a: 1}
+    key2: {r: 1, g: 0.495283, b: 0.495283, a: 0}
+    key3: {r: 1, g: 0.495283, b: 0.495283, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 32768
+    ctime2: 65535
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  fillBlood: {fileID: 1439277481}
   statsGO: {fileID: 273633029}
   sanity100: {fileID: 21300000, guid: 5ad5e23eace581b439911d3ed8b898da, type: 3}
   sanity75: {fileID: 21300000, guid: b3539ffb6503be04d871823c4ff12bfc, type: 3}

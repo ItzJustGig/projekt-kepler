@@ -1290,9 +1290,9 @@ public class BattleSystem : MonoBehaviour
                             if (move.isUlt)
                                 GrantUltCompansation(user);
 
-                            yield return new WaitForSeconds(1.15f);
+                            yield return new WaitForSeconds(1.05f);
                             dialogText.text = langmanag.GetInfo("gui", "text", "dodge", langmanag.GetInfo("charc", "name", target.charc.name));
-                            yield return new WaitForSeconds(1.1f);
+                            yield return new WaitForSeconds(1.05f);
 
                             foreach (Passives a in target.passives.ToArray())
                             {
@@ -1771,7 +1771,7 @@ public class BattleSystem : MonoBehaviour
 
                             SetStatus();
 
-                            yield return new WaitForSeconds(1.8f);
+                            yield return new WaitForSeconds(1.75f);
 
                             if (isDead)
                             {
@@ -2831,6 +2831,9 @@ public class BattleSystem : MonoBehaviour
 
                     //display icon
                     ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo());
+                } else
+                {
+                    a.stacks = 0;
                 }
             }
 
@@ -3483,7 +3486,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator NewTurn()
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.6f);
         bool userCanTired = true;
         bool enemyCanTired = true;
         
@@ -3557,7 +3560,7 @@ public class BattleSystem : MonoBehaviour
             a.inTime--;
 
             bool isDead = DotCalc(a, playerUnit);
-            yield return new WaitForSeconds(0.65f);
+            yield return new WaitForSeconds(0.6f);
 
             if (isDead)
                 state = BattleState.LOSE;
@@ -3583,7 +3586,7 @@ public class BattleSystem : MonoBehaviour
             a.inTime--;
 
             bool isDead = DotCalc(a, enemyUnit);
-            yield return new WaitForSeconds(0.65f);
+            yield return new WaitForSeconds(0.6f);
 
             if (isDead)
                 state = BattleState.WIN;

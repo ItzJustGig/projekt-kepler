@@ -35,6 +35,8 @@ public class BattleHud : MonoBehaviour
     [SerializeField] private TooltipButton ultInfo;
 
     [SerializeField] private Slider bloodSlider;
+    [SerializeField] private Gradient gradientBlood;
+    [SerializeField] private Image fillBlood;
 
     [SerializeField] private GameObject statsGO;
 
@@ -485,6 +487,11 @@ public class BattleHud : MonoBehaviour
 
     public void SetBlood(float value)
     {
-        bloodSlider.value = value;
+        if (value > 0)
+            bloodSlider.value = value+1;
+        else
+            bloodSlider.value = value;
+
+        fillBlood.color = gradientBlood.Evaluate(bloodSlider.normalizedValue);
     }
 }
