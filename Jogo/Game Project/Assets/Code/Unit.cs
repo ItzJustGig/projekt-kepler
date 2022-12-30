@@ -70,6 +70,7 @@ public class Unit : MonoBehaviour
 
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject sprite;
+    [SerializeField] private Animator particleAnimator;
     public int size = 2;
 
     void Awake()
@@ -285,11 +286,10 @@ public class Unit : MonoBehaviour
         {
             a.duration--;
             a.timesInc++;
+            bool skipDmg = false;
 
             if (!a.grantsOnRunOut)
             {
-                isDead = GameObject.Find("GameManager").GetComponent<BattleSystem>().EffectCalcDmg(a, this);
-
                 if (a.id == "BLD")
                 {
                     bloodStacks++;
@@ -309,10 +309,15 @@ public class Unit : MonoBehaviour
                             dmg = this.CalcRegens(dmg);
 
                             isDead = this.TakeDamage(dmg, false, false, this);
+                            DoAnimParticle("physicalhit");
                         }
                         bloodStacks = 0;
+                        skipDmg = true;
                     }
                 }
+
+                if (!skipDmg)
+                    isDead = GameObject.Find("GameManager").GetComponent<BattleSystem>().EffectCalcDmg(a, this);
             } else
             {
                 if (a.duration <= 0)
@@ -795,11 +800,13 @@ public class Unit : MonoBehaviour
 
     public void DoAnim(string what)
     {
-        switch (what)
-        {
-            case "takedmg":
-                animator.SetTrigger("takedmg");
-                break;
-        }
+        if (what != "")
+            animator.SetTrigger(what);
+    }
+
+    public void DoAnimParticle(string what)
+    {
+        if (what != "")
+            particleAnimator.SetTrigger(what);
     }
 }

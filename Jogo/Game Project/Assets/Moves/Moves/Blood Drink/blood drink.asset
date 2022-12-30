@@ -16,6 +16,8 @@ MonoBehaviour:
   name: blooddrink
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -34,6 +36,8 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 45
   staminaCost: 10
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: fce1d50e487c23d4094d79b621105eff, type: 2}
@@ -41,5 +45,9 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: c3d3b5388ece3c841adbec11e8d7ca2a, type: 2}
   - {fileID: 11400000, guid: e479608fe9b7c2c4293a13bbab3868e8, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: heal
+  animTarget: physicalhit

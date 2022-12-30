@@ -82,12 +82,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: "<size=25><align=center>Combat Repair</align></size>\r\n<size=19><align=center><color=#B2B2B2>Passive</color></align></size>\r\n\r\nThe
-    user gain  <color=#2d71fa>0,15 Mana Regen</color>, <color=#1a66ff>2 Magic Power</color>
-    and <color=#E6E6E6>1% Ultimate Rate</color>  \r\n per <color=#946ACD>summon</color>
-    alive (stack up to 3 times). When the user gains a <color=#787878>shield</color>
-    that is not earned from the user\u2019s ultimate move, gain that <color=#787878>shield</color>
-    over 4 turns.\r\n"
+  text: '<size=25><align=center>Courage</align></size>
+
+    <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
+
+    
+
+    The
+    user gain <color=#b641f0>2 sanity</color> every 8 turns and Fear have less 2
+    turns. When the user is Feared recover <color=#b641f0>2 + (<color=#b641f0>12%</color>
+    of the user''s <color=#b641f0>Missing Sanity</color>) sanity</color>
+
+'
   textSec: 
   wantSec: 0
 --- !u!1 &7183899527544666275
@@ -155,7 +161,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9046616f82b55234cb90ca770b40e555, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1dad21aad67465a41acea497e0628872, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

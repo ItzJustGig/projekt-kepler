@@ -16,6 +16,8 @@ MonoBehaviour:
   name: leechshot
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -34,6 +36,8 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 40
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
@@ -42,5 +46,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1980862ebe7f67f49bac674a0d0a250d, type: 2}
   - {fileID: 11400000, guid: 18215dea7b4058143825e50f7e22f113, type: 2}
   - {fileID: 11400000, guid: 099f1a611bd3bd04c88cee26f7205140, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: heal
+  animTarget: physicalhit

@@ -1727,8 +1727,10 @@ public class BattleSystem : MonoBehaviour
                             }
 
                             isDead = target.TakeDamage(dmgTarget, isCrit, isMagicCrit, user);
-
                             user.TakeDamage(dmgUser, isCrit, isMagicCrit, user, move.name);
+
+                            target.DoAnimParticle(move.animTarget);
+                            user.DoAnimParticle(move.animUser);
 
                             if (blockPhysical)
                             {
@@ -3713,10 +3715,12 @@ public class BattleSystem : MonoBehaviour
         statsP = playerUnit.SetModifiers();
         statsE = enemyUnit.SetModifiers();
 
+        playerUnit.DoAnimParticle("heal");
         playerUnit.Heal(statsP.hpRegen * (1+statsP.healBonus));
         if (turnCount > 1)
             playerUnit.healDone += statsP.hpRegen * (1+statsP.healBonus);
 
+        enemyUnit.DoAnimParticle("heal");
         enemyUnit.Heal(statsE.hpRegen * (1+statsE.healBonus));
         if (turnCount > 1)
             enemyUnit.healDone += statsE.hpRegen * (1 + statsE.healBonus);

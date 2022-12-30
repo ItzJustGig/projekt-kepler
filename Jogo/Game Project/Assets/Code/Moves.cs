@@ -53,6 +53,9 @@ public class Moves : ScriptableObject
     public Passives grantPassive;
     public Summon summon;
 
+    public string animUser;
+    public string animTarget;
+
     Unit owner;
 
     public void SetOwner(Unit owner)
@@ -111,6 +114,9 @@ public class Moves : ScriptableObject
         move.dot = dot;
         move.effects = effects;
         move.summon = summon;
+
+        move.animUser = animUser;
+        move.animTarget = animTarget;
 
         return move;
     }
