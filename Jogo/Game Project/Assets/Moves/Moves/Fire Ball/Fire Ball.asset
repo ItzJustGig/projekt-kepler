@@ -16,6 +16,8 @@ MonoBehaviour:
   name: fireball
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -34,12 +36,18 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 75
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 4ee3701638d137341859a5b0ae140bc5, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: d4bda1b3e33ca0e489cc3e271b50a079, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: burn

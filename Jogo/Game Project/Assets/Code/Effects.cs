@@ -65,6 +65,9 @@ public class Effects : ScriptableObject
     public List<StatScale> scale = new List<StatScale>();
     public List<StatMod> statMods = new List<StatMod>();
 
+    public string hitAnim;
+    public string specialAnim;
+
     public Effects ReturnEffect()
     {
         Effects effect = CreateInstance<Effects>();
@@ -128,6 +131,9 @@ public class Effects : ScriptableObject
         effect.isScaleSpecial = isScaleSpecial;
         effect.scale = scale;
         effect.statMods = statMods;
+
+        effect.hitAnim = hitAnim;
+        effect.specialAnim = specialAnim;
 
         foreach(StatMod a in statMods)
         {

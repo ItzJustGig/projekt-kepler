@@ -54,5 +54,8 @@ MonoBehaviour:
   shieldInc: 0
   cancelAtkChance: 0
   recoil: 0
+  isScaleSpecial: 0
   scale: []
   statMods: []
+  hitAnim: burn
+  specialAnim: 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4546396695150761900}
   - component: {fileID: 5967449665590307584}
   - component: {fileID: 536263649935217228}
+  - component: {fileID: 4874516270294335299}
   m_Layer: 5
   m_Name: barIcon
   m_TagString: Untagged
@@ -82,20 +83,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=25><align=center>Courage</align></size>
-
-    <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
-
-    
-
-    The
-    user gain <color=#b641f0>2 sanity</color> every 8 turns and Fear have less 2
-    turns. When the user is Feared recover <color=#b641f0>2 + (<color=#b641f0>12%</color>
-    of the user''s <color=#b641f0>Missing Sanity</color>) sanity</color>
-
-'
+  text: "<size=25><align=center>Perfect Shooter</align></size>\r\n<size=19><align=center><color=#B2B2B2>Passive</color></align></size>\r\n\r\nEvery
+    <color=#f75145>6 critical ranged attacks</color> or <color=#ffaa00>basic attacks</color>,
+    the user gain  <color=#ffaa00>4,85% Attack Damage</color>, <color=#f75145>2,85%
+    Critical Chance</color>, <color=#f75145>1,7% Critical Damage</color>, <color=#0984db>1,5%
+    Timing</color> and <color=#c87c32>0,75% Armour Penetration</color>  \r\n(stacks
+    up to 4).\r\n"
   textSec: 
   wantSec: 0
+--- !u!95 &4874516270294335299
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160273495328443001}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4409618cfe8cc1c4095ccec5f76db5f0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7183899527544666275
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +175,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1dad21aad67465a41acea497e0628872, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 902632ae439d16f43b28fcb2d2e50a78, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -249,4 +263,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 1S6T

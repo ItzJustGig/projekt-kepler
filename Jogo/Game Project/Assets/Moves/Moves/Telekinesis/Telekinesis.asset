@@ -16,6 +16,8 @@ MonoBehaviour:
   name: telekinesis
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,16 +30,24 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 6
   inCooldown: 0
   manaCost: 20
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 11400000, guid: 30a12ab870dd0d2469fc9915ab821ee6, type: 2}
   scale:
   - {fileID: 11400000, guid: 751a32d68714b284795d6b91e0801e9e, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: 532a050b6a04cf24ea4ef1233d213ed5, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: confusion

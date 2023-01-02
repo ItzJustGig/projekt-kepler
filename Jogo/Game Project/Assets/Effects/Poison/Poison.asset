@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: PSN
   sprite: {fileID: 21300000, guid: 2103006ce02d41943b4a0693c607e1a3, type: 3}
+  haveSpecialDesc: 0
   duration: 0
+  grantsOnRunOut: 0
   timesInc: 0
   canUsePhysical: 1
   canUseRanged: 1
@@ -22,6 +24,7 @@ MonoBehaviour:
   canUseSupp: 1
   canUseProtec: 1
   canUseStatMod: 1
+  canUseSummon: 1
   phyDmgMin: 0
   phyDmgMax: 0
   phyDmgInc: 0
@@ -51,6 +54,9 @@ MonoBehaviour:
   shieldInc: 0
   cancelAtkChance: 0
   recoil: 0
+  isScaleSpecial: 0
   scale: []
   statMods:
   - {fileID: 11400000, guid: a968f5ceecc28254da851ddd22ed4667, type: 2}
+  hitAnim: poison
+  specialAnim: 

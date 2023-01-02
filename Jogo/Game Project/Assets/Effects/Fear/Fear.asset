@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: FEA
   sprite: {fileID: 21300000, guid: fec2aec64e5a1e940b7c4e8aed396b6c, type: 3}
+  haveSpecialDesc: 0
   duration: 0
   grantsOnRunOut: 1
   timesInc: 0
@@ -23,6 +24,7 @@ MonoBehaviour:
   canUseSupp: 1
   canUseProtec: 1
   canUseStatMod: 1
+  canUseSummon: 1
   phyDmgMin: 0
   phyDmgMax: 0
   phyDmgInc: 0
@@ -52,7 +54,10 @@ MonoBehaviour:
   shieldInc: 0
   cancelAtkChance: 0.4
   recoil: 0
+  isScaleSpecial: 0
   scale:
   - {fileID: 11400000, guid: 7818a7f011497c440b7d6f13345538eb, type: 2}
   statMods:
   - {fileID: 11400000, guid: 0bce91383159620458dfa370ec80238e, type: 2}
+  hitAnim: fear
+  specialAnim: fear

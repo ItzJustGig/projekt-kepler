@@ -309,7 +309,7 @@ public class Unit : MonoBehaviour
                             dmg = this.CalcRegens(dmg);
 
                             isDead = this.TakeDamage(dmg, false, false, this);
-                            DoAnimParticle("physicalhit");
+                            DoAnimParticle(a.specialAnim);
                         }
                         bloodStacks = 0;
                         skipDmg = true;
@@ -317,13 +317,16 @@ public class Unit : MonoBehaviour
                 }
 
                 if (!skipDmg)
+                {
+                    DoAnimParticle(a.hitAnim);
                     isDead = GameObject.Find("GameManager").GetComponent<BattleSystem>().EffectCalcDmg(a, this);
+                }
             } else
             {
                 if (a.duration <= 0)
                 {
+                    DoAnimParticle(a.hitAnim);
                     isDead = GameObject.Find("GameManager").GetComponent<BattleSystem>().EffectCalcDmg(a, this);
-
                 }
             }
 
@@ -806,7 +809,7 @@ public class Unit : MonoBehaviour
 
     public void DoAnimParticle(string what)
     {
-        if (what != "")
+        if (what != "" || what != null)
             particleAnimator.SetTrigger(what);
     }
 }

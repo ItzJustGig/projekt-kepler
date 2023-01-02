@@ -59,3 +59,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 699a536b66e96f243991f78455c52226, type: 2}
   statMods:
   - {fileID: 11400000, guid: 2d136227bf2200843a277d7671b068a1, type: 2}
+  hitAnim: blood
+  specialAnim: bloodloss

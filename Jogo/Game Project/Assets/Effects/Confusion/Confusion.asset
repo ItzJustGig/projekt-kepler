@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
   m_Name: Confusion
   m_EditorClassIdentifier: 
-  name: Confusion
   id: CFS
   sprite: {fileID: 21300000, guid: 204b887f483372a4a81e3e30dc50c9fb, type: 3}
+  haveSpecialDesc: 0
   duration: 0
+  grantsOnRunOut: 0
   timesInc: 0
   canUsePhysical: 1
   canUseRanged: 1
@@ -23,6 +24,7 @@ MonoBehaviour:
   canUseSupp: 1
   canUseProtec: 1
   canUseStatMod: 1
+  canUseSummon: 1
   phyDmgMin: 0
   phyDmgMax: 0
   phyDmgInc: 0
@@ -52,6 +54,8 @@ MonoBehaviour:
   shieldInc: 0
   cancelAtkChance: 0.3
   recoil: 110
-  cancelMsg: hurt itself because of confusion!
+  isScaleSpecial: 0
   scale: []
   statMods: []
+  hitAnim: 
+  specialAnim: confusion

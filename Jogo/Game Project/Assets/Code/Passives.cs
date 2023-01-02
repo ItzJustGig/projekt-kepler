@@ -19,6 +19,9 @@ public class Passives : ScriptableObject
     public int cd;
     public int inCd;
 
+    public string anim;
+    public string anim2;
+
     public StatScale statScale;
     public StatScale statScale2;
 
@@ -59,6 +62,8 @@ public class Passives : ScriptableObject
         passive.statScale2 = statScale2;
         passive.statMod = statMod;
         passive.statMod2 = statMod2;
+        passive.anim = anim;
+        passive.anim2 = anim2;
 
         return passive;
     }

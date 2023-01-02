@@ -636,7 +636,10 @@ public class BattleSystem : MonoBehaviour
                             if (move.type is Moves.MoveType.RANGED)
                             {
                                 a.num++;
-                                ManagePassiveIcon(a.sprite, a.name, (a.maxNum - a.num).ToString(), user.isEnemy, a.GetPassiveInfo());
+                                bool isReady = false;
+                                if (a.num == a.maxNum - 1)
+                                    isReady = true;
+                                ManagePassiveIcon(a.sprite, a.name, (a.maxNum - a.num).ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
                             }
 
                             if (a.num == a.maxNum)
@@ -1187,9 +1190,11 @@ public class BattleSystem : MonoBehaviour
                             if (move.type is Moves.MoveType.MAGICAL)
                             {
                                 a.stacks++;
-                                ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+                                bool isReady = false;
+                                if (a.stacks == a.maxStacks - 1)
+                                    isReady = true;
+                                ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
                             }
-
 
                             if (a.stacks == a.maxStacks)
                             {
@@ -1236,6 +1241,7 @@ public class BattleSystem : MonoBehaviour
                             if (Random.Range(0f, 1f) <= stopAttackChance)
                             {
                                 isStoped = true;
+                                user.DoAnimParticle(a.specialAnim);
                                 cancelText = langmanag.GetInfo("effect", "cancelmsg", a.id.ToLower());
                                 float shieldedDmg = 0;
                                 float recoil = a.recoil;
@@ -1688,6 +1694,10 @@ public class BattleSystem : MonoBehaviour
                                     if ((move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.BASIC) && isCrit == true && a.stacks < a.maxStacks)
                                         a.num++;
 
+                                    bool isReady = false;
+                                    if (a.num == a.maxNum - 1)
+                                        isReady = true;
+
                                     if (a.num == a.maxNum && a.stacks < a.maxStacks)
                                     {
                                         a.num = 0;
@@ -1703,7 +1713,7 @@ public class BattleSystem : MonoBehaviour
                                         DestroyPassiveIcon(a.name, user.isEnemy);
                                     }
 
-                                    ManagePassiveIcon(a.sprite, a.name, (a.stacks + "S" + (a.maxNum - a.num) + "T").ToString(), user.isEnemy, a.GetPassiveInfo());
+                                    ManagePassiveIcon(a.sprite, a.name, (a.stacks + "S" + (a.maxNum - a.num) + "T").ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
                                 }
                             }
 
@@ -2406,19 +2416,25 @@ public class BattleSystem : MonoBehaviour
             Instantiate(barIconPrefab, panelEffectsE.transform);
     }
 
-    void ManagePassiveIcon(Sprite pIcon, string name, string num, bool isEnemy, string passiveDesc)
+    void ManagePassiveIcon(Sprite pIcon, string name, string num, bool isEnemy, string passiveDesc, bool isReady = false)
     {
         if (num == "0")
             num = "";
 
         if (!isEnemy)
             if (panelEffectsP.transform.Find(name + "(Clone)"))
+            {
                 panelEffectsP.transform.Find(name + "(Clone)").gameObject.transform.Find("time").gameObject.GetComponent<Text>().text = num;
+                panelEffectsP.transform.Find(name + "(Clone)").gameObject.GetComponent<Animator>().SetBool("ready", isReady);
+            }
             else
                 CreatePassiveIcon(pIcon, name, num, isEnemy, passiveDesc);
         else
             if (panelEffectsE.transform.Find(name + "(Clone)"))
+            {
                 panelEffectsE.transform.Find(name + "(Clone)").gameObject.transform.Find("time").gameObject.GetComponent<Text>().text = num;
+                panelEffectsE.transform.Find(name + "(Clone)").gameObject.GetComponent<Animator>().SetBool("ready", isReady);
+            }
             else
                 CreatePassiveIcon(pIcon, name, num, isEnemy, passiveDesc);
     }
@@ -2463,13 +2479,13 @@ public class BattleSystem : MonoBehaviour
 
             if (a.name == "musicup")
             {
+                bool isReady = false;
+
                 if (a.inCd == 1 && a.stacks < a.maxStacks)
                 {
                     a.inCd = a.cd;
                     a.stacks++;
                     user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                    StatMod mod = a.ifConditionTrueMod();
-
                     StatMod statMod = a.statMod.ReturnStats();
                     statMod.inTime = statMod.time;
                     user.statMods.Add(statMod);
@@ -2484,8 +2500,11 @@ public class BattleSystem : MonoBehaviour
                     DestroyPassiveIcon(a.name, user.isEnemy);
                 }
 
+                if (a.inCd == 1)
+                    isReady = true;
+
                 if (a.stacks < a.maxStacks)
-                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
             }
 
             if (a.name == "manathirst")
@@ -2508,7 +2527,11 @@ public class BattleSystem : MonoBehaviour
                 else if (a.inCd > 0)
                     a.inCd--;
 
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                bool isReady = false;
+                if (a.inCd == 0)
+                    isReady = true;
+
+                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
             }
 
             if (a.name == "wildinstinct")
@@ -2540,7 +2563,11 @@ public class BattleSystem : MonoBehaviour
                     if (a.inCd > 0)
                         a.inCd--;
 
-                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    bool isReady = false;
+                    if (a.inCd == 0)
+                        isReady = true;
+
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
                 }
             }
 
@@ -2600,15 +2627,19 @@ public class BattleSystem : MonoBehaviour
                     user.usedBonusStuff = false;
                     userHud.SetStatsHud(user);
                 }
-                
+
+                bool isReady = false;
+                if (a.inCd > 0 || a.inCd == -1)
+                    isReady = true;
+
                 if (a.inCd > 0 || a.stacks > a.maxStacks)
                 {
                     if (a.stacks > a.maxStacks)
-                        ManagePassiveIcon(a.sprite, a.name, "!", user.isEnemy, a.GetPassiveInfo());
+                        ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     else
                     {
                         a.inCd--;
-                        ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                        ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
                     }
                 } else
                 {
@@ -2628,7 +2659,11 @@ public class BattleSystem : MonoBehaviour
                 if (a.inCd > 0)
                     a.inCd--;
 
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                bool isReady = false;
+                if (a.inCd == 0)
+                    isReady = true;
+
+                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
             }
 
             if (a.name == "galeglide")
@@ -2636,7 +2671,11 @@ public class BattleSystem : MonoBehaviour
                 if (a.inCd > 0)
                     a.inCd--;
 
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                bool isReady = false;
+                if (a.inCd == 1)
+                    isReady = true;
+
+                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
             }
 
             if (a.name == "fearsmell")
@@ -2653,7 +2692,6 @@ public class BattleSystem : MonoBehaviour
                     userHud.SetStatsHud(user);
                     ManagePassiveIcon(a.sprite, a.name,"", user.isEnemy, a.GetPassiveInfo());
                 }
-
 
                 bool foundEffect = false;
 
@@ -2758,15 +2796,15 @@ public class BattleSystem : MonoBehaviour
 
                 int healthPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
 
-                if (healthPer <= a.stacks)
+                if (healthPer <= a.stacks && enoughMana && !isSilence)
                 {
                     StatMod statMod = a.statMod.ReturnStats();
                     statMod.inTime = statMod.time;
                     user.statMods.Add(statMod);
                     user.usedBonusStuff = false;
                     userHud.SetStatsHud(user);
-
-                    ManagePassiveIcon(a.sprite, a.name, 1.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    //isReady
+                    ManagePassiveIcon(a.sprite, a.name, "!", user.isEnemy, a.GetPassiveInfo(), true);
                 }
             }
 
@@ -2815,7 +2853,6 @@ public class BattleSystem : MonoBehaviour
                 //if the user was not hit for cd turns
                 if (a.inCd == a.cd)
                 {
-
                     //if no stacks
                     if (a.stacks == 0)
                     {
@@ -2832,7 +2869,10 @@ public class BattleSystem : MonoBehaviour
                     userHud.SetStatsHud(user);
 
                     //display icon
-                    ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    bool isReady = false;
+                    if (a.stacks == 1)
+                        isReady = true;
+                    ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
                 } else
                 {
                     a.stacks = 0;
@@ -2885,7 +2925,11 @@ public class BattleSystem : MonoBehaviour
                 if (!isFear)
                     a.stacks = 0;
 
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                bool isReady = false;
+                if (a.inCd == 1)
+                    isReady = true;
+
+                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
             }
 
             if (a.name == "bloodpumping")
@@ -3081,7 +3125,11 @@ public class BattleSystem : MonoBehaviour
 
                     userHud.SetStatsHud(user);
                 }
-                ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+
+                bool isReady = false;
+                if (a.stacks == a.maxStacks)
+                    isReady = true;
+                ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
             }
 
             if (a.name == "manascepter")
@@ -3103,7 +3151,11 @@ public class BattleSystem : MonoBehaviour
 
                     userHud.SetStatsHud(user);
                 }
-                ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+
+                bool isReady = false;
+                if (a.stacks == a.maxStacks)
+                    isReady = true;
+                ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
             }
 
             if (a.name == "spectralring")
@@ -3137,7 +3189,11 @@ public class BattleSystem : MonoBehaviour
                 if (a.inCd > 0)
                     a.inCd--;
 
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                bool isReady = false;
+                if (a.inCd == 1)
+                    isReady = true;
+
+                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
             }
 
             if (a.name == "toxicteeth")
@@ -3159,13 +3215,21 @@ public class BattleSystem : MonoBehaviour
                 if (a.inCd > 0)
                     a.inCd--;
 
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                bool isReady = false;
+                if (a.inCd == 1)
+                    isReady = true;
+
+                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
             }
 
             if (a.name == "huntersdirk")
             {
                 if (a.inCd > 0)
                     a.inCd--;
+
+                bool isReady = false;
+                if (a.inCd == 1)
+                    isReady = true;
 
                 float hpPer = (100 * target.curHp) / target.SetModifiers().hp;
 
@@ -3174,7 +3238,7 @@ public class BattleSystem : MonoBehaviour
                     DestroyPassiveIcon(a.name, user.isEnemy);
                 } else
                 {
-                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
                 }
             }
 
@@ -3401,6 +3465,7 @@ public class BattleSystem : MonoBehaviour
         {
             //summoner.magicDmgDealt += dmg.magicDmg;
             //summoner.phyDmgDealt += dmg.phyDmg;
+
             //magic pen = 0
             if (isCrit)
                 dmgT.ApplyCrit(false, statsS.critDmg);

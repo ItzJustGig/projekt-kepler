@@ -16,6 +16,8 @@ MonoBehaviour:
   name: firebreath
   hitTime: 4
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -34,12 +36,18 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 65
   staminaCost: 10
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: 429b63c8d58c6b04da4dd5caa6d126f6, type: 2}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 8fd1a4a7600c56e46a9fc9de3ab40d3e, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: 2fa0284cf4d7ff24a8c1eb700c26b981, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: burn
