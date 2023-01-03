@@ -348,7 +348,9 @@
             "gravitychange": "Gravity Change",
 			"prismaticstaff": "Prismatic Staff",
 			"mechashield": "Mecha Shield",
-			"combatrepair": "Combat Repair"
+			"combatrepair": "Combat Repair",
+			"magicwand": "Magic Wand",
+			"crossbow": "Crossbow"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain %mod% and deal bonus %scale% on attacks.",
@@ -395,7 +397,9 @@
 			"gravitychange": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> for %cd% turns",
 			"prismaticstaff": "Every %maxStacks% magic moves, the next will crit (also applies to the <color=#0055ff>magic damage</color>) and deal bonus %scale%",
 			"mechashield": "The user gain %mod% and converts %num%% of the <color=#ffaa00>physical damage</color> dealt into <color=#0055ff>magic damage</color> while <color=#787878>shielded</color>, when runs out of <color=#787878>shield</color> take %scale2%. Also gain %mod2% and %scale% at the cost of %stacks% ultimate energy every turn.",
-			"combatrepair": "The user gain %mod% per <color=#946ACD>summon</color> alive (stack up to %maxStacks% times). When the user gains a <color=#787878>shield</color> that is not earned from the user’s ultimate move, gain that <color=#787878>shield</color> over %num% turns."
+			"combatrepair": "The user gain %mod% per <color=#946ACD>summon</color> alive (stack up to %maxStacks% times). When the user gains a <color=#787878>shield</color> that is not earned from the user’s ultimate move, gain that <color=#787878>shield</color> over %num% turns.",
+			"magicwand": "The user's <color=#0055ff>magical</color> and <color=#ffaa00>basic attacks</color> deal bonus %scale%",
+			"crossbow": "The user's <color=#f75145>ranged</color> and <color=#ffaa00>basic attacks</color> deal bonus %scale%"
 		}
 	},
 	"moves": {
@@ -564,7 +568,8 @@
 			"shadowshroom": "Shadow Shroom",
 			"huntersdirk": "Hunter's Dirk",
 			"jewelofthedruid": "Jewel of the Druid",
-			"prismaticstaff": "Prismatic Staff"
+			"prismaticstaff": "Prismatic Staff",
+			"crossbow": "Crossbow"
 		},
 		"move": {
 			"zap": "The carrier will <color=#ffdf00>zap</color> the target with an %type% to %dmg%",

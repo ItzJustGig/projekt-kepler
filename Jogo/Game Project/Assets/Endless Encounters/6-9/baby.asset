@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: baby
   m_EditorClassIdentifier: 
   strenght: 0
-  chance: 0.8
+  chance: 0.75

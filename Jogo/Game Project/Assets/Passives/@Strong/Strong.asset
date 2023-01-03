@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: strong
   showNameOnInfo: 1
+  origin: 0
   sprite: {fileID: 21300000, guid: 6a0d706974739014ea267df5d4898e78, type: 3}
-  num: -0.1835
+  num: -0.1415
   maxNum: 0
   stacks: 0
   maxStacks: 0
   cd: 0
   inCd: 0
+  anim: 
+  anim2: 
   statScale: {fileID: 0}
   statScale2: {fileID: 0}
   statMod: {fileID: 11400000, guid: a6b0e1f238407d143b4e6e8408b5521a, type: 2}

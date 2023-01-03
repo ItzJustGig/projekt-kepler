@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: magicwand
   icon: {fileID: 21300000, guid: 7619eeceae94e5c4f8d676c0cae02987, type: 3}
-  passives: []
+  passives:
+  - {fileID: 11400000, guid: 2424abe981e8bb043b141e430f11b4b6, type: 2}
   statmod:
   - {fileID: 11400000, guid: 5b3d6211fdd8a0641ba9845cee6fc5d0, type: 2}
   moves: []

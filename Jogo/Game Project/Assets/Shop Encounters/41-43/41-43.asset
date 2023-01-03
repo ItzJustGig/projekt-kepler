@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: 41-43
   m_EditorClassIdentifier: 
   rarity:
-  - {fileID: 11400000, guid: ce44d917b2c868641ba63609d02641e6, type: 2}
   - {fileID: 11400000, guid: fa3246f42d76c6a4184c33aa4e8734fd, type: 2}
   - {fileID: 11400000, guid: 3dc9c3c8e4e460e46818922ac7db3f29, type: 2}
   startRound: 41

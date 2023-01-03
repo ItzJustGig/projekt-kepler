@@ -846,6 +846,8 @@ public class LanguageManager : MonoBehaviour
         public string prismaticstaff;
         public string mechashield;
         public string combatrepair;
+        public string magicwand;
+        public string crossbow;
 
         public string Get_Cont(string a)
         {
@@ -987,6 +989,12 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "combatrepair":
                     returns = combatrepair;
+                    break;
+                case "magicwand":
+                    returns = magicwand;
+                    break;
+                case "crossbow":
+                    returns = crossbow;
                     break;
                 default:
                     returns = "null";
@@ -2060,6 +2068,7 @@ public class LanguageManager : MonoBehaviour
         public string huntersdirk;
         public string jewelofthedruid;
         public string prismaticstaff;
+        public string crossbow;
 
         public string Get_ItemName(string a)
         {
@@ -2137,6 +2146,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "prismaticstaff":
                     returns = prismaticstaff;
+                    break;
+                case "crossbow":
+                    returns = crossbow;
                     break;
                 default:
                     returns = "null";

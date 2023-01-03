@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: weak
   m_EditorClassIdentifier: 
   id: 1
-  minGold: 2
-  maxGold: 4
+  minGold: 3
+  maxGold: 5

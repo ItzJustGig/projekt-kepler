@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: 16-20
   m_EditorClassIdentifier: 
   strenghts:
-  - {fileID: 11400000, guid: bdb0cb389248c6748b3b84dc4e7e0f7e, type: 2}
   - {fileID: 11400000, guid: 5fc71a9fe7b1e9642808a448216e617a, type: 2}
   - {fileID: 11400000, guid: e28dc78ba03c59946a765a980e68d599, type: 2}
   startRound: 16

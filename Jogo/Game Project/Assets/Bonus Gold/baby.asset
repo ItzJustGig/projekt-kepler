@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: baby
   m_EditorClassIdentifier: 
   id: 0
-  minGold: 0
-  maxGold: 2
+  minGold: 1
+  maxGold: 3

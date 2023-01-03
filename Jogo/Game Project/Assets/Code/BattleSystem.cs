@@ -1222,6 +1222,52 @@ public class BattleSystem : MonoBehaviour
                                 DestroyPassiveIcon(a.name, user.isEnemy);
                             }
                         }
+
+                        if (a.name == "magicwand")
+                        {
+                            if (move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.BASIC)
+                            {
+                                StatScale scale = a.ifConditionTrueScale();
+
+                                Unit unit;
+                                Stats stats;
+                                if (scale.playerStat)
+                                {
+                                    unit = user;
+                                    stats = statsUser;
+                                }
+                                else
+                                {
+                                    unit = target;
+                                    stats = statsTarget;
+                                }
+
+                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                            }
+                        }
+
+                        if (a.name == "crossbow")
+                        {
+                            if (move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.BASIC)
+                            {
+                                StatScale scale = a.ifConditionTrueScale();
+
+                                Unit unit;
+                                Stats stats;
+                                if (scale.playerStat)
+                                {
+                                    unit = user;
+                                    stats = statsUser;
+                                }
+                                else
+                                {
+                                    unit = target;
+                                    stats = statsTarget;
+                                }
+
+                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                            }
+                        }
                     }
 
                     dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
@@ -3216,7 +3262,7 @@ public class BattleSystem : MonoBehaviour
                     a.inCd--;
 
                 bool isReady = false;
-                if (a.inCd == 1)
+                if (a.inCd == 0)
                     isReady = true;
 
                 ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
@@ -3228,7 +3274,7 @@ public class BattleSystem : MonoBehaviour
                     a.inCd--;
 
                 bool isReady = false;
-                if (a.inCd == 1)
+                if (a.inCd == 0)
                     isReady = true;
 
                 float hpPer = (100 * target.curHp) / target.SetModifiers().hp;
@@ -3319,6 +3365,16 @@ public class BattleSystem : MonoBehaviour
                     DestroyPassiveIcon(a.name, user.isEnemy);
                     user.passives.Remove(a);
                 }
+            }
+
+            if (a.name == "magicwand")
+            {
+                ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+            }
+
+            if (a.name == "crossbow")
+            {
+                ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
             }
         }
     }

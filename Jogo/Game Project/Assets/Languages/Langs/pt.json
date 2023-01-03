@@ -395,7 +395,9 @@
             "gravitychange": "O utilizador causa %scale% b\u00F3nus com <color=#ffaa00>ataques f\u00EDsicos</color> por %cd% turnos.",
             "prismaticstaff": "A cada %maxStacks% <color=#0055ff>t\u00E9cnica m\u00E1gicas</color>, a pr\u00F3xima vai ser crit\u00EDco (tamb\u00e9m aplica ao <color=#0055ff>dano m\u00E1gico</color>) e cause %scale% b\u00F3nus",
             "mechashield": "O utilizador ganha %mod% e converte %num2%% do <color=#ffaa00>dano f\u00EDsico</color> causado em <color=#0055ff>dano m\u00E1gico</color> enquanto protegido por um <color=#787878>escudo</color>. Quando o <color=#787878>escudo</color> acabar leva %scale%. Tamb\u00e9m ganha %mod2% e %scale2% com o custo de %num% energia derradeira todos os turnos.",
-            "combatrepair": "O utilizador ganha %mod% por cada <color=#946ACD>envoca\u00e7\u00e3o</color> viva (empilha at\u00e9 %maxStacks% vezes). Quando o utilizador ganhar um <color=#787878>escudo</color> que n\u00e3o foi recebido pela sua t\u00E9cnica suprema, recebe esse <color=#787878>escudo</color> ao longo de %num% turnos."
+            "combatrepair": "O utilizador ganha %mod% por cada <color=#946ACD>envoca\u00e7\u00e3o</color> viva (empilha at\u00e9 %maxStacks% vezes). Quando o utilizador ganhar um <color=#787878>escudo</color> que n\u00e3o foi recebido pela sua t\u00E9cnica suprema, recebe esse <color=#787878>escudo</color> ao longo de %num% turnos.",
+            "magicwand": "Os ataques <color=#0055ff>m\u00e1gicos</color> e <color=#ffaa00>b\u00e1sicos</color> do utilizador causam %scale% b\u00f3nus",
+			"crossbow": "Os ataques de <color=#f75145>alcance</color> e <color=#ffaa00>b\u00e1sicos</color> do utilizador causam %scale% b\u00f3nus"
         }
     },
     "moves": {
@@ -564,7 +566,8 @@
             "shadowshroom": "Cogulemo das Sombras",
             "huntersdirk": "Punhal do Ca\u00e7ador",
             "jewelofthedruid": "J\u00f3ia do Druida",
-            "prismaticstaff": "Cajato Prism\u00e1tico"
+            "prismaticstaff": "Cajato Prism\u00e1tico",
+			"crossbow": "Besta"
         },
 		"move": {
 			"zap": "O transportador d\u00e1 <color=#ffdf00>zap</color> no alvo com uma %type% que %dmg%",

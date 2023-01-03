@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: strong
   m_EditorClassIdentifier: 
   strenght: 3
-  chance: 0.22
+  chance: 0.2

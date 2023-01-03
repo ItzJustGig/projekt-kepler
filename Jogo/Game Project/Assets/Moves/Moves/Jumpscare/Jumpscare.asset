@@ -16,6 +16,8 @@ MonoBehaviour:
   name: jumpscare
   hitTime: 1
   priority: 1
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,14 +30,22 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 6
   inCooldown: 0
   manaCost: 35
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: 4c599e7a02435214ab36d528a392aceb, type: 2}
   statModEnemy: {fileID: 11400000, guid: 4c1bd009e06b5e54a95c915a777b3b78, type: 2}
   scale: []
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: fear
+  animTarget: 
