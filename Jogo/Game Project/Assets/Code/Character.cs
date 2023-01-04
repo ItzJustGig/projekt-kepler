@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu (fileName = "New Character", menuName = "Character/Character", order=1)]
 public class Character : ScriptableObject
 {
-    public enum Class { None, Tank, Assassin, Sourcerer, Marksman, Support, Duelist, Brawler, Vanguard, Summoner, Enchanter }
+    public enum Class { None, Tank, Assassin, Sourcerer, Marksman, Support, Duelist }
     public enum Strenght { BABY, WEAK, NORMAL, STRONG, SUPERSTRONG, LEGENDARY, CHAMPION, MYTHIC }
 
     public Strenght strenght;

@@ -567,6 +567,8 @@ public class Unit : MonoBehaviour
 
             if (dmgTaken <= 0)
                 dmgTaken = 0;
+            else
+                dmgTaken -= shieldedDmg;
         }
 
         Color tempColor;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mimi
   m_EditorClassIdentifier: 
   strenght: 1
-  classe: 8
+  classe: 6
   size: 1
   name: mimi
   sprite: {fileID: 5806852883944117854, guid: 55c9cfe804fc67c408135d7bb30cbb17, type: 3}

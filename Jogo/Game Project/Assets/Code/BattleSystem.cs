@@ -1268,6 +1268,28 @@ public class BattleSystem : MonoBehaviour
                                 dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
                             }
                         }
+
+                        if (a.name == "funchase")
+                        {
+                            if (a.stacks == 1 && (move.type == Moves.MoveType.PHYSICAL || move.type == Moves.MoveType.BASIC))
+                            {
+                                StatScale scale = a.ifConditionTrueScale();
+
+                                Unit unit;
+                                Stats stats;
+                                if (scale.playerStat)
+                                {
+                                    unit = user;
+                                    stats = statsUser;
+                                }
+                                else
+                                {
+                                    unit = target;
+                                    stats = statsTarget;
+                                }
+                                dmgTarget.phyDmg += scale.SetScale(stats, unit);
+                            }
+                        }
                     }
 
                     dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
@@ -3357,7 +3379,7 @@ public class BattleSystem : MonoBehaviour
                     DMG dmg = default;
                     dmg.Reset();
 
-                    dmg.magicDmg = a.statScale2.SetScale(user.SetModifiers(), user);
+                    dmg.magicDmg = a.statScale2.SetScaleFlat(user.SetModifiers(), user);
                     dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0);
                     user.TakeDamage(dmg, false, false, user);
 
@@ -3375,6 +3397,42 @@ public class BattleSystem : MonoBehaviour
             if (a.name == "crossbow")
             {
                 ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+            }
+
+            if (a.name == "funchase")
+            {
+                bool foundEffect = false;
+
+                foreach (Effects b in target.effects)
+                {
+                    if (b.id == "BLD")
+                    {
+                        foundEffect = true;
+
+                        if (a.stacks == 0)
+                        {
+                            user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                            a.stacks = 1;
+                        }
+                        else if (a.stacks == 1)
+                        {
+                            a.stacks = 2;
+                        }
+
+                        StatMod statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+                        ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+                    }
+                }
+
+                if (!foundEffect && a.stacks > 0)
+                {
+                    a.stacks = 0;
+                    DestroyPassiveIcon(a.name, user.isEnemy);
+                }
             }
         }
     }

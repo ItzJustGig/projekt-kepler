@@ -23,7 +23,7 @@ MonoBehaviour:
   canUseMagic: 0
   canUseSupp: 0
   canUseProtec: 0
-  canUseStatMod: 0
+  canUseEnchant: 0
   canUseSummon: 0
   phyDmgMin: 0
   phyDmgMax: 0

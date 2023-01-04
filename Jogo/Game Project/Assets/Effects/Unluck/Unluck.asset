@@ -12,17 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
   m_Name: Unluck
   m_EditorClassIdentifier: 
-  name: Unluck
   id: ULK
   sprite: {fileID: 21300000, guid: 1b83de215efbbae4487cc4bac9a6184b, type: 3}
+  haveSpecialDesc: 0
   duration: 0
+  grantsOnRunOut: 0
   timesInc: 0
   canUsePhysical: 1
   canUseRanged: 1
   canUseMagic: 1
   canUseSupp: 1
   canUseProtec: 1
-  canUseStatMod: 0
+  canUseEnchant: 0
+  canUseSummon: 1
   phyDmgMin: 0
   phyDmgMax: 0
   phyDmgInc: 0
@@ -52,7 +54,9 @@ MonoBehaviour:
   shieldInc: 0
   cancelAtkChance: 0
   recoil: 0
-  cancelMsg: 
+  isScaleSpecial: 0
   scale: []
   statMods:
   - {fileID: 11400000, guid: 2cde2b1495eaad94c845441139aac4f0, type: 2}
+  hitAnim: 
+  specialAnim: 

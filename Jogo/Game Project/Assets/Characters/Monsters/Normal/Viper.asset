@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 2
   classe: 2
-  size: 1
+  size: 0
   name: viper
   sprite: {fileID: 5806852883944117854, guid: f41fc849bec11c84f87f594a519fd084, type: 3}
   charcIcon: {fileID: 21300000, guid: f268c1c3f94fe1f4eafd70e293f01064, type: 3}

@@ -15,6 +15,7 @@ public class ShopLangManager : MonoBehaviour
     [SerializeField] private Text inventoryBtnText;
     [SerializeField] private Text leaveBtnText;
     [SerializeField] private Text closeBtnText;
+    [SerializeField] private Text chanceShopText;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class ShopLangManager : MonoBehaviour
         inventoryBtnText.text = languageManager.GetText(language, "gui", "button", "inventory");
         leaveBtnText.text = languageManager.GetText(language, "gui", "button", "leave");
         closeBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
+        chanceShopText.text = languageManager.GetText(language, "gui", "text", "chanceshop");
     }
 
     public string GetInfo(string arg1, string arg2)

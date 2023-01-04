@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   strenght: 1
-  classe: 8
+  classe: 2
   size: 0
   name: goblin
   sprite: {fileID: 5806852883944117854, guid: f88cf1d4d8213924092e12b04b36b804, type: 3}

@@ -289,7 +289,7 @@ public class Effects : ScriptableObject
                 builder.Append(GetInfo(languageManager, language, "cantdefence", "787878")).AppendLine();
 
             if (!canUseEnchant)
-                builder.Append(GetInfo(languageManager, language, "cantenchant", "2C32EF")).AppendLine();
+                builder.Append(GetInfo(languageManager, language, "cantenchant", "CC66FF")).AppendLine();
 
             if (!canUseSupp)
                 builder.Append(GetInfo(languageManager, language, "cantsupport", "00ff11")).AppendLine();

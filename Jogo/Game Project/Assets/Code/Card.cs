@@ -23,7 +23,7 @@ public class Card : MonoBehaviour
 
     [SerializeField] private GameObject bossIcon;
 
-    [SerializeField] private Sprite marksmanIcon, sourcererIcon, vanguardIcon, assassinIcon, tankIcon, brawlerIcon, duelistIcon, supportIcon, enchanterIcon;
+    [SerializeField] private Sprite marksmanIcon, sourcererIcon, assassinIcon, tankIcon, duelistIcon, supportIcon;
     [SerializeField] private EndlessLanguageManager langmanag;
 
     void Start()
@@ -72,18 +72,6 @@ public class Card : MonoBehaviour
                 break;
             case Character.Class.Duelist:
                 class1.sprite = duelistIcon;
-                break;
-            case Character.Class.Brawler:
-                class1.sprite = brawlerIcon;
-                break;
-            case Character.Class.Vanguard:
-                class1.sprite = vanguardIcon;
-                break;
-            /*case Character.Class.Summoner:
-                class1.sprite = summ;
-                break;*/
-            case Character.Class.Enchanter:
-                class1.sprite = enchanterIcon;
                 break;
         }
 

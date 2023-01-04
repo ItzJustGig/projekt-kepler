@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: SLC
   sprite: {fileID: 21300000, guid: 66914981c69a85c43a71c542f5c98ac6, type: 3}
+  haveSpecialDesc: 0
   duration: 0
   grantsOnRunOut: 0
   timesInc: 0
@@ -22,7 +23,7 @@ MonoBehaviour:
   canUseMagic: 0
   canUseSupp: 0
   canUseProtec: 1
-  canUseStatMod: 0
+  canUseEnchant: 0
   canUseSummon: 0
   phyDmgMin: 0
   phyDmgMax: 0
@@ -53,6 +54,9 @@ MonoBehaviour:
   shieldInc: 0
   cancelAtkChance: 0
   recoil: 0
+  isScaleSpecial: 0
   scale: []
   statMods:
   - {fileID: 11400000, guid: cf22cc6eb1c5b294189333e6e29ccf9d, type: 2}
+  hitAnim: 
+  specialAnim: 

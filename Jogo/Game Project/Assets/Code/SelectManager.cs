@@ -28,7 +28,7 @@ public class SelectManager : MonoBehaviour
     [SerializeField] private TooltipPopUp tooltipPopup;
 
     private SpriteRenderer alexRender, leowindRender, bonsourRender, shineRender, sandewRender, isadoeRender, williamRender, hestiaRender, icerRender;
-    [SerializeField] private Sprite marksmanIcon, sourcererIcon, vanguardIcon, assassinIcon, tankIcon, brawlerIcon, duelistIcon, supportIcon, enchanterIcon;
+    [SerializeField] private Sprite marksmanIcon, sourcererIcon, assassinIcon, tankIcon, duelistIcon, supportIcon;
     [SerializeField] private GameObject statsDisplay;
     [SerializeField] private Image classIcon;
     [SerializeField] private Image charcIcon;
@@ -457,12 +457,6 @@ public class SelectManager : MonoBehaviour
             case Character.Class.Assassin:
                 classIcon.sprite = assassinIcon;
                 break;
-            case Character.Class.Brawler:
-                classIcon.sprite = brawlerIcon;
-                break;
-            case Character.Class.Vanguard:
-                classIcon.sprite = vanguardIcon;
-                break;
             case Character.Class.Sourcerer:
                 classIcon.sprite = sourcererIcon;
                 break;
@@ -477,9 +471,6 @@ public class SelectManager : MonoBehaviour
                 break;
             case Character.Class.Tank:
                 classIcon.sprite = tankIcon;
-                break;
-            case Character.Class.Enchanter:
-                classIcon.sprite = enchanterIcon;
                 break;
         }
 

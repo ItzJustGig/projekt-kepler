@@ -631,6 +631,7 @@ public class LanguageManager : MonoBehaviour
         public string goldinicial;
         public string leavetitle;
         public string leavetext;
+        public string chanceshop;
 
         public string Get_TextCont(string a)
         {
@@ -772,6 +773,9 @@ public class LanguageManager : MonoBehaviour
                 case "leavetext":
                     returns = leavetext;
                     break;
+                case "chanceshop":
+                    returns = chanceshop;
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -864,6 +868,7 @@ public class LanguageManager : MonoBehaviour
         public string combatrepair;
         public string magicwand;
         public string crossbow;
+        public string funchase;
 
         public string Get_Cont(string a)
         {
@@ -1011,6 +1016,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "crossbow":
                     returns = crossbow;
+                    break;
+                case "funchase":
+                    returns = funchase;
                     break;
                 default:
                     returns = "null";
@@ -1220,7 +1228,7 @@ public class LanguageManager : MonoBehaviour
         public string aventis;
         public string blazamander;
         public string imp;
-        public string phantom;
+        public string specter;
         public string viper;
         public string basilisk;
         public string golem;
@@ -1297,8 +1305,8 @@ public class LanguageManager : MonoBehaviour
                 case "imp":
                     returns = imp;
                     break;
-                case "phantom":
-                    returns = phantom;
+                case "specter":
+                    returns = specter;
                     break;
                 case "viper":
                     returns = viper;

@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
-  m_Name: phantom stats
+  m_Name: specter stats
   m_EditorClassIdentifier: 
   hp: 570
   hpRegen: 23
   mana: 735
   manaRegen: 1.25
+  manaCost: 1
   stamina: 215
   staminaRegen: 0.425
+  staminaCost: 1
   sanity: 180
   atkDmg: 32
   magicPower: 78
@@ -28,6 +30,10 @@ MonoBehaviour:
   timing: 3.1
   movSpeed: 220
   lifesteal: 0
+  healBonus: 0
+  shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  ultrate: 1
+  sizeMod: 0

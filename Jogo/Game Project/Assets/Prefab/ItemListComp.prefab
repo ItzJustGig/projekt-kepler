@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ee4b75241f289104f9157f42c4a0abb4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 02f0a9f59fddc0640a534b75eaeaadee, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -153,7 +153,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Anel Espectral
+  m_Text: Crossbow
 --- !u!1 &5427755121742644162
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,11 +226,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
-  text: "<size=24><align=center>Anel Espectral</align></size>\r\n<s><align=center>|                
-    |</align></s>\r\n<color=#3366ff>+25 Mana M\xE1xima</color>\r\n<color=#2d71fa>+0,1
-    Regenera\xE7\xE3o de Mana</color>\r\n<color=#1a66ff>+20 Poder M\xE1gico</color>\r\n\r\n<color=#ffdf00>PASSIVA</color>:
-    O utilizador ganha <color=#1a66ff>3 Poder M\xE1gico</color>  \r\n a cada 5 turnos,
-    at\xE9 7 vezes. \nQuando o utilizador cai a baixo de 20% vida, t\xE9cnicas m\xE1gicas
-    causam <color=#1a66ff>10 + (<color=#1a66ff>15%</color> do/a <color=#1a66ff>Poder
-    M\xE1gico</color> do utilizador)</color><color=#1a66ff> dano m\xE1gico</color>
-    b\xF3nus.\r\n\r\n"
+  tooltipPopupSec: {fileID: 0}
+  text: "<size=24><align=center>Crossbow</align></size>\r\n<s><align=center>|                
+    |</align></s>\r\n<color=#ffaa00>+10 Attack Damage</color>\r\n<color=#f75145>+1,8%
+    Critical Chance</color>\r\n<color=#c87c32>+1,14% Armour Penetration</color>\r\n 
+    \r\n<color=#ffdf00>PASSIVE</color>: The user's <color=#f75145>ranged</color>
+    and <color=#ffaa00>basic attacks</color> deal bonus <color=#ffaa00>15</color>
+    as<color=#ffaa00> physical damage</color>\r\n\r\n"
+  textSec: 
+  wantSec: 0

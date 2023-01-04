@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 3
   classe: 6
-  size: 3
+  size: 1
   name: basilisk
-  sprite: {fileID: 5806852883944117854, guid: e14ff431356231f42bbc0411eccf6784, type: 3}
-  charcIcon: {fileID: 21300000, guid: 2d5bbf26b90bbce48aae3dfbf3653c46, type: 3}
+  sprite: {fileID: 5806852883944117854, guid: d87239c564b0c124c8b23b3d90c3f570, type: 3}
+  charcIcon: {fileID: 21300000, guid: 2f31538a8acd49d4a9e27dcc3f2fca9e, type: 3}
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
   stats: {fileID: 11400000, guid: 6f169145ff02e7a419db3fb2487d4eaf, type: 2}
   passives: []

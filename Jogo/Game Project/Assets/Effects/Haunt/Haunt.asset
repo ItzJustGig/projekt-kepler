@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: HAU
   sprite: {fileID: 21300000, guid: 3b933707ebf84604b90b1d8d233ddc55, type: 3}
+  haveSpecialDesc: 0
   duration: 0
   grantsOnRunOut: 0
   timesInc: 0
@@ -22,7 +23,7 @@ MonoBehaviour:
   canUseMagic: 1
   canUseSupp: 1
   canUseProtec: 0
-  canUseStatMod: 0
+  canUseEnchant: 1
   canUseSummon: 0
   phyDmgMin: 5
   phyDmgMax: 15
@@ -53,6 +54,9 @@ MonoBehaviour:
   shieldInc: 0
   cancelAtkChance: 0.2
   recoil: 0
+  isScaleSpecial: 0
   scale: []
   statMods:
   - {fileID: 11400000, guid: 3eeec60d5ed498f448b92676175ecccd, type: 2}
+  hitAnim: haunt
+  specialAnim: 

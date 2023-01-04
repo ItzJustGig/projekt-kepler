@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Worm
   m_EditorClassIdentifier: 
   strenght: 0
-  classe: 8
+  classe: 2
   size: -1
   name: worm
   sprite: {fileID: 5806852883944117854, guid: 5de02698be5be7d48bc2ef8b9cb2e489, type: 3}

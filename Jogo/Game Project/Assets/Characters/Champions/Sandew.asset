@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sandew
   m_EditorClassIdentifier: 
   strenght: 6
-  classe: 7
+  classe: 6
   size: 3
   name: sandew
   sprite: {fileID: 5806852883944117854, guid: a9be5b2a64a4a8b42a7f6979da8ac051, type: 3}
@@ -22,7 +22,7 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 4c4e0a51c86fb4644af95dfb06cc3ae4, type: 2}
   passives:
   - {fileID: 11400000, guid: fd9a5b8b72e17b8478007c8d06ddc6ab, type: 2}
-  - {fileID: 11400000, guid: 635b8120dc60bac4d9c0eeec7f81c1d8, type: 2}
+  - {fileID: 11400000, guid: 47d12892efc07ae4b8307eb6df3333ce, type: 2}
   - {fileID: 11400000, guid: 572af329379c6874a8d2c4cdb2c23875, type: 2}
   moves:
   - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}

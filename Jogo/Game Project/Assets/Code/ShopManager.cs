@@ -19,6 +19,11 @@ public class ShopManager : MonoBehaviour
 
     [SerializeField] private Image charcIcon;
     [SerializeField] private Text gold;
+    
+    [SerializeField] private Text CommonTxt;
+    [SerializeField] private Text UncommonTxt;
+    [SerializeField] private Text RareTxt;
+    [SerializeField] private Text EpicTxt;
 
     [SerializeField] private EndlessInfo info;
     private ShopLangManager langmanag;
@@ -153,6 +158,7 @@ public class ShopManager : MonoBehaviour
         }
 
         CheckPrice();
+        GetNextChance();
     }
     
     private void RefreshOwnItems()
@@ -204,6 +210,43 @@ public class ShopManager : MonoBehaviour
             item3.Lock(false);
         else
             item3.Lock(true);
+    }
+
+    void GetNextChance()
+    {
+        float common = 0;
+        float uncommon = 0;
+        float rare = 0;
+        float epic = 0;
+
+        foreach (ItemEncounter enc in shopEncounters.returnStuff())
+        {
+            if (info.round+1 >= enc.startRound && info.round+1 <= enc.endRound)
+            {
+                for (int i = 0; i < enc.rarity.Count; i++)
+                {
+                    switch (enc.rarity[i].rarity)
+                    {
+                        case Items.ShopRarity.COMMON:
+                            common += enc.rarity[i].chance;
+                            break;
+                        case Items.ShopRarity.UNCOMMON:
+                            uncommon += enc.rarity[i].chance;
+                            break;
+                        case Items.ShopRarity.RARE:
+                            rare += enc.rarity[i].chance;
+                            break;
+                        case Items.ShopRarity.EPIC:
+                            epic += enc.rarity[i].chance;
+                            break;
+                    }
+                }
+            }
+        }
+        CommonTxt.text = common.ToString("0%");
+        UncommonTxt.text = uncommon.ToString("0%");
+        RareTxt.text = rare.ToString("0%");
+        EpicTxt.text = epic.ToString("0%");
     }
 
     Items GenItem()

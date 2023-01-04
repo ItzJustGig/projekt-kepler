@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Icer
   m_EditorClassIdentifier: 
   strenght: 6
-  classe: 10
+  classe: 3
   size: 2
   name: icer
   sprite: {fileID: 5806852883944117854, guid: ca86673fd549be54d9a3f069c2704411, type: 3}
