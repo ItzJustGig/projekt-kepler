@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: crossbow
   m_EditorClassIdentifier: 
   name: crossbow
-  icon: {fileID: 21300000, guid: 2b43cd2a04e2be741bffda09be540f17, type: 3}
+  icon: {fileID: 21300000, guid: 02f0a9f59fddc0640a534b75eaeaadee, type: 3}
   passives:
   - {fileID: 11400000, guid: 9b267b68ce6bb8242809b147a17e4e34, type: 2}
-  statmod: []
+  statmod:
+  - {fileID: 11400000, guid: bcb0389b355bea34cb6742dac73a05c7, type: 2}
   moves: []
   rarity: 1
   minPrice: 40

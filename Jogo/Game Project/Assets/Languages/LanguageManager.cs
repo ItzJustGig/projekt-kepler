@@ -268,7 +268,7 @@ public class LanguageManager : MonoBehaviour
         public string cantmagic;
         public string cantranged;
         public string cantsupport;
-        public string cantstatmod;
+        public string cantenchant;
         public string cantdefence;
         public string cantsummon;
         public string eachturn;
@@ -396,8 +396,8 @@ public class LanguageManager : MonoBehaviour
                 case "cantsummon":
                     returns = cantsummon;
                     break;
-                case "cantstatmod":
-                    returns = cantstatmod;
+                case "cantenchant":
+                    returns = cantenchant;
                     break;
                 case "eachturn":
                     returns = eachturn;
@@ -507,6 +507,8 @@ public class LanguageManager : MonoBehaviour
         public string delsave;
         public string inventory;
         public string items;
+        public string forfeit;
+        public string cancelforfeit;
 
         public string Get_ButtonCont(string a)
         {
@@ -567,6 +569,12 @@ public class LanguageManager : MonoBehaviour
                 case "items":
                     returns = items;
                     break;
+                case "forfeit":
+                    returns = forfeit;
+                    break;
+                case "cancelforfeit":
+                    returns = cancelforfeit;
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -621,6 +629,8 @@ public class LanguageManager : MonoBehaviour
         public string round;
         public string shop;
         public string goldinicial;
+        public string leavetitle;
+        public string leavetext;
 
         public string Get_TextCont(string a)
         {
@@ -755,6 +765,12 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "goldinicial":
                     returns = goldinicial;
+                    break;
+                case "leavetitle":
+                    returns = leavetitle;
+                    break;
+                case "leavetext":
+                    returns = leavetext;
                     break;
                 default:
                     returns = "null";
@@ -1046,6 +1062,7 @@ public class LanguageManager : MonoBehaviour
         public string staminacost;
         public string healbonus;
         public string shieldbonus;
+        public string size;
 
         public string Get_StatCont(string a)
         {
@@ -1165,6 +1182,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "shieldbonus":
                     returns = shieldbonus;
+                    break;
+                case "size":
+                    returns = size;
                     break;
                 default:
                     returns = "null";
@@ -1953,7 +1973,7 @@ public class LanguageManager : MonoBehaviour
         public string physical;
         public string magic;
         public string ranged;
-        public string statmod;
+        public string enchant;
         public string support;
         public string defence;
         public string summon;
@@ -1972,8 +1992,8 @@ public class LanguageManager : MonoBehaviour
                 case "ranged":
                     returns = ranged;
                     break;
-                case "statmod":
-                    returns = statmod;
+                case "enchant":
+                    returns = enchant;
                     break;
                 case "support":
                     returns = support;

@@ -20,8 +20,10 @@ MonoBehaviour:
   hpRegen: 0.1265
   mana: 0.1265
   manaRegen: 0.1265
+  manaCost: 0
   stamina: 0.1265
   staminaRegen: 0.1265
+  staminaCost: 0
   sanity: 0
   atkDmg: 0.1265
   magicPower: 0.1265
@@ -32,6 +34,10 @@ MonoBehaviour:
   timing: 0.1265
   movSpeed: 0.1265
   lifesteal: 0
+  healBonus: 0
+  shieldBonus: 0
   accuracy: 0
   evasion: 0
   armourPen: 0
+  ultrate: 0
+  size: 2

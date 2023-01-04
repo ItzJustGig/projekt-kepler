@@ -23,6 +23,11 @@ public class FightLang : MonoBehaviour
     [SerializeField] private Text chooseMoveText;
     [SerializeField] private Text cancelMoveBtnText;
     [SerializeField] private Text turnsText;
+    [SerializeField] private Text ffBtnText;
+    [SerializeField] private Text ffConfirmBtnText;
+    [SerializeField] private Text cancelConfirmBtnText;
+    [SerializeField] private Text leaveTitleText;
+    [SerializeField] private Text leaveTextText;
 
     //stats player
     [SerializeField] private TooltipButton hpTooltipP;
@@ -123,12 +128,17 @@ public class FightLang : MonoBehaviour
         eHideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
         leaveBtnText.text = languageManager.GetText(language, "gui", "button", "leave");
         cancelMoveBtnText.text = languageManager.GetText(language, "gui", "button", "cancel");
+        ffBtnText.text = languageManager.GetText(language, "gui", "button", "forfeit");
+        ffConfirmBtnText.text = languageManager.GetText(language, "gui", "button", "forfeit");
+        cancelConfirmBtnText.text = languageManager.GetText(language, "gui", "button", "cancelforfeit");
 
         //text
         overviewText.text = languageManager.GetText(language, "gui", "text", "overview");
         chooseMoveText.text = languageManager.GetText(language, "gui", "text", "choosemove");
         turnsText.text = languageManager.GetText(language, "gui", "text", "turn");
         turnsText.text = turnsText.text.Replace("%n%", "0");
+        leaveTextText.text = languageManager.GetText(language, "gui", "text", "leavetext");
+        leaveTitleText.text = languageManager.GetText(language, "gui", "text", "leavetitle");
 
         //stats player
         hpTooltipP.text = languageManager.GetText(language, "stats", "name", "hp") + "<br>" + languageManager.GetText(language, "stats", "desc", "hp");

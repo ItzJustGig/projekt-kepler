@@ -43,8 +43,6 @@ public class Passives : ScriptableObject
         return statMod;
     }
 
-    
-
     public Passives ReturnPassive()
     {
         Passives passive = CreateInstance<Passives>();
@@ -253,14 +251,14 @@ public class Passives : ScriptableObject
 
         if (statMod)
         {
-            desc.Replace("%mod%", statMod.GetStatModInfo(true).ToString());
+            desc.Replace("%mod%", statMod.GetStatModInfo(true, true).ToString());
             desc.Replace(GetInfo(languageManager, language, "statmodwho", "user").ToString(), "");
             desc.Replace(GetInfo(languageManager, language, "statmodtime", 1).ToString(), "");
         }
 
         if (statMod2)
         {
-            desc.Replace("%mod2%", statMod2.GetStatModInfo(true).ToString());
+            desc.Replace("%mod2%", statMod2.GetStatModInfo(true, true).ToString());
             desc.Replace(GetInfo(languageManager, language, "statmodwho", "user").ToString(), "");
             desc.Replace(GetInfo(languageManager, language, "statmodtime", 1).ToString(), "");
         }

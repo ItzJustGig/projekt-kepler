@@ -116,7 +116,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Leave();
+            this.gameObject.GetComponent<SoundSystem>().FFMenu();
         }
 
         if (Input.GetKeyDown(KeyCode.S) && !(state == BattleState.WIN || state == BattleState.LOSE))
@@ -324,7 +324,7 @@ public class BattleSystem : MonoBehaviour
                     case Moves.MoveType.SUPPORT:
                         icon.sprite = suppAtk;
                         break;
-                    case Moves.MoveType.STATMOD:
+                    case Moves.MoveType.ENCHANT:
                         icon.sprite = statAtk;
                         break;
                     case Moves.MoveType.SUMMON:
@@ -747,7 +747,7 @@ public class BattleSystem : MonoBehaviour
 
                         if (a.name == "manascepter")
                         {
-                            if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.STATMOD || move.type is Moves.MoveType.DEFFENCIVE) && a.stacks == a.maxStacks)
+                            if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.ENCHANT || move.type is Moves.MoveType.DEFFENCIVE) && a.stacks == a.maxStacks)
                             {
                                 StatScale scale = a.ifConditionTrueScale();
                                 Unit unit;
@@ -824,7 +824,7 @@ public class BattleSystem : MonoBehaviour
 
                         if (a.name == "magicremains")
                         {
-                            if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.STATMOD) && a.inCd == 0)
+                            if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.ENCHANT) && a.inCd == 0)
                             {
                                 a.inCd = a.cd;
                                 ManagePassiveIcon(a.sprite, a.name, (a.maxNum - a.num).ToString(), user.isEnemy, a.GetPassiveInfo());
@@ -1332,7 +1332,7 @@ public class BattleSystem : MonoBehaviour
 
                     if (!isStoped || 
                         move.type == Moves.MoveType.DEFFENCIVE || move.type == Moves.MoveType.SUPPORT || 
-                        move.type == Moves.MoveType.STATMOD || move.type == Moves.MoveType.SUMMON)
+                        move.type == Moves.MoveType.ENCHANT || move.type == Moves.MoveType.SUMMON)
                     {
                         if (Random.Range(0f, 1f) < (evasion + statsTarget.evasion) && 
                             (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.RANGED))
@@ -1813,7 +1813,7 @@ public class BattleSystem : MonoBehaviour
                             {
                                 if (a.name == "onewiththeshadows")
                                 {
-                                    if (!(move.type is Moves.MoveType.DEFFENCIVE || move.type is Moves.MoveType.STATMOD || move.type is Moves.MoveType.SUPPORT)) { 
+                                    if (!(move.type is Moves.MoveType.DEFFENCIVE || move.type is Moves.MoveType.ENCHANT || move.type is Moves.MoveType.SUPPORT)) { 
                                         a.inCd = 0;
                                         ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), target.isEnemy, a.GetPassiveInfo());
                                     } else
@@ -1981,7 +1981,7 @@ public class BattleSystem : MonoBehaviour
         int random = 0;
         int i = 0;
 
-        if (!enemyUnit.canUseMagic && !enemyUnit.canUsePhysical && !enemyUnit.canUseRanged && !enemyUnit.canUseStatMod && !enemyUnit.canUseSupp
+        if (!enemyUnit.canUseMagic && !enemyUnit.canUsePhysical && !enemyUnit.canUseRanged && !enemyUnit.canUseEnchant && !enemyUnit.canUseSupp
             && !enemyUnit.canUseProtec && !enemyUnit.canUseSummon)
             skip = true;
 
@@ -2044,8 +2044,8 @@ public class BattleSystem : MonoBehaviour
                                             if (!enemyUnit.canUseSupp)
                                                 canUse = false;
                                             break;
-                                        case Moves.MoveType.STATMOD:
-                                            if (!enemyUnit.canUseStatMod)
+                                        case Moves.MoveType.ENCHANT:
+                                            if (!enemyUnit.canUseEnchant)
                                                 canUse = false;
                                             break;
                                         case Moves.MoveType.SUMMON:
@@ -2172,8 +2172,8 @@ public class BattleSystem : MonoBehaviour
                     if (!playerUnit.canUseSupp)
                         canUse = false;
                     break;
-                case Moves.MoveType.STATMOD:
-                    if (!playerUnit.canUseStatMod)
+                case Moves.MoveType.ENCHANT:
+                    if (!playerUnit.canUseEnchant)
                         canUse = false;
                     break;
                 case Moves.MoveType.SUMMON:
@@ -2272,8 +2272,8 @@ public class BattleSystem : MonoBehaviour
                         if (!playerUnit.canUseSupp)
                             canUse = false;
                         break;
-                    case Moves.MoveType.STATMOD:
-                        if (!playerUnit.canUseStatMod)
+                    case Moves.MoveType.ENCHANT:
+                        if (!playerUnit.canUseEnchant)
                             canUse = false;
                         break;
                     case Moves.MoveType.SUMMON:
@@ -3916,7 +3916,7 @@ public class BattleSystem : MonoBehaviour
 
         foreach (Effects a in playerUnit.effects)
         {
-            if (!a.canUseMagic && !a.canUsePhysical && !a.canUseRanged && !a.canUseStatMod && !a.canUseSupp && !a.canUseProtec && !a.canUseSummon)
+            if (!a.canUseMagic && !a.canUsePhysical && !a.canUseRanged && !a.canUseEnchant && !a.canUseSupp && !a.canUseProtec && !a.canUseSummon)
                 skip = true;
         }
 

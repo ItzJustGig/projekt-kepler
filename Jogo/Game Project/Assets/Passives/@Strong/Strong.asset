@@ -26,5 +26,5 @@ MonoBehaviour:
   anim2: 
   statScale: {fileID: 0}
   statScale2: {fileID: 0}
-  statMod: {fileID: 11400000, guid: a6b0e1f238407d143b4e6e8408b5521a, type: 2}
+  statMod: {fileID: 11400000, guid: 9dc4a5d645349344a86dad08b9ea4545, type: 2}
   statMod2: {fileID: 0}

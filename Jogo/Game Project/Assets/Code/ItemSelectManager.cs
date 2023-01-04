@@ -12,6 +12,7 @@ public class ItemSelectManager : MonoBehaviour
     [SerializeField] private GameObject item1, item2;
     [SerializeField] private GameObject panel;
     [SerializeField] private SelectManager mainManager;
+    [SerializeField] private Sprite unknownIcon;
 
     private void Start()
     {
@@ -85,7 +86,7 @@ public class ItemSelectManager : MonoBehaviour
                 Image imgItemSec = btnSec.gameObject.transform.Find("Icon").GetComponent<Image>();
 
                 imgItemSelec.sprite = btnItem2.gameObject.transform.Find("Icon").GetComponent<Image>().sprite;
-                imgItemSec.sprite = null;
+                imgItemSec.sprite = unknownIcon;
 
                 btnSelected.interactable = true;
                 btnSelected.gameObject.name = btnSec.gameObject.name;
@@ -110,7 +111,7 @@ public class ItemSelectManager : MonoBehaviour
             Button btnItem = grid.Find(btnSelected.gameObject.name).GetComponent<Button>();
             btnItem.interactable = true;
             Image imgItem = btnSelected.gameObject.transform.Find("Icon").GetComponent<Image>();
-            imgItem.sprite = null;
+            imgItem.sprite = unknownIcon;
             btnSelected.interactable = false;
             btnSelected.gameObject.name = "Item";
         }

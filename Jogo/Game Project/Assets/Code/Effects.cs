@@ -19,7 +19,7 @@ public class Effects : ScriptableObject
     public bool canUseMagic = true;
     public bool canUseSupp = true;
     public bool canUseProtec = true;
-    public bool canUseStatMod = true;
+    public bool canUseEnchant = true;
     public bool canUseSummon = true;
 
     public int phyDmgMin;
@@ -86,7 +86,7 @@ public class Effects : ScriptableObject
         effect.canUseMagic = canUseMagic;
         effect.canUseSupp = canUseSupp;
         effect.canUseProtec = canUseProtec;
-        effect.canUseStatMod = canUseStatMod;
+        effect.canUseEnchant = canUseEnchant;
         effect.canUseSummon = canUseSummon;
 
         effect.phyDmgMin = phyDmgMin;
@@ -273,7 +273,7 @@ public class Effects : ScriptableObject
         builder.Append("<size=25><align=center>").Append(GetEffect(languageManager, language, "name", id.ToLower())).Append("</align></size>").AppendLine();
         builder.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(language, "effect", "title")).Append("</color></align></size>").AppendLine();
         builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
-        if (!canUseMagic || !canUsePhysical || !canUseProtec || !canUseRanged || !canUseStatMod || !canUseSupp)
+        if (!canUseMagic || !canUsePhysical || !canUseProtec || !canUseRanged || !canUseEnchant || !canUseSupp)
         {
             builder.Append(GetInfo(languageManager, language, "cantuse")).AppendLine();
             if (!canUseMagic)
@@ -288,8 +288,8 @@ public class Effects : ScriptableObject
             if (!canUseProtec)
                 builder.Append(GetInfo(languageManager, language, "cantdefence", "787878")).AppendLine();
 
-            if (!canUseStatMod)
-                builder.Append(GetInfo(languageManager, language, "cantstatmod", "f0dd0a")).AppendLine();
+            if (!canUseEnchant)
+                builder.Append(GetInfo(languageManager, language, "cantenchant", "2C32EF")).AppendLine();
 
             if (!canUseSupp)
                 builder.Append(GetInfo(languageManager, language, "cantsupport", "00ff11")).AppendLine();

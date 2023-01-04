@@ -10,6 +10,7 @@ public class EndlessManager : MonoBehaviour
     [SerializeField] private Card nextCard;
     [SerializeField] private EndlessInfo info;
     [SerializeField] private Button startBtn;
+    [SerializeField] private Button shopBtn;
     [SerializeField] private Text goldTxt;
     [SerializeField] private Text roundTxt;
 
@@ -226,6 +227,7 @@ public class EndlessManager : MonoBehaviour
             Destroy(nextCard.gameObject);
             prevCard.gameObject.GetComponent<Animator>().SetTrigger("win");
             startBtn.interactable = false;
+            shopBtn.interactable = false;
             info.DeleteNoSceneChange();
             info.Load();
         } else

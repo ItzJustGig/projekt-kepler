@@ -16,6 +16,8 @@ MonoBehaviour:
   name: stab
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,16 +30,24 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 5
   inCooldown: 0
   manaCost: 0
   staminaCost: 70
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 11400000, guid: d0594c5a94979394c89428579ef55029, type: 2}
   scale:
   - {fileID: 11400000, guid: 11e3ca33d58bcbc40987db969205643c, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: ae8b1987c9004ef48bab9a1cc06e2207, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

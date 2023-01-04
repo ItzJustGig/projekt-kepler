@@ -32,7 +32,7 @@ public class Unit : MonoBehaviour
     public bool canUseMagic = true;
     public bool canUseSupp = true;
     public bool canUseProtec = true;
-    public bool canUseStatMod = true;
+    public bool canUseEnchant = true;
     public bool canUseSummon = true;
 
     public List<StatMod> statMods = new List<StatMod>();
@@ -72,6 +72,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private GameObject sprite;
     [SerializeField] private Animator particleAnimator;
     public int size = 2;
+    float lastSize = 2;
 
     void Awake()
     {
@@ -143,7 +144,6 @@ public class Unit : MonoBehaviour
         if (charc.sprite)
         {
             sprite = Instantiate(charc.sprite, this.transform) as GameObject;
-            LoadSize();
             Vector3 tempCord = new Vector3(0, 0.4f, 0);
             sprite.transform.position += tempCord;
             animator = sprite.gameObject.GetComponent<Animator>();
@@ -151,7 +151,6 @@ public class Unit : MonoBehaviour
         else
         {
             sprite = Instantiate(spriteDefault, this.transform) as GameObject;
-            LoadSize();
             Vector3 tempCord = new Vector3(0, -0.6f, 0);
             sprite.transform.position += tempCord;
             if (isEnemy)
@@ -160,16 +159,30 @@ public class Unit : MonoBehaviour
             animator = sprite.gameObject.GetComponent<Animator>();
         }
 
+
+        LoadSize(size);
+
         foreach (Passives a in charc.passives.ToArray())
         {
             passives.Add(a.ReturnPassive());
         }
     }
 
-    public void LoadSize()
+    public void LoadSize(float size)
     {
-        float val = (float)(0.18 + (0.02*size));
-        sprite.transform.localScale = new Vector3(val, val, 0);
+        float sizeVal = (float)(0.18 + (0.02 * size));
+        sprite.transform.localScale = new Vector2(sizeVal, sizeVal);
+
+        if (lastSize > size)
+        {
+            float hight = (float)(-0.09 * (lastSize - size));
+            sprite.transform.position += new Vector3(0, hight);
+        } else if (lastSize < size)
+        {
+            float hight = (float)(0.09 * (size - lastSize));
+            sprite.transform.position += new Vector3(0, hight);
+        }
+        lastSize = size;
     }
 
     public void ResetCanUse()
@@ -179,7 +192,7 @@ public class Unit : MonoBehaviour
         canUseMagic = true;
         canUseSupp = true;
         canUseProtec = true;
-        canUseStatMod = true;
+        canUseEnchant = true;
         canUseSummon = true;
     }
 
@@ -270,8 +283,6 @@ public class Unit : MonoBehaviour
     {
         foreach (Effects a in effects)
         {
-            
-
             if ((id == "BRN" && a.id == "SCH") || a.id == id)
                 return a;
         }
@@ -350,7 +361,7 @@ public class Unit : MonoBehaviour
                 canUseMagic = canUseMagic && a.canUseMagic;
                 canUseSupp = canUseSupp && a.canUseSupp;
                 canUseProtec = canUseProtec && a.canUseProtec;
-                canUseStatMod = canUseStatMod && a.canUseStatMod;
+                canUseEnchant = canUseEnchant && a.canUseEnchant;
                 canUseSummon = canUseSummon && a.canUseSummon;
 
                 panelEffects.transform.Find(a.id + "(Clone)").gameObject.transform.Find("time").gameObject.GetComponent<Text>().text = a.duration.ToString();
@@ -730,6 +741,7 @@ public class Unit : MonoBehaviour
             temp.staminaCost += mod.staminaCost;
             temp.healBonus += mod.healBonus;
             temp.shieldBonus += mod.shieldBonus;
+            temp.sizeMod += mod.size;
         }
 
         return temp;
@@ -792,7 +804,7 @@ public class Unit : MonoBehaviour
             case Moves.MoveType.DEFFENCIVE:
                 animator.SetTrigger("defencive");
                 break;
-            case Moves.MoveType.STATMOD:
+            case Moves.MoveType.ENCHANT:
                 animator.SetTrigger("statmod");
                 break;
             case Moves.MoveType.SUMMON:

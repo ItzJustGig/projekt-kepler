@@ -15,7 +15,7 @@ MonoBehaviour:
   name: crossbow
   showNameOnInfo: 0
   origin: 0
-  sprite: {fileID: 21300000, guid: 2b43cd2a04e2be741bffda09be540f17, type: 3}
+  sprite: {fileID: 21300000, guid: 02f0a9f59fddc0640a534b75eaeaadee, type: 3}
   num: 0
   maxNum: 0
   stacks: 0

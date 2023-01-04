@@ -104,6 +104,7 @@ public class BattleHud : MonoBehaviour
     public void SetStatsHud(Unit user)
     {
         Stats stats = user.SetModifiers();
+        user.LoadSize(user.size + stats.sizeMod);
         SetStats(stats.ReturnStats(), user.charc.stats.ReturnStats(), user.curSanity);
     }
 

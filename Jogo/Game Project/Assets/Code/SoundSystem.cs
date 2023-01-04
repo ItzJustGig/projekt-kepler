@@ -13,6 +13,8 @@ public class SoundSystem : MonoBehaviour
     [SerializeField] private Image buttonImage;
     [SerializeField] private Slider volumeSlider;
 
+    [SerializeField] private GameObject ffpanel;
+
     [SerializeField] private GameObject soundMenu;
     
     public void Awake()
@@ -70,5 +72,13 @@ public class SoundSystem : MonoBehaviour
             soundMenu.SetActive(false);
         else
             soundMenu.SetActive(true);    
+    }
+
+    public void FFMenu()
+    {
+        if (ffpanel.activeInHierarchy)
+            ffpanel.SetActive(false);
+        else
+            ffpanel.SetActive(true);
     }
 }

@@ -36,6 +36,7 @@ public class Stats : ScriptableObject
     public float evasion;
     public float armourPen;
     public float ultrate = 1;
+    public float sizeMod = 0;
 
     public Stats ReturnStats()
     {
@@ -64,6 +65,7 @@ public class Stats : ScriptableObject
         stats.shieldBonus = shieldBonus;
         stats.manaCost = manaCost;
         stats.staminaCost = staminaCost;
+        stats.sizeMod = sizeMod;
 
         return stats;
     }

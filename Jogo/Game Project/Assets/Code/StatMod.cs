@@ -42,6 +42,7 @@ public class StatMod : ScriptableObject
     public float evasion;
     public float armourPen;
     public float ultrate;
+    public float size;
 
     public StatMod ReturnStats()
     {
@@ -75,6 +76,7 @@ public class StatMod : ScriptableObject
         stats.staminaCost = staminaCost;
         stats.healBonus = healBonus;
         stats.shieldBonus = shieldBonus;
+        stats.size = size;
 
         return stats;
     }
@@ -107,6 +109,7 @@ public class StatMod : ScriptableObject
         stats.accuracy += accuracy * times;
         stats.armourPen += armourPen * times;
         stats.ultrate += ultrate * times;
+        stats.size += size * times;
 
         return stats;
     }
@@ -185,6 +188,9 @@ public class StatMod : ScriptableObject
             i++;
 
         if (shieldBonus != 0)
+            i++;
+
+        if (size != 0)
             i++;
 
         return i;
@@ -289,7 +295,7 @@ public class StatMod : ScriptableObject
             return null;
     }
 
-    public StringBuilder GetStatModInfo(bool isUser)
+    public StringBuilder GetStatModInfo(bool isUser, bool isPassive=false)
     {
         LanguageManager languageManager = GetLanguageMan();
         string language = GetLanguage();
@@ -453,11 +459,19 @@ public class StatMod : ScriptableObject
             builder.Append(GetInfo(languageManager, language, "787878", shieldBonus, languageManager.GetText(language, "stats", "name", "shieldbonus"), true, i, false));
         }
 
+        if (size != 0)
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "ffffff", size, languageManager.GetText(language, "stats", "name", "size"), false, i, false));
+        }
+
         main.Replace("%stat%", builder.ToString());
         main.Replace("%who%", languageManager.GetText(language, "showdetail", "statmodwho"));
         main.Replace("%u%", onWho);
         main.Replace("%time%", GetTime(languageManager, language).ToString());
-        main.AppendLine();
+
+        if (!isPassive)
+            main.AppendLine();
 
         return main;
     }
@@ -617,6 +631,12 @@ public class StatMod : ScriptableObject
         {
             i--;
             builder.Append(GetInfo(languageManager, language, "787878", shieldBonus, languageManager.GetText(language, "stats", "name", "shieldbonus"), true, i, true));
+        }
+
+        if (size != 0)
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "000000", size, languageManager.GetText(language, "stats", "name", "size"), false, i, true));
         }
 
         main.Replace("%stat%", builder.ToString());

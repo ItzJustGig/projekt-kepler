@@ -392,7 +392,7 @@ public class SelectManager : MonoBehaviour
             case Moves.MoveType.SUPPORT:
                 icon.sprite = suppAtk;
                 break;
-            case Moves.MoveType.STATMOD:
+            case Moves.MoveType.ENCHANT:
                 icon.sprite = statAtk;
                 break;
             case Moves.MoveType.SUMMON:
