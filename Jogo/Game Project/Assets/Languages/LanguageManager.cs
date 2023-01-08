@@ -1233,6 +1233,7 @@ public class LanguageManager : MonoBehaviour
         public string basilisk;
         public string golem;
         public string predatormantis;
+        public string flecko;
 
         public string Get_CharcCont(string a)
         {
@@ -1319,6 +1320,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "predatormantis":
                     returns = predatormantis;
+                    break;
+                case "flecko":
+                    returns = flecko;
                     break;
                 default:
                     returns = "null";

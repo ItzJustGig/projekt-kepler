@@ -83,22 +83,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=25><align=center>Burn</align></size>
-
-    <size=19><align=center><color=#B2B2B2>Effect</color></align></size>
-
-    <s><align=center>|                
-    |</align></s>
-
-    Take <color=#1a66ff>30-55 magical damage</color> each turn.
-
-    Take
-    <color=#b829ff>1-3 sanity damage</color> each turn.
-
-    <s><align=center>|                
-    |</align></s>
-
-    When applied another Burn on top, transform into Scorched'
+  text: "<size=25><align=center>Poison</align></size>\r\n<size=19><align=center><color=#B2B2B2>Effect</color></align></size>\r\n<s><align=center>|                
+    |</align></s>\r\nTake <color=#1a66ff>20-50 (+ 10 per turn) magical damage</color>
+    each turn.\r\nTake <color=#b829ff>1-3 (+ 1 per turn) sanity damage</color> each
+    turn.\r\n<s><align=center>|                 |</align></s>\r\n <color=#2ffa3d>-20%
+    Health Regen</color> and <color=#ebdb28>-12% Stamina Regen</color> to the user
+    \r\n"
   textSec: 
   wantSec: 0
 --- !u!95 &4874516270294335299
@@ -185,7 +175,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fbd50cf541bc27441892cb49cbe55429, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2103006ce02d41943b4a0693c607e1a3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -273,4 +263,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2
+  m_Text: 4

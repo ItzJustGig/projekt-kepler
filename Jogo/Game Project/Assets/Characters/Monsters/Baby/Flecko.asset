@@ -10,25 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d789de254ec901741a8cedbf21aabeda, type: 3}
-  m_Name: Child Infernus
+  m_Name: Flecko
   m_EditorClassIdentifier: 
   strenght: 0
   classe: 3
-  size: 0
-  name: childinfernus
-  sprite: {fileID: 5806852883944117854, guid: cc6e0f2e536db9d49ae8e440a402b82e, type: 3}
-  charcIcon: {fileID: 21300000, guid: 05daf7065d00189449c9a7a9c63570c4, type: 3}
+  size: -2
+  name: flecko
+  sprite: {fileID: 5806852883944117854, guid: e1e321e6531d5e44f8531787a2659d9a, type: 3}
+  charcIcon: {fileID: 21300000, guid: c89c8dd0062abad4ebb5ea3b1a3e8ced, type: 3}
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
-  stats: {fileID: 11400000, guid: 1ac5ebb4f18d7e94f89a4122d57bbb92, type: 2}
+  stats: {fileID: 11400000, guid: b061a5afa87a1b1419360c4ec2305dad, type: 2}
   passives: []
   moves:
   - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
-  - {fileID: 11400000, guid: 8e870889b9dae5d4f9e35cb88e84742d, type: 2}
+  - {fileID: 11400000, guid: d5a4bf7b0b173264498e119043ba1586, type: 2}
   - {fileID: 11400000, guid: f7453ec62071cab45b3dddf83a214a82, type: 2}
-  - {fileID: 11400000, guid: 51481218fcac0694fa84bbd899a849ac, type: 2}
-  - {fileID: 11400000, guid: c265a13f84e503644810691054576b8b, type: 2}
+  - {fileID: 11400000, guid: 939afa8e6637fcf40ae5796369069e9c, type: 2}
   - {fileID: 11400000, guid: 6eee52437e1e9934e88cbe25c2afeeee, type: 2}
-  - {fileID: 11400000, guid: 0d5740be9e428924e94a23b6a03ef9f6, type: 2}
   recItems: []
   ultimate: {fileID: 11400000, guid: bd9d41a3a130a4c4e9298e64bad11d9f, type: 2}
   ai: {fileID: 11400000, guid: 30b1a5873aee89c4c9b412ff04f5b170, type: 2}

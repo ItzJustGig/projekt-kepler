@@ -504,7 +504,7 @@ public class BattleSystem : MonoBehaviour
             }
         }
 
-        Debug.Log(state);
+        //Debug.Log(state);
         if (state == BattleState.WIN || state == BattleState.LOSE)
             StartCoroutine(EndBattle());
         else
@@ -1421,7 +1421,7 @@ public class BattleSystem : MonoBehaviour
 
                                         if (!skipEffect)
                                         {
-                                            Debug.Log("I EFFECT");
+                                            //Debug.Log("I EFFECT");
                                             effect.duration = Random.Range(a.durationMin, a.durationMax) + 1;
 
                                             if (a.targetPlayer)

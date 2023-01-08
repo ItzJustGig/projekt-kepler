@@ -489,7 +489,7 @@ public class Unit : MonoBehaviour
                 {
                     if (a.name == "combatrepair")
                     {
-                        Dotdmg dot = new Dotdmg();
+                        Dotdmg dot = Dotdmg.CreateInstance<Dotdmg>();
                         dot.Setup(dmg.shield, a.num, moveName, Dotdmg.SrcType.MOVE, Dotdmg.DmgType.SHIELD, this);
                         dmg.shield = 0;
                         dotDmg.Add(dot);
@@ -817,13 +817,13 @@ public class Unit : MonoBehaviour
 
     public void DoAnim(string what)
     {
-        if (what != "")
+        if (!string.IsNullOrEmpty(what))
             animator.SetTrigger(what);
     }
 
     public void DoAnimParticle(string what)
     {
-        if (what != "" || what != null)
+        if (!string.IsNullOrEmpty(what))
             particleAnimator.SetTrigger(what);
     }
 }
