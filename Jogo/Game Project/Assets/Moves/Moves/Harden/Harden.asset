@@ -16,6 +16,8 @@ MonoBehaviour:
   name: harden
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -32,13 +34,19 @@ MonoBehaviour:
   healFromDmg: 0
   cooldown: 9
   inCooldown: 0
-  manaCost: 70
+  manaCost: 65
   staminaCost: 5
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: 04a522f5edc51264d82c1b37108c13b3, type: 2}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 219a8affd28755b418ceb0bc9aedb479, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

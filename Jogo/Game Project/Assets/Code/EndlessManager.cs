@@ -254,24 +254,30 @@ public class EndlessManager : MonoBehaviour
 
     void GenEnemy(int round)
     {
-        Character.Strenght selectedStre = Character.Strenght.BABY;
+        Character.Strenght selectedStre = Character.Strenght.None;
         
-        foreach (Encounters enc in monsEncounters.returnStuff()){
+        foreach (Encounters enc in monsEncounters.returnStuff())
+        {
             if (round >= enc.startRound && round <= enc.endRound)
             {
-                for (int i = 0; i < enc.strenghts.Count; i++)
+                do
                 {
-                    if (Random.Range(0f, 1f) <= enc.strenghts[i].chance)
+                    for (int i = 0; i < enc.strenghts.Count; i++)
                     {
-                        isBoss = enc.isBoss;
-                        selectedStre = enc.strenghts[i].strenght;
-                        Debug.Log(selectedStre);
-                        break;
+                        if (Random.Range(0f, 1f) <= enc.strenghts[i].chance)
+                        {
+                            isBoss = enc.isBoss;
+                            selectedStre = enc.strenghts[i].strenght;
+                            Debug.Log(selectedStre);
+                            break;
+                        }
                     }
-                }
+
+                    if (selectedStre != Character.Strenght.None)
+                        break;
+                } while (true);
             }
         }
-        
         strenght = selectedStre;
         
         List<int> num = new List<int>();

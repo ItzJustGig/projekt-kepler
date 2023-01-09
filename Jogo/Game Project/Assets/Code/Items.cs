@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Item")]
 public class Items : ScriptableObject
 {
-    public enum ShopRarity { COMMON, UNCOMMON, RARE, EPIC, LEGENDARY, CHAMPION }
+    public enum ShopRarity { COMMON, UNCOMMON, RARE, EPIC, LEGENDARY, CHAMPION, NONE }
 
     public new string name;
     public Sprite icon;

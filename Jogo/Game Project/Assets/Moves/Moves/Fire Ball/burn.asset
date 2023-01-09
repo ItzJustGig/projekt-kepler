@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88548b2442bb3a547adf43b5c3d57278, type: 3}
   m_Name: burn
   m_EditorClassIdentifier: 
-  durationMin: 1
+  durationMin: 2
   durationMax: 2
-  chance: 0.34
+  chance: 0.4
   targetPlayer: 0
   effect: {fileID: 11400000, guid: 18badac68079e254c825c28bf9fcc23b, type: 2}

@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4158dc4ba771b74ea4ca91e1c1f022c, type: 3}
-  m_Name: epic
+  m_Script: {fileID: 11500000, guid: 88548b2442bb3a547adf43b5c3d57278, type: 3}
+  m_Name: blood
   m_EditorClassIdentifier: 
-  rarity: 3
-  chance: 0.25
+  durationMin: 1
+  durationMax: 3
+  chance: 0.15
+  targetPlayer: 0
+  effect: {fileID: 11400000, guid: c98dedb1590c0864abe23f45c75f622a, type: 2}

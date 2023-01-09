@@ -602,7 +602,7 @@ public class BattleSystem : MonoBehaviour
                     dmgTarget.Reset();
                     dmgUser.Reset();
 
-                    if (Random.Range(0f, 1f) < (statsUser.critChance + move.critChanceBonus))
+                    if (Random.Range(0f, 1f) <= (statsUser.critChance + move.critChanceBonus))
                         isCrit = true;
 
                     foreach (Passives a in target.passives.ToArray())
@@ -1349,14 +1349,14 @@ public class BattleSystem : MonoBehaviour
                         }
                     }
 
-                    if ((Random.Range(0f, 1f) > statsUser.accuracy) || (state is BattleState.LOSE || state is BattleState.WIN) && !isStoped)
+                    if (!(Random.Range(0f, 1f) <= statsUser.accuracy) || (state is BattleState.LOSE || state is BattleState.WIN) && !isStoped)
                         isStoped = true;
 
                     if (!isStoped || 
                         move.type == Moves.MoveType.DEFFENCIVE || move.type == Moves.MoveType.SUPPORT || 
                         move.type == Moves.MoveType.ENCHANT || move.type == Moves.MoveType.SUMMON)
                     {
-                        if (Random.Range(0f, 1f) < (evasion + statsTarget.evasion) && 
+                        if (Random.Range(0f, 1f) <= (evasion + statsTarget.evasion) && 
                             (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.RANGED))
                         {
                             target.Miss(true);
@@ -1396,7 +1396,7 @@ public class BattleSystem : MonoBehaviour
                                 {                                    
                                     Effects effect = a.effect.ReturnEffect();
 
-                                    if (Random.Range(0f, 1f) < a.chance && !a.WasApplied())
+                                    if (Random.Range(0f, 1f) <= a.chance && !a.WasApplied())
                                     {
                                         foreach (Passives b in target.passives.ToArray())
                                         {
@@ -3549,7 +3549,7 @@ public class BattleSystem : MonoBehaviour
 
         dmgT.sanityDmg += move.sanityDmg;
 
-        if (Random.Range(0f, 1f) < statsS.critChance)
+        if (Random.Range(0f, 1f) <= statsS.critChance)
             isCrit = true;
 
         switch (move.dmgType)

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Character : ScriptableObject
 {
     public enum Class { None, Tank, Assassin, Sourcerer, Marksman, Support, Duelist }
-    public enum Strenght { BABY, WEAK, NORMAL, STRONG, SUPERSTRONG, LEGENDARY, CHAMPION, MYTHIC }
+    public enum Strenght { BABY, WEAK, NORMAL, STRONG, SUPERSTRONG, LEGENDARY, CHAMPION, MYTHIC, None }
 
     public Strenght strenght;
     public Class classe;

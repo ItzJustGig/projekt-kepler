@@ -251,20 +251,26 @@ public class ShopManager : MonoBehaviour
 
     Items GenItem()
     {
-        Items.ShopRarity selectedRarity = Items.ShopRarity.COMMON;
+        Items.ShopRarity selectedRarity = Items.ShopRarity.NONE;
 
         foreach (ItemEncounter enc in shopEncounters.returnStuff())
         {
             if (info.round >= enc.startRound && info.round <= enc.endRound)
             {
-                for (int i = 0; i < enc.rarity.Count; i++)
+                do
                 {
-                    if (UnityEngine.Random.Range(0f, 1f) <= enc.rarity[i].chance)
+                    for (int i = 0; i < enc.rarity.Count; i++)
                     {
-                        selectedRarity = enc.rarity[i].rarity;
-                        break;
+                        if (UnityEngine.Random.Range(0f, 1f) <= enc.rarity[i].chance)
+                        {
+                            selectedRarity = enc.rarity[i].rarity;
+                            break;
+                        }
                     }
-                }
+
+                    if (selectedRarity != Items.ShopRarity.NONE)
+                        break;
+                } while (true);
             }
         }
 
