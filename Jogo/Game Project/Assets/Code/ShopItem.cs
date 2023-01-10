@@ -27,6 +27,7 @@ public class ShopItem : MonoBehaviour
     {
         if (item != null)
         {
+            item = item.returnItem();
             cardName.text = langmanag.GetInfo("items", "name", item.name);
             Debug.Log(item.name);
             itemName = item.name;
@@ -58,11 +59,11 @@ public class ShopItem : MonoBehaviour
                     rarityColour.color = colourChampionItem;
                     break;
             }
-        } else
+        }
+        else
         {
             OutOfStock();
         }
-        
     }
     
     public void SetUpCard(Items item, int price, GameObject tooltip)

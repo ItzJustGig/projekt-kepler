@@ -16,4 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c6fc24a9c878e044a6e888925dcf952, type: 2}
   - {fileID: 11400000, guid: 2f719e790dda3d24c82460cf38c55e69, type: 2}
   startRound: 44
-  endRound: 50
+  endRound: 1000

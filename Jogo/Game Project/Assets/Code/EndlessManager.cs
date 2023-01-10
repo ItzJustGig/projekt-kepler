@@ -262,9 +262,12 @@ public class EndlessManager : MonoBehaviour
             {
                 do
                 {
+                    float rng = Random.Range(0f, 1f);
+                    float counter = 0;
                     for (int i = 0; i < enc.strenghts.Count; i++)
                     {
-                        if (Random.Range(0f, 1f) <= enc.strenghts[i].chance)
+                        counter += enc.strenghts[i].chance;
+                        if (rng <= counter)
                         {
                             isBoss = enc.isBoss;
                             selectedStre = enc.strenghts[i].strenght;

@@ -76,7 +76,7 @@ public class ShopManager : MonoBehaviour
 
         if (info.generateShop == true)
         {
-            item1.SetUpCard(GenItem().returnItem(), tooltip);
+            item1.SetUpCard(GenItem(), tooltip);
 
             if (item1.itemName != "")
             {
@@ -95,7 +95,7 @@ public class ShopManager : MonoBehaviour
                 } while (temp.name == item1.itemName);
             }
 
-            item2.SetUpCard(temp.returnItem(), tooltip);
+            item2.SetUpCard(temp, tooltip);
             temp = null;
 
             if (item1.itemName != "" && item2.itemName != "")
@@ -113,7 +113,7 @@ public class ShopManager : MonoBehaviour
                 } while (temp.name == item2.itemName || temp.name == item1.itemName);
             }
 
-            item3.SetUpCard(temp.returnItem(), tooltip);
+            item3.SetUpCard(temp, tooltip);
 
             info.itemShop.Add(item1.GetItemString());
             info.itemShop.Add(item2.GetItemString());
@@ -151,7 +151,7 @@ public class ShopManager : MonoBehaviour
                         item3.SetUpCard(temp, priceI, tooltip);
                         break;
                     default:
-                        Debug.LogWarning("Tried to load many items found in itemShop from the endless data file (" + i + ")");
+                        Debug.LogWarning("Tried to load too many items from the data file (" + i + " items)");
                         break;
                 }
             }
@@ -259,9 +259,12 @@ public class ShopManager : MonoBehaviour
             {
                 do
                 {
+                    float rng = UnityEngine.Random.Range(0f, 1f);
+                    float counter = 0;
                     for (int i = 0; i < enc.rarity.Count; i++)
                     {
-                        if (UnityEngine.Random.Range(0f, 1f) <= enc.rarity[i].chance)
+                        counter += enc.rarity[i].chance;
+                        if (rng <= counter)
                         {
                             selectedRarity = enc.rarity[i].rarity;
                             break;

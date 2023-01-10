@@ -131,11 +131,13 @@ public class AI : ScriptableObject
             //Debug.Log(": " + value);
         }
 
+        float counter = 0;
+        float valRand = Random.Range(0f, 100f);
         for (int i = 0; i < values.Count; i++)
         {
-            float valRand = Random.Range(0f, 100f);
+            counter += values[i];
             //Debug.Log(valRand + " / " + values[i]);
-            if (valRand <= values[i] && values[i] != 0)
+            if (valRand <= counter && values[i] != 0)
             {
                 return i;
             }
