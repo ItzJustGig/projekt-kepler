@@ -76,13 +76,13 @@ public class EndlessManager : MonoBehaviour
         List<Character> champs = new List<Character>();
         foreach (Character t in champions.returnStuff())
         {
-            champs.Add(t.GetCharcInfo());
+            champs.Add(t.GetCharcInfo(0));
         }
 
         List<Character> mons = new List<Character>();
         foreach (Character t in monsters.returnStuff())
         {
-            mons.Add(t.GetCharcInfo());
+            mons.Add(t.GetCharcInfo(0));
         }
 
         if (data.wonLastRound == 1)
@@ -199,13 +199,13 @@ public class EndlessManager : MonoBehaviour
         List<Character> champs = new List<Character>();
         foreach (Character t in champions.returnStuff())
         {
-            champs.Add(t.GetCharcInfo());
+            champs.Add(t.GetCharcInfo(0));
         }
 
         List<Character> mons = new List<Character>();
         foreach (Character t in monsters.returnStuff())
         {
-            mons.Add(t.GetCharcInfo());
+            mons.Add(t.GetCharcInfo(0));
         }
 
         battleHud.SetHud(info);

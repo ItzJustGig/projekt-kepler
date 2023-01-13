@@ -19,7 +19,8 @@ MonoBehaviour:
   sprite: {fileID: 402143169715320279, guid: e9de94f1cdfbe4d459d3b057c983f09b, type: 3}
   charcIcon: {fileID: 21300000, guid: b912f0286f8ebb54ab9a80312fae0da9, type: 3}
   audio: {fileID: 8300000, guid: 07068ae42c670e64abc1748700814460, type: 3}
-  stats: {fileID: 11400000, guid: 4f30d931b4c10bf489c63191e32a4524, type: 2}
+  stats: {fileID: 11400000, guid: 04e1d9d281c62744586e90df9e37d5bb, type: 2}
+  growth: {fileID: 11400000, guid: 646cb4cf8258810498388cab43eb7d44, type: 2}
   passives:
   - {fileID: 11400000, guid: 26b71b97daabb204da0079d771996165, type: 2}
   - {fileID: 11400000, guid: 12db0f8d30528a14bb9bf6fa2bf764b7, type: 2}

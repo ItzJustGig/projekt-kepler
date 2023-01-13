@@ -55,6 +55,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private Stats statsLevel;
 
     public Character charc;
+    [SerializeField] private int level = 0;
     [SerializeField] private GameObject spriteDefault;
     [SerializeField] private GameObject dmgText;
     [SerializeField] private GameObject passiveText;
@@ -85,13 +86,13 @@ public class Unit : MonoBehaviour
         List<Character> champs = new List<Character>();
         foreach (Character t in champions.returnStuff())
         {
-            champs.Add(t.GetCharcInfo());
+            champs.Add(t.GetCharcInfo(level));
         }
 
         List<Character> mons = new List<Character>();
         foreach (Character t in monsters.returnStuff())
         {
-            mons.Add(t.GetCharcInfo());
+            mons.Add(t.GetCharcInfo(level));
         }
 
         if (!isEnemy)

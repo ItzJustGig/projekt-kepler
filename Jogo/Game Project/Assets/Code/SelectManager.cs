@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class SelectManager : MonoBehaviour
 {
+    public int charcLevel = 30;
     [SerializeField] private GameObject alex;
     [SerializeField] private GameObject leowind;
     [SerializeField] private GameObject bonsour;
@@ -409,9 +410,9 @@ public class SelectManager : MonoBehaviour
         titleDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "title", charc.GetComponent<CharacterInfo>().character.name);
         charcIcon.sprite = charc.GetComponent<CharacterInfo>().character.charcIcon;
         if (PlayerPrefs.GetInt("isEndless") != 0)
-            SetStats(charc.GetComponent<CharacterInfo>().character.stats.ReturnStats());
+            SetStats(charc.GetComponent<CharacterInfo>().character.GetStatLevel(charcLevel));
         else
-            SetStats(charc.GetComponent<CharacterInfo>().character.stats.ReturnStatsLevel(statsLevels, statsGrowth));
+            SetStats(charc.GetComponent<CharacterInfo>().character.GetStatLevel(charcLevel));
 
         SetClassIcon(charc.GetComponent<CharacterInfo>().character.classe);
     }
