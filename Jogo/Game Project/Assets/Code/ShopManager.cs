@@ -52,13 +52,13 @@ public class ShopManager : MonoBehaviour
         List<Character> champs = new List<Character>();
         foreach (Character t in champions.returnStuff())
         {
-            champs.Add(t.GetCharcInfo(0));
+            champs.Add(t.GetCharcInfo());
         }
 
         List<Character> mons = new List<Character>();
         foreach (Character t in monsters.returnStuff())
         {
-            mons.Add(t.GetCharcInfo(0));
+            mons.Add(t.GetCharcInfo());
         }
 
         if (info.isPlayerChamp)

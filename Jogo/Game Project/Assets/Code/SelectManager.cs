@@ -62,6 +62,7 @@ public class SelectManager : MonoBehaviour
     private readonly string isEnemyChamp = "isEnemyChamp";
     private readonly string selectedItem1 = "selectedItem1";
     private readonly string selectedItem2 = "selectedItem2";
+    private readonly string selectedLevel = "selectedLevel";
 
     [SerializeField] private GameObject itemSelect;
     [SerializeField] private GameObject item1;
@@ -694,6 +695,7 @@ public class SelectManager : MonoBehaviour
                 StartCoroutine(WaitWhile());
             } while (random == i);
 
+            PlayerPrefs.SetInt(selectedLevel, charcLevel);
             PlayerPrefs.SetInt(selectedCharacter, i);
             PlayerPrefs.SetInt(selectedEnemy, random);
             PlayerPrefs.SetInt(isPlayerChamp, 1);

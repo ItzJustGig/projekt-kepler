@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenghts:
   - {fileID: 11400000, guid: 8e54460a20d8f0b4396c8f9471871006, type: 2}
-  startRound: 0
+  startRound: -1
   endRound: 4
   isBoss: 0

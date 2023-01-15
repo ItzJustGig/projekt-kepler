@@ -25,6 +25,8 @@ public class EndlessManager : MonoBehaviour
     private readonly string isPlayerChamp = "isPlayerChamp";
     private readonly string isEnemyChamp = "isEnemyChamp";
     private readonly string isEnemyBoss = "isEnemyBoss";
+    private readonly string selectedLevel = "selectedLevel";
+
     private EndlessLanguageManager langmanag;
 
     [SerializeField] private StuffList champions;
@@ -76,15 +78,15 @@ public class EndlessManager : MonoBehaviour
         List<Character> champs = new List<Character>();
         foreach (Character t in champions.returnStuff())
         {
-            champs.Add(t.GetCharcInfo(0));
+            champs.Add(t.GetCharcInfo());
         }
 
         List<Character> mons = new List<Character>();
         foreach (Character t in monsters.returnStuff())
         {
-            mons.Add(t.GetCharcInfo(0));
+            mons.Add(t.GetCharcInfo());
         }
-
+        data.level = info.level;
         if (data.wonLastRound == 1)
         {
             if (info.enemyIdNext != -1)
@@ -113,10 +115,11 @@ public class EndlessManager : MonoBehaviour
 
                 info.gold += gold;
             }
-
             GenEnemy(info.round);
             info.itemShop.Clear();
             info.generateShop = true;
+            if (info.round != -1 && info.round%3==0)
+                data.level = info.level + 1;
         }
         else
         {
@@ -189,6 +192,7 @@ public class EndlessManager : MonoBehaviour
 
         SaveSystem.Save(data);
         info.Load();
+        Debug.Log("AAAA " + info.level);
     }
 
     void Start()
@@ -199,13 +203,13 @@ public class EndlessManager : MonoBehaviour
         List<Character> champs = new List<Character>();
         foreach (Character t in champions.returnStuff())
         {
-            champs.Add(t.GetCharcInfo(0));
+            champs.Add(t.GetCharcInfo());
         }
 
         List<Character> mons = new List<Character>();
         foreach (Character t in monsters.returnStuff())
         {
-            mons.Add(t.GetCharcInfo(0));
+            mons.Add(t.GetCharcInfo());
         }
 
         battleHud.SetHud(info);
@@ -278,11 +282,12 @@ public class EndlessManager : MonoBehaviour
 
                     if (selectedStre != Character.Strenght.None)
                         break;
+
                 } while (true);
             }
         }
         strenght = selectedStre;
-        
+
         List<int> num = new List<int>();
         int d = 0;
 
@@ -296,9 +301,10 @@ public class EndlessManager : MonoBehaviour
                 }
                 d++;
             }
-
+            
             enemyId = num[Random.Range(0, num.Count)];
-        } else
+        }
+        else
         {
             if (info.isEnemyChampNext == true)
             {
@@ -350,6 +356,8 @@ public class EndlessManager : MonoBehaviour
         PlayerPrefs.SetInt(isPlayerChamp, System.Convert.ToInt32(info.isPlayerChamp));
         PlayerPrefs.SetInt(isEnemyChamp, System.Convert.ToInt32(info.isEnemyChampNext));
         PlayerPrefs.SetInt(isEnemyBoss, System.Convert.ToInt32(isBoss));
+        Debug.Log("LEVEL: " + info.level);
+        PlayerPrefs.SetInt(selectedLevel, info.level);
 
         HideIcons();
         loader.LoadScene(2, slider, loadPanel);

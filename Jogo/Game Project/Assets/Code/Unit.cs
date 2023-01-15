@@ -63,6 +63,7 @@ public class Unit : MonoBehaviour
     private readonly string selectedEnemy = "SelectedEnemy";
     private readonly string playerchamp = "isPlayerChamp";
     private readonly string enemychamp = "isEnemyChamp";
+    private readonly string selectedLevel = "selectedLevel";
 
     public float phyDmgDealt, magicDmgDealt, trueDmgDealt, sanityDmgDealt;
     public float healDone, shieldDone, manaHealDone, staminaHealDone, sanityHealDone;
@@ -77,6 +78,14 @@ public class Unit : MonoBehaviour
 
     void Awake()
     {
+        if (PlayerPrefs.GetInt("isEndless") == 0)
+        {
+            level = PlayerPrefs.GetInt(selectedLevel);
+        } else
+        {
+            if (!isEnemy)
+                level = PlayerPrefs.GetInt(selectedLevel);
+        }
         int character = PlayerPrefs.GetInt(selectedCharacter);
         int bot = PlayerPrefs.GetInt(selectedEnemy);
 
@@ -86,13 +95,13 @@ public class Unit : MonoBehaviour
         List<Character> champs = new List<Character>();
         foreach (Character t in champions.returnStuff())
         {
-            champs.Add(t.GetCharcInfo(level));
+            champs.Add(t.GetCharcInfo());
         }
 
         List<Character> mons = new List<Character>();
         foreach (Character t in monsters.returnStuff())
         {
-            mons.Add(t.GetCharcInfo(level));
+            mons.Add(t.GetCharcInfo());
         }
 
         if (!isEnemy)
@@ -129,10 +138,10 @@ public class Unit : MonoBehaviour
             moves.Add(move.ReturnMove());
         }
 
-        if (PlayerPrefs.GetInt("isEndless") != 0)
-            charc.stats = charc.stats.ReturnStats();
+        if (charc.growth)
+            charc.stats = charc.GetStatLevel(level);
         else
-            charc.stats = charc.stats.ReturnStatsLevel(statsLevel, statGrowth);
+            charc.stats = charc.stats.ReturnStats();
 
         size = charc.size;
     }

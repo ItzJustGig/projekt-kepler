@@ -234,7 +234,7 @@ public class BattleSystem : MonoBehaviour
 
         if (PlayerPrefs.GetInt("isEndless") == 1)
         {
-            switch (enemyUnit.charc.strenght)
+            /*switch (enemyUnit.charc.strenght)
             {
                 case Character.Strenght.BABY:
                     playerUnit.passives.Add(endlessStuff.babyPassive.ReturnPassive());
@@ -256,7 +256,7 @@ public class BattleSystem : MonoBehaviour
                     break;
                 case Character.Strenght.CHAMPION:
                     break;
-            }
+            }*/
 
             if (PlayerPrefs.GetInt("isEnemyBoss") == 1)
                 enemyUnit.passives.Add(endlessStuff.bossPassive.ReturnPassive());

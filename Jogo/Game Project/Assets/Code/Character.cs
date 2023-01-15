@@ -28,7 +28,7 @@ public class Character : ScriptableObject
 
     public AI ai;
 
-    public Character GetCharcInfo(int level)
+    public Character GetCharcInfo()
     {
         Character charc = CreateInstance<Character>();
 
@@ -39,7 +39,9 @@ public class Character : ScriptableObject
         charc.charcIcon = charcIcon;
         charc.sprite = sprite;
         charc.audio = audio;
-        charc.stats = GetStatLevel(level);
+        if (growth)
+            charc.growth = growth;
+        charc.stats = stats;
         charc.passives = passives;
         charc.moves = moves;
         charc.ultimate = ultimate;

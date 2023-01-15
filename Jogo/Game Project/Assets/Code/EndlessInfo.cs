@@ -27,6 +27,7 @@ public class EndlessInfo : MonoBehaviour
     public bool generateShop;
 
     public float gold;
+    public int level;
     public int round;
 
     public List<string> items = new List<string>();
@@ -55,6 +56,7 @@ public class EndlessInfo : MonoBehaviour
         this.playerSan = data.playerSan;
         this.playerUlt = data.playerUlt;
         this.gold = data.gold;
+        this.level = data.level;
         this.round = data.round;
         this.wonLastRound = data.wonLastRound;
         this.generateShop = data.generateShop;
@@ -91,6 +93,7 @@ public class EndlessInfo : MonoBehaviour
         this.playerUlt = 0;
         this.gold = 0;
         this.round = -1;
+        this.level = 0;
         this.wonLastRound = 1;
         this.generateShop = true;
         this.items.Clear();
@@ -122,6 +125,7 @@ public class EndlessInfo : MonoBehaviour
         this.playerUlt = 0;
         this.gold = 0;
         this.round = -1;
+        this.level = 0;
         this.wonLastRound = 1;
         this.generateShop = true;
         this.items.Clear();

@@ -23,6 +23,7 @@ public class EndlessData
     public float playerUlt;
 
     public float gold;
+    public int level;
     public int round;
 
     public int wonLastRound;
@@ -47,6 +48,7 @@ public class EndlessData
         this.playerUlt = data.playerUlt;
         this.gold = data.gold;
         this.round = data.round;
+        this.level = data.level;
         this.wonLastRound = data.wonLastRound;
         this.generateShop = data.generateShop;
 
@@ -84,6 +86,7 @@ public class EndlessData
         this.playerUlt = 0;
         this.gold = 0;
         this.round = -1;
+        this.level = 0;
         this.wonLastRound = 1;
         this.generateShop = true;
     }
