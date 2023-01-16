@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 5
   dmg: 0
-  time: 6
+  time: 5
   inTime: 0
   isCrit: 0
+  source: {fileID: 0}
   srcId: 
   srcType: 0

@@ -3258,7 +3258,7 @@ public class BattleSystem : MonoBehaviour
                     a.inCd--;
 
                 bool isReady = false;
-                if (a.inCd == 1)
+                if (a.inCd == 0)
                     isReady = true;
 
                 ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);

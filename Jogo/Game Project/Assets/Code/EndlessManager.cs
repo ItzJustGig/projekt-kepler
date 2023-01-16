@@ -26,6 +26,7 @@ public class EndlessManager : MonoBehaviour
     private readonly string isEnemyChamp = "isEnemyChamp";
     private readonly string isEnemyBoss = "isEnemyBoss";
     private readonly string selectedLevel = "selectedLevel";
+    private readonly string selectedLevelEnemy = "selectedLevelEnemy";
 
     private EndlessLanguageManager langmanag;
 
@@ -49,6 +50,7 @@ public class EndlessManager : MonoBehaviour
     private SceneLoader loader;
 
     int enemyId;
+    int enemyLevel;
     Character.Strenght strenght;
     bool isBoss;
     [SerializeField] GameObject[] iconsArray;
@@ -125,6 +127,7 @@ public class EndlessManager : MonoBehaviour
         {
             enemyId = info.enemyIdNext;
             isBoss = info.isEnemyBossNext;
+            enemyLevel = info.enemyLevelNext;
 
             if (info.isEnemyChampNext)
                 strenght = Character.Strenght.CHAMPION;
@@ -138,22 +141,22 @@ public class EndlessManager : MonoBehaviour
         if (strenght is Character.Strenght.CHAMPION)
         {
             nextCard.charc = champs[enemyId];
-            data.isEnemyBossNext = isBoss;
             data.isEnemyChampNext = true;
-            data.enemyIdNext = enemyId;
         }
         else
         {
             nextCard.charc = mons[enemyId];
-            data.isEnemyBossNext = isBoss;
             data.isEnemyChampNext = false;
-            data.enemyIdNext = enemyId;
         }
+        data.isEnemyBossNext = isBoss;
+        data.enemyIdNext = enemyId;
+        data.enemyLevelNext = enemyLevel;
 
         if (info.enemyIdPrev <= -1)
         {
             prevCard.charc = mons[0];
             data.enemyIdPrev = 0;
+            data.enemyLevelPrev = 0;
         }
         else
         {
@@ -167,6 +170,7 @@ public class EndlessManager : MonoBehaviour
             }
             data.isEnemyChampPrev = info.isEnemyChampNext;
             data.enemyIdPrev = info.enemyIdNext;
+            data.enemyLevelPrev = info.enemyLevelNext;
             data.isEnemyBossPrev = info.isEnemyBossNext;
         }
 
@@ -192,6 +196,8 @@ public class EndlessManager : MonoBehaviour
 
         SaveSystem.Save(data);
         info.Load();
+        prevCard.level = info.enemyLevelPrev;
+        nextCard.level = info.enemyLevelNext;
         Debug.Log("AAAA " + info.level);
     }
 
@@ -259,7 +265,8 @@ public class EndlessManager : MonoBehaviour
     void GenEnemy(int round)
     {
         Character.Strenght selectedStre = Character.Strenght.None;
-        
+        int minLvl = 0;
+        int maxLvl = 0;
         foreach (Encounters enc in monsEncounters.returnStuff())
         {
             if (round >= enc.startRound && round <= enc.endRound)
@@ -275,7 +282,8 @@ public class EndlessManager : MonoBehaviour
                         {
                             isBoss = enc.isBoss;
                             selectedStre = enc.strenghts[i].strenght;
-                            Debug.Log(selectedStre);
+                            minLvl = enc.strenghts[i].minLvl;
+                            maxLvl = enc.strenghts[i].maxLvl;
                             break;
                         }
                     }
@@ -323,6 +331,7 @@ public class EndlessManager : MonoBehaviour
             }
             
         }
+        enemyLevel = Random.Range(minLvl, maxLvl);
     }
 
     void Update()
@@ -332,6 +341,11 @@ public class EndlessManager : MonoBehaviour
             HideIcons();
             loader.LoadScene(0, slider, loadPanel);
         }
+    }
+
+    public int GetLevel()
+    {
+        return info.level;
     }
 
     public void BackBtn()
@@ -356,8 +370,8 @@ public class EndlessManager : MonoBehaviour
         PlayerPrefs.SetInt(isPlayerChamp, System.Convert.ToInt32(info.isPlayerChamp));
         PlayerPrefs.SetInt(isEnemyChamp, System.Convert.ToInt32(info.isEnemyChampNext));
         PlayerPrefs.SetInt(isEnemyBoss, System.Convert.ToInt32(isBoss));
-        Debug.Log("LEVEL: " + info.level);
         PlayerPrefs.SetInt(selectedLevel, info.level);
+        PlayerPrefs.SetInt(selectedLevelEnemy, info.enemyLevelNext);
 
         HideIcons();
         loader.LoadScene(2, slider, loadPanel);

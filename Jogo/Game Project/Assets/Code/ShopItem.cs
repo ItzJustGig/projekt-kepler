@@ -23,7 +23,7 @@ public class ShopItem : MonoBehaviour
 
     [SerializeField] private ShopLangManager langmanag;
 
-    public void SetUpCard(Items item, GameObject tooltip)
+    public void SetUpCard(Items item, GameObject tooltip, int minPrice, int maxPrice)
     {
         if (item != null)
         {
@@ -31,7 +31,7 @@ public class ShopItem : MonoBehaviour
             cardName.text = langmanag.GetInfo("items", "name", item.name);
             Debug.Log(item.name);
             itemName = item.name;
-            price = Random.Range(item.minPrice, item.maxPrice);
+            price = Random.Range(minPrice, maxPrice);
             goldText.text = price + langmanag.GetInfo("gui", "text", "goldinicial");
             itemSprite.sprite = item.icon;
 

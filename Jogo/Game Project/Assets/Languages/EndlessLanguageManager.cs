@@ -16,6 +16,7 @@ public class EndlessLanguageManager : MonoBehaviour
     [SerializeField] private Text startBtnText;
     [SerializeField] private Text delSaveBtnText;
     [SerializeField] private Text shopBtnText;
+    [SerializeField] private Text levelText;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class EndlessLanguageManager : MonoBehaviour
         startBtnText.text = languageManager.GetText(language, "gui", "button", "start");
         delSaveBtnText.text = languageManager.GetText(language, "gui", "button", "delsave");
         shopBtnText.text = languageManager.GetText(language, "gui", "button", "shop");
+        levelText.text = languageManager.GetText(language, "gui", "text", "level") + this.gameObject.GetComponent<EndlessManager>().GetLevel();
     }
 
     public string GetInfo(string arg1, string arg2)

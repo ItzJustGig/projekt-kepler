@@ -72,7 +72,8 @@
             "goldinicial": " O",
 			"leavetitle": "A sair j\u00E1?",
 			"leavetext": "J\u00E1 queres sair? \nVais perder todo o progresso nesta batalha.",
-			"chanceshop": "Chances da pr\u00f3xima loja:"
+			"chanceshop": "Chances da pr\u00f3xima loja:",
+            "level": "N\u00edvel "
         }
     },
     "showdetail": {
@@ -553,6 +554,13 @@
 		"cd": "%val% turnos de recarga",
 		"uses": "%val% vezes, ",
 		"stat":"%c%+%val%% %stat%%c/%",
+		"rarity":{
+			"common": "Comum",
+			"uncommon": "Incomum",
+			"rare": "Raro",
+			"epic": "Epico",
+			"legendary": "Lend\u00e1rio"
+		},
         "name": {
             "bigsteak": "Grande Bife",
             "manacrystal": "Cristal de Mana",

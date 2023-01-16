@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Card : MonoBehaviour
 {
     public Character charc;
+    public int level;
 
     [SerializeField] private Color colourBaby;
     [SerializeField] private Color colourWeak;
@@ -20,6 +21,7 @@ public class Card : MonoBehaviour
     [SerializeField] private Image class1;
     [SerializeField] private Image class2;
     [SerializeField] private Text cardName;
+    [SerializeField] private Text cardLevel;
 
     [SerializeField] private GameObject bossIcon;
 
@@ -77,6 +79,7 @@ public class Card : MonoBehaviour
 
         Destroy(class2.gameObject);
         cardName.text = langmanag.GetInfo("charc", "name", charc.name);
+        cardLevel.text = langmanag.GetInfo("gui", "text", "level")+level;
         charcSprite.sprite = charc.sprite.GetComponent<SpriteRenderer>().sprite;
     }
 

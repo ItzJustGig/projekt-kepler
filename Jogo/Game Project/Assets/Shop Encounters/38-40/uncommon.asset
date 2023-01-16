@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: uncommon
   m_EditorClassIdentifier: 
   rarity: 1
-  chance: 0.35
+  chance: 0.1

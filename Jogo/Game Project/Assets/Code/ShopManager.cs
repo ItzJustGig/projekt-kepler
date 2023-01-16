@@ -40,6 +40,17 @@ public class ShopManager : MonoBehaviour
 
     private SceneLoader loader;
 
+    public int commonMin;
+    public int commonMax;
+    public int uncommonMin;
+    public int uncommonMax;
+    public int rareMin;
+    public int rareMax;
+    public int epicMin;
+    public int epicMax;
+    public int legendaryMin;
+    public int legendaryMax;
+
     void Start()
     {
         gameObject.AddComponent<SceneLoader>();
@@ -76,7 +87,7 @@ public class ShopManager : MonoBehaviour
 
         if (info.generateShop == true)
         {
-            item1.SetUpCard(GenItem(), tooltip);
+            SetItem(item1, GenItem());
 
             if (item1.itemName != "")
             {
@@ -95,7 +106,7 @@ public class ShopManager : MonoBehaviour
                 } while (temp.name == item1.itemName);
             }
 
-            item2.SetUpCard(temp, tooltip);
+            SetItem(item2, temp);
             temp = null;
 
             if (item1.itemName != "" && item2.itemName != "")
@@ -113,7 +124,7 @@ public class ShopManager : MonoBehaviour
                 } while (temp.name == item2.itemName || temp.name == item1.itemName);
             }
 
-            item3.SetUpCard(temp, tooltip);
+            SetItem(item3, temp);
 
             info.itemShop.Add(item1.GetItemString());
             info.itemShop.Add(item2.GetItemString());
@@ -160,7 +171,58 @@ public class ShopManager : MonoBehaviour
         CheckPrice();
         GetNextChance();
     }
-    
+
+    public string GetRarityGold(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                return commonMin + "-" + commonMax;
+            case 1:
+                return uncommonMin + "-" + uncommonMax;
+            case 2:
+                return rareMin + "-" + rareMax;
+            case 3:
+                return epicMin + "-" + epicMax;
+            default:
+                return "NULL";
+        }
+    }
+
+    private void SetItem(ShopItem shopItem, Items genItem)
+    {
+        int min = 0;
+        int max = 0;
+        if (genItem != null)
+        {
+            switch (genItem.rarity)
+            {
+                case Items.ShopRarity.COMMON:
+                    min = commonMin;
+                    max = commonMax;
+                    break;
+                case Items.ShopRarity.UNCOMMON:
+                    min = uncommonMin;
+                    max = uncommonMax;
+                    break;
+                case Items.ShopRarity.RARE:
+                    min = rareMin;
+                    max = rareMax;
+                    break;
+                case Items.ShopRarity.EPIC:
+                    min = epicMin;
+                    max = epicMax;
+                    break;
+                case Items.ShopRarity.LEGENDARY:
+                    min = legendaryMin;
+                    max = legendaryMax;
+                    break;
+            }
+        }
+
+        shopItem.SetUpCard(genItem, tooltip, min, max);
+    }
+
     private void RefreshOwnItems()
     {
         foreach (Transform child in itemOwnList)

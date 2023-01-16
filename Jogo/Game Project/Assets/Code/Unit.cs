@@ -64,6 +64,7 @@ public class Unit : MonoBehaviour
     private readonly string playerchamp = "isPlayerChamp";
     private readonly string enemychamp = "isEnemyChamp";
     private readonly string selectedLevel = "selectedLevel";
+    private readonly string selectedLevelEnemy = "selectedLevelEnemy";
 
     public float phyDmgDealt, magicDmgDealt, trueDmgDealt, sanityDmgDealt;
     public float healDone, shieldDone, manaHealDone, staminaHealDone, sanityHealDone;
@@ -85,6 +86,8 @@ public class Unit : MonoBehaviour
         {
             if (!isEnemy)
                 level = PlayerPrefs.GetInt(selectedLevel);
+            else
+                level = PlayerPrefs.GetInt(selectedLevelEnemy);
         }
         int character = PlayerPrefs.GetInt(selectedCharacter);
         int bot = PlayerPrefs.GetInt(selectedEnemy);

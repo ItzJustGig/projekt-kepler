@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ce7d297b57444464e9a01910a85fdccc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b43cd2a04e2be741bffda09be540f17, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -153,7 +153,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Zap
+  m_Text: Long Bow
 --- !u!1 &5427755121742644162
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,11 +227,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: "<size=24><align=center>Zap</align></size>\r\n<s><align=center>|                
-    |</align></s>\r\n<color=#3366ff>+35 Maximum Mana</color>\r\n<color=#2d71fa>+0,2
-    Mana Regen</color>\r\n<color=#1a66ff>+12 Magic Power</color>\r\n  \r\n<color=#ffdf00>ACTIVE
-    (6 turns cooldown)</color>: The carrier will <color=#ffdf00>zap</color> the target
-    with a <color=#1a66ff>Magical move</color> to Deal <color=#1a66ff>15 + (<color=#1a66ff>115%</color>
-    of the user's <color=#1a66ff>Magic Power</color>) magical damage</color> \r\n"
+  text: "<size=24><align=center>Long Bow</align></size>\r\n<s><align=center>|                
+    |</align></s>\r\n<color=#ffaa00>+8 Attack Damage</color>\r\n<color=#f75145>+5%
+    Critical Chance</color>\r\n<color=#f75145>+3,15% Critical Damage</color>\r\n<color=#e04419>+2,5%
+    Accuracy</color>\r\n  \r\n"
   textSec: 
   wantSec: 0

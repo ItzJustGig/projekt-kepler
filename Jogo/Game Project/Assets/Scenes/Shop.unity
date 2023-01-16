@@ -2693,6 +2693,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 864393021}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &981423215 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1217040612873812677, guid: 0f237443123e1cd4bafc39390dff8ba7,
+    type: 3}
+  m_PrefabInstance: {fileID: 864393021}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981423214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ca3962a7e5fef48a48fda2ae4a768d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1009906225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3069,6 +3081,7 @@ GameObject:
   - component: {fileID: 1069336907}
   - component: {fileID: 1069336909}
   - component: {fileID: 1069336908}
+  - component: {fileID: 1069336910}
   m_Layer: 5
   m_Name: Uncommon
   m_TagString: Untagged
@@ -3134,6 +3147,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069336906}
   m_CullTransparentMesh: 1
+--- !u!114 &1069336910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069336906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb0ee46bff17304e9d4edad75892f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPopup: {fileID: 981423215}
+  tooltipPopupSec: {fileID: 0}
+  text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &1081564264
 GameObject:
   m_ObjectHideFlags: 0
@@ -3559,6 +3589,16 @@ MonoBehaviour:
   shopEncounters: {fileID: 1865873886}
   loadPanel: {fileID: 2102794624}
   slider: {fileID: 1475360976}
+  commonMin: 10
+  commonMax: 30
+  uncommonMin: 40
+  uncommonMax: 65
+  rareMin: 70
+  rareMax: 90
+  epicMin: 100
+  epicMax: 140
+  legendaryMin: 150
+  legendaryMax: 180
 --- !u!114 &1250475053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3587,6 +3627,7 @@ MonoBehaviour:
   wonLastRound: 0
   generateShop: 0
   gold: 0
+  level: 0
   round: 0
   items: []
   itemShop: []
@@ -3610,6 +3651,10 @@ MonoBehaviour:
   leaveBtnText: {fileID: 771132936}
   closeBtnText: {fileID: 1081564266}
   chanceShopText: {fileID: 1974953687}
+  commonTt: {fileID: 1373902674}
+  uncommonTt: {fileID: 1069336910}
+  rareTt: {fileID: 1865149043}
+  epicTt: {fileID: 1465420994}
 --- !u!114 &1250475055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3885,6 +3930,7 @@ GameObject:
   - component: {fileID: 1373902671}
   - component: {fileID: 1373902673}
   - component: {fileID: 1373902672}
+  - component: {fileID: 1373902674}
   m_Layer: 5
   m_Name: Common
   m_TagString: Untagged
@@ -3950,6 +3996,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373902670}
   m_CullTransparentMesh: 1
+--- !u!114 &1373902674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373902670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb0ee46bff17304e9d4edad75892f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPopup: {fileID: 981423215}
+  tooltipPopupSec: {fileID: 0}
+  text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &1410712753
 GameObject:
   m_ObjectHideFlags: 0
@@ -4111,6 +4174,7 @@ GameObject:
   - component: {fileID: 1465420991}
   - component: {fileID: 1465420993}
   - component: {fileID: 1465420992}
+  - component: {fileID: 1465420994}
   m_Layer: 5
   m_Name: Epic
   m_TagString: Untagged
@@ -4176,6 +4240,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1465420990}
   m_CullTransparentMesh: 1
+--- !u!114 &1465420994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465420990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb0ee46bff17304e9d4edad75892f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPopup: {fileID: 981423215}
+  tooltipPopupSec: {fileID: 0}
+  text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &1473022939
 GameObject:
   m_ObjectHideFlags: 0
@@ -5435,6 +5516,7 @@ GameObject:
   - component: {fileID: 1865149040}
   - component: {fileID: 1865149042}
   - component: {fileID: 1865149041}
+  - component: {fileID: 1865149043}
   m_Layer: 5
   m_Name: Rare
   m_TagString: Untagged
@@ -5500,6 +5582,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865149039}
   m_CullTransparentMesh: 1
+--- !u!114 &1865149043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865149039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb0ee46bff17304e9d4edad75892f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPopup: {fileID: 981423215}
+  tooltipPopupSec: {fileID: 0}
+  text: 
+  textSec: 
+  wantSec: 0
 --- !u!4 &1865873885 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 857963915080016451, guid: 7d817274cd111e04186f41d675ef02fd,

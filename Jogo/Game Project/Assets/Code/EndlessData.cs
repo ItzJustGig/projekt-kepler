@@ -7,10 +7,12 @@ public class EndlessData
 {
     public bool isEnemyChampPrev;
     public int enemyIdPrev;
+    public int enemyLevelPrev;
     public bool isEnemyBossPrev;
 
     public bool isEnemyChampNext;
     public int enemyIdNext;
+    public int enemyLevelNext;
     public bool isEnemyBossNext;
 
     public bool isPlayerChamp;
@@ -36,7 +38,9 @@ public class EndlessData
         this.isEnemyChampNext = data.isEnemyChampNext;
         this.isEnemyBossNext = data.isEnemyBossNext;
         this.enemyIdNext = data.enemyIdNext;
+        this.enemyLevelNext = data.enemyLevelNext;
         this.isEnemyChampPrev = data.isEnemyChampPrev;
+        this.enemyLevelPrev = data.enemyLevelPrev;
         this.isEnemyBossPrev = data.isEnemyBossPrev;
         this.enemyIdPrev = data.enemyIdPrev;
         this.isPlayerChamp = data.isPlayerChamp;
@@ -73,9 +77,11 @@ public class EndlessData
     {
         this.isEnemyChampPrev = false;
         this.enemyIdPrev = -1;
+        this.enemyLevelPrev = 0;
         this.isEnemyBossPrev = false;
         this.isEnemyChampNext = false;
         this.enemyIdNext = -1;
+        this.enemyLevelNext = -1;
         this.isEnemyBossNext = false;
         this.isPlayerChamp = false;
         this.playerId = -1;

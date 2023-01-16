@@ -7,4 +7,6 @@ public class CharacterStrenght : ScriptableObject
 {
     public Character.Strenght strenght;
     public float chance;
+    public int minLvl;
+    public int maxLvl;
 }

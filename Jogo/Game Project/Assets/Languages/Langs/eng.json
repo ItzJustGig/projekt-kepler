@@ -72,7 +72,8 @@
 			"goldinicial": "G",
 			"leavetitle": "Leaving already?",
 			"leavetext": "Are you sure you want to leave? \nYou will lose all your progress on this battle.",
-			"chanceshop": "Chances of the next shop:"
+			"chanceshop": "Chances of the next shop:",
+			"level": "Level "
 		}
 	},
 	"showdetail": {
@@ -553,6 +554,13 @@
 		"cd": "%val% turns cooldown",
 		"uses": "%val% times, ",
 		"stat":"%c%+%val%% %stat%%c/%",
+		"rarity":{
+			"common": "Common",
+			"uncommon": "Uncommon",
+			"rare": "Rare",
+			"epic": "Epic",
+			"legendary": "Legendary"
+		},
 		"name": {
 			"bigsteak": "Big Steak",
 			"manacrystal": "Mana Crystal",

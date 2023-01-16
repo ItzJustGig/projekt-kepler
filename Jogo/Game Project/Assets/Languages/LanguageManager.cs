@@ -632,6 +632,7 @@ public class LanguageManager : MonoBehaviour
         public string leavetitle;
         public string leavetext;
         public string chanceshop;
+        public string level;
 
         public string Get_TextCont(string a)
         {
@@ -775,6 +776,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "chanceshop":
                     returns = chanceshop;
+                    break;
+                case "level":
+                    returns = level;
                     break;
                 default:
                     returns = "null";
@@ -2024,7 +2028,7 @@ public class LanguageManager : MonoBehaviour
         }
     }
 
-        [Serializable]
+    [Serializable]
     public class Items
     {
         public string passive;
@@ -2034,6 +2038,7 @@ public class LanguageManager : MonoBehaviour
         public string uses;
         public string title;
         public Item_Name name;
+        public Item_Rarity rarity;
         public Item_Move move;
 
         public string Get_Item(string a, string b)
@@ -2061,6 +2066,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "name":
                     returns = name.Get_ItemName(b);
+                    break;
+                case "rarity":
+                    returns = rarity.Get_ItemRarity(b);
                     break;
                 case "move":
                     returns = move.Get_ItemMove(b);
@@ -2181,6 +2189,43 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "crossbow":
                     returns = crossbow;
+                    break;
+                default:
+                    returns = "null";
+                    break;
+            }
+            return returns;
+        }
+    }
+
+    [Serializable]
+    public class Item_Rarity
+    {
+        public string common;
+        public string uncommon;
+        public string rare;
+        public string epic;
+        public string legendary;
+
+        public string Get_ItemRarity(string a)
+        {
+            string returns;
+            switch (a)
+            {
+                case "common":
+                    returns = common;
+                    break;
+                case "uncommon":
+                    returns = uncommon;
+                    break;
+                case "rare":
+                    returns = rare;
+                    break;
+                case "epic":
+                    returns = epic;
+                    break;
+                case "legendary":
+                    returns = legendary;
                     break;
                 default:
                     returns = "null";

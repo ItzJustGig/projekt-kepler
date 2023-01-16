@@ -14,8 +14,6 @@ public class Items : ScriptableObject
     public List<StatMod> statmod = new List<StatMod>();
     public List<Moves> moves = new List<Moves>();
     public ShopRarity rarity;
-    public int minPrice;
-    public int maxPrice;
 
     public Items returnItem()
     {
@@ -26,8 +24,6 @@ public class Items : ScriptableObject
         item.statmod = statmod;
         item.moves = moves;
         item.rarity = rarity;
-        item.minPrice = minPrice;
-        item.maxPrice = maxPrice;
 
         return item;
     }

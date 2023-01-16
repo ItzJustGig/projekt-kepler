@@ -8,10 +8,12 @@ public class EndlessInfo : MonoBehaviour
 {
     public bool isEnemyChampPrev;
     public int enemyIdPrev;
+    public int enemyLevelPrev;
     public bool isEnemyBossPrev;
 
     public bool isEnemyChampNext;
     public int enemyIdNext;
+    public int enemyLevelNext;
     public bool isEnemyBossNext;
 
     public bool isPlayerChamp;
@@ -44,9 +46,11 @@ public class EndlessInfo : MonoBehaviour
 
         this.isEnemyChampPrev = data.isEnemyChampPrev;
         this.enemyIdPrev = data.enemyIdPrev;
+        this.enemyLevelPrev = data.enemyLevelPrev;
         this.isEnemyBossPrev = data.isEnemyBossPrev;
         this.isEnemyChampNext = data.isEnemyChampNext;
         this.enemyIdNext = data.enemyIdNext;
+        this.enemyLevelNext = data.enemyLevelNext;
         this.isEnemyBossNext = data.isEnemyBossNext;
         this.isPlayerChamp = data.isPlayerChamp;
         this.playerId = data.playerId;
@@ -80,9 +84,11 @@ public class EndlessInfo : MonoBehaviour
 
         this.isEnemyChampPrev = false;
         this.enemyIdPrev = -1;
+        this.enemyLevelPrev = 0;
         this.isEnemyBossPrev = false;
         this.isEnemyChampNext = false;
         this.enemyIdNext = -1;
+        this.enemyLevelNext = 0;
         this.isEnemyBossNext = false;
         this.isPlayerChamp = false;
         this.playerId = -1;
@@ -112,9 +118,11 @@ public class EndlessInfo : MonoBehaviour
 
         this.isEnemyChampPrev = false;
         this.enemyIdPrev = -1;
+        this.enemyLevelPrev = 0;
         this.isEnemyBossPrev = false;
         this.isEnemyChampNext = false;
         this.enemyIdNext = -1;
+        this.enemyLevelNext = 0;
         this.isEnemyBossNext = false;
         this.isPlayerChamp = false;
         this.playerId = -1;
