@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
-  m_Name: icer growth
+  m_Name: goblin growth
   m_EditorClassIdentifier: 
-  hp: 8.2
+  hp: 18
   hpRegen: 0.4
-  mana: 12
-  manaRegen: 0.029
+  mana: 8
+  manaRegen: 0.02
   manaCost: 0
-  stamina: 7.65
-  staminaRegen: 0.008
+  stamina: 10
+  staminaRegen: 0.04
   staminaCost: 0
   sanity: 0
-  atkDmg: 0.9
-  magicPower: 1.5
-  critChance: 0.004
-  critDmg: 0.0022
-  dmgResis: 0.8
-  magicResis: 0.9
-  timing: 0.06
-  movSpeed: 3
+  atkDmg: 1.8
+  magicPower: 0.6
+  critChance: 0.0065
+  critDmg: 0.0068
+  dmgResis: 1.25
+  magicResis: 0.85
+  timing: 0.07
+  movSpeed: 8.1
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0

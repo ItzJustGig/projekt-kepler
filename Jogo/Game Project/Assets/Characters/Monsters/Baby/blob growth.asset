@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
-  m_Name: icer growth
+  m_Name: blob growth
   m_EditorClassIdentifier: 
-  hp: 8.2
-  hpRegen: 0.4
-  mana: 12
-  manaRegen: 0.029
+  hp: 20
+  hpRegen: 0.35
+  mana: 11
+  manaRegen: 0.031
   manaCost: 0
-  stamina: 7.65
-  staminaRegen: 0.008
+  stamina: 6.1
+  staminaRegen: 0.0095
   staminaCost: 0
   sanity: 0
-  atkDmg: 0.9
-  magicPower: 1.5
-  critChance: 0.004
-  critDmg: 0.0022
-  dmgResis: 0.8
-  magicResis: 0.9
-  timing: 0.06
-  movSpeed: 3
-  lifesteal: 0
+  atkDmg: 0.75
+  magicPower: 1.35
+  critChance: 0.0025
+  critDmg: 0.001
+  dmgResis: 0.7
+  magicResis: 1.3
+  timing: 0.05
+  movSpeed: 2.1
+  lifesteal: 0.0015
   healBonus: 0
   shieldBonus: 0
   accuracy: 0

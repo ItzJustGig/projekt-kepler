@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
-  m_Name: icer growth
+  m_Name: alex stats 1
   m_EditorClassIdentifier: 
-  hp: 8.2
-  hpRegen: 0.4
-  mana: 12
-  manaRegen: 0.029
-  manaCost: 0
-  stamina: 7.65
-  staminaRegen: 0.008
-  staminaCost: 0
-  sanity: 0
-  atkDmg: 0.9
-  magicPower: 1.5
-  critChance: 0.004
-  critDmg: 0.0022
-  dmgResis: 0.8
-  magicResis: 0.9
-  timing: 0.06
-  movSpeed: 3
+  hp: 2174
+  hpRegen: 11
+  mana: 405
+  manaRegen: 0.742
+  manaCost: 1
+  stamina: 307
+  staminaRegen: 0.93
+  staminaCost: 1
+  sanity: 200
+  atkDmg: 22
+  magicPower: 30
+  critChance: 0.14
+  critDmg: 0.2
+  dmgResis: 23.65
+  magicResis: 19
+  timing: 1.7
+  movSpeed: 208
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0
-  accuracy: 0
+  accuracy: 1
   evasion: 0
   armourPen: 0
-  ultrate: 0
+  ultrate: 1
   sizeMod: 0

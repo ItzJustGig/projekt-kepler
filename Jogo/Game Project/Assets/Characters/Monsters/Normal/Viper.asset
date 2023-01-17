@@ -20,6 +20,7 @@ MonoBehaviour:
   charcIcon: {fileID: 21300000, guid: f268c1c3f94fe1f4eafd70e293f01064, type: 3}
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
   stats: {fileID: 11400000, guid: c748de5d211ae8b489a8d18e646cae08, type: 2}
+  growth: {fileID: 11400000, guid: c988350a7e4a03d46be0458970d05b97, type: 2}
   passives: []
   moves:
   - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}

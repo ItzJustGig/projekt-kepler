@@ -30,7 +30,7 @@ public class EndlessBattleHud : MonoBehaviour
 
     [SerializeField] private TooltipButton sanityInfo;
     [SerializeField] private Text sanityText;
-    [SerializeField] private SpriteRenderer sanityIcon;
+    [SerializeField] private Image sanityIcon;
 
     [SerializeField] private Sprite sanity100;
     [SerializeField] private Sprite sanity75;

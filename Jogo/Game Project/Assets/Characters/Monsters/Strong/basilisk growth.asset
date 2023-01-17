@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
-  m_Name: blazamander growth
+  m_Name: basilisk growth
   m_EditorClassIdentifier: 
-  hp: 10
-  hpRegen: 0
-  mana: 0
-  manaRegen: 0
+  hp: 18
+  hpRegen: 0.42
+  mana: 10.4
+  manaRegen: 0.04
   manaCost: 0
-  stamina: 0
-  staminaRegen: 0
+  stamina: 8.75
+  staminaRegen: 0.03
   staminaCost: 0
   sanity: 0
-  atkDmg: 0
-  magicPower: 0
-  critChance: 0
-  critDmg: 0
-  dmgResis: 0
-  magicResis: 0
-  timing: 0
-  movSpeed: 0
-  lifesteal: 0
+  atkDmg: 1.3
+  magicPower: 1.6
+  critChance: 0.004
+  critDmg: 0.0045
+  dmgResis: 1.4
+  magicResis: 1.3
+  timing: 0.05
+  movSpeed: 6.3
+  lifesteal: 0.002
   healBonus: 0
   shieldBonus: 0
   accuracy: 0
   evasion: 0
   armourPen: 0
-  ultrate: 0
+  ultrate: 0.0004
   sizeMod: 0

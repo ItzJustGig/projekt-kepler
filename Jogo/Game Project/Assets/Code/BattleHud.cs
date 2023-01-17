@@ -7,6 +7,7 @@ using UnityEditor;
 public class BattleHud : MonoBehaviour
 {
     [SerializeField] private Text nameText;
+    [SerializeField] private Text levelText;
 
     [SerializeField] private Text hpText;
     [SerializeField] private Slider hpSlider;
@@ -67,6 +68,7 @@ public class BattleHud : MonoBehaviour
     {
         language = langmang.language;
         nameText.text = langmang.languageManager.GetText(language, "charc", "name", unit.charc.name);
+        levelText.text = langmang.languageManager.GetText(language, "gui", "text", "level")+unit.level;
 
         hpText.text = unit.curHp + "/" + unit.charc.stats.hp;
         hpSlider.maxValue = unit.SetModifiers().hp;

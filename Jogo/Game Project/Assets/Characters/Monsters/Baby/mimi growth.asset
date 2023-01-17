@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
-  m_Name: icer growth
+  m_Name: mimi growth
   m_EditorClassIdentifier: 
-  hp: 8.2
-  hpRegen: 0.4
-  mana: 12
-  manaRegen: 0.029
+  hp: 16.2
+  hpRegen: 0.28
+  mana: 9.85
+  manaRegen: 0.028
   manaCost: 0
-  stamina: 7.65
-  staminaRegen: 0.008
+  stamina: 10.25
+  staminaRegen: 0.03
   staminaCost: 0
   sanity: 0
-  atkDmg: 0.9
-  magicPower: 1.5
-  critChance: 0.004
-  critDmg: 0.0022
-  dmgResis: 0.8
-  magicResis: 0.9
-  timing: 0.06
-  movSpeed: 3
+  atkDmg: 1.35
+  magicPower: 1.15
+  critChance: 0.0055
+  critDmg: 0.0035
+  dmgResis: 1.7
+  magicResis: 1.1
+  timing: 0.03
+  movSpeed: 3.15
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0

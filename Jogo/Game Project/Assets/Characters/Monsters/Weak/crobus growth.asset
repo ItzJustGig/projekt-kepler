@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
-  m_Name: icer growth
+  m_Name: crobus growth
   m_EditorClassIdentifier: 
-  hp: 8.2
-  hpRegen: 0.4
-  mana: 12
-  manaRegen: 0.029
+  hp: 39.3
+  hpRegen: 0.32
+  mana: 7.35
+  manaRegen: 0.015
   manaCost: 0
-  stamina: 7.65
-  staminaRegen: 0.008
+  stamina: 9.5
+  staminaRegen: 0.02
   staminaCost: 0
   sanity: 0
-  atkDmg: 0.9
-  magicPower: 1.5
-  critChance: 0.004
-  critDmg: 0.0022
-  dmgResis: 0.8
-  magicResis: 0.9
-  timing: 0.06
-  movSpeed: 3
+  atkDmg: 1.25
+  magicPower: 0.6
+  critChance: 0.0025
+  critDmg: 0.004
+  dmgResis: 1.75
+  magicResis: 0.75
+  timing: 0.02
+  movSpeed: 2
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0

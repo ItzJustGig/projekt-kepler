@@ -55,7 +55,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private Stats statsLevel;
 
     public Character charc;
-    [SerializeField] private int level = 0;
+    public int level = 0;
     [SerializeField] private GameObject spriteDefault;
     [SerializeField] private GameObject dmgText;
     [SerializeField] private GameObject passiveText;

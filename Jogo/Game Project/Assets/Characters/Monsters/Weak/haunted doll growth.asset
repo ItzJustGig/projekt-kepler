@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
-  m_Name: icer growth
+  m_Name: haunted doll growth
   m_EditorClassIdentifier: 
-  hp: 8.2
-  hpRegen: 0.4
-  mana: 12
-  manaRegen: 0.029
+  hp: 10.5
+  hpRegen: 0.22
+  mana: 12.35
+  manaRegen: 0.02
   manaCost: 0
-  stamina: 7.65
-  staminaRegen: 0.008
+  stamina: 8.2
+  staminaRegen: 0.0085
   staminaCost: 0
   sanity: 0
-  atkDmg: 0.9
-  magicPower: 1.5
-  critChance: 0.004
-  critDmg: 0.0022
-  dmgResis: 0.8
-  magicResis: 0.9
-  timing: 0.06
-  movSpeed: 3
+  atkDmg: 1.3
+  magicPower: 1.65
+  critChance: 0.0047
+  critDmg: 0.0053
+  dmgResis: 1
+  magicResis: 1.32
+  timing: 0.074
+  movSpeed: 6.1
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0
