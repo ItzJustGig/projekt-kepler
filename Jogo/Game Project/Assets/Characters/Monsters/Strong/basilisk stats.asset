@@ -12,22 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: basilisk stats
   m_EditorClassIdentifier: 
-  hp: 1105
-  hpRegen: 26
-  mana: 425
-  manaRegen: 0.6
-  stamina: 710
-  staminaRegen: 0.65
+  hp: 410
+  hpRegen: 20
+  mana: 270
+  manaRegen: 0.15
+  manaCost: 1
+  stamina: 310
+  staminaRegen: 0.2
+  staminaCost: 1
   sanity: 155
-  atkDmg: 68
-  magicPower: 41
-  critChance: 0.3
-  critDmg: 0.41
-  dmgResis: 63
-  magicResis: 73
-  timing: 2.7
-  movSpeed: 280
+  atkDmg: 32
+  magicPower: 35
+  critChance: 0.18
+  critDmg: 0.195
+  dmgResis: 32
+  magicResis: 38
+  timing: 1.25
+  movSpeed: 155
   lifesteal: 0
+  healBonus: 0
+  shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  ultrate: 1
+  sizeMod: 0

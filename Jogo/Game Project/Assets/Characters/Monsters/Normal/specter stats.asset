@@ -12,23 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: specter stats
   m_EditorClassIdentifier: 
-  hp: 570
-  hpRegen: 23
-  mana: 735
-  manaRegen: 1.25
+  hp: 420
+  hpRegen: 17
+  mana: 580
+  manaRegen: 0.75
   manaCost: 1
-  stamina: 215
-  staminaRegen: 0.425
+  stamina: 180
+  staminaRegen: 0.355
   staminaCost: 1
   sanity: 180
-  atkDmg: 32
-  magicPower: 78
+  atkDmg: 18
+  magicPower: 29
   critChance: 0.0935
-  critDmg: 0.1115
-  dmgResis: 48
-  magicResis: 78
-  timing: 3.1
-  movSpeed: 220
+  critDmg: 0.0865
+  dmgResis: 21
+  magicResis: 30
+  timing: 2
+  movSpeed: 180
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0

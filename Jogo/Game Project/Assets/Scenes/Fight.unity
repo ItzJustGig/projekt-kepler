@@ -13034,8 +13034,8 @@ MonoBehaviour:
   state: 0
   aiManaRecover: 0.12
   aiGaranteedManaRecover: 0.08
-  tiredStart: 0.025
-  tiredGrowth: 0.0075
+  tiredStart: 0.0325
+  tiredGrowth: 0.008
   tiredStacks: 0
   dmgResisPer: 0.18
   magicResisPer: 0.12
@@ -13085,9 +13085,9 @@ MonoBehaviour:
   bossfightMusic: {fileID: 8300000, guid: aaa62555fba57c54c91430a342e1d0aa, type: 3}
   info: {fileID: 1001587210}
   perHealthRegenEndless: 0.28
-  perCostsRegenEndless: 0.4
-  perSanityRegenEndless: 0.25
-  perUltReduce: 0.15
+  perCostsRegenEndless: 0.37
+  perSanityRegenEndless: 0.1
+  perUltReduce: 0.185
   endlessStuff: {fileID: 1001587211}
   items: {fileID: 648629778}
   loadPanel: {fileID: 819221286}

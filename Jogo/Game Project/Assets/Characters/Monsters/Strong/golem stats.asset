@@ -12,22 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: golem stats
   m_EditorClassIdentifier: 
-  hp: 1765
-  hpRegen: 28
-  mana: 585
-  manaRegen: 1.25
-  stamina: 585
-  staminaRegen: 1.25
+  hp: 850
+  hpRegen: 20
+  mana: 280
+  manaRegen: 0.7
+  manaCost: 1
+  stamina: 345
+  staminaRegen: 0.6
+  staminaCost: 1
   sanity: 200
-  atkDmg: 62
-  magicPower: 48
-  critChance: 0.15
-  critDmg: 0.1965
-  dmgResis: 114
-  magicResis: 66
-  timing: 1.35
-  movSpeed: 120
+  atkDmg: 35
+  magicPower: 32
+  critChance: 0.085
+  critDmg: 0.1075
+  dmgResis: 31
+  magicResis: 28
+  timing: 1.05
+  movSpeed: 90
   lifesteal: 0
+  healBonus: 0
+  shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  ultrate: 1
+  sizeMod: 0

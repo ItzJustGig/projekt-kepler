@@ -12,22 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: predator mantis stats
   m_EditorClassIdentifier: 
-  hp: 1095
-  hpRegen: 26
-  mana: 460
-  manaRegen: 0.4
-  stamina: 695
-  staminaRegen: 0.85
+  hp: 355
+  hpRegen: 18
+  mana: 325
+  manaRegen: 0.15
+  manaCost: 1
+  stamina: 490
+  staminaRegen: 0.4
+  staminaCost: 1
   sanity: 120
-  atkDmg: 73
-  magicPower: 39
-  critChance: 0.29
-  critDmg: 0.34
-  dmgResis: 42
-  magicResis: 38
-  timing: 3.55
-  movSpeed: 360
+  atkDmg: 40
+  magicPower: 18
+  critChance: 0.1025
+  critDmg: 0.128
+  dmgResis: 21
+  magicResis: 23
+  timing: 1.9
+  movSpeed: 185
   lifesteal: 0
+  healBonus: 0
+  shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  ultrate: 1
+  sizeMod: 0
