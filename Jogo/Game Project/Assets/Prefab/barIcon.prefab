@@ -83,22 +83,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=25><align=center>Bull''s Rage</align></size>
-
-    <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
-
-    
-
-    When
-    the user takes <color=#f75145>8 critical hits</color> gain <color=#ffaa00>20%
-    Attack Damage</color>, <color=#f75145>16% Critical Chance</color>, <color=#f75145>10%
-    Critical Damage</color>, <color=#0095ff>9% Movement Speed</color> and <color=#227da1>-4,25%
-    Evasion</color>  and deal bonus <color=#ffaa00>10 + (<color=#937264>18%</color>
-    of the user''s <color=#937264>Damage Resistance</color>)</color> as<color=#ffaa00>
-    physical damage</color> on <color=#ffaa00>physical</color> or <color=#ffaa00>basic
-    attacks</color> for 3 turns, or permanantly while below <color=#00ff11>20% health</color>
-
-'
+  text: "<size=25><align=center>Blindness</align></size>\r\n<size=19><align=center><color=#B2B2B2>Effect</color></align></size>\r\n<s><align=center>|                
+    |</align></s>\r\nDoesn't allow the user to use:\r\n<color=#f75145>Ranged moves</color>\r\n<s><align=center>|                
+    |</align></s>\r\nTake <color=#b829ff>2-4 sanity damage</color> each turn.\r\n<s><align=center>|                
+    |</align></s>\r\n <color=#0984db>-20% Timing</color>, <color=#0095ff>-5% Movement
+    Speed</color>, <color=#227da1>-1,5% Evasion</color> and <color=#e04419>-40% Accuracy</color>
+    to the user \r\n"
   textSec: 
   wantSec: 0
 --- !u!95 &4874516270294335299
@@ -185,7 +175,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: abef0f4889b19254a99eb2b94280c7fd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c0b2803a4f1bfe3478d46974b26a66c1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -273,4 +263,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 3

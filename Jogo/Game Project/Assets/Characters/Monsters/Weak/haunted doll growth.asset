@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: haunted doll growth
   m_EditorClassIdentifier: 
-  hp: 10.5
+  hp: 9.1
   hpRegen: 0.22
-  mana: 12.35
+  mana: 11.15
   manaRegen: 0.02
   manaCost: 0
   stamina: 8.2

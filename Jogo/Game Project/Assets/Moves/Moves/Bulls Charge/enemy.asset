@@ -13,25 +13,31 @@ MonoBehaviour:
   m_Name: enemy
   m_EditorClassIdentifier: 
   flat: 0
-  time: 2
+  time: 3
   inTime: 0
-  chance: 0.4
+  chance: 0.45
   hp: 0
   hpRegen: 0
   mana: 0
   manaRegen: 0
+  manaCost: 0
   stamina: 0
   staminaRegen: 0
+  staminaCost: 0
   sanity: 0
   atkDmg: 0
   magicPower: 0
   critChance: 0
   critDmg: 0
-  dmgResis: -0.1
+  dmgResis: -0.15
   magicResis: 0
   timing: 0
   movSpeed: 0
   lifesteal: 0
+  healBonus: 0
+  shieldBonus: 0
   accuracy: 0
   evasion: 0
   armourPen: 0
+  ultrate: 0
+  size: 0

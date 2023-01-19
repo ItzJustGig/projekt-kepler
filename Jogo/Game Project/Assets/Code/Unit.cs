@@ -467,6 +467,7 @@ public class Unit : MonoBehaviour
 
         if (dmg.healMana > 0)
         {
+            curMana += dmg.healMana;
             if (curMana > SetModifiers().mana)
             {
                 curMana = SetModifiers().mana;
@@ -509,8 +510,8 @@ public class Unit : MonoBehaviour
                     }
                 }
 
-            if (curShield > 1000)
-                curShield = 1000;
+            if (curShield > 1500)
+                curShield = 1500;
         }
 
         return dmg;
@@ -636,19 +637,16 @@ public class Unit : MonoBehaviour
         if (dmg.healMana > 0)
         {
             manaHealDone += dmg.healMana;
-            curMana += dmg.healMana;
         }
 
         if (dmg.healStamina > 0)
         {
             staminaHealDone += dmg.healStamina;
-            curStamina += dmg.healStamina;
         }
 
         if (dmg.healSanity > 0)
         {
             sanityHealDone += dmg.healSanity;
-            curSanity += dmg.healSanity;
         }
 
         if (dmg.shield > 0)
