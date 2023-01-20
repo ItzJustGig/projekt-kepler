@@ -33,6 +33,7 @@
 			"overview": "Overview",
 			"wantfight": "%p% wants to fight.",
 			"cantmove": "%p% cannot move.",
+			"cantattack": "%p% can't attack.",
 			"usedmove": "%p% used %m%!",
 			"dodge": "%p% dodged the attack.",
 			"miss": "%p% missed the attack.",
@@ -414,13 +415,14 @@
 	},
 	"moves": {
 		"type": {
-			"physical": "%c%Physical move%c/%",
-			"magic": "%c%Magical move%c/%",
-			"ranged": "%c%Ranged move%c/%",
-			"enchant": "%c%Enchantment move%c/%",
-			"support": "%c%Supportive move%c/%",
-			"defence": "%c%Defencive move%c/%",
-			"summon": "%c%Summoning move%c/%"
+			"basic": "%c%Basic%c/%",
+			"physical": "%c%Physical%c/%",
+			"magic": "%c%Magic%c/%",
+			"ranged": "%c%Range%c/%",
+			"enchant": "%c%Enchantment%c/%",
+			"support": "%c%Support%c/%",
+			"defence": "%c%Defence%c/%",
+			"summon": "%c%Summon%c/%"
 		},
 		"basicattack": "Basic Attack",
 		"recovmana": "Recover Mana",

@@ -592,6 +592,7 @@ public class LanguageManager : MonoBehaviour
         public string overview;
         public string wantfight;
         public string cantmove;
+        public string cantattack;
         public string usedmove;
         public string dodge;
         public string miss;
@@ -656,6 +657,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "cantmove":
                     returns = cantmove;
+                    break;
+                case "cantattack":
+                    returns = cantattack;
                     break;
                 case "usedmove":
                     returns = usedmove;
@@ -1986,6 +1990,7 @@ public class LanguageManager : MonoBehaviour
     [Serializable]
     public class Move_Type
     {
+        public string basic;
         public string physical;
         public string magic;
         public string ranged;
@@ -1999,6 +2004,9 @@ public class LanguageManager : MonoBehaviour
             string returns;
             switch (a)
             {
+                case "basic":
+                    returns = basic;
+                    break;
                 case "physical":
                     returns = physical;
                     break;

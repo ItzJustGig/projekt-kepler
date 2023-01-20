@@ -222,15 +222,16 @@ public class BattleSystem : MonoBehaviour
                 move.inCooldown = 0;
         }
 
+        basicBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
+        basicBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
+
         healManaBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
         healManaBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
-        healManaBtn.GetComponent<TooltipButton>().text = playerUnit.recoverMana.GetTooltipText(false);
-        healManaBtn.GetComponent<TooltipButton>().textSec = playerUnit.recoverMana.GetTooltipText(true);
 
         ultBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
         ultBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
-        ultBtn.GetComponent<TooltipButton>().text = playerUnit.ultMove.GetTooltipText(false);
-        ultBtn.GetComponent<TooltipButton>().textSec = playerUnit.ultMove.GetTooltipText(true);
+
+        UpdateTooltips();
 
         if (PlayerPrefs.GetInt("isEndless") == 1)
         {
@@ -513,9 +514,51 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator Attack(Moves move, Unit user, Unit target)
     {
-        if (move == null)
+        user.SetCC();
+        bool canMove = true;
+        bool canAttack = true;
+        switch (move.type)
         {
-            dialogText.text = langmanag.GetInfo("gui", "text", "cantmove", langmanag.GetInfo("charc", "name", user.charc.name));
+            case Moves.MoveType.PHYSICAL:
+                if (!user.canUsePhysical)
+                    canAttack = false;
+                break;
+            case Moves.MoveType.MAGICAL:
+                if (!user.canUseMagic)
+                    canAttack = false;
+                break;
+            case Moves.MoveType.RANGED:
+                if (!user.canUseRanged)
+                    canAttack = false;
+                break;
+            case Moves.MoveType.DEFFENCIVE:
+                if (!user.canUseProtec)
+                    canAttack = false;
+                break;
+            case Moves.MoveType.SUPPORT:
+                if (!user.canUseSupp)
+                    canAttack = false;
+                break;
+            case Moves.MoveType.ENCHANT:
+                if (!user.canUseEnchant)
+                    canAttack = false;
+                break;
+            case Moves.MoveType.SUMMON:
+                if (!user.canUseSummon)
+                    canAttack = false;
+                break;
+        }
+
+        if (!user.canUseMagic && !user.canUsePhysical && !user.canUseRanged && !user.canUseEnchant && !user.canUseSupp
+            && !user.canUseProtec && !user.canUseSummon)
+            canMove = false;
+
+        if (move == null || !canAttack)
+        {
+            if (!canMove)
+                dialogText.text = langmanag.GetInfo("gui", "text", "cantmove", langmanag.GetInfo("charc", "name", user.charc.name));
+            else
+                dialogText.text = langmanag.GetInfo("gui", "text", "cantattack", langmanag.GetInfo("charc", "name", user.charc.name));
             yield return new WaitForSeconds(1.52f);
         }
         else
@@ -1422,7 +1465,7 @@ public class BattleSystem : MonoBehaviour
                                         if (!skipEffect)
                                         {
                                             //Debug.Log("I EFFECT");
-                                            effect.duration = Random.Range(a.durationMin, a.durationMax) + 1;
+                                            effect.duration = Random.Range(a.durationMin, a.durationMax);
 
                                             if (a.targetPlayer)
                                             {
@@ -4032,6 +4075,9 @@ public class BattleSystem : MonoBehaviour
 
         healManaBtn.GetComponent<TooltipButton>().text = playerUnit.recoverMana.GetTooltipText(false);
         healManaBtn.GetComponent<TooltipButton>().textSec = playerUnit.recoverMana.GetTooltipText(true);
+
+        basicBtn.GetComponent<TooltipButton>().text = playerUnit.moves[0].GetTooltipText(false);
+        basicBtn.GetComponent<TooltipButton>().textSec = playerUnit.moves[0].GetTooltipText(true);
 
         ultBtn.GetComponent<TooltipButton>().text = playerUnit.ultMove.GetTooltipText(false);
         ultBtn.GetComponent<TooltipButton>().textSec = playerUnit.ultMove.GetTooltipText(true);

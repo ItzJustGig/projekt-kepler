@@ -308,7 +308,11 @@ public class Unit : MonoBehaviour
 
         foreach (Effects a in effects.ToArray())
         {
-            a.duration--;
+            if (a.timeReducImmunity)
+                a.timeReducImmunity = false;
+            else
+                a.duration--;
+
             a.timesInc++;
             bool skipDmg = false;
 
@@ -369,19 +373,27 @@ public class Unit : MonoBehaviour
             }
             else
             {
-                canUsePhysical = canUsePhysical && a.canUsePhysical;
-                canUseRanged = canUseRanged && a.canUseRanged;
-                canUseMagic = canUseMagic && a.canUseMagic;
-                canUseSupp = canUseSupp && a.canUseSupp;
-                canUseProtec = canUseProtec && a.canUseProtec;
-                canUseEnchant = canUseEnchant && a.canUseEnchant;
-                canUseSummon = canUseSummon && a.canUseSummon;
+                SetCC();
 
                 panelEffects.transform.Find(a.id + "(Clone)").gameObject.transform.Find("time").gameObject.GetComponent<Text>().text = a.duration.ToString();
             }
         }
 
         return isDead;
+    }
+
+    public void SetCC()
+    {
+        foreach (Effects a in effects.ToArray())
+        {
+            canUsePhysical = canUsePhysical && a.canUsePhysical;
+            canUseRanged = canUseRanged && a.canUseRanged;
+            canUseMagic = canUseMagic && a.canUseMagic;
+            canUseSupp = canUseSupp && a.canUseSupp;
+            canUseProtec = canUseProtec && a.canUseProtec;
+            canUseEnchant = canUseEnchant && a.canUseEnchant;
+            canUseSummon = canUseSummon && a.canUseSummon;
+        }
     }
 
     public DMG MitigateDmg(DMG dmg, float dmgResisPer, float magicResisPer, float armourPen, float magicPen, Unit attacker=null, float dotReduc = 1)

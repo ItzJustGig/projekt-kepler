@@ -11,6 +11,7 @@ public class Effects : ScriptableObject
     public bool haveSpecialDesc = false;
 
     public int duration;
+    public bool timeReducImmunity = true;
     public bool grantsOnRunOut = false;
     public int timesInc = 0;
 

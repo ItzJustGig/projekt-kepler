@@ -131,6 +131,7 @@ public class SelectManager : MonoBehaviour
         {
             itemSelect.SetActive(false);
             levelBtn.SetActive(false);
+            charcLevel = 0;
         }
     }
 

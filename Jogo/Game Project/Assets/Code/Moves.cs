@@ -163,7 +163,7 @@ public class Moves : ScriptableObject
         if (scale != "")
             builder.Replace("%val%", val.ToString() + scale);
         else
-            builder.Replace("%val%", val.ToString() );
+            builder.Replace("%val%", val.ToString());
 
         builder = Dotdmg.ReplaceDot(builder, whatIs, dot);
 
@@ -323,7 +323,7 @@ public class Moves : ScriptableObject
         bool hasText = false;
         try
         {
-            if (phyDmg > 0)
+            if (phyDmg > 0 || HasScale(DmgType.PHYSICAL))
             {
                 hasText = true;
                 StringBuilder temp = new StringBuilder();
@@ -340,7 +340,7 @@ public class Moves : ScriptableObject
                 builder.Append(GetDmg(languageManager, language, "dealphysicdmg", "ffaa00", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
-            if (magicDmg > 0)
+            if (magicDmg > 0 || HasScale(DmgType.MAGICAL))
             {
                 hasText = true;
                 StringBuilder temp = new StringBuilder();
@@ -356,7 +356,7 @@ public class Moves : ScriptableObject
                 builder.Append(GetDmg(languageManager, language, "dealmagicdmg", "1a66ff", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
-            if (trueDmg > 0)
+            if (trueDmg > 0 || HasScale(DmgType.TRUE))
             {
                 hasText = true;
                 StringBuilder temp = new StringBuilder();
@@ -372,7 +372,7 @@ public class Moves : ScriptableObject
                 builder.Append(GetDmg(languageManager, language, "dealtruedmg", "a6a6a6", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
-            if (sanityDmg > 0)
+            if (sanityDmg > 0 || HasScale(DmgType.SANITY))
             {
                 hasText = true;
                 StringBuilder temp = new StringBuilder();
@@ -388,7 +388,7 @@ public class Moves : ScriptableObject
                 builder.Append(GetDmg(languageManager, language, "dealsanitydmg", "b829ff", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
-            if (heal > 0 || (!(healFromDmgType is HealFromDmg.NONE) && healFromDmg > 0))
+            if (heal > 0 || (!(healFromDmgType is HealFromDmg.NONE) && healFromDmg > 0) || HasScale(DmgType.HEAL))
             {
                 hasText = true;
                 StringBuilder temp = new StringBuilder();
@@ -409,7 +409,7 @@ public class Moves : ScriptableObject
                 builder.Append(GetDmg(languageManager, language, "heal", "00ff11", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
-            if (healMana > 0)
+            if (healMana > 0 || HasScale(DmgType.HEALMANA))
             {
                 hasText = true;
                 StringBuilder temp = new StringBuilder();
@@ -425,7 +425,7 @@ public class Moves : ScriptableObject
                 builder.Append(GetDmg(languageManager, language, "healmana", "1e68fc", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
-            if (healStamina > 0)
+            if (healStamina > 0 || HasScale(DmgType.HEALSTAMINA))
             {
                 hasText = true;
                 StringBuilder temp = new StringBuilder();
@@ -441,7 +441,7 @@ public class Moves : ScriptableObject
                 builder.Append(GetDmg(languageManager, language, "healstamina", "f0dd0a", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
-            if (healSanity > 0)
+            if (healSanity > 0 || HasScale(DmgType.HEALSANITY))
             {
                 hasText = true;
                 StringBuilder temp = new StringBuilder();
@@ -457,7 +457,7 @@ public class Moves : ScriptableObject
                 builder.Append(GetDmg(languageManager, language, "healsanity", "b641f0", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
-            if (shield > 0)
+            if (shield > 0 || HasScale(DmgType.SHIELD))
             {
                 hasText = true;
                 StringBuilder temp = new StringBuilder();
@@ -483,6 +483,17 @@ public class Moves : ScriptableObject
         return builder;
     }
 
+    private bool HasScale(DmgType type)
+    {
+        foreach (StatScale a in scale)
+        {
+            if (a.type == type)
+                return true;
+        }
+
+        return false;
+    }
+
     private StringBuilder GetDmgMove(bool isActive = false)
     {
         LanguageManager languageManager = GetLanguageMan();
@@ -491,7 +502,7 @@ public class Moves : ScriptableObject
         StringBuilder builder = new StringBuilder();
         bool hasText = false;
 
-        if (phyDmg > 0)
+        if (phyDmg > 0 || HasScale(DmgType.PHYSICAL))
         {
             hasText = true;
             StringBuilder temp = new StringBuilder();
@@ -507,7 +518,7 @@ public class Moves : ScriptableObject
                 builder.Append(" ");
         }
 
-        if (magicDmg > 0)
+        if (magicDmg > 0 || HasScale(DmgType.MAGICAL))
         {
             hasText = true;
             StringBuilder temp = new StringBuilder();
@@ -523,7 +534,7 @@ public class Moves : ScriptableObject
                 builder.Append(" ");
         }
 
-        if (trueDmg > 0)
+        if (trueDmg > 0 || HasScale(DmgType.TRUE))
         {
             hasText = true;
             StringBuilder temp = new StringBuilder();
@@ -539,7 +550,7 @@ public class Moves : ScriptableObject
                 builder.Append(" ");
         }
 
-        if (sanityDmg > 0)
+        if (sanityDmg > 0 || HasScale(DmgType.SANITY))
         {
             hasText = true;
             StringBuilder temp = new StringBuilder();
@@ -555,7 +566,7 @@ public class Moves : ScriptableObject
                 builder.Append(" ");
         }
 
-        if (heal > 0 || (!(healFromDmgType is HealFromDmg.NONE) && healFromDmg > 0))
+        if (heal > 0 || (!(healFromDmgType is HealFromDmg.NONE) && healFromDmg > 0) || HasScale(DmgType.HEAL))
         {
             hasText = true;
             StringBuilder temp = new StringBuilder();
@@ -577,7 +588,7 @@ public class Moves : ScriptableObject
                 builder.Append(" ");
         }
 
-        if (healMana > 0)
+        if (healMana > 0 || HasScale(DmgType.HEALMANA))
         {
             hasText = true;
             StringBuilder temp = new StringBuilder();
@@ -593,7 +604,7 @@ public class Moves : ScriptableObject
                 builder.Append(" ");
         }
 
-        if (healStamina > 0)
+        if (healStamina > 0 || HasScale(DmgType.HEALSTAMINA))
         {
             hasText = true;
             StringBuilder temp = new StringBuilder();
@@ -609,7 +620,7 @@ public class Moves : ScriptableObject
                 builder.Append(" ");
         }
 
-        if (healSanity > 0)
+        if (healSanity > 0 || HasScale(DmgType.HEALSANITY))
         {
             hasText = true;
             StringBuilder temp = new StringBuilder();
@@ -625,7 +636,7 @@ public class Moves : ScriptableObject
                 builder.Append(" ");
         }
 
-        if (shield > 0)
+        if (shield > 0 || HasScale(DmgType.SHIELD))
         {
             hasText = true;
             StringBuilder temp = new StringBuilder();
@@ -647,6 +658,51 @@ public class Moves : ScriptableObject
         return builder;
     }
 
+    private StringBuilder GetMoveType(LanguageManager languageManager, string language)
+    {
+        StringBuilder builder = new StringBuilder();
+        string color = "#00000";
+        switch (type)
+        {
+            case MoveType.BASIC:
+                color = "#ffaa00";
+                builder.Append(languageManager.GetText(language, "moves", "type", "basic"));
+                break;
+            case MoveType.PHYSICAL:
+                color = "#ffaa00";
+                builder.Append(languageManager.GetText(language, "moves", "type", "physical"));
+                break;
+            case MoveType.MAGICAL:
+                color = "#1a66ff";
+                builder.Append(languageManager.GetText(language, "moves", "type", "magic"));
+                break;
+            case MoveType.RANGED:
+                color = "#f75145";
+                builder.Append(languageManager.GetText(language, "moves", "type", "ranged"));
+                break;
+            case MoveType.ENCHANT:
+                color = "#CC66FF";
+                builder.Append(languageManager.GetText(language, "moves", "type", "enchant"));
+                break;
+            case MoveType.DEFFENCIVE:
+                color = "#787878";
+                builder.Append(languageManager.GetText(language, "moves", "type", "defence"));
+                break;
+            case MoveType.SUPPORT:
+                color = "#00ff11";
+                builder.Append(languageManager.GetText(language, "moves", "type", "support"));
+                break;
+            case MoveType.SUMMON:
+                color = "#B266FF";
+                builder.Append(languageManager.GetText(language, "moves", "type", "summon"));
+                break;
+        }
+
+        builder.Replace("%c%", "<color="+color+">");
+        builder.Replace("%c/%", "</color>");
+        return builder;
+    }
+
     public string GetTooltipText(bool showVal)
     {
         LanguageManager languageManager = GetLanguageMan();
@@ -654,7 +710,8 @@ public class Moves : ScriptableObject
         StringBuilder builder = new StringBuilder();
 
         builder.Append("<size=24><align=center>").Append(GetDetail(languageManager, language, "moves", name)).Append("</align></size>").AppendLine();
-        //builder.Append(description).AppendLine();
+        builder.Append("<size=17><align=center>").Append(GetMoveType(languageManager, language)).Append("</align></size>").AppendLine();
+
         if (hitTime > 1)
             builder.Append(GetDmg(languageManager, language, "hitimes", hitTime, "FFFFFF")).AppendLine();
 
