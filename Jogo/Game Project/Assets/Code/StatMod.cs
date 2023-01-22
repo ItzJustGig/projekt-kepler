@@ -710,7 +710,6 @@ public class StatMod : ScriptableObject
 
         if (ultrate < 0)
             change = true;
- 
 
         return change;
     }

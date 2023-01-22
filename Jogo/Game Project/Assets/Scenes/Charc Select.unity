@@ -2722,6 +2722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fbff5b43a595c34bae3798ac1664bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charcLevel: 30
   alex: {fileID: 1950571103}
   leowind: {fileID: 98063124}
   bonsour: {fileID: 598774050}
@@ -2745,13 +2746,10 @@ MonoBehaviour:
   tooltipPopup: {fileID: 1004943920}
   marksmanIcon: {fileID: 21300000, guid: 5b7586fb6f595704b8800b7080861857, type: 3}
   sourcererIcon: {fileID: 21300000, guid: 8993185d8a336b94bbd9768c378d763e, type: 3}
-  vanguardIcon: {fileID: 21300000, guid: c9af8cea62c60f3438c0659444ca965f, type: 3}
   assassinIcon: {fileID: 21300000, guid: dd3f27b9e6058364dba0fa392c315dd2, type: 3}
   tankIcon: {fileID: 21300000, guid: 4918b5097ca207a4cbce8c2dff47577b, type: 3}
-  brawlerIcon: {fileID: 21300000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
   duelistIcon: {fileID: 21300000, guid: 152bc73575c137d4c8faefe152f79767, type: 3}
   supportIcon: {fileID: 21300000, guid: 7e8c3244c112b3b43a26a1b635eed6f2, type: 3}
-  enchanterIcon: {fileID: 21300000, guid: 52fe10603aa15684da16398282534d27, type: 3}
   statsDisplay: {fileID: 1696351312}
   classIcon: {fileID: 169940290}
   charcIcon: {fileID: 1518215411}
@@ -2760,7 +2758,7 @@ MonoBehaviour:
   rangeAtk: {fileID: 21300000, guid: feb10e4bf4cb2d5419c9c619d6136a3d, type: 3}
   suppAtk: {fileID: 21300000, guid: 7e8c3244c112b3b43a26a1b635eed6f2, type: 3}
   defAtk: {fileID: 21300000, guid: 4918b5097ca207a4cbce8c2dff47577b, type: 3}
-  statAtk: {fileID: 21300000, guid: 936908b1d1e44524f9d402eb684ac7da, type: 3}
+  statAtk: {fileID: 21300000, guid: c630b18e457a2f946b998787276542ce, type: 3}
   summonAtk: {fileID: 21300000, guid: edc4bbb7d32a9024b81094d5d9894628, type: 3}
   pointsText: {fileID: 740096234}
   statsGrowth: {fileID: 11400000, guid: 3dd9f73843fa3c1408c9a0d9f9a60fad, type: 2}

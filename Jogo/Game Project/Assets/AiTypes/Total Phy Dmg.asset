@@ -23,5 +23,5 @@ MonoBehaviour:
   block: 3
   selectedStatUp: 0
   anyStatUp: 13
-  anyStatDown: 5
+  anyStatDown: 6
   hasSummon: 30

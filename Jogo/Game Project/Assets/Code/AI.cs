@@ -67,7 +67,12 @@ public class AI : ScriptableObject
                     chance += it.sanityDmg / ai.totalSanityDmg;
 
                 if (ai.totalHealing > 0)
+                {
                     chance += it.heal / ai.totalHealing;
+                    chance += it.healMana / (ai.totalHealing/2);
+                    chance += it.healStamina / (ai.totalHealing/2);
+                    chance += it.healSanity / (ai.totalHealing/2);
+                }
 
                 if (ai.totalShielding > 0)
                     chance += it.shield / ai.totalShielding;
@@ -81,11 +86,11 @@ public class AI : ScriptableObject
                         chance += ai.block;
 
                 if (ai.anyStatUp > 0)
-                    if (a.statModUser != null && a.statModUser.HowPositive())
+                    if (a.statModUser && !a.statModUser.HowPositive())
                         chance += ai.anyStatUp;
 
                 if (ai.anyStatDown > 0)
-                    if (a.statModEnemy != null && a.statModEnemy.HowPositive())
+                    if (a.statModEnemy && a.statModEnemy.HowPositive())
                         chance += ai.anyStatDown;
 
                 if (ai.hasSummon > 0)
@@ -128,7 +133,7 @@ public class AI : ScriptableObject
 
             totalPer += value;
             values.Add(value);
-            //Debug.Log(": " + value);
+            Debug.Log(": " + value);
         }
 
         float counter = 0;

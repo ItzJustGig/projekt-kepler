@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: predator mantis growth
   m_EditorClassIdentifier: 
-  hp: 13
-  hpRegen: 0.52
+  hp: 17
+  hpRegen: 0.55
   mana: 7.6
   manaRegen: 0.011
   manaCost: 0
@@ -21,14 +21,14 @@ MonoBehaviour:
   staminaRegen: 0.018
   staminaCost: 0
   sanity: 0
-  atkDmg: 1.65
+  atkDmg: 1.75
   magicPower: 0.9
-  critChance: 0.0065
+  critChance: 0.0068
   critDmg: 0.009
-  dmgResis: 1
+  dmgResis: 1.15
   magicResis: 0.9
   timing: 0.09
-  movSpeed: 11.25
+  movSpeed: 12.2
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0

@@ -93,7 +93,10 @@ public class ShopManager : MonoBehaviour
             {
                 do
                 {
-                    temp = GenItem().returnItem();
+                    temp = GenItem();
+                    if (temp != null)
+                        temp = temp.returnItem();
+
                     i++;
 
                     if (i == 40 || temp == null)
@@ -113,7 +116,9 @@ public class ShopManager : MonoBehaviour
             {
                 do
                 {
-                    temp = GenItem().returnItem();
+                    temp = GenItem();
+                    if (temp != null)
+                        temp = temp.returnItem();
                     i++;
 
                     if (i == 40 || temp == null)

@@ -22,6 +22,6 @@ MonoBehaviour:
   applyAnyEffect: 4
   block: 3
   selectedStatUp: 0
-  anyStatUp: 10
-  anyStatDown: 2
+  anyStatUp: 15
+  anyStatDown: 5
   hasSummon: 30

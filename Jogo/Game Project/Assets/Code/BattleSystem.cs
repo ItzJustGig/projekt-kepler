@@ -75,6 +75,14 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private Sprite statAtk;
     [SerializeField] private Sprite summAtk;
 
+    [SerializeField] private GameObject phyCancel;
+    [SerializeField] private GameObject magiCancel;
+    [SerializeField] private GameObject rangeCancel;
+    [SerializeField] private GameObject suppCancel;
+    [SerializeField] private GameObject defCancel;
+    [SerializeField] private GameObject statCancel;
+    [SerializeField] private GameObject summCancel;
+
     [SerializeField] private GameObject tooltipMain;
     [SerializeField] private GameObject tooltipSec;
 
@@ -937,16 +945,16 @@ public class BattleSystem : MonoBehaviour
                                 }
 
                                 float magicBonus = 0;
-                                magicBonus += scale.SetScale(stats, unit);
+                                magicBonus += scale.SetScaleFlat(stats, unit);
 
-                                int hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
-
-                                if (hpPer <= a.num * 100)
+                                int hpPer = (int)(100 * user.curHp / user.SetModifiers().hp);
+                                
+                                if (hpPer <= a.stacks)
                                 {
                                     StatScale scale2 = a.ifConditionTrueScale2();
                                     
                                     magicBonus += magicBonus * a.num;
-                                    dmgTarget.trueDmg += scale2.SetScale(stats, unit);
+                                    dmgTarget.trueDmg += scale2.SetScaleFlat(stats, unit);
                                 }
 
                                 dmgTarget.magicDmg += magicBonus;
@@ -972,7 +980,7 @@ public class BattleSystem : MonoBehaviour
                                     unit = target;
                                     stats = statsTarget;
                                 }
-                                dmgTarget.sanityDmg += (int)scale.SetScale(stats, unit);
+                                dmgTarget.sanityDmg += (int)scale.SetScaleFlat(stats, unit);
                             }
                         }
 
@@ -1330,7 +1338,7 @@ public class BattleSystem : MonoBehaviour
                                     unit = target;
                                     stats = statsTarget;
                                 }
-                                dmgTarget.phyDmg += scale.SetScale(stats, unit);
+                                dmgTarget.phyDmg += scale.SetScaleFlat(stats, unit);
                             }
                         }
                     }
@@ -2306,7 +2314,16 @@ public class BattleSystem : MonoBehaviour
                 Text mn = moveBtnGO.transform.Find("Mana").gameObject.GetComponent<Text>();
 
                 mn.text = ((int)(move.manaCost * playerUnit.SetModifiers().manaCost)).ToString();
+                if (playerUnit.curMana < (move.manaCost * playerUnit.SetModifiers().manaCost))
+                    mn.color = Color.red;
+                else
+                    mn.color = Color.black;
+
                 sta.text = ((int)(move.staminaCost * playerUnit.SetModifiers().staminaCost)).ToString();
+                if (playerUnit.curStamina < (move.staminaCost * playerUnit.SetModifiers().staminaCost))
+                    sta.color = Color.red;
+                else
+                    sta.color = Color.black;
 
                 if (inCd <= 0)
                     cd.text = move.cooldown.ToString();
@@ -3001,7 +3018,7 @@ public class BattleSystem : MonoBehaviour
                 if (a.inCd <= 0 && user.curSanity < user.SetModifiers().sanity)
                 {
                     //get sanity heal from the passive's scale
-                    float healSanity = a.statScale.SetScale(user.SetModifiers(), user);
+                    float healSanity = a.statScale.SetScaleFlat(user.SetModifiers(), user);
                     //heal sanity
                     user.curSanity += (int)healSanity;
                     //add the heal to the overview
@@ -4081,6 +4098,41 @@ public class BattleSystem : MonoBehaviour
 
         ultBtn.GetComponent<TooltipButton>().text = playerUnit.ultMove.GetTooltipText(false);
         ultBtn.GetComponent<TooltipButton>().textSec = playerUnit.ultMove.GetTooltipText(true);
+
+        if (!playerUnit.canUsePhysical)
+            phyCancel.SetActive(true);
+        else
+            phyCancel.SetActive(false);
+
+        if (!playerUnit.canUseMagic)
+            magiCancel.SetActive(true);
+        else
+            magiCancel.SetActive(false);
+
+        if (!playerUnit.canUseRanged)
+            rangeCancel.SetActive(true);
+        else
+            rangeCancel.SetActive(false);
+
+        if (!playerUnit.canUseEnchant)
+            statCancel.SetActive(true);
+        else
+            statCancel.SetActive(false);
+
+        if (!playerUnit.canUseSupp)
+            suppCancel.SetActive(true);
+        else
+            suppCancel.SetActive(false);
+
+        if (!playerUnit.canUseProtec)
+            defCancel.SetActive(true);
+        else
+            defCancel.SetActive(false);
+
+        if (!playerUnit.canUseSummon)
+            summCancel.SetActive(true);
+        else
+            summCancel.SetActive(false);
 
         UpdateSummonTooltip(playerUnit);
         UpdateSummonTooltip(enemyUnit);
