@@ -17,6 +17,7 @@ MonoBehaviour:
   hitTime: 1
   priority: 0
   uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -34,7 +35,7 @@ MonoBehaviour:
   cooldown: 5
   inCooldown: 0
   manaCost: 35
-  staminaCost: 55
+  staminaCost: 50
   ultCost: 100
   needFullUlt: 1
   critDmgBonus: 0
@@ -48,3 +49,5 @@ MonoBehaviour:
   effects: []
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: 

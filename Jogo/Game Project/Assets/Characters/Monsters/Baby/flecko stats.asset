@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: flecko stats
   m_EditorClassIdentifier: 
-  hp: 540
+  hp: 560
   hpRegen: 15
   mana: 325
   manaRegen: 0.25
@@ -22,7 +22,7 @@ MonoBehaviour:
   staminaCost: 1
   sanity: 40
   atkDmg: 22
-  magicPower: 36
+  magicPower: 38
   critChance: 0.04
   critDmg: 0.025
   dmgResis: 27

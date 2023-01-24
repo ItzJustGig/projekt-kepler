@@ -17,11 +17,12 @@ MonoBehaviour:
   hitTime: 4
   priority: 0
   uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 7
-  magicDmg: 34
+  magicDmg: 32
   trueDmg: 0
   sanityDmg: 0
   heal: 0
@@ -33,8 +34,10 @@ MonoBehaviour:
   healFromDmg: 0
   cooldown: 5
   inCooldown: 0
-  manaCost: 32
+  manaCost: 35
   staminaCost: 18
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
@@ -47,3 +50,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4291a90c68cfd6c4b953f62127a57f04, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: 

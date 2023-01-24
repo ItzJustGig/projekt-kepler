@@ -465,7 +465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Refreshing Breeze
+  m_Text: Turret
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7e8c3244c112b3b43a26a1b635eed6f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: edc4bbb7d32a9024b81094d5d9894628, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -801,55 +801,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Refreshing Breeze</align></size>
+  text: '<size=24><align=center>Turret</align></size>
 
-    <size=17><align=center><color=#00ff11>Support</color></align></size>
+    <size=17><align=center><color=#B266FF>Summon</color></align></size>
 
-    Hit
-    3 times
-
-    Priority: 0
+    Priority:
+    0
 
     <s><align=center>|                 |</align></s>
 
-    65%
-    chance to <color=#2ffa3d>12% Health Regen</color>, <color=#ebdb28>10% Stamina
-    Regen</color> and <color=#0095ff>10% Movement Speed</color> to the user for 3
-    turns
+    Summons a Turret,
+    that will <color=#1a66ff>magical damage</color> every 0 turns
 
-    <s><align=center>|                 |</align></s>
+    <color=#00ff11>Health:
+    576</color>
 
-    <color=#00ff11>Heal
-    33,1 health</color>
-
-    Recover <color=#f0dd0a>2,5 stamina</color>
+    <color=#ffaa00>Attack Power: 36,3</color>
 
 '
-  textSec: '<size=24><align=center>Refreshing Breeze</align></size>
+  textSec: '<size=24><align=center>Turret</align></size>
 
-    <size=17><align=center><color=#00ff11>Support</color></align></size>
+    <size=17><align=center><color=#B266FF>Summon</color></align></size>
 
-    Hit
-    3 times
-
-    Priority: 0
+    Priority:
+    0
 
     <s><align=center>|                 |</align></s>
 
-    65%
-    chance to <color=#2ffa3d>12% Health Regen</color>, <color=#ebdb28>10% Stamina
-    Regen</color> and <color=#0095ff>10% Movement Speed</color> to the user for 3
-    turns
+    Summons a Turret,
+    that will <color=#1a66ff>magical damage</color> every 0 turns
 
-    <s><align=center>|                 |</align></s>
+    <color=#00ff11>Health: 
+    (<color=#3366ff>125%</color> of the user''s <color=#3366ff>Maximum Mana</color>)
+    + (<color=#1a66ff>160%</color> of the user''s <color=#1a66ff>Magic Power</color>)
+    + (<color=#946ACD>100%</color> of the user''s <color=#946ACD>Magic Resistance</color>)</color>
 
-    <color=#00ff11>Heal
-    20 + (<color=#2ffa3d>15%</color> of the user''s <color=#2ffa3d>Health Regen</color>)
-    + (<color=#1a66ff>15%</color> of the user''s <color=#1a66ff>Magic Power</color>)
-    health</color>
-
-    Recover <color=#f0dd0a>2 + (<color=#ebdb28>40%</color> of
-    the user''s <color=#ebdb28>Stamina Regen</color>) stamina</color>
+    <color=#ffaa00>Attack
+    Power:  (<color=#1a66ff>75%</color> of the user''s <color=#1a66ff>Magic Power</color>)
+    + (<color=#946ACD>50%</color> of the user''s <color=#946ACD>Magic Resistance</color>)</color>
 
 '
   wantSec: 0
@@ -931,7 +920,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 7
+  m_Text: 10
 --- !u!1 &7954924222182827413
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,7 +999,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 40
+  m_Text: 130
 --- !u!1 &7970126842544643455
 GameObject:
   m_ObjectHideFlags: 0

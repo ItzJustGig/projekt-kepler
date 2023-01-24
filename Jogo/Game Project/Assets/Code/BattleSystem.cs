@@ -525,37 +525,38 @@ public class BattleSystem : MonoBehaviour
         user.SetCC();
         bool canMove = true;
         bool canAttack = true;
-        switch (move.type)
-        {
-            case Moves.MoveType.PHYSICAL:
-                if (!user.canUsePhysical)
-                    canAttack = false;
-                break;
-            case Moves.MoveType.MAGICAL:
-                if (!user.canUseMagic)
-                    canAttack = false;
-                break;
-            case Moves.MoveType.RANGED:
-                if (!user.canUseRanged)
-                    canAttack = false;
-                break;
-            case Moves.MoveType.DEFFENCIVE:
-                if (!user.canUseProtec)
-                    canAttack = false;
-                break;
-            case Moves.MoveType.SUPPORT:
-                if (!user.canUseSupp)
-                    canAttack = false;
-                break;
-            case Moves.MoveType.ENCHANT:
-                if (!user.canUseEnchant)
-                    canAttack = false;
-                break;
-            case Moves.MoveType.SUMMON:
-                if (!user.canUseSummon)
-                    canAttack = false;
-                break;
-        }
+        if (move)
+            switch (move.type)
+            {
+                case Moves.MoveType.PHYSICAL:
+                    if (!user.canUsePhysical)
+                        canAttack = false;
+                    break;
+                case Moves.MoveType.MAGICAL:
+                    if (!user.canUseMagic)
+                        canAttack = false;
+                    break;
+                case Moves.MoveType.RANGED:
+                    if (!user.canUseRanged)
+                        canAttack = false;
+                    break;
+                case Moves.MoveType.DEFFENCIVE:
+                    if (!user.canUseProtec)
+                        canAttack = false;
+                    break;
+                case Moves.MoveType.SUPPORT:
+                    if (!user.canUseSupp)
+                        canAttack = false;
+                    break;
+                case Moves.MoveType.ENCHANT:
+                    if (!user.canUseEnchant)
+                        canAttack = false;
+                    break;
+                case Moves.MoveType.SUMMON:
+                    if (!user.canUseSummon)
+                        canAttack = false;
+                    break;
+            }
 
         if (!user.canUseMagic && !user.canUsePhysical && !user.canUseRanged && !user.canUseEnchant && !user.canUseSupp
             && !user.canUseProtec && !user.canUseSummon)
@@ -567,6 +568,12 @@ public class BattleSystem : MonoBehaviour
                 dialogText.text = langmanag.GetInfo("gui", "text", "cantmove", langmanag.GetInfo("charc", "name", user.charc.name));
             else
                 dialogText.text = langmanag.GetInfo("gui", "text", "cantattack", langmanag.GetInfo("charc", "name", user.charc.name));
+
+            if (move.isUlt)
+            {
+                GrantUltCompansation(user);
+            }
+
             yield return new WaitForSeconds(1.52f);
         }
         else
@@ -875,7 +882,7 @@ public class BattleSystem : MonoBehaviour
 
                         if (a.name == "magicremains")
                         {
-                            if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.ENCHANT) && a.inCd == 0)
+                            if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.ENCHANT || move.type is Moves.MoveType.BASIC) && a.inCd == 0)
                             {
                                 a.inCd = a.cd;
                                 ManagePassiveIcon(a.sprite, a.name, (a.maxNum - a.num).ToString(), user.isEnemy, a.GetPassiveInfo());

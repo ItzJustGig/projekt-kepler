@@ -22,7 +22,7 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 55c59dbfcc693bc469052d4a5d25bffe, type: 2}
   growth: {fileID: 11400000, guid: 7acd84e2733fcdb49a5d5dd734196c59, type: 2}
   passives:
-  - {fileID: 11400000, guid: fd2a57b19bb94664eb114c5e312689c4, type: 2}
+  - {fileID: 11400000, guid: df72980005ebc0e4ab808bd593956531, type: 2}
   - {fileID: 11400000, guid: 59b7b0d8f4bd3214fbc2f029535b3d92, type: 2}
   moves:
   - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}

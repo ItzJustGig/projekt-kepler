@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: boss
   showNameOnInfo: 1
+  origin: 0
   sprite: {fileID: 21300000, guid: b0a16991cd68928448f01fcf09411298, type: 3}
-  num: 12.65
+  num: 15
   maxNum: 0
   stacks: 0
   maxStacks: 0
   cd: 0
   inCd: 0
+  anim: 
+  anim2: 
   statScale: {fileID: 0}
   statScale2: {fileID: 0}
   statMod: {fileID: 11400000, guid: efce88e475f389044a136ef385cdf8c7, type: 2}

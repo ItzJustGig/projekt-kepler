@@ -22,6 +22,8 @@ MonoBehaviour:
   maxStacks: 0
   cd: 13
   inCd: 16
+  anim: 
+  anim2: 
   statScale: {fileID: 11400000, guid: 88e1687aafcfadb4cab7da5246749dfe, type: 2}
   statScale2: {fileID: 0}
   statMod: {fileID: 0}

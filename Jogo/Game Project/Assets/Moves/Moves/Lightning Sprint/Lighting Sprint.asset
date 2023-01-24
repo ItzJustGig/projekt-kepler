@@ -16,6 +16,8 @@ MonoBehaviour:
   name: lightningsprint
   hitTime: 1
   priority: 3
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,16 +30,24 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 6
   inCooldown: 0
-  manaCost: 50
+  manaCost: 55
   staminaCost: 20
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: 41ffd1dd8a524fa4692dce76f898ded6, type: 2}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 1ee4576ed3f2c89498854241cc0f4ec9, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: 9d9af52a9b1049d4f8bc89e7aa214939, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: flecko growth
   m_EditorClassIdentifier: 
-  hp: 28
-  hpRegen: 0.8
+  hp: 30
+  hpRegen: 0.85
   mana: 10
   manaRegen: 0.018
   manaCost: 0
@@ -22,11 +22,11 @@ MonoBehaviour:
   staminaCost: 0
   sanity: 0
   atkDmg: 1.3
-  magicPower: 1.75
+  magicPower: 1.8
   critChance: 0.0006
   critDmg: 0.00035
   dmgResis: 1.5
-  magicResis: 1.65
+  magicResis: 1.72
   timing: 0.011
   movSpeed: 2.6
   lifesteal: 0
