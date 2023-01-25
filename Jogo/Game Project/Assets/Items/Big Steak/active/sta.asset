@@ -25,7 +25,7 @@ MonoBehaviour:
   manaRegen: 0
   maxStamina: 0
   curStamina: 0
-  missStamina: 0.0485
+  missStamina: 0.0755
   staminaRegen: 0
   curSanity: 0
   missSanity: 0

@@ -387,7 +387,7 @@
             "bloodpumping": "O utilizador regenera %scale% todos os turnos por %cd% turnos, mas se estiver a Sangrar perde a mesma quantidade de vida.",
             "huntingseason": "O utilizador causa <color=#f75145>%num%% dano</color> b\u00F3nus por %cd% turnos.",
             "blazingfists": "O utilizador causa %scale% b\u00F3nus com <color=#ffaa00>ataques f\u00EDsicos</color> ou <color=#ffaa00>ataques b\u00E1sicos</color> por %cd% turnos.",
-            "fighterinstinct": "O utilizador ganha%mod%por <color=#00ff11>1% de vida em falta</color>",
+            "fighterinstinct": "Quando o utilizador está abaiaxo de <color=#00ff11>%num%% vida</color>, ganha%mod%e causa %scale% b\u00f3nus com <color=#ffaa00>ataques f\u00EDsicos</color> e <color=#ffaa00>ataques b\u00E1sicos</color>",
             "successoroffire": "O utilizador causa %scale% b\u00F3nus a inimigos que est\u00E3o a Queimar ou Chamuscados com <color=#ffaa00>ataques b\u00E1sicos</color>, t\u00E9cnicas <color=#ffaa00>f\u00EDsicas</color>, <color=#1a66ff>m\u00E1gicas</color> e <color=#f75145>de alcance</color>, tamb\u00E9m ganha b\u00F3nus <color=#ffaa00>+(<color=#1a66ff>%num%% poder m\u00E1gico</color>) ataque</color>.",
             "zenmode": "O utilizador \u00E9 imune a can\u00E7aso, mas quando est\u00E1 abaixo de <color=#f0dd0a>%num%% energia</color>, ganha%mod%e %scale2% at\u00E9 estar com %maxNum%% energia.",
             "baby": "Mas \u00E9 s\u00F3 um b\u00E9b\u00E9! (Algumas das estat\u00EDsticas do utilizador foram reduzidas em %num%%)",

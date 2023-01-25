@@ -2178,17 +2178,17 @@ public class BattleSystem : MonoBehaviour
             {
                 PlayerPrefs.SetInt("wonLastRound", 1);
                 info.round++;
-
-                float health = playerUnit.curHp + (playerUnit.charc.stats.hp - playerUnit.curHp) * perHealthRegenEndless;
-                float mana = playerUnit.curMana + (playerUnit.charc.stats.mana - playerUnit.curMana) * perCostsRegenEndless;
-                float stamina = playerUnit.curStamina + (playerUnit.charc.stats.stamina - playerUnit.curStamina) * perCostsRegenEndless;
-                int sanity = (int)(playerUnit.curSanity + (playerUnit.charc.stats.sanity - playerUnit.curSanity) * perSanityRegenEndless);
+                
+                float health = playerUnit.curHp + (playerUnit.SetModifiers().hp - playerUnit.curHp) * perHealthRegenEndless;
+                float mana = playerUnit.curMana + (playerUnit.SetModifiers().mana - playerUnit.curMana) * perCostsRegenEndless;
+                float stamina = playerUnit.curStamina + (playerUnit.SetModifiers().stamina - playerUnit.curStamina) * perCostsRegenEndless;
+                int sanity = (int)(playerUnit.curSanity + (playerUnit.SetModifiers().sanity - playerUnit.curSanity) * perSanityRegenEndless);
                 float ult = playerUnit.ult - (playerUnit.ult*perUltReduce);
 
-                info.playerHp = ((100 * health) / playerUnit.charc.stats.hp)/100;
-                info.playerMn = ((100 * mana) / playerUnit.charc.stats.mana)/100;
-                info.playerSta = ((100 * stamina) / playerUnit.charc.stats.stamina)/100;
-                info.playerSan = ((float)(100 * sanity) / playerUnit.charc.stats.sanity) / 100;
+                info.playerHp = ((100 * health) / playerUnit.SetModifiers().hp)/100;
+                info.playerMn = ((100 * mana) / playerUnit.SetModifiers().mana)/100;
+                info.playerSta = ((100 * stamina) / playerUnit.SetModifiers().stamina)/100;
+                info.playerSan = ((float)(100 * sanity) / playerUnit.SetModifiers().sanity) / 100;
                 info.playerUlt = ult;
 
                 SaveSystem.Save(info);

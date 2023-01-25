@@ -13,14 +13,16 @@ MonoBehaviour:
   m_Name: seedling stats
   m_EditorClassIdentifier: 
   hp: 430
-  hpRegen: 18
+  hpRegen: 16
   mana: 280
   manaRegen: 0.35
+  manaCost: 1
   stamina: 105
   staminaRegen: 0.25
+  staminaCost: 1
   sanity: 60
   atkDmg: 18
-  magicPower: 31
+  magicPower: 29
   critChance: 0.02
   critDmg: 0.04
   dmgResis: 28
@@ -28,6 +30,10 @@ MonoBehaviour:
   timing: 0.7
   movSpeed: 80
   lifesteal: 0
+  healBonus: 0
+  shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  ultrate: 1
+  sizeMod: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: seedling growth
   m_EditorClassIdentifier: 
   hp: 20
-  hpRegen: 0.4
+  hpRegen: 0.37
   mana: 12.2
   manaRegen: 0.015
   manaCost: 0
