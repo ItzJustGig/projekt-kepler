@@ -569,7 +569,7 @@ public class BattleSystem : MonoBehaviour
             else
                 dialogText.text = langmanag.GetInfo("gui", "text", "cantattack", langmanag.GetInfo("charc", "name", user.charc.name));
 
-            if (move.isUlt)
+            if (move.isUlt && move != null)
             {
                 GrantUltCompansation(user);
             }

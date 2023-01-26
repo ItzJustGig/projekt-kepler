@@ -28,7 +28,7 @@ public class EndlessInfo : MonoBehaviour
     public int wonLastRound;
     public bool generateShop;
 
-    public float gold;
+    public int gold;
     public int level;
     public int round;
 

@@ -24,7 +24,7 @@ public class EndlessData
     public float playerSan;
     public float playerUlt;
 
-    public float gold;
+    public int gold;
     public int level;
     public int round;
 

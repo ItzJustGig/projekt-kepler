@@ -11,11 +11,13 @@ public class EndlessManager : MonoBehaviour
     [SerializeField] private EndlessInfo info;
     [SerializeField] private Button startBtn;
     [SerializeField] private Button shopBtn;
-    [SerializeField] private Text goldTxt;
     [SerializeField] private Text roundTxt;
+    [SerializeField] private Text goldCurTxt;
+    [SerializeField] private Text goldOldTxt;
+    [SerializeField] private Text goldBonusTxt;
+    [SerializeField] private Animator goldAnim;
 
     [SerializeField] private Text nameChampTxt;
-    [SerializeField] private Text titleChampTxt;
     [SerializeField] private Image champIcon;
 
     [SerializeField] private EndlessBattleHud battleHud;
@@ -51,6 +53,8 @@ public class EndlessManager : MonoBehaviour
 
     int enemyId;
     int enemyLevel;
+    int gainedGold;
+    int oldGold;
     Character.Strenght strenght;
     bool isBoss;
     [SerializeField] GameObject[] iconsArray;
@@ -115,7 +119,9 @@ public class EndlessManager : MonoBehaviour
                 if (tempIsBoss)
                     gold += Random.Range(bonusGoldBoss.minGold, bonusGoldBoss.maxGold);
 
+                oldGold = info.gold;
                 info.gold += gold;
+                gainedGold = gold;
             }
             GenEnemy(info.round);
             info.itemShop.Clear();
@@ -220,12 +226,16 @@ public class EndlessManager : MonoBehaviour
 
         battleHud.SetHud(info);
 
-        goldTxt.text = info.gold.ToString();
+        goldCurTxt.text = info.gold.ToString();
+        goldOldTxt.text = oldGold.ToString();
+        goldBonusTxt.text = "+" + gainedGold.ToString();
         roundTxt.text = info.round.ToString();
+
+        if (info.wonLastRound == 1)
+            goldAnim.SetTrigger("g");
 
         nameChampTxt.text = langmanag.GetInfo("charc", "name", champs[info.playerId-1].name);
         champIcon.sprite = champs[info.playerId-1].charcIcon;
-        titleChampTxt.text = langmanag.GetInfo("charc", "title", champs[info.playerId - 1].name);
 
         if (info.wonLastRound == 1)
         {
@@ -252,6 +262,7 @@ public class EndlessManager : MonoBehaviour
         staminaInfo.text = langmanag.GetInfo("stats", "name", "stamina");
         sanityInfo.text = langmanag.GetInfo("stats", "name", "sanity");
         ultInfo.text = langmanag.GetInfo("stats", "name", "ultimate");
+
     }
 
     void HideIcons()
