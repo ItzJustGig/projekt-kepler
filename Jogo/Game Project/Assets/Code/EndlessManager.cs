@@ -48,6 +48,8 @@ public class EndlessManager : MonoBehaviour
 
     [SerializeField] GameObject loadPanel;
     [SerializeField] Slider slider;
+    [SerializeField] AudioSource speaker;
+    [SerializeField] AudioClip lvlup;
 
     private SceneLoader loader;
 
@@ -126,8 +128,11 @@ public class EndlessManager : MonoBehaviour
             GenEnemy(info.round);
             info.itemShop.Clear();
             info.generateShop = true;
-            if (info.round != -1 && info.round%3==0)
+            if (info.round != -1 && info.round % 1 == 0)
+            {
                 data.level = info.level + 1;
+                PlayLevelUp();
+            }
         }
         else
         {
@@ -263,6 +268,21 @@ public class EndlessManager : MonoBehaviour
         sanityInfo.text = langmanag.GetInfo("stats", "name", "sanity");
         ultInfo.text = langmanag.GetInfo("stats", "name", "ultimate");
 
+    }
+
+    void PlayLevelUp()
+    {
+        if (PlayerPrefs.HasKey("volume") && PlayerPrefs.HasKey("muted"))
+        {
+            float volume = PlayerPrefs.GetFloat("volume");
+            bool muted = System.Convert.ToBoolean(PlayerPrefs.GetInt("muted"));
+
+            speaker.volume = volume;
+            speaker.mute = muted;
+
+            speaker.clip = lvlup;
+            speaker.Play();
+        }
     }
 
     void HideIcons()

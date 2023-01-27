@@ -18,9 +18,11 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private BattleState state;
     [SerializeField] private float aiManaRecover = 0.12f;
     [SerializeField] private float aiGaranteedManaRecover = 0.08f;
+    [SerializeField] private int manaRecoverCdReducWeak = 3;
     [SerializeField] private float tiredStart = 0.05f;
     [SerializeField] private float tiredGrowth = 0.015f;
     [SerializeField] private int tiredStacks = 0;
+    [SerializeField] private int levelToConsiderWeak = 15;
     [SerializeField] private float dmgResisPer = 0.18f;
     [SerializeField] private float magicResisPer = 0.12f;
     [SerializeField] private float dotReduc = 0.3f;
@@ -53,7 +55,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private Button ultBtn;
     [SerializeField] private Text healBtnText;
 
-    [SerializeField] private EffectsMove tired;
+    [SerializeField] private EffectsMove tiredw;
+    [SerializeField] private EffectsMove tiredm;
     [SerializeField] private EffectsMove fear;
     [SerializeField] private Effects scorch;
 
@@ -594,7 +597,11 @@ public class BattleSystem : MonoBehaviour
             SetStatus();
 
             if (move.name == "recovmana")
+            {
                 move.inCooldown = move.cooldown;
+                if (user.level <= levelToConsiderWeak)
+                    move.inCooldown -= manaRecoverCdReducWeak;
+            }
 
             DMG dmgTarget = default;
             DMG dmgUser = default;
@@ -2389,6 +2396,8 @@ public class BattleSystem : MonoBehaviour
     public void OnHealBtn()
     {
         playerUnit.recoverMana.inCooldown = playerUnit.recoverMana.cooldown;
+        if (playerUnit.level <= levelToConsiderWeak)
+            playerUnit.recoverMana.inCooldown -= manaRecoverCdReducWeak;
         StartCoroutine(Combat(playerUnit.recoverMana.ReturnMove()));
     }
 
@@ -3517,8 +3526,17 @@ public class BattleSystem : MonoBehaviour
         if (!isTired)
         {
             //get effect
-            Effects effect = tired.effect.ReturnEffect();
-            effect.duration = Random.Range(tired.durationMin, tired.durationMax);
+            Effects effect;
+            if (user.level >= levelToConsiderWeak)
+            {
+                effect = tiredm.effect.ReturnEffect();
+                effect.duration = Random.Range(tiredm.durationMin, tiredm.durationMax);
+            }
+            else
+            {
+                effect = tiredw.effect.ReturnEffect();
+                effect.duration = Random.Range(tiredw.durationMin, tiredw.durationMax);
+            }
 
             //add effect to the player
             user.effects.Add(effect);

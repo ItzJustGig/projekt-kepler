@@ -133,7 +133,7 @@ public class AI : ScriptableObject
 
             totalPer += value;
             values.Add(value);
-            Debug.Log(": " + value);
+            //Debug.Log(": " + value);
         }
 
         float counter = 0;

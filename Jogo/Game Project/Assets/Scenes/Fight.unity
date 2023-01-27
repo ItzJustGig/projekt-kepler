@@ -13429,9 +13429,11 @@ MonoBehaviour:
   state: 0
   aiManaRecover: 0.12
   aiGaranteedManaRecover: 0.08
+  manaRecoverCdReducWeak: 3
   tiredStart: 0.0325
   tiredGrowth: 0.008
   tiredStacks: 0
+  levelToConsiderWeak: 12
   dmgResisPer: 0.18
   magicResisPer: 0.12
   dotReduc: 0.6
@@ -13455,7 +13457,8 @@ MonoBehaviour:
   basicBtn: {fileID: 371652340}
   ultBtn: {fileID: 191638935}
   healBtnText: {fileID: 1964910204}
-  tired: {fileID: 11400000, guid: f145d54ae3b6380428cb3c44d9b7b651, type: 2}
+  tiredw: {fileID: 11400000, guid: d2c04c48ef6d7934fb1d311b04c608df, type: 2}
+  tiredm: {fileID: 11400000, guid: f145d54ae3b6380428cb3c44d9b7b651, type: 2}
   fear: {fileID: 11400000, guid: ddbc508468aaf18469eacabd381c1203, type: 2}
   scorch: {fileID: 11400000, guid: 983ebd0871409c8479821ec897d313bd, type: 2}
   scrollbar: {fileID: 943014294}

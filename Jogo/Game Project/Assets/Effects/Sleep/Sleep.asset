@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: SLP
   sprite: {fileID: 21300000, guid: 083c200147a58c446bad607132a4d093, type: 3}
+  haveSpecialDesc: 0
   duration: 0
+  timeReducImmunity: 1
   grantsOnRunOut: 0
   timesInc: 0
   canUsePhysical: 0
@@ -22,8 +24,8 @@ MonoBehaviour:
   canUseMagic: 0
   canUseSupp: 0
   canUseProtec: 0
-  canUseStatMod: 0
-  canUseSummon: 1
+  canUseEnchant: 0
+  canUseSummon: 0
   phyDmgMin: 0
   phyDmgMax: 0
   phyDmgInc: 0
@@ -53,6 +55,9 @@ MonoBehaviour:
   shieldInc: 0
   cancelAtkChance: 1
   recoil: 0
+  isScaleSpecial: 0
   scale: []
   statMods:
   - {fileID: 11400000, guid: 434908075bea2ea45a5e0258214f5a36, type: 2}
+  hitAnim: 
+  specialAnim: 
