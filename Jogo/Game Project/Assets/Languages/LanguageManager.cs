@@ -877,6 +877,7 @@ public class LanguageManager : MonoBehaviour
         public string magicwand;
         public string crossbow;
         public string funchase;
+        public string bandofendurance;
 
         public string Get_Cont(string a)
         {
@@ -1027,6 +1028,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "funchase":
                     returns = funchase;
+                    break;
+                case "bandofendurance":
+                    returns = bandofendurance;
                     break;
                 default:
                     returns = "null";
@@ -2117,6 +2121,7 @@ public class LanguageManager : MonoBehaviour
         public string jewelofthedruid;
         public string prismaticstaff;
         public string crossbow;
+        public string bandofendurance;
 
         public string Get_ItemName(string a)
         {
@@ -2197,6 +2202,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "crossbow":
                     returns = crossbow;
+                    break;
+                case "bandofendurance":
+                    returns = bandofendurance;
                     break;
                 default:
                     returns = "null";

@@ -128,7 +128,7 @@ public class EndlessManager : MonoBehaviour
             GenEnemy(info.round);
             info.itemShop.Clear();
             info.generateShop = true;
-            if (info.round != -1 && info.round % 1 == 0)
+            if (info.round != -1 && info.round % 3 == 0)
             {
                 data.level = info.level + 1;
                 PlayLevelUp();

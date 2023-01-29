@@ -109,17 +109,17 @@ public struct DMG
     }
 
     //used on AI
-    public void Multiply(int num)
+    public void Multiply(float num)
     {
         phyDmg *= num;
         magicDmg *= num;
         trueDmg *= num;
-        sanityDmg *= num;
+        sanityDmg *= (int)num;
 
         heal *= num;
         healMana *= num;
         healStamina *= num;
-        healSanity *= num;
+        healSanity *= (int)num;
 
         shield *= num;
     }

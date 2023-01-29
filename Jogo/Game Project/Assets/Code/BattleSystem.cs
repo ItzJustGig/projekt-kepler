@@ -572,7 +572,7 @@ public class BattleSystem : MonoBehaviour
             else
                 dialogText.text = langmanag.GetInfo("gui", "text", "cantattack", langmanag.GetInfo("charc", "name", user.charc.name));
 
-            if (move.isUlt && move != null)
+            if (move != null && move.isUlt)
             {
                 GrantUltCompansation(user);
             }
@@ -1331,6 +1331,34 @@ public class BattleSystem : MonoBehaviour
                                 }
 
                                 dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                            }
+                        }
+
+                        if (a.name == "bandofendurance")
+                        {
+                            if (move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL)
+                            {
+                                StatScale scale = a.ifConditionTrueScale();
+
+                                Unit unit;
+                                Stats stats;
+                                if (scale.playerStat)
+                                {
+                                    unit = user;
+                                    stats = statsUser;
+                                }
+                                else
+                                {
+                                    unit = target;
+                                    stats = statsTarget;
+                                }
+
+                                DMG temp = scale.SetScaleDmg(stats, unit);
+
+                                if (isCrit)
+                                    temp.Multiply(a.num/100);
+
+                                dmgTarget.AddDmg(temp);
                             }
                         }
 
@@ -2522,7 +2550,7 @@ public class BattleSystem : MonoBehaviour
             if (p.name == "dreadofthesupernatural")
             {
                 //if sanityDmg bellow 0
-                if (a.dmg > 0)
+                if (a.dmg > 0 && a.type is Dotdmg.DmgType.SANITY)
                 {
                     //show passive popup
                     user.PassivePopup(langmanag.GetInfo("passive", "name", p.name));
@@ -3471,6 +3499,11 @@ public class BattleSystem : MonoBehaviour
             }
 
             if (a.name == "crossbow")
+            {
+                ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+            }
+
+            if (a.name == "bandofendurance")
             {
                 ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
             }

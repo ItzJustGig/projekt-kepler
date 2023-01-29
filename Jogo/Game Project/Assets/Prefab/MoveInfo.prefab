@@ -504,28 +504,31 @@ MonoBehaviour:
   tooltipPopupSec: {fileID: 0}
   text: '<size=24><align=center>Taunt</align></size>
 
-    Priority: 0
+    <size=17><align=center><color=#CC66FF>Enchantment</color></align></size>
+
+    Priority:
+    0
+
+    <s><align=center>|                 |</align></s>
+
+    100% chance to
+    <color=#ffaa00>10% Attack Damage</color>, <color=#1a66ff>10% Magic Power</color>,
+    <color=#f75145>-10% Critical Chance</color>, <color=#f75145>-6% Critical Damage</color>,
+    <color=#937264>-32% Damage Resistance</color>, <color=#946ACD>-28% Magic Resistance</color>
+    and <color=#0984db>-30% Timing</color> to the target for 4 turns
 
     <s><align=center>|                
     |</align></s>
 
-    100% chance to <color=#ffaa00>10% Attack Damage</color>,
-    <color=#1a66ff>10% Magic Power</color>, <color=#f75145>-10% Critical Chance</color>,
-    <color=#f75145>-6% Critical Damage</color>, <color=#937264>-32% Damage Resistance</color>,
-    <color=#946ACD>-28% Magic Resistance</color> and <color=#0984db>-30% Timing</color>
-    to the target for 4 turns
-
-    <s><align=center>|                 |</align></s>
-
-    Deal
-    <color=#b829ff>5 sanity damage</color>
-
-    Recover <color=#1e68fc>5 mana</color>
+    Deal <color=#b829ff>5 sanity damage</color>
 
     Recover
-    <color=#f0dd0a>5 stamina</color>
+    <color=#1e68fc>5 mana</color>
 
-    Recover <color=#b641f0>1 sanity</color>
+    Recover <color=#f0dd0a>5 stamina</color>
+
+    Recover
+    <color=#b641f0>1 sanity</color>
 
 '
   textSec: 
@@ -674,7 +677,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 936908b1d1e44524f9d402eb684ac7da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c630b18e457a2f946b998787276542ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -360,7 +360,8 @@
 			"combatrepair": "Combat Repair",
 			"magicwand": "Magic Wand",
 			"crossbow": "Crossbow",
-			"funchase": "Fun Chase"
+			"funchase": "Fun Chase",
+			"bandofendurance": "Band of Endurance"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain%mod%and deal bonus %scale% on attacks.",
@@ -410,7 +411,8 @@
 			"combatrepair": "The user gain%mod%per <color=#B266FF>summon</color> alive (stack up to %maxStacks% times). When the user gains a <color=#787878>shield</color> that is not earned from the user's ultimate move, gain that <color=#787878>shield</color> over %num% turns.",
 			"magicwand": "The user's <color=#1a66ff>magical</color> and <color=#ffaa00>basic attacks</color> deal bonus %scale%",
 			"crossbow": "The user's <color=#f75145>ranged</color> and <color=#ffaa00>basic attacks</color> deal bonus %scale%",
-			"funchase": "The user will gain bonus%mod%and deals bonus %scale% on <color=#ffaa00>basic</color> or <color=#ffaa00>physical moves</color> if an enemy is Bleeding"
+			"funchase": "The user will gain bonus%mod%and deals bonus %scale% on <color=#ffaa00>basic</color> or <color=#ffaa00>physical moves</color> if an enemy is Bleeding",
+			"bandofendurance": "The user recover %scale% on <color=#ffaa00>physical</color> and <color=#ffaa00>basic attacks</color>, this effect is increased by %num%% on <color=#f75145>critical hits</color>"
 		}
 	},
 	"moves": {
@@ -588,7 +590,8 @@
 			"huntersdirk": "Hunter's Dirk",
 			"jewelofthedruid": "Jewel of the Druid",
 			"prismaticstaff": "Prismatic Staff",
-			"crossbow": "Crossbow"
+			"crossbow": "Crossbow",
+			"bandofendurance": "Band of Endurance"
 		},
 		"move": {
 			"zap": "The carrier will <color=#ffdf00>zap</color> the target with a %type% to %dmg%",
