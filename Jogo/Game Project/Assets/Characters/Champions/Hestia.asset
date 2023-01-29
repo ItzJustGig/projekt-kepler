@@ -16,6 +16,7 @@ MonoBehaviour:
   classe: 6
   size: 2
   name: hestia
+  isBasicPhysical: 1
   sprite: {fileID: 5806852883944117854, guid: c270b37dba474d74eae2c5a382752e4b, type: 3}
   charcIcon: {fileID: 21300000, guid: 5ae267bfd7b617e4c8cc31910625f84a, type: 3}
   audio: {fileID: 8300000, guid: 43d696c4c4145474ab272d492f020479, type: 3}

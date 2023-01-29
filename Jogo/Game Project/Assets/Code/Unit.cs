@@ -51,8 +51,6 @@ public class Unit : MonoBehaviour
 
     [SerializeField] private StuffList champions;
     [SerializeField] private StuffList monsters;
-    [SerializeField] private Stats statGrowth;
-    [SerializeField] private Stats statsLevel;
 
     public Character charc;
     public int level = 0;
@@ -128,7 +126,7 @@ public class Unit : MonoBehaviour
         ultMove.manaCost = 0;
         ultMove.staminaCost = 0;
 
-        basicAttack = basicAttack.ReturnMove();
+        basicAttack = basicAttack.ReturnMove(); 
         basicAttack.SetOwner(this);
 
         recoverMana = recoverMana.ReturnMove();
@@ -141,12 +139,25 @@ public class Unit : MonoBehaviour
             moves.Add(move.ReturnMove());
         }
 
+        if (!charc.isBasicPhysical)
+        {
+            basicAttack.scale[0].type = DmgType.MAGICAL;
+            basicAttack.scale[0].magicPower = basicAttack.scale[0].atkDmg;
+            basicAttack.scale[0].atkDmg = 0;
+
+            moves[0].scale[0].type = DmgType.MAGICAL;
+            moves[0].scale[0].magicPower = moves[0].scale[0].atkDmg;
+            moves[0].scale[0].atkDmg = 0;
+        }
+
         if (charc.growth)
             charc.stats = charc.GetStatLevel(level);
         else
             charc.stats = charc.stats.ReturnStats();
 
         size = charc.size;
+
+        Debug.Log(basicAttack.scale[0].type);
     }
 
     void Start()

@@ -4118,8 +4118,8 @@ public class BattleSystem : MonoBehaviour
         healManaBtn.GetComponent<TooltipButton>().text = playerUnit.recoverMana.GetTooltipText(false);
         healManaBtn.GetComponent<TooltipButton>().textSec = playerUnit.recoverMana.GetTooltipText(true);
 
-        basicBtn.GetComponent<TooltipButton>().text = playerUnit.moves[0].GetTooltipText(false);
-        basicBtn.GetComponent<TooltipButton>().textSec = playerUnit.moves[0].GetTooltipText(true);
+        basicBtn.GetComponent<TooltipButton>().text = playerUnit.basicAttack.GetTooltipText(false);
+        basicBtn.GetComponent<TooltipButton>().textSec = playerUnit.basicAttack.GetTooltipText(true);
 
         ultBtn.GetComponent<TooltipButton>().text = playerUnit.ultMove.GetTooltipText(false);
         ultBtn.GetComponent<TooltipButton>().textSec = playerUnit.ultMove.GetTooltipText(true);

@@ -16,6 +16,7 @@ MonoBehaviour:
   classe: 3
   size: -2
   name: flecko
+  isBasicPhysical: 1
   sprite: {fileID: 5806852883944117854, guid: e1e321e6531d5e44f8531787a2659d9a, type: 3}
   charcIcon: {fileID: 21300000, guid: c89c8dd0062abad4ebb5ea3b1a3e8ced, type: 3}
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}

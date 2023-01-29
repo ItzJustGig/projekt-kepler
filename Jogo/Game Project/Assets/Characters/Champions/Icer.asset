@@ -16,6 +16,7 @@ MonoBehaviour:
   classe: 3
   size: 2
   name: icer
+  isBasicPhysical: 0
   sprite: {fileID: 5806852883944117854, guid: ca86673fd549be54d9a3f069c2704411, type: 3}
   charcIcon: {fileID: 21300000, guid: 3e1b74db64dcba44bad88d8720a500c1, type: 3}
   audio: {fileID: 8300000, guid: ebf7c04897d4fa8478373b6dfb925661, type: 3}

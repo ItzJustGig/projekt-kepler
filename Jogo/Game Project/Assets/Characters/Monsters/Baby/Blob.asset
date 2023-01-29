@@ -16,6 +16,7 @@ MonoBehaviour:
   classe: 3
   size: -1
   name: blob
+  isBasicPhysical: 0
   sprite: {fileID: 5806852883944117854, guid: f0bad0cee2a698d4c8bb7b847da907b1, type: 3}
   charcIcon: {fileID: 21300000, guid: 5ead55c0144e0f64f9ec67c5151449d3, type: 3}
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}

@@ -16,6 +16,7 @@ MonoBehaviour:
   classe: 5
   size: -1
   name: seedling
+  isBasicPhysical: 0
   sprite: {fileID: 5806852883944117854, guid: bb437d2cc5541a24db828f3c05f27b9b, type: 3}
   charcIcon: {fileID: 21300000, guid: 5020f38c5893a8c48a05b69fe9edca20, type: 3}
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}

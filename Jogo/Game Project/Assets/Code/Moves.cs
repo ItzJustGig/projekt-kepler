@@ -65,6 +65,19 @@ public class Moves : ScriptableObject
             summon.SetOwner(this.owner);
     }
 
+    private List<StatScale> ReturnScales()
+    {
+        List<StatScale> scales = new List<StatScale>();
+
+        foreach(StatScale a in scale)
+        {
+            scales.Add(a.ReturnScale());
+        }
+
+        return scales;
+    }
+
+
     public Moves ReturnMove()
     {
         Moves move = CreateInstance<Moves>();
@@ -110,7 +123,7 @@ public class Moves : ScriptableObject
         move.statModUser = statModUser;
         move.statModEnemy = statModEnemy;
 
-        move.scale = scale;
+        move.scale = ReturnScales();
         move.dot = dot;
         move.effects = effects;
         move.summon = summon;

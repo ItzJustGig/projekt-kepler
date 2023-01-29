@@ -41,6 +41,37 @@ public class StatScale : ScriptableObject
     public float timing;
     public float movSpeed;
 
+    public StatScale ReturnScale()
+    {
+        StatScale scale = CreateInstance<StatScale>();
+
+        scale.type = type;
+        scale.playerStat = playerStat;
+        scale.flatValue = flatValue;
+        scale.curHp = curHp;
+        scale.missHp = missHp;
+        scale.maxHp = maxHp;
+        scale.hpRegen = hpRegen;
+        scale.curMana = curMana;
+        scale.missMana = missMana;
+        scale.maxMana = maxMana;
+        scale.manaRegen = manaRegen;
+        scale.curStamina = curStamina;
+        scale.missStamina = missStamina;
+        scale.maxStamina = maxStamina;
+        scale.staminaRegen = staminaRegen;
+        scale.curSanity = curSanity;
+        scale.missSanity = missSanity;
+        scale.maxSanity = maxSanity;
+        scale.atkDmg = atkDmg;
+        scale.magicPower = magicPower;
+        scale.dmgResis = dmgResis;
+        scale.timing = timing;
+        scale.movSpeed = movSpeed;
+
+        return scale;
+    }
+
     private StringBuilder GetStat(LanguageManager languageManager, string language, string statName,float statVal, string colour, string onWho)
     {
         StringBuilder builder = new StringBuilder();
@@ -54,7 +85,6 @@ public class StatScale : ScriptableObject
 
         return builder;
     }
-
 
     private string GetLanguage()
     {

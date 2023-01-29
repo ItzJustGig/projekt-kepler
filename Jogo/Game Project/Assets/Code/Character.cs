@@ -12,6 +12,7 @@ public class Character : ScriptableObject
     public Class classe;
     public int size = 2;
     public new string name;
+    public bool isBasicPhysical = true;
 
     public GameObject sprite;
     public Sprite charcIcon;
@@ -46,6 +47,7 @@ public class Character : ScriptableObject
         charc.moves = moves;
         charc.ultimate = ultimate;
         charc.recItems = recItems;
+        charc.isBasicPhysical = isBasicPhysical;
         charc.ai = ai;
 
         return charc;
