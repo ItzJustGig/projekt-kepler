@@ -35,6 +35,7 @@ public class Stats : ScriptableObject
 
     public float evasion;
     public float armourPen;
+    public float magicPen;
     public float ultrate = 1;
     public float sizeMod = 0;
 
@@ -60,6 +61,7 @@ public class Stats : ScriptableObject
         stats.evasion = evasion;
         stats.accuracy = accuracy;
         stats.armourPen = armourPen;
+        stats.magicPen = magicPen;
         stats.ultrate = ultrate;
         stats.healBonus = healBonus;
         stats.shieldBonus = shieldBonus;
@@ -96,6 +98,7 @@ public class Stats : ScriptableObject
         stats.evasion = evasion;
         stats.accuracy = accuracy;
         stats.armourPen = armourPen;
+        stats.magicPen = magicPen;
         stats.ultrate = ultrate;
 
         return stats;

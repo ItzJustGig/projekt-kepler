@@ -321,14 +321,7 @@ public class BattleHud : MonoBehaviour
         else if (sanityPer <= 25)
             sanityIcon.sprite = sanity25;
 
-        armourpen.text = stats.armourPen.ToString("0.0%");
-
-        if (stats.armourPen > original.armourPen)
-            armourpen.color = Color.green;
-        else if (stats.armourPen < original.armourPen)
-            armourpen.color = Color.red;
-        else
-            armourpen.color = Color.black;
+        armourpen.text = stats.armourPen.ToString("0.0%") + " | " + stats.magicPen.ToString("0.0%");
     }
 
     public void OpenStatsMenu()

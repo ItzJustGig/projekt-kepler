@@ -772,6 +772,7 @@ public class Unit : MonoBehaviour
             temp.evasion += mod.evasion;
             temp.accuracy += mod.accuracy;
             temp.armourPen += mod.armourPen;
+            temp.magicPen += mod.magicPen;
             temp.ultrate += mod.ultrate;
             temp.manaCost += mod.manaCost;
             temp.staminaCost += mod.staminaCost;

@@ -170,6 +170,7 @@
             "evasion": "Evas\u00E3o",
             "accuracy": "Pricis\u00E3o",
             "armourpen": "Penetra\u00E7\u00E3o de Armadura",
+            "magicpen": "Penetra\u00E7\u00E3o M\u00E1gica",
             "ultimate": "Poder Supremo",
             "ultrate": "Regarga Suprema",
             "attackpower": "Poder de Ataque",
@@ -198,7 +199,7 @@
             "lifesteal": "O utilizador converte esta quantidade de estat\u00EDstica do dano f\u00EDsico causado em vida.",
             "evasion": "Faz o utilizador esquivar de ataques. (3.5% da Velocidade + 50% da Cronometragem + 1% da Sanidade Atual)",
             "accuracy": "Esta estat\u00EDstica faz o utilizador acertar ou falhar as suas t\u00E9cnicas de ataque.",
-            "armourpen": "Esta estat\u00EDstica permite ignorar a defesa do alvo.",
+            "armourpen": "Esta estat\u00EDstica permite ignorar as defesas do alvo.",
             "ultimate": "Permite ao utilizador utilizar uma t\u00E9cnica poderosa.",
             "attackpower": ""
         }
@@ -210,11 +211,7 @@
         "sourcerer": "Feiticeiro",
         "marksman": "Atirador",
         "support": "Suporte",
-        "duelist": "Duelista",
-        "brawler": "Lutador",
-        "vanguard": "Vanguarda",
-        "summoner": "Invocador",
-        "enchanter": "Encantador"
+        "duelist": "Duelista"
     },
     "charc": {
         "name": {
@@ -361,7 +358,8 @@
             "magicwand": "Varinha M\u00E1gica",
             "crossbow": "Besta",
             "funchase": "Persegui\u00e7\u00e3o divertida",
-            "bandofendurance": "Bandana da Percistencia"
+            "bandofendurance": "Bandana da Percistencia",
+            "mythicearrings": "Brincos M\u00edticos"
         },
         "desc": {
             "bloodbath": "Se um inimigo estiver a Sangrar, o utilizador vai ganhar%mod%e vai causar %scale% b\u00F3nus nos ataques.",
@@ -412,7 +410,8 @@
             "magicwand": "Os ataques <color=#1a66ff>m\u00e1gicos</color> e <color=#ffaa00>b\u00e1sicos</color> do utilizador causam %scale% b\u00f3nus",
 			"crossbow": "Os ataques de <color=#f75145>alcance</color> e <color=#ffaa00>b\u00e1sicos</color> do utilizador causam %scale% b\u00f3nus",
 			"funchase": "O utilizador ganha%mod%e causa %scale% b\u00f3nus em ataques <color=#ffaa00>b\u00e1sicos</color> ou <color=#ffaa00>f\u00EDsicos</color> se um inimigo estiver a Sangrar",
-            "bandofendurance": "O utilizador recupera %scale% com ataques <color=#ffaa00>f\u00EDsicos</color> e <color=#ffaa00>b\u00e1sicos</color>, o efeito \u00e9 aumentado em %num%% em golpes crí\u00EDticos"
+            "bandofendurance": "O utilizador recupera %scale% com ataques <color=#ffaa00>f\u00EDsicos</color> e <color=#ffaa00>b\u00e1sicos</color>, o efeito \u00e9 aumentado em %num%% em golpes cr\u00EDticos",
+            "mythicearrings": "O utilizador recupera %scale% com ataques <color=#1a66ff>m\u00e1gicos</color> e <color=#ffaa00>b\u00e1sicos</color>"
         }
     },
     "moves": {
@@ -591,7 +590,8 @@
             "jewelofthedruid": "J\u00f3ia do Druida",
             "prismaticstaff": "Cajato Prism\u00e1tico",
 			"crossbow": "Besta",
-			"bandofendurance": "Bandana da Percistencia"
+			"bandofendurance": "Bandana da Percistencia",
+			"mythicearrings": "Brincos M\u00edticos"
         },
 		"move": {
 			"zap": "O transportador d\u00e1 <color=#ffdf00>zap</color> no alvo com uma %type% que %dmg%",

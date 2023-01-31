@@ -41,6 +41,7 @@ public class StatMod : ScriptableObject
 
     public float evasion;
     public float armourPen;
+    public float magicPen;
     public float ultrate;
     public float size;
 
@@ -71,6 +72,7 @@ public class StatMod : ScriptableObject
         stats.evasion = evasion;
         stats.accuracy = accuracy;
         stats.armourPen = armourPen;
+        stats.magicPen = magicPen;
         stats.ultrate = ultrate;
         stats.manaCost = manaCost;
         stats.staminaCost = staminaCost;
@@ -108,6 +110,7 @@ public class StatMod : ScriptableObject
         stats.evasion += evasion * times;
         stats.accuracy += accuracy * times;
         stats.armourPen += armourPen * times;
+        stats.magicPen += magicPen * times;
         stats.ultrate += ultrate * times;
         stats.size += size * times;
 
@@ -167,6 +170,9 @@ public class StatMod : ScriptableObject
             i++;
 
         if (armourPen != 0)
+            i++;
+
+        if (magicPen != 0)
             i++;
 
         if (ultrate != 0)
@@ -429,6 +435,12 @@ public class StatMod : ScriptableObject
             builder.Append(GetInfo(languageManager, language, "c87c32", armourPen, languageManager.GetText(language, "stats", "name", "armourpen"), true, i, false));
         }
 
+        if (magicPen != 0)
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "8360B3", magicPen, languageManager.GetText(language, "stats", "name", "magicpen"), true, i, false));
+        }
+
         if (ultrate != 0)
         {
             i--;
@@ -603,6 +615,12 @@ public class StatMod : ScriptableObject
             builder.Append(GetInfo(languageManager, language, "c87c32", armourPen, languageManager.GetText(language, "stats", "name", "armourpen"), true, i, true));
         }
 
+        if (magicPen != 0)
+        {
+            i--;
+            builder.Append(GetInfo(languageManager, language, "8360B3", magicPen, languageManager.GetText(language, "stats", "name", "magicpen"), true, i, true));
+        }
+
         if (ultrate != 0)
         {
             i--;
@@ -703,6 +721,9 @@ public class StatMod : ScriptableObject
             change = true;
 
         if (armourPen < 0)
+            change = true;
+
+        if (magicPen < 0)
             change = true;
 
         if (lifesteal < 0)

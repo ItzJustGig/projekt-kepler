@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, CHANGETURN, WIN, LOSE }
 
@@ -45,6 +46,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private GameObject leaveBtn;
 
     [SerializeField] private Text turnsText;
+    [SerializeField] private Text turnsTextOverview;
     [SerializeField] private int turnCount = 0;
     [SerializeField] private float ultEnergyDealt;
     [SerializeField] private float ultEnergyTaken;
@@ -53,6 +55,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private Button healManaBtn;
     [SerializeField] private Button basicBtn;
     [SerializeField] private Button ultBtn;
+    [SerializeField] private Button overviewBtn;
     [SerializeField] private Text healBtnText;
 
     [SerializeField] private EffectsMove tiredw;
@@ -603,6 +606,11 @@ public class BattleSystem : MonoBehaviour
                     move.inCooldown -= manaRecoverCdReducWeak;
             }
 
+            if (user.isEnemy)
+                sumEnemyHud.AddMoveLog(user, move);
+            else
+                sumPlayerHud.AddMoveLog(user, move);
+
             DMG dmgTarget = default;
             DMG dmgUser = default;
 
@@ -663,12 +671,9 @@ public class BattleSystem : MonoBehaviour
                 {
                     user.DoMoveAnim(move.type);
 
-                    isCrit = false;
+                    isCrit = Random.Range(0f, 1f) <= (statsUser.critChance + move.critChanceBonus);
                     dmgTarget.Reset();
                     dmgUser.Reset();
-
-                    if (Random.Range(0f, 1f) <= (statsUser.critChance + move.critChanceBonus))
-                        isCrit = true;
 
                     foreach (Passives a in target.passives.ToArray())
                     {
@@ -1362,6 +1367,31 @@ public class BattleSystem : MonoBehaviour
                             }
                         }
 
+                        if (a.name == "mythicearrings")
+                        {
+                            if (move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.MAGICAL)
+                            {
+                                StatScale scale = a.ifConditionTrueScale();
+
+                                Unit unit;
+                                Stats stats;
+                                if (scale.playerStat)
+                                {
+                                    unit = user;
+                                    stats = statsUser;
+                                }
+                                else
+                                {
+                                    unit = target;
+                                    stats = statsTarget;
+                                }
+
+                                DMG temp = scale.SetScaleDmg(stats, unit);
+
+                                dmgTarget.AddDmg(temp);
+                            }
+                        }
+
                         if (a.name == "funchase")
                         {
                             if (a.stacks == 1 && (move.type == Moves.MoveType.PHYSICAL || move.type == Moves.MoveType.BASIC))
@@ -1878,8 +1908,7 @@ public class BattleSystem : MonoBehaviour
                                 }
                             }
 
-                            //magic pen for 0
-                            dmgTarget = target.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, 0, user);
+                            dmgTarget = target.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
                             dmgTarget = user.ApplyHealFrom(dmgTarget, move.healFromDmgType, move.healFromDmg);
                             dmgTarget = user.ApplyLifesteal(dmgTarget);
@@ -2031,7 +2060,6 @@ public class BattleSystem : MonoBehaviour
             user.ult = value;
         }
     }
-
 
     void SetStatus()
     {
@@ -2460,28 +2488,23 @@ public class BattleSystem : MonoBehaviour
     {
         DMG dmg = default;
         dmg.Reset();
+        float timesInc = a.timesInc;
         bool isDead = false;
 
-        dmg.phyDmg = Random.Range(a.phyDmgMin, a.phyDmgMax) + (a.phyDmgInc * a.timesInc);
-        dmg.magicDmg = Random.Range(a.magicDmgMin, a.magicDmgMax) + (a.magicDmgInc * a.timesInc);
-        dmg.trueDmg = Random.Range(a.trueDmgMin, a.trueDmgMax) + (a.trueDmgInc * a.timesInc);
-        dmg.sanityDmg = Random.Range(a.sanityDmgMin, a.sanityDmgMax) + (a.sanityDmgInc * a.timesInc);
-        dmg.heal = Random.Range(a.healMin, a.healMax) + (a.healInc * a.timesInc);
-        dmg.healMana = Random.Range(a.healManaMin, a.healManaMax) + (a.healManaInc * a.timesInc);
-        dmg.healStamina = Random.Range(a.healStaminaMin, a.healStaminaMax) + (a.healStaminaInc * a.timesInc);
-        dmg.healSanity = Random.Range(a.sanityHealMin, a.sanityHealMax) + (a.sanityHealInc * a.timesInc);
-        dmg.shield = Random.Range(a.shieldMin, a.shieldMax) + (a.shieldInc * a.timesInc);
+        dmg.phyDmg = Random.Range(a.phyDmgMin, a.phyDmgMax) + (a.phyDmgInc * timesInc);
+        dmg.magicDmg = Random.Range(a.magicDmgMin, a.magicDmgMax) + (a.magicDmgInc * timesInc);
+        dmg.trueDmg = Random.Range(a.trueDmgMin, a.trueDmgMax) + (a.trueDmgInc * timesInc);
+        dmg.sanityDmg = Random.Range(a.sanityDmgMin, a.sanityDmgMax) + (int)(a.sanityDmgInc * timesInc);
+        dmg.heal = Random.Range(a.healMin, a.healMax) + (a.healInc * timesInc);
+        dmg.healMana = Random.Range(a.healManaMin, a.healManaMax) + (a.healManaInc * timesInc);
+        dmg.healStamina = Random.Range(a.healStaminaMin, a.healStaminaMax) + (a.healStaminaInc * timesInc);
+        dmg.healSanity = Random.Range(a.sanityHealMin, a.sanityHealMax) + (int)(a.sanityHealInc * timesInc);
+        dmg.shield = Random.Range(a.shieldMin, a.shieldMax) + (a.shieldInc * timesInc);
 
         if (!a.isScaleSpecial)
             foreach (StatScale scale in a.scale.ToArray())
             {
-                Unit unit;
-                Stats stats;
-
-                unit = user;
-                stats = user.SetModifiers().ReturnStats();
-
-                dmg.AddDmg(scale.SetScaleDmg(stats, unit));
+                dmg.AddDmg(scale.SetScaleDmg(user.SetModifiers().ReturnStats(), user));
             }
 
         dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, null, dotReduc);
@@ -2635,363 +2658,385 @@ public class BattleSystem : MonoBehaviour
     {
         foreach (Passives a in user.passives.ToArray())
         {
-            if (a.name == "baby" || a.name == "weak" || a.name == "normal" || a.name == "strong" || a.name == "superstrong" || a.name == "legendary" || a.name == "mythic" || a.name == "boss")
+            switch (a.name)
             {
-                if (a.stacks == 0)
-                {
-                    StatMod statMod = a.statMod.ReturnStats();
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    userHud.SetStatsHud(user);
-                    ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
-                    a.stacks++;
-                }
-            }
+                case "boss":
+                    if (a.stacks == 0)
+                    {
+                        StatMod statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+                        ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+                        a.stacks++;
+                    }
+                    break;
 
-            if (a.name == "musicup")
-            {
-                bool isReady = false;
+                case "musicup":
+                    bool isReady = false;
 
-                if (a.inCd == 1 && a.stacks < a.maxStacks)
-                {
-                    a.inCd = a.cd;
-                    a.stacks++;
-                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                    StatMod statMod = a.statMod.ReturnStats();
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    userHud.SetStatsHud(user);
-                }
-                else if (a.inCd > 0)
-                    a.inCd--;
-
-                if (a.stacks == a.maxStacks)
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                }
-
-                if (a.inCd == 1)
-                    isReady = true;
-
-                if (a.stacks < a.maxStacks)
-                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-            }
-
-            if (a.name == "manathirst")
-            {
-                if (a.inCd == 0 && (user.curMana <= (user.SetModifiers().mana * a.num)))
-                {
-                    a.inCd = a.cd;
-                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                    float healMana = a.statScale.SetScale(user.SetModifiers(), user);
-                    user.curMana += healMana;
-                    user.manaHealDone += healMana;
-
-                    StatMod statMod = a.statMod.ReturnStats();
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    userHud.SetStatsHud(user);
-                }
-                else if (a.inCd > 0)
-                    a.inCd--;
-
-                bool isReady = false;
-                if (a.inCd == 0)
-                    isReady = true;
-
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-            }
-
-            if (a.name == "wildinstinct")
-            {
-                //hp in %
-                int hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
-
-                if (hpPer < (a.num * 100))
-                {
-                    a.stacks = (int)((a.num * 100) - hpPer);
-
-                    StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    userHud.SetStatsHud(user);
-                    ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
-                }
-                else if (hpPer > (a.num * 100))
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                }
-            }
-
-            if (a.name == "vendetta")
-            {
-                if (a.stacks == 1)
-                {
-                    if (a.inCd > 0)
+                    if (a.inCd == 1 && a.stacks < a.maxStacks)
+                    {
+                        a.inCd = a.cd;
+                        a.stacks++;
+                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                        StatMod statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+                    }
+                    else if (a.inCd > 0)
                         a.inCd--;
 
-                    bool isReady = false;
-                    if (a.inCd == 0)
-                        isReady = true;
-
-                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-                }
-            }
-
-            if (a.name == "lastbreath")
-            {
-                //hp in %
-                int hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
-
-                if (hpPer < (a.num * 100))
-                {
-                    StatMod statMod = a.statMod.ReturnStats();
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    userHud.SetStatsHud(user);
-                    ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
-                }
-                else if (hpPer > (a.num * 100))
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                }
-            }
-
-            if (a.name == "bullsrage")
-            {
-                //hp in %
-                int hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
-
-                if (hpPer <= (a.num * 100))
-                {
-                    if (a.stacks < a.maxStacks + 1)
-                    {
-                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                        a.stacks = a.maxStacks + 1;
-                    }
-                } else if (a.stacks > a.maxStacks && hpPer > (a.num * 100))
-                {
-                    a.stacks = 0;
-                    a.inCd = -1;
-                }
-
-                if ((a.stacks == a.maxStacks && a.inCd == 0) || a.stacks > a.maxStacks)
-                {
-                    StatMod statMod = a.statMod.ReturnStats();
                     if (a.stacks == a.maxStacks)
                     {
-                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                        statMod.inTime = a.cd;
-                        a.inCd = a.cd+1;
-                    }
-                    else
-                    {
-                        statMod.inTime = 1;
+                        DestroyPassiveIcon(a.name, user.isEnemy);
                     }
 
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    userHud.SetStatsHud(user);
-                }
+                    if (a.inCd == 1)
+                        isReady = true;
 
-                bool isReady = false;
-                if (a.inCd > 0 || a.inCd == -1)
-                    isReady = true;
-
-                if (a.inCd > 0 || a.stacks > a.maxStacks)
-                {
-                    if (a.stacks > a.maxStacks)
-                        ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
-                    else
-                    {
-                        a.inCd--;
+                    if (a.stacks < a.maxStacks)
                         ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-                    }
-                } else
-                {
-                    ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
-                }
+                    break;
 
-                if (a.inCd == 0 && a.stacks >= a.maxStacks)
-                {
-                    a.stacks = 0;
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                    ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
-                }
-            }
-
-            if (a.name == "magicremains")
-            {
-                if (a.inCd > 0)
-                    a.inCd--;
-
-                bool isReady = false;
-                if (a.inCd == 0)
-                    isReady = true;
-
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-            }
-
-            if (a.name == "galeglide")
-            {
-                if (a.inCd > 0)
-                    a.inCd--;
-
-                bool isReady = false;
-                if (a.inCd == 0)
-                    isReady = true;
-
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-            }
-
-            if (a.name == "fearsmell")
-            {
-                //enemy sanity in %
-                int sanityPer = (int)((100 * target.curSanity) / target.SetModifiers().sanity);
-
-                if (sanityPer < (a.num * 100))
-                {
-                    StatMod statMod = a.statMod.ReturnStats();
-                    statMod.inTime = 1;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    userHud.SetStatsHud(user);
-                    ManagePassiveIcon(a.sprite, a.name,"", user.isEnemy, a.GetPassiveInfo());
-                }
-
-                bool foundEffect = false;
-
-                foreach (Effects b in target.effects)
-                {
-                    if (b.id == "FEA")
+                case "manathirst":
+                    if (a.inCd == 0 && (user.curMana <= (user.SetModifiers().mana * a.num)))
                     {
-                        foundEffect = true;
-                        if (a.stacks < 1)
-                        {
-                            a.stacks++;
-                            StatMod statMod2 = a.statMod2.ReturnStats();
-                            statMod2.inTime = a.cd;
-                            user.statMods.Add(statMod2);
-                            user.usedBonusStuff = false;
-                            userHud.SetStatsHud(user);
-                            ManagePassiveIcon(a.sprite, a.name, "!", user.isEnemy, a.GetPassiveInfo());
-                        }
-                    }
-                }
+                        a.inCd = a.cd;
+                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
 
-                if (!foundEffect)
-                    a.stacks = 0;
-
-                if (sanityPer > (a.num * 100) && !foundEffect)
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-
-            }
-
-            if (a.name == "phantomhand")
-            {
-                if (a.inCd > 0)
-                    a.inCd--;
-
-                if (a.inCd <= 0)
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                    user.passives.Remove(a);
-                }
-
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-            }
-
-            if (a.name == "bloodbath")
-            {
-                bool foundEffect = false;
-
-                foreach (Effects b in target.effects)
-                {
-                    if (b.id == "BLD")
-                    {
-                        foundEffect = true;
-
-                        if (a.stacks == 0)
-                        {
-                            user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                            a.stacks = 1;
-                        }
-                        else if (a.stacks == 1)
-                        {
-                            a.stacks = 2;
-                        }
+                        float healMana = a.statScale.SetScale(user.SetModifiers(), user);
+                        user.curMana += healMana;
+                        user.manaHealDone += healMana;
 
                         StatMod statMod = a.statMod.ReturnStats();
                         statMod.inTime = statMod.time;
                         user.statMods.Add(statMod);
                         user.usedBonusStuff = false;
                         userHud.SetStatsHud(user);
+                    }
+                    else if (a.inCd > 0)
+                        a.inCd--;
+
+                    isReady = false;
+                    if (a.inCd == 0)
+                        isReady = true;
+
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                    break;
+
+                case "wildinstinct":
+                    //hp in %
+                    int hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
+
+                    if (hpPer < (a.num * 100))
+                    {
+                        a.stacks = (int)((a.num * 100) - hpPer);
+
+                        StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+                        ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    }
+                    else if (hpPer > (a.num * 100))
+                    {
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                    }
+                    break;
+
+                case "vendetta":
+                    if (a.stacks == 1)
+                    {
+                        if (a.inCd > 0)
+                            a.inCd--;
+
+                        isReady = false;
+                        if (a.inCd == 0)
+                            isReady = true;
+
+                        ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                    }
+                    break;
+
+                case "lastbreath":
+                    //hp in %
+                    hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
+
+                    if (hpPer < (a.num * 100))
+                    {
+                        StatMod statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+                        ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    }
+                    else if (hpPer > (a.num * 100))
+                    {
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                    }
+                    break;
+
+                case "bullrage":
+                    //hp in %
+                    hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
+
+                    if (hpPer <= (a.num * 100))
+                    {
+                        if (a.stacks < a.maxStacks + 1)
+                        {
+                            user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                            a.stacks = a.maxStacks + 1;
+                        }
+                    }
+                    else if (a.stacks > a.maxStacks && hpPer > (a.num * 100))
+                    {
+                        a.stacks = 0;
+                        a.inCd = -1;
+                    }
+
+                    if ((a.stacks == a.maxStacks && a.inCd == 0) || a.stacks > a.maxStacks)
+                    {
+                        StatMod statMod = a.statMod.ReturnStats();
+                        if (a.stacks == a.maxStacks)
+                        {
+                            user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                            statMod.inTime = a.cd;
+                            a.inCd = a.cd + 1;
+                        }
+                        else
+                        {
+                            statMod.inTime = 1;
+                        }
+
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+                    }
+
+                    isReady = false;
+                    if (a.inCd > 0 || a.inCd == -1)
+                        isReady = true;
+
+                    if (a.inCd > 0 || a.stacks > a.maxStacks)
+                    {
+                        if (a.stacks > a.maxStacks)
+                            ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+                        else
+                        {
+                            a.inCd--;
+                            ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                        }
+                    }
+                    else
+                    {
+                        ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    }
+
+                    if (a.inCd == 0 && a.stacks >= a.maxStacks)
+                    {
+                        a.stacks = 0;
+                        DestroyPassiveIcon(a.name, user.isEnemy);
                         ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     }
-                }
+                    break;
 
-                if (!foundEffect && a.stacks > 0)
-                {
-                    a.stacks = 0;
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                }
-            }
+                case "magicremains":
+                    if (a.inCd > 0)
+                        a.inCd--;
 
-            if (a.name == "plasmablade")
-            {
-                bool isSilence = false;
-                foreach (Effects b in user.effects)
-                {
-                    if (b.id == "SLC")
-                        isSilence = true;
-                }
+                    isReady = false;
+                    if (a.inCd == 0)
+                        isReady = true;
 
-                int manaPer = (int)((100 * user.curMana) / user.SetModifiers().mana);
-                bool enoughMana = false;
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                    break;
 
-                if (manaPer > a.maxNum * 100)
-                {
-                    enoughMana = true;
-                    ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo());
-                }
+                case "galeglide":
+                    if (a.inCd > 0)
+                        a.inCd--;
 
-                if (!enoughMana || isSilence)
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                }
+                    isReady = false;
+                    if (a.inCd == 0)
+                        isReady = true;
 
-                int healthPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                    break;
 
-                if (healthPer <= a.stacks && enoughMana && !isSilence)
-                {
-                    StatMod statMod = a.statMod.ReturnStats();
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    userHud.SetStatsHud(user);
-                    //isReady
-                    ManagePassiveIcon(a.sprite, a.name, "!", user.isEnemy, a.GetPassiveInfo(), true);
-                }
-            }
+                case "fearsmell":
+                    //enemy sanity in %
+                    int sanityPer = (int)((100 * target.curSanity) / target.SetModifiers().sanity);
 
-            if (a.name == "weakbody")
-            {
-                bool foundEffect = false;
-
-                //check effects
-                foreach (Effects b in user.effects)
-                {
-                    //check if have blood, allergy, tired or poison
-                    if (b.id == "BLD" || b.id == "ALR" || b.id == "TRD" || b.id == "PSN" && !foundEffect)
+                    if (sanityPer < (a.num * 100))
                     {
-                        foundEffect = true;
+                        StatMod statMod = a.statMod.ReturnStats();
+                        statMod.inTime = 1;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+                        ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+                    }
 
+                    bool foundEffect = false;
+
+                    foreach (Effects b in target.effects)
+                    {
+                        if (b.id == "FEA")
+                        {
+                            foundEffect = true;
+                            if (a.stacks < 1)
+                            {
+                                a.stacks++;
+                                StatMod statMod2 = a.statMod2.ReturnStats();
+                                statMod2.inTime = a.cd;
+                                user.statMods.Add(statMod2);
+                                user.usedBonusStuff = false;
+                                userHud.SetStatsHud(user);
+                                ManagePassiveIcon(a.sprite, a.name, "!", user.isEnemy, a.GetPassiveInfo());
+                            }
+                        }
+                    }
+
+                    if (!foundEffect)
+                        a.stacks = 0;
+
+                    if (sanityPer > (a.num * 100) && !foundEffect)
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+
+                    break;
+
+                case "phantomhand":
+                    if (a.inCd > 0)
+                        a.inCd--;
+
+                    if (a.inCd <= 0)
+                    {
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                        user.passives.Remove(a);
+                    }
+
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    break;
+
+                case "bloodpath":
+                    foundEffect = false;
+
+                    foreach (Effects b in target.effects)
+                    {
+                        if (b.id == "BLD")
+                        {
+                            foundEffect = true;
+
+                            if (a.stacks == 0)
+                            {
+                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                a.stacks = 1;
+                            }
+                            else if (a.stacks == 1)
+                            {
+                                a.stacks = 2;
+                            }
+
+                            StatMod statMod = a.statMod.ReturnStats();
+                            statMod.inTime = statMod.time;
+                            user.statMods.Add(statMod);
+                            user.usedBonusStuff = false;
+                            userHud.SetStatsHud(user);
+                            ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+                        }
+                    }
+
+                    if (!foundEffect && a.stacks > 0)
+                    {
+                        a.stacks = 0;
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                    }
+                    break;
+
+                case "plasmablade":
+                    bool isSilence = false;
+                    foreach (Effects b in user.effects)
+                    {
+                        if (b.id == "SLC")
+                            isSilence = true;
+                    }
+
+                    int manaPer = (int)((100 * user.curMana) / user.SetModifiers().mana);
+                    bool enoughMana = false;
+
+                    if (manaPer > a.maxNum * 100)
+                    {
+                        enoughMana = true;
+                        ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    }
+
+                    if (!enoughMana || isSilence)
+                    {
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                    }
+
+                    int healthPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
+
+                    if (healthPer <= a.stacks && enoughMana && !isSilence)
+                    {
+                        StatMod statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+                        //isReady
+                        ManagePassiveIcon(a.sprite, a.name, "!", user.isEnemy, a.GetPassiveInfo(), true);
+                    }
+                    break;
+
+                case "weakbody":
+                    foundEffect = false;
+
+                    //check effects
+                    foreach (Effects b in user.effects)
+                    {
+                        //check if have blood, allergy, tired or poison
+                        if (b.id == "BLD" || b.id == "ALR" || b.id == "TRD" || b.id == "PSN" && !foundEffect)
+                        {
+                            foundEffect = true;
+
+                            //if no stacks
+                            if (a.stacks == 0)
+                            {
+                                //show popup
+                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                a.stacks = 1;
+                            }
+
+                            //apply statmod
+                            StatMod statMod = a.statMod.ReturnStats();
+                            statMod.inTime = statMod.time;
+                            user.statMods.Add(statMod);
+                            user.usedBonusStuff = false;
+                            userHud.SetStatsHud(user);
+
+                            //display icon
+                            ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo());
+                        }
+                    }
+
+                    //if dont find, delete icon
+                    if (!foundEffect && a.stacks > 0)
+                    {
+                        a.stacks = 0;
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                    }
+                    break;
+
+                case "onewiththeshadows":
+                    //if the user was not hit for cd turns
+                    if (a.inCd == a.cd)
+                    {
                         //if no stacks
                         if (a.stacks == 0)
                         {
@@ -3008,647 +3053,576 @@ public class BattleSystem : MonoBehaviour
                         userHud.SetStatsHud(user);
 
                         //display icon
-                        ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo());
+                        isReady = false;
+                        if (a.stacks == 1)
+                            isReady = true;
+                        ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
                     }
-                }
-
-                //if dont find, delete icon
-                if (!foundEffect && a.stacks > 0)
-                {
-                    a.stacks = 0;
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                }
-            }
-
-            if (a.name == "onewiththeshadows")
-            {
-                //if the user was not hit for cd turns
-                if (a.inCd == a.cd)
-                {
-                    //if no stacks
-                    if (a.stacks == 0)
+                    else
                     {
+                        a.stacks = 0;
+                    }
+                    break;
+
+                case "courage":
+                    //if cooldown higher than 0
+                    if (a.inCd > 0)
+                        //reduce cooldown by 1
+                        a.inCd--;
+
+                    //if cooldown is 0
+                    if (a.inCd <= 0 && user.curSanity < user.SetModifiers().sanity)
+                    {
+                        //get sanity heal from the passive's scale
+                        float healSanity = a.statScale.SetScaleFlat(user.SetModifiers(), user);
+                        //heal sanity
+                        user.curSanity += (int)healSanity;
+                        //add the heal to the overview
+                        user.sanityHealDone += (int)healSanity;
+                        //reset cooldown
+                        a.inCd = a.cd;
                         //show popup
                         user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                        a.stacks = 1;
                     }
 
-                    //apply statmod
-                    StatMod statMod = a.statMod.ReturnStats();
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    userHud.SetStatsHud(user);
-
-                    //display icon
-                    bool isReady = false;
-                    if (a.stacks == 1)
-                        isReady = true;
-                    ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-                } else
-                {
-                    a.stacks = 0;
-                }
-            }
-
-            if (a.name == "courage")
-            {
-                //if cooldown higher than 0
-                if (a.inCd > 0)
-                //reduce cooldown by 1
-                    a.inCd--;
-
-                //if cooldown is 0
-                if (a.inCd <= 0 && user.curSanity < user.SetModifiers().sanity)
-                {
-                    //get sanity heal from the passive's scale
-                    float healSanity = a.statScale.SetScaleFlat(user.SetModifiers(), user);
-                    //heal sanity
-                    user.curSanity += (int)healSanity;
-                    //add the heal to the overview
-                    user.sanityHealDone += (int)healSanity;
-                    //reset cooldown
-                    a.inCd = a.cd;
-                    //show popup
-                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                }
-
-                bool isFear = false;
-                foreach (Effects b in user.effects)
-                {
-                    //if fear
-                    if (b.id == "FEA" && !isFear)
-                    {
-                        if (a.stacks < 1)
-                        {
-                            //get sanity heal from the passive's scale
-                            float healSanity = a.statScale2.SetScale(user.SetModifiers(), user);
-                            //heal sanity
-                            user.curSanity += (int)healSanity;
-                            //add the heal to the overview
-                            user.sanityHealDone += (int)healSanity;
-                            //mark as bonus given
-                            a.stacks++;
-                        }
-                        isFear = true;
-                    } 
-                }
-                
-                if (!isFear)
-                    a.stacks = 0;
-
-                bool isReady = false;
-                if (a.inCd == 1)
-                    isReady = true;
-
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-            }
-
-            if (a.name == "bloodpumping")
-            {
-                if (a.inCd > 0 && user.curHp < user.SetModifiers().hp)
-                {
-                    bool foundEffect = false;
-
+                    bool isFear = false;
                     foreach (Effects b in user.effects)
                     {
-                        //check if have blood, allergy, tired or poison
-                        if (b.id == "BLD" && !foundEffect)
+                        //if fear
+                        if (b.id == "FEA" && !isFear)
+                        {
+                            if (a.stacks < 1)
+                            {
+                                //get sanity heal from the passive's scale
+                                float healSanity = a.statScale2.SetScale(user.SetModifiers(), user);
+                                //heal sanity
+                                user.curSanity += (int)healSanity;
+                                //add the heal to the overview
+                                user.sanityHealDone += (int)healSanity;
+                                //mark as bonus given
+                                a.stacks++;
+                            }
+                            isFear = true;
+                        }
+                    }
+
+                    if (!isFear)
+                        a.stacks = 0;
+
+                    isReady = false;
+                    if (a.inCd == 1)
+                        isReady = true;
+
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                    break;
+
+                case "bloodpumping":
+                    if (a.inCd > 0 && user.curHp < user.SetModifiers().hp)
+                    {
+                        foundEffect = false;
+
+                        foreach (Effects b in user.effects)
+                        {
+                            //check if have blood, allergy, tired or poison
+                            if (b.id == "BLD" && !foundEffect)
+                            {
+                                foundEffect = true;
+                            }
+                        }
+
+                        if (foundEffect)
+                        {
+                            DMG dmg = default;
+                            dmg.Reset();
+                            dmg.trueDmg += a.statScale.SetScale(user.SetModifiers(), user);
+
+                            //user.curHp -= trueDmg;
+                            //user.trueDmgTaken += trueDmg;
+                            user.TakeDamage(dmg, false, false, user);
+                        }
+                        else
+                        {
+                            float heal = a.statScale.SetScale(user.SetModifiers(), user);
+
+                            if ((user.curHp + heal) < user.SetModifiers().hp)
+                            {
+                                heal += heal * user.SetModifiers().healBonus;
+                                user.curHp += heal;
+                                user.healDone += heal;
+                            }
+                            else
+                            {
+                                heal = user.curHp - user.SetModifiers().hp;
+                                user.curHp = user.SetModifiers().hp;
+
+                                if (heal < 0)
+                                    heal = 0;
+
+                                user.healDone += heal;
+                            }
+                            user.Heal(heal);
+                        }
+
+                        a.inCd--;
+                    }
+
+
+                    if (a.inCd <= 0)
+                    {
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                        user.passives.Remove(a);
+                    }
+
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    break;
+
+                case "huntingseason":
+                    if (a.inCd > 0)
+                        a.inCd--;
+
+                    if (a.inCd <= 0)
+                    {
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                        user.passives.Remove(a);
+                    }
+
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    break;
+
+                case "blazingfists":
+                    if (a.inCd > 0)
+                        a.inCd--;
+
+                    if (a.inCd <= 0)
+                    {
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                        user.passives.Remove(a);
+                    }
+
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    break;
+
+                case "fighterinstinct":
+                    //hp in %
+                    hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
+
+                    if (hpPer <= (a.num * 100) && a.stacks != 1)
+                    {
+                        a.stacks = 1;
+                    }
+                    else if (hpPer > (a.num * 100))
+                    {
+                        a.stacks = 0;
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                    }
+
+                    if (a.stacks == 1)
+                    {
+                        StatMod statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+                        ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    }
+                    break;
+
+                case "successoroffire":
+                    foundEffect = false;
+
+                    foreach (Effects b in target.effects)
+                    {
+                        if (b.id == "BRN" || b.id == "SCH")
                         {
                             foundEffect = true;
                         }
                     }
-                    
+
                     if (foundEffect)
                     {
-                        DMG dmg = default;
-                        dmg.Reset();
-                        dmg.trueDmg += a.statScale.SetScale(user.SetModifiers(), user);
+                        ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo());
 
-                        //user.curHp -= trueDmg;
-                        //user.trueDmgTaken += trueDmg;
-                        user.TakeDamage(dmg, false, false, user);
-                    } else
-                    {
-                        float heal = a.statScale.SetScale(user.SetModifiers(), user);
+                        Stats statsUser = user.SetModifiers();
 
-                        if ((user.curHp + heal) < user.SetModifiers().hp)
-                        {
-                            heal += heal * user.SetModifiers().healBonus;
-                            user.curHp += heal;
-                            user.healDone += heal;
-                        } else
-                        {
-                            heal = user.curHp - user.SetModifiers().hp;
-                            user.curHp = user.SetModifiers().hp;
-
-                            if (heal < 0)
-                                heal = 0;
-
-                            user.healDone += heal;
-                        }
-                        user.Heal(heal);
-                    }
-
-                    a.inCd--;
-                }
-                    
-
-                if (a.inCd <= 0)
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                    user.passives.Remove(a);
-                }
-
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-            }
-
-            if (a.name == "huntingseason")
-            {
-                if (a.inCd > 0)
-                    a.inCd--;
-
-                if (a.inCd <= 0)
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                    user.passives.Remove(a);
-                }
-
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-            }
-
-            if (a.name == "blazingfists")
-            {
-                if (a.inCd > 0)
-                    a.inCd--;
-
-                if (a.inCd <= 0)
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                    user.passives.Remove(a);
-                }
-
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-            }
-
-            if (a.name == "fighterinstinct")
-            {
-                //hp in %
-                int hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
-
-                if (hpPer <= (a.num*100) && a.stacks != 1)
-                {
-                    a.stacks = 1;
-                }
-                else if (hpPer > (a.num * 100))
-                {
-                    a.stacks = 0;
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                }
-
-                if (a.stacks == 1)
-                {
-                    StatMod statMod = a.statMod.ReturnStats();
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    userHud.SetStatsHud(user);
-                    ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
-                }
-            }
-
-            if (a.name == "successoroffire")
-            {
-                bool foundEffect = false;
-
-                foreach (Effects b in target.effects)
-                {
-                    if (b.id == "BRN" || b.id == "SCH")
-                    {
-                        foundEffect = true;
-                    }
-                }
-
-                if (foundEffect)
-                {
-                    ManagePassiveIcon(a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo());
-
-                    Stats statsUser = user.SetModifiers();
-
-                    StatMod statMod = a.statMod.ReturnStats();
-                    statMod.inTime = statMod.time;
-                    statMod.atkDmg = statsUser.magicPower * a.num;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    userHud.SetStatsHud(user);
-                }
-                else
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-            }
-            
-            if (a.name == "zenmode")
-            {
-                //stamina in %
-                int staPer = (int)((100 * user.curStamina) / user.SetModifiers().stamina);
-
-                if (staPer <= a.num*100)
-                {
-                    if (a.stacks != 1)
-                    {
-                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                        a.stacks++;
-                    }    
-                }
-                else if (staPer >= a.maxNum*100 && a.stacks == 1)
-                {
-                    a.stacks = 0;
-                }
-
-                if (a.stacks == 1)
-                {
-                    ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
-                    StatMod statMod = a.statMod.ReturnStats();
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    userHud.SetStatsHud(user);
-                } else
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                }
-            }
-
-            if (a.name == "manasword")
-            {
-                if (a.stacks > 0)
-                {
-                    StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-
-                    if (a.stacks == a.maxStacks)
-                    {
-                        StatMod statMod2 = a.statMod2.ReturnStats();
-                        statMod2.inTime = statMod2.time;
-                        user.statMods.Add(statMod2);
+                        StatMod statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        statMod.atkDmg = statsUser.magicPower * a.num;
+                        user.statMods.Add(statMod);
                         user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
                     }
+                    else
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                    break;
 
-                    userHud.SetStatsHud(user);
-                }
+                case "zenmode":
+                    //stamina in %
+                    int staPer = (int)((100 * user.curStamina) / user.SetModifiers().stamina);
 
-                bool isReady = false;
-                if (a.stacks == a.maxStacks)
-                    isReady = true;
-                ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-            }
-
-            if (a.name == "manascepter")
-            {
-                if (a.stacks > 0)
-                {
-                    StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-
-                    if (a.stacks == a.maxStacks)
+                    if (staPer <= a.num * 100)
                     {
-                        StatMod statMod2 = a.statMod2.ReturnStats();
-                        statMod2.inTime = statMod2.time;
-                        user.statMods.Add(statMod2);
-                        user.usedBonusStuff = false;
-                    }
-
-                    userHud.SetStatsHud(user);
-                }
-
-                bool isReady = false;
-                if (a.stacks == a.maxStacks)
-                    isReady = true;
-                ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-            }
-
-            if (a.name == "spectralring")
-            {
-                if (a.inCd == 1 && a.stacks < a.maxStacks)
-                {
-                    a.inCd = a.cd;
-                    a.stacks++;
-                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                    StatMod statMod = a.statMod.ReturnStats();
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    userHud.SetStatsHud(user);
-                }
-                else if (a.inCd > 0)
-                    a.inCd--;
-
-                if (a.stacks == a.maxStacks)
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                }
-
-                if (a.stacks < a.maxStacks)
-                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-            }
-
-            if (a.name == "shadowdagger")
-            {
-                if (a.inCd > 0)
-                    a.inCd--;
-
-                bool isReady = false;
-                if (a.inCd == 0)
-                    isReady = true;
-
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-            }
-
-            if (a.name == "toxicteeth")
-            {
-                if (a.inCd > 0)
-                    a.inCd--;
-
-                if (a.inCd <= 0)
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                    user.passives.Remove(a);
-                }
-
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-            }
-
-            if (a.name == "gravitybelt")
-            {
-                if (a.inCd > 0)
-                    a.inCd--;
-
-                bool isReady = false;
-                if (a.inCd == 0)
-                    isReady = true;
-
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-            }
-
-            if (a.name == "huntersdirk")
-            {
-                if (a.inCd > 0)
-                    a.inCd--;
-
-                bool isReady = false;
-                if (a.inCd == 0)
-                    isReady = true;
-
-                float hpPer = (100 * target.curHp) / target.SetModifiers().hp;
-
-                if (hpPer < a.num)
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                } else
-                {
-                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-                }
-            }
-
-            if (a.name == "gravitychange")
-            {
-                if (a.inCd > 0)
-                    a.inCd--;
-
-                if (a.inCd <= 0)
-                {
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                    user.passives.Remove(a);
-                }
-
-                ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-            }
-
-            if (a.name == "roughskin")
-            {
-                ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
-            }
-
-            if (a.name == "combatrepair")
-            {
-                if (a.stacks > 0)
-                {
-                    StatMod mod = a.ifConditionTrueMod();
-
-                    StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-                    userHud.SetStatsHud(user);
-                }
-
-                if (a.stacks <= 0)
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                else 
-                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-            }
-
-            if (a.name == "mechashield")
-            {
-                if (user.curShield > 0)
-                {
-                    StatMod statMod = a.statMod.ReturnStats();
-                    statMod.inTime = statMod.time;
-                    user.statMods.Add(statMod);
-                    user.usedBonusStuff = false;
-
-                    if (user.ult >= a.stacks)
-                    {
-                        StatMod statMod2 = a.statMod2.ReturnStats();
-                        statMod2.inTime = statMod2.time;
-                        user.statMods.Add(statMod2);
-                        user.usedBonusStuff = false;
-
-                        float shield = a.statScale.SetScale(user.SetModifiers(), user);
-                        shield += shield * user.SetModifiers().shieldBonus;
-                        user.curShield += shield;
-                        user.shieldDone += shield;
-
-                        user.ult -= a.stacks;
-                    }
-
-                    userHud.SetStatsHud(user);
-                    ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
-                } else
-                {
-                    DMG dmg = default;
-                    dmg.Reset();
-
-                    dmg.magicDmg = a.statScale2.SetScaleFlat(user.SetModifiers(), user);
-                    dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0);
-                    user.TakeDamage(dmg, false, false, user);
-
-                    userHud.SetStatsHud(user);
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                    user.passives.Remove(a);
-                }
-            }
-
-            if (a.name == "magicwand")
-            {
-                ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
-            }
-
-            if (a.name == "crossbow")
-            {
-                ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
-            }
-
-            if (a.name == "bandofendurance")
-            {
-                ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
-            }
-
-            if (a.name == "funchase")
-            {
-                bool foundEffect = false;
-
-                foreach (Effects b in target.effects)
-                {
-                    if (b.id == "BLD")
-                    {
-                        foundEffect = true;
-
-                        if (a.stacks == 0)
+                        if (a.stacks != 1)
                         {
                             user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                            a.stacks = 1;
+                            a.stacks++;
                         }
-                        else if (a.stacks == 1)
+                    }
+                    else if (staPer >= a.maxNum * 100 && a.stacks == 1)
+                    {
+                        a.stacks = 0;
+                    }
+
+                    if (a.stacks == 1)
+                    {
+                        ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+                        StatMod statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+                    }
+                    else
+                    {
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                    }
+                    break;
+
+                case "manasword":
+                    if (a.stacks > 0)
+                    {
+                        StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+
+                        if (a.stacks == a.maxStacks)
                         {
-                            a.stacks = 2;
+                            StatMod statMod2 = a.statMod2.ReturnStats();
+                            statMod2.inTime = statMod2.time;
+                            user.statMods.Add(statMod2);
+                            user.usedBonusStuff = false;
                         }
+
+                        userHud.SetStatsHud(user);
+                    }
+
+                    isReady = false;
+                    if (a.stacks == a.maxStacks)
+                        isReady = true;
+                    ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                    break;
+
+                case "manascepter":
+                    if (a.stacks > 0)
+                    {
+                        StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+
+                        if (a.stacks == a.maxStacks)
+                        {
+                            StatMod statMod2 = a.statMod2.ReturnStats();
+                            statMod2.inTime = statMod2.time;
+                            user.statMods.Add(statMod2);
+                            user.usedBonusStuff = false;
+                        }
+
+                        userHud.SetStatsHud(user);
+                    }
+
+                    isReady = false;
+                    if (a.stacks == a.maxStacks)
+                        isReady = true;
+                    ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                    break;
+
+                case "spectralring":
+                    if (a.inCd == 1 && a.stacks < a.maxStacks)
+                    {
+                        a.inCd = a.cd;
+                        a.stacks++;
+                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
 
                         StatMod statMod = a.statMod.ReturnStats();
                         statMod.inTime = statMod.time;
                         user.statMods.Add(statMod);
                         user.usedBonusStuff = false;
                         userHud.SetStatsHud(user);
+                    }
+                    else if (a.inCd > 0)
+                        a.inCd--;
+
+                    if (a.stacks == a.maxStacks)
+                    {
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                    }
+
+                    if (a.stacks < a.maxStacks)
+                        ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    break;
+
+                case "shadowdagger":
+                    if (a.inCd > 0)
+                        a.inCd--;
+
+                    isReady = false;
+                    if (a.inCd == 0)
+                        isReady = true;
+
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                    break;
+
+                case "toxicteeth":
+                    if (a.inCd > 0)
+                        a.inCd--;
+
+                    if (a.inCd <= 0)
+                    {
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                        user.passives.Remove(a);
+                    }
+
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    break;
+
+                case "gravitybelt":
+                    if (a.inCd > 0)
+                        a.inCd--;
+
+                    isReady = false;
+                    if (a.inCd == 0)
+                        isReady = true;
+
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                    break;
+
+                case "huntersdirk":
+                    if (a.inCd > 0)
+                        a.inCd--;
+
+                    isReady = false;
+                    if (a.inCd == 0)
+                        isReady = true;
+
+                    float hpPerF = ((100 * target.curHp) / target.SetModifiers().hp)*100;
+
+                    if (hpPerF < a.num)
+                    {
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                    }
+                    else
+                    {
+                        ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                    }
+                    break;
+
+                case "gravitychange":
+                    if (a.inCd > 0)
+                        a.inCd--;
+
+                    if (a.inCd <= 0)
+                    {
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                        user.passives.Remove(a);
+                    }
+
+                    ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    break;
+
+                case "combatrepair":
+                    if (a.stacks > 0)
+                    {
+                        StatMod mod = a.ifConditionTrueMod();
+
+                        StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+                    }
+
+                    if (a.stacks <= 0)
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                    else
+                        ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    break;
+
+                case "mechashield":
+                    if (user.curShield > 0)
+                    {
+                        StatMod statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+
+                        if (user.ult >= a.stacks)
+                        {
+                            StatMod statMod2 = a.statMod2.ReturnStats();
+                            statMod2.inTime = statMod2.time;
+                            user.statMods.Add(statMod2);
+                            user.usedBonusStuff = false;
+
+                            float shield = a.statScale.SetScale(user.SetModifiers(), user);
+                            shield += shield * user.SetModifiers().shieldBonus;
+                            user.curShield += shield;
+                            user.shieldDone += shield;
+
+                            user.ult -= a.stacks;
+                        }
+
+                        userHud.SetStatsHud(user);
                         ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     }
-                }
+                    else
+                    {
+                        DMG dmg = default;
+                        dmg.Reset();
 
-                if (!foundEffect && a.stacks > 0)
-                {
-                    a.stacks = 0;
-                    DestroyPassiveIcon(a.name, user.isEnemy);
-                }
+                        dmg.magicDmg = a.statScale2.SetScaleFlat(user.SetModifiers(), user);
+                        dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0);
+                        user.TakeDamage(dmg, false, false, user);
+
+                        userHud.SetStatsHud(user);
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                        user.passives.Remove(a);
+                    }
+                    break;
+
+                case "funchase":
+                    foundEffect = false;
+
+                    foreach (Effects b in target.effects)
+                    {
+                        if (b.id == "BLD")
+                        {
+                            foundEffect = true;
+
+                            if (a.stacks == 0)
+                            {
+                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                a.stacks = 1;
+                            }
+                            else if (a.stacks == 1)
+                            {
+                                a.stacks = 2;
+                            }
+
+                            StatMod statMod = a.statMod.ReturnStats();
+                            statMod.inTime = statMod.time;
+                            user.statMods.Add(statMod);
+                            user.usedBonusStuff = false;
+                            userHud.SetStatsHud(user);
+                            ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+                        }
+                    }
+
+                    if (!foundEffect && a.stacks > 0)
+                    {
+                        a.stacks = 0;
+                        DestroyPassiveIcon(a.name, user.isEnemy);
+                    }
+                    break;
+
+                case "roughskin":
+                case "magicwand":
+                case "crossbow":
+                case "bandofendurance":
+                case "mythicearrings":
+                    ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+                    break;
             }
         }
     }
 
     void ApplyTired(Unit user, GameObject pannel)
     {
-        bool isTired = false;
+        if (user.effects.Any(a => a.id == "TRD")) 
+            return;
 
-        foreach (Effects a in user.effects)
+        //get effect
+        Effects effect;
+        if (user.level >= levelToConsiderWeak)
         {
-            if (a.id == "TRD")
-                isTired = true;
+            effect = tiredm.effect.ReturnEffect();
+            effect.duration = Random.Range(tiredm.durationMin, tiredm.durationMax);
+        }
+        else
+        {
+            effect = tiredw.effect.ReturnEffect();
+            effect.duration = Random.Range(tiredw.durationMin, tiredw.durationMax);
         }
 
-        if (!isTired)
+        //add effect to the player
+        user.effects.Add(effect);
+
+        //apply stat mod
+        foreach (StatMod b in effect.statMods)
         {
-            //get effect
-            Effects effect;
-            if (user.level >= levelToConsiderWeak)
-            {
-                effect = tiredm.effect.ReturnEffect();
-                effect.duration = Random.Range(tiredm.durationMin, tiredm.durationMax);
-            }
-            else
-            {
-                effect = tiredw.effect.ReturnEffect();
-                effect.duration = Random.Range(tiredw.durationMin, tiredw.durationMax);
-            }
+            //get statmod
+            StatMod statMod = b.ReturnStats();
+            statMod.inTime = effect.duration;
 
-            //add effect to the player
-            user.effects.Add(effect);
-
-            //apply stat mod
-            foreach (StatMod b in effect.statMods)
-            {
-                //get statmod
-                StatMod statMod = b.ReturnStats();
-                statMod.inTime = effect.duration;
-
-                //add stat mod to player
-                user.statMods.Add(statMod);
-                user.usedBonusStuff = false;
-            }
-
-            barIconPrefab.name = effect.id;
-
-            //display effect icon
-            Image icon = barIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
-            icon.sprite = effect.sprite;
-            Text text = barIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
-            text.text = effect.duration.ToString();
-            //display popup info on icon
-            TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
-            tooltipButton.tooltipPopup = tooltipMain.transform.GetComponent<TooltipPopUp>();
-            tooltipButton.text = effect.GetEffectInfo();
-
-            Instantiate(barIconPrefab, pannel.transform);
+            //add stat mod to player
+            user.statMods.Add(statMod);
+            user.usedBonusStuff = false;
         }
+
+        barIconPrefab.name = effect.id;
+
+        //display effect icon
+        Image icon = barIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
+        icon.sprite = effect.sprite;
+        Text text = barIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
+        text.text = effect.duration.ToString();
+        //display popup info on icon
+        TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
+        tooltipButton.tooltipPopup = tooltipMain.transform.GetComponent<TooltipPopUp>();
+        tooltipButton.text = effect.GetEffectInfo();
+
+        Instantiate(barIconPrefab, pannel.transform);
+        
     }
 
     void ApplyFear(Unit user, GameObject pannel)
     {
-        bool isFeared = false;
+        if (user.effects.Any(a => a.id == "FEA"))
+            return;
+       
+        Effects effect = fear.effect.ReturnEffect();
+        int duration = Random.Range(fear.durationMin, fear.durationMax);
+        effect.duration = duration;
 
-        foreach (Effects a in user.effects)
+        foreach (Passives a in user.passives.ToArray())
         {
-            if (a.id == "FEA")
-                isFeared = true;
+            if (a.name == "courage")
+            {
+                effect.duration -= (int)a.num;
+                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+            }
         }
 
-        if (!isFeared)
+        user.effects.Add(effect);
+        foreach (StatMod b in effect.statMods)
         {
-            Effects effect = fear.effect.ReturnEffect();
-            int duration = Random.Range(fear.durationMin, fear.durationMax);
-            effect.duration = duration;
+            StatMod statMod = b.ReturnStats();
+            statMod.inTime = effect.duration+1;
 
-            foreach (Passives a in user.passives.ToArray())
-            {
-                if (a.name == "courage")
-                {
-                    effect.duration -= (int)a.num;
-                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                }
-            }
-
-            user.effects.Add(effect);
-            foreach (StatMod b in effect.statMods)
-            {
-                StatMod statMod = b.ReturnStats();
-                statMod.inTime = effect.duration+1;
-
-                user.statMods.Add(statMod);
-                user.usedBonusStuff = false;
-            }
-
-            barIconPrefab.name = effect.id;
-
-            Image icon = barIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
-            icon.sprite = effect.sprite;
-            Text text = barIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
-            text.text = effect.duration.ToString();
-            TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
-            tooltipButton.tooltipPopup = tooltipMain.transform.GetComponent<TooltipPopUp>();
-            tooltipButton.text = effect.GetEffectInfo();
-
-            Instantiate(barIconPrefab, pannel.transform);
+            user.statMods.Add(statMod);
+            user.usedBonusStuff = false;
         }
+
+        barIconPrefab.name = effect.id;
+
+        Image icon = barIconPrefab.transform.Find("icon").gameObject.GetComponent<Image>();
+        icon.sprite = effect.sprite;
+        Text text = barIconPrefab.transform.Find("time").gameObject.GetComponent<Text>();
+        text.text = effect.duration.ToString();
+        TooltipButton tooltipButton = barIconPrefab.transform.GetComponent<TooltipButton>();
+        tooltipButton.tooltipPopup = tooltipMain.transform.GetComponent<TooltipPopUp>();
+        tooltipButton.text = effect.GetEffectInfo();
+
+        Instantiate(barIconPrefab, pannel.transform);
     }
 
     public bool SummonDmg(SumMove move, StatsSummon statsSum, Unit target, Unit summoner, BattleHud targetHud)
@@ -3658,7 +3632,7 @@ public class BattleSystem : MonoBehaviour
         Stats statsS = summoner.SetModifiers();
 
         bool isDead = false;
-        bool isCrit = false;
+        bool isCrit = Random.Range(0f, 1f) <= statsS.critChance;
         
         DMG dmgT = default;
         dmgT.Reset();
@@ -3666,9 +3640,6 @@ public class BattleSystem : MonoBehaviour
         dmgT.Reset();
 
         dmgT.sanityDmg += move.sanityDmg;
-
-        if (Random.Range(0f, 1f) <= statsS.critChance)
-            isCrit = true;
 
         switch (move.dmgType)
         {
@@ -3698,10 +3669,9 @@ public class BattleSystem : MonoBehaviour
             //summoner.magicDmgDealt += dmg.magicDmg;
             //summoner.phyDmgDealt += dmg.phyDmg;
 
-            //magic pen = 0
             if (isCrit)
                 dmgT.ApplyCrit(false, statsS.critDmg);
-            dmgT = target.MitigateDmg(dmgT, dmgResisPer, magicResisPer, statsS.armourPen, 0, summoner);
+            dmgT = target.MitigateDmg(dmgT, dmgResisPer, magicResisPer, statsS.armourPen, statsS.magicPen, summoner);
         }
 
         isDead = target.TakeDamage(dmgT, isCrit, false, summoner);
@@ -3923,6 +3893,7 @@ public class BattleSystem : MonoBehaviour
         //set turn number
         turnCount++;
         turnsText.text = langmanag.GetInfo("gui", "text", "turn", turnCount);
+        turnsTextOverview.text = langmanag.GetInfo("gui", "text", "turn", turnCount);
 
         //change needed stamina to be tired (increases with the number of turns)
         if (turnCount > 25 && turnCount%10 == 0 && tiredStacks < 10)
@@ -4122,6 +4093,9 @@ public class BattleSystem : MonoBehaviour
 
         sumPlayerHud.UpdateValues(playerUnit, langmanag.GetInfo("charc", "name", playerUnit.charc.name));
         sumEnemyHud.UpdateValues(enemyUnit, langmanag.GetInfo("charc", "name", enemyUnit.charc.name));
+        if (!overviewBtn.interactable)
+            overviewBtn.interactable = true;
+
         UpdateTooltips();
         if (skip)
             StartCoroutine(Combat(null));

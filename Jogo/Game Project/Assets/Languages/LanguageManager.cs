@@ -158,10 +158,6 @@ public class LanguageManager : MonoBehaviour
         public string marksman;
         public string support;
         public string duelist;
-        public string brawler;
-        public string vanguard;
-        public string summoner;
-        public string enchanter;
 
         public string Get_Class(string a)
         {
@@ -188,18 +184,6 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "duelist":
                     returns = duelist;
-                    break;
-                case "brawler":
-                    returns = brawler;
-                    break;
-                case "vanguard":
-                    returns = vanguard;
-                    break;
-                case "summoner":
-                    returns = summoner;
-                    break;
-                case "enchanter":
-                    returns = enchanter;
                     break;
                 default:
                     returns = "null";
@@ -878,6 +862,7 @@ public class LanguageManager : MonoBehaviour
         public string crossbow;
         public string funchase;
         public string bandofendurance;
+        public string mythicearrings;
 
         public string Get_Cont(string a)
         {
@@ -1032,6 +1017,9 @@ public class LanguageManager : MonoBehaviour
                 case "bandofendurance":
                     returns = bandofendurance;
                     break;
+                case "mythicearrings":
+                    returns = mythicearrings;
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -1075,6 +1063,7 @@ public class LanguageManager : MonoBehaviour
         public string evasion;
         public string accuracy;
         public string armourpen;
+        public string magicpen;
         public string ultimate;
         public string ultrate;
         public string attackpower;
@@ -1181,6 +1170,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "armourpen":
                     returns = armourpen;
+                    break;
+                case "magicpen":
+                    returns = magicpen;
                     break;
                 case "ultimate":
                     returns = ultimate;
@@ -2122,6 +2114,7 @@ public class LanguageManager : MonoBehaviour
         public string prismaticstaff;
         public string crossbow;
         public string bandofendurance;
+        public string mythicearrings;
 
         public string Get_ItemName(string a)
         {
@@ -2205,6 +2198,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "bandofendurance":
                     returns = bandofendurance;
+                    break;
+                case "mythicearrings":
+                    returns = mythicearrings;
                     break;
                 default:
                     returns = "null";

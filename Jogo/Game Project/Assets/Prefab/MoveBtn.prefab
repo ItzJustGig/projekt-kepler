@@ -386,7 +386,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10
+  m_Text: 9
 --- !u!1 &7954924221204952151
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fire Breath
+  m_Text: Turret
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a9d8d1d7eee74734990bceef438f0a17, type: 3}
+  m_Sprite: {fileID: 21300000, guid: edc4bbb7d32a9024b81094d5d9894628, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -619,7 +619,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10
+  m_Text: 0
 --- !u!1 &7954924221810379002
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,55 +801,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Fire Breath</align></size>
+  text: '<size=24><align=center>Turret</align></size>
 
-    <size=17><align=center><color=#1a66ff>Magic</color></align></size>
+    <size=17><align=center><color=#B266FF>Summon</color></align></size>
 
-    Hit
-    4 times
-
-    Priority: 0
+    Priority:
+    0
 
     <s><align=center>|                 |</align></s>
 
-    20%
-    chance to <color=#0984db>-20% Timing</color> to the user for 2 turns
+    Summons a Turret,
+    that will <color=#1a66ff>magical damage</color> every 0 turns
 
-    <s><align=center>|                
-    |</align></s>
+    <color=#00ff11>Health:
+    1125</color>
 
-    12% chance to inflict Burn to the target for 1-2 turns.
-
-    <s><align=center>|                
-    |</align></s>
-
-    Deal <color=#1a66ff>55,2 magical damage</color>
+    <color=#ffaa00>Attack Power: 83,5</color>
 
 '
-  textSec: '<size=24><align=center>Fire Breath</align></size>
+  textSec: '<size=24><align=center>Turret</align></size>
 
-    <size=17><align=center><color=#1a66ff>Magic</color></align></size>
+    <size=17><align=center><color=#B266FF>Summon</color></align></size>
 
-    Hit
-    4 times
-
-    Priority: 0
+    Priority:
+    0
 
     <s><align=center>|                 |</align></s>
 
-    20%
-    chance to <color=#0984db>-20% Timing</color> to the user for 2 turns
+    Summons a Turret,
+    that will <color=#1a66ff>magical damage</color> every 0 turns
 
-    <s><align=center>|                
-    |</align></s>
+    <color=#00ff11>Health: 
+    (<color=#3366ff>125%</color> of the user''s <color=#3366ff>Maximum Mana</color>)
+    + (<color=#1a66ff>160%</color> of the user''s <color=#1a66ff>Magic Power</color>)
+    + (<color=#946ACD>100%</color> of the user''s <color=#946ACD>Magic Resistance</color>)</color>
 
-    12% chance to inflict Burn to the target for 1-2 turns.
-
-    <s><align=center>|                
-    |</align></s>
-
-    Deal <color=#1a66ff>10 + (<color=#1a66ff>105%</color> of
-    the user''s <color=#1a66ff>Magic Power</color>) magical damage</color>
+    <color=#ffaa00>Attack
+    Power:  (<color=#1a66ff>75%</color> of the user''s <color=#1a66ff>Magic Power</color>)
+    + (<color=#946ACD>50%</color> of the user''s <color=#946ACD>Magic Resistance</color>)</color>
 
 '
   wantSec: 0
@@ -931,7 +920,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: 10
 --- !u!1 &7954924222182827413
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,7 +999,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 65
+  m_Text: 130
 --- !u!1 &7970126842544643455
 GameObject:
   m_ObjectHideFlags: 0

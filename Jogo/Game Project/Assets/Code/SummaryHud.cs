@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
+using System.Text;
 
 public class SummaryHud : MonoBehaviour
 {
+    [SerializeField] private FightLang langmanag;
+    [SerializeField] private TooltipPopUp tooltipMain;
+    [SerializeField] private TooltipPopUp tooltipSec;
+
     [SerializeField] private Text nameText;
     [SerializeField] private Image charcIcon;
 
@@ -33,9 +38,25 @@ public class SummaryHud : MonoBehaviour
 
     [SerializeField] private Scrollbar scrollBar;
 
+    [SerializeField] private Transform moveLogList;
+    [SerializeField] private GameObject moveLogGO;
+    [SerializeField] private Scrollbar moveLogScroll;
+
     void Awake()
     {
         scrollBar.value = 1;
+    }
+
+    public void AddMoveLog(Unit user, Moves move)
+    {
+        moveLogGO.GetComponent<Text>().text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
+        moveLogGO.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
+        moveLogGO.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
+        moveLogGO.GetComponent<TooltipButton>().text = move.GetTooltipText(false);
+        moveLogGO.GetComponent<TooltipButton>().textSec = move.GetTooltipText(true);
+        moveLogGO.GetComponent<TooltipButton>().wantSec = true;
+        Instantiate(moveLogGO, moveLogList);
+        moveLogScroll.value = 0;
     }
 
     public void UpdateValues(Unit unit, string name)
@@ -65,4 +86,5 @@ public class SummaryHud : MonoBehaviour
         healSanityDone.text = unit.sanityHealDone.ToString();
         shieldDone.text = unit.shieldDone.ToString();
     }
+
 }
