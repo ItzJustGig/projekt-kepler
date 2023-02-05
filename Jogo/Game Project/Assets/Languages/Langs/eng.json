@@ -359,7 +359,8 @@
 			"crossbow": "Crossbow",
 			"funchase": "Fun Chase",
 			"bandofendurance": "Band of Endurance",
-			"mythicearrings": "Mythic Earrings"
+			"mythicearrings": "Mythic Earrings",
+			"spectralpike": "Spectral Pike"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain%mod%and deal bonus %scale% on attacks.",
@@ -411,7 +412,8 @@
 			"crossbow": "The user's <color=#f75145>ranged</color> and <color=#ffaa00>basic attacks</color> deal bonus %scale%",
 			"funchase": "The user will gain bonus%mod%and deals bonus %scale% on <color=#ffaa00>basic</color> or <color=#ffaa00>physical moves</color> if an enemy is Bleeding",
 			"bandofendurance": "The user recover %scale% on <color=#ffaa00>physical</color> and <color=#ffaa00>basic attacks</color>, this effect is increased by %num%% on <color=#f75145>critical hits</color>",
-			"mythicearrings": "The user recover %scale% on <color=#1a66ff>magical</color> and <color=#ffaa00>basic attacks</color>"
+			"mythicearrings": "The user recover %scale% on <color=#1a66ff>magical</color> and <color=#ffaa00>basic attacks</color>",
+			"spectralpike": "The carrier's <color=#ffaa00>physical</color> or <color=#f75145>ranged</color> moves, have %num%% (doubles if bellow <color=#00ff11>%maxNum%% health</color>) chance to deal bonus <color=#ffaa00>%maxStacks%% physical damage</color> once (%cd% turns cooldown regardless activates or not) \nWhen the carrier is bellow <color=#00ff11>%maxNum%% health</color> gain %mod%"
 		}
 	},
 	"moves": {
@@ -591,7 +593,8 @@
 			"prismaticstaff": "Prismatic Staff",
 			"crossbow": "Crossbow",
 			"bandofendurance": "Band of Endurance",
-			"mythicearrings": "Mythic Earrings"
+			"mythicearrings": "Mythic Earrings",
+			"spectralpike": "Spectral Pike"
 		},
 		"move": {
 			"zap": "The carrier will <color=#ffdf00>zap</color> the target with a %type% to %dmg%",

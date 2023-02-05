@@ -76,6 +76,24 @@ public struct DMG
             heal += heal * bonusHeal;
     }
 
+    public void ApplyBonusPhyDmg(float bonusPhy)
+    {
+        if (phyDmg > 0)
+            phyDmg += phyDmg * bonusPhy;
+    }
+
+    public void ApplyBonusMagicDmg(float bonusMagic)
+    {
+        if (magicDmg > 0)
+            magicDmg += magicDmg * bonusMagic;
+    }
+
+    public void ApplyBonusHeal(float bonusHeal)
+    {
+        if (heal > 0)
+            heal += heal * bonusHeal;
+    }
+
     public DMG TransferHeals(DMG dmg)
     {
         heal += dmg.heal;

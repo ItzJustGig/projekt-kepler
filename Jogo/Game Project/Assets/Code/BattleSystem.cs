@@ -1753,6 +1753,26 @@ public class BattleSystem : MonoBehaviour
                                     dmgTarget.phyDmg -= con;
                                     dmgTarget.magicDmg += con;
                                 }
+
+                                if (a.name == "spectralpike")
+                                {
+                                    if (a.inCd == 0 && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.RANGED))
+                                    {
+                                        float chance = a.num;
+                                        int hpPercentage = (int)(100 * user.curHp / user.SetModifiers().hp);
+
+                                        if (hpPercentage <= a.maxNum * 100)
+                                            chance *= 2;
+
+                                        if (Random.Range(0f, 1f) <= chance)
+                                        {
+                                            user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                            dmgTarget.ApplyBonusPhyDmg((float)a.maxStacks / 100);
+                                        }
+
+                                        a.inCd = a.cd;
+                                    }
+                                }
                             }
 
                             foreach (Dotdmg dot in move.dot)
@@ -2782,7 +2802,7 @@ public class BattleSystem : MonoBehaviour
                     }
                     break;
 
-                case "bullrage":
+                case "bullsrage":
                     //hp in %
                     hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
 
@@ -3515,6 +3535,7 @@ public class BattleSystem : MonoBehaviour
                             userHud.SetStatsHud(user);
                             ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                         }
+                        break;
                     }
 
                     if (!foundEffect && a.stacks > 0)
@@ -3522,6 +3543,23 @@ public class BattleSystem : MonoBehaviour
                         a.stacks = 0;
                         DestroyPassiveIcon(a.name, user.isEnemy);
                     }
+                    break;
+                case "spectralpike":
+                        int hpPercentage = (int)(100 * user.curHp / user.SetModifiers().hp);
+
+                        if (hpPercentage <= a.maxNum * 100)
+                        {
+                            StatMod statMod = a.statMod.ReturnStats();
+                            statMod.inTime = statMod.time;
+                            user.statMods.Add(statMod);
+                            user.usedBonusStuff = false;
+                            userHud.SetStatsHud(user);
+                        }
+
+                        if (a.inCd > 0)
+                            a.inCd--;
+
+                        ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
                     break;
 
                 case "roughskin":
