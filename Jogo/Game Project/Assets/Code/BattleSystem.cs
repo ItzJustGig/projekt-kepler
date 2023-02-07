@@ -1768,9 +1768,8 @@ public class BattleSystem : MonoBehaviour
                                         {
                                             user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
                                             dmgTarget.ApplyBonusPhyDmg((float)a.maxStacks / 100);
+                                            a.inCd = a.cd;
                                         }
-
-                                        a.inCd = a.cd;
                                     }
                                 }
                             }
@@ -2843,7 +2842,7 @@ public class BattleSystem : MonoBehaviour
                     if (a.inCd > 0 || a.inCd == -1)
                         isReady = true;
 
-                    if (a.inCd > 0 || a.stacks > a.maxStacks)
+                    if (isReady || a.stacks > a.maxStacks)
                     {
                         if (a.stacks > a.maxStacks)
                             ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
@@ -2858,11 +2857,14 @@ public class BattleSystem : MonoBehaviour
                         ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
                     }
 
-                    if (a.inCd == 0 && a.stacks >= a.maxStacks)
+                    if (a.inCd == 0 && a.stacks == a.maxStacks)
                     {
                         a.stacks = 0;
                         DestroyPassiveIcon(a.name, user.isEnemy);
                         ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+                    } else if (a.stacks == a.maxStacks + 1)
+                    {
+                        ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo(), true);
                     }
                     break;
 
@@ -3453,8 +3455,6 @@ public class BattleSystem : MonoBehaviour
                 case "combatrepair":
                     if (a.stacks > 0)
                     {
-                        StatMod mod = a.ifConditionTrueMod();
-
                         StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
                         statMod.inTime = statMod.time;
                         user.statMods.Add(statMod);
@@ -3543,24 +3543,49 @@ public class BattleSystem : MonoBehaviour
                         a.stacks = 0;
                         DestroyPassiveIcon(a.name, user.isEnemy);
                     }
-                    break;
+                break;
                 case "spectralpike":
-                        int hpPercentage = (int)(100 * user.curHp / user.SetModifiers().hp);
+                    int hpPercentage = (int)(100 * user.curHp / user.SetModifiers().hp);
 
-                        if (hpPercentage <= a.maxNum * 100)
-                        {
-                            StatMod statMod = a.statMod.ReturnStats();
-                            statMod.inTime = statMod.time;
-                            user.statMods.Add(statMod);
-                            user.usedBonusStuff = false;
-                            userHud.SetStatsHud(user);
-                        }
+                    if (hpPercentage <= a.maxNum * 100)
+                    {
+                        StatMod statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+                    }
 
-                        if (a.inCd > 0)
-                            a.inCd--;
+                    if (a.inCd > 0)
+                        a.inCd--;
+                    else if (a.inCd == 0)
+                        a.inCd = a.cd;
 
+                    if (a.inCd == 0)
+                        ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), true);
+                    else
                         ManagePassiveIcon(a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
                     break;
+                case "spectralcloak":
+                    //hp in %
+                    hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
+
+                    isReady = false;
+
+                    if (hpPer < (a.num * 100))
+                    {
+                        StatMod statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+                        isReady = true;
+                    }
+
+                    float temp = a.statScale.SetScaleFlat(user.SetModifiers(), user) * a.stacks;
+                    ManagePassiveIcon(a.sprite, a.name, temp.ToString("0"), user.isEnemy, a.GetPassiveInfo(), isReady);
+                    
+                break;
 
                 case "roughskin":
                 case "magicwand":

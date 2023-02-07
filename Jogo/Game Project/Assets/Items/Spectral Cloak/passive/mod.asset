@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25cbb6c1520490c4cbe5c685482d1204, type: 3}
-  m_Name: stat
+  m_Name: mod
   m_EditorClassIdentifier: 
   flat: 1
-  time: -1
-  inTime: -1
+  time: 1
+  inTime: 0
   chance: 0
   hp: 0
-  hpRegen: 0
+  hpRegen: 4
   mana: 0
   manaRegen: 0
   manaCost: 0
@@ -25,14 +25,14 @@ MonoBehaviour:
   staminaRegen: 0
   staminaCost: 0
   sanity: 0
-  atkDmg: 10
+  atkDmg: 0
   magicPower: 0
   critChance: 0
   critDmg: 0
   dmgResis: 0
-  magicResis: 4
+  magicResis: 25
   timing: 0
-  movSpeed: 20
+  movSpeed: 0
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0

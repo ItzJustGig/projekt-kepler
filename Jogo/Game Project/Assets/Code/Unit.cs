@@ -651,6 +651,17 @@ public class Unit : MonoBehaviour
                 sum.stats.hp -= dmgTaken;
         }
 
+        foreach (Passives a in passives)
+        {
+            switch (a.name)
+            {
+                case "spectralcloak":
+                    if (dmg.magicDmg > 0)
+                        dmg.shield += a.statScale.SetScaleFlat(SetModifiers(), this) * a.stacks;
+                break;
+            }
+        }
+
         if (dmg.heal > 0)
         {
             healDone += dmg.heal;
@@ -779,6 +790,16 @@ public class Unit : MonoBehaviour
             temp.healBonus += mod.healBonus;
             temp.shieldBonus += mod.shieldBonus;
             temp.sizeMod += mod.size;
+        }
+
+        foreach (Passives a in passives)
+        {
+            switch (a.name)
+            {
+                case "spectralcloak":
+                    a.stacks = (int)(temp.magicResis / a.maxNum);
+                break;
+            }
         }
 
         return temp;

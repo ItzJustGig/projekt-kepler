@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c40be94f130cb7f409300204aedd3b37, type: 3}
-  m_Name: Spectral Pike
+  m_Name: spectral cloak
   m_EditorClassIdentifier: 
-  name: spectralpike
+  name: spectralcloak
   showNameOnInfo: 0
   origin: 1
-  sprite: {fileID: 21300000, guid: b70609c3dd8cd6845bdf02653435afdb, type: 3}
-  num: 0.25
-  maxNum: 0.2
+  sprite: {fileID: 21300000, guid: 5cd254af241018444b5360c9d2bc774d, type: 3}
+  num: 0.2
+  maxNum: 8
   stacks: 0
-  maxStacks: 25
-  cd: 8
-  inCd: 9
+  maxStacks: 0
+  cd: 2
+  inCd: 0
   anim: 
   anim2: 
-  statScale: {fileID: 0}
+  statScale: {fileID: 11400000, guid: 85561c68d2a448742a5f37a49b9642ae, type: 2}
   statScale2: {fileID: 0}
-  statMod: {fileID: 11400000, guid: e2a1b7b55abe6bf44ac937590a20aa79, type: 2}
+  statMod: {fileID: 11400000, guid: 76683722869de8b4c99608562bd37326, type: 2}
   statMod2: {fileID: 0}

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6ab09c0988f81449be8c5ce1f80558, type: 3}
+  m_Name: spectral cloak
+  m_EditorClassIdentifier: 
+  name: spectralcloak
+  icon: {fileID: 21300000, guid: 5cd254af241018444b5360c9d2bc774d, type: 3}
+  passives:
+  - {fileID: 11400000, guid: c89eb839265c2ea43af462cb462d255b, type: 2}
+  statmod:
+  - {fileID: 11400000, guid: 73c35ed84b8ff8b4795ace66e59492db, type: 2}
+  moves: []
+  rarity: 2
