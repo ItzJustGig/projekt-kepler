@@ -30,7 +30,7 @@ MonoBehaviour:
   critChance: 0
   critDmg: 0
   dmgResis: 0
-  magicResis: 18
+  magicResis: 15
   timing: 0
   movSpeed: 0
   lifesteal: 0

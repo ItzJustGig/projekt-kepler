@@ -66,6 +66,7 @@ public class StatScale : ScriptableObject
         scale.atkDmg = atkDmg;
         scale.magicPower = magicPower;
         scale.dmgResis = dmgResis;
+        scale.magicResis = magicResis;
         scale.timing = timing;
         scale.movSpeed = movSpeed;
 

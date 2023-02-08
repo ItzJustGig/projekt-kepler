@@ -15,12 +15,12 @@ MonoBehaviour:
   name: spectralcloak
   showNameOnInfo: 0
   origin: 1
-  sprite: {fileID: 21300000, guid: 5cd254af241018444b5360c9d2bc774d, type: 3}
+  sprite: {fileID: 21300000, guid: 0cada5f66bf6a2a43914477e4af33785, type: 3}
   num: 0.2
-  maxNum: 8
+  maxNum: 9
   stacks: 0
   maxStacks: 0
-  cd: 2
+  cd: 0
   inCd: 0
   anim: 
   anim2: 

@@ -360,7 +360,8 @@
 			"funchase": "Fun Chase",
 			"bandofendurance": "Band of Endurance",
 			"mythicearrings": "Mythic Earrings",
-			"spectralpike": "Spectral Pike"
+			"spectralpike": "Spectral Pike",
+			"spectralcloak": "Spectral Cloak"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain%mod%and deal bonus %scale% on attacks.",
@@ -399,10 +400,10 @@
 			"boss": "That is a big boi. (Some of the user's stats were increased by %num%%)",
 			"toxicteeth": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> or <color=#ffaa00>basic attacks</color> for %cd% turns.",
 			"gravitybelt": "When the carrier uses a <color=#ffaa00>physical move</color> or <color=#ffaa00>basic attack</color> and crits, deal bonus %num% as true damage and gain%mod%",
-			"manasword": "Every <color=#ffaa00>physical moves</color> the carrier gain%mod%up to %maxStacks% times. \nWhen at maximum stacks the user gain%mod2%and deal bonus %scale% on <color=#ffaa00>physical moves</color>.",
+			"manasword": "Every <color=#ffaa00>physical moves</color> the carrier gain%mod%up to %maxStacks% times.\nWhen at maximum stacks the user gain%mod2%and deal bonus %scale% on <color=#ffaa00>physical moves</color>.",
 			"manascepter": "Every <color=#1a66ff>magic</color>, <color=#CC66FF>enchantment</color> or <color=#787878>defencive</color> move the carrier gain%mod%up to %maxStacks% times.\nWhen at maximum stacks the user gain%mod2%and deal bonus %scale% on <color=#1a66ff>magic</color> and <color=#CC66FF>enchantment</color> moves.",
 			"shadowdagger": "The user's <color=#ffaa00>physical moves</color> deal bonus %scale% and gain%mod%. (%cd% turns cooldown)",
-			"spectralring": "The user gain%mod%every %cd% turns up to %maxStacks% times. \nWhen the user drops below <color=#00ff11>%num%% health</color>, <color=#1a66ff>magic moves</color> deal bonus %scale%.",
+			"spectralring": "The user gain%mod%every %cd% turns up to %maxStacks% times.\nWhen the user drops below <color=#00ff11>%num%% health</color>, <color=#1a66ff>magic moves</color> deal bonus %scale%.",
 			"huntersdirk": "If the target is above <color=#00ff11>%num%% health</color>, <color=#ffaa00>basic</color> or <color=#ffaa00>physical moves</color> deal bonus %scale%. (%cd% turns cooldown)",
 			"gravitychange": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> for %cd% turns",
 			"prismaticstaff": "Every %maxStacks% magic moves, the next will crit (also applies to the <color=#1a66ff>magic damage</color>) and deal bonus %scale%",
@@ -413,7 +414,8 @@
 			"funchase": "The user will gain bonus%mod%and deals bonus %scale% on <color=#ffaa00>basic</color> or <color=#ffaa00>physical moves</color> if an enemy is Bleeding",
 			"bandofendurance": "The user recover %scale% on <color=#ffaa00>physical</color> and <color=#ffaa00>basic attacks</color>, this effect is increased by %num%% on <color=#f75145>critical hits</color>",
 			"mythicearrings": "The user recover %scale% on <color=#1a66ff>magical</color> and <color=#ffaa00>basic attacks</color>",
-			"spectralpike": "The carrier's <color=#ffaa00>physical</color> or <color=#f75145>ranged</color> moves, have %num%% (doubles if bellow <color=#00ff11>%maxNum%% health</color>) chance to deal bonus <color=#ffaa00>%maxStacks%% physical damage</color> once (%cd% turns cooldown regardless activates or not) \nWhen the carrier is bellow <color=#00ff11>%maxNum%% health</color> gain%mod%"
+			"spectralpike": "The carrier's <color=#ffaa00>physical</color> or <color=#f75145>ranged</color> moves, have %num%% (doubles if bellow <color=#00ff11>%maxNum%% health</color>) chance to deal bonus <color=#ffaa00>%maxStacks%% physical damage</color> once (%cd% turns cooldown regardless activates or not)\nWhen the carrier is bellow <color=#00ff11>%maxNum%% health</color> gain%mod%",
+			"spectralcloak": "The carrier gain %scale% per <color=#946ACD>%maxNum% magic resistance</color> when take <color=#1a66ff>magic damage</color>\nAlso when bellow <color=#00ff11>%num%% health</color>, gain%mod%"
 		}
 	},
 	"moves": {
@@ -594,7 +596,8 @@
 			"crossbow": "Crossbow",
 			"bandofendurance": "Band of Endurance",
 			"mythicearrings": "Mythic Earrings",
-			"spectralpike": "Spectral Pike"
+			"spectralpike": "Spectral Pike",
+			"spectralcloak": "Spectral Cloak"
 		},
 		"move": {
 			"zap": "The carrier will <color=#ffdf00>zap</color> the target with a %type% to %dmg%",

@@ -83,16 +83,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=25><align=center>Phantom Hand</align></size>
+  text: '<size=25><align=center>Combat Repair</align></size>
 
-    <size=19><align=center><color=#B2B2B2>Move''s
-    Passive</color></align></size>
+    <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
 
     
 
-    The user deal bonus <color=#a6a6a6>30
-    true damage</color> on <color=#ffaa00>physical moves</color> or <color=#ffaa00>basic
-    attacks</color> for 4 turns.
+    The
+    user gain <color=#2d71fa>0,1 Mana Regen</color>, <color=#1a66ff>2 Magic Power</color>
+    and <color=#E6E6E6>1% Ultimate Rate</color>  per <color=#B266FF>summon</color>
+    alive (stack up to 3 times). When the user gains a <color=#787878>shield</color>
+    that is not earned from the user''s ultimate move, gain that <color=#787878>shield</color>
+    over 4 turns.
 
 '
   textSec: 
@@ -181,7 +183,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51296180819df2a4fa1faa8b901f6195, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -269,4 +271,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 4
+  m_Text: 

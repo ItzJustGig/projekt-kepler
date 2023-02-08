@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: spectral cloak
   m_EditorClassIdentifier: 
   name: spectralcloak
-  icon: {fileID: 21300000, guid: 5cd254af241018444b5360c9d2bc774d, type: 3}
+  icon: {fileID: 21300000, guid: 0cada5f66bf6a2a43914477e4af33785, type: 3}
   passives:
   - {fileID: 11400000, guid: c89eb839265c2ea43af462cb462d255b, type: 2}
   statmod:

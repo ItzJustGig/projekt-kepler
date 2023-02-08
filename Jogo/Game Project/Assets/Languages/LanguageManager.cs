@@ -864,6 +864,7 @@ public class LanguageManager : MonoBehaviour
         public string bandofendurance;
         public string mythicearrings;
         public string spectralpike;
+        public string spectralcloak;
 
         public string Get_Cont(string a)
         {
@@ -1023,6 +1024,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "spectralpike":
                     returns = spectralpike;
+                    break;
+                case "spectralcloak":
+                    returns = spectralcloak;
                     break;
                 default:
                     returns = "null";
@@ -2120,6 +2124,7 @@ public class LanguageManager : MonoBehaviour
         public string bandofendurance;
         public string mythicearrings;
         public string spectralpike;
+        public string spectralcloak;
 
         public string Get_ItemName(string a)
         {
@@ -2209,6 +2214,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "spectralpike":
                     returns = spectralpike;
+                    break;
+                case "spectralcloak":
+                    returns = spectralcloak;
                     break;
                 default:
                     returns = "null";

@@ -360,7 +360,8 @@
             "funchase": "Persegui\u00e7\u00e3o divertida",
             "bandofendurance": "Bandana da Percistencia",
             "mythicearrings": "Brincos M\u00edticos",
-            "spectralpike": "Pike Espectral"
+            "spectralpike": "Pique Espectral",
+            "spectralcloak": "Manto Espectral"
         },
         "desc": {
             "bloodbath": "Se um inimigo estiver a Sangrar, o utilizador vai ganhar%mod%e vai causar %scale% b\u00F3nus nos ataques.",
@@ -399,10 +400,10 @@
             "boss": "Isto \u00E9 um grande rapaz. (Algumas das estat\u00EDsticas do utilizador foram reduzidas em %num%%)",
             "toxicteeth": "O utilizador causa %scale% b\u00F3nus com <color=#ffaa00>ataques f\u00EDsicos</color> ou <color=#ffaa00>ataques b\u00E1sicos</color> por %cd% turnos.",
             "gravitybelt": "Quando o utilizador usa uma <color=#ffaa00>t\u00E9cnica f\u00EDsica</color> ou um <color=#ffaa00>ataque b\u00E1sico</color> e \u00E9 cr\u00EDtico, causa %num% dano verdadeiro b\u00F3nus e ganha%mod%",
-            "manasword": "A cada <color=#ffaa00>t\u00E9cnica f\u00EDsica</color> que o utilizador usa, ganha%mod%at\u00E9 %maxStacks% vezes. \nQuando estiver completamente empilhado o utilizador ganha%mod2%e causa %scale% b\u00F3nus com <color=#ffaa00>t\u00E9cnicas f\u00EDsicas</color>.",
+            "manasword": "A cada <color=#ffaa00>t\u00E9cnica f\u00EDsica</color> que o utilizador usa, ganha%mod%at\u00E9 %maxStacks% vezes.\nQuando estiver completamente empilhado o utilizador ganha%mod2%e causa %scale% b\u00F3nus com <color=#ffaa00>t\u00E9cnicas f\u00EDsicas</color>.",
             "manascepter": "A cada t\u00E9cnica <color=#1a66ff>m\u00E1gicas</color>, <color=#CC66FF>encantamento</color> ou <color=#787878>defenciva</color> o utilizador ganha%mod%at\u00E9 %maxStacks% vezes.\nQuando estiver completamente empilhado o utilizador ganha%mod2%e causa %scale% b\u00f3nus em t\u00E9cnicas <color=#1a66ff>m\u00E1gicas</color> e <color=#CC66FF>encantamentos</color>.",
             "shadowdagger": "As <color=#ffaa00>t\u00E9cnicas f\u00EDsicas</color> do utilizador causam %scale% b\u00F3nus e ganha%mod%(%cd% turnos de recarga)",
-            "spectralring": "O utilizador ganha%mod%a cada %cd% turnos, at\u00E9 %maxStacks% vezes. \nQuando o utilizador cai abaixo de <color=#00ff11>%num%% vida</color>, <color=#1a66ff>t\u00E9cnicas m\u00E1gicas</color> causam %scale% b\u00F3nus.",
+            "spectralring": "O utilizador ganha%mod%a cada %cd% turnos, at\u00E9 %maxStacks% vezes.\nQuando o utilizador cai abaixo de <color=#00ff11>%num%% vida</color>, <color=#1a66ff>t\u00E9cnicas m\u00E1gicas</color> causam %scale% b\u00F3nus.",
             "huntersdirk": "Se o alvo estiver a cima de %num%% de vida, <color=#ffaa00>t\u00e9cnicas b\u00e1scas</color> ou <color=#ffaa00>f\u00edsicas</color> causam %scale% b\u00f3nus. (%cd% turnos de recarga)",
             "gravitychange": "O utilizador causa %scale% b\u00F3nus com <color=#ffaa00>ataques f\u00EDsicos</color> por %cd% turnos.",
             "prismaticstaff": "A cada %maxStacks% <color=#1a66ff>t\u00E9cnica m\u00E1gicas</color>, a pr\u00F3xima vai ser crit\u00EDco (tamb\u00e9m aplica ao <color=#1a66ff>dano m\u00E1gico</color>) e cause %scale% b\u00F3nus",
@@ -413,7 +414,8 @@
 			"funchase": "O utilizador ganha%mod%e causa %scale% b\u00f3nus em ataques <color=#ffaa00>b\u00e1sicos</color> ou <color=#ffaa00>f\u00EDsicos</color> se um inimigo estiver a Sangrar",
             "bandofendurance": "O utilizador recupera %scale% com ataques <color=#ffaa00>f\u00EDsicos</color> e <color=#ffaa00>b\u00e1sicos</color>, o efeito \u00e9 aumentado em %num%% em golpes cr\u00EDticos",
             "mythicearrings": "O utilizador recupera %scale% com ataques <color=#1a66ff>m\u00e1gicos</color> e <color=#ffaa00>b\u00e1sicos</color>",
-            "spectralpike": "O utilizador tem %num%% chance (duplica se estiver a baixo de <color=#00ff11>%maxNum%% vida</color>) de causar %maxStacks%% <color=#ffaa00>dano f\u00EDsicos b\u00f3nus</color> em ataques <color=#ffaa00>f\u00EDsicos</color> ou <color=#f75145>alcance</color> (%cd% turnos de regarga, independetemente de ativar ou n\u00e3o) \nQuando o utilizador cai abaixo de <color=#00ff11>%num%% vida</color> ganha%mod%"
+            "spectralpike": "O utilizador tem %num%% chance (duplica se estiver a baixo de <color=#00ff11>%maxNum%% vida</color>) de causar %maxStacks%% <color=#ffaa00>dano f\u00EDsicos b\u00f3nus</color> em ataques <color=#ffaa00>f\u00EDsicos</color> ou <color=#f75145>alcance</color> (%cd% turnos de regarga, independetemente de ativar ou n\u00e3o) \nQuando o utilizador cai abaixo de <color=#00ff11>%num%% vida</color> ganha%mod%",
+            "spectralcloak": "O utilizador recebe %scale% por cada <color=#946ACD>%maxNum% defesa m\u00e1gica</color> quando leva <color=#1a66ff>dano m\u00e1gico</color>\nTamb\u00e9m est\u00e1 abaixo de <color=#00ff11>%num%% vida</color>, ganha%mod%"
         }
     },
     "moves": {
@@ -594,7 +596,8 @@
 			"crossbow": "Besta",
 			"bandofendurance": "Bandana da Percistencia",
 			"mythicearrings": "Brincos M\u00edticos",
-			"spectralpike": "Pike Espectral"
+			"spectralpike": "Pique Espectral",
+			"spectralcloak": "Manto Espectral"
         },
 		"move": {
 			"zap": "O transportador d\u00e1 <color=#ffdf00>zap</color> no alvo com uma %type% que %dmg%",

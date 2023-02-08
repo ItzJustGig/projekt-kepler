@@ -3572,7 +3572,7 @@ public class BattleSystem : MonoBehaviour
 
                     isReady = false;
 
-                    if (hpPer < (a.num * 100))
+                    if (hpPer <= (a.num * 100))
                     {
                         StatMod statMod = a.statMod.ReturnStats();
                         statMod.inTime = statMod.time;
