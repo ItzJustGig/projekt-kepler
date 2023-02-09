@@ -361,7 +361,8 @@
 			"bandofendurance": "Band of Endurance",
 			"mythicearrings": "Mythic Earrings",
 			"spectralpike": "Spectral Pike",
-			"spectralcloak": "Spectral Cloak"
+			"spectralcloak": "Spectral Cloa",
+			"thickarmour": "Thick Armour"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain%mod%and deal bonus %scale% on attacks.",
@@ -379,12 +380,12 @@
 			"perfectshooter": "Every <color=#f75145>%maxNum% critical ranged attacks</color> or <color=#ffaa00>basic attacks</color>, the user gain%mod%(stacks up to %maxStacks%).",
 			"plasmablade": "The user's <color=#ffaa00>physical</color> or <color=#ffaa00>basic attacks</color> deal bonus %scale%. If the user is below <color=#00ff11>%stacks%% health</color>, the bonus <color=#1a66ff>magic damage</color> is increased by %num%%, deal bonus %scale2% and gain%mod%(If the user is silenced or bellow <color=#1e68fc>%maxNum%% mana</color>, the passive won't activate)",
 			"roughskin": "The user blocks <color=#ffaa00>(<color=#937264>%num%%</color> of the user's <color=#937264>damage resistance</color>)% of the physical damage</color> taken from <color=#ffaa00>physical moves</color> and <color=#f75145>ranged moves</color>.",
-			"sharpshooter": "Every <color=#f75145>%maxNum% ranged attacks</color>, the next <color=#f75145>ranged attack</color> will crit and deal bonus %scale%.",
+			"sharpshooter": "Every <color=#f75145>%maxNum% ranged attacks</color>, the next <color=#f75145>ranged attack</color> will <color=#f75145>crit</color> and deal bonus %scale%.",
 			"strongmind": "The user is immune to Confusion, Charm and Sleep.",
 			"vendetta": "If the user is fighting an enemy with <color=#00ff11>+%num%% max health</color> than the <color=#00ff11>user's max health</color>, deals bonus %scale%, heal %scale2% and have%mod%on that enemy with <color=#ffaa00>physical moves</color> (%cd% turns cooldown)",
 			"weakbody": "If the user is with Blood, Allergy, Poison or Tired lose%mod%",
 			"wildinstinct": "When the user is below <color=#00ff11>%num%% health</color>, will get%mod%per <color=#00ff11>1% of missing health</color>",
-			"phantomhand": "The user deal bonus <color=#a6a6a6>%num% true damage</color> on <color=#ffaa00>physical moves</color> or <color=#ffaa00>basic attacks</color> for %cd% turns.",
+			"phantomhand": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> or <color=#ffaa00>basic attacks</color> for %cd% turns.",
 			"bloodpumping": "The user regen %scale% every turn for %cd% turns, but if its with Blood loses the same amount of health.",
 			"huntingseason": "The user deal bonus <color=#f75145>%num%% damage</color> for %cd% turns.",
 			"blazingfists": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> or <color=#ffaa00>basic attacks</color> for %cd% turns.",
@@ -399,14 +400,14 @@
 			"legendary": "This is a tough oponent, you are filled with determination. (Some of your stats were increased by %num%%)",
 			"boss": "That is a big boi. (Some of the user's stats were increased by %num%%)",
 			"toxicteeth": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> or <color=#ffaa00>basic attacks</color> for %cd% turns.",
-			"gravitybelt": "When the carrier uses a <color=#ffaa00>physical move</color> or <color=#ffaa00>basic attack</color> and crits, deal bonus %num% as true damage and gain%mod%",
+			"gravitybelt": "When the carrier uses a <color=#ffaa00>physical move</color> or <color=#ffaa00>basic attack</color> and <color=#f75145>crits</color>, deal bonus %scale% and gain%mod%",
 			"manasword": "Every <color=#ffaa00>physical moves</color> the carrier gain%mod%up to %maxStacks% times.\nWhen at maximum stacks the user gain%mod2%and deal bonus %scale% on <color=#ffaa00>physical moves</color>.",
 			"manascepter": "Every <color=#1a66ff>magic</color>, <color=#CC66FF>enchantment</color> or <color=#787878>defencive</color> move the carrier gain%mod%up to %maxStacks% times.\nWhen at maximum stacks the user gain%mod2%and deal bonus %scale% on <color=#1a66ff>magic</color> and <color=#CC66FF>enchantment</color> moves.",
 			"shadowdagger": "The user's <color=#ffaa00>physical moves</color> deal bonus %scale% and gain%mod%. (%cd% turns cooldown)",
 			"spectralring": "The user gain%mod%every %cd% turns up to %maxStacks% times.\nWhen the user drops below <color=#00ff11>%num%% health</color>, <color=#1a66ff>magic moves</color> deal bonus %scale%.",
 			"huntersdirk": "If the target is above <color=#00ff11>%num%% health</color>, <color=#ffaa00>basic</color> or <color=#ffaa00>physical moves</color> deal bonus %scale%. (%cd% turns cooldown)",
 			"gravitychange": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> for %cd% turns",
-			"prismaticstaff": "Every %maxStacks% magic moves, the next will crit (also applies to the <color=#1a66ff>magic damage</color>) and deal bonus %scale%",
+			"prismaticstaff": "Every %maxStacks% magic moves, the next will <color=#f75145>crit</color> (also applies to the <color=#1a66ff>magic damage</color>) and deal bonus %scale%",
 			"mechashield": "The user gain%mod%and converts %num%% of the <color=#ffaa00>physical damage</color> dealt into <color=#1a66ff>magic damage</color> while <color=#787878>shielded</color>, when runs out of <color=#787878>shield</color> take %scale2%. Also gain%mod2%and %scale% at the cost of %stacks% ultimate energy every turn.",
 			"combatrepair": "The user gain%mod%per <color=#B266FF>summon</color> alive (stack up to %maxStacks% times). When the user gains a <color=#787878>shield</color> that is not earned from the user's ultimate move, gain that <color=#787878>shield</color> over %num% turns.",
 			"magicwand": "The user's <color=#1a66ff>magical</color> and <color=#ffaa00>basic attacks</color> deal bonus %scale%",
@@ -415,7 +416,8 @@
 			"bandofendurance": "The user recover %scale% on <color=#ffaa00>physical</color> and <color=#ffaa00>basic attacks</color>, this effect is increased by %num%% on <color=#f75145>critical hits</color>",
 			"mythicearrings": "The user recover %scale% on <color=#1a66ff>magical</color> and <color=#ffaa00>basic attacks</color>",
 			"spectralpike": "The carrier's <color=#ffaa00>physical</color> or <color=#f75145>ranged</color> moves, have %num%% (doubles if bellow <color=#00ff11>%maxNum%% health</color>) chance to deal bonus <color=#ffaa00>%maxStacks%% physical damage</color> once (%cd% turns cooldown regardless activates or not)\nWhen the carrier is bellow <color=#00ff11>%maxNum%% health</color> gain%mod%",
-			"spectralcloak": "The carrier gain %scale% per <color=#946ACD>%maxNum% magic resistance</color> when take <color=#1a66ff>magic damage</color>\nAlso when bellow <color=#00ff11>%num%% health</color>, gain%mod%"
+			"spectralcloak": "The carrier gain %scale% per <color=#946ACD>%maxNum% magic resistance</color> when take <color=#1a66ff>magic damage</color>\nAlso when bellow <color=#00ff11>%num%% health</color>, gain%mod%",
+			"thickarmour": "The user take <color=#ffaa00>%num%% physical damage</color> on <color=#f75145>critical strikes</color>"
 		}
 	},
 	"moves": {
@@ -605,10 +607,10 @@
 			"healthpotion" : "The carrier uses a %type% that %dmg%",
 			"bigsteak": "The carrier uses a %type%, that %dmg%",
 			"ravensfeather" : "The carrier casts an %type% reducing %mode%",
-			"huntersdirk": "use a %type% that %dmg%and have %critdmg%% critical damage bonus",
+			"huntersdirk": "use a %type% that %dmg%and have <color=#f75145>%critdmg%% critical damage bonus</color>",
 			"jewelofthedruid": "The carrier uses a %type% that %summondesc%",
 			"shadowshroom": "The carrier uses an %type% that %dmg%and grants %modu%",
-			"prismaticstaff": "use a %type% that %dmg%and have %critdmg%% critical damage bonus"
+			"prismaticstaff": "use a %type% that %dmg%and have <color=#f75145>%critdmg%% critical damage bonus</color>"
 		}
 	},
 	"summon": {

@@ -784,7 +784,8 @@ public class BattleSystem : MonoBehaviour
                             if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
                             {
                                 user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                dmgTarget.trueDmg += a.num;
+                                StatScale scale = a.ifConditionTrueScale();
+                                dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
                             }
                         }
 
@@ -849,7 +850,8 @@ public class BattleSystem : MonoBehaviour
                                 if ((move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL) && isCrit)
                                 {
                                     user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                    dmgTarget.trueDmg += a.num;
+                                    StatScale scale = a.ifConditionTrueScale();
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
 
                                     a.inCd = a.cd;
 
@@ -1741,36 +1743,34 @@ public class BattleSystem : MonoBehaviour
 
                             foreach (Passives a in user.passives.ToArray())
                             {
-                                if (a.name == "huntingseason")
+                                switch (a.name)
                                 {
-                                    dmgTarget.ApplyBonusDmg(a.num, a.num, 0);
-                                }
-
-                                if (a.name == "mechashield")
-                                {
-                                    //convert physical damage into magic damage
-                                    float con = dmgTarget.phyDmg * a.num;
-                                    dmgTarget.phyDmg -= con;
-                                    dmgTarget.magicDmg += con;
-                                }
-
-                                if (a.name == "spectralpike")
-                                {
-                                    if (a.inCd == 0 && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.RANGED))
-                                    {
-                                        float chance = a.num;
-                                        int hpPercentage = (int)(100 * user.curHp / user.SetModifiers().hp);
-
-                                        if (hpPercentage <= a.maxNum * 100)
-                                            chance *= 2;
-
-                                        if (Random.Range(0f, 1f) <= chance)
+                                    case "huntingseason":
+                                        dmgTarget.ApplyBonusDmg(a.num, a.num, 0);
+                                        break;
+                                    case "mechashield":
+                                        //convert physical damage into magic damage
+                                        float con = dmgTarget.phyDmg * a.num;
+                                        dmgTarget.phyDmg -= con;
+                                        dmgTarget.magicDmg += con;
+                                        break;
+                                    case "spectralpike":
+                                        if (a.inCd == 0 && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.RANGED))
                                         {
-                                            user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                            dmgTarget.ApplyBonusPhyDmg((float)a.maxStacks / 100);
-                                            a.inCd = a.cd;
+                                            float chance = a.num;
+                                            int hpPercentage = (int)(100 * user.curHp / user.SetModifiers().hp);
+
+                                            if (hpPercentage <= a.maxNum * 100)
+                                                chance *= 2;
+
+                                            if (Random.Range(0f, 1f) <= chance)
+                                            {
+                                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                                dmgTarget.ApplyBonusPhyDmg((float)a.maxStacks / 100);
+                                                a.inCd = a.cd;
+                                            }
                                         }
-                                    }
+                                        break;
                                 }
                             }
 
@@ -1845,55 +1845,60 @@ public class BattleSystem : MonoBehaviour
 
                             foreach (Passives a in target.passives.ToArray())
                             {
-                                if (a.name == "roughskin")
+                                switch (a.name)
                                 {
-                                    //if move is physical
-                                    if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.RANGED)
-                                    {
-                                        //show passive popup
-                                        target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                        //get the mitigated dmg
-                                        float dmgMitigated = dmgTarget.phyDmg * ((statsTarget.dmgResis * a.num) / 100);
-                                        //subtract mitigated dmg from the dmg
-                                        if (dmgMitigated < dmgTarget.phyDmg)
-                                            dmgTarget.phyDmg -= dmgMitigated;
-                                        else
+                                    case "roughskin":
+                                        //if move is physical
+                                        if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.RANGED)
                                         {
-                                            dmgMitigated = dmgTarget.phyDmg;
-                                            dmgTarget.phyDmg = 0;
+                                            //show passive popup
+                                            target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                            //get the mitigated dmg
+                                            float dmgMitigated = dmgTarget.phyDmg * ((statsTarget.dmgResis * a.num) / 100);
+                                            //subtract mitigated dmg from the dmg
+                                            if (dmgMitigated < dmgTarget.phyDmg)
+                                                dmgTarget.phyDmg -= dmgMitigated;
+                                            else
+                                            {
+                                                dmgMitigated = dmgTarget.phyDmg;
+                                                dmgTarget.phyDmg = 0;
+                                            }
+                                            //add mitigated dmg to the overview
+                                            target.phyDmgMitigated += dmgMitigated;
                                         }
-                                        //add mitigated dmg to the overview
-                                        target.phyDmgMitigated += dmgMitigated;
-                                    }
-                                }
-
-                                if (a.name == "dreadofthesupernatural")
-                                {
-                                    //if sanityDmg bellow 0
-                                    if (dmgTarget.sanityDmg > 0)
-                                    {
-                                        //show passive popup
-                                        target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                        //get bonus sanityDmg
-                                        int bonusSanityDmg = (int)(dmgTarget.sanityDmg * a.num);
-                                        //if bonus under a.maxNum, set to it
-                                        if (bonusSanityDmg < a.maxNum)
-                                            bonusSanityDmg = (int)a.maxNum;
-                                        //add bonus damage
-                                        dmgTarget.sanityDmg += bonusSanityDmg;
-                                    }
-                                }
-
-                                if (a.name == "bullsrage")
-                                {
-                                    if (isCrit)
-                                    {
-                                        if (a.stacks < a.maxStacks && a.stacks >= 0)
+                                        break;
+                                    case "dreadofthesupernatural":
+                                        //if sanityDmg bellow 0
+                                        if (dmgTarget.sanityDmg > 0)
                                         {
-                                            a.stacks++;
-                                            ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), target.isEnemy, a.GetPassiveInfo());
+                                            //show passive popup
+                                            target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                            //get bonus sanityDmg
+                                            int bonusSanityDmg = (int)(dmgTarget.sanityDmg * a.num);
+                                            //if bonus under a.maxNum, set to it
+                                            if (bonusSanityDmg < a.maxNum)
+                                                bonusSanityDmg = (int)a.maxNum;
+                                            //add bonus damage
+                                            dmgTarget.sanityDmg += bonusSanityDmg;
                                         }
-                                    }
+                                        break;
+                                    case "bullsrage":
+                                        if (isCrit)
+                                        {
+                                            if (a.stacks < a.maxStacks && a.stacks >= 0)
+                                            {
+                                                a.stacks++;
+                                                ManagePassiveIcon(a.sprite, a.name, a.stacks.ToString(), target.isEnemy, a.GetPassiveInfo());
+                                            }
+                                        }
+                                        break;
+                                    case "thickarmour":
+                                        if (isCrit)
+                                        {
+                                            dmgTarget.ApplyBonusPhyDmg(a.num);
+                                            target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                        }
+                                        break;
                                 }
                             }
 
@@ -3592,6 +3597,7 @@ public class BattleSystem : MonoBehaviour
                 case "crossbow":
                 case "bandofendurance":
                 case "mythicearrings":
+                case "thickarmour":
                     ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     break;
             }
