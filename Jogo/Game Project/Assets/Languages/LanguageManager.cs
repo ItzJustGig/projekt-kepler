@@ -866,6 +866,7 @@ public class LanguageManager : MonoBehaviour
         public string spectralpike;
         public string spectralcloak;
         public string thickarmour;
+        public string combatrythm;
 
         public string Get_Cont(string a)
         {
@@ -1031,6 +1032,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "thickarmour":
                     returns = thickarmour;
+                    break;
+                case "combatrythm":
+                    returns = combatrythm;
                     break;
                 default:
                     returns = "null";

@@ -31,6 +31,8 @@ public class EndlessInfo : MonoBehaviour
     public int gold;
     public int level;
     public int round;
+    public int shopcoupon;
+    public int shoppass;
 
     public List<string> items = new List<string>();
     public List<string> itemShop = new List<string>();
@@ -62,6 +64,8 @@ public class EndlessInfo : MonoBehaviour
         this.gold = data.gold;
         this.level = data.level;
         this.round = data.round;
+        this.shopcoupon = data.shopcoupon;
+        this.shoppass = data.shoppass;
         this.wonLastRound = data.wonLastRound;
         this.generateShop = data.generateShop;
 

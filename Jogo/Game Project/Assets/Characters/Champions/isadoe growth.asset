@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: isadoe growth
   m_EditorClassIdentifier: 
-  hp: 14.5
+  hp: 18.35
   hpRegen: 0.42
   mana: 12
   manaRegen: 0.0175
@@ -35,5 +35,6 @@ MonoBehaviour:
   accuracy: 0
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 0
   sizeMod: 0

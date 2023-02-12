@@ -16,14 +16,18 @@ public class ShopItem : MonoBehaviour
 
     [SerializeField] private Image rarityColour;
     [SerializeField] private Image itemSprite;
+    [SerializeField] private GameObject discountGO;
     [SerializeField] private Text cardName;
     [SerializeField] private Text goldText;
+    [SerializeField] private Text discountGoldText;
     [SerializeField] public string itemName;
     [SerializeField] public int price;
+    [SerializeField] public int priceTemp;
+    [SerializeField] public bool nonCombatItem;
 
     [SerializeField] private ShopLangManager langmanag;
 
-    public void SetUpCard(Items item, GameObject tooltip, int minPrice, int maxPrice)
+    public void SetUpCard(Items item, GameObject tooltip, int minPrice, int maxPrice, float discount = 0)
     {
         if (item != null)
         {
@@ -35,21 +39,27 @@ public class ShopItem : MonoBehaviour
             goldText.text = price + langmanag.GetInfo("gui", "text", "goldinicial");
             itemSprite.sprite = item.icon;
 
+            nonCombatItem = item.NonCombatItem;
+
             btnBuy.gameObject.GetComponent<TooltipButton>().tooltipPopup = tooltip.GetComponent<TooltipPopUp>();
             btnBuy.gameObject.GetComponent<TooltipButton>().text = item.GetTooltipText();
 
             switch (item.rarity)
             {
                 case Items.ShopRarity.COMMON:
+                case Items.ShopRarity.COMMONPLUS:
                     rarityColour.color = colourCommon;
                     break;
                 case Items.ShopRarity.UNCOMMON:
+                case Items.ShopRarity.UNCOMMONPLUS:
                     rarityColour.color = colourUncommon;
                     break;
                 case Items.ShopRarity.RARE:
+                case Items.ShopRarity.RAREPLUS:
                     rarityColour.color = colourRare;
                     break;
                 case Items.ShopRarity.EPIC:
+                case Items.ShopRarity.EPICPLUS:
                     rarityColour.color = colourEpic;
                     break;
                 case Items.ShopRarity.LEGENDARY:
@@ -82,15 +92,19 @@ public class ShopItem : MonoBehaviour
             switch (item.rarity)
             {
                 case Items.ShopRarity.COMMON:
+                case Items.ShopRarity.COMMONPLUS:
                     rarityColour.color = colourCommon;
                     break;
                 case Items.ShopRarity.UNCOMMON:
+                case Items.ShopRarity.UNCOMMONPLUS:
                     rarityColour.color = colourUncommon;
                     break;
                 case Items.ShopRarity.RARE:
+                case Items.ShopRarity.RAREPLUS:
                     rarityColour.color = colourRare;
                     break;
                 case Items.ShopRarity.EPIC:
+                case Items.ShopRarity.EPICPLUS:
                     rarityColour.color = colourEpic;
                     break;
                 case Items.ShopRarity.LEGENDARY:
@@ -107,6 +121,33 @@ public class ShopItem : MonoBehaviour
         
     }
 
+    public void CheckDiscount(float discount)
+    {
+        if (discount > 0)
+        {
+            if (priceTemp == 0)
+            {
+                priceTemp = price;
+                price = price - (int)(price * discount);
+            } else
+            {
+                int temp = price;
+                price = priceTemp;
+                priceTemp = temp;
+            }
+            
+            discountGO.SetActive(true);
+            discountGoldText.text = price + langmanag.GetInfo("gui", "text", "goldinicial") + "!";
+        } else
+        {
+            int temp = price;
+            price = priceTemp;
+            priceTemp = temp;
+            
+            discountGO.SetActive(false);
+        }
+    }
+
     public void Lock(bool locks)
     {
         if (locks)
@@ -121,8 +162,11 @@ public class ShopItem : MonoBehaviour
         card.SetActive(false);
     }
 
-    public string GetItemString()
+    public string GetItemString(bool isDiscountOn)
     {
-        return itemName + ";" + price;
+        if (isDiscountOn)
+            return itemName + ";" + priceTemp;
+        else
+            return itemName + ";" + price;
     }
 }

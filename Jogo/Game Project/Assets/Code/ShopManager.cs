@@ -16,6 +16,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private Transform itemOwnList;
     [SerializeField] private GameObject inventoryGO;
     [SerializeField] private GameObject tooltip;
+    [SerializeField] private Toggle dicountToggle;
 
     [SerializeField] private Image charcIcon;
     [SerializeField] private Text gold;
@@ -40,6 +41,9 @@ public class ShopManager : MonoBehaviour
 
     private SceneLoader loader;
 
+    public float itemDiscount = .2f;
+    public float nonCombatPriceIncrease;
+    public float nonCombatChanceDecrease;
     public int commonMin;
     public int commonMax;
     public int uncommonMin;
@@ -59,6 +63,9 @@ public class ShopManager : MonoBehaviour
         langmanag = this.gameObject.GetComponent<ShopLangManager>();
         info.Load();
         gold.text = info.gold.ToString();
+
+        if (info.shopcoupon <= 0)
+            dicountToggle.interactable = false;
 
         List<Character> champs = new List<Character>();
         foreach (Character t in champions.returnStuff())
@@ -131,9 +138,9 @@ public class ShopManager : MonoBehaviour
 
             SetItem(item3, temp);
 
-            info.itemShop.Add(item1.GetItemString());
-            info.itemShop.Add(item2.GetItemString());
-            info.itemShop.Add(item3.GetItemString());
+            info.itemShop.Add(item1.GetItemString(false));
+            info.itemShop.Add(item2.GetItemString(false));
+            info.itemShop.Add(item3.GetItemString(false));
             info.generateShop = false;
         } else
         {
@@ -225,7 +232,31 @@ public class ShopManager : MonoBehaviour
             }
         }
 
-        shopItem.SetUpCard(genItem, tooltip, min, max);
+        if (shopItem.nonCombatItem)
+        {
+            min += (int)(min * nonCombatPriceIncrease);
+            max += (int)(max * nonCombatPriceIncrease);
+        }
+
+        if (dicountToggle.isOn)
+            shopItem.SetUpCard(genItem, tooltip, min, max, itemDiscount);
+        else
+            shopItem.SetUpCard(genItem, tooltip, min, max, itemDiscount);
+    }
+
+    public void ToggleValueChanged(Toggle change)
+    {
+        if (change.isOn)
+        {
+            item1.CheckDiscount(itemDiscount);
+            item2.CheckDiscount(itemDiscount);
+            item3.CheckDiscount(itemDiscount);
+        } else
+        {
+            item1.CheckDiscount(0);
+            item2.CheckDiscount(0);
+            item3.CheckDiscount(0);
+        }
     }
 
     private void RefreshOwnItems()
@@ -290,21 +321,21 @@ public class ShopManager : MonoBehaviour
         {
             if (info.round+1 >= enc.startRound && info.round+1 <= enc.endRound)
             {
-                for (int i = 0; i < enc.rarity.Count; i++)
+                foreach (var rarity in enc.rarity)
                 {
-                    switch (enc.rarity[i].rarity)
+                    switch (rarity.rarity)
                     {
                         case Items.ShopRarity.COMMON:
-                            common += enc.rarity[i].chance;
+                            common += rarity.chance;
                             break;
                         case Items.ShopRarity.UNCOMMON:
-                            uncommon += enc.rarity[i].chance;
+                            uncommon += rarity.chance;
                             break;
                         case Items.ShopRarity.RARE:
-                            rare += enc.rarity[i].chance;
+                            rare += rarity.chance;
                             break;
                         case Items.ShopRarity.EPIC:
-                            epic += enc.rarity[i].chance;
+                            epic += rarity.chance;
                             break;
                     }
                 }
@@ -324,7 +355,7 @@ public class ShopManager : MonoBehaviour
         {
             if (info.round >= enc.startRound && info.round <= enc.endRound)
             {
-                do
+                while (selectedRarity == Items.ShopRarity.NONE)
                 {
                     float rng = UnityEngine.Random.Range(0f, 1f);
                     float counter = 0;
@@ -337,10 +368,7 @@ public class ShopManager : MonoBehaviour
                             break;
                         }
                     }
-
-                    if (selectedRarity != Items.ShopRarity.NONE)
-                        break;
-                } while (true);
+                }
             }
         }
 
@@ -354,8 +382,35 @@ public class ShopManager : MonoBehaviour
         {
             ite.Add(item.returnItem());
 
-            if (item.rarity == selectedRarity)
-                num.Add(d);
+            switch (selectedRarity)
+            {
+                case Items.ShopRarity.COMMON:
+                    if (item.rarity is Items.ShopRarity.COMMON || item.rarity is Items.ShopRarity.COMMONPLUS)
+                        num.Add(d);
+                    break;
+                case Items.ShopRarity.UNCOMMON:
+                    if (item.rarity is Items.ShopRarity.UNCOMMON || item.rarity is Items.ShopRarity.UNCOMMONPLUS)
+                        num.Add(d);
+                    else if (item.rarity is Items.ShopRarity.COMMONPLUS)
+                        num.Add(d);
+                    break;
+                case Items.ShopRarity.RARE:
+                    if (item.rarity is Items.ShopRarity.RARE || item.rarity is Items.ShopRarity.RAREPLUS)
+                        num.Add(d);
+                    else if (item.rarity is Items.ShopRarity.COMMONPLUS || item.rarity is Items.ShopRarity.UNCOMMONPLUS)
+                        num.Add(d);
+                    break;
+                case Items.ShopRarity.EPIC:
+                    if (item.rarity is Items.ShopRarity.EPIC || item.rarity is Items.ShopRarity.EPICPLUS)
+                        num.Add(d);
+                    else if (item.rarity is Items.ShopRarity.COMMONPLUS || item.rarity is Items.ShopRarity.UNCOMMONPLUS || item.rarity is Items.ShopRarity.RAREPLUS)
+                        num.Add(d);
+                    break;
+                default:
+                    if (item.rarity == selectedRarity)
+                        num.Add(d);
+                    break;
+            }
 
             d++;
         }
@@ -414,12 +469,48 @@ public class ShopManager : MonoBehaviour
     public void Buy(ShopItem shopItem)
     {
         shopItem.OutOfStock();
-        info.items.Add(shopItem.itemName);
         info.gold -= shopItem.price;
-        info.itemShop.Remove(shopItem.GetItemString());
+        info.itemShop.Remove(shopItem.GetItemString(dicountToggle.isOn));
         info.itemShop.Add("");
+
+        if (dicountToggle.isOn)
+        {
+            if (info.shopcoupon > 0)
+            {
+                info.shopcoupon--;
+                if (info.shopcoupon <= 0)
+                    dicountToggle.interactable = false;
+            } 
+            dicountToggle.isOn = false;
+            //ToggleValueChanged(dicountToggle);
+        }
+
+        if (!shopItem.nonCombatItem)
+            info.items.Add(shopItem.itemName);
+        else
+        {
+            switch (shopItem.itemName)
+            {
+                case "xpflask":
+                    info.level += 1;
+                    break;
+                case "xpbottle":
+                    info.level += 2;
+                    break;
+                case "xppot":
+                    info.level += 3;
+                    break;
+                case "shoppass":
+                    info.shoppass += 1;
+                    break;
+                case "shopcoupon":
+                    info.shopcoupon += 1;
+                    break;
+            }
+        }
         SaveSystem.Save(info);
         gold.text = info.gold.ToString();
+
         CheckPrice();
         RefreshOwnItems();
     }

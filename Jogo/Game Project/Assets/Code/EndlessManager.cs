@@ -36,6 +36,7 @@ public class EndlessManager : MonoBehaviour
     [SerializeField] private StuffList monsters;
     [SerializeField] private StuffList monsEncounters;
 
+    [SerializeField] private int shopCd;
     [SerializeField] private int baseGold;
     [SerializeField] private List<BonusGold> bonusGold = new List<BonusGold>();
     [SerializeField] private BonusGold bonusGoldBoss;
@@ -80,7 +81,7 @@ public class EndlessManager : MonoBehaviour
                 data.wonLastRound = -1;
         } else
         {
-            data.round++;
+            data.round = 1;
         }
 
         List<Character> champs = new List<Character>();
@@ -198,6 +199,9 @@ public class EndlessManager : MonoBehaviour
         data.playerSan = info.playerSan;
         data.playerUlt = info.playerUlt;
         data.gold = info.gold;
+        data.gold = info.gold;
+        data.shopcoupon = info.shopcoupon;
+        data.shoppass = info.shoppass;
         data.generateShop = info.generateShop;
 
         if (roundTemp == -1)
@@ -236,6 +240,9 @@ public class EndlessManager : MonoBehaviour
         goldBonusTxt.text = "+" + gainedGold.ToString();
         roundTxt.text = info.round.ToString();
 
+        if (info.round % shopCd == 0)
+            shopBtn.interactable = true;
+
         if (info.wonLastRound == 1)
             goldAnim.SetTrigger("g");
 
@@ -267,7 +274,6 @@ public class EndlessManager : MonoBehaviour
         staminaInfo.text = langmanag.GetInfo("stats", "name", "stamina");
         sanityInfo.text = langmanag.GetInfo("stats", "name", "sanity");
         ultInfo.text = langmanag.GetInfo("stats", "name", "ultimate");
-
     }
 
     void PlayLevelUp()

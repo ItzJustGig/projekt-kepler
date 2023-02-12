@@ -16,12 +16,14 @@ MonoBehaviour:
   classe: 6
   size: 2
   name: aventis
+  isBasicPhysical: 1
   sprite: {fileID: 5806852883944117854, guid: aed35b1ed4f5ac94c90445984397901f, type: 3}
   charcIcon: {fileID: 21300000, guid: 7a9c7c07d129c9649aba1b0c445f9ac6, type: 3}
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
   stats: {fileID: 11400000, guid: 1e0cc338286668849ba679899088dd3e, type: 2}
   growth: {fileID: 11400000, guid: c988350a7e4a03d46be0458970d05b97, type: 2}
-  passives: []
+  passives:
+  - {fileID: 11400000, guid: 1bb46bc54eace564d838a82c18bfe180, type: 2}
   moves:
   - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
   - {fileID: 11400000, guid: 48282e450c1b65f4a9722b7065f7d0ed, type: 2}

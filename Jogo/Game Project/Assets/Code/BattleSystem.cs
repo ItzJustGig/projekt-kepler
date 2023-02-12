@@ -1415,6 +1415,16 @@ public class BattleSystem : MonoBehaviour
                                 dmgTarget.phyDmg += scale.SetScaleFlat(stats, unit);
                             }
                         }
+
+                        if (a.name == "combatrythm")
+                        {
+                            if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL)
+                            {
+                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                StatScale scale = a.ifConditionTrueScale();
+                                dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
+                            }
+                        }
                     }
 
                     dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
@@ -3598,6 +3608,7 @@ public class BattleSystem : MonoBehaviour
                 case "bandofendurance":
                 case "mythicearrings":
                 case "thickarmour":
+                case "combatrythm":
                     ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     break;
             }
@@ -3860,7 +3871,6 @@ public class BattleSystem : MonoBehaviour
             if (isDead)
                 state = BattleState.LOSE;
         }
-
         //apply tired
         if (playerUnit.curStamina <= (int)(statsP.stamina * (tiredStart + (tiredGrowth * tiredStacks))) && userCanTired)
         {

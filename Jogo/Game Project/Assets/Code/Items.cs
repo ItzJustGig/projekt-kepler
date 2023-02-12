@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Item")]
 public class Items : ScriptableObject
 {
-    public enum ShopRarity { COMMON, UNCOMMON, RARE, EPIC, LEGENDARY, CHAMPION, NONE }
+    public enum ShopRarity { COMMON, UNCOMMON, RARE, EPIC, LEGENDARY, CHAMPION, NONE, COMMONPLUS, UNCOMMONPLUS, RAREPLUS, EPICPLUS }
 
     public new string name;
     public Sprite icon;
@@ -14,6 +14,7 @@ public class Items : ScriptableObject
     public List<StatMod> statmod = new List<StatMod>();
     public List<Moves> moves = new List<Moves>();
     public ShopRarity rarity;
+    public bool NonCombatItem = false;
 
     public Items returnItem()
     {

@@ -647,7 +647,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 194221980}
   m_OnClick:
     m_PersistentCalls:
@@ -3380,6 +3380,7 @@ MonoBehaviour:
   champions: {fileID: 203568565}
   monsters: {fileID: 846067774}
   monsEncounters: {fileID: 1090020106}
+  shopCd: 5
   baseGold: 8
   bonusGold:
   - {fileID: 11400000, guid: 0cc4fb48b9e75da448a462c78ff1e81a, type: 2}
