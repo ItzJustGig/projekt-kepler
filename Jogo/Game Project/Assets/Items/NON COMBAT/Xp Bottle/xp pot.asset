@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6ab09c0988f81449be8c5ce1f80558, type: 3}
   m_Name: xp pot
   m_EditorClassIdentifier: 
-  name: xpbottle
+  name: xppot
   icon: {fileID: 21300000, guid: 34422ef164e1e324fb02725f54c1604b, type: 3}
   passives: []
   statmod: []

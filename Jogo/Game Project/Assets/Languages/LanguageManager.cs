@@ -2133,6 +2133,11 @@ public class LanguageManager : MonoBehaviour
         public string mythicearrings;
         public string spectralpike;
         public string spectralcloak;
+        public string xpflask;
+        public string xpbottle;
+        public string xppot;
+        public string shoppass;
+        public string shopcoupon;
 
         public string Get_ItemName(string a)
         {
@@ -2225,6 +2230,21 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "spectralcloak":
                     returns = spectralcloak;
+                    break;
+                case "xpflask":
+                    returns = xpflask;
+                    break;
+                case "xpbottle":
+                    returns = xpbottle;
+                    break;
+                case "xppot":
+                    returns = xppot;
+                    break;
+                case "shoppass":
+                    returns = shoppass;
+                    break;
+                case "shopcoupon":
+                    returns = shopcoupon;
                     break;
                 default:
                     returns = "null";

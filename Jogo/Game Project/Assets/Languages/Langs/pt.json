@@ -601,7 +601,12 @@
 			"bandofendurance": "Bandana da Percistencia",
 			"mythicearrings": "Brincos M\u00edticos",
 			"spectralpike": "Pique Espectral",
-			"spectralcloak": "Manto Espectral"
+			"spectralcloak": "Manto Espectral",
+            "xpflask": "Frasco de EXP",
+            "xpbottle": "Garrafa de EXP",
+            "xppot": "Pote de EXP",
+            "shoppass": "Passe da Loja",
+            "shopcoupon": "Cop\u00e3o 20% de Desconto!!"
         },
 		"move": {
 			"zap": "O transportador d\u00e1 <color=#ffdf00>zap</color> no alvo com uma %type% que %dmg%",

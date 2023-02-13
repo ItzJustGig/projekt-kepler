@@ -36,6 +36,7 @@ public class ShopItem : MonoBehaviour
             Debug.Log(item.name);
             itemName = item.name;
             price = Random.Range(minPrice, maxPrice);
+            priceTemp = 0;
             goldText.text = price + langmanag.GetInfo("gui", "text", "goldinicial");
             itemSprite.sprite = item.icon;
 
@@ -146,6 +147,7 @@ public class ShopItem : MonoBehaviour
             
             discountGO.SetActive(false);
         }
+
     }
 
     public void Lock(bool locks)
@@ -160,6 +162,12 @@ public class ShopItem : MonoBehaviour
     {
         btnBuy.gameObject.SetActive(false);
         card.SetActive(false);
+    }
+
+    public void BackInStock()
+    {
+        btnBuy.gameObject.SetActive(true);
+        card.SetActive(true);
     }
 
     public string GetItemString(bool isDiscountOn)

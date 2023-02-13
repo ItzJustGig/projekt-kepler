@@ -71,6 +71,7 @@ public class EndlessManager : MonoBehaviour
 
         data.wonLastRound = info.wonLastRound;
         data.round = info.round;
+        data.shoprerolls = info.shoprerolls;
         int roundTemp = data.round;
 
         if (data.round > -1)
@@ -375,7 +376,7 @@ public class EndlessManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            HideIcons();
+            //HideIcons();
             loader.LoadScene(0, slider, loadPanel);
         }
     }
@@ -388,14 +389,14 @@ public class EndlessManager : MonoBehaviour
     public void BackBtn()
     {
         SaveSystem.Save(info);
-        HideIcons();
+        //HideIcons();
         loader.LoadScene(0, slider, loadPanel);
     }
 
     public void ShopBtn()
     {
         SaveSystem.Save(info);
-        HideIcons();
+        //HideIcons();
         loader.LoadScene(5, slider, loadPanel);
     }
 
@@ -410,7 +411,7 @@ public class EndlessManager : MonoBehaviour
         PlayerPrefs.SetInt(selectedLevel, info.level);
         PlayerPrefs.SetInt(selectedLevelEnemy, info.enemyLevelNext);
 
-        HideIcons();
+        //HideIcons();
         loader.LoadScene(2, slider, loadPanel);
     }
 

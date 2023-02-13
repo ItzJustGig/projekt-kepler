@@ -555,8 +555,7 @@
 		"zap": "Zap",
 		"huntersdirk": "Hunter's Dirk",
 		"jewelofthedruid": "Jewel of the Druid",
-		"shadowshroom": "Shadow Shroom",
-		"prismaticstaff": "Prismatic Staff"
+		"shadowshroom": "Shadow Shroom"
 	},
 	"items": {
 		"title": "Item",
@@ -601,7 +600,12 @@
 			"bandofendurance": "Band of Endurance",
 			"mythicearrings": "Mythic Earrings",
 			"spectralpike": "Spectral Pike",
-			"spectralcloak": "Spectral Cloak"
+			"spectralcloak": "Spectral Cloak",
+			"xpflask": "XP Flask",
+			"xpbottle": "XP Bottle",
+			"xppot": "XP Pot",
+			"shoppass": "Shop Pass",
+			"shopcoupon": "20% OFF Coupon!!"
 		},
 		"move": {
 			"zap": "The carrier will <color=#ffdf00>zap</color> the target with a %type% to %dmg%",

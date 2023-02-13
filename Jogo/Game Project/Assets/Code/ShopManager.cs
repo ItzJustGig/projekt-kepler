@@ -36,12 +36,14 @@ public class ShopManager : MonoBehaviour
 
     private Items.ShopRarity rarity;
 
+    [SerializeField] Button rerollBtn;
     [SerializeField] GameObject loadPanel;
     [SerializeField] Slider slider;
 
     private SceneLoader loader;
 
     public float itemDiscount = .2f;
+    public int rerolls = 2;
     public float nonCombatPriceIncrease;
     public float nonCombatChanceDecrease;
     public int commonMin;
@@ -89,98 +91,13 @@ public class ShopManager : MonoBehaviour
             RefreshOwnItems();
         }
 
-        Items temp = null;
-        int i = 0;
+        if (info.generateShop)
+            info.shoprerolls = rerolls;
 
-        if (info.generateShop == true)
-        {
-            SetItem(item1, GenItem());
+        if (info.shoprerolls <= 0)
+            rerollBtn.interactable = false;
 
-            if (item1.itemName != "")
-            {
-                do
-                {
-                    temp = GenItem();
-                    if (temp != null)
-                        temp = temp.returnItem();
-
-                    i++;
-
-                    if (i == 40 || temp == null)
-                    {
-                        temp = null;
-                        i = 0;
-                        break;
-                    }
-
-                } while (temp.name == item1.itemName);
-            }
-
-            SetItem(item2, temp);
-            temp = null;
-
-            if (item1.itemName != "" && item2.itemName != "")
-            {
-                do
-                {
-                    temp = GenItem();
-                    if (temp != null)
-                        temp = temp.returnItem();
-                    i++;
-
-                    if (i == 40 || temp == null)
-                    {
-                        temp = null;
-                        break;
-                    }
-                } while (temp.name == item2.itemName || temp.name == item1.itemName);
-            }
-
-            SetItem(item3, temp);
-
-            info.itemShop.Add(item1.GetItemString(false));
-            info.itemShop.Add(item2.GetItemString(false));
-            info.itemShop.Add(item3.GetItemString(false));
-            info.generateShop = false;
-        } else
-        {
-            i = 0;
-            foreach (string a in info.itemShop)
-            {
-                i++;
-                string name = "";
-                string price = "0";
-
-                if (a != "")
-                {
-                    name = a.Substring(0, a.IndexOf(';'));
-                    Debug.Log(name);
-                    price = a.Substring(a.IndexOf(';') + 1);
-                    Debug.Log(price);
-                }
-                
-                int priceI = Convert.ToInt32(price);
-
-                temp = GetItem(name);
-                switch (i)
-                {
-                    case 1:
-                        item1.SetUpCard(temp, priceI, tooltip);
-                        break;
-                    case 2:
-                        item2.SetUpCard(temp, priceI, tooltip);
-                        break;
-                    case 3:
-                        item3.SetUpCard(temp, priceI, tooltip);
-                        break;
-                    default:
-                        Debug.LogWarning("Tried to load too many items from the data file (" + i + " items)");
-                        break;
-                }
-            }
-        }
-
-        CheckPrice();
+        GenerateItems();
         GetNextChance();
     }
 
@@ -210,18 +127,22 @@ public class ShopManager : MonoBehaviour
             switch (genItem.rarity)
             {
                 case Items.ShopRarity.COMMON:
+                case Items.ShopRarity.COMMONPLUS:
                     min = commonMin;
                     max = commonMax;
                     break;
                 case Items.ShopRarity.UNCOMMON:
+                case Items.ShopRarity.UNCOMMONPLUS:
                     min = uncommonMin;
                     max = uncommonMax;
                     break;
                 case Items.ShopRarity.RARE:
+                case Items.ShopRarity.RAREPLUS:
                     min = rareMin;
                     max = rareMax;
                     break;
                 case Items.ShopRarity.EPIC:
+                case Items.ShopRarity.EPICPLUS:
                     min = epicMin;
                     max = epicMax;
                     break;
@@ -257,6 +178,7 @@ public class ShopManager : MonoBehaviour
             item2.CheckDiscount(0);
             item3.CheckDiscount(0);
         }
+        CheckPrice();
     }
 
     private void RefreshOwnItems()
@@ -345,6 +267,102 @@ public class ShopManager : MonoBehaviour
         UncommonTxt.text = uncommon.ToString("0%");
         RareTxt.text = rare.ToString("0%");
         EpicTxt.text = epic.ToString("0%");
+    }
+
+    void GenerateItems()
+    {
+        Items temp = null;
+        int i = 0;
+
+        if (info.generateShop == true)
+        {
+            SetItem(item1, GenItem());
+
+            if (item1.itemName != "")
+            {
+                do
+                {
+                    temp = GenItem();
+                    if (temp != null)
+                        temp = temp.returnItem();
+
+                    i++;
+
+                    if (i == 40 || temp == null)
+                    {
+                        temp = null;
+                        i = 0;
+                        break;
+                    }
+
+                } while (temp.name == item1.itemName);
+            }
+
+            SetItem(item2, temp);
+            temp = null;
+
+            if (item1.itemName != "" && item2.itemName != "")
+            {
+                do
+                {
+                    temp = GenItem();
+                    if (temp != null)
+                        temp = temp.returnItem();
+                    i++;
+
+                    if (i == 40 || temp == null)
+                    {
+                        temp = null;
+                        break;
+                    }
+                } while (temp.name == item2.itemName || temp.name == item1.itemName);
+            }
+
+            SetItem(item3, temp);
+
+            info.itemShop.Add(item1.GetItemString(false));
+            info.itemShop.Add(item2.GetItemString(false));
+            info.itemShop.Add(item3.GetItemString(false));
+            info.generateShop = false;
+        }
+        else
+        {
+            i = 0;
+            foreach (string a in info.itemShop)
+            {
+                i++;
+                string name = "";
+                string price = "0";
+
+                if (a != "")
+                {
+                    name = a.Substring(0, a.IndexOf(';'));
+                    Debug.Log(name);
+                    price = a.Substring(a.IndexOf(';') + 1);
+                    Debug.Log(price);
+                }
+
+                int priceI = Convert.ToInt32(price);
+
+                temp = GetItem(name);
+                switch (i)
+                {
+                    case 1:
+                        item1.SetUpCard(temp, priceI, tooltip);
+                        break;
+                    case 2:
+                        item2.SetUpCard(temp, priceI, tooltip);
+                        break;
+                    case 3:
+                        item3.SetUpCard(temp, priceI, tooltip);
+                        break;
+                    default:
+                        Debug.LogWarning("Tried to load too many items from the data file (" + i + " items)");
+                        break;
+                }
+            }
+        }
+        CheckPrice();
     }
 
     Items GenItem()
@@ -455,6 +473,20 @@ public class ShopManager : MonoBehaviour
             return null;
     }
 
+    public void Reroll()
+    {
+        info.shoprerolls--;
+        info.generateShop = true;
+        info.itemShop.Clear();
+        info.Save();
+        item1.BackInStock();
+        item2.BackInStock();
+        item3.BackInStock();
+        GenerateItems();
+        if (info.shoprerolls <= 0)
+            rerollBtn.interactable = false;
+    }
+
     Items GetItem(string item)
     {
         if (item != "")
@@ -482,7 +514,6 @@ public class ShopManager : MonoBehaviour
                     dicountToggle.interactable = false;
             } 
             dicountToggle.isOn = false;
-            //ToggleValueChanged(dicountToggle);
         }
 
         if (!shopItem.nonCombatItem)
@@ -508,7 +539,7 @@ public class ShopManager : MonoBehaviour
                     break;
             }
         }
-        SaveSystem.Save(info);
+        info.Save();
         gold.text = info.gold.ToString();
 
         CheckPrice();

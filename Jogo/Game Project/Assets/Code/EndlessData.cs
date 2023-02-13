@@ -29,6 +29,7 @@ public class EndlessData
     public int round;
     public int shoppass;
     public int shopcoupon;
+    public int shoprerolls;
 
     public int wonLastRound;
     public bool generateShop;
@@ -55,6 +56,7 @@ public class EndlessData
         this.gold = data.gold;
         this.round = data.round;
         this.level = data.level;
+        this.shoprerolls = data.shoprerolls;
         this.shoppass = data.shoppass;
         this.shopcoupon = data.shopcoupon;
         this.wonLastRound = data.wonLastRound;
@@ -98,6 +100,7 @@ public class EndlessData
         this.round = -1;
         this.shoppass = 0;
         this.shopcoupon = 0;
+        this.shoprerolls = 2;
         this.round = -1;
         this.level = 0;
         this.wonLastRound = 1;
