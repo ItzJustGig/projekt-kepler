@@ -27,6 +27,9 @@ public class EndlessInfo : MonoBehaviour
 
     public int wonLastRound;
     public bool generateShop;
+    public bool isShopOpen;
+    public bool wasPassUsed;
+    public bool hasRested;
 
     public int gold;
     public int level;
@@ -70,6 +73,9 @@ public class EndlessInfo : MonoBehaviour
         this.shoprerolls = data.shoprerolls;
         this.wonLastRound = data.wonLastRound;
         this.generateShop = data.generateShop;
+        this.isShopOpen = data.isShopOpen;
+        this.hasRested = data.hasRested;
+        this.wasPassUsed = data.wasPassUsed;
 
         if (data.items != null)
             foreach(string a in data.items)
@@ -106,9 +112,14 @@ public class EndlessInfo : MonoBehaviour
         this.gold = 0;
         this.round = -1;
         this.level = 0;
+        this.shopcoupon = 0;
+        this.shoppass = 0;
         this.shoprerolls = 2;
         this.wonLastRound = 1;
         this.generateShop = true;
+        this.isShopOpen = false;
+        this.wasPassUsed = false;
+        this.hasRested = false;
         this.items.Clear();
         this.itemShop.Clear();
 
@@ -144,6 +155,7 @@ public class EndlessInfo : MonoBehaviour
         this.shoprerolls = 2;
         this.wonLastRound = 1;
         this.generateShop = true;
+        this.isShopOpen = false;
         this.items.Clear();
         this.itemShop.Clear();
 

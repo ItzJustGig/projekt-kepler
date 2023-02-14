@@ -303,7 +303,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 20
 --- !u!1 &7461933490601653143
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +382,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 7
+  m_Text: 6
 --- !u!1 &7461933490921630933
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,33 +502,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Taunt</align></size>
+  text: '<size=24><align=center>Shadow Warp</align></size>
 
     <size=17><align=center><color=#CC66FF>Enchantment</color></align></size>
 
     Priority:
-    0
+    1
 
     <s><align=center>|                 |</align></s>
 
-    100% chance to
-    <color=#ffaa00>10% Attack Damage</color>, <color=#1a66ff>10% Magic Power</color>,
-    <color=#f75145>-10% Critical Chance</color>, <color=#f75145>-6% Critical Damage</color>,
-    <color=#937264>-32% Damage Resistance</color>, <color=#946ACD>-28% Magic Resistance</color>
-    and <color=#0984db>-30% Timing</color> to the target for 4 turns
+    Blocks <color=#ffaa00>physical</color>
+    moves
+
+    Blocks <color=#1a66ff>magic</color> moves
+
+    Blocks <color=#f75145>ranged</color>
+    moves
+
+    <s><align=center>|                 |</align></s>
+
+    60% chance
+    to <color=#946ACD>12% Magic Resistance</color>, <color=#0984db>20% Timing</color>
+    and <color=#0095ff>13% Movement Speed</color> to the user for 2 turns
 
     <s><align=center>|                
     |</align></s>
 
-    Deal <color=#b829ff>5 sanity damage</color>
+    Deal <color=#b829ff>1 sanity damage</color>
 
     Recover
-    <color=#1e68fc>5 mana</color>
+    <color=#f0dd0a>8 stamina</color>
 
-    Recover <color=#f0dd0a>5 stamina</color>
+    Recover <color=#b641f0>4 sanity</color>
 
-    Recover
-    <color=#b641f0>1 sanity</color>
+    Grants
+    a <color=#787878>shield</color> with <color=#787878>25 + (<color=#1a66ff>25%</color>
+    of the user''s <color=#1a66ff>Magic Power</color>) health </color>
 
 '
   textSec: 
@@ -611,7 +620,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 5
 --- !u!1 &7461933492528101758
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,4 +774,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Taunt
+  m_Text: Shadow Warp

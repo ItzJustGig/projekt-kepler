@@ -40,7 +40,7 @@ public class ShopItem : MonoBehaviour
             goldText.text = price + langmanag.GetInfo("gui", "text", "goldinicial");
             itemSprite.sprite = item.icon;
 
-            nonCombatItem = item.NonCombatItem;
+            nonCombatItem = item.nonCombatItem;
 
             btnBuy.gameObject.GetComponent<TooltipButton>().tooltipPopup = tooltip.GetComponent<TooltipPopUp>();
             btnBuy.gameObject.GetComponent<TooltipButton>().text = item.GetTooltipText();
@@ -86,6 +86,7 @@ public class ShopItem : MonoBehaviour
             this.price = price;
             goldText.text = price + langmanag.GetInfo("gui", "text", "goldinicial");
             itemSprite.sprite = item.icon;
+            nonCombatItem = item.nonCombatItem;
 
             btnBuy.gameObject.GetComponent<TooltipButton>().tooltipPopup = tooltip.GetComponent<TooltipPopUp>();
             btnBuy.gameObject.GetComponent<TooltipButton>().text = item.GetTooltipText();

@@ -18,15 +18,17 @@ public class ItemSelectManager : MonoBehaviour
     {
         foreach (Items a in items.returnStuff())
         {
-            GameObject itemIcon = Instantiate(itemIconPrefab, grid);
+            if (!a.nonCombatItem)
+            {
+                GameObject itemIcon = Instantiate(itemIconPrefab, grid);
 
-            itemIcon.GetComponent<TooltipButton>().tooltipPopup = tooltip.GetComponent<TooltipPopUp>();
-            itemIcon.GetComponent<TooltipButton>().text = a.GetTooltipText();
-            itemIcon.name = a.name;
+                itemIcon.GetComponent<TooltipButton>().tooltipPopup = tooltip.GetComponent<TooltipPopUp>();
+                itemIcon.GetComponent<TooltipButton>().text = a.GetTooltipText();
+                itemIcon.name = a.name;
 
-            Image icon = itemIcon.transform.Find("Icon").gameObject.GetComponent<Image>();
-            icon.sprite = a.icon;
-            //itemIcon.GetComponent<ItemBtnPrefabFuncs>().Create();
+                Image icon = itemIcon.transform.Find("Icon").gameObject.GetComponent<Image>();
+                icon.sprite = a.icon;
+            }
         }
     }
 
@@ -128,6 +130,7 @@ public class ItemSelectManager : MonoBehaviour
 
     public void CancelItems()
     {
+        if (item1)
         DeselectItem(item1.GetComponent<Button>());
         DeselectItem(item2.GetComponent<Button>());
         mainManager.DisablePortraits();

@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 812f067d5d60add448aa657880474a92, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b43cd2a04e2be741bffda09be540f17, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -153,7 +153,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Leather Cloth
+  m_Text: Long Bow
 --- !u!1 &5427755121742644162
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,8 +227,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: "<size=24><align=center>Leather Cloth</align></size>\r\n<s><align=center>|                
-    |</align></s>\r\n<color=#00ff11>+30 Maximum Health</color>\r\n<color=#937264>+8
-    Damage Resistance</color>\r\n  \r\n"
+  text: "<size=24><align=center>Long Bow</align></size>\r\n<s><align=center>|                
+    |</align></s>\r\n<color=#ffaa00>+8 Attack Damage</color>\r\n<color=#f75145>+5%
+    Critical Chance</color>\r\n<color=#f75145>+3,15% Critical Damage</color>\r\n<color=#e04419>+2,5%
+    Accuracy</color>\r\n  \r\n"
   textSec: 
   wantSec: 0

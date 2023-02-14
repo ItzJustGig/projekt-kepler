@@ -2023,6 +2023,7 @@ public class BattleSystem : MonoBehaviour
                     else
                     {
                         target.Miss(false);
+                        isStoped = false;
 
                         if (move.isUlt)
                         {
@@ -2553,6 +2554,7 @@ public class BattleSystem : MonoBehaviour
         user.staminaHealDone += dmg.healStamina;
         user.sanityHealDone += dmg.healSanity;*/
 
+        SetStatus();
         return isDead;
     }
 
@@ -3954,7 +3956,7 @@ public class BattleSystem : MonoBehaviour
                 yield break;
             }
         }
-
+        SetStatus();
         //apply fear
 
         if (playerUnit.curSanity <= 0)
@@ -4062,71 +4064,71 @@ public class BattleSystem : MonoBehaviour
         statsP = playerUnit.SetModifiers();
         statsE = enemyUnit.SetModifiers();
 
-        playerUnit.DoAnimParticle("heal");
-        playerUnit.Heal(statsP.hpRegen * (1+statsP.healBonus));
         if (turnCount > 1)
-            playerUnit.healDone += statsP.hpRegen * (1+statsP.healBonus);
+        {
+            playerUnit.DoAnimParticle("heal");
+            playerUnit.Heal(statsP.hpRegen * (1 + statsP.healBonus));
+            if (!(playerUnit.curHp + (statsP.hpRegen * (1 + statsP.healBonus)) >= playerUnit.SetModifiers().hp))
+                playerUnit.healDone += statsP.hpRegen * (1 + statsP.healBonus);
+            else
+                playerUnit.healDone += playerUnit.SetModifiers().hp - playerUnit.curHp;
 
-        enemyUnit.DoAnimParticle("heal");
-        enemyUnit.Heal(statsE.hpRegen * (1+statsE.healBonus));
-        if (turnCount > 1)
-            enemyUnit.healDone += statsE.hpRegen * (1 + statsE.healBonus);
+            enemyUnit.DoAnimParticle("heal");
+            enemyUnit.Heal(statsE.hpRegen * (1 + statsE.healBonus));
+            if (!(enemyUnit.curHp + (statsE.hpRegen * (1 + statsE.healBonus)) >= enemyUnit.SetModifiers().hp))
+                enemyUnit.healDone += statsE.hpRegen * (1 + statsE.healBonus);
+            else
+                enemyUnit.healDone += enemyUnit.SetModifiers().hp - enemyUnit.curHp;
 
-        if (playerUnit.curMana < statsP.mana)
-            if ((playerUnit.curMana + statsP.manaRegen) > statsP.mana)
-            {
-                playerUnit.curMana = statsP.mana;
-                if (turnCount > 1)
+            if (playerUnit.curMana < statsP.mana)
+                if ((playerUnit.curMana + statsP.manaRegen) > statsP.mana)
+                {
+                    playerUnit.curMana = statsP.mana;
                     playerUnit.manaHealDone += statsP.mana - (playerUnit.curMana + statsP.manaRegen);
-            }  
-            else
-            {
-                playerUnit.curMana += statsP.manaRegen;
-                if (turnCount > 1)
+                }
+                else
+                {
+                    playerUnit.curMana += statsP.manaRegen;
                     playerUnit.manaHealDone += statsP.manaRegen;
-            }  
+                }
 
-        if (enemyUnit.curMana < statsE.mana)
-            if ((enemyUnit.curMana + statsE.manaRegen) > statsE.mana)
-            {
-                enemyUnit.curMana = statsE.mana;
-                if (turnCount > 1)
+            if (enemyUnit.curMana < statsE.mana)
+                if ((enemyUnit.curMana + statsE.manaRegen) > statsE.mana)
+                {
+                    enemyUnit.curMana = statsE.mana;
                     enemyUnit.manaHealDone += statsE.mana - (enemyUnit.curMana + statsE.manaRegen);
-            }
-            else
-            {
-                enemyUnit.curMana += statsE.manaRegen;
-                if (turnCount > 1)
+                }
+                else
+                {
+                    enemyUnit.curMana += statsE.manaRegen;
                     enemyUnit.manaHealDone += statsE.manaRegen;
-            }   
+                }
 
-        if (playerUnit.curStamina < statsP.stamina)
-            if ((playerUnit.curStamina + statsP.staminaRegen) > statsP.stamina)
-            {
-                playerUnit.curStamina = statsP.stamina - (playerUnit.curStamina + statsP.staminaRegen);
-                if (turnCount > 1)
+            if (playerUnit.curStamina < statsP.stamina)
+                if ((playerUnit.curStamina + statsP.staminaRegen) > statsP.stamina)
+                {
+                    playerUnit.curStamina = statsP.stamina - (playerUnit.curStamina + statsP.staminaRegen);
                     playerUnit.staminaHealDone += statsP.stamina - (playerUnit.curStamina + statsP.staminaRegen);
-            }  
-            else
-            {
-                playerUnit.curStamina += statsP.staminaRegen;
-                if (turnCount > 1)
+                }
+                else
+                {
+                    playerUnit.curStamina += statsP.staminaRegen;
                     playerUnit.staminaHealDone += statsP.staminaRegen;
-            } 
+                }
 
-        if (enemyUnit.curStamina < statsE.stamina)
-            if ((enemyUnit.curStamina + statsE.staminaRegen) > statsE.stamina)
-            {
-                enemyUnit.curStamina = statsE.stamina;
-                if (turnCount > 1)
+            if (enemyUnit.curStamina < statsE.stamina)
+                if ((enemyUnit.curStamina + statsE.staminaRegen) > statsE.stamina)
+                {
+                    enemyUnit.curStamina = statsE.stamina;
                     enemyUnit.staminaHealDone += statsE.stamina - (enemyUnit.curStamina + statsE.staminaRegen);
-            } 
-            else
-            {
-                enemyUnit.curStamina += statsE.staminaRegen;
-                if (turnCount > 1)
+                }
+                else
+                {
+                    enemyUnit.curStamina += statsE.staminaRegen;
                     enemyUnit.staminaHealDone += statsE.staminaRegen;
-            }  
+                }
+        }
+        
 
         playerUnit.isBlockingPhysical = false;
         playerUnit.isBlockingMagical = false;

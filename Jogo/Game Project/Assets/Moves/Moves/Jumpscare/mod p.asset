@@ -15,13 +15,15 @@ MonoBehaviour:
   flat: 1
   time: 3
   inTime: 0
-  chance: 0
+  chance: 0.5
   hp: 0
   hpRegen: 0
   mana: 0
   manaRegen: 0
+  manaCost: 0
   stamina: 0
   staminaRegen: 0
+  staminaCost: 0
   sanity: 0
   atkDmg: 5
   magicPower: 12
@@ -32,5 +34,11 @@ MonoBehaviour:
   timing: 1
   movSpeed: 25
   lifesteal: 0
+  healBonus: 0
+  shieldBonus: 0
   accuracy: 0
   evasion: 0
+  armourPen: 0
+  magicPen: 0
+  ultrate: 0
+  size: 0

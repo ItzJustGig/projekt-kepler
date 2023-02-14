@@ -16,6 +16,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: fec2aec64e5a1e940b7c4e8aed396b6c, type: 3}
   haveSpecialDesc: 0
   duration: 0
+  timeReducImmunity: 1
   grantsOnRunOut: 1
   timesInc: 0
   canUsePhysical: 1
@@ -23,7 +24,7 @@ MonoBehaviour:
   canUseMagic: 1
   canUseSupp: 1
   canUseProtec: 1
-  canUseStatMod: 1
+  canUseEnchant: 1
   canUseSummon: 1
   phyDmgMin: 0
   phyDmgMax: 0

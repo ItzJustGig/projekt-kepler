@@ -16,6 +16,8 @@ MonoBehaviour:
   name: energyball
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -30,15 +32,21 @@ MonoBehaviour:
   shield: 0
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 0
+  cooldown: 6
   inCooldown: 0
   manaCost: 45
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: f0ef3f8b2e1878c4e919450f7c1aecd5, type: 2}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: ada2abf5ddbe00946aa5e15c0e50a422, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

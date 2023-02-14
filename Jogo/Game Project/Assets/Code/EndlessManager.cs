@@ -11,6 +11,7 @@ public class EndlessManager : MonoBehaviour
     [SerializeField] private EndlessInfo info;
     [SerializeField] private Button startBtn;
     [SerializeField] private Button shopBtn;
+    [SerializeField] private Button passBtn;
     [SerializeField] private Text roundTxt;
     [SerializeField] private Text goldCurTxt;
     [SerializeField] private Text goldOldTxt;
@@ -38,6 +39,7 @@ public class EndlessManager : MonoBehaviour
 
     [SerializeField] private int shopCd;
     [SerializeField] private int baseGold;
+    [SerializeField] private float bossDropsChance;
     [SerializeField] private List<BonusGold> bonusGold = new List<BonusGold>();
     [SerializeField] private BonusGold bonusGoldBoss;
 
@@ -60,6 +62,7 @@ public class EndlessManager : MonoBehaviour
     int oldGold;
     Character.Strenght strenght;
     bool isBoss;
+    [SerializeField] string[] bossDrops;
     [SerializeField] GameObject[] iconsArray;
 
     void Awake()
@@ -72,6 +75,9 @@ public class EndlessManager : MonoBehaviour
         data.wonLastRound = info.wonLastRound;
         data.round = info.round;
         data.shoprerolls = info.shoprerolls;
+        data.shopcoupon = info.shopcoupon;
+        data.shoppass = info.shoppass;
+        data.wasPassUsed = info.wasPassUsed;
         int roundTemp = data.round;
 
         if (data.round > -1)
@@ -121,7 +127,23 @@ public class EndlessManager : MonoBehaviour
                 }
 
                 if (tempIsBoss)
+                {
                     gold += Random.Range(bonusGoldBoss.minGold, bonusGoldBoss.maxGold);
+                    if (Random.Range(0f, 1f) <= bossDropsChance)
+                    {
+                        switch(bossDrops[Random.Range(0, bossDrops.Length)])
+                        {
+                            case "shoppass":
+                                data.shoppass++;
+                                
+                                break;
+                            case "shopcoupon":
+                                data.shopcoupon++;
+                                break;
+                        }
+                        Debug.Log("DROP!");
+                    }
+                }
 
                 oldGold = info.gold;
                 info.gold += gold;
@@ -135,6 +157,8 @@ public class EndlessManager : MonoBehaviour
                 data.level = info.level + 1;
                 PlayLevelUp();
             }
+            data.isShopOpen = false;
+            data.wasPassUsed = false;
         }
         else
         {
@@ -146,6 +170,8 @@ public class EndlessManager : MonoBehaviour
                 strenght = Character.Strenght.CHAMPION;
             else
                 strenght = Character.Strenght.BABY;
+
+            data.isShopOpen = info.isShopOpen;
         }
 
         if (isBoss)
@@ -201,8 +227,6 @@ public class EndlessManager : MonoBehaviour
         data.playerUlt = info.playerUlt;
         data.gold = info.gold;
         data.gold = info.gold;
-        data.shopcoupon = info.shopcoupon;
-        data.shoppass = info.shoppass;
         data.generateShop = info.generateShop;
 
         if (roundTemp == -1)
@@ -242,7 +266,12 @@ public class EndlessManager : MonoBehaviour
         roundTxt.text = info.round.ToString();
 
         if (info.round % shopCd == 0)
-            shopBtn.interactable = true;
+        {
+            info.isShopOpen = true;
+        } else if (!info.isShopOpen && info.shoppass > 0)
+        {
+            passBtn.interactable = true;
+        }
 
         if (info.wonLastRound == 1)
             goldAnim.SetTrigger("g");
@@ -260,7 +289,7 @@ public class EndlessManager : MonoBehaviour
             Destroy(nextCard.gameObject);
             prevCard.gameObject.GetComponent<Animator>().SetTrigger("win");
             startBtn.interactable = false;
-            shopBtn.interactable = false;
+            info.isShopOpen = false;
             info.DeleteNoSceneChange();
             info.Load();
         } else
@@ -269,6 +298,11 @@ public class EndlessManager : MonoBehaviour
         }
 
         SaveSystem.Save(info);
+
+        if (info.isShopOpen)
+            shopBtn.interactable = true;
+        else
+            shopBtn.interactable = false;
 
         hpInfo.text = langmanag.GetInfo("stats", "name", "hp");
         manaInfo.text = langmanag.GetInfo("stats", "name", "mana");
@@ -292,12 +326,14 @@ public class EndlessManager : MonoBehaviour
         }
     }
 
-    void HideIcons()
+    public void OpenShop()
     {
-        for (int i = 0; i < iconsArray.Length; i++)
-        {
-            iconsArray[i].SetActive(false);
-        }
+        shopBtn.interactable = true;
+        passBtn.interactable = false;
+        info.shoppass--;
+        info.isShopOpen = true;
+        info.wasPassUsed = true;
+        info.Save();
     }
 
     void GenEnemy(int round)

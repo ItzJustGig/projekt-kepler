@@ -16,7 +16,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private Transform itemOwnList;
     [SerializeField] private GameObject inventoryGO;
     [SerializeField] private GameObject tooltip;
-    [SerializeField] private Toggle dicountToggle;
+    [SerializeField] private Toggle discountToggle;
 
     [SerializeField] private Image charcIcon;
     [SerializeField] private Text gold;
@@ -37,25 +37,32 @@ public class ShopManager : MonoBehaviour
     private Items.ShopRarity rarity;
 
     [SerializeField] Button rerollBtn;
+    [SerializeField] Button restBtn;
     [SerializeField] GameObject loadPanel;
     [SerializeField] Slider slider;
 
     private SceneLoader loader;
 
-    public float itemDiscount = .2f;
-    public int rerolls = 2;
-    public float nonCombatPriceIncrease;
-    public float nonCombatChanceDecrease;
-    public int commonMin;
-    public int commonMax;
-    public int uncommonMin;
-    public int uncommonMax;
-    public int rareMin;
-    public int rareMax;
-    public int epicMin;
-    public int epicMax;
-    public int legendaryMin;
-    public int legendaryMax;
+    [SerializeField] float itemDiscount = .2f;
+    [SerializeField] int rerolls = 2;
+    [SerializeField] int restPrice = 15;
+    [SerializeField] float nonCombatPriceIncrease;
+    [SerializeField] float nonCombatChanceDecrease;
+    [SerializeField] int commonMin;
+    [SerializeField] int commonMax;
+    [SerializeField] int uncommonMin;
+    [SerializeField] int uncommonMax;
+    [SerializeField] int rareMin;
+    [SerializeField] int rareMax;
+    [SerializeField] int epicMin;
+    [SerializeField] int epicMax;
+    [SerializeField] int legendaryMin;
+    [SerializeField] int legendaryMax;
+
+    [SerializeField] float hpRecover;
+    [SerializeField] float costsRecover;
+    [SerializeField] float sanityRecover;
+
 
     void Start()
     {
@@ -67,7 +74,7 @@ public class ShopManager : MonoBehaviour
         gold.text = info.gold.ToString();
 
         if (info.shopcoupon <= 0)
-            dicountToggle.interactable = false;
+            discountToggle.interactable = false;
 
         List<Character> champs = new List<Character>();
         foreach (Character t in champions.returnStuff())
@@ -159,10 +166,10 @@ public class ShopManager : MonoBehaviour
             max += (int)(max * nonCombatPriceIncrease);
         }
 
-        if (dicountToggle.isOn)
+        if (discountToggle.isOn)
             shopItem.SetUpCard(genItem, tooltip, min, max, itemDiscount);
         else
-            shopItem.SetUpCard(genItem, tooltip, min, max, itemDiscount);
+            shopItem.SetUpCard(genItem, tooltip, min, max, 0);
     }
 
     public void ToggleValueChanged(Toggle change)
@@ -185,7 +192,7 @@ public class ShopManager : MonoBehaviour
     {
         foreach (Transform child in itemOwnList)
         {
-            GameObject.Destroy(child.gameObject);
+            Destroy(child.gameObject);
         }
 
         for (int i = 0; i< info.items.Count; i++)
@@ -230,6 +237,11 @@ public class ShopManager : MonoBehaviour
             item3.Lock(false);
         else
             item3.Lock(true);
+
+        if (info.gold <= restPrice && !info.hasRested && !info.wasPassUsed)
+            restBtn.interactable = true;
+        else
+            restBtn.interactable = false;
     }
 
     void GetNextChance()
@@ -498,22 +510,46 @@ public class ShopManager : MonoBehaviour
         return null;
     }
 
+    public void Rest()
+    {
+        info.playerHp += hpRecover;
+        if (info.playerHp > 1)
+            info.playerHp = 1;
+
+        info.playerMn += costsRecover;
+        if (info.playerMn > 1)
+            info.playerMn = 1;
+
+        info.playerSta += costsRecover;
+        if (info.playerSta > 1)
+            info.playerSta = 1;
+
+        info.playerSan += sanityRecover;
+        if (info.playerSan > 1)
+            info.playerSan = 1;
+
+        info.gold -= restPrice;
+        info.hasRested = true;
+
+        info.Save();
+    }
+
     public void Buy(ShopItem shopItem)
     {
         shopItem.OutOfStock();
         info.gold -= shopItem.price;
-        info.itemShop.Remove(shopItem.GetItemString(dicountToggle.isOn));
+        info.itemShop.Remove(shopItem.GetItemString(discountToggle.isOn));
         info.itemShop.Add("");
 
-        if (dicountToggle.isOn)
+        if (discountToggle.isOn)
         {
             if (info.shopcoupon > 0)
             {
                 info.shopcoupon--;
                 if (info.shopcoupon <= 0)
-                    dicountToggle.interactable = false;
+                    discountToggle.interactable = false;
             } 
-            dicountToggle.isOn = false;
+            discountToggle.isOn = false;
         }
 
         if (!shopItem.nonCombatItem)
@@ -533,6 +569,7 @@ public class ShopManager : MonoBehaviour
                     break;
                 case "shoppass":
                     info.shoppass += 1;
+                    discountToggle.interactable = true;
                     break;
                 case "shopcoupon":
                     info.shopcoupon += 1;

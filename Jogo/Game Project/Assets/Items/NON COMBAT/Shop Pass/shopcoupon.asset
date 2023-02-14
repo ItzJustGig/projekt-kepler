@@ -18,4 +18,4 @@ MonoBehaviour:
   statmod: []
   moves: []
   rarity: 8
-  NonCombatItem: 1
+  nonCombatItem: 1

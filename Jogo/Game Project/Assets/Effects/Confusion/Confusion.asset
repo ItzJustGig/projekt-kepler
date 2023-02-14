@@ -16,6 +16,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 204b887f483372a4a81e3e30dc50c9fb, type: 3}
   haveSpecialDesc: 0
   duration: 0
+  timeReducImmunity: 1
   grantsOnRunOut: 0
   timesInc: 0
   canUsePhysical: 1
@@ -23,7 +24,7 @@ MonoBehaviour:
   canUseMagic: 1
   canUseSupp: 1
   canUseProtec: 1
-  canUseStatMod: 1
+  canUseEnchant: 1
   canUseSummon: 1
   phyDmgMin: 0
   phyDmgMax: 0
@@ -53,7 +54,7 @@ MonoBehaviour:
   shieldMax: 0
   shieldInc: 0
   cancelAtkChance: 0.3
-  recoil: 110
+  recoil: 45
   isScaleSpecial: 0
   scale: []
   statMods: []

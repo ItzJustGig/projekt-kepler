@@ -983,7 +983,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1454639303}
         m_TargetAssemblyTypeName: EndlessManager, Assembly-CSharp
-        m_MethodName: ShopBtn
+        m_MethodName: OpenShop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3578,6 +3578,7 @@ MonoBehaviour:
   info: {fileID: 1454639305}
   startBtn: {fileID: 618820731}
   shopBtn: {fileID: 194221979}
+  passBtn: {fileID: 268615115}
   roundTxt: {fileID: 250898086}
   goldCurTxt: {fileID: 1428233439}
   goldOldTxt: {fileID: 98760931}
@@ -3591,6 +3592,7 @@ MonoBehaviour:
   monsEncounters: {fileID: 1090020106}
   shopCd: 4
   baseGold: 8
+  bossDropsChance: 1
   bonusGold:
   - {fileID: 11400000, guid: 0cc4fb48b9e75da448a462c78ff1e81a, type: 2}
   - {fileID: 11400000, guid: 5fc9ab78639147e41b61d14b6ab93983, type: 2}
@@ -3610,6 +3612,9 @@ MonoBehaviour:
   slider: {fileID: 241064202}
   speaker: {fileID: 842898729}
   lvlup: {fileID: 8300000, guid: 7143b56f57a20ac408eb1c3b90495ef0, type: 3}
+  bossDrops:
+  - shoppass
+  - shopcoupon
   iconsArray:
   - {fileID: 460658395}
   - {fileID: 336556553}
@@ -3659,11 +3664,13 @@ MonoBehaviour:
   playerUlt: 0
   wonLastRound: 1
   generateShop: 0
+  isShopOpen: 0
   gold: 0
   level: 0
   round: -1
   shopcoupon: 0
   shoppass: 0
+  shoprerolls: 0
   items: []
   itemShop: []
 --- !u!114 &1454639306

@@ -33,6 +33,9 @@ public class EndlessData
 
     public int wonLastRound;
     public bool generateShop;
+    public bool isShopOpen;
+    public bool hasRested;
+    public bool wasPassUsed;
     public string[] items;
     public string[] itemShop;
 
@@ -61,6 +64,9 @@ public class EndlessData
         this.shopcoupon = data.shopcoupon;
         this.wonLastRound = data.wonLastRound;
         this.generateShop = data.generateShop;
+        this.wasPassUsed = data.wasPassUsed;
+        this.hasRested = data.hasRested;
+        this.isShopOpen = data.isShopOpen;
 
         this.items = new string[data.items.Count];
         int i = 0;
@@ -105,5 +111,8 @@ public class EndlessData
         this.level = 0;
         this.wonLastRound = 1;
         this.generateShop = true;
+        this.isShopOpen = false;
+        this.wasPassUsed = false;
+        this.hasRested = false;
     }
 }

@@ -14,7 +14,7 @@ public class Items : ScriptableObject
     public List<StatMod> statmod = new List<StatMod>();
     public List<Moves> moves = new List<Moves>();
     public ShopRarity rarity;
-    public bool NonCombatItem = false;
+    public bool nonCombatItem = false;
 
     public Items returnItem()
     {
@@ -25,6 +25,7 @@ public class Items : ScriptableObject
         item.statmod = statmod;
         item.moves = moves;
         item.rarity = rarity;
+        item.nonCombatItem = nonCombatItem;
 
         return item;
     }

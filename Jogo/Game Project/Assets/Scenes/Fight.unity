@@ -13498,9 +13498,9 @@ MonoBehaviour:
   cameraAudio: {fileID: 519420030}
   bossfightMusic: {fileID: 8300000, guid: aaa62555fba57c54c91430a342e1d0aa, type: 3}
   info: {fileID: 1001587210}
-  perHealthRegenEndless: 0.28
-  perCostsRegenEndless: 0.37
-  perSanityRegenEndless: 0.1
+  perHealthRegenEndless: 0.24
+  perCostsRegenEndless: 0.36
+  perSanityRegenEndless: 0.09
   perUltReduce: 0.185
   endlessStuff: {fileID: 1001587211}
   items: {fileID: 648629778}
@@ -13691,9 +13691,15 @@ MonoBehaviour:
   playerUlt: 0
   wonLastRound: 0
   generateShop: 0
+  isShopOpen: 0
+  wasPassUsed: 0
+  hasRested: 0
   gold: 0
   level: 0
   round: 0
+  shopcoupon: 0
+  shoppass: 0
+  shoprerolls: 0
   items: []
   itemShop: []
 --- !u!114 &1001587211
