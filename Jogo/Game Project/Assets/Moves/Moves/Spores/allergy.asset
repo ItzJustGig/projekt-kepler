@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: allergy
   m_EditorClassIdentifier: 
   durationMin: 2
-  durationMax: 4
+  durationMax: 3
   chance: 1
   targetPlayer: 0
   effect: {fileID: 11400000, guid: 5852edebe8bc58945ab14e40555f11bf, type: 2}

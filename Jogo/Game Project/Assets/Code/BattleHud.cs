@@ -75,12 +75,14 @@ public class BattleHud : MonoBehaviour
         hpSlider.value = unit.curHp;
         fillHp.color = gradientHp.Evaluate(1f);
         hpInfo.text = langmang.languageManager.GetText(language, "stats", "name", "hp");
+        hpInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "healbonus") + ": " + unit.SetModifiers().healBonus.ToString("0.00") + "%";
 
         manaText.text = unit.curMana + "/" + unit.charc.stats.mana;
         manaSlider.maxValue = unit.SetModifiers().mana;
         manaSlider.value = unit.curMana;
         fillMana.color = gradientMana.Evaluate(1f);
         manaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "mana");
+        manaInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "manacost") + ": " + unit.SetModifiers().manaCost.ToString("0.00") + "%";
 
         staminaText.text = unit.curStamina + "/" + unit.charc.stats.stamina;
         staminaSlider.maxValue = unit.SetModifiers().stamina;
@@ -89,12 +91,14 @@ public class BattleHud : MonoBehaviour
 
         staminaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "stamina");
         staminaInfo.text += "\n" + langmang.languageManager.GetText(language, "gui", "text", "staminatired");
+        staminaInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "staminacost") + ": " + unit.SetModifiers().staminaCost.ToString("0.00") + "%";
         staminaInfo.text = staminaInfo.text.Replace("%v%", staminaTired.ToString());
 
         shieldText.text = unit.curShield.ToString();
         shieldSlider.maxValue = maxShield;
         shieldSlider.value = unit.curShield;
         shieldInfo.text = langmang.languageManager.GetText(language, "gui", "text", "shield");
+        shieldInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "shieldbonus") + ": " + unit.SetModifiers().shieldBonus.ToString("0.00") + "%";
 
         ultInfo.text = langmang.languageManager.GetText(language, "gui", "text", "ultimate");
         ultInfo.text = ultInfo.text.Replace("%v%", ultSlider.value.ToString("0.00") +"%");
@@ -334,7 +338,7 @@ public class BattleHud : MonoBehaviour
         statsGO.SetActive(false);
     }
 
-    public IEnumerator SetHp (float hp, float maxHp)
+    public IEnumerator SetHp (float hp, float maxHp, float healBonus)
     {
         if (hp < 0)
             hp = 0;
@@ -365,10 +369,11 @@ public class BattleHud : MonoBehaviour
         hpSlider.value = hp;
         hpText.text = hpSlider.value.ToString("0") + "/" + maxHp;
         hpInfo.text = langmang.languageManager.GetText(language, "stats", "name", "hp");
+        hpInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "healbonus") + ": " + healBonus.ToString("0.00") + "%";
         fillHp.color = gradientHp.Evaluate(hpSlider.normalizedValue);
     }
 
-    public IEnumerator SetMana(float mana, float maxMana)
+    public IEnumerator SetMana(float mana, float maxMana, float manaCost)
     {
         if (mana < 0)
             mana = 0;
@@ -399,10 +404,11 @@ public class BattleHud : MonoBehaviour
         manaSlider.value = mana;
         manaText.text = manaSlider.value.ToString("0") + "/" + maxMana;
         manaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "mana");
+        manaInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "manacost") + ": " + manaCost.ToString("0.00") + "%";
         fillMana.color = gradientMana.Evaluate(manaSlider.normalizedValue);
     }
 
-    public IEnumerator SetStamina(float stamina, float maxStamina, int staminaTired)
+    public IEnumerator SetStamina(float stamina, float maxStamina, int staminaTired, float staminaCost)
     {
         if (stamina < 0)
             stamina = 0;
@@ -434,11 +440,12 @@ public class BattleHud : MonoBehaviour
         staminaText.text = staminaSlider.value.ToString("0") + "/" + maxStamina; 
         staminaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "stamina");
         staminaInfo.text += "\n" + langmang.languageManager.GetText(language, "gui", "text", "staminatired");
+        staminaInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "staminacost") + ": " + staminaCost.ToString("0.00") + "%";
         staminaInfo.text = staminaInfo.text.Replace("%v%", staminaTired.ToString());
         fillStamina.color = gradientStamina.Evaluate(staminaSlider.normalizedValue);
     }
 
-    public IEnumerator SetShield(float shield)
+    public IEnumerator SetShield(float shield, float shieldBonus)
     {
         if (shield < 0)
             shield = 0;
@@ -471,6 +478,7 @@ public class BattleHud : MonoBehaviour
         shieldSlider.value = shield;
         shieldText.text = shieldSlider.value.ToString("0");
         shieldInfo.text = langmang.languageManager.GetText(language, "gui", "text", "shield");
+        shieldInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "shieldbonus") + ": " + shieldBonus.ToString("0.00") + "%";
     }
 
     public void SetUlt(float value, float ultrate)

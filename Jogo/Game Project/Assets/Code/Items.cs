@@ -76,6 +76,14 @@ public class Items : ScriptableObject
         return builder;
     }
 
+    public StringBuilder GetBuy(LanguageManager languageManager, string language)
+    {
+        StringBuilder builder = new StringBuilder();
+        builder.Append(languageManager.GetText(language, "items", "purchase", name));
+
+        return builder;
+    }
+
     public StringBuilder GetActive(LanguageManager languageManager, string language, int cd)
     {
         StringBuilder builder = new StringBuilder();
@@ -133,6 +141,11 @@ public class Items : ScriptableObject
 
                     builder.Replace("%txt%", m.GetMoveInfo());
                 }
+        } else if (nonCombatItem)
+        {
+            builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
+            builder.Append(languageManager.GetText(language, "items", "buy"));
+            builder.Replace("%txt%", GetBuy(languageManager, language).ToString());
         }
 
         return builder.ToString();

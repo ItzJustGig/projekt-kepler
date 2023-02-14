@@ -22,7 +22,7 @@ MonoBehaviour:
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 60
+  magicDmg: 20
   trueDmg: 0
   sanityDmg: 0
   heal: 0
@@ -32,9 +32,9 @@ MonoBehaviour:
   shield: 0
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 6
+  cooldown: 7
   inCooldown: 0
-  manaCost: 45
+  manaCost: 60
   staminaCost: 0
   ultCost: 100
   needFullUlt: 1

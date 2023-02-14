@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: viper stats
   m_EditorClassIdentifier: 
-  hp: 340
-  hpRegen: 17
+  hp: 320
+  hpRegen: 14
   mana: 325
   manaRegen: 0.4
   manaCost: 1
@@ -22,18 +22,19 @@ MonoBehaviour:
   staminaCost: 1
   sanity: 140
   atkDmg: 24
-  magicPower: 28
-  critChance: 0.105
+  magicPower: 26
+  critChance: 0.094
   critDmg: 0.1235
-  dmgResis: 27
+  dmgResis: 25
   magicResis: 24
   timing: 0.9
-  movSpeed: 105
-  lifesteal: 0.1285
+  movSpeed: 100
+  lifesteal: 0.1
   healBonus: 0
   shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 1
   sizeMod: 0

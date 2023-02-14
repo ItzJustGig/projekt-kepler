@@ -16,13 +16,15 @@ MonoBehaviour:
   name: glare
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
   magicDmg: 25
   trueDmg: 10
-  sanityDmg: 8
+  sanityDmg: 7
   heal: 0
   healMana: 0
   healStamina: 0
@@ -32,8 +34,10 @@ MonoBehaviour:
   healFromDmg: 0
   cooldown: 9
   inCooldown: 0
-  manaCost: 85
+  manaCost: 90
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
@@ -41,6 +45,10 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: a734dc2fa1a86664b8d71646b6706332, type: 2}
   - {fileID: 11400000, guid: 27635e9351b718e43bf0c1c13838173a, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: 290be62211f7f9449bed9259439f554d, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

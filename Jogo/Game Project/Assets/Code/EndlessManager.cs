@@ -49,6 +49,8 @@ public class EndlessManager : MonoBehaviour
     [SerializeField] private TooltipButton sanityInfo;
     [SerializeField] private TooltipButton ultInfo;
 
+    [SerializeField] GameObject dropItemBox;
+    [SerializeField] GameObject dropItemPanel;
     [SerializeField] GameObject loadPanel;
     [SerializeField] Slider slider;
     [SerializeField] AudioSource speaker;
@@ -62,8 +64,15 @@ public class EndlessManager : MonoBehaviour
     int oldGold;
     Character.Strenght strenght;
     bool isBoss;
-    [SerializeField] string[] bossDrops;
     [SerializeField] GameObject[] iconsArray;
+    [System.Serializable]
+    struct BossDrops
+    {
+        public string name;
+        public Sprite sprite;
+    }
+
+    [SerializeField] List<BossDrops> bossDrops = new List<BossDrops>();
 
     void Awake()
     {
@@ -78,6 +87,7 @@ public class EndlessManager : MonoBehaviour
         data.shopcoupon = info.shopcoupon;
         data.shoppass = info.shoppass;
         data.wasPassUsed = info.wasPassUsed;
+        data.hasRested = info.hasRested;
         int roundTemp = data.round;
 
         if (data.round > -1)
@@ -131,17 +141,20 @@ public class EndlessManager : MonoBehaviour
                     gold += Random.Range(bonusGoldBoss.minGold, bonusGoldBoss.maxGold);
                     if (Random.Range(0f, 1f) <= bossDropsChance)
                     {
-                        switch(bossDrops[Random.Range(0, bossDrops.Length)])
+                        int temp = Random.Range(0, bossDrops.Count);
+                        dropItemBox.transform.Find("drop").Find("dropTxt").GetComponent<Text>().text = langmanag.GetInfo("items", "name", bossDrops[temp].name);
+                        dropItemBox.transform.Find("drop").Find("dropIcon").GetComponent<Image>().sprite = bossDrops[temp].sprite;
+                        dropItemBox.transform.Find("drop").GetComponent<TooltipButton>().text = langmanag.GetInfo("items", "purchase", bossDrops[temp].name);
+                        dropItemPanel.SetActive(true);
+                        switch (bossDrops[temp].name)
                         {
                             case "shoppass":
                                 data.shoppass++;
-                                
                                 break;
                             case "shopcoupon":
                                 data.shopcoupon++;
                                 break;
                         }
-                        Debug.Log("DROP!");
                     }
                 }
 
@@ -449,6 +462,11 @@ public class EndlessManager : MonoBehaviour
 
         //HideIcons();
         loader.LoadScene(2, slider, loadPanel);
+    }
+
+    public void DropBossOkBtn()
+    {
+        dropItemPanel.SetActive(false);
     }
 
     IEnumerator WaitWhile()

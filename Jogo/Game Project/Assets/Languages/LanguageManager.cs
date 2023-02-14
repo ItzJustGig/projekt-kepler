@@ -2053,6 +2053,7 @@ public class LanguageManager : MonoBehaviour
     {
         public string passive;
         public string active;
+        public string buy;
         public string stat;
         public string cd;
         public string uses;
@@ -2060,6 +2061,7 @@ public class LanguageManager : MonoBehaviour
         public Item_Name name;
         public Item_Rarity rarity;
         public Item_Move move;
+        public Item_Buy purchase;
 
         public string Get_Item(string a, string b)
         {
@@ -2074,6 +2076,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "active":
                     returns = active;
+                    break;
+                case "buy":
+                    returns = buy;
                     break;
                 case "stat":
                     returns = stat;
@@ -2092,6 +2097,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "move":
                     returns = move.Get_ItemMove(b);
+                    break;
+                case "purchase":
+                    returns = purchase.Get_ItemBuy(b);
                     break;
                 default:
                     returns = "null";
@@ -2335,6 +2343,43 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "prismaticstaff":
                     returns = prismaticstaff;
+                    break;
+                default:
+                    returns = "null";
+                    break;
+            }
+            return returns;
+        }
+    }
+
+    [Serializable]
+    public class Item_Buy
+    {
+        public string xpflask;
+        public string xpbottle;
+        public string xppot;
+        public string shoppass;
+        public string shopcoupon;
+
+        public string Get_ItemBuy(string a)
+        {
+            string returns;
+            switch (a)
+            {
+                case "xpflask":
+                    returns = xpflask;
+                    break;
+                case "xpbottle":
+                    returns = xpbottle;
+                    break;
+                case "xppot":
+                    returns = xppot;
+                    break;
+                case "shoppass":
+                    returns = shoppass;
+                    break;
+                case "shopcoupon":
+                    returns = shopcoupon;
                     break;
                 default:
                     returns = "null";

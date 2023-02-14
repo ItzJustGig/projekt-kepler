@@ -561,6 +561,7 @@
 		"title": "Item",
 		"passive":"<color=#ffdf00>PASSIVE</color>: %txt%",
 		"active":"<color=#ffdf00>ACTIVE (%uses%%cd%)</color>: %txt%",
+		"buy":"<color=#ffdf00>BUY</color>: %txt%",
 		"cd": "%val% turns cooldown",
 		"uses": "%val% times, ",
 		"stat":"%c%+%val%% %stat%%c/%",
@@ -604,8 +605,8 @@
 			"xpflask": "XP Flask",
 			"xpbottle": "XP Bottle",
 			"xppot": "XP Pot",
-			"shoppass": "Shop Pass",
-			"shopcoupon": "20% OFF Coupon!!"
+            "shoppass": "Shop Pass",
+            "shopcoupon": "Shop Coupon"
 		},
 		"move": {
 			"zap": "The carrier will <color=#ffdf00>zap</color> the target with a %type% to %dmg%",
@@ -617,6 +618,13 @@
 			"jewelofthedruid": "The carrier uses a %type% that %summondesc%",
 			"shadowshroom": "The carrier uses an %type% that %dmg%and grants %modu%",
 			"prismaticstaff": "use a %type% that %dmg%and have <color=#f75145>%critdmg%% critical damage bonus</color>"
+		},
+		"purchase":{
+			"xpflask": "The user gain +1 level",
+			"xpbottle": "The user gain +2 level",
+			"xppot": "The user gain +3 level",
+            "shoppass": "The user can open the shop when its closed",
+            "shopcoupon": "The user gain a coupon that can be used on teh shop to get a 20% Off on an item"
 		}
 	},
 	"summon": {

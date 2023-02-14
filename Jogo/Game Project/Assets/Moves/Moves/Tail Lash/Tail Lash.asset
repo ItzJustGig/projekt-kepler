@@ -38,8 +38,8 @@ MonoBehaviour:
   staminaCost: 60
   ultCost: 100
   needFullUlt: 1
-  critDmgBonus: 0.13
-  critChanceBonus: 0.24
+  critDmgBonus: 0.15
+  critChanceBonus: 0.28
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
   scale:

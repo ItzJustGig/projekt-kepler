@@ -238,7 +238,7 @@ public class ShopManager : MonoBehaviour
         else
             item3.Lock(true);
 
-        if (info.gold <= restPrice && !info.hasRested && !info.wasPassUsed)
+        if (info.gold >= restPrice && !info.hasRested && !info.wasPassUsed)
             restBtn.interactable = true;
         else
             restBtn.interactable = false;
@@ -530,6 +530,8 @@ public class ShopManager : MonoBehaviour
 
         info.gold -= restPrice;
         info.hasRested = true;
+        restBtn.interactable = false;
+        CheckPrice();
 
         info.Save();
     }

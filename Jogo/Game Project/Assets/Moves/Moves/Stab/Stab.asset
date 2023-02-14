@@ -23,7 +23,7 @@ MonoBehaviour:
   blocksRanged: 0
   phyDmg: 50
   magicDmg: 0
-  trueDmg: 40
+  trueDmg: 15
   sanityDmg: 0
   heal: 0
   healMana: 0
@@ -44,6 +44,7 @@ MonoBehaviour:
   statModEnemy: {fileID: 11400000, guid: d0594c5a94979394c89428579ef55029, type: 2}
   scale:
   - {fileID: 11400000, guid: 11e3ca33d58bcbc40987db969205643c, type: 2}
+  - {fileID: 11400000, guid: 0337d22a37e5d184c8f227d81f8b3b61, type: 2}
   dot: []
   effects:
   - {fileID: 11400000, guid: ae8b1987c9004ef48bab9a1cc06e2207, type: 2}

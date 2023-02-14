@@ -35,7 +35,7 @@ MonoBehaviour:
   cooldown: 4
   inCooldown: 0
   manaCost: 0
-  staminaCost: 35
+  staminaCost: 30
   ultCost: 100
   needFullUlt: 1
   critDmgBonus: 0

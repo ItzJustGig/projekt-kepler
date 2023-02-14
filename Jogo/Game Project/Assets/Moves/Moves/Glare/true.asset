@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 2
   playerStat: 0
   flatValue: 0
-  curHp: 0.015
+  curHp: 0.012
   missHp: 0
   maxHp: 0
   hpRegen: 0

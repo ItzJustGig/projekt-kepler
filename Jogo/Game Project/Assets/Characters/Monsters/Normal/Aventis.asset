@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 2
   classe: 6
-  size: 2
+  size: 1
   name: aventis
   isBasicPhysical: 1
   sprite: {fileID: 5806852883944117854, guid: aed35b1ed4f5ac94c90445984397901f, type: 3}

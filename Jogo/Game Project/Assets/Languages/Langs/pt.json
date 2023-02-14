@@ -562,6 +562,7 @@
         "title": "Iten",
         "passive":"<color=#ffdf00>PASSIVA</color>: %txt%",
 		"active":"<color=#ffdf00>ACTIVA (%uses%%cd%)</color>: %txt%",
+		"buy":"<color=#ffdf00>COMPRA</color>: %txt%",
 		"cd": "%val% turnos de recarga",
 		"uses": "%val% vezes, ",
 		"stat":"%c%+%val%% %stat%%c/%",
@@ -606,7 +607,7 @@
             "xpbottle": "Garrafa de EXP",
             "xppot": "Pote de EXP",
             "shoppass": "Passe da Loja",
-            "shopcoupon": "Cop\u00e3o 20% de Desconto!!"
+            "shopcoupon": "Cop\u00e3o de desconto"
         },
 		"move": {
 			"zap": "O transportador d\u00e1 <color=#ffdf00>zap</color> no alvo com uma %type% que %dmg%",
@@ -618,7 +619,14 @@
 			"jewelofthedruid": "O transportador usa uma %type% que %summondesc%",
 			"shadowshroom": "O transportador usa um %type% que %dmg%e aumenta %modu%",
 			"prismaticstaff": "O transportador usa uma %type% que %dmg%e tem <color=#f75145>%critdmg%% dano cr\u00edtico b\u00f3nus</color>"
-		}
+		},
+        "purchase": {
+            "xpflask": "O utilizador ganha +1 n\u00edvel",
+            "xpbottle": "O utilizador ganha +2 n\u00edveis",
+            "xppot": "O utilizador ganha +3 n\u00edveis",
+            "shoppass": "O utilizador pode abrir quando estiver fechada",
+            "shopcoupon": "O utilizador ganha um cop\u00e3o que pode utilizar na loja para ter 20% de desconto num item"
+        }
     },
 	"summon": {
         "title": "Summon",

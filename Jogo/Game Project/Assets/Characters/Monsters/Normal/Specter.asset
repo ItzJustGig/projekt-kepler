@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 2
   classe: 3
-  size: 0
+  size: -1
   name: specter
   isBasicPhysical: 0
   sprite: {fileID: 5806852883944117854, guid: 72fa2aa1ac124704babe070e8e3c7ed2, type: 3}

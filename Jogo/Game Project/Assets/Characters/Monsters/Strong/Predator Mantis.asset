@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 3
   classe: 2
-  size: 3
+  size: 2
   name: predatormantis
+  isBasicPhysical: 1
   sprite: {fileID: 5806852883944117854, guid: 54c7e80f84c356f459075018cbb56048, type: 3}
   charcIcon: {fileID: 21300000, guid: 35fc7322c521a554c900285ffc0f687b, type: 3}
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}

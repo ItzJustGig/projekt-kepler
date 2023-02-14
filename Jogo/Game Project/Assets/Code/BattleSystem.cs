@@ -2123,14 +2123,14 @@ public class BattleSystem : MonoBehaviour
             }
         }
 
-        StartCoroutine(playerHUD.SetHp(playerUnit.curHp, statsP.hp));
-        StartCoroutine(enemyHUD.SetHp(enemyUnit.curHp, statsE.hp));
-        StartCoroutine(playerHUD.SetMana(playerUnit.curMana, statsP.mana));
-        StartCoroutine(enemyHUD.SetMana(enemyUnit.curMana, statsE.mana));
-        StartCoroutine(playerHUD.SetStamina(playerUnit.curStamina, statsP.stamina, (int)(statsP.stamina * (tiredStart + (tiredGrowth * tiredStacks)))));
-        StartCoroutine(enemyHUD.SetStamina(enemyUnit.curStamina, statsE.stamina, (int)(statsE.stamina * (tiredStart + (tiredGrowth * tiredStacks)))));
-        StartCoroutine(playerHUD.SetShield(playerUnit.curShield));
-        StartCoroutine(enemyHUD.SetShield(enemyUnit.curShield));
+        StartCoroutine(playerHUD.SetHp(playerUnit.curHp, statsP.hp, playerUnit.SetModifiers().healBonus*100));
+        StartCoroutine(enemyHUD.SetHp(enemyUnit.curHp, statsE.hp, enemyUnit.SetModifiers().healBonus * 100));
+        StartCoroutine(playerHUD.SetMana(playerUnit.curMana, statsP.mana, playerUnit.SetModifiers().manaCost * 100));
+        StartCoroutine(enemyHUD.SetMana(enemyUnit.curMana, statsE.mana, enemyUnit.SetModifiers().manaCost * 100));
+        StartCoroutine(playerHUD.SetStamina(playerUnit.curStamina, statsP.stamina, (int)(statsP.stamina * (tiredStart + (tiredGrowth * tiredStacks))), playerUnit.SetModifiers().staminaCost * 100));
+        StartCoroutine(enemyHUD.SetStamina(enemyUnit.curStamina, statsE.stamina, (int)(statsE.stamina * (tiredStart + (tiredGrowth * tiredStacks))), enemyUnit.SetModifiers().staminaCost * 100));
+        StartCoroutine(playerHUD.SetShield(playerUnit.curShield, playerUnit.SetModifiers().shieldBonus * 100));
+        StartCoroutine(enemyHUD.SetShield(enemyUnit.curShield, enemyUnit.SetModifiers().shieldBonus * 100));
         playerHUD.SetUlt(playerUnit.ult, playerUnit.SetModifiers().ultrate);
         enemyHUD.SetUlt(enemyUnit.ult, enemyUnit.SetModifiers().ultrate);
         playerHUD.SetBlood(playerUnit.bloodStacks);

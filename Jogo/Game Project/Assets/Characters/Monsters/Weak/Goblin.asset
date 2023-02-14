@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 1
   classe: 2
-  size: 0
+  size: -1
   name: goblin
+  isBasicPhysical: 1
   sprite: {fileID: 5806852883944117854, guid: f88cf1d4d8213924092e12b04b36b804, type: 3}
   charcIcon: {fileID: 21300000, guid: a62594550d6fd604f8fe8e59fd698cca, type: 3}
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
