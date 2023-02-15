@@ -12,22 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: babymimi stats
   m_EditorClassIdentifier: 
-  hp: 470
-  hpRegen: 16
+  hp: 480
+  hpRegen: 17
   mana: 125
   manaRegen: 0.1
-  stamina: 260
+  manaCost: 1
+  stamina: 275
   staminaRegen: 0.3
+  staminaCost: 1
   sanity: 65
-  atkDmg: 38
+  atkDmg: 39
   magicPower: 15
   critChance: 0.06
   critDmg: 0.085
-  dmgResis: 40
+  dmgResis: 42
   magicResis: 19
   timing: 1.8
   movSpeed: 125
   lifesteal: 0
+  healBonus: 0
+  shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  magicPen: 0
+  ultrate: 1
+  sizeMod: 0

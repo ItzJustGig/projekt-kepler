@@ -21,19 +21,20 @@ MonoBehaviour:
   staminaRegen: 0.4
   staminaCost: 1
   sanity: 40
-  atkDmg: 22
+  atkDmg: 24
   magicPower: 38
   critChance: 0.04
-  critDmg: 0.025
+  critDmg: 0.0475
   dmgResis: 27
-  magicResis: 34
-  timing: 0.8
-  movSpeed: 90
+  magicResis: 37
+  timing: 0.9
+  movSpeed: 95
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 1
   sizeMod: 0

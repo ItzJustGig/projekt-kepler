@@ -30,7 +30,7 @@ MonoBehaviour:
   curSanity: 0
   missSanity: 0
   maxSanity: 0
-  atkDmg: 0.1
+  atkDmg: 0.12
   magicPower: 0
   dmgResis: 0
   magicResis: 0

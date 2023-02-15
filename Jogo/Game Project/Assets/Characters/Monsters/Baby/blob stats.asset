@@ -12,15 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: blob stats
   m_EditorClassIdentifier: 
-  hp: 415
+  hp: 425
   hpRegen: 21
   mana: 235
   manaRegen: 0.8
+  manaCost: 1
   stamina: 140
   staminaRegen: 0.2
+  staminaCost: 1
   sanity: 90
   atkDmg: 13
-  magicPower: 32
+  magicPower: 35
   critChance: 0.034
   critDmg: 0.05
   dmgResis: 29
@@ -28,6 +30,11 @@ MonoBehaviour:
   timing: 1
   movSpeed: 135
   lifesteal: 0.15
+  healBonus: 0
+  shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  magicPen: 0
+  ultrate: 1
+  sizeMod: 0

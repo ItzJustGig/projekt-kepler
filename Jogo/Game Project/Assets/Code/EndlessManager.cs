@@ -50,6 +50,7 @@ public class EndlessManager : MonoBehaviour
     [SerializeField] private TooltipButton ultInfo;
 
     [SerializeField] GameObject dropItemBox;
+    [SerializeField] GameObject deleteSaveBox;
     [SerializeField] GameObject dropItemPanel;
     [SerializeField] GameObject loadPanel;
     [SerializeField] Slider slider;
@@ -146,6 +147,7 @@ public class EndlessManager : MonoBehaviour
                         dropItemBox.transform.Find("drop").Find("dropIcon").GetComponent<Image>().sprite = bossDrops[temp].sprite;
                         dropItemBox.transform.Find("drop").GetComponent<TooltipButton>().text = langmanag.GetInfo("items", "purchase", bossDrops[temp].name);
                         dropItemPanel.SetActive(true);
+                        dropItemBox.SetActive(true);
                         switch (bossDrops[temp].name)
                         {
                             case "shoppass":
@@ -467,6 +469,19 @@ public class EndlessManager : MonoBehaviour
     public void DropBossOkBtn()
     {
         dropItemPanel.SetActive(false);
+        dropItemBox.SetActive(false);
+    }
+
+    public void DeleteBtn()
+    {
+        dropItemPanel.SetActive(true);
+        deleteSaveBox.SetActive(true);
+    }
+
+    public void DeleteCancelBtn()
+    {
+        dropItemPanel.SetActive(false);
+        deleteSaveBox.SetActive(false);
     }
 
     IEnumerator WaitWhile()

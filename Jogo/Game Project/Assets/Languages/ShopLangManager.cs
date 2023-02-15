@@ -20,6 +20,9 @@ public class ShopLangManager : MonoBehaviour
     [SerializeField] private TooltipButton uncommonTt;
     [SerializeField] private TooltipButton rareTt;
     [SerializeField] private TooltipButton epicTt;
+    [SerializeField] private TooltipButton coupon;
+    [SerializeField] private TooltipButton reroll;
+    [SerializeField] private TooltipButton rest;
 
     private void Awake()
     {
@@ -36,6 +39,15 @@ public class ShopLangManager : MonoBehaviour
         uncommonTt.text = GetInfoRarity("items", "rarity", "uncommon", 1);
         rareTt.text = GetInfoRarity("items", "rarity", "rare", 2);
         epicTt.text = GetInfoRarity("items", "rarity", "epic", 3);
+
+        coupon.text = GetInfo("gui", "button", "coupon");
+        coupon.text = coupon.text.Replace("%off%", (this.gameObject.GetComponent<ShopManager>().itemDiscount*100).ToString());
+        reroll.text = GetInfo("gui", "button", "reroll");
+        rest.text = GetInfo("gui", "button", "rest");
+        rest.text = rest.text.Replace("%val1%", (this.gameObject.GetComponent<ShopManager>().hpRecover*100).ToString());
+        rest.text = rest.text.Replace("%val2%", (this.gameObject.GetComponent<ShopManager>().costsRecover*100).ToString());
+        rest.text = rest.text.Replace("%val3%", (this.gameObject.GetComponent<ShopManager>().sanityRecover * 100).ToString());
+        rest.text = rest.text.Replace("%gold%", this.gameObject.GetComponent<ShopManager>().restPrice.ToString());
     }
 
     public string GetInfoRarity(string arg1, string arg2, string arg3, int rarity)

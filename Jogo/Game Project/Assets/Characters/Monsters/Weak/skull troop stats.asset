@@ -12,22 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: skull troop stats
   m_EditorClassIdentifier: 
-  hp: 505
+  hp: 525
   hpRegen: 20
   mana: 140
   manaRegen: 0.2
+  manaCost: 1
   stamina: 400
   staminaRegen: 0.9
+  staminaCost: 1
   sanity: 105
   atkDmg: 59
-  magicPower: 20
+  magicPower: 22
   critChance: 0.18
-  critDmg: 0.12
+  critDmg: 0.145
   dmgResis: 76
   magicResis: 40
   timing: 1.85
   movSpeed: 140
   lifesteal: 0
+  healBonus: 0
+  shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  magicPen: 0
+  ultrate: 1
+  sizeMod: 0

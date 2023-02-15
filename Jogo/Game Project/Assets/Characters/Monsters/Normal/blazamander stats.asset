@@ -12,22 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: blazamander stats
   m_EditorClassIdentifier: 
-  hp: 990
+  hp: 1010
   hpRegen: 30
   mana: 545
   manaRegen: 0.9
-  stamina: 280
+  manaCost: 1
+  stamina: 290
   staminaRegen: 0.45
+  staminaCost: 1
   sanity: 130
-  atkDmg: 38
+  atkDmg: 41
   magicPower: 63
-  critChance: 0.095
-  critDmg: 0.1135
+  critChance: 0.1
+  critDmg: 0.1435
   dmgResis: 49
   magicResis: 65
   timing: 1.45
   movSpeed: 205
   lifesteal: 0
+  healBonus: 0
+  shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  magicPen: 0
+  ultrate: 1
+  sizeMod: 0

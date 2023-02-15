@@ -43,9 +43,9 @@ public class ShopManager : MonoBehaviour
 
     private SceneLoader loader;
 
-    [SerializeField] float itemDiscount = .2f;
+    [SerializeField] public float itemDiscount = .2f;
     [SerializeField] int rerolls = 2;
-    [SerializeField] int restPrice = 15;
+    [SerializeField] public int restPrice = 15;
     [SerializeField] float nonCombatPriceIncrease;
     [SerializeField] float nonCombatChanceDecrease;
     [SerializeField] int commonMin;
@@ -59,9 +59,9 @@ public class ShopManager : MonoBehaviour
     [SerializeField] int legendaryMin;
     [SerializeField] int legendaryMax;
 
-    [SerializeField] float hpRecover;
-    [SerializeField] float costsRecover;
-    [SerializeField] float sanityRecover;
+    [SerializeField] public float hpRecover;
+    [SerializeField] public float costsRecover;
+    [SerializeField] public float sanityRecover;
 
 
     void Start()

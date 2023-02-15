@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: worm stats
   m_EditorClassIdentifier: 
-  hp: 330
-  hpRegen: 13
+  hp: 340
+  hpRegen: 14
   mana: 185
   manaRegen: 0.15
   manaCost: 1
-  stamina: 370
+  stamina: 380
   staminaRegen: 0.2
   staminaCost: 1
   sanity: 85
@@ -26,14 +26,15 @@ MonoBehaviour:
   critChance: 0.0425
   critDmg: 0.0635
   dmgResis: 28
-  magicResis: 19
-  timing: 0.7
-  movSpeed: 95
+  magicResis: 20
+  timing: 0.75
+  movSpeed: 105
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 1
   sizeMod: 0

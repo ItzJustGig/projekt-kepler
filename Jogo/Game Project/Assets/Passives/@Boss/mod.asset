@@ -16,28 +16,29 @@ MonoBehaviour:
   time: -1
   inTime: 0
   chance: 0
-  hp: 0.15
-  hpRegen: 0.15
-  mana: 0.15
-  manaRegen: 0.15
+  hp: 0.25
+  hpRegen: 0.25
+  mana: 0.25
+  manaRegen: 0.25
   manaCost: 0
-  stamina: 0.15
-  staminaRegen: 0.15
+  stamina: 0.25
+  staminaRegen: 0.25
   staminaCost: 0
   sanity: 0
-  atkDmg: 0.15
-  magicPower: 0.15
+  atkDmg: 0.25
+  magicPower: 0.25
   critChance: 0
   critDmg: 0
-  dmgResis: 0.15
-  magicResis: 0.15
-  timing: 0.15
-  movSpeed: 0.15
+  dmgResis: 0.25
+  magicResis: 0.25
+  timing: 0.25
+  movSpeed: 0.25
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0
   accuracy: 0
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 0
   size: 2

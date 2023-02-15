@@ -24,7 +24,13 @@
 			"inventory": "Inventory",
 			"items": "Items",
 			"forfeit": "Forfeit",
-			"cancelforfeit": "Giving up is for cowards!"
+			"cancelforfeit": "Giving up is for cowards!",
+			"ok": "Ok",
+			"confirm": "Confirm",
+			"pass": "Open the shop for this round, costs 1 Shop Pass",
+			"coupon": "Get a %off%% OFF on the next bough item! Costs 1 Shop Coupon",
+			"reroll": "Reroll all the items in the shop",
+			"rest": "Rest for a bit and recover %val1%% max health, %val2%% max mana and stamina and %val3%% max sanity for the price of %gold% gold\nThis service is not granted when using the shop pass"
 		},
 		"text": {
 			"game": "PROJEKT: KEPLER",
@@ -74,7 +80,10 @@
 			"leavetitle": "Leaving already?",
 			"leavetext": "Are you sure you want to leave? \nYou will lose all your progress on this battle.",
 			"chanceshop": "Chances of the next shop:",
-			"level": "Level "
+			"level": "Level ",
+			"loottitle": "LOOT",
+			"confirmdeletetitle": "Are you sure?",
+			"confirmdeletetext": "You will lose all your progress on this journey."
 		}
 	},
 	"showdetail": {

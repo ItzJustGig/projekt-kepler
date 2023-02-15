@@ -3176,6 +3176,7 @@ GameObject:
   - component: {fileID: 939563517}
   - component: {fileID: 939563516}
   - component: {fileID: 939563515}
+  - component: {fileID: 939563518}
   m_Layer: 5
   m_Name: RestBtn
   m_TagString: Untagged
@@ -3297,6 +3298,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939563513}
   m_CullTransparentMesh: 1
+--- !u!114 &939563518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939563513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb0ee46bff17304e9d4edad75892f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPopup: {fileID: 981423215}
+  tooltipPopupSec: {fileID: 0}
+  text: 
+  textSec: 
+  wantSec: 0
 --- !u!1 &956014075
 GameObject:
   m_ObjectHideFlags: 0
@@ -4524,6 +4542,9 @@ MonoBehaviour:
   uncommonTt: {fileID: 1069336910}
   rareTt: {fileID: 1865149043}
   epicTt: {fileID: 1465420994}
+  coupon: {fileID: 2093405462}
+  reroll: {fileID: 317268548}
+  rest: {fileID: 939563518}
 --- !u!114 &1250475055
 MonoBehaviour:
   m_ObjectHideFlags: 0

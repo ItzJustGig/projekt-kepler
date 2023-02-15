@@ -493,6 +493,12 @@ public class LanguageManager : MonoBehaviour
         public string items;
         public string forfeit;
         public string cancelforfeit;
+        public string ok;
+        public string confirm;
+        public string pass;
+        public string coupon;
+        public string reroll;
+        public string rest;
 
         public string Get_ButtonCont(string a)
         {
@@ -559,6 +565,24 @@ public class LanguageManager : MonoBehaviour
                 case "cancelforfeit":
                     returns = cancelforfeit;
                     break;
+                case "ok":
+                    returns = ok;
+                    break;
+                case "confirm":
+                    returns = confirm;
+                    break;
+                case "pass":
+                    returns = pass;
+                    break;
+                case "coupon":
+                    returns = coupon;
+                    break;
+                case "reroll":
+                    returns = reroll;
+                    break;
+                case "rest":
+                    returns = rest;
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -618,6 +642,9 @@ public class LanguageManager : MonoBehaviour
         public string leavetext;
         public string chanceshop;
         public string level;
+        public string loottitle;
+        public string confirmdeletetitle;
+        public string confirmdeletetext;
 
         public string Get_TextCont(string a)
         {
@@ -767,6 +794,15 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "level":
                     returns = level;
+                    break;
+                case "loottitle":
+                    returns = loottitle;
+                    break;
+                case "confirmdeletetitle":
+                    returns = confirmdeletetitle;
+                    break;
+                case "confirmdeletetext":
+                    returns = confirmdeletetext;
                     break;
                 default:
                     returns = "null";

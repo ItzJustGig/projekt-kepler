@@ -132,8 +132,6 @@ public class EndlessInfo : MonoBehaviour
 
     public void DeleteNoSceneChange()
     {
-        EndlessData data = SaveSystem.Load();
-
         this.isEnemyChampPrev = false;
         this.enemyIdPrev = -1;
         this.enemyLevelPrev = 0;

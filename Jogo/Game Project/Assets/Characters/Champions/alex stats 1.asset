@@ -22,7 +22,7 @@ MonoBehaviour:
   staminaCost: 1
   sanity: 200
   atkDmg: 22
-  magicPower: 30
+  magicPower: 12
   critChance: 0.14
   critDmg: 0.2
   dmgResis: 23.65
@@ -35,5 +35,6 @@ MonoBehaviour:
   accuracy: 1
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 1
   sizeMod: 0

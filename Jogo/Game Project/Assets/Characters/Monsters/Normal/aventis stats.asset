@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: aventis stats
   m_EditorClassIdentifier: 
-  hp: 410
+  hp: 445
   hpRegen: 14
   mana: 345
   manaRegen: 0.4
@@ -21,8 +21,8 @@ MonoBehaviour:
   staminaRegen: 0.55
   staminaCost: 1
   sanity: 115
-  atkDmg: 31
-  magicPower: 19
+  atkDmg: 35
+  magicPower: 21
   critChance: 0.085
   critDmg: 0.091
   dmgResis: 24
