@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: blob stats
   m_EditorClassIdentifier: 
-  hp: 425
+  hp: 400
   hpRegen: 21
-  mana: 235
+  mana: 225
   manaRegen: 0.8
   manaCost: 1
   stamina: 140

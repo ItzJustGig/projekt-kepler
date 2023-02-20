@@ -13,24 +13,24 @@ MonoBehaviour:
   m_Name: mod
   m_EditorClassIdentifier: 
   flat: 1
-  time: 1
+  time: 2
   inTime: 0
   chance: 0
   hp: 0
   hpRegen: 0
   mana: 0
-  manaRegen: 0.1
+  manaRegen: 0
   manaCost: 0
   stamina: 0
   staminaRegen: 0
   staminaCost: 0
   sanity: 0
   atkDmg: 0
-  magicPower: 2
+  magicPower: 20
   critChance: 0
   critDmg: 0
   dmgResis: 0
-  magicResis: 0
+  magicResis: 40
   timing: 0
   movSpeed: 0
   lifesteal: 0
@@ -40,5 +40,5 @@ MonoBehaviour:
   evasion: 0
   armourPen: 0
   magicPen: 0
-  ultrate: 0.085
+  ultrate: 0
   size: 0

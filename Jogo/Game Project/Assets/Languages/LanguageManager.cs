@@ -904,6 +904,9 @@ public class LanguageManager : MonoBehaviour
         public string thickarmour;
         public string combatrythm;
         public string sackofbones;
+        public string firescales;
+        public string magicbody;
+        public string leafbeing;
 
         public string Get_Cont(string a)
         {
@@ -1075,6 +1078,15 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "sackofbones":
                     returns = sackofbones;
+                    break;
+                case "firescales":
+                    returns = firescales;
+                    break;
+                case "magicbody":
+                    returns = magicbody;
+                    break;
+                case "leafbeing":
+                    returns = leafbeing;
                     break;
                 default:
                     returns = "null";

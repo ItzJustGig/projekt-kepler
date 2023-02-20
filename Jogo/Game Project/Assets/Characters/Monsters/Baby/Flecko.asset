@@ -22,7 +22,8 @@ MonoBehaviour:
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
   stats: {fileID: 11400000, guid: b061a5afa87a1b1419360c4ec2305dad, type: 2}
   growth: {fileID: 11400000, guid: 351b63f1059277643b577b864f02d0c7, type: 2}
-  passives: []
+  passives:
+  - {fileID: 11400000, guid: 06da0a5822b731e428f88aab6daccf66, type: 2}
   moves:
   - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
   - {fileID: 11400000, guid: d5a4bf7b0b173264498e119043ba1586, type: 2}

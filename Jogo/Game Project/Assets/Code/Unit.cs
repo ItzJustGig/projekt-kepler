@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using TMPro;
+using static UnityEngine.GraphicsBuffer;
 
 public class Unit : MonoBehaviour
 {
@@ -658,6 +659,10 @@ public class Unit : MonoBehaviour
                 case "spectralcloak":
                     if (dmg.magicDmg > 0)
                         dmg.shield += a.statScale.SetScaleFlat(SetModifiers(), this) * a.stacks;
+                break;
+                case "magicbody":
+                    if (dmg.magicDmg > 0)
+                        a.stacks++;
                 break;
             }
         }

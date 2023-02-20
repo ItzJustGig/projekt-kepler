@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c40be94f130cb7f409300204aedd3b37, type: 3}
+  m_Name: Magic Body
+  m_EditorClassIdentifier: 
+  name: magicbody
+  showNameOnInfo: 1
+  origin: 0
+  sprite: {fileID: 21300000, guid: 9bd32994ff8508346bea2d8d19d33180, type: 3}
+  num: 0.25
+  maxNum: 0
+  stacks: 0
+  maxStacks: 0
+  cd: 0
+  inCd: 0
+  anim: 
+  anim2: 
+  statScale: {fileID: 0}
+  statScale2: {fileID: 0}
+  statMod: {fileID: 11400000, guid: 60b2779bb3c6c0f478d5aa483b7fcc87, type: 2}
+  statMod2: {fileID: 11400000, guid: 31c24ca9319deed4b9e515079ccfe54d, type: 2}

@@ -28,12 +28,13 @@ MonoBehaviour:
   dmgResis: 28.8
   magicResis: 22.4
   timing: 0.8
-  movSpeed: 130.5
+  movSpeed: 100
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 1
   sizeMod: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 20
   hpRegen: 0.35
-  mana: 11
+  mana: 12.5
   manaRegen: 0.031
   manaCost: 0
   stamina: 6.1
@@ -35,5 +35,6 @@ MonoBehaviour:
   accuracy: 0
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 0
   sizeMod: 0

@@ -17,7 +17,7 @@ MonoBehaviour:
   haveSpecialDesc: 0
   duration: 0
   timeReducImmunity: 1
-  grantsOnRunOut: 1
+  grantsOnRunOut: 0
   timesInc: 0
   canUsePhysical: 1
   canUseRanged: 1
@@ -48,16 +48,15 @@ MonoBehaviour:
   healManaMax: 0
   healManaInc: 0
   healStaminaMin: 10
-  healStaminaMax: 30
-  healStaminaInc: 6
+  healStaminaMax: 20
+  healStaminaInc: 15
   shieldMin: 0
   shieldMax: 0
   shieldInc: 0
   cancelAtkChance: 0
   recoil: 0
   isScaleSpecial: 0
-  scale:
-  - {fileID: 11400000, guid: f5eecb81d2106144a8430effd6988b88, type: 2}
+  scale: []
   statMods:
   - {fileID: 11400000, guid: bfc4409ba0ab7c4419d672a33f37a75a, type: 2}
   hitAnim: 

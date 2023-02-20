@@ -373,7 +373,10 @@
             "spectralcloak": "Manto Espectral",
             "thickarmour": "Armadura Espessa",
             "combatrythm": "Ritmo de Combate",
-            "lackofbones": "Saco de Ossos"
+            "lackofbones": "Saco de Ossos",
+            "firescales": "Escamas de Fogo",
+            "magicbody": "Corpo M\u00e1gico",
+            "leafbeing": "Ser de Plata"
         },
         "desc": {
             "bloodbath": "Se um inimigo estiver a Sangrar, o utilizador vai ganhar%mod%e vai causar %scale% b\u00F3nus nos ataques.",
@@ -430,7 +433,10 @@
             "spectralcloak": "O utilizador recebe %scale% por cada <color=#946ACD>%maxNum% defesa m\u00e1gica</color> quando leva <color=#1a66ff>dano m\u00e1gico</color>\nTamb\u00e9m est\u00e1 abaixo de <color=#00ff11>%num%% vida</color>, ganha%mod%",
             "thickarmour": "O utilizador recebe <color=#ffaa00>%num%% dano f\u00EDsicos</color> em <color=#f75145>golpes cr\u00EDticos</color>",
 			"combatrythm": "O utilizador causa %scale% b\u00f3nus em <color=#ffaa00>t\u00E9cnicas f\u00EDsicas</color> and <color=#1a66ff>m\u00e1gicas</color>",
-			"sackofbones": "O utilizador \u00e9 imune a Sangramento mas Aleijado tem a dura\u00E7\u00E3o aumentada em %num% turnos e recebe %scale% quando aplicado"
+			"sackofbones": "O utilizador \u00e9 imune a Sangramento mas Aleijado tem a dura\u00E7\u00E3o aumentada em %num% turnos e recebe %scale% quando aplicado",
+			"firescales": "O utilizador recebe %mod% em vez de ficar Queimado ou Chamuscado",
+			"magicbody": "O utilizador ganha +(%num%% mana m\u00e1xima) vida m\u00e1xima e quando leva dano m\u00e1gica ganha %mod%",
+            "leafbeing": "O utilizador recebe mais +%num%% dano de Queimado, Chamuscado e Envenenado. Quando um inimigo est\u00e1 com Alergia causa %scale%"
         }
     },
     "moves": {

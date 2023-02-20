@@ -1564,6 +1564,17 @@ public class BattleSystem : MonoBehaviour
                                                         bonusDuration += (int)b.num;
                                                     }
                                                 break;
+                                                case "firescales":
+                                                    if (effect.id == "BRN" || effect.id == "SCH")
+                                                    {
+                                                        skipEffect = true;
+                                                        target.PassivePopup(langmanag.GetInfo("passive", "name", b.name));
+                                                        StatMod mod = b.statMod.ReturnStats();
+                                                        mod.inTime = mod.time + 1;
+                                                        target.statMods.Add(mod);
+                                                        statsTarget = target.SetModifiers();
+                                                    }
+                                                    break;
                                             }
                                         }
 
@@ -2090,7 +2101,7 @@ public class BattleSystem : MonoBehaviour
 
         if (user.ult < 100)
         {
-            float value = user.ult;
+            float value = 0;
 
             if (dmg > 0)
             {
@@ -2103,10 +2114,10 @@ public class BattleSystem : MonoBehaviour
             if (value > 0)
                 value = value * temp.ultrate;
 
-            if (value > 100)
-                value = 100;
+            user.ult += value;
 
-            user.ult = value;
+            if (user.ult > 100)
+                user.ult = 100;
         }
     }
 
@@ -2555,6 +2566,21 @@ public class BattleSystem : MonoBehaviour
             {
                 dmg.AddDmg(scale.SetScaleDmg(user.SetModifiers().ReturnStats(), user));
             }
+
+        foreach (Passives b in user.passives)
+        {
+            switch (b.name)
+            {
+                case "leafbeing":
+                    if (a.name == "BRN" || a.name == "SCH" || a.name == "PSN")
+                    {
+                        dmg.ApplyBonusDmg(b.num, b.num, b.num);
+                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                    }
+                    break;
+            }
+        }
+        
 
         dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, null, dotReduc);
         dmg = user.CalcRegens(dmg);
@@ -3617,6 +3643,56 @@ public class BattleSystem : MonoBehaviour
                     ManagePassiveIcon(a.sprite, a.name, temp.ToString("0"), user.isEnemy, a.GetPassiveInfo(), isReady);
                     
                 break;
+                case "magicbody":
+                    if (true)
+                    {
+                        Stats statsUser = user.SetModifiers();
+
+                        StatMod statMod = a.statMod.ReturnStatsTimes(a.stacks);
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+
+                        statsUser = user.SetModifiers();
+                        statMod = a.statMod2.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        temp = statsUser.mana * a.num;
+                        statMod.hp = temp;
+
+                        ManagePassiveIcon(a.sprite, a.name, temp.ToString("0"), user.isEnemy, a.GetPassiveInfo());
+
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+                    }
+                    break;
+                case "leafbeing":
+                    foundEffect = false;
+
+                    foreach (Effects b in target.effects)
+                    {
+                        if (b.id == "ALR")
+                        {
+                            foundEffect = true;
+                        }
+                    }
+
+                    if (foundEffect)
+                    {
+                        ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo(), true);
+                        DMG dmg = default;
+                        dmg.Reset();
+
+                        dmg.magicDmg = a.statScale.SetScaleFlat(user.SetModifiers(), user);
+                        dmg = target.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
+                        target.TakeDamage(dmg, false, false, user);
+
+                        userHud.SetStatsHud(user);
+                    } else
+                    {
+                        ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+                    }
+                    
+                    break;
 
                 case "roughskin":
                 case "magicwand":
@@ -3626,6 +3702,7 @@ public class BattleSystem : MonoBehaviour
                 case "thickarmour":
                 case "combatrythm":
                 case "sackofbones":
+                case "firescales":
                     ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     break;
             }
