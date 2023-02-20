@@ -13499,7 +13499,7 @@ MonoBehaviour:
   bossfightMusic: {fileID: 8300000, guid: aaa62555fba57c54c91430a342e1d0aa, type: 3}
   info: {fileID: 1001587210}
   perHealthRegenEndless: 0.24
-  perCostsRegenEndless: 0.36
+  perCostsRegenEndless: 0.4
   perSanityRegenEndless: 0.09
   perUltReduce: 0.185
   endlessStuff: {fileID: 1001587211}

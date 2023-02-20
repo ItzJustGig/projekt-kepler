@@ -16,12 +16,14 @@ MonoBehaviour:
   classe: 6
   size: 2
   name: skulltroop
+  isBasicPhysical: 1
   sprite: {fileID: 5806852883944117854, guid: 26f9595a142d0364ea86dcfe54cc211d, type: 3}
   charcIcon: {fileID: 21300000, guid: dd002203b2e7d504fb70ad3bbf4af29e, type: 3}
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
   stats: {fileID: 11400000, guid: 26af295ac4342f142990f8b250ff07bb, type: 2}
   growth: {fileID: 11400000, guid: 31ce31032c6990c489ee0dee29c31299, type: 2}
-  passives: []
+  passives:
+  - {fileID: 11400000, guid: 37ad4f98ef0d6e84e989c32ed8674b58, type: 2}
   moves:
   - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
   - {fileID: 11400000, guid: 8b28ea64c04d0dd4cbae745a5b0d8537, type: 2}

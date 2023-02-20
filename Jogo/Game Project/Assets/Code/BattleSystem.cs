@@ -1524,6 +1524,7 @@ public class BattleSystem : MonoBehaviour
                             blockRanged = move.blocksRanged;
 
                             bool skipEffect = false;
+                            int bonusDuration = 0;
 
                             if (move.effects.Count > 0)
                             {
@@ -1535,22 +1536,34 @@ public class BattleSystem : MonoBehaviour
                                     {
                                         foreach (Passives b in target.passives.ToArray())
                                         {
-                                            if (b.name == "ecolocation")
+                                            switch (b.name)
                                             {
-                                                if (effect.id == "BLI")
-                                                {
-                                                    skipEffect = true;
-                                                    target.PassivePopup(langmanag.GetInfo("passive", "name", b.name));
-                                                }
-                                            }
-
-                                            if (b.name == "strongmind")
-                                            {
-                                                if (effect.id == "CFS" || effect.id == "SLP" || effect.id == "CHR")
-                                                {
-                                                    skipEffect = true;
-                                                    target.PassivePopup(langmanag.GetInfo("passive", "name", b.name));
-                                                }
+                                                case "ecolocation":
+                                                    if (effect.id == "BLI")
+                                                    {
+                                                        skipEffect = true;
+                                                        target.PassivePopup(langmanag.GetInfo("passive", "name", b.name));
+                                                    }
+                                                break;
+                                                case "strongmind":
+                                                    if (effect.id == "CFS" || effect.id == "SLP" || effect.id == "CHR")
+                                                    {
+                                                        skipEffect = true;
+                                                        target.PassivePopup(langmanag.GetInfo("passive", "name", b.name));
+                                                    }
+                                                break;
+                                                case "sackofbones":
+                                                    if (effect.id == "BLD")
+                                                    {
+                                                        skipEffect = true;
+                                                        target.PassivePopup(langmanag.GetInfo("passive", "name", b.name));
+                                                    } else if (effect.id == "CRP")
+                                                    {
+                                                        dmgTarget.trueDmg = b.statScale.SetScaleFlat(user.SetModifiers(), user);
+                                                        target.PassivePopup(langmanag.GetInfo("passive", "name", b.name));
+                                                        bonusDuration += (int)b.num;
+                                                    }
+                                                break;
                                             }
                                         }
 
@@ -1558,6 +1571,7 @@ public class BattleSystem : MonoBehaviour
                                         {
                                             //Debug.Log("I EFFECT");
                                             effect.duration = Random.Range(a.durationMin, a.durationMax);
+                                            effect.duration += bonusDuration;
 
                                             if (a.targetPlayer)
                                             {
@@ -3611,6 +3625,7 @@ public class BattleSystem : MonoBehaviour
                 case "mythicearrings":
                 case "thickarmour":
                 case "combatrythm":
+                case "sackofbones":
                     ManagePassiveIcon(a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     break;
             }

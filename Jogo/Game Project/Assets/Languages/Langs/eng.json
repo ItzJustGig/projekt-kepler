@@ -372,7 +372,8 @@
 			"spectralpike": "Spectral Pike",
 			"spectralcloak": "Spectral Cloa",
 			"thickarmour": "Thick Armour",
-			"combatrythm": "Combat Rythm"
+			"combatrythm": "Combat Rythm",
+			"sackofbones": "Sack of Bones"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain%mod%and deal bonus %scale% on attacks.",
@@ -428,7 +429,8 @@
 			"spectralpike": "The carrier's <color=#ffaa00>physical</color> or <color=#f75145>ranged</color> moves, have %num%% (doubles if bellow <color=#00ff11>%maxNum%% health</color>) chance to deal bonus <color=#ffaa00>%maxStacks%% physical damage</color> once (%cd% turns cooldown regardless activates or not)\nWhen the carrier is bellow <color=#00ff11>%maxNum%% health</color> gain%mod%",
 			"spectralcloak": "The carrier gain %scale% per <color=#946ACD>%maxNum% magic resistance</color> when take <color=#1a66ff>magic damage</color>\nAlso when bellow <color=#00ff11>%num%% health</color>, gain%mod%",
 			"thickarmour": "The user take <color=#ffaa00>%num%% physical damage</color> on <color=#f75145>critical strikes</color>",
-			"combatrythm": "The user deal bonus %scale% on <color=#ffaa00>physical</color> and <color=#1a66ff>magical moves</color>"
+			"combatrythm": "The user deal bonus %scale% on <color=#ffaa00>physical</color> and <color=#1a66ff>magical moves</color>",
+			"sackofbones": "The user immune to Bleeding but Cripple have its duration increased by %num% turns and take bonus %scale% when applied"
 		}
 	},
 	"moves": {

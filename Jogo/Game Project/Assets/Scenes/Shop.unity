@@ -4476,7 +4476,7 @@ MonoBehaviour:
   legendaryMin: 150
   legendaryMax: 180
   hpRecover: 0.3
-  costsRecover: 0.65
+  costsRecover: 1
   sanityRecover: 0.3
 --- !u!114 &1250475053
 MonoBehaviour:

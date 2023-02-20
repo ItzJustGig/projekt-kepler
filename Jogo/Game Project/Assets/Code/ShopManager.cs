@@ -336,6 +336,7 @@ public class ShopManager : MonoBehaviour
             info.itemShop.Add(item2.GetItemString(false));
             info.itemShop.Add(item3.GetItemString(false));
             info.generateShop = false;
+            info.hasRested = false;
         }
         else
         {
@@ -532,6 +533,7 @@ public class ShopManager : MonoBehaviour
         info.hasRested = true;
         restBtn.interactable = false;
         CheckPrice();
+        gold.text = info.gold.ToString();
 
         info.Save();
     }
