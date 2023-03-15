@@ -17,6 +17,7 @@ MonoBehaviour:
   hitTime: 4
   priority: 0
   uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -31,7 +32,7 @@ MonoBehaviour:
   shield: 0
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 7
+  cooldown: 8
   inCooldown: 0
   manaCost: 90
   staminaCost: 0
@@ -48,3 +49,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 01bf56cfa1f11734b980d143ae6ce977, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: 

@@ -83,18 +83,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=25><align=center>Courage</align></size>
-
-    <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
-
-    
-
-    The
-    user gain <color=#b641f0>2 sanity</color> every 8 turns and Fear have less 2
-    turns. When the user is Feared recover <color=#b641f0>2 + (<color=#b641f0>12%</color>
-    of the user''s <color=#b641f0>Missing Sanity</color>) sanity</color>
-
-'
+  text: "<size=25><align=center>Paralize</align></size>\r\n<size=19><align=center><color=#B2B2B2>Effect</color></align></size>\r\n<s><align=center>|                
+    |</align></s>\r\nTake <color=#1a66ff>10-30 + (<color=#3366ff>1,35%</color> of
+    the user's <color=#3366ff>Current Mana</color>) magical damage</color> each turn.\r\nTake
+    <color=#b829ff>1-3 sanity damage</color> each turn.\r\n<s><align=center>|                
+    |</align></s>\r\nThe user have 20% to stop the attack.\r\n<s><align=center>|                
+    |</align></s>\r\n <color=#1a66ff>-12% Magic Power</color>, <color=#946ACD>-30%
+    Magic Resistance</color>, <color=#0984db>-20% Timing</color>, <color=#0095ff>-20%
+    Movement Speed</color> and <color=#227da1>-3,75% Evasion</color> to the user
+    \r\n"
   textSec: 
   wantSec: 0
 --- !u!95 &4874516270294335299
@@ -181,7 +178,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1dad21aad67465a41acea497e0628872, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2446039734503548b91cfc129668bef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -269,4 +266,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 2
