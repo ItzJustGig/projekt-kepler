@@ -83,15 +83,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: "<size=25><align=center>Paralize</align></size>\r\n<size=19><align=center><color=#B2B2B2>Effect</color></align></size>\r\n<s><align=center>|                
-    |</align></s>\r\nTake <color=#1a66ff>10-30 + (<color=#3366ff>1,35%</color> of
-    the user's <color=#3366ff>Current Mana</color>) magical damage</color> each turn.\r\nTake
-    <color=#b829ff>1-3 sanity damage</color> each turn.\r\n<s><align=center>|                
-    |</align></s>\r\nThe user have 20% to stop the attack.\r\n<s><align=center>|                
-    |</align></s>\r\n <color=#1a66ff>-12% Magic Power</color>, <color=#946ACD>-30%
-    Magic Resistance</color>, <color=#0984db>-20% Timing</color>, <color=#0095ff>-20%
-    Movement Speed</color> and <color=#227da1>-3,75% Evasion</color> to the user
-    \r\n"
+  text: "<size=25><align=center>Cripple</align></size>\r\n<size=19><align=center><color=#B2B2B2>Effect</color></align></size>\r\n<s><align=center>|                
+    |</align></s>\r\nDoesn't allow the user to use:\r\n<color=#ffaa00>Physical moves</color>\r\n<s><align=center>|                
+    |</align></s>\r\nTake <color=#b829ff>2-6 sanity damage</color> each turn.\r\n<s><align=center>|                
+    |</align></s>\r\n <color=#0984db>-55% Timing</color>, <color=#0095ff>-32% Movement
+    Speed</color> and <color=#227da1>-2,5% Evasion</color> to the user \r\n"
   textSec: 
   wantSec: 0
 --- !u!95 &4874516270294335299
@@ -178,7 +174,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a2446039734503548b91cfc129668bef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 91bba625f109cb84b82fe38e5d3f7d14, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -266,4 +262,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2
+  m_Text: 1

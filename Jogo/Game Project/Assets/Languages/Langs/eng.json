@@ -572,7 +572,9 @@
 		"zap": "Zap",
 		"huntersdirk": "Hunter's Dirk",
 		"jewelofthedruid": "Jewel of the Druid",
-		"shadowshroom": "Shadow Shroom"
+		"shadowshroom": "Shadow Shroom",
+        "prismaticstaff": "Prismatic Staff",
+		"pd1100": "PD-1100"
 	},
 	"items": {
 		"title": "Item",
@@ -623,7 +625,8 @@
 			"xpbottle": "XP Bottle",
 			"xppot": "XP Pot",
             "shoppass": "Shop Pass",
-            "shopcoupon": "Shop Coupon"
+            "shopcoupon": "Shop Coupon",
+            "aprenticetome": "Aprentice's Tome"
 		},
 		"move": {
 			"zap": "The carrier will <color=#ffdf00>zap</color> the target with a %type% to %dmg%",
@@ -656,7 +659,8 @@
 		"shield":"shield",
 		"name":{
 			"fairy":"Fairy",
-			"turret":"Turret"
+			"turret":"Turret",
+			"pd1100":"PD-1100"
 		}
 	}
 }

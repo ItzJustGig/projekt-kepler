@@ -19,7 +19,7 @@ MonoBehaviour:
   hp: 0
   hpRegen: 0
   mana: 0
-  manaRegen: 0.1
+  manaRegen: 0.15
   manaCost: 0
   stamina: 0
   staminaRegen: 0
@@ -40,5 +40,5 @@ MonoBehaviour:
   evasion: 0
   armourPen: 0
   magicPen: 0
-  ultrate: 0.085
+  ultrate: 0.15
   size: 0

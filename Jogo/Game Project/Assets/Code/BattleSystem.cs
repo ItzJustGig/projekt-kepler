@@ -808,6 +808,7 @@ public class BattleSystem : MonoBehaviour
                                 }
 
                                 dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
                             }
 
                             if (move.type is Moves.MoveType.PHYSICAL && a.stacks < a.maxStacks)
@@ -835,6 +836,7 @@ public class BattleSystem : MonoBehaviour
                                 }
 
                                 dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
                             }
 
                             if (move.type is Moves.MoveType.MAGICAL && a.stacks < a.maxStacks)
@@ -1603,7 +1605,7 @@ public class BattleSystem : MonoBehaviour
                                                     foreach (StatMod b in effect.statMods)
                                                     {
                                                         StatMod statMod = b.ReturnStats();
-                                                        statMod.inTime = effect.duration;
+                                                        statMod.inTime = effect.duration+1;
                                                         dmgTarget.heal += (int)((user.SetModifiers().hp * statMod.hp) / 2);
                                                         dmgTarget.healMana += (int)((user.SetModifiers().mana * statMod.mana) / 2);
                                                         dmgTarget.healStamina += (int)((user.SetModifiers().stamina * statMod.stamina) / 2);
@@ -1657,7 +1659,7 @@ public class BattleSystem : MonoBehaviour
                                                     foreach (StatMod b in effect.statMods)
                                                     {
                                                         StatMod statMod = b.ReturnStats();
-                                                        statMod.inTime = effect.duration;
+                                                        statMod.inTime = effect.duration + 1;
                                                         dmgTarget.heal += (int)((target.SetModifiers().hp * statMod.hp) / 2);
                                                         dmgTarget.healMana += (int)((target.SetModifiers().mana * statMod.mana) / 2);
                                                         dmgTarget.healStamina += (int)((target.SetModifiers().stamina * statMod.stamina) / 2);
@@ -3735,7 +3737,7 @@ public class BattleSystem : MonoBehaviour
         {
             //get statmod
             StatMod statMod = b.ReturnStats();
-            statMod.inTime = effect.duration;
+            statMod.inTime = effect.duration+1;
 
             //add stat mod to player
             user.statMods.Add(statMod);

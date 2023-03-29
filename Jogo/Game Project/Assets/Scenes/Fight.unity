@@ -13442,7 +13442,7 @@ MonoBehaviour:
   tiredStacks: 0
   levelToConsiderWeak: 12
   dmgResisPer: 0.18
-  magicResisPer: 0.12
+  magicResisPer: 0.14
   dotReduc: 0.6
   ultComp: 0.25
   ultCompDuration: 6

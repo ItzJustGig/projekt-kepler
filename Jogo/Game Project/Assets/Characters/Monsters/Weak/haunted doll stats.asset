@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: haunted doll stats
   m_EditorClassIdentifier: 
   hp: 570
-  hpRegen: 27
+  hpRegen: 24
   mana: 490
   manaRegen: 0.85
   manaCost: 1
@@ -21,19 +21,20 @@ MonoBehaviour:
   staminaRegen: 0.6
   staminaCost: 1
   sanity: 200
-  atkDmg: 36
-  magicPower: 51
+  atkDmg: 34
+  magicPower: 48
   critChance: 0.1
   critDmg: 0.15
   dmgResis: 36
-  magicResis: 68
+  magicResis: 52
   timing: 2.45
-  movSpeed: 135
+  movSpeed: 120
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 1
   sizeMod: 0

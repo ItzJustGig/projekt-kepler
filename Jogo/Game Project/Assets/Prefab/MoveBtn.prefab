@@ -386,7 +386,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 11
+  m_Text: 9
 --- !u!1 &7954924221204952151
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jewel of the Druid
+  m_Text: Warm Up
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: edc4bbb7d32a9024b81094d5d9894628, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c630b18e457a2f946b998787276542ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -619,7 +619,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 20
 --- !u!1 &7954924221810379002
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,48 +801,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Jewel of the Druid</align></size>
+  text: '<size=24><align=center>Warm Up</align></size>
 
-    <size=17><align=center><color=#B266FF>Summon</color></align></size>
+    <size=17><align=center><color=#CC66FF>Enchantment</color></align></size>
 
     Priority:
     0
 
-    Uses: 3
+    <s><align=center>|                 |</align></s>
+
+    100% chance to
+    <color=#ffaa00>18% Attack Damage</color>, <color=#f75145>10% Critical Chance</color>,
+    <color=#f75145>8% Critical Damage</color> and <color=#0095ff>18% Movement Speed</color>
+    to the user for 3 turns
 
     <s><align=center>|                 |</align></s>
 
-    Summons
-    a Fairy, that will <color=#00ff11>heal</color> every 3 turns
-
-    <color=#00ff11>Health:
-    988</color>
-
-    <color=#ffaa00>Attack Power: 78,7</color>
+    Recover
+    <color=#f0dd0a>5,8 stamina</color>
 
 '
-  textSec: '<size=24><align=center>Jewel of the Druid</align></size>
+  textSec: '<size=24><align=center>Warm Up</align></size>
 
-    <size=17><align=center><color=#B266FF>Summon</color></align></size>
+    <size=17><align=center><color=#CC66FF>Enchantment</color></align></size>
 
     Priority:
     0
 
-    Uses: 3
+    <s><align=center>|                 |</align></s>
+
+    100% chance to
+    <color=#ffaa00>18% Attack Damage</color>, <color=#f75145>10% Critical Chance</color>,
+    <color=#f75145>8% Critical Damage</color> and <color=#0095ff>18% Movement Speed</color>
+    to the user for 3 turns
 
     <s><align=center>|                 |</align></s>
 
-    Summons
-    a Fairy, that will <color=#00ff11>heal</color> every 3 turns
-
-    <color=#00ff11>Health: 
-    (<color=#3366ff>140%</color> of the user''s <color=#3366ff>Maximum Mana</color>)
-    + (<color=#1a66ff>72%</color> of the user''s <color=#1a66ff>Magic Power</color>)</color>
-
-    <color=#ffaa00>Attack
-    Power:  (<color=#3366ff>6%</color> of the user''s <color=#3366ff>Maximum Mana</color>)
-    + (<color=#ffaa00>35%</color> of the user''s <color=#ffaa00>Attack Damage</color>)
-    + (<color=#1a66ff>28%</color> of the user''s <color=#1a66ff>Magic Power</color>)</color>
+    Recover
+    <color=#f0dd0a>3 + (<color=#ebdb28>190%</color> of the user''s <color=#ebdb28>Stamina
+    Regen</color>) stamina</color>
 
 '
   wantSec: 0
@@ -924,7 +921,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 16
+  m_Text: 7
 --- !u!1 &7954924222182827413
 GameObject:
   m_ObjectHideFlags: 0

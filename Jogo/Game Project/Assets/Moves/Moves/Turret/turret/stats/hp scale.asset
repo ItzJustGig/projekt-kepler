@@ -21,7 +21,7 @@ MonoBehaviour:
   hpRegen: 0
   missMana: 0
   curMana: 0
-  maxMana: 1.25
+  maxMana: 1.15
   manaRegen: 0
   maxStamina: 0
   curStamina: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
   missSanity: 0
   maxSanity: 0
   atkDmg: 0
-  magicPower: 1.5
+  magicPower: 2
   dmgResis: 0
   magicResis: 1
   timing: 0

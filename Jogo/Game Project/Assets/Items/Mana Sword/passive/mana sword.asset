@@ -19,9 +19,11 @@ MonoBehaviour:
   num: 0
   maxNum: 0
   stacks: 0
-  maxStacks: 32
+  maxStacks: 17
   cd: 0
   inCd: 0
+  anim: 
+  anim2: 
   statScale: {fileID: 11400000, guid: 7b23b421e04bada46a1b56431025e05d, type: 2}
   statScale2: {fileID: 0}
   statMod: {fileID: 11400000, guid: 9989547bb3f067c479aaf92e4a27e459, type: 2}

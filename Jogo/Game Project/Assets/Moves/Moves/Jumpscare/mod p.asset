@@ -26,7 +26,7 @@ MonoBehaviour:
   staminaCost: 0
   sanity: 0
   atkDmg: 5
-  magicPower: 12
+  magicPower: 10
   critChance: 0
   critDmg: 0
   dmgResis: 0

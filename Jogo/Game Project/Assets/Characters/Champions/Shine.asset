@@ -40,7 +40,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 272d5671bb95dd64a90208cda15850e1, type: 2}
   - {fileID: 11400000, guid: d2f6520910bc23a418896e9dfd4b9b89, type: 2}
   recItems:
-  - {fileID: 11400000, guid: c945a420b56bf52449f684462fda543c, type: 2}
   - {fileID: 11400000, guid: 429fce6b4bace0a439742be56b0bde17, type: 2}
   - {fileID: 11400000, guid: c45d4e9189a823744b189278873e46fe, type: 2}
   - {fileID: 11400000, guid: 30ad6b253706994479f8a4c7c7915a5a, type: 2}

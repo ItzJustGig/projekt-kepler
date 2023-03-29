@@ -1642,6 +1642,7 @@ public class LanguageManager : MonoBehaviour
         public string iceshards;
         public string turret;
         public string frostbarrier;
+        public string pd1100;
 
         public string bloodpressure;
         public string enchdeadlyshadow;
@@ -1989,6 +1990,9 @@ public class LanguageManager : MonoBehaviour
                 case "frostbarrier":
                     returns = frostbarrier;
                     break;
+                case "pd1100":
+                    returns = pd1100;
+                    break;
                 case "bloodpressure":
                     returns = bloodpressure;
                     break;
@@ -2198,6 +2202,7 @@ public class LanguageManager : MonoBehaviour
         public string xppot;
         public string shoppass;
         public string shopcoupon;
+        public string aprenticetome;
 
         public string Get_ItemName(string a)
         {
@@ -2305,6 +2310,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "shopcoupon":
                     returns = shopcoupon;
+                    break;
+                case "aprenticetome":
+                    returns = aprenticetome;
                     break;
                 default:
                     returns = "null";
@@ -2502,6 +2510,7 @@ public class LanguageManager : MonoBehaviour
     {
         public string fairy;
         public string turret;
+        public string pd1100;
 
         public string Get_Summon_Name(string a)
         {
@@ -2513,6 +2522,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "turret":
                     returns = turret;
+                    break;
+                case "pd1100":
+                    returns = pd1100;
                     break;
                 default:
                     returns = "null";

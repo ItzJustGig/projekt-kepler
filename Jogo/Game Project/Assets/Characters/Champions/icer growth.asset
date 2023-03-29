@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 8.2
   hpRegen: 0.4
-  mana: 12
+  mana: 10
   manaRegen: 0.029
   manaCost: 0
   stamina: 7.65
@@ -22,11 +22,11 @@ MonoBehaviour:
   staminaCost: 0
   sanity: 0
   atkDmg: 0.9
-  magicPower: 1.5
+  magicPower: 1.34
   critChance: 0.004
   critDmg: 0.0022
-  dmgResis: 0.8
-  magicResis: 0.9
+  dmgResis: 0.67
+  magicResis: 0.75
   timing: 0.06
   movSpeed: 3
   lifesteal: 0
@@ -35,5 +35,6 @@ MonoBehaviour:
   accuracy: 0
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 0
   sizeMod: 0

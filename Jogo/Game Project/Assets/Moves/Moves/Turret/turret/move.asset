@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5913529bceac162458813b9397f0af50, type: 3}
   m_Name: move
   m_EditorClassIdentifier: 
-  cd: 0
+  cd: 1
   inCd: 0
   dmgType: 1
-  scale: 0.75
   sanityDmg: 0

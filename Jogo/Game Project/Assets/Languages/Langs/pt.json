@@ -573,7 +573,8 @@
         "huntersdirk": "Punhal do Ca\u00e7ador",
         "jewelofthedruid": "J\u00f3ia do Druida",
         "shadowshroom": "Cogulemo das Sombras",
-        "prismaticstaff": "Cajato Prism\u00e1tico"
+        "prismaticstaff": "Cajato Prism\u00e1tico",
+		"pd1100": "PD-1100"
     },
     "items": {
         "title": "Iten",
@@ -624,7 +625,8 @@
             "xpbottle": "Garrafa de EXP",
             "xppot": "Pote de EXP",
             "shoppass": "Passe da Loja",
-            "shopcoupon": "Cop\u00e3o de desconto"
+            "shopcoupon": "Cop\u00e3o de desconto",
+            "aprenticetome": "Tomo do Aprendiz"
         },
 		"move": {
 			"zap": "O transportador d\u00e1 <color=#ffdf00>zap</color> no alvo com uma %type% que %dmg%",
@@ -657,7 +659,8 @@
 		"shield":"d\u00e1 escudo",
 		"name":{
 			"fairy":"Fada",
-			"turret":"Torreta"
+			"turret":"Torreta",
+			"pd1100":"PD-1100"
 		}
 	}
 }

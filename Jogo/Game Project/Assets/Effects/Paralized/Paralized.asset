@@ -16,6 +16,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: a2446039734503548b91cfc129668bef, type: 3}
   haveSpecialDesc: 0
   duration: 0
+  timeReducImmunity: 1
   grantsOnRunOut: 0
   timesInc: 0
   canUsePhysical: 1
@@ -29,7 +30,7 @@ MonoBehaviour:
   phyDmgMax: 0
   phyDmgInc: 0
   magicDmgMin: 10
-  magicDmgMax: 30
+  magicDmgMax: 20
   magicDmgInc: 0
   trueDmgMin: 0
   trueDmgMax: 0

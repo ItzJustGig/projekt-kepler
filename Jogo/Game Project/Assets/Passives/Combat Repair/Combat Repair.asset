@@ -19,7 +19,7 @@ MonoBehaviour:
   num: 4
   maxNum: 0
   stacks: 0
-  maxStacks: 3
+  maxStacks: 5
   cd: 0
   inCd: 0
   anim: 
