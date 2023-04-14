@@ -15,7 +15,7 @@ MonoBehaviour:
   name: sackofbones
   showNameOnInfo: 1
   origin: 0
-  sprite: {fileID: 21300000, guid: 91bba625f109cb84b82fe38e5d3f7d14, type: 3}
+  sprite: {fileID: 21300000, guid: 7f99a69722ceae54f85cafa29f9948b7, type: 3}
   num: 3
   maxNum: 0
   stacks: 0

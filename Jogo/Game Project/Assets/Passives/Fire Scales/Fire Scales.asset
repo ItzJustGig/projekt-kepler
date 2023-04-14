@@ -15,7 +15,7 @@ MonoBehaviour:
   name: firescales
   showNameOnInfo: 1
   origin: 0
-  sprite: {fileID: 21300000, guid: ae0be70b28a2f5d488a86dd910bad216, type: 3}
+  sprite: {fileID: 21300000, guid: 3c8c63fb947b57d40a19875b2ed070ee, type: 3}
   num: 0
   maxNum: 0
   stacks: 0

@@ -386,7 +386,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 9
+  m_Text: 10
 --- !u!1 &7954924221204952151
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Refreshing Breeze
+  m_Text: Big Steak
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,31 +801,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Refreshing Breeze</align></size>
+  text: '<size=24><align=center>Big Steak</align></size>
 
     <size=17><align=center><color=#00ff11>Support</color></align></size>
 
-    Hit
-    3 times
-
     Priority: 0
 
-    <s><align=center>|                 |</align></s>
-
-    65%
-    chance to <color=#2ffa3d>12% Health Regen</color>, <color=#ebdb28>10% Stamina
-    Regen</color> and <color=#0095ff>10% Movement Speed</color> to the user for 3
-    turns
+    Uses: 4
 
     <s><align=center>|                 |</align></s>
 
     <color=#00ff11>Heal
-    33,1 health</color>
+    40,6 health</color> over 3 turns
 
-    Recover <color=#f0dd0a>2,5 stamina</color>
+    Recover <color=#f0dd0a>45,7 stamina</color>
+    over 4 turns
 
 '
-  textSec: '<size=24><align=center>Refreshing Breeze</align></size>
+  textSec: '<size=24><align=center>Big Steak</align></size>
 
     <size=17><align=center><color=#00ff11>Support</color></align></size>
 
@@ -833,23 +826,17 @@ MonoBehaviour:
     3 times
 
     Priority: 0
-
-    <s><align=center>|                 |</align></s>
-
-    65%
-    chance to <color=#2ffa3d>12% Health Regen</color>, <color=#ebdb28>10% Stamina
-    Regen</color> and <color=#0095ff>10% Movement Speed</color> to the user for 3
-    turns
+    Uses: 4
 
     <s><align=center>|                 |</align></s>
 
     <color=#00ff11>Heal
-    20 + (<color=#2ffa3d>15%</color> of the user''s <color=#2ffa3d>Health Regen</color>)
-    + (<color=#1a66ff>15%</color> of the user''s <color=#1a66ff>Magic Power</color>)
-    health</color>
+    10 + (<color=#2ffa3d>185%</color> of the user''s <color=#2ffa3d>Health Regen</color>)
+    health</color> over 3 turns
 
-    Recover <color=#f0dd0a>2 + (<color=#ebdb28>40%</color> of
-    the user''s <color=#ebdb28>Stamina Regen</color>) stamina</color>
+    Recover <color=#f0dd0a>30 + (<color=#f0dd0a>7,55%</color>
+    of the user''s <color=#f0dd0a>Missing Stamina</color>) stamina</color> over 4
+    turns
 
 '
   wantSec: 0
@@ -931,7 +918,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 7
+  m_Text: 13
 --- !u!1 &7954924222182827413
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   name: combatrythm
   showNameOnInfo: 1
   origin: 0
-  sprite: {fileID: 21300000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
+  sprite: {fileID: 21300000, guid: 55c3e97d3b026854c8333e88d52e1bc6, type: 3}
   num: 0
   maxNum: 0
   stacks: 0

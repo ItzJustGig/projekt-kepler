@@ -15,7 +15,7 @@ MonoBehaviour:
   name: magicbody
   showNameOnInfo: 1
   origin: 0
-  sprite: {fileID: 21300000, guid: 9bd32994ff8508346bea2d8d19d33180, type: 3}
+  sprite: {fileID: 21300000, guid: 97a974dec2947e94185c846dd002d337, type: 3}
   num: 0.25
   maxNum: 0
   stacks: 0
