@@ -120,12 +120,12 @@ public class FightLang : MonoBehaviour
         basicAtkBtnText.text = languageManager.GetText(language, "moves", "basicattack");
         ultBtnText.text = languageManager.GetText(language, "gui", "button", "ultimate");
         recovManaBtnText.text = languageManager.GetText(language, "moves", "recovmana");
-        statsPBtnText.text = languageManager.GetText(language, "gui", "button", "stats");
-        statsEBtnText.text = languageManager.GetText(language, "gui", "button", "stats");
+        //statsPBtnText.text = languageManager.GetText(language, "gui", "button", "stats");
+        //statsEBtnText.text = languageManager.GetText(language, "gui", "button", "stats");
         overviewBtnText.text = languageManager.GetText(language, "gui", "button", "overview");
         sumHideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
-        pHideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
-        eHideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
+        //pHideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
+        //eHideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
         leaveBtnText.text = languageManager.GetText(language, "gui", "button", "leave");
         cancelMoveBtnText.text = languageManager.GetText(language, "gui", "button", "cancel");
         ffBtnText.text = languageManager.GetText(language, "gui", "button", "forfeit");
@@ -141,7 +141,7 @@ public class FightLang : MonoBehaviour
         leaveTitleText.text = languageManager.GetText(language, "gui", "text", "leavetitle");
 
         //stats player
-        hpTooltipP.text = languageManager.GetText(language, "stats", "name", "hp") + "<br>" + languageManager.GetText(language, "stats", "desc", "hp");
+        /*hpTooltipP.text = languageManager.GetText(language, "stats", "name", "hp") + "<br>" + languageManager.GetText(language, "stats", "desc", "hp");
         hpRegenTooltipP.text = languageManager.GetText(language, "stats", "name", "hpregen") + "<br>" + languageManager.GetText(language, "stats", "desc", "hpregen");
         manaTooltipP.text = languageManager.GetText(language, "stats", "name", "mana") + "<br>" + languageManager.GetText(language, "stats", "desc", "mana");
         manaRegenTooltipP.text = languageManager.GetText(language, "stats", "name", "manaregen") + "<br>" + languageManager.GetText(language, "stats", "desc", "manaregen");
@@ -183,7 +183,7 @@ public class FightLang : MonoBehaviour
         accuracyTooltipE.text = languageManager.GetText(language, "stats", "name", "accuracy") + "<br>" + languageManager.GetText(language, "stats", "desc", "accuracy"); 
         armourpenTooltipE.text = languageManager.GetText(language, "stats", "name", "armourpen") + " | " + languageManager.GetText(language, "stats", "name", "magicpen");
         armourpenTooltipE.text += "<br>" + languageManager.GetText(language, "stats", "desc", "armourpen");
-
+        */
         //overview player
         physicDmgDealtP.text = languageManager.GetText(language, "gui", "text", "physicdmgdealt");
         magicDmgDealtP.text = languageManager.GetText(language, "gui", "text", "magicdmgdealt");

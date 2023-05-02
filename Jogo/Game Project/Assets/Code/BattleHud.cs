@@ -46,11 +46,6 @@ public class BattleHud : MonoBehaviour
     [SerializeField] private Sprite sanity50;
     [SerializeField] private Sprite sanity25;
 
-    [SerializeField] private int maxShield;
-
-
-    private float lerpTimer;
-    //[SerializeField] private float chipSpeed = 2f;
     private FightLang langmang;
     private string language;
 
@@ -95,7 +90,7 @@ public class BattleHud : MonoBehaviour
         staminaInfo.text = staminaInfo.text.Replace("%v%", staminaTired.ToString());
 
         shieldText.text = unit.curShield.ToString();
-        shieldSlider.maxValue = maxShield;
+        shieldSlider.maxValue = unit.curShield;
         shieldSlider.value = unit.curShield;
         shieldInfo.text = langmang.languageManager.GetText(language, "gui", "text", "shield");
         shieldInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "shieldbonus") + ": " + unit.SetModifiers().shieldBonus.ToString("0.00") + "%";
@@ -111,7 +106,7 @@ public class BattleHud : MonoBehaviour
     {
         Stats stats = user.SetModifiers();
         user.LoadSize(user.size + stats.sizeMod);
-        SetStats(stats.ReturnStats(), user.charc.stats.ReturnStats(), user.curSanity);
+        //SetStats(stats.ReturnStats(), user.charc.stats.ReturnStats(), user.curSanity);
     }
 
     public void SetStats(Stats statsTemp, Stats originalTemp, int curSanity)
@@ -338,7 +333,7 @@ public class BattleHud : MonoBehaviour
         statsGO.SetActive(false);
     }
 
-    public IEnumerator SetHp (float hp, float maxHp, float healBonus)
+    public IEnumerator SetHp (float hp, float maxHp, float healBonus, float shield)
     {
         if (hp < 0)
             hp = 0;
@@ -365,8 +360,8 @@ public class BattleHud : MonoBehaviour
         }*/
 
         yield return null;
-        hpSlider.maxValue = maxHp;
-        hpSlider.value = hp;
+        hpSlider.maxValue = maxHp+shield;
+        hpSlider.value = hp+shield;
         hpText.text = hpSlider.value.ToString("0") + "/" + maxHp;
         hpInfo.text = langmang.languageManager.GetText(language, "stats", "name", "hp");
         hpInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "healbonus") + ": " + healBonus.ToString("0.00") + "%";
@@ -450,9 +445,6 @@ public class BattleHud : MonoBehaviour
         if (shield < 0)
             shield = 0;
 
-        if (shield > shieldSlider.maxValue)
-            shield = shieldSlider.maxValue;
-
         /*lerpTimer = 0f;
         while (lerpTimer < chipSpeed)
         {
@@ -475,6 +467,7 @@ public class BattleHud : MonoBehaviour
         }*/
 
         yield return null;
+        shieldSlider.maxValue = shield;
         shieldSlider.value = shield;
         shieldText.text = shieldSlider.value.ToString("0");
         shieldInfo.text = langmang.languageManager.GetText(language, "gui", "text", "shield");

@@ -5,11 +5,15 @@ using UnityEngine.UI;
 using UnityEditor;
 using TMPro;
 using static UnityEngine.GraphicsBuffer;
+using System;
 
 public class Unit : MonoBehaviour
 {
-    
+    public BattleHud hud;
+    public Transform moveListHud;
+    public bool isLeader;
     public bool isEnemy;
+    public bool isDead;
     public float curHp;
     public float curMana;
     public float curStamina;
@@ -75,6 +79,21 @@ public class Unit : MonoBehaviour
     [SerializeField] private Animator particleAnimator;
     public int size = 2;
     float lastSize = 2;
+    private bool skipTurn = false;
+
+    public struct ChosenMove
+    {
+        public Moves move;
+        public Unit target;
+    }
+
+    public struct SummonTarget
+    {
+        public Unit ally;
+        public Unit target;
+    }
+    public ChosenMove chosenMove;
+    public SummonTarget summonTarget;
 
     void Awake()
     {
@@ -705,9 +724,9 @@ public class Unit : MonoBehaviour
         Vector3 pos;
 
         if (isEnemy)
-            pos = new Vector3(Random.Range(4, 6), Random.Range(-1, 0.5f));
+            pos = new Vector3(UnityEngine.Random.Range(4, 6), UnityEngine.Random.Range(-1, 0.5f));
         else
-            pos = new Vector3(Random.Range(-4, -6), Random.Range(-1, 0.5f));
+            pos = new Vector3(UnityEngine.Random.Range(-4, -6), UnityEngine.Random.Range(-1, 0.5f));
 
         GameObject go = Instantiate(dmgText, pos, Quaternion.identity) as GameObject;
         go.transform.GetChild(0).GetComponent<TextMesh>().text = msg;
@@ -813,7 +832,7 @@ public class Unit : MonoBehaviour
     public void PassivePopup(string name)
     {
         Vector3 pos;
-        float hight = Random.Range(0.5f, 1.5f);
+        float hight = UnityEngine.Random.Range(0.5f, 1.5f);
 
         if (isEnemy)
             pos = new Vector3(6, hight);
@@ -886,5 +905,15 @@ public class Unit : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(what))
             particleAnimator.SetTrigger(what);
+    }
+
+    public void SetSkipTurn(bool val)
+    {
+        skipTurn = val;
+    }
+
+    public bool CheckSkipTurn()
+    {
+        return skipTurn;
     }
 }
