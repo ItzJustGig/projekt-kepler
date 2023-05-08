@@ -5,16 +5,17 @@ using UnityEngine.UI;
 
 public class BtnMoveSetup : MonoBehaviour
 {
-    BattleSystem battleSystem;
+    ActionBox actionBox;
+
     int i = -1;
 
     void Start()
     {
-        battleSystem = FindObjectOfType<BattleSystem>();
+        actionBox = this.transform.parent.parent.parent.parent.parent.parent.gameObject.GetComponent<ActionBox>();
 
         SetId(int.Parse(this.transform.Find("Id").gameObject.GetComponent<Text>().text));
 
-        this.gameObject.GetComponent<Button>().onClick.AddListener(delegate { battleSystem.OnMoveBtn(i); });
+        this.gameObject.GetComponent<Button>().onClick.AddListener(delegate { actionBox.OnMoveBtn(i); });
     }
 
     void SetId(int id)

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 using static LanguageManager;
 
 public class Player : MonoBehaviour
@@ -10,6 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField] public Unit unit1;
     [SerializeField] public Unit unit2;
     [SerializeField] public Unit unit3;
+    [SerializeField] public Button unit1Btn;
+    [SerializeField] public Button unit2Btn;
+    [SerializeField] public Button unit3Btn;
 
     private float aiManaRecover;
     private float aiGaranteedManaRecover;
@@ -74,16 +78,65 @@ public class Player : MonoBehaviour
         unit.hud.SetBlood(unit.bloodStacks);
     }
 
-    public void SetStart(float aiManaRecover, float aiGaranteedManaRecover, Transform moveList1, Transform moveList2, Transform moveList3, BattleHud hud1,  BattleHud hud2 = null, BattleHud hud3 = null)
+    public void SetStart(float aiManaRecover, float aiGaranteedManaRecover, ActionBox moveList1, ActionBox moveList2, ActionBox moveList3, BattleHud hud1,  BattleHud hud2 = null, BattleHud hud3 = null)
     {
         this.aiManaRecover = aiManaRecover;
         this.aiGaranteedManaRecover = aiGaranteedManaRecover;
         unit1.hud = hud1;
         unit2.hud = hud2;
         unit3.hud = hud3;
-        unit1.moveListHud = moveList1;
-        unit2.moveListHud = moveList2;
-        unit3.moveListHud = moveList3;
+        unit1.id = 1;
+        unit2.id = 2;
+        unit3.id = 3;
+        unit1.selectBtn = unit1Btn;
+        unit2.selectBtn = unit2Btn;
+        unit3.selectBtn = unit3Btn;
+    }
+
+    public void EnableBtn(Unit unit1 = null, Unit unit2 = null, Unit unit3 = null)
+    {
+        if (unit1 != null)
+        {
+            unit1.selectBtn.enabled = true;
+        }
+
+        if (unit2 != null)
+        {
+            unit2.selectBtn.enabled = true;
+        }
+        
+        if (unit3 != null)
+        {
+            unit3.selectBtn.enabled = true;
+        }
+    }
+    
+    public void EnableAllBtn()
+    {
+        EnableBtn(unit1, unit2, unit3);
+    }
+
+    public void DisableBtn(Unit unit1 = null, Unit unit2 = null, Unit unit3 = null)
+    {
+        if (unit1 != null)
+        {
+            unit1.selectBtn.enabled = false;
+        }
+
+        if (unit2 != null)
+        {
+            unit2.selectBtn.enabled = false;
+        }
+
+        if (unit3 != null)
+        {
+            unit3.selectBtn.enabled = false;
+        }
+    }
+    
+    public void DisableAllBtn()
+    {
+        DisableBtn(unit1, unit2, unit3);
     }
 
     public void UpdateStats()

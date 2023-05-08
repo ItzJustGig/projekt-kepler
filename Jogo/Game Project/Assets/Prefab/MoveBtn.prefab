@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 12
+  m_Text: 27
 --- !u!1 &7954924221204952151
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Bone Crush
+  m_Text: Bite
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7e8c3244c112b3b43a26a1b635eed6f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Bone Crush</align></size>
+  text: '<size=24><align=center>Bite</align></size>
 
     <size=17><align=center><color=#ffaa00>Physical</color></align></size>
 
@@ -414,27 +414,20 @@ MonoBehaviour:
 
     <s><align=center>|                 |</align></s>
 
-    45% chance to
-    <color=#ffaa00>60% Attack Damage</color> to the user for 3 turns
+    12% chance to
+    inflict Blood to the target for 1-2 turns.
 
     <s><align=center>|                
     |</align></s>
 
-    30% chance to inflict Cripple to the target for 1-2 turns.
+    Deal <color=#ffaa00>45,0 physical damage</color>
 
-    <s><align=center>|                
-    |</align></s>
-
-    Deal <color=#ffaa00>74,0 physical damage</color>
-
-    Deal
-    <color=#a6a6a6>10,0 true damage</color>
-
-    Deal <color=#b829ff>2,0 sanity
-    damage</color>
+    <color=#00ff11>Heal
+    4,0 + (<color=#ffaa00>38%</color> of<color=#ffaa00> physical damage</color>)
+    health</color>
 
 '
-  textSec: '<size=24><align=center>Bone Crush</align></size>
+  textSec: '<size=24><align=center>Bite</align></size>
 
     <size=17><align=center><color=#ffaa00>Physical</color></align></size>
 
@@ -443,24 +436,17 @@ MonoBehaviour:
 
     <s><align=center>|                 |</align></s>
 
-    45% chance to
-    <color=#ffaa00>60% Attack Damage</color> to the user for 3 turns
+    12% chance to
+    inflict Blood to the target for 1-2 turns.
 
     <s><align=center>|                
     |</align></s>
 
-    30% chance to inflict Cripple to the target for 1-2 turns.
-
-    <s><align=center>|                
-    |</align></s>
-
-    Deal <color=#ffaa00>60 + (<color=#ffaa00>45%</color> of the
+    Deal <color=#ffaa00>20 + (<color=#ffaa00>80%</color> of the
     user''s <color=#ffaa00>Attack Damage</color>) physical damage</color>
 
-    Deal
-    <color=#a6a6a6>10 true damage</color>
-
-    Deal <color=#b829ff>2 sanity damage</color>
+    <color=#00ff11>Heal
+    4 + (<color=#ffaa00>38%</color> of<color=#ffaa00> physical damage</color>) health</color>
 
 '
   wantSec: 0

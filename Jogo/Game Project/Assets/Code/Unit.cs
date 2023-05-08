@@ -12,6 +12,8 @@ public class Unit : MonoBehaviour
     public BattleHud hud;
     public Transform moveListHud;
     public bool isLeader;
+    public int id;
+    public Button selectBtn;
     public bool isEnemy;
     public bool isDead;
     public float curHp;
@@ -80,6 +82,7 @@ public class Unit : MonoBehaviour
     public int size = 2;
     float lastSize = 2;
     private bool skipTurn = false;
+    public bool turnReady = false;
 
     public struct ChosenMove
     {
@@ -182,9 +185,6 @@ public class Unit : MonoBehaviour
 
     void Start()
     {
-        //int character = PlayerPrefs.GetInt(selectedCharacter);
-        //int bot = PlayerPrefs.GetInt(selectedEnemy);
-       
         if (charc.sprite)
         {
             sprite = Instantiate(charc.sprite, this.transform) as GameObject;
@@ -202,7 +202,6 @@ public class Unit : MonoBehaviour
 
             animator = sprite.gameObject.GetComponent<Animator>();
         }
-
 
         LoadSize(size);
 

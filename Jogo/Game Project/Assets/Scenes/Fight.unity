@@ -2055,6 +2055,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7792ab727f53fd044bdf7d85400df551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipMain: {fileID: 3422808952827454668}
+  tooltipSec: {fileID: 1544077369}
+  moveList: {fileID: 1576489771}
+  movePanel: {fileID: 859068252}
+  basicBtn: {fileID: 337667562}
+  movesBtn: {fileID: 784246220}
+  healManaBtn: {fileID: 1861575254}
+  ultBtn: {fileID: 474104462}
+  actionPanel: {fileID: 1477873745}
+  scrollbar: {fileID: 1157359130}
+  levelToConsiderWeak: 0
+  manaRecoverCdReducWeak: 0
+  unit: {fileID: 0}
+  battleSystem: {fileID: 1001587205}
 --- !u!1 &219628432
 GameObject:
   m_ObjectHideFlags: 0
@@ -7995,6 +8009,9 @@ MonoBehaviour:
   unit1: {fileID: 0}
   unit2: {fileID: 0}
   unit3: {fileID: 0}
+  unit1Btn: {fileID: 2072056358}
+  unit2Btn: {fileID: 589843176}
+  unit3Btn: {fileID: 1896861775}
   isEnemy: 0
 --- !u!1 &859068251
 GameObject:
@@ -9424,9 +9441,9 @@ MonoBehaviour:
   scorch: {fileID: 11400000, guid: 983ebd0871409c8479821ec897d313bd, type: 2}
   scrollbar: {fileID: 0}
   panelMoves: {fileID: 0}
-  moveListHud1: {fileID: 0}
-  moveListHud2: {fileID: 0}
-  moveListHud3: {fileID: 0}
+  actionBox1: {fileID: 1563571628}
+  actionBox2: {fileID: 214094259}
+  actionBox3: {fileID: 1209766298}
   moveButton: {fileID: 7954924221810379002, guid: 4d14ae7e8e997ac418884686f3eda006,
     type: 3}
   panelEffectsP: {fileID: 0}
@@ -9862,6 +9879,9 @@ MonoBehaviour:
   unit1: {fileID: 0}
   unit2: {fileID: 0}
   unit3: {fileID: 0}
+  unit1Btn: {fileID: 520760361}
+  unit2Btn: {fileID: 1232287485}
+  unit3Btn: {fileID: 1344004885}
   isEnemy: 1
 --- !u!1 &1035206264
 GameObject:
@@ -11732,6 +11752,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7792ab727f53fd044bdf7d85400df551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipMain: {fileID: 3422808952827454668}
+  tooltipSec: {fileID: 1544077369}
+  moveList: {fileID: 1135028899}
+  movePanel: {fileID: 716940518}
+  basicBtn: {fileID: 1664677350}
+  movesBtn: {fileID: 2008888312}
+  healManaBtn: {fileID: 1068499955}
+  ultBtn: {fileID: 1675555146}
+  actionPanel: {fileID: 1728589240}
+  scrollbar: {fileID: 306893967}
+  levelToConsiderWeak: 0
+  manaRecoverCdReducWeak: 0
+  unit: {fileID: 0}
+  battleSystem: {fileID: 1001587205}
 --- !u!1 &1220166853
 GameObject:
   m_ObjectHideFlags: 0
@@ -15295,6 +15329,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7792ab727f53fd044bdf7d85400df551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipMain: {fileID: 3422808952827454668}
+  tooltipSec: {fileID: 1544077369}
+  moveList: {fileID: 1844821980}
+  movePanel: {fileID: 488078100}
+  basicBtn: {fileID: 1038504386}
+  movesBtn: {fileID: 57306543}
+  healManaBtn: {fileID: 1919835400}
+  ultBtn: {fileID: 1747556608}
+  actionPanel: {fileID: 2118263980}
+  scrollbar: {fileID: 1193713391}
+  levelToConsiderWeak: 0
+  manaRecoverCdReducWeak: 0
+  unit: {fileID: 0}
+  battleSystem: {fileID: 1001587205}
 --- !u!1 &1571295353
 GameObject:
   m_ObjectHideFlags: 0
@@ -18838,6 +18886,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7792ab727f53fd044bdf7d85400df551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipMain: {fileID: 0}
+  tooltipSec: {fileID: 0}
+  moveList: {fileID: 0}
+  movePanel: {fileID: 0}
+  basicBtn: {fileID: 0}
+  movesBtn: {fileID: 0}
+  healManaBtn: {fileID: 0}
+  ultBtn: {fileID: 0}
+  actionPanel: {fileID: 0}
+  scrollbar: {fileID: 0}
+  levelToConsiderWeak: 0
+  manaRecoverCdReducWeak: 0
+  unit: {fileID: 0}
+  battleSystem: {fileID: 0}
 --- !u!850595691 &1940996413
 LightingSettings:
   m_ObjectHideFlags: 0

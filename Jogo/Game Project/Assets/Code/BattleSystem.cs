@@ -10,8 +10,8 @@ public enum BattleState { START, PLAYERTURN, ENEMYTURN, CHANGETURN, ALLYKILLED, 
 
 public class BattleSystem : MonoBehaviour
 {
-    [SerializeField] private Player player;
-    [SerializeField] private Player enemy;
+    public Player player;
+    public Player enemy;
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject enemyPrefab;
@@ -68,9 +68,9 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] private Scrollbar scrollbar;
     [SerializeField] private GameObject panelMoves;
-    [SerializeField] private Transform moveListHud1;
-    [SerializeField] private Transform moveListHud2;
-    [SerializeField] private Transform moveListHud3;
+    [SerializeField] private ActionBox actionBox1;
+    [SerializeField] private ActionBox actionBox2;
+    [SerializeField] private ActionBox actionBox3;
 
     [SerializeField] private GameObject moveButton;
 
@@ -178,7 +178,10 @@ public class BattleSystem : MonoBehaviour
         BattleHud battleHud2 = Instantiate(battleHudP, playerHudList.transform).GetComponent<BattleHud>();
         BattleHud battleHud3 = Instantiate(battleHudP, playerHudList.transform).GetComponent<BattleHud>();
 
-        player.SetStart(aiManaRecover, aiGaranteedManaRecover, moveListHud1, moveListHud2, moveListHud3, battleHud1, battleHud2, battleHud3);
+        actionBox1.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, player.unit1);
+        actionBox2.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, player.unit2);
+        actionBox3.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, player.unit3);
+        player.SetStart(aiManaRecover, aiGaranteedManaRecover, actionBox1, actionBox2, actionBox3, battleHud1, battleHud2, battleHud3);
 
         battleHud1 = Instantiate(battleHudE, enemyHudList.transform).GetComponent<BattleHud>();
         battleHud2 = Instantiate(battleHudE, enemyHudList.transform).GetComponent<BattleHud>();
@@ -188,14 +191,10 @@ public class BattleSystem : MonoBehaviour
 
         dialogText.text = langmanag.GetInfo("gui", "text", "wantfight", langmanag.GetInfo("charc", "name", enemy.unit1.charc.name));
 
-        movesBtn.interactable = false;
-        basicBtn.interactable = false;
-        healManaBtn.interactable = false;
-        ultBtn.interactable = false;
-
-        player.unit1.moveListHud = moveListHud1;
-        player.unit1.moveListHud = moveListHud2;
-        player.unit1.moveListHud = moveListHud3;
+        //movesBtn.interactable = false;
+        //basicBtn.interactable = false;
+        //healManaBtn.interactable = false;
+        //ultBtn.interactable = false;
 
         player.SetUpStats(player.unit1, info, tiredStart + (tiredGrowth * tiredStacks));
         player.SetUpStats(player.unit2, info, tiredStart + (tiredGrowth * tiredStacks));
@@ -255,15 +254,6 @@ public class BattleSystem : MonoBehaviour
             if (move.name != "recovmana")
                 move.inCooldown = 0;
         }
-
-        basicBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
-        basicBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
-
-        healManaBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
-        healManaBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
-
-        ultBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
-        ultBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
 
         UpdateTooltips(player.unit1);
         UpdateTooltips(player.unit2);
@@ -400,23 +390,23 @@ public class BattleSystem : MonoBehaviour
                 Text name = moveButton.transform.Find("Name").gameObject.GetComponent<Text>();
                 name.text = langmanag.GetInfo("moves", move.name);
 
-                Text mana = moveButton.transform.Find("Mana").gameObject.GetComponent<Text>();
-                mana.text = move.manaCost.ToString();
+                //Text mana = moveButton.transform.Find("Mana").gameObject.GetComponent<Text>();
+                //mana.text = move.manaCost.ToString();
 
-                Text stamina = moveButton.transform.Find("Stamina").gameObject.GetComponent<Text>();
-                stamina.text = move.staminaCost.ToString();
+                //Text stamina = moveButton.transform.Find("Stamina").gameObject.GetComponent<Text>();
+                //stamina.text = move.staminaCost.ToString();
 
-                Text cdn = moveButton.transform.Find("Cooldown").gameObject.GetComponent<Text>();
-                cdn.text = move.cooldown.ToString();
+                //Text cdn = moveButton.transform.Find("Cooldown").gameObject.GetComponent<Text>();
+                //cdn.text = move.cooldown.ToString();
 
-                Text cd = moveButton.transform.Find("CD").gameObject.GetComponent<Text>();
-                cd.text = langmanag.GetInfo("gui", "text", "cd");
+                //Text cd = moveButton.transform.Find("CD").gameObject.GetComponent<Text>();
+                //cd.text = langmanag.GetInfo("gui", "text", "cd");
 
-                Text sta = moveButton.transform.Find("STA").gameObject.GetComponent<Text>();
-                sta.text = langmanag.GetInfo("gui", "text", "sta");
+                //Text sta = moveButton.transform.Find("STA").gameObject.GetComponent<Text>();
+                //sta.text = langmanag.GetInfo("gui", "text", "sta");
 
-                Text mn = moveButton.transform.Find("MN").gameObject.GetComponent<Text>();
-                mn.text = langmanag.GetInfo("gui", "text", "mn");
+                //Text mn = moveButton.transform.Find("MN").gameObject.GetComponent<Text>();
+                //mn.text = langmanag.GetInfo("gui", "text", "mn");
 
                 Image icon = moveButton.transform.Find("Icon").gameObject.GetComponent<Image>();
                 switch (move.type)
@@ -475,23 +465,23 @@ public class BattleSystem : MonoBehaviour
                 Text name = moveButton.transform.Find("Name").gameObject.GetComponent<Text>();
                 name.text = langmanag.GetInfo("moves", move.name);
 
-                Text mana = moveButton.transform.Find("Mana").gameObject.GetComponent<Text>();
-                mana.text = move.manaCost.ToString();
+                //Text mana = moveButton.transform.Find("Mana").gameObject.GetComponent<Text>();
+                //mana.text = move.manaCost.ToString();
 
-                Text stamina = moveButton.transform.Find("Stamina").gameObject.GetComponent<Text>();
-                stamina.text = move.staminaCost.ToString();
+                //Text stamina = moveButton.transform.Find("Stamina").gameObject.GetComponent<Text>();
+                //stamina.text = move.staminaCost.ToString();
 
-                Text cdn = moveButton.transform.Find("Cooldown").gameObject.GetComponent<Text>();
-                cdn.text = move.cooldown.ToString();
+                //Text cdn = moveButton.transform.Find("Cooldown").gameObject.GetComponent<Text>();
+                //cdn.text = move.cooldown.ToString();
 
-                Text cd = moveButton.transform.Find("CD").gameObject.GetComponent<Text>();
-                cd.text = langmanag.GetInfo("gui", "text", "cd");
+                //Text cd = moveButton.transform.Find("CD").gameObject.GetComponent<Text>();
+                //cd.text = langmanag.GetInfo("gui", "text", "cd");
 
-                Text sta = moveButton.transform.Find("STA").gameObject.GetComponent<Text>();
-                sta.text = langmanag.GetInfo("gui", "text", "sta");
+                //Text sta = moveButton.transform.Find("STA").gameObject.GetComponent<Text>();
+                //sta.text = langmanag.GetInfo("gui", "text", "sta");
 
-                Text mn = moveButton.transform.Find("MN").gameObject.GetComponent<Text>();
-                mn.text = langmanag.GetInfo("gui", "text", "mn");
+                //Text mn = moveButton.transform.Find("MN").gameObject.GetComponent<Text>();
+                //mn.text = langmanag.GetInfo("gui", "text", "mn");
 
                 Image icon = moveButton.transform.Find("Icon").gameObject.GetComponent<Image>();
                 switch (move.type)
@@ -4026,63 +4016,61 @@ public class BattleSystem : MonoBehaviour
         tooltipMain.GetComponent<TooltipPopUp>().ResetLastBtn();
         tooltipSec.GetComponent<TooltipPopUp>().ResetLastBtn();
 
-        foreach (Transform child in unit.moveListHud.transform)
+        if (!unit.isEnemy)
         {
-            int id = child.GetComponent<BtnMoveSetup>().GetId();
-            int i = 0;
-            foreach (Moves a in unit.moves)
+            foreach (Transform child in unit.moveListHud.GetChild(0).transform)
             {
-                i++;
-                if (i == id)
+                int id = child.GetComponent<BtnMoveSetup>().GetId();
+                int i = 0;
+                foreach (Moves a in unit.moves)
                 {
-                    child.GetComponent<BtnMoveSetup>().UpdateToolTip(a.GetTooltipText(false), a.GetTooltipText(true));
+                    i++;
+                    if (i == id)
+                    {
+                        child.GetComponent<BtnMoveSetup>().UpdateToolTip(a.GetTooltipText(false), a.GetTooltipText(true));
+                    }
                 }
             }
+
+            actionBox1.UpdateTooltips();
+            actionBox2.UpdateTooltips();
+            actionBox3.UpdateTooltips();
         }
 
-        healManaBtn.GetComponent<TooltipButton>().text = unit.recoverMana.GetTooltipText(false);
-        healManaBtn.GetComponent<TooltipButton>().textSec = unit.recoverMana.GetTooltipText(true);
+        //if (!unit.canUsePhysical)
+        //    phyCancel.SetActive(true);
+        //else
+        //    phyCancel.SetActive(false);
 
-        basicBtn.GetComponent<TooltipButton>().text = unit.basicAttack.GetTooltipText(false);
-        basicBtn.GetComponent<TooltipButton>().textSec = unit.basicAttack.GetTooltipText(true);
+        //if (!unit.canUseMagic)
+        //    magiCancel.SetActive(true);
+        //else
+        //    magiCancel.SetActive(false);
 
-        ultBtn.GetComponent<TooltipButton>().text = unit.ultMove.GetTooltipText(false);
-        ultBtn.GetComponent<TooltipButton>().textSec = unit.ultMove.GetTooltipText(true);
+        //if (!unit.canUseRanged)
+        //    rangeCancel.SetActive(true);
+        //else
+        //    rangeCancel.SetActive(false);
 
-        if (!unit.canUsePhysical)
-            phyCancel.SetActive(true);
-        else
-            phyCancel.SetActive(false);
+        //if (!unit.canUseEnchant)
+        //    statCancel.SetActive(true);
+        //else
+        //    statCancel.SetActive(false);
 
-        if (!unit.canUseMagic)
-            magiCancel.SetActive(true);
-        else
-            magiCancel.SetActive(false);
+        //if (!unit.canUseSupp)
+        //    suppCancel.SetActive(true);
+        //else
+        //    suppCancel.SetActive(false);
 
-        if (!unit.canUseRanged)
-            rangeCancel.SetActive(true);
-        else
-            rangeCancel.SetActive(false);
+        //if (!unit.canUseProtec)
+        //    defCancel.SetActive(true);
+        //else
+        //    defCancel.SetActive(false);
 
-        if (!unit.canUseEnchant)
-            statCancel.SetActive(true);
-        else
-            statCancel.SetActive(false);
-
-        if (!unit.canUseSupp)
-            suppCancel.SetActive(true);
-        else
-            suppCancel.SetActive(false);
-
-        if (!unit.canUseProtec)
-            defCancel.SetActive(true);
-        else
-            defCancel.SetActive(false);
-
-        if (!unit.canUseSummon)
-            summCancel.SetActive(true);
-        else
-            summCancel.SetActive(false);
+        //if (!unit.canUseSummon)
+        //    summCancel.SetActive(true);
+        //else
+        //    summCancel.SetActive(false);
 
         UpdateSummonTooltip(unit);
     }

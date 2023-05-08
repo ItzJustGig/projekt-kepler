@@ -8,9 +8,13 @@ using UnityEngine;
 public class Moves : ScriptableObject
 {
     public enum MoveType { PHYSICAL, MAGICAL, RANGED, SUPPORT, DEFFENCIVE, ENCHANT, SUMMON, BASIC }
+    public enum Target { ENEMY, SELF, ALLY }
+    public enum TargetType { SINGLE, AOE }
     public enum HealFromDmg { NONE, PHYSICAL, MAGICAL, TRUE, PHYSICAL_MAGICAL, PHYSICAL_TRUE, MAGICAL_TRUE, ALL }
 
     public MoveType type;
+    public Target target;
+    public TargetType targetType;
 
     public new string name;
     public int hitTime = 1;
@@ -84,6 +88,8 @@ public class Moves : ScriptableObject
 
         move.owner = owner;
         move.type = type;
+        move.target = target;
+        move.targetType = targetType;
         move.name = name;
         move.isUlt = isUlt;
 
