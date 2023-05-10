@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static LanguageManager;
 
 public class ActionBox : MonoBehaviour
 {
@@ -25,16 +26,21 @@ public class ActionBox : MonoBehaviour
         levelToConsiderWeak = levelWeak;
         manaRecoverCdReducWeak = recovCdReduc;
         this.unit = unit;
-        this.unit.moveListHud = moveList;
+        this.unit.actionBoxPanel = actionPanel;
 
-        basicBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
-        basicBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
+        if (!unit.isEnemy)
+        {
+            this.unit.moveListPanel = moveList;
 
-        healManaBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
-        healManaBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
+            basicBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
+            basicBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
 
-        ultBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
-        ultBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
+            healManaBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
+            healManaBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
+
+            ultBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
+            ultBtn.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
+        }
     }
 
     public void UpdateTooltips()
@@ -47,6 +53,25 @@ public class ActionBox : MonoBehaviour
 
         ultBtn.GetComponent<TooltipButton>().text = unit.ultMove.GetTooltipText(false);
         ultBtn.GetComponent<TooltipButton>().textSec = unit.ultMove.GetTooltipText(true);
+    }
+
+    public void ManageActions()
+    {
+        Unit temp = battleSystem.player.GetAttacker();
+        if (temp == null)
+        {
+            battleSystem.player.SetAttacker(SelectCharacter());
+            battleSystem.DoneSelecting();
+        } else if (temp.chosenMove.target == null)
+        {
+            temp.chosenMove.target = unit;
+            battleSystem.DoneChoosingMove();
+        }
+    }
+
+    public Unit SelectCharacter()
+    {
+        return unit;
     }
 
     public void EnableTarget()
@@ -64,38 +89,6 @@ public class ActionBox : MonoBehaviour
                 battleSystem.enemy.EnableAllBtn();
                 break;
         }
-    }
-
-    public void SelectTarget(string target)
-    {
-        Unit charc;
-        switch (target)
-        {
-            case "P1":
-                charc = battleSystem.player.unit1;
-                break;
-            case "P2":
-                charc = battleSystem.player.unit2;
-                break;
-            case "P3":
-                charc = battleSystem.player.unit3;
-                break;
-            case "E1":
-                charc = battleSystem.enemy.unit1;
-                break;
-            case "E2":
-                charc = battleSystem.enemy.unit2;
-                break;
-            case "E3":
-                charc = battleSystem.enemy.unit3;
-                break;
-            default:
-                charc = unit;
-                break;
-        }
-
-        unit.chosenMove.target = charc;
-        unit.turnReady = true;
     }
 
     public void OnMoveBtn(int moveId)
@@ -204,6 +197,8 @@ public class ActionBox : MonoBehaviour
 
     public void OnHealBtn()
     {
+        unit.moveListPanel.gameObject.SetActive(false);
+        unit.actionBoxPanel.gameObject.SetActive(false);
         unit.recoverMana.inCooldown = unit.recoverMana.cooldown;
         if (unit.level <= levelToConsiderWeak)
             unit.recoverMana.inCooldown -= manaRecoverCdReducWeak;
@@ -214,6 +209,8 @@ public class ActionBox : MonoBehaviour
 
     public void OnUltBtn()
     {
+        unit.moveListPanel.gameObject.SetActive(false);
+        unit.actionBoxPanel.gameObject.SetActive(false);
         unit.ult -= unit.ultMove.ultCost;
         unit.chosenMove.move = unit.ultMove;
         EnableTarget();
@@ -221,6 +218,8 @@ public class ActionBox : MonoBehaviour
 
     public void OnBasicBtn()
     {
+        unit.moveListPanel.gameObject.SetActive(false);
+        unit.actionBoxPanel.gameObject.SetActive(false);
         unit.chosenMove.move = unit.basicAttack.ReturnMove();
         EnableTarget();
     }

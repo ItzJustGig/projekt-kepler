@@ -14,10 +14,12 @@ public class Player : MonoBehaviour
     [SerializeField] public Button unit1Btn;
     [SerializeField] public Button unit2Btn;
     [SerializeField] public Button unit3Btn;
-
+    [SerializeField] private Unit attacking;
     private float aiManaRecover;
     private float aiGaranteedManaRecover;
     [SerializeField] private bool isEnemy;
+    private int aliveCharacters = 3;
+    public int playableCharacters = 3;
 
     public void SetUpStats(Unit unit, EndlessInfo info, float tired)
     {
@@ -78,7 +80,7 @@ public class Player : MonoBehaviour
         unit.hud.SetBlood(unit.bloodStacks);
     }
 
-    public void SetStart(float aiManaRecover, float aiGaranteedManaRecover, ActionBox moveList1, ActionBox moveList2, ActionBox moveList3, BattleHud hud1,  BattleHud hud2 = null, BattleHud hud3 = null)
+    public void SetStart(float aiManaRecover, float aiGaranteedManaRecover, BattleHud hud1,  BattleHud hud2 = null, BattleHud hud3 = null)
     {
         this.aiManaRecover = aiManaRecover;
         this.aiGaranteedManaRecover = aiGaranteedManaRecover;
@@ -91,23 +93,26 @@ public class Player : MonoBehaviour
         unit1.selectBtn = unit1Btn;
         unit2.selectBtn = unit2Btn;
         unit3.selectBtn = unit3Btn;
+        unit1.effectHud = hud1.transform.Find("EffectList").Find("grid").transform;
+        unit2.effectHud = hud2.transform.Find("EffectList").Find("grid").transform;
+        unit3.effectHud = hud3.transform.Find("EffectList").Find("grid").transform;
     }
 
     public void EnableBtn(Unit unit1 = null, Unit unit2 = null, Unit unit3 = null)
     {
         if (unit1 != null)
         {
-            unit1.selectBtn.enabled = true;
+            unit1.selectBtn.gameObject.SetActive(true);
         }
 
         if (unit2 != null)
         {
-            unit2.selectBtn.enabled = true;
+            unit2.selectBtn.gameObject.SetActive(true);
         }
         
         if (unit3 != null)
         {
-            unit3.selectBtn.enabled = true;
+            unit3.selectBtn.gameObject.SetActive(true);
         }
     }
     
@@ -120,17 +125,17 @@ public class Player : MonoBehaviour
     {
         if (unit1 != null)
         {
-            unit1.selectBtn.enabled = false;
+            unit1.selectBtn.gameObject.SetActive(false);
         }
 
         if (unit2 != null)
         {
-            unit2.selectBtn.enabled = false;
+            unit2.selectBtn.gameObject.SetActive(false);
         }
 
         if (unit3 != null)
         {
-            unit3.selectBtn.enabled = false;
+            unit3.selectBtn.gameObject.SetActive(false);
         }
     }
     
@@ -146,6 +151,31 @@ public class Player : MonoBehaviour
         unit3.hud.SetStats(unit3.charc.stats, unit3.charc.stats, unit3.curSanity);*/
     }
 
+    public void SetAttacker(Unit unit) 
+    { 
+        attacking = unit; 
+    }
+
+    public Unit GetAttacker() 
+    { 
+        return attacking; 
+    }
+
+    public Unit AIGetAttacker(int id)
+    {
+        switch (id)
+        {
+            case 1:
+                return unit1;
+            case 2:
+                return unit2;
+            case 3: 
+                return unit3;
+            default:
+                return unit1;
+        }
+    }
+
     public Unit GetLeader()
     {
         if (unit1.isLeader)
@@ -153,14 +183,6 @@ public class Player : MonoBehaviour
         else if (unit2.isLeader)
             return unit2;
         else return unit3;
-    }
-
-    public bool CheckLose()
-    {
-        if (unit1.isDead && unit2.isDead && unit3.isDead)
-            return true;
-
-        return false;
     }
 
     public Moves AIChooseMove(Unit user, Player target)
@@ -325,6 +347,13 @@ public class Player : MonoBehaviour
             if (picked.Count > 0)
                 unit.randomItems = picked;
         }
+    }
+
+    public void SetAsDead(Unit unit)
+    {
+        unit.WonLost(false);
+        unit.isDead = true;
+        aliveCharacters--;
     }
 
     public bool HaveLost()

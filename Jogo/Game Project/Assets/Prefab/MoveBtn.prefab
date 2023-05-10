@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 27
+  m_Text: 33
 --- !u!1 &7954924221204952151
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Bite
+  m_Text: Taunt
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c630b18e457a2f946b998787276542ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -405,48 +405,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Bite</align></size>
+  text: '<size=24><align=center>Taunt</align></size>
 
-    <size=17><align=center><color=#ffaa00>Physical</color></align></size>
+    <size=17><align=center><color=#CC66FF>Enchantment</color></align></size>
 
     Priority:
     0
 
     <s><align=center>|                 |</align></s>
 
-    12% chance to
-    inflict Blood to the target for 1-2 turns.
+    100% chance to
+    <color=#ffaa00>10% Attack Damage</color>, <color=#1a66ff>10% Magic Power</color>,
+    <color=#f75145>-10% Critical Chance</color>, <color=#f75145>-6% Critical Damage</color>,
+    <color=#937264>-32% Damage Resistance</color>, <color=#946ACD>-28% Magic Resistance</color>
+    and <color=#0984db>-30% Timing</color> to the target for 4 turns
 
     <s><align=center>|                
     |</align></s>
 
-    Deal <color=#ffaa00>45,0 physical damage</color>
+    Deal <color=#b829ff>5,0 sanity damage</color>
 
-    <color=#00ff11>Heal
-    4,0 + (<color=#ffaa00>38%</color> of<color=#ffaa00> physical damage</color>)
-    health</color>
+    Recover
+    <color=#1e68fc>5,0 mana</color>
+
+    Recover <color=#f0dd0a>5,0 stamina</color>
 
 '
-  textSec: '<size=24><align=center>Bite</align></size>
+  textSec: '<size=24><align=center>Taunt</align></size>
 
-    <size=17><align=center><color=#ffaa00>Physical</color></align></size>
+    <size=17><align=center><color=#CC66FF>Enchantment</color></align></size>
 
     Priority:
     0
 
     <s><align=center>|                 |</align></s>
 
-    12% chance to
-    inflict Blood to the target for 1-2 turns.
+    100% chance to
+    <color=#ffaa00>10% Attack Damage</color>, <color=#1a66ff>10% Magic Power</color>,
+    <color=#f75145>-10% Critical Chance</color>, <color=#f75145>-6% Critical Damage</color>,
+    <color=#937264>-32% Damage Resistance</color>, <color=#946ACD>-28% Magic Resistance</color>
+    and <color=#0984db>-30% Timing</color> to the target for 4 turns
 
     <s><align=center>|                
     |</align></s>
 
-    Deal <color=#ffaa00>20 + (<color=#ffaa00>80%</color> of the
-    user''s <color=#ffaa00>Attack Damage</color>) physical damage</color>
+    Deal <color=#b829ff>5 sanity damage</color>
 
-    <color=#00ff11>Heal
-    4 + (<color=#ffaa00>38%</color> of<color=#ffaa00> physical damage</color>) health</color>
+    Recover
+    <color=#1e68fc>5 mana</color>
+
+    Recover <color=#f0dd0a>5 stamina</color>
 
 '
   wantSec: 0

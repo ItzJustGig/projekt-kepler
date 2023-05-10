@@ -10,7 +10,9 @@ using System;
 public class Unit : MonoBehaviour
 {
     public BattleHud hud;
-    public Transform moveListHud;
+    public Transform moveListPanel;
+    public Transform actionBoxPanel;
+    public Transform effectHud;
     public bool isLeader;
     public int id;
     public Button selectBtn;
@@ -82,7 +84,7 @@ public class Unit : MonoBehaviour
     public int size = 2;
     float lastSize = 2;
     private bool skipTurn = false;
-    public bool turnReady = false;
+    public bool hasAttacked = false;
 
     public struct ChosenMove
     {
@@ -95,8 +97,8 @@ public class Unit : MonoBehaviour
         public Unit ally;
         public Unit target;
     }
-    public ChosenMove chosenMove;
-    public SummonTarget summonTarget;
+    [SerializeField] public ChosenMove chosenMove;
+    [SerializeField] public SummonTarget summonTarget;
 
     void Awake()
     {
