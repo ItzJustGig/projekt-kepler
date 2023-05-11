@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Blazing Fists
   m_EditorClassIdentifier: 
   type: 5
+  target: 1
+  targetType: 0
+  id: 0
   name: blazingfists
   hitTime: 1
   priority: 0
   uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -35,6 +39,8 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 45
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: 4170a565031bb264cb7e631bf7f153e9, type: 2}
@@ -44,3 +50,5 @@ MonoBehaviour:
   effects: []
   grantPassive: {fileID: 11400000, guid: 8759809e781aa004f9f9c5e1e79cb2b2, type: 2}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: 

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Ench Deadly Shadows
   m_EditorClassIdentifier: 
   type: 1
+  target: 0
+  targetType: 1
+  id: 0
   name: enchdeadlyshadow
   hitTime: 2
   priority: 2
@@ -53,3 +56,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5e53fb4b6c5955f4aa98bf0b66eca9b8, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: 

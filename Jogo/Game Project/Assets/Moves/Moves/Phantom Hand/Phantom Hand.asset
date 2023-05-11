@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Phantom Hand
   m_EditorClassIdentifier: 
   type: 5
+  target: 1
+  targetType: 0
+  id: 0
   name: phantomhand
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,14 +33,22 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 20
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 9
   inCooldown: 0
   manaCost: 45
   staminaCost: 15
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: 39b85572eee5d0a41b5244a1c5e5ad2c, type: 2}
   statModEnemy: {fileID: 0}
   scale: []
+  dot: []
   effects: []
   grantPassive: {fileID: 11400000, guid: 2bbd35cd79cbdbb4cbaf5b6ee17f5283, type: 2}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

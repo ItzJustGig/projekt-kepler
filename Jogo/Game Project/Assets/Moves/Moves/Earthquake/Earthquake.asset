@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Earthquake
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 1
+  id: 0
   name: earthquake
   hitTime: 1
   priority: 0
   uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -35,6 +39,8 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 60
   staminaCost: 70
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: 150d757cb368de74e83738e6622dfa06, type: 2}
@@ -46,3 +52,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 56e09f5345d342b4697e9bb67e4d18d7, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: 

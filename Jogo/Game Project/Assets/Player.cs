@@ -156,6 +156,17 @@ public class Player : MonoBehaviour
         attacking = unit; 
     }
 
+    public void ResetAttacker() 
+    { 
+        attacking = null;
+        unit1.chosenMove.move = null;
+        unit1.chosenMove.target = null;
+        unit2.chosenMove.move = null;
+        unit2.chosenMove.target = null;
+        unit3.chosenMove.move = null;
+        unit3.chosenMove.target = null;
+    }
+
     public Unit GetAttacker() 
     { 
         return attacking; 

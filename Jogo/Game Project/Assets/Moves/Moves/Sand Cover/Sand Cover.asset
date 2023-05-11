@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Sand Cover
   m_EditorClassIdentifier: 
   type: 5
+  target: 1
+  targetType: 0
+  id: 0
   name: sandcover
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -34,11 +39,17 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 40
   staminaCost: 10
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: 7498755815b04c24599997df41a589c1, type: 2}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: d5798f4bda6c5084a88acf8b059e9dd5, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

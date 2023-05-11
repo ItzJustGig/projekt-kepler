@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Shadow Image
   m_EditorClassIdentifier: 
   type: 5
+  target: 1
+  targetType: 0
+  id: 0
   name: shadowimage
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,14 +33,22 @@ MonoBehaviour:
   healStamina: 10
   healSanity: 0
   shield: 5
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 7
   inCooldown: 0
   manaCost: 30
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: 24fbca50af6f8ca489ebdaf1b355c2a5, type: 2}
   statModEnemy: {fileID: 0}
   scale: []
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

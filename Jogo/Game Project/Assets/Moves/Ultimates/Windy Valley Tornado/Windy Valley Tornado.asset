@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Windy Valley Tornado
   m_EditorClassIdentifier: 
   type: 1
+  target: 0
+  targetType: 1
+  id: 0
   name: windyvalleytornado
   hitTime: 5
   priority: 0
@@ -50,3 +53,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 764f1eefb32d81a4e8a3821426ad2091, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: 

@@ -26,6 +26,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private float tiredStart = 0.05f;
     [SerializeField] private float tiredGrowth = 0.015f;
     [SerializeField] private int tiredStacks = 0;
+    [SerializeField] public int maxShield = 2000;
     [SerializeField] private int levelToConsiderWeak = 15;
     [SerializeField] private float dmgResisPer = 0.18f;
     [SerializeField] private float magicResisPer = 0.12f;
@@ -112,7 +113,6 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] Slider slider;
 
     private SceneLoader loader;
-
 
     void Start()
     {
@@ -221,8 +221,7 @@ public class BattleSystem : MonoBehaviour
 
         player.UpdateStats();
         enemy.UpdateStats();
-
-        int i = 0;
+        
         foreach (Moves move in enemy.unit1.moves)
         {
             foreach (EffectsMove a in move.effects)
@@ -256,10 +255,6 @@ public class BattleSystem : MonoBehaviour
                 move.inCooldown = 0;
         }
 
-        UpdateTooltips(player.unit1);
-        UpdateTooltips(player.unit2);
-        UpdateTooltips(player.unit3);
-
         if (PlayerPrefs.GetInt("isEndless") == 1)
         {
             /*switch (enemyUnit.charc.strenght)
@@ -289,7 +284,7 @@ public class BattleSystem : MonoBehaviour
             if (PlayerPrefs.GetInt("isEnemyBoss") == 1)
                 enemy.GetLeader().passives.Add(endlessStuff.bossPassive.ReturnPassive());
         }
-
+        int i = 0;
         foreach (Moves move in player.unit1.moves)
         {
             i++;
@@ -312,6 +307,7 @@ public class BattleSystem : MonoBehaviour
 
                 Text id = moveButton.transform.Find("Id").gameObject.GetComponent<Text>();
                 id.text = i.ToString();
+                move.id = i;
 
                 Text name = moveButton.transform.Find("Name").gameObject.GetComponent<Text>();
                 name.text = langmanag.GetInfo("moves", move.name);
@@ -364,7 +360,7 @@ public class BattleSystem : MonoBehaviour
             }   
 
         }
-
+        i = 0;
         foreach (Moves move in player.unit2.moves)
         {
             i++;
@@ -387,6 +383,7 @@ public class BattleSystem : MonoBehaviour
 
                 Text id = moveButton.transform.Find("Id").gameObject.GetComponent<Text>();
                 id.text = i.ToString();
+                move.id = i;
 
                 Text name = moveButton.transform.Find("Name").gameObject.GetComponent<Text>();
                 name.text = langmanag.GetInfo("moves", move.name);
@@ -439,7 +436,7 @@ public class BattleSystem : MonoBehaviour
             }
 
         }
-
+        i = 0;
         foreach (Moves move in player.unit3.moves)
         {
             i++;
@@ -462,6 +459,7 @@ public class BattleSystem : MonoBehaviour
 
                 Text id = moveButton.transform.Find("Id").gameObject.GetComponent<Text>();
                 id.text = i.ToString();
+                move.id = i;
 
                 Text name = moveButton.transform.Find("Name").gameObject.GetComponent<Text>();
                 name.text = langmanag.GetInfo("moves", move.name);
@@ -515,7 +513,10 @@ public class BattleSystem : MonoBehaviour
 
         }
 
-        yield return new WaitForSeconds(1.4f);
+        UpdateTooltips(player.unit1);
+        UpdateTooltips(player.unit2);
+        UpdateTooltips(player.unit3);
+        yield return new WaitForSeconds(1.2f);
         if (PlayerPrefs.GetInt("isEndless") == 1 && PlayerPrefs.GetInt("isEnemyBoss") == 1)
             cameraAudio.clip = bossfightMusic;
         else
@@ -537,11 +538,16 @@ public class BattleSystem : MonoBehaviour
         player.GetAttacker().actionBoxPanel.gameObject.SetActive(true);
     }
 
+    public void HideMoveHud()
+    {
+        player.GetAttacker().actionBoxPanel.gameObject.SetActive(false);
+        player.GetAttacker().moveListPanel.parent.parent.gameObject.SetActive(false);
+    }
+
     public void DoneChoosingMove()
     {
         player.DisableAllBtn();
-        player.GetAttacker().actionBoxPanel.gameObject.SetActive(false);
-        player.GetAttacker().moveListPanel.gameObject.SetActive(false);
+        enemy.DisableAllBtn();
         StartCoroutine(Combat(player.GetAttacker(), enemy.AIGetAttacker(player.GetAttacker().id)));
     }
 
@@ -554,12 +560,16 @@ public class BattleSystem : MonoBehaviour
         //ultBtn.interactable = false;
         
         Moves moveEnemy = this.enemy.AIChooseMove(enemy, this.player);
+        enemy.chosenMove.move = moveEnemy;
+        enemy.chosenMove.target = player;
 
         List<Unit> characters = new List<Unit>
         {
             player, enemy
         };
 
+        //Debug.Log(player.name + " + " + player.chosenMove.move.name + " + " + player.chosenMove.target.name);
+        //Debug.Log(enemy.name + " + " + enemy.chosenMove.move.name + " + " + enemy.chosenMove.target.name);
         characters = characters.OrderBy(c => c.chosenMove.move.priority + c.SetModifiers().movSpeed).ToList();
 
         foreach (Unit charc in characters)
@@ -588,13 +598,12 @@ public class BattleSystem : MonoBehaviour
                 charc.hud.SetStatsHud(charc);
                 charc.chosenMove.target.hud.SetStatsHud(charc.chosenMove.target);
             }
-
-            //Debug.Log(state);
-            if (state == BattleState.WIN || state == BattleState.LOSE)
-                StartCoroutine(EndBattle());
-            else
-                StartCoroutine(NewTurn());
         }
+
+        if (state == BattleState.WIN || state == BattleState.LOSE)
+            StartCoroutine(EndBattle());
+        else
+            StartCoroutine(NewTurn());
     }
 
     IEnumerator Attack(Moves move, Unit user, Unit target)
@@ -2237,8 +2246,8 @@ public class BattleSystem : MonoBehaviour
 
     void PlayerTurn()
     {
-        player.SetAttacker(null);
-        enemy.SetAttacker(null);
+        player.ResetAttacker();
+        enemy.ResetAttacker();
         dialogText.text = langmanag.GetInfo("gui", "text", "choosemove");
         SelectMovingCharacter();
         //movesBtn.interactable = true;
@@ -3744,14 +3753,15 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator NewTurn()
     {
+        yield return new WaitForSeconds(0.5f);
+
+        StartCoroutine(ManageEndTurn(player.unit1, enemy));
+        StartCoroutine(ManageEndTurn(player.unit2, enemy));
+        StartCoroutine(ManageEndTurn(player.unit3, enemy));
+        StartCoroutine(ManageEndTurn(enemy.unit1, player));
+        StartCoroutine(ManageEndTurn(enemy.unit2, player));
+        StartCoroutine(ManageEndTurn(enemy.unit3, player));
         yield return new WaitForSeconds(0.6f);
-        ManageEndTurn(player.unit1, enemy);
-        ManageEndTurn(player.unit2, enemy);
-        ManageEndTurn(player.unit3, enemy);
-        ManageEndTurn(enemy.unit1, player);
-        ManageEndTurn(enemy.unit2, player);
-        ManageEndTurn(enemy.unit3, player);
-        yield return new WaitForSeconds(0.45f);
 
         //set turn number
         turnCount++;
@@ -3767,12 +3777,14 @@ public class BattleSystem : MonoBehaviour
         if (!overviewBtn.interactable)
             overviewBtn.interactable = true;
 
+        //Some optimization needed
         UpdateTooltips(enemy.unit1);
         UpdateTooltips(enemy.unit2);
         UpdateTooltips(enemy.unit3);
         UpdateTooltips(player.unit1);
         UpdateTooltips(player.unit2);
         UpdateTooltips(player.unit3);
+        // ^
 
         UpdateSummonTooltip(enemy.unit1);
         UpdateSummonTooltip(enemy.unit2);
@@ -3784,7 +3796,6 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     } 
 
-    //TODO: Somethings are not right, 
     IEnumerator ManageEndTurn(Unit unit, Player enemy)
     {
         unit.chosenMove.move = null;
@@ -3827,7 +3838,6 @@ public class BattleSystem : MonoBehaviour
         }
 
         unit.ResetCanUse();
-
         if (unit.CountEffectTimer(unit.effectHud.gameObject, bloodLossStacks, dmgResisPer, magicResisPer, dotReduc))
         {
             if (unit.isEnemy)
@@ -3971,7 +3981,7 @@ public class BattleSystem : MonoBehaviour
         unit.isBlockingMagical = false;
         unit.isBlockingRanged = false;
 
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.9f);
 
         foreach (Effects a in unit.effects)
         {
@@ -4007,14 +4017,10 @@ public class BattleSystem : MonoBehaviour
             foreach (Transform child in unit.moveListPanel.transform.GetChild(0).transform)
             {
                 int id = child.GetComponent<BtnMoveSetup>().GetId();
-                int i = 0;
-                foreach (Moves a in unit.moves)
+                if (id >= 1 && id <= unit.moves.Count)
                 {
-                    i++;
-                    if (i == id)
-                    {
-                        child.GetComponent<BtnMoveSetup>().UpdateToolTip(a.GetTooltipText(false), a.GetTooltipText(true));
-                    }
+                    Moves a = unit.moves.Find(x => x.id == id);
+                    child.GetComponent<BtnMoveSetup>().UpdateToolTip(a.GetTooltipText(false), a.GetTooltipText(true));
                 }
             }
 

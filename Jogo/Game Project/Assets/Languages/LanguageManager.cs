@@ -281,6 +281,9 @@ public class LanguageManager : MonoBehaviour
         public string of;
         public string and;
         public string uses;
+        public string mana;
+        public string stamina;
+        public string cooldown;
 
         public string Get_ShowDetail(string a)
         {
@@ -460,6 +463,15 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "uses":
                     returns = uses;
+                    break;
+                case "mana":
+                    returns = mana;
+                    break;
+                case "stamina":
+                    returns = stamina;
+                    break;
+                case "cooldown":
+                    returns = cooldown;
                     break;
                 default:
                     returns = "null";

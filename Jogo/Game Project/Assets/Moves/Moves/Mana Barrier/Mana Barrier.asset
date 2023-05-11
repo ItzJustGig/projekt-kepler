@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Mana Barrier
   m_EditorClassIdentifier: 
   type: 4
+  target: 1
+  targetType: 0
+  id: 0
   name: manabarrier
   hitTime: 1
   priority: 0
   uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -35,6 +39,8 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 70
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: ca0e8f872a32c8c43b8ec491d8bb4848, type: 2}
@@ -44,3 +50,6 @@ MonoBehaviour:
   dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.UI;
 using static LanguageManager;
 
@@ -58,6 +59,7 @@ public class ActionBox : MonoBehaviour
     public void ManageActions()
     {
         Unit temp = battleSystem.player.GetAttacker();
+
         if (temp == null)
         {
             battleSystem.player.SetAttacker(SelectCharacter());
@@ -93,11 +95,6 @@ public class ActionBox : MonoBehaviour
 
     public void OnMoveBtn(int moveId)
     {
-        tooltipMain.GetComponent<TooltipPopUp>().HideInfo();
-        tooltipMain.GetComponent<TooltipPopUp>().ForceResetLastBtn();
-        tooltipSec.GetComponent<TooltipPopUp>().HideInfo();
-        tooltipSec.GetComponent<TooltipPopUp>().ForceResetLastBtn();
-
         Moves move = null;
         int i = 0;
 
@@ -108,8 +105,13 @@ public class ActionBox : MonoBehaviour
                 move = a;
         }
 
-        unit.chosenMove.move = move.ReturnMove();
+        unit.chosenMove.move = move;
         EnableTarget();
+        tooltipMain.GetComponent<TooltipPopUp>().HideInfo();
+        tooltipMain.GetComponent<TooltipPopUp>().ForceResetLastBtn();
+        tooltipSec.GetComponent<TooltipPopUp>().HideInfo();
+        tooltipSec.GetComponent<TooltipPopUp>().ForceResetLastBtn();
+        battleSystem.HideMoveHud();
     }
 
     public void SetupMoveListBtn()
@@ -121,7 +123,7 @@ public class ActionBox : MonoBehaviour
             {
                 string name = move.name + "(Clone)";
                 i++;
-                GameObject moveBtnGO = moveList.Find(name).gameObject;
+                GameObject moveBtnGO = moveList.GetChild(0).Find(name).gameObject;
                 Button moveBtn = moveBtnGO.GetComponent<Button>();
                 int inCd = move.inCooldown;
                 /*Text cd = moveBtnGO.transform.Find("Cooldown").gameObject.GetComponent<Text>();
@@ -197,19 +199,27 @@ public class ActionBox : MonoBehaviour
 
     public void OnHealBtn()
     {
-        unit.moveListPanel.gameObject.SetActive(false);
+        battleSystem.HideMoveHud();
+        tooltipMain.GetComponent<TooltipPopUp>().HideInfo();
+        tooltipMain.GetComponent<TooltipPopUp>().ForceResetLastBtn();
+        tooltipSec.GetComponent<TooltipPopUp>().HideInfo();
+        tooltipSec.GetComponent<TooltipPopUp>().ForceResetLastBtn();
         unit.actionBoxPanel.gameObject.SetActive(false);
         unit.recoverMana.inCooldown = unit.recoverMana.cooldown;
         if (unit.level <= levelToConsiderWeak)
             unit.recoverMana.inCooldown -= manaRecoverCdReducWeak;
 
-        unit.chosenMove.move = unit.recoverMana.ReturnMove();
+        unit.chosenMove.move = unit.recoverMana;
         EnableTarget();
     }
 
     public void OnUltBtn()
     {
-        unit.moveListPanel.gameObject.SetActive(false);
+        battleSystem.HideMoveHud();
+        tooltipMain.GetComponent<TooltipPopUp>().HideInfo();
+        tooltipMain.GetComponent<TooltipPopUp>().ForceResetLastBtn();
+        tooltipSec.GetComponent<TooltipPopUp>().HideInfo();
+        tooltipSec.GetComponent<TooltipPopUp>().ForceResetLastBtn();
         unit.actionBoxPanel.gameObject.SetActive(false);
         unit.ult -= unit.ultMove.ultCost;
         unit.chosenMove.move = unit.ultMove;
@@ -218,9 +228,13 @@ public class ActionBox : MonoBehaviour
 
     public void OnBasicBtn()
     {
-        unit.moveListPanel.gameObject.SetActive(false);
+        battleSystem.HideMoveHud();
+        tooltipMain.GetComponent<TooltipPopUp>().HideInfo();
+        tooltipMain.GetComponent<TooltipPopUp>().ForceResetLastBtn();
+        tooltipSec.GetComponent<TooltipPopUp>().HideInfo();
+        tooltipSec.GetComponent<TooltipPopUp>().ForceResetLastBtn();
         unit.actionBoxPanel.gameObject.SetActive(false);
-        unit.chosenMove.move = unit.basicAttack.ReturnMove();
+        unit.chosenMove.move = unit.basicAttack;
         EnableTarget();
     }
 

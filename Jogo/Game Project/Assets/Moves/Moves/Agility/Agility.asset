@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Agility
   m_EditorClassIdentifier: 
   type: 5
+  target: 1
+  targetType: 0
+  id: 0
   name: agility
   hitTime: 1
   priority: 0

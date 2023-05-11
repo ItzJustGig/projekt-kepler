@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Toxic Teeth
   m_EditorClassIdentifier: 
   type: 5
+  target: 1
+  targetType: 0
+  id: 0
   name: toxicteeth
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -34,10 +39,16 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 65
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: 2369e4a75ba83a14c8a09cdf180fbd8e, type: 2}
   statModEnemy: {fileID: 0}
   scale: []
+  dot: []
   effects: []
   grantPassive: {fileID: 11400000, guid: 5cb2e08f9657c8049a34d48041f8d427, type: 2}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

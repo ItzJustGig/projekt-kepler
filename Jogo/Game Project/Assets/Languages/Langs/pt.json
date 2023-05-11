@@ -71,7 +71,7 @@
             "sanityrecov": "Sanidade Recuperada:",
             "shielddone": "Escudo Feito:",
             "cd": "TR",
-            "sta": "ENG",
+            "sta": "STA",
             "mn": "MN",
             "gold": "Ouro:",
             "round": "Ronda:",
@@ -144,7 +144,10 @@
         "overtime": " ao longo de %n% turnos",
         "as_": "",
         "of": " do",
-        "and": " e"
+        "and": " e",
+		"mana": "%c%Custo de Mana%c/%: %val%",
+		"stamina": "%c%Custo de Stamina%c/%: %val%",
+		"cooldown": "Tempo de Recarga: %val%"
     },
     "stats": {
         "name": {

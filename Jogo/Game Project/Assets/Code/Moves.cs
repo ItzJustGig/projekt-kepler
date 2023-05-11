@@ -16,6 +16,7 @@ public class Moves : ScriptableObject
     public Target target;
     public TargetType targetType;
 
+    public int id = 0;
     public new string name;
     public int hitTime = 1;
     public int priority = 0;
@@ -153,6 +154,15 @@ public class Moves : ScriptableObject
         return builder;
     }
 
+    private StringBuilder GetDmg(LanguageManager languageManager, string language, string whatIs, float val)
+    {
+        StringBuilder builder = new StringBuilder();
+        builder.Append(languageManager.GetText(language, "showdetail", whatIs));
+        builder.Replace("%val%", val.ToString());
+
+        return builder;
+    }
+
     private StringBuilder GetDmg(LanguageManager languageManager, string language, string whatIs, float val, string colour, float scale)
     {
         StringBuilder builder = new StringBuilder();
@@ -214,10 +224,10 @@ public class Moves : ScriptableObject
         return builder;
     }
 
-    private StringBuilder GetDetail(LanguageManager languageManager, string language, string whatIs, string whatIsComp)
+    private StringBuilder GetDetail(LanguageManager languageManager, string language, string whatIsMain, string whatIsSec)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, whatIs, whatIsComp));
+        builder.Append(languageManager.GetText(language, whatIsMain, whatIsSec));
 
         return builder;
     }
@@ -729,7 +739,23 @@ public class Moves : ScriptableObject
         StringBuilder builder = new StringBuilder();
 
         builder.Append("<size=24><align=center>").Append(GetDetail(languageManager, language, "moves", name)).Append("</align></size>").AppendLine();
-        builder.Append("<size=17><align=center>").Append(GetMoveType(languageManager, language)).Append("</align></size>").AppendLine();
+        builder.Append("<size=20><align=center>").Append(GetMoveType(languageManager, language)).Append("</align></size>").AppendLine();
+
+        if (!isUlt)
+        {
+            builder.Append(GetDmg(languageManager, language, "mana", manaCost, "2d71fa")).AppendLine();
+            builder.Append(GetDmg(languageManager, language, "stamina", staminaCost, "ebdb28")).AppendLine();
+        }
+
+        if (cooldown > 0)
+        {
+            builder.Append(GetDmg(languageManager, language, "cooldown", cooldown));
+            if (inCooldown > 0)
+                builder.Append(" (" + inCooldown + ")");
+
+            builder.AppendLine();
+        }
+            
 
         if (hitTime > 1)
             builder.Append(GetDmg(languageManager, language, "hitimes", hitTime, "FFFFFF")).AppendLine();

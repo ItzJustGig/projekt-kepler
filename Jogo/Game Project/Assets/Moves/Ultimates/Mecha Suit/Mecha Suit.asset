@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Mecha Suit
   m_EditorClassIdentifier: 
   type: 4
+  target: 1
+  targetType: 0
+  id: 0
   name: mechasuit
   hitTime: 1
   priority: 0

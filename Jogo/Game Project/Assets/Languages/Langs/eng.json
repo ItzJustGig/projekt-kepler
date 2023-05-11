@@ -70,9 +70,9 @@
 			"staminarecov": "Stamina Recovered:",
 			"sanityrecov": "Sanity Recovered:",
 			"shielddone": "Shield Done:",
-			"cd": "CD",
-			"sta": "STA",
-			"mn": "MN",
+			"cd": "Cooldown: ",
+			"sta": "Stamina Cost: ",
+			"mn": "Mana Cost: ",
 			"gold": "Gold:",
 			"round": "Round:",
 			"shop": "Shop",
@@ -144,7 +144,10 @@
 		"overtime": " over %n% turns",
 		"as_": " as",
 		"of": " of",
-		"and": " and"
+		"and": " and",
+		"mana": "%c%Mana Cost%c/%: %val%",
+		"stamina": "%c%Stamina Cost%c/%: %val%",
+		"cooldown": "Cooldown: %val%"
 	},
 	"stats": {
 		"name": {

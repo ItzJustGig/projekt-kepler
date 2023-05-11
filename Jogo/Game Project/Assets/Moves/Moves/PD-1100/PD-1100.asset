@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: PD-1100
   m_EditorClassIdentifier: 
   type: 6
+  target: 2
+  targetType: 0
+  id: 0
   name: pd1100
   hitTime: 1
   priority: 0

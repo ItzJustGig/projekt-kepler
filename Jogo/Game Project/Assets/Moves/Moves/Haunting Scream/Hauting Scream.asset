@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Hauting Scream
   m_EditorClassIdentifier: 
   type: 5
+  target: 0
+  targetType: 1
+  id: 0
   name: hauntingscream
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -34,6 +39,8 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 40
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
@@ -42,6 +49,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e675a3b4f650f234c8a713ead8682085, type: 2}
   - {fileID: 11400000, guid: dd11148402ad89b40bc4a9780b135409, type: 2}
   - {fileID: 11400000, guid: 46af7a123b8450043aaa33550d0dba7c, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: 4dbe4660d87cd254bbb3157b01944076, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

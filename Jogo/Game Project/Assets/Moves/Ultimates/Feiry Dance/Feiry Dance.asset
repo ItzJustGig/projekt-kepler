@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Feiry Dance
   m_EditorClassIdentifier: 
   type: 1
+  target: 0
+  targetType: 1
+  id: 0
   name: feirydance
   hitTime: 3
   priority: 0
@@ -50,3 +53,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eaa3a393e2feec942bc605735f0d4055, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: 

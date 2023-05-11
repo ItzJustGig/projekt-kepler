@@ -54,6 +54,7 @@ public class BattleHud : MonoBehaviour
         langmang = GameObject.Find("GameManager").GetComponent<FightLang>();
         language = langmang.language;
 
+        shieldSlider.maxValue = GameObject.Find("GameManager").GetComponent<BattleSystem>().maxShield;
         bloodSlider.value = 0;
         ultSlider.value = 0;
         shieldSlider.value = 0;
@@ -90,7 +91,6 @@ public class BattleHud : MonoBehaviour
         staminaInfo.text = staminaInfo.text.Replace("%v%", staminaTired.ToString());
 
         shieldText.text = unit.curShield.ToString();
-        shieldSlider.maxValue = unit.curShield;
         shieldSlider.value = unit.curShield;
         shieldInfo.text = langmang.languageManager.GetText(language, "gui", "text", "shield");
         shieldInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "shieldbonus") + ": " + unit.SetModifiers().shieldBonus.ToString("0.00") + "%";
@@ -467,7 +467,6 @@ public class BattleHud : MonoBehaviour
         }*/
 
         yield return null;
-        shieldSlider.maxValue = shield;
         shieldSlider.value = shield;
         shieldText.text = shieldSlider.value.ToString("0");
         shieldInfo.text = langmang.languageManager.GetText(language, "gui", "text", "shield");

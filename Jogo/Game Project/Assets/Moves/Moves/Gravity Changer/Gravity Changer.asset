@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Gravity Changer
   m_EditorClassIdentifier: 
   type: 5
+  target: 1
+  targetType: 0
+  id: 0
   name: gravchanger
   hitTime: 1
   priority: 0
   uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -35,6 +39,8 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 60
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: 67a292b956823a843bfd6f7a0f87ad2c, type: 2}
@@ -45,3 +51,5 @@ MonoBehaviour:
   effects: []
   grantPassive: {fileID: 11400000, guid: 30d3a6cdcb0f8ca4896572dfbce3acde, type: 2}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: 

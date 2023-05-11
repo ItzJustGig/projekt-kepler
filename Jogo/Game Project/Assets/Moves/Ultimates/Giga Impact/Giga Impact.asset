@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Giga Impact
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 1
+  id: 0
   name: gigaimpact
   hitTime: 1
   priority: 0
@@ -49,3 +52,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f15188c7aff92a74ca4ca8a89c994c4b, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: 
