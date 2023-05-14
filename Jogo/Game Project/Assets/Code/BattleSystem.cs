@@ -33,6 +33,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private float dotReduc = 0.3f;
     [SerializeField] private float ultComp = 0.25f;
     [SerializeField] private int ultCompDuration = 6;
+    [SerializeField] private int summonHpLostBase = 30;
+    [SerializeField] private float summonHpLostPer = 0.2f;
     [SerializeField] private int bloodLossStacks = 10;
     //Change blood special tooltip if changed ^
     [SerializeField] private Text dialogText;
@@ -51,6 +53,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private Text turnsText;
     [SerializeField] private Text turnsTextOverview;
     [SerializeField] private int turnCount = 0;
+    [SerializeField] private int combatCount = 0;
     [SerializeField] private float ultEnergyDealt;
     [SerializeField] private float ultEnergyTaken;
 
@@ -529,13 +532,35 @@ public class BattleSystem : MonoBehaviour
 
     void SelectMovingCharacter()
     {
-        player.EnableAllBtn();
+        if (combatCount < player.GetAliveCharacters())
+        {
+            if (!player.unit1.hasAttacked)
+                player.EnableBtn(player.unit1);
+
+            if (!player.unit2.hasAttacked)
+                player.EnableBtn(player.unit2);
+
+            if (!player.unit3.hasAttacked)
+                player.EnableBtn(player.unit3);
+        } else
+        {
+            if (!player.unit1.hasAttacked && !player.unit1.isDead)
+                player.EnableBtn(player.unit1);
+            else if (!player.unit2.hasAttacked && !player.unit2.isDead)
+                player.EnableBtn(player.unit2);
+            else if (!player.unit3.hasAttacked && !player.unit3.isDead)
+                player.EnableBtn(player.unit3);
+            else
+                StartCoroutine(Combat(null, enemy.AIGetAttacker(combatCount)));
+        }
     }
 
     public void DoneSelecting()
     {
         player.DisableAllBtn();
         player.GetAttacker().actionBoxPanel.gameObject.SetActive(true);
+        player.GetAttacker().actionBoxPanel.parent.parent.GetComponent<ActionBox>().SetupSpecialMoveBtn(1);
+        player.GetAttacker().actionBoxPanel.parent.parent.GetComponent<ActionBox>().SetupSpecialMoveBtn(2);
     }
 
     public void HideMoveHud()
@@ -548,28 +573,40 @@ public class BattleSystem : MonoBehaviour
     {
         player.DisableAllBtn();
         enemy.DisableAllBtn();
-        StartCoroutine(Combat(player.GetAttacker(), enemy.AIGetAttacker(player.GetAttacker().id)));
+        StartCoroutine(Combat(player.GetAttacker(), enemy.AIGetAttacker(combatCount)));
     }
 
     IEnumerator Combat(Unit player, Unit enemy)
     {
         tooltipMain.transform.Find("TooltipCanvas").gameObject.SetActive(false);
-        //movesBtn.interactable = false;
-        //basicBtn.interactable = false;
-        //healManaBtn.interactable = false;
-        //ultBtn.interactable = false;
-        
-        Moves moveEnemy = this.enemy.AIChooseMove(enemy, this.player);
-        enemy.chosenMove.move = moveEnemy;
-        enemy.chosenMove.target = player;
 
-        List<Unit> characters = new List<Unit>
+        List<Unit> characters = new List<Unit>();
+
+        if (player != null)
         {
-            player, enemy
-        };
+            characters.Add(player);
+            player.hasAttacked = true;
+        }
 
-        //Debug.Log(player.name + " + " + player.chosenMove.move.name + " + " + player.chosenMove.target.name);
-        //Debug.Log(enemy.name + " + " + enemy.chosenMove.move.name + " + " + enemy.chosenMove.target.name);
+        if (enemy != null)
+        {
+            int temp = 0;
+            while (true)
+            {
+                temp++;
+                enemy.chosenMove.target = this.player.GetRandom();
+                if (!enemy.chosenMove.target.isDead)
+                    break;
+
+                if (temp == 1000)
+                    break;
+            }
+            Moves moveEnemy = this.enemy.AIChooseMove(enemy, enemy.chosenMove.target);
+            enemy.chosenMove.move = moveEnemy;
+            characters.Add(enemy);
+            enemy.hasAttacked = true;
+        }
+
         characters = characters.OrderBy(c => c.chosenMove.move.priority + c.SetModifiers().movSpeed).ToList();
 
         foreach (Unit charc in characters)
@@ -600,10 +637,32 @@ public class BattleSystem : MonoBehaviour
             }
         }
 
+        combatCount++;
+        this.player.ResetAttacker();
+        this.enemy.ResetAttacker();
+
+        CheckVictory();
+
         if (state == BattleState.WIN || state == BattleState.LOSE)
             StartCoroutine(EndBattle());
         else
-            StartCoroutine(NewTurn());
+        {
+            if (combatCount == GetCombatCountMax())
+                StartCoroutine(NewTurn());
+            else
+                SelectMovingCharacter();
+        }
+            
+    }
+
+    int GetCombatCountMax()
+    {
+        if (player.GetAliveCharacters() > enemy.GetAliveCharacters())
+            return player.GetAliveCharacters();
+        else if (player.GetAliveCharacters() < enemy.GetAliveCharacters())
+            return enemy.GetAliveCharacters();
+        else
+            return player.GetAliveCharacters();
     }
 
     IEnumerator Attack(Moves move, Unit user, Unit target)
@@ -2080,19 +2139,19 @@ public class BattleSystem : MonoBehaviour
 
                             yield return new WaitForSeconds(1.75f);
 
-                            if (isDead)
+                            if (isDead && !target.isDead)
                             {
-                                if (user.isEnemy)
+                                if (!target.isEnemy)
                                 {
-                                    player.SetAsDead(user);
+                                    player.SetAsDead(target);
                                     state = BattleState.ALLYKILLED;
                                 }
                                 else
                                 {
-                                    enemy.SetAsDead(user);
+                                    enemy.SetAsDead(target);
                                     state = BattleState.ENEMYKILLED;
                                 }
-                                dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", user.charc.name));
+                                dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", target.charc.name));
                             }
                         }
                         sumPlayerHud.UpdateValues(user, langmanag.GetInfo("charc", "name", user.charc.name));
@@ -3684,6 +3743,11 @@ public class BattleSystem : MonoBehaviour
 
     bool SpawnSummon(Summon sum, Unit summoner, Unit.SummonTarget target)
     {
+        if (summoner.isDead)
+        {
+            sum.stats.hp -= summonHpLostBase + (sum.stats.hp * summonHpLostPer);
+        }
+
         if (sum.summonTurn == 0)
         {
             Stats statsSum = summoner.SetModifiers();
@@ -3723,6 +3787,7 @@ public class BattleSystem : MonoBehaviour
             if (sum.stats.hp > 0)
             {
                 summoner.effectHud.transform.Find(debugname + "(Clone)").gameObject.transform.Find("time").gameObject.GetComponent<Text>().text = sum.stats.hp.ToString();
+                Debug.Log("CD: " + sum.move.inCd);
                 if (sum.move.inCd <= 0)
                 {
                     dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", name, langmanag.GetInfo("summon", sum.GetMoveTypeLangId()));
@@ -3764,6 +3829,7 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
 
         //set turn number
+        combatCount = 0;
         turnCount++;
         turnsText.text = langmanag.GetInfo("gui", "text", "turn", turnCount);
         turnsTextOverview.text = langmanag.GetInfo("gui", "text", "turn", turnCount);
@@ -3776,6 +3842,9 @@ public class BattleSystem : MonoBehaviour
         
         if (!overviewBtn.interactable)
             overviewBtn.interactable = true;
+
+        player.ResetHasAttacked();
+        enemy.ResetHasAttacked();
 
         //Some optimization needed
         UpdateTooltips(enemy.unit1);
@@ -3831,35 +3900,16 @@ public class BattleSystem : MonoBehaviour
             }
         }
 
-        //apply tired
-        if (unit.curStamina <= (int)(stats.stamina * (tiredStart + (tiredGrowth * tiredStacks))) && CanTired)
+        if (!unit.isDead)
         {
-            ApplyTired(unit, unit.effectHud.gameObject);
-        }
-
-        unit.ResetCanUse();
-        if (unit.CountEffectTimer(unit.effectHud.gameObject, bloodLossStacks, dmgResisPer, magicResisPer, dotReduc))
-        {
-            if (unit.isEnemy)
+            //apply tired
+            if (unit.curStamina <= (int)(stats.stamina * (tiredStart + (tiredGrowth * tiredStacks))) && CanTired)
             {
-                player.SetAsDead(unit);
-                state = BattleState.ALLYKILLED;
+                ApplyTired(unit, unit.effectHud.gameObject);
             }
-            else
-            {
-                this.enemy.SetAsDead(unit);
-                state = BattleState.ENEMYKILLED;
-            }
-        }
 
-        foreach (Dotdmg a in unit.dotDmg.ToArray())
-        {
-            a.inTime--;
-
-            bool isDead = DotCalc(a, unit);
-            yield return new WaitForSeconds(0.6f);
-
-            if (isDead)
+            unit.ResetCanUse();
+            if (unit.CountEffectTimer(unit.effectHud.gameObject, bloodLossStacks, dmgResisPer, magicResisPer, dotReduc))
             {
                 if (unit.isEnemy)
                 {
@@ -3873,110 +3923,134 @@ public class BattleSystem : MonoBehaviour
                 }
             }
 
-            if (a.inTime <= 0)
+            foreach (Dotdmg a in unit.dotDmg.ToArray())
             {
-                unit.dotDmg.Remove(a);
+                a.inTime--;
 
-                /*GameObject temp = panelEffectsP.transform.Find(a.id + "(Clone)").gameObject;
+                bool isDead = DotCalc(a, unit);
+                yield return new WaitForSeconds(0.6f);
 
-                Destroy(temp.gameObject);*/
-            }
-        }
-        SetStatus();
-
-        CheckVictory();
-
-        //apply fear
-        if (unit.curSanity <= 0)
-        {
-            ApplyFear(unit, unit.effectHud.gameObject);
-        }
-
-        if (unit.recoverMana.inCooldown > 0)
-            unit.recoverMana.inCooldown--;
-
-        if (unit.moves.Count > 0)
-        {
-            int i = 0;
-            foreach (Moves move in unit.moves.ToArray())
-            {
-                i++;
-                if (move.uses >= 0)
+                if (isDead)
                 {
-                    foreach (Transform movebtn in unit.moveListPanel.transform)
+                    if (unit.isEnemy)
                     {
-                        Text id = movebtn.Find("Id").gameObject.GetComponent<Text>();
-                        if (id.text == i.ToString())
-                        {
-                            if (move.uses == 0)
-                            {
-                                Destroy(movebtn.gameObject);
-                                unit.moves.Remove(move);
-                            }
-                        }
+                        player.SetAsDead(unit);
+                        state = BattleState.ALLYKILLED;
+                    }
+                    else
+                    {
+                        this.enemy.SetAsDead(unit);
+                        state = BattleState.ENEMYKILLED;
                     }
                 }
 
-                if (move.inCooldown > 0 && move.name != "recovmana")
-                    move.inCooldown--;
-
-                foreach (EffectsMove a in move.effects)
+                if (a.inTime <= 0)
                 {
-                    a.SetApply(false);
+                    unit.dotDmg.Remove(a);
+
+                    /*GameObject temp = panelEffectsP.transform.Find(a.id + "(Clone)").gameObject;
+
+                    Destroy(temp.gameObject);*/
                 }
             }
+            SetStatus();
+
         }
+        CheckVictory();
 
-        if (unit.statMods.Count > 0)
-            foreach (StatMod statMod in unit.statMods.ToArray())
-            {
-                if (statMod.inTime > 0)
-                    statMod.inTime--;
-
-                if (statMod.inTime == 0)
-                    unit.statMods.Remove(statMod);
-            }
-
-        unit.hud.SetStatsHud(unit);
-
-        CheckPassiveTurn(unit, unit.hud, enemy);
-
-        stats = unit.SetModifiers();
-
-        if (turnCount > 1)
+        if (!unit.isDead)
         {
-            unit.DoAnimParticle("heal");
-            unit.Heal(stats.hpRegen * (1 + stats.healBonus));
-            if (!(unit.curHp + (stats.hpRegen * (1 + stats.healBonus)) >= unit.SetModifiers().hp))
-                unit.healDone += stats.hpRegen * (1 + stats.healBonus);
-            else
-                unit.healDone += unit.SetModifiers().hp - unit.curHp;
+            //apply fear
+            if (unit.curSanity <= 0)
+            {
+                ApplyFear(unit, unit.effectHud.gameObject);
+            }
 
-            if (unit.curMana < stats.mana)
-                if ((unit.curMana + stats.manaRegen) > stats.mana)
+            if (unit.recoverMana.inCooldown > 0)
+                unit.recoverMana.inCooldown--;
+
+            if (unit.moves.Count > 0)
+            {
+                int i = 0;
+                foreach (Moves move in unit.moves.ToArray())
                 {
-                    unit.curMana = stats.mana;
-                    unit.manaHealDone += stats.mana - (unit.curMana + stats.manaRegen);
+                    i++;
+                    if (move.uses >= 0)
+                    {
+                        foreach (Transform movebtn in unit.moveListPanel.transform)
+                        {
+                            Text id = movebtn.Find("Id").gameObject.GetComponent<Text>();
+                            if (id.text == i.ToString())
+                            {
+                                if (move.uses == 0)
+                                {
+                                    Destroy(movebtn.gameObject);
+                                    unit.moves.Remove(move);
+                                }
+                            }
+                        }
+                    }
+
+                    if (move.inCooldown > 0 && move.name != "recovmana")
+                        move.inCooldown--;
+
+                    foreach (EffectsMove a in move.effects)
+                    {
+                        a.SetApply(false);
+                    }
                 }
-                else
+            }
+
+            if (unit.statMods.Count > 0)
+                foreach (StatMod statMod in unit.statMods.ToArray())
                 {
-                    unit.curMana += stats.manaRegen;
-                    unit.manaHealDone += stats.manaRegen;
+                    if (statMod.inTime > 0)
+                        statMod.inTime--;
+
+                    if (statMod.inTime == 0)
+                        unit.statMods.Remove(statMod);
                 }
 
-            if (unit.curStamina < stats.stamina)
-                if ((unit.curStamina + stats.staminaRegen) > stats.stamina)
-                {
-                    unit.curStamina = stats.stamina - (unit.curStamina + stats.staminaRegen);
-                    unit.staminaHealDone += stats.stamina - (unit.curStamina + stats.staminaRegen);
-                }
+            unit.hud.SetStatsHud(unit);
+
+            CheckPassiveTurn(unit, unit.hud, enemy);
+
+            stats = unit.SetModifiers();
+
+            if (turnCount > 1)
+            {
+                unit.DoAnimParticle("heal");
+                unit.Heal(stats.hpRegen * (1 + stats.healBonus));
+                if (!(unit.curHp + (stats.hpRegen * (1 + stats.healBonus)) >= unit.SetModifiers().hp))
+                    unit.healDone += stats.hpRegen * (1 + stats.healBonus);
                 else
-                {
-                    unit.curStamina += stats.staminaRegen;
-                    unit.staminaHealDone += stats.staminaRegen;
-                }
+                    unit.healDone += unit.SetModifiers().hp - unit.curHp;
+
+                if (unit.curMana < stats.mana)
+                    if ((unit.curMana + stats.manaRegen) > stats.mana)
+                    {
+                        unit.curMana = stats.mana;
+                        unit.manaHealDone += stats.mana - (unit.curMana + stats.manaRegen);
+                    }
+                    else
+                    {
+                        unit.curMana += stats.manaRegen;
+                        unit.manaHealDone += stats.manaRegen;
+                    }
+
+                if (unit.curStamina < stats.stamina)
+                    if ((unit.curStamina + stats.staminaRegen) > stats.stamina)
+                    {
+                        unit.curStamina = stats.stamina - (unit.curStamina + stats.staminaRegen);
+                        unit.staminaHealDone += stats.stamina - (unit.curStamina + stats.staminaRegen);
+                    }
+                    else
+                    {
+                        unit.curStamina += stats.staminaRegen;
+                        unit.staminaHealDone += stats.staminaRegen;
+                    }
+            }
         }
-
         unit.isBlockingPhysical = false;
         unit.isBlockingMagical = false;
         unit.isBlockingRanged = false;
@@ -4075,20 +4149,19 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    IEnumerable CheckVictory()
+    void CheckVictory()
     {
         bool enemyS = enemy.HaveLost();
         bool playerS = player.HaveLost();
 
-        if (!enemyS && !playerS)
+        if (enemyS && playerS)
             state = BattleState.TIE;
-        else if (!playerS)
+        else if (playerS)
             state = BattleState.LOSE;
-        else if (!enemyS)
+        else if (enemyS)
             state = BattleState.WIN;
 
         if (state == BattleState.TIE || state == BattleState.LOSE || state == BattleState.WIN) 
             StartCoroutine(EndBattle());
-            yield break;
     }
 }

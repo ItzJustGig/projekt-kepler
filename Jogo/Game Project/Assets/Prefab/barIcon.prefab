@@ -83,20 +83,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=25><align=center>Vendetta</align></size>
+  text: '<size=25><align=center>Blazing Fists</align></size>
 
-    <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
+    <size=19><align=center><color=#B2B2B2>Move''s
+    Passive</color></align></size>
 
     
 
-    If
-    the user is fighting an enemy with <color=#00ff11>+25% max health</color> than
-    the <color=#00ff11>user''s max health</color>, deals bonus <color=#ffaa00>30
-    + (<color=#ffaa00>22,5%</color> of the user''s <color=#ffaa00>Attack Damage</color>)</color>
-    as<color=#ffaa00> physical damage</color>, heal <color=#00ff11>25 + (<color=#1a66ff>35%</color>
-    of the user''s <color=#1a66ff>Magic Power</color>) health</color> and have <color=#f75145>18%
-    Critical Chance</color> and <color=#f75145>48,5% Critical Damage</color>  on
-    that enemy with <color=#ffaa00>physical moves</color> (8 turns cooldown)
+    The user deal bonus <color=#1a66ff>4
+    + (<color=#1a66ff>12,75%</color> of the user''s <color=#1a66ff>Magic Power</color>)</color>
+    as<color=#1a66ff> magical damage</color> on <color=#ffaa00>physical moves</color>
+    or <color=#ffaa00>basic attacks</color> for 4 turns.
 
 '
   textSec: 
@@ -185,7 +182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d54d71c2b9e9c5f4fb1c4ad8a656b575, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -253,7 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
+  m_Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -273,4 +270,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 4

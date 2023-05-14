@@ -338,7 +338,6 @@ public class Unit : MonoBehaviour
     {
         bool isDead = false;
 
-        Debug.Log("I FOUND");
         foreach (Effects a in effects.ToArray())
         {
             if (a.timeReducImmunity)

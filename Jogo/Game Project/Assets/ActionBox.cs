@@ -67,6 +67,9 @@ public class ActionBox : MonoBehaviour
         } else if (temp.chosenMove.target == null)
         {
             temp.chosenMove.target = unit;
+            //FIX LATER
+            temp.summonTarget.target = unit;
+            temp.summonTarget.ally = temp;
             battleSystem.DoneChoosingMove();
         }
     }
@@ -193,8 +196,78 @@ public class ActionBox : MonoBehaviour
             }
         }
 
+        SetupSpecialMoveBtn(1);
+        SetupSpecialMoveBtn(2);
+
         movePanel.gameObject.SetActive(true);
         scrollbar.value = 1;
+    }
+
+    public void SetupSpecialMoveBtn(int id)
+    {
+        Moves move = unit.basicAttack;
+        Button moveBtn = basicBtn.GetComponent<Button>();
+        switch (id)
+        {
+            case 1:
+                move = unit.recoverMana;
+                moveBtn = healManaBtn.GetComponent<Button>();
+            break;
+            case 2:
+                move = unit.ultMove;
+                moveBtn = ultBtn.GetComponent<Button>();
+            break;
+        }
+
+        int inCd = move.inCooldown;
+            
+        bool canUse = true;
+
+        if (move.isUlt && unit.ult < move.ultCost)
+        {
+            canUse = false;
+        }
+
+        switch (move.type)
+        {
+            case Moves.MoveType.PHYSICAL:
+                if (!unit.canUsePhysical)
+                    canUse = false;
+                break;
+            case Moves.MoveType.MAGICAL:
+                if (!unit.canUseMagic)
+                    canUse = false;
+                break;
+            case Moves.MoveType.RANGED:
+                if (!unit.canUseRanged)
+                    canUse = false;
+                break;
+            case Moves.MoveType.DEFFENCIVE:
+                if (!unit.canUseProtec)
+                    canUse = false;
+                break;
+            case Moves.MoveType.SUPPORT:
+                if (!unit.canUseSupp)
+                    canUse = false;
+                break;
+            case Moves.MoveType.ENCHANT:
+                if (!unit.canUseEnchant)
+                    canUse = false;
+                break;
+            case Moves.MoveType.SUMMON:
+                if (!unit.canUseSummon)
+                    canUse = false;
+                break;
+        }
+
+        if (unit.curMana < (move.manaCost * unit.SetModifiers().manaCost)
+            || unit.curStamina < (move.staminaCost * unit.SetModifiers().staminaCost) || inCd > 0)
+            canUse = false;
+
+        if (canUse)
+            moveBtn.interactable = true;
+        else
+            moveBtn.interactable = false;
     }
 
     public void OnHealBtn()
@@ -240,6 +313,8 @@ public class ActionBox : MonoBehaviour
 
     public void CancelBtn()
     {
+        SetupSpecialMoveBtn(1);
+        SetupSpecialMoveBtn(2);
         movePanel.gameObject.SetActive(false);
     }
 }

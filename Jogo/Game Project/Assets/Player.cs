@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -18,7 +17,7 @@ public class Player : MonoBehaviour
     private float aiManaRecover;
     private float aiGaranteedManaRecover;
     [SerializeField] private bool isEnemy;
-    private int aliveCharacters = 3;
+    public int deadCharacters = 0;
     public int playableCharacters = 3;
 
     public void SetUpStats(Unit unit, EndlessInfo info, float tired)
@@ -100,17 +99,17 @@ public class Player : MonoBehaviour
 
     public void EnableBtn(Unit unit1 = null, Unit unit2 = null, Unit unit3 = null)
     {
-        if (unit1 != null)
+        if (unit1 != null && !unit1.isDead)
         {
             unit1.selectBtn.gameObject.SetActive(true);
         }
 
-        if (unit2 != null)
+        if (unit2 != null && !unit2.isDead)
         {
             unit2.selectBtn.gameObject.SetActive(true);
         }
         
-        if (unit3 != null)
+        if (unit3 != null && !unit3.isDead)
         {
             unit3.selectBtn.gameObject.SetActive(true);
         }
@@ -172,18 +171,34 @@ public class Player : MonoBehaviour
         return attacking; 
     }
 
-    public Unit AIGetAttacker(int id)
+    public void ResetHasAttacked()
     {
-        switch (id)
+        unit1.hasAttacked = false;
+        unit2.hasAttacked = false;
+        unit3.hasAttacked = false;
+    }
+
+    public Unit AIGetAttacker(int combatCount)
+    {
+        while (true)
         {
-            case 1:
-                return unit1;
-            case 2:
-                return unit2;
-            case 3: 
-                return unit3;
-            default:
-                return unit1;
+            Unit picked = GetRandom();
+
+            if (combatCount < GetAliveCharacters())
+            {
+                if (picked != null && !picked.hasAttacked && !picked.isDead)
+                    return picked;
+            } else
+            {
+                if (!unit1.hasAttacked && !unit1.isDead)
+                    return unit1;
+                else if (!unit2.hasAttacked && !unit2.isDead)
+                    return unit2;
+                else if (!unit3.hasAttacked && !unit3.isDead)
+                    return unit3;
+                else
+                    return null;
+            }
         }
     }
 
@@ -196,7 +211,24 @@ public class Player : MonoBehaviour
         else return unit3;
     }
 
-    public Moves AIChooseMove(Unit user, Player target)
+    public Unit GetRandom()
+    {
+        int rng = Random.Range(1, 3+1);
+
+        switch (rng)
+        {
+            case 1:
+                return unit1;
+            case 2:
+                return unit2;
+            case 3:
+                return unit3;
+            default:
+                return unit1;
+        }
+    }
+
+    public Moves AIChooseMove(Unit user, Unit target)
     {
         Moves move = null;
         bool skip = false;
@@ -231,17 +263,17 @@ public class Player : MonoBehaviour
                 else
                 {
                     Stats statsU = user.SetModifiers();
-                    Stats statsT = target.unit1.SetModifiers();
+                    Stats statsT = target.SetModifiers();
 
-                    random = user.charc.ai.chooseMove(user.moves, user, target.unit1, statsU, statsT);
+                    random = user.charc.ai.chooseMove(user.moves, user, target, statsU, statsT);
                 }
             }
             else
             {
                 Stats statsU = user.SetModifiers();
-                Stats statsT = target.unit1.SetModifiers();
+                Stats statsT = target.SetModifiers();
 
-                random = user.charc.ai.chooseMove(user.moves, target.unit1, user, statsU, statsT);
+                random = user.charc.ai.chooseMove(user.moves, target, user, statsU, statsT);
             }
 
             foreach (Moves a in user.moves)
@@ -364,12 +396,17 @@ public class Player : MonoBehaviour
     {
         unit.WonLost(false);
         unit.isDead = true;
-        aliveCharacters--;
+        deadCharacters++;
+    }
+
+    public int GetAliveCharacters()
+    {
+        return playableCharacters - deadCharacters;
     }
 
     public bool HaveLost()
     {
-        return !(unit1.isDead || unit2.isDead || unit3.isDead);
+        return unit1.isDead && unit2.isDead && unit3.isDead;
     }
 
     public void Victory()

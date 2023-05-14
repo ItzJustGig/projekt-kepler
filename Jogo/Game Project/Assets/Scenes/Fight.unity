@@ -8048,6 +8048,7 @@ MonoBehaviour:
   unit3Btn: {fileID: 1896861775}
   attacking: {fileID: 0}
   isEnemy: 0
+  deadCharacters: 0
   playableCharacters: 3
 --- !u!1 &859068251
 GameObject:
@@ -9448,6 +9449,8 @@ MonoBehaviour:
   dotReduc: 0.6
   ultComp: 0.25
   ultCompDuration: 6
+  summonHpLostBase: 40
+  summonHpLostPer: 0.25
   bloodLossStacks: 10
   dialogText: {fileID: 2435926}
   playerHudList: {fileID: 2099022623}
@@ -9464,6 +9467,7 @@ MonoBehaviour:
   turnsText: {fileID: 865819993}
   turnsTextOverview: {fileID: 1656240959}
   turnCount: 0
+  combatCount: 0
   ultEnergyDealt: 0.019
   ultEnergyTaken: 0.011
   movesBtn: {fileID: 0}
@@ -9920,6 +9924,7 @@ MonoBehaviour:
   unit3Btn: {fileID: 1344004885}
   attacking: {fileID: 0}
   isEnemy: 1
+  deadCharacters: 0
   playableCharacters: 3
 --- !u!1 &1035206264
 GameObject:
