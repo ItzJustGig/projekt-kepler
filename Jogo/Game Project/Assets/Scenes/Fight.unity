@@ -9464,18 +9464,13 @@ MonoBehaviour:
   sumHud: {fileID: 2069708607}
   sumHudHideBtn: {fileID: 1035206264}
   leaveBtn: {fileID: 913672555}
+  overviewBtn: {fileID: 1518950355}
   turnsText: {fileID: 865819993}
   turnsTextOverview: {fileID: 1656240959}
   turnCount: 0
   combatCount: 0
   ultEnergyDealt: 0.019
   ultEnergyTaken: 0.011
-  movesBtn: {fileID: 0}
-  healManaBtn: {fileID: 0}
-  basicBtn: {fileID: 0}
-  ultBtn: {fileID: 0}
-  overviewBtn: {fileID: 1518950355}
-  healBtnText: {fileID: 0}
   tiredw: {fileID: 11400000, guid: d2c04c48ef6d7934fb1d311b04c608df, type: 2}
   tiredm: {fileID: 11400000, guid: f145d54ae3b6380428cb3c44d9b7b651, type: 2}
   fear: {fileID: 11400000, guid: ddbc508468aaf18469eacabd381c1203, type: 2}

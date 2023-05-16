@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Mega Howl
   m_EditorClassIdentifier: 
   type: 1
+  target: 0
+  targetType: 1
+  id: 0
   name: megahowl
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,10 +33,14 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 2
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 7
   inCooldown: 0
   manaCost: 45
   staminaCost: 15
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: 7760f126447257d419fcccb3c068dc08, type: 2}
@@ -39,6 +48,10 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: 7f3e6ba2a4266844d9ba17d542bf9afd, type: 2}
   - {fileID: 11400000, guid: 5cbbd26d6b49ac449970ee3f84dd74b8, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: a32611ce7e01ad54e9dae7ab0aa187c1, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

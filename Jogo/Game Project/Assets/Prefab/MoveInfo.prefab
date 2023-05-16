@@ -504,31 +504,38 @@ MonoBehaviour:
   tooltipPopupSec: {fileID: 0}
   text: '<size=24><align=center>Taunt</align></size>
 
-    <size=17><align=center><color=#CC66FF>Enchantment</color></align></size>
+    <size=20><align=center><color=#CC66FF>Enchantment</color></align></size>
 
-    Priority:
-    0
+    <color=#2d71fa>Mana
+    Cost</color>: 0
+
+    <color=#ebdb28>Stamina Cost</color>: 0
+
+    Cooldown:
+    7
+
+    Priority: 0
 
     <s><align=center>|                 |</align></s>
 
-    100% chance to
-    <color=#ffaa00>10% Attack Damage</color>, <color=#1a66ff>10% Magic Power</color>,
-    <color=#f75145>-10% Critical Chance</color>, <color=#f75145>-6% Critical Damage</color>,
-    <color=#937264>-32% Damage Resistance</color>, <color=#946ACD>-28% Magic Resistance</color>
-    and <color=#0984db>-30% Timing</color> to the target for 4 turns
+    100%
+    chance to <color=#ffaa00>10% Attack Damage</color>, <color=#1a66ff>10% Magic
+    Power</color>, <color=#f75145>-10% Critical Chance</color>, <color=#f75145>-6%
+    Critical Damage</color>, <color=#937264>-32% Damage Resistance</color>, <color=#946ACD>-28%
+    Magic Resistance</color> and <color=#0984db>-30% Timing</color> to the target
+    for 4 turns
 
-    <s><align=center>|                
-    |</align></s>
+    <s><align=center>|                 |</align></s>
 
-    Deal <color=#b829ff>5 sanity damage</color>
+    Deal
+    <color=#b829ff>5 sanity damage</color>
 
-    Recover
-    <color=#1e68fc>5 mana</color>
-
-    Recover <color=#f0dd0a>5 stamina</color>
+    Recover <color=#1e68fc>5 mana</color>
 
     Recover
-    <color=#b641f0>1 sanity</color>
+    <color=#f0dd0a>5 stamina</color>
+
+    Recover <color=#b641f0>1 sanity</color>
 
 '
   textSec: 

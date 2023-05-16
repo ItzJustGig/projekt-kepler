@@ -112,8 +112,25 @@ public class Unit : MonoBehaviour
             else
                 level = PlayerPrefs.GetInt(selectedLevelEnemy);
         }
-        int character = PlayerPrefs.GetInt(selectedCharacter);
-        int bot = PlayerPrefs.GetInt(selectedEnemy);
+
+        int character = 1;
+        int bot = 1;
+
+        switch (this.transform.parent.name)
+        {
+            case "P1":
+                character = PlayerPrefs.GetInt(selectedCharacter + "1");
+                bot = PlayerPrefs.GetInt(selectedEnemy + "1");
+                break; 
+            case "P2":
+                character = PlayerPrefs.GetInt(selectedCharacter + "2");
+                bot = PlayerPrefs.GetInt(selectedEnemy + "2");
+                break;
+            case "P3":
+                character = PlayerPrefs.GetInt(selectedCharacter + "3");
+                bot = PlayerPrefs.GetInt(selectedEnemy + "3");
+                break;
+        }
 
         int isPlayerChamp = PlayerPrefs.GetInt(playerchamp);
         int isEnemyChamp = PlayerPrefs.GetInt(enemychamp);
@@ -290,7 +307,7 @@ public class Unit : MonoBehaviour
             {
                 foreach (Items a in items.returnStuff())
                 {
-                    if (PlayerPrefs.GetString("selectedItem1") == a.name || PlayerPrefs.GetString("selectedItem2") == a.name)
+                    if (PlayerPrefs.GetString("selectedItem1_" + id) == a.name || PlayerPrefs.GetString("selectedItem2_" + id) == a.name)
                     {
                         this.items.Add(a.returnItem());
 
@@ -893,6 +910,15 @@ public class Unit : MonoBehaviour
             case Moves.MoveType.SUMMON:
                 animator.SetTrigger("summon");
                 break;
+        }
+    }
+
+    public void SetAnimHud(string what, bool active)
+    {
+        if (!string.IsNullOrEmpty(what))
+        {
+            Debug.Log(what);
+            hud.gameObject.GetComponent<Animator>().SetBool(what, active);
         }
     }
 

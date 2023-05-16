@@ -42,14 +42,12 @@ public class SelectManager : MonoBehaviour
     [SerializeField] private Sprite statAtk;
     [SerializeField] private Sprite summonAtk;
 
-    [SerializeField] private GameObject levelBtn;
-
-    [SerializeField] private GameObject statsLevelsBtns;
-
     private CharcSelectLang thisLangManager;
+    [SerializeField] Text curCharacterTxt;
 
     private int i = 1;
     private int max = 0;
+    private int characterId = 1;
     private readonly string selectedCharacter = "SelectedCharacter";
     private readonly string selectedEnemy = "SelectedEnemy";
     private readonly string isPlayerChamp = "isPlayerChamp";
@@ -91,6 +89,7 @@ public class SelectManager : MonoBehaviour
         max++;
 
         alexRender.enabled = true;
+        SetCharacterNumber();
     }
 
     void Start()
@@ -624,6 +623,12 @@ public class SelectManager : MonoBehaviour
     public void Return()
     {
         DisablePortraits();
+        PlayerPrefs.DeleteKey(selectedCharacter + "1");
+        PlayerPrefs.DeleteKey(selectedCharacter + "2");
+        PlayerPrefs.DeleteKey(selectedCharacter + "3");
+        PlayerPrefs.DeleteKey(selectedEnemy + "1");
+        PlayerPrefs.DeleteKey(selectedEnemy + "2");
+        PlayerPrefs.DeleteKey(selectedEnemy + "3");
         loader.LoadScene(0, slider, loadPanel);
     }
 
@@ -657,6 +662,18 @@ public class SelectManager : MonoBehaviour
 
     }
 
+    private void SetCharacterNumber()
+    {
+        if (PlayerPrefs.HasKey(selectedCharacter + "1"))
+            characterId = 2;
+
+        if (PlayerPrefs.HasKey(selectedCharacter + "2"))
+            characterId = 3;
+
+        Debug.Log(characterId);
+        curCharacterTxt.text = characterId.ToString();
+    }
+
     public void ChangeScene()
     {
         DisablePortraits();
@@ -670,17 +687,20 @@ public class SelectManager : MonoBehaviour
             } while (random == i);
 
             PlayerPrefs.SetInt(selectedLevel, charcLevel);
-            PlayerPrefs.SetInt(selectedCharacter, i);
-            PlayerPrefs.SetInt(selectedEnemy, random);
+            PlayerPrefs.SetInt(selectedCharacter + characterId, i);
+            PlayerPrefs.SetInt(selectedEnemy+characterId, random);
             PlayerPrefs.SetInt(isPlayerChamp, 1);
             PlayerPrefs.SetInt(isEnemyChamp, 1);
             if (item1.name != "item")
-                PlayerPrefs.SetString(selectedItem1, item1.name);
+                PlayerPrefs.SetString(selectedItem1 + "_" + characterId, item1.name);
 
             if (item2.name != "item")
-                PlayerPrefs.SetString(selectedItem2, item2.name);
+                PlayerPrefs.SetString(selectedItem2 + "_" + characterId, item2.name);
 
-            loader.LoadScene(2, slider, loadPanel);
+            if (characterId < 3)
+                loader.LoadScene(1, slider, loadPanel);
+            else
+                loader.LoadScene(2, slider, loadPanel);
         }
         else
         {
@@ -698,16 +718,5 @@ public class SelectManager : MonoBehaviour
             moveHud.SetActive(false);
         else
             moveHud.SetActive(true);
-    }
-
-    public void ManageLevelHud()
-    {
-        if (statsLevelsBtns.activeInHierarchy)
-        {
-            statsLevelsBtns.SetActive(false);
-            SetText(i);
-        } 
-        else
-            statsLevelsBtns.SetActive(true);
     }
 }

@@ -63,6 +63,7 @@ public class ActionBox : MonoBehaviour
         if (temp == null)
         {
             battleSystem.player.SetAttacker(SelectCharacter());
+            unit.SetAnimHud("isSelected", true);
             battleSystem.DoneSelecting();
         } else if (temp.chosenMove.target == null)
         {
@@ -119,6 +120,7 @@ public class ActionBox : MonoBehaviour
 
     public void SetupMoveListBtn()
     {
+        unit.SetCC();
         int i = 0;
         foreach (Moves move in unit.moves)
         {

@@ -49,6 +49,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private GameObject sumHud;
     [SerializeField] private GameObject sumHudHideBtn;
     [SerializeField] private GameObject leaveBtn;
+    [SerializeField] private Button overviewBtn;
 
     [SerializeField] private Text turnsText;
     [SerializeField] private Text turnsTextOverview;
@@ -56,13 +57,6 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private int combatCount = 0;
     [SerializeField] private float ultEnergyDealt;
     [SerializeField] private float ultEnergyTaken;
-
-    [SerializeField] private Button movesBtn;
-    [SerializeField] private Button healManaBtn;
-    [SerializeField] private Button basicBtn;
-    [SerializeField] private Button ultBtn;
-    [SerializeField] private Button overviewBtn;
-    [SerializeField] private Text healBtnText;
 
     [SerializeField] private EffectsMove tiredw;
     [SerializeField] private EffectsMove tiredm;
@@ -159,6 +153,13 @@ public class BattleSystem : MonoBehaviour
 
     public void Leave()
     {
+        PlayerPrefs.DeleteKey("SelectedCharacter1");
+        PlayerPrefs.DeleteKey("SelectedCharacter2");
+        PlayerPrefs.DeleteKey("SelectedCharacter3");
+        PlayerPrefs.DeleteKey("SelectedEnemy1");
+        PlayerPrefs.DeleteKey("SelectedEnemy2");
+        PlayerPrefs.DeleteKey("SelectedEnemy3");
+
         if ((state == BattleState.WIN || state == BattleState.LOSE) && PlayerPrefs.GetInt("isEndless") == 1)
             loader.LoadScene(3, slider, loadPanel);
         else
@@ -602,6 +603,7 @@ public class BattleSystem : MonoBehaviour
                     break;
             }
             Moves moveEnemy = this.enemy.AIChooseMove(enemy, enemy.chosenMove.target);
+            enemy.SetAnimHud("isSelected", true);
             enemy.chosenMove.move = moveEnemy;
             characters.Add(enemy);
             enemy.hasAttacked = true;
@@ -637,6 +639,9 @@ public class BattleSystem : MonoBehaviour
             }
         }
 
+
+        player.SetAnimHud("isSelected", false);
+        enemy.SetAnimHud("isSelected", false);
         combatCount++;
         this.player.ResetAttacker();
         this.enemy.ResetAttacker();
@@ -792,7 +797,7 @@ public class BattleSystem : MonoBehaviour
                         if (a.inCd < a.cd)
                         {
                             a.inCd++;
-                            ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), target.isEnemy, a.GetPassiveInfo());
+                            ManagePassiveIcon(target.effectHud, a.sprite, a.name, a.inCd.ToString(), target.isEnemy, a.GetPassiveInfo());
                         }
                     }
                 }
@@ -3975,7 +3980,7 @@ public class BattleSystem : MonoBehaviour
                 foreach (Moves move in unit.moves.ToArray())
                 {
                     i++;
-                    if (move.uses >= 0)
+                    if (move.uses >= 0 && !unit.isEnemy)
                     {
                         foreach (Transform movebtn in unit.moveListPanel.transform)
                         {

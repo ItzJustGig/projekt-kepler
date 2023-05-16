@@ -250,9 +250,9 @@ public class Player : MonoBehaviour
         int random = 0;
         int i = 0;
 
-        if (!user.canUseMagic && !user.canUsePhysical && !user.canUseRanged && !user.canUseEnchant && !user.canUseSupp
+        /*if (!user.canUseMagic && !user.canUsePhysical && !user.canUseRanged && !user.canUseEnchant && !user.canUseSupp
             && !user.canUseProtec && !user.canUseSummon)
-            skip = true;
+            skip = true;*/
 
         do
         {
@@ -361,18 +361,19 @@ public class Player : MonoBehaviour
 
     public void PickItemAi(Unit unit, int playerItemCount = 0)
     {
-        int itemCount = unit1.items.Count + unit2.items.Count + unit3.items.Count;
+        int itemCount = unit.charc.recItems.Count;
         if (PlayerPrefs.GetInt("isEndless") == 0 && playerItemCount > 0 && itemCount > 0)
         {
+            Debug.Log("AI " + playerItemCount);
             List<int> picked = new List<int>();
 
             for (int i = 0; playerItemCount > i; i++)
             {
-                bool isPicked = false;
+                bool isPicked;
                 do
                 {
                     isPicked = false;
-                    int num = UnityEngine.Random.Range(0, itemCount);
+                    int num = Random.Range(0, itemCount);
                     if (picked.Count > 0)
                     {
                         foreach (int a in picked)
