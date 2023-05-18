@@ -917,7 +917,6 @@ public class Unit : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(what))
         {
-            Debug.Log(what);
             hud.gameObject.GetComponent<Animator>().SetBool(what, active);
         }
     }

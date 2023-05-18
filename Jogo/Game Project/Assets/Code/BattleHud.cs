@@ -6,6 +6,7 @@ using UnityEditor;
 
 public class BattleHud : MonoBehaviour
 {
+    [SerializeField] private Image icon;
     [SerializeField] private Text nameText;
     [SerializeField] private Text levelText;
 
@@ -63,6 +64,7 @@ public class BattleHud : MonoBehaviour
     public void SetHud (Unit unit, int staminaTired)
     {
         language = langmang.language;
+        icon.sprite = unit.charc.charcIcon;
         nameText.text = langmang.languageManager.GetText(language, "charc", "name", unit.charc.name);
         levelText.text = langmang.languageManager.GetText(language, "gui", "text", "level")+unit.level;
 

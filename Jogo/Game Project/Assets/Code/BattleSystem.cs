@@ -639,9 +639,12 @@ public class BattleSystem : MonoBehaviour
             }
         }
 
+        if (player)
+            player.SetAnimHud("isSelected", false);
 
-        player.SetAnimHud("isSelected", false);
-        enemy.SetAnimHud("isSelected", false);
+        if (enemy)
+            enemy.SetAnimHud("isSelected", false);
+
         combatCount++;
         this.player.ResetAttacker();
         this.enemy.ResetAttacker();
@@ -2096,7 +2099,11 @@ public class BattleSystem : MonoBehaviour
                             }
 
                             isDead = target.TakeDamage(dmgTarget, isCrit, isMagicCrit, user);
-                            user.TakeDamage(dmgUser, isCrit, isMagicCrit, user, move.name);
+
+                            if (move.target == Moves.Target.ALLY)
+                                target.TakeDamage(dmgUser, isCrit, isMagicCrit, user, move.name);
+                            else
+                                user.TakeDamage(dmgUser, isCrit, isMagicCrit, user, move.name);
 
                             target.DoAnimParticle(move.animTarget);
                             user.DoAnimParticle(move.animUser);

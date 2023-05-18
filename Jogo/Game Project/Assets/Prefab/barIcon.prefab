@@ -87,7 +87,7 @@ MonoBehaviour:
 
     <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
 
-
+    
 
     Every
     <color=#f75145>6 critical ranged attacks</color> or <color=#ffaa00>basic attacks</color>,
@@ -271,4 +271,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 0S6T

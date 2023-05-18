@@ -1324,6 +1324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54821d2ebd63c8f4e88a85f70d1f302b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 3731455708596338425}
   nameText: {fileID: 3731455707336163014}
   levelText: {fileID: 3731455707482318825}
   hpText: {fileID: 3731455707170745886}
@@ -2167,7 +2168,7 @@ RectTransform:
   m_GameObject: {fileID: 3731455708596338427}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9998999, y: 0.9998999, z: 0.9998999}
+  m_LocalScale: {x: -0.9998999, y: 0.9998999, z: 0.9998999}
   m_Children: []
   m_Father: {fileID: 3731455707589356276}
   m_RootOrder: 0
