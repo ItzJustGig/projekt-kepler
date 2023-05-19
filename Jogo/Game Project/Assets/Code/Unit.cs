@@ -83,7 +83,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private Animator particleAnimator;
     public int size = 2;
     float lastSize = 2;
-    private bool skipTurn = false;
+    public bool skipTurn = false;
     public bool hasAttacked = false;
 
     public struct ChosenMove
@@ -256,6 +256,7 @@ public class Unit : MonoBehaviour
         canUseProtec = true;
         canUseEnchant = true;
         canUseSummon = true;
+        skipTurn = false;
     }
 
     public void SetupItem(Items a)
@@ -442,6 +443,7 @@ public class Unit : MonoBehaviour
             canUseProtec = canUseProtec && a.canUseProtec;
             canUseEnchant = canUseEnchant && a.canUseEnchant;
             canUseSummon = canUseSummon && a.canUseSummon;
+            skipTurn = skipTurn && a.isStun;
         }
     }
 
@@ -452,7 +454,7 @@ public class Unit : MonoBehaviour
             if (attacker != null)
                 attacker.phyDmgDealt += dmg.phyDmg;
 
-            float dmgMitigated = (float)(((SetModifiers().dmgResis - (SetModifiers().dmgResis * armourPen)) * dmgResisPer)*dotReduc);
+            float dmgMitigated = (float)((SetModifiers().dmgResis - (SetModifiers().dmgResis * armourPen)) * dmgResisPer * dotReduc);
             if (dmgMitigated < dmg.phyDmg)
             {
                 dmg.phyDmg -= dmgMitigated;
@@ -471,7 +473,7 @@ public class Unit : MonoBehaviour
             if (attacker != null)
                 attacker.magicDmgDealt += dmg.magicDmg;
 
-            float dmgMitigated = (float)(((SetModifiers().magicResis - (SetModifiers().magicResis * magicPen)) * magicResisPer)*dotReduc);
+            float dmgMitigated = (float)((SetModifiers().magicResis - (SetModifiers().magicResis * magicPen)) * magicResisPer * dotReduc);
             if (dmgMitigated < dmg.magicDmg)
             {
                 dmg.magicDmg -= dmgMitigated;

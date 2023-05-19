@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private float aiManaRecover;
     private float aiGaranteedManaRecover;
     [SerializeField] private bool isEnemy;
+    public int incapacitatedCharacters = 0;
     public int deadCharacters = 0;
     public int playableCharacters = 3;
 
@@ -100,19 +101,13 @@ public class Player : MonoBehaviour
     public void EnableBtn(Unit unit1 = null, Unit unit2 = null, Unit unit3 = null)
     {
         if (unit1 != null && !unit1.isDead)
-        {
             unit1.selectBtn.gameObject.SetActive(true);
-        }
 
         if (unit2 != null && !unit2.isDead)
-        {
             unit2.selectBtn.gameObject.SetActive(true);
-        }
         
         if (unit3 != null && !unit3.isDead)
-        {
             unit3.selectBtn.gameObject.SetActive(true);
-        }
     }
     
     public void EnableAllBtn()
@@ -184,17 +179,17 @@ public class Player : MonoBehaviour
         {
             Unit picked = GetRandom();
 
-            if (combatCount < GetAliveCharacters())
+            if (combatCount < GetAliveCharacters() - GetIncapacitatedCharacters())
             {
-                if (picked != null && !picked.hasAttacked && !picked.isDead)
+                if (picked != null && !picked.hasAttacked && !picked.isDead && !picked.CheckSkipTurn())
                     return picked;
             } else
             {
-                if (!unit1.hasAttacked && !unit1.isDead)
+                if (!unit1.hasAttacked && !unit1.isDead && !unit1.CheckSkipTurn())
                     return unit1;
-                else if (!unit2.hasAttacked && !unit2.isDead)
+                else if (!unit2.hasAttacked && !unit2.isDead && !unit2.CheckSkipTurn())
                     return unit2;
-                else if (!unit3.hasAttacked && !unit3.isDead)
+                else if (!unit3.hasAttacked && !unit3.isDead && !unit3.CheckSkipTurn())
                     return unit3;
                 else
                     return null;
@@ -403,6 +398,24 @@ public class Player : MonoBehaviour
     public int GetAliveCharacters()
     {
         return playableCharacters - deadCharacters;
+    }
+
+    public int GetIncapacitatedCharacters()
+    {
+        int i = 0;
+        unit1.SetCC();
+        if (unit1.CheckSkipTurn())
+            i++;
+
+        unit2.SetCC();
+        if (unit2.CheckSkipTurn())
+            i++;
+
+        unit3.SetCC();
+        if (unit3.CheckSkipTurn())
+            i++;
+
+        return i;
     }
 
     public bool HaveLost()

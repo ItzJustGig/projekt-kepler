@@ -533,23 +533,23 @@ public class BattleSystem : MonoBehaviour
 
     void SelectMovingCharacter()
     {
-        if (combatCount < player.GetAliveCharacters())
+        if (combatCount < player.GetAliveCharacters() - player.GetIncapacitatedCharacters())
         {
-            if (!player.unit1.hasAttacked)
+            if (!player.unit1.hasAttacked && !player.unit1.CheckSkipTurn())
                 player.EnableBtn(player.unit1);
 
-            if (!player.unit2.hasAttacked)
+            if (!player.unit2.hasAttacked && !player.unit2.CheckSkipTurn())
                 player.EnableBtn(player.unit2);
 
-            if (!player.unit3.hasAttacked)
+            if (!player.unit3.hasAttacked && !player.unit3.CheckSkipTurn())
                 player.EnableBtn(player.unit3);
         } else
         {
-            if (!player.unit1.hasAttacked && !player.unit1.isDead)
+            if (!player.unit1.hasAttacked && !player.unit1.isDead && !player.unit1.CheckSkipTurn())
                 player.EnableBtn(player.unit1);
-            else if (!player.unit2.hasAttacked && !player.unit2.isDead)
+            else if (!player.unit2.hasAttacked && !player.unit2.isDead && !player.unit2.CheckSkipTurn())
                 player.EnableBtn(player.unit2);
-            else if (!player.unit3.hasAttacked && !player.unit3.isDead)
+            else if (!player.unit3.hasAttacked && !player.unit3.isDead && !player.unit3.CheckSkipTurn())
                 player.EnableBtn(player.unit3);
             else
                 StartCoroutine(Combat(null, enemy.AIGetAttacker(combatCount)));
@@ -609,7 +609,7 @@ public class BattleSystem : MonoBehaviour
             enemy.hasAttacked = true;
         }
 
-        characters = characters.OrderBy(c => c.chosenMove.move.priority + c.SetModifiers().movSpeed).ToList();
+        characters = characters.OrderByDescending(c => c.chosenMove.move.priority).ThenByDescending(c => c.SetModifiers().movSpeed).ToList();
 
         foreach (Unit charc in characters)
         {
@@ -1748,9 +1748,9 @@ public class BattleSystem : MonoBehaviour
                                                 Effects check = user.CheckIfEffectExists(effect.id);
                                                 if (check == null)
                                                 {
+                                                    effect.source.Add(user);
                                                     user.effects.Add(effect);
                                                     SetEffectIcon(effect, user.effectHud.gameObject);
-                                                    
 
                                                     foreach (StatMod b in effect.statMods)
                                                     {
@@ -1765,10 +1765,12 @@ public class BattleSystem : MonoBehaviour
                                                     }
                                                 } else
                                                 {
+                                                    effect.source.Add(user);
                                                     if (check.id == "BRN" && effect.id == "BRN")
                                                     {
                                                         Effects newScorch = scorch.ReturnEffect();
                                                         newScorch.duration = check.duration + effect.duration;
+                                                        newScorch.source = check.source;
                                                         user.effects.Add(newScorch);
                                                         user.effects.Remove(check);
 

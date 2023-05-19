@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: FIre breath
   m_EditorClassIdentifier: 
   type: 1
+  target: 0
+  targetType: 0
+  id: 0
   name: firebreath
   hitTime: 4
   priority: 0
