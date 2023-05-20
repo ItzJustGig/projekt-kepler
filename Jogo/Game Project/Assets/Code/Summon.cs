@@ -14,6 +14,7 @@ public class Summon : ScriptableObject
     public int summonTurn = 0;
     GameObject iconInGame;
     Unit owner;
+    public Unit target;
 
     public string GetLanguage()
     {

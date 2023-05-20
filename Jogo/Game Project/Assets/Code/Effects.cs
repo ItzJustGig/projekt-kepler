@@ -8,7 +8,7 @@ public class Effects : ScriptableObject
 {
     public string id;
     public Sprite sprite;
-    public List<Unit> source;
+    public Unit source;
     public bool haveSpecialDesc = false;
 
     public int duration;
@@ -16,7 +16,7 @@ public class Effects : ScriptableObject
     public bool grantsOnRunOut = false;
     public int timesInc = 0;
 
-    public bool canStack = false;
+    public bool canStack = true;
     public bool isStun = false;
     public bool canUsePhysical = true;
     public bool canUseRanged = true;

@@ -12,17 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
   m_Name: Allergy
   m_EditorClassIdentifier: 
-  name: Allergy
   id: ALR
   sprite: {fileID: 21300000, guid: c18f25ae28068a34d88b18389537f729, type: 3}
+  source: {fileID: 0}
+  haveSpecialDesc: 0
   duration: 0
+  timeReducImmunity: 1
+  grantsOnRunOut: 0
   timesInc: 0
+  canStack: 1
+  isStun: 0
   canUsePhysical: 1
   canUseRanged: 1
   canUseMagic: 1
   canUseSupp: 0
   canUseProtec: 1
-  canUseStatMod: 0
+  canUseEnchant: 1
+  canUseSummon: 1
   phyDmgMin: 0
   phyDmgMax: 0
   phyDmgInc: 0
@@ -52,7 +58,9 @@ MonoBehaviour:
   shieldInc: 0
   cancelAtkChance: 0
   recoil: 0
-  cancelMsg: 
+  isScaleSpecial: 0
   scale: []
   statMods:
   - {fileID: 11400000, guid: b74ad29e3b8d8f64cbc045b96d78c47a, type: 2}
+  hitAnim: 
+  specialAnim: 

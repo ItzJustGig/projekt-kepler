@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Healing Apple
   m_EditorClassIdentifier: 
   type: 3
-  target: 2
+  target: 3
   targetType: 0
   id: 0
   name: healingapple

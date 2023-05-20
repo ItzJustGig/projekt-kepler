@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Defencive Stand
   m_EditorClassIdentifier: 
   type: 4
-  target: 1
+  target: 2
   targetType: 0
   id: 0
   name: defstand
@@ -47,7 +47,8 @@ MonoBehaviour:
   statModEnemy: {fileID: 0}
   scale: []
   dot: []
-  effects: []
+  effects:
+  - {fileID: 11400000, guid: b22f4ad434b0ba14399d6e05d96a535d, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
   animUser: 

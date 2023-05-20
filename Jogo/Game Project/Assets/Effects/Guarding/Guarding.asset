@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
-  m_Name: Blind
+  m_Name: Guarding
   m_EditorClassIdentifier: 
-  id: BLI
-  sprite: {fileID: 21300000, guid: c0b2803a4f1bfe3478d46974b26a66c1, type: 3}
+  id: GRD
+  sprite: {fileID: 21300000, guid: 2e9ec9c79875f54438109ff4903de819, type: 3}
   source: {fileID: 0}
-  haveSpecialDesc: 0
+  haveSpecialDesc: 1
   duration: 0
   timeReducImmunity: 1
   grantsOnRunOut: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
   canStack: 1
   isStun: 0
   canUsePhysical: 1
-  canUseRanged: 0
+  canUseRanged: 1
   canUseMagic: 1
   canUseSupp: 1
   canUseProtec: 1
@@ -38,8 +38,8 @@ MonoBehaviour:
   trueDmgMin: 0
   trueDmgMax: 0
   trueDmgInc: 0
-  sanityDmgMin: 2
-  sanityDmgMax: 4
+  sanityDmgMin: 0
+  sanityDmgMax: 0
   sanityDmgInc: 0
   sanityHealMin: 0
   sanityHealMax: 0
@@ -60,7 +60,6 @@ MonoBehaviour:
   recoil: 0
   isScaleSpecial: 0
   scale: []
-  statMods:
-  - {fileID: 11400000, guid: d70aab690e24c414cafc5653d6544333, type: 2}
+  statMods: []
   hitAnim: 
   specialAnim: 

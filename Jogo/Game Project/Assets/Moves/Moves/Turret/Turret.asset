@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Turret
   m_EditorClassIdentifier: 
   type: 6
-  target: 1
+  target: 0
   targetType: 0
   id: 0
   name: turret

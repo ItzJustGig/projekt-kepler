@@ -92,13 +92,7 @@ public class Unit : MonoBehaviour
         public Unit target;
     }
 
-    public struct SummonTarget
-    {
-        public Unit ally;
-        public Unit target;
-    }
     [SerializeField] public ChosenMove chosenMove;
-    [SerializeField] public SummonTarget summonTarget;
 
     void Awake()
     {

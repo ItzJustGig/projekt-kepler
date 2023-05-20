@@ -8,7 +8,7 @@ using UnityEngine;
 public class Moves : ScriptableObject
 {
     public enum MoveType { PHYSICAL, MAGICAL, RANGED, SUPPORT, DEFFENCIVE, ENCHANT, SUMMON, BASIC }
-    public enum Target { ENEMY, SELF, ALLY }
+    public enum Target { ENEMY, SELF, ALLY, ALLYSELF }
     public enum TargetType { SINGLE, AOE }
     public enum HealFromDmg { NONE, PHYSICAL, MAGICAL, TRUE, PHYSICAL_MAGICAL, PHYSICAL_TRUE, MAGICAL_TRUE, ALL }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Refreshing Breeze
   m_EditorClassIdentifier: 
   type: 3
-  target: 2
+  target: 3
   targetType: 1
   id: 0
   name: refreshbreeze

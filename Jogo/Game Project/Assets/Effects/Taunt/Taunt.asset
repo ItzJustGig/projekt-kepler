@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 780aba8f7bdc6c24b8092c1023c73370, type: 3}
-  m_Name: Blind
+  m_Name: Taunt
   m_EditorClassIdentifier: 
-  id: BLI
-  sprite: {fileID: 21300000, guid: c0b2803a4f1bfe3478d46974b26a66c1, type: 3}
+  id: TAU
+  sprite: {fileID: 21300000, guid: abef0f4889b19254a99eb2b94280c7fd, type: 3}
   source: {fileID: 0}
-  haveSpecialDesc: 0
+  haveSpecialDesc: 1
   duration: 0
   timeReducImmunity: 1
   grantsOnRunOut: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
   canStack: 1
   isStun: 0
   canUsePhysical: 1
-  canUseRanged: 0
+  canUseRanged: 1
   canUseMagic: 1
   canUseSupp: 1
   canUseProtec: 1
@@ -38,8 +38,8 @@ MonoBehaviour:
   trueDmgMin: 0
   trueDmgMax: 0
   trueDmgInc: 0
-  sanityDmgMin: 2
-  sanityDmgMax: 4
+  sanityDmgMin: 0
+  sanityDmgMax: 0
   sanityDmgInc: 0
   sanityHealMin: 0
   sanityHealMax: 0
@@ -61,6 +61,6 @@ MonoBehaviour:
   isScaleSpecial: 0
   scale: []
   statMods:
-  - {fileID: 11400000, guid: d70aab690e24c414cafc5653d6544333, type: 2}
+  - {fileID: 11400000, guid: da5fe268d68b4c443831447f0ff3320b, type: 2}
   hitAnim: 
   specialAnim: 

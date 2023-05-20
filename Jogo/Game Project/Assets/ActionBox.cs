@@ -68,9 +68,6 @@ public class ActionBox : MonoBehaviour
         } else if (temp.chosenMove.target == null)
         {
             temp.chosenMove.target = unit;
-            //FIX LATER
-            temp.summonTarget.target = unit;
-            temp.summonTarget.ally = temp;
             battleSystem.DoneChoosingMove();
         }
     }
@@ -90,6 +87,9 @@ public class ActionBox : MonoBehaviour
             case Moves.Target.ALLY:
                 battleSystem.player.EnableAllBtn();
                 battleSystem.player.DisableBtn(unit);
+                break;
+            case Moves.Target.ALLYSELF:
+                battleSystem.player.EnableAllBtn();
                 break;
             case Moves.Target.ENEMY:
                 battleSystem.enemy.EnableAllBtn();

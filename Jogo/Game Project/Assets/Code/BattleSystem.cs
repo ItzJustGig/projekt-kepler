@@ -595,6 +595,7 @@ public class BattleSystem : MonoBehaviour
             while (true)
             {
                 temp++;
+                //TODO: Make ally targetting for AI
                 enemy.chosenMove.target = this.player.GetRandom();
                 if (!enemy.chosenMove.target.isDead)
                     break;
@@ -624,6 +625,24 @@ public class BattleSystem : MonoBehaviour
                 state = BattleState.ENEMYTURN;
             else
                 state = BattleState.PLAYERTURN;
+
+            foreach (Effects e in charc.effects)
+            {
+                if (e.id == "TAU")
+                {
+                    charc.chosenMove.target = e.source;
+                    Debug.Log("TAUNT");
+                }
+            }
+
+            foreach (Effects e in charc.chosenMove.target.effects)
+            {
+                if (e.id == "GRD")
+                {
+                    charc.chosenMove.target = e.source;
+                    Debug.Log("PROTECC");
+                }
+            }
 
             if (canUseNormal)
             {
@@ -1748,7 +1767,7 @@ public class BattleSystem : MonoBehaviour
                                                 Effects check = user.CheckIfEffectExists(effect.id);
                                                 if (check == null)
                                                 {
-                                                    effect.source.Add(user);
+                                                    effect.source = user;
                                                     user.effects.Add(effect);
                                                     SetEffectIcon(effect, user.effectHud.gameObject);
 
@@ -1765,7 +1784,7 @@ public class BattleSystem : MonoBehaviour
                                                     }
                                                 } else
                                                 {
-                                                    effect.source.Add(user);
+                                                    effect.source = user;
                                                     if (check.id == "BRN" && effect.id == "BRN")
                                                     {
                                                         Effects newScorch = scorch.ReturnEffect();
@@ -1788,6 +1807,7 @@ public class BattleSystem : MonoBehaviour
                                                 Effects check = target.CheckIfEffectExists(effect.id);
                                                 if (check == null)
                                                 {
+                                                    effect.source = user;
                                                     target.effects.Add(effect);
                                                     SetEffectIcon(effect, target.effectHud.gameObject);
 
@@ -1869,7 +1889,10 @@ public class BattleSystem : MonoBehaviour
 
                             if (move.summon != null)
                             {
-                                user.summons.Add(move.summon.ReturnSummon());
+                                Summon sum = move.summon.ReturnSummon();
+                                sum.SetOwner(user);
+                                sum.target = target;
+                                user.summons.Add(sum);
                             }
 
                             foreach (StatScale scale in move.scale)
@@ -3679,18 +3702,15 @@ public class BattleSystem : MonoBehaviour
         Instantiate(barIconPrefab, pannel.transform);
     }
 
-    public bool SummonDmg(SumMove move, StatsSummon statsSum, Unit.SummonTarget target, Unit summoner)
+    public bool SummonDmg(SumMove move, StatsSummon statsSum, Unit target, Unit summoner)
     {
-        Stats statsT;
+        Stats statsT = target.SetModifiers();
         Stats statsS = summoner.SetModifiers();
 
-        bool targetEnemy = true;
         bool isDead = false;
         bool isCrit = Random.Range(0f, 1f) <= statsS.critChance;
         
         DMG dmgT = default;
-        dmgT.Reset();
-        DMG dmgS = default;
         dmgT.Reset();
 
         dmgT.sanityDmg += move.sanityDmg;
@@ -3698,64 +3718,39 @@ public class BattleSystem : MonoBehaviour
         switch (move.dmgType)
         {
             case DmgType.PHYSICAL:
-                statsT = target.target.SetModifiers();
                 dmgT.phyDmg += move.getDmg(statsSum);
-                //target.phyDmgTaken += dmg;
                 break;
             case DmgType.MAGICAL:
-                statsT = target.target.SetModifiers();
                 dmgT.magicDmg += move.getDmg(statsSum);
-                //target.magicDmgTaken += dmg;
                 break;
             case DmgType.TRUE:
-                statsT = target.target.SetModifiers();
                 dmgT.trueDmg += move.getDmg(statsSum);
-                //target.trueDmgTaken += dmg;
                 break;
             case DmgType.HEAL:
-                targetEnemy = false;
-                statsT = target.ally.SetModifiers();
-                dmgS.heal += move.getDmg(statsSum);
+                dmgT.heal += move.getDmg(statsSum);
                 break;
             case DmgType.SHIELD:
-                targetEnemy = false;
-                statsT = target.ally.SetModifiers();
-                dmgS.shield += move.getDmg(statsSum);
-                //summoner.shieldDone += dmg;
+                dmgT.shield += move.getDmg(statsSum);
                 break;
         }
 
         if (dmgT.magicDmg > 0 || dmgT.phyDmg > 0)
         {
-            //summoner.magicDmgDealt += dmg.magicDmg;
-            //summoner.phyDmgDealt += dmg.phyDmg;
-
             if (isCrit)
                 dmgT.ApplyCrit(false, statsS.critDmg);
 
-            if (targetEnemy)
-                dmgT = target.target.MitigateDmg(dmgT, dmgResisPer, magicResisPer, statsS.armourPen, statsS.magicPen, summoner);
-            else
-                dmgT = target.ally.MitigateDmg(dmgT, dmgResisPer, magicResisPer, statsS.armourPen, statsS.magicPen, summoner);
+            dmgT = target.MitigateDmg(dmgT, dmgResisPer, magicResisPer, statsT.armourPen, statsT.magicPen, summoner);
         }
 
-        if (targetEnemy)
-        {
-            isDead = target.target.TakeDamage(dmgT, isCrit, false, summoner);
-            SetUltNumber(target.target, target.target.hud, dmgT.phyDmg + dmgT.magicDmg + dmgT.trueDmg, false);
-        }
-        else
-        {
-            isDead = target.ally.TakeDamage(dmgT, isCrit, false, summoner);
-            SetUltNumber(target.ally, target.ally.hud, dmgT.phyDmg + dmgT.magicDmg + dmgT.trueDmg, false);
-        }
+        isDead = target.TakeDamage(dmgT, isCrit, false, summoner);
+        SetUltNumber(target, target.hud, dmgT.phyDmg + dmgT.magicDmg + dmgT.trueDmg, false);
         
-        summoner.TakeDamage(dmgS, isCrit, false, summoner);
+        summoner.TakeDamage(dmgT, isCrit, false, summoner);
 
         return isDead;
     }
 
-    bool SpawnSummon(Summon sum, Unit summoner, Unit.SummonTarget target)
+    bool SpawnSummon(Summon sum, Unit summoner, Unit target)
     {
         if (summoner.isDead)
         {
@@ -3896,7 +3891,7 @@ public class BattleSystem : MonoBehaviour
 
         foreach (Summon a in unit.summons.ToArray())
         {
-            bool isDead = SpawnSummon(a, unit, unit.summonTarget);
+            bool isDead = SpawnSummon(a, unit, a.target);
             yield return new WaitForSeconds(0.5f);
 
             if (isDead)
