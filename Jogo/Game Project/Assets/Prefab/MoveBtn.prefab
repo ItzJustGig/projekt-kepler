@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 9
+  m_Text: 12
 --- !u!1 &7954924221204952151
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Turret
+  m_Text: Hunter's Dirk
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: edc4bbb7d32a9024b81094d5d9894628, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -405,57 +405,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Turret</align></size>
+  text: '<size=24><align=center>Hunter''s Dirk</align></size>
 
-    <size=20><align=center><color=#B266FF>Summon</color></align></size>
+    <size=20><align=center><color=#ffaa00>Physical</color></align></size>
 
     <color=#2d71fa>Mana
-    Cost</color>: 130
+    Cost</color>: 0
 
     <color=#ebdb28>Stamina Cost</color>: 0
 
     Cooldown:
-    17
+    7
 
     Priority: 0
 
-    <s><align=center>|                 |</align></s>
+    <color=#f75145>Bonus critical damage: 8%</color>
 
-    Summons
-    a Turret, that will <color=#1a66ff>magical damage</color> every 1 turns
+    <s><align=center>|                
+    |</align></s>
 
-    <color=#00ff11>Health:
-    1039</color>
-
-    <color=#ffaa00>Attack Power: 56,4</color>
+    Deal <color=#ffaa00>114,6 physical damage</color>
 
 '
-  textSec: '<size=24><align=center>Turret</align></size>
+  textSec: '<size=24><align=center>Hunter''s Dirk</align></size>
 
-    <size=20><align=center><color=#B266FF>Summon</color></align></size>
+    <size=20><align=center><color=#ffaa00>Physical</color></align></size>
 
     <color=#2d71fa>Mana
-    Cost</color>: 130
+    Cost</color>: 0
 
     <color=#ebdb28>Stamina Cost</color>: 0
 
     Cooldown:
-    17
+    7
 
     Priority: 0
 
-    <s><align=center>|                 |</align></s>
+    <color=#f75145>Bonus critical damage: 8%</color>
 
-    Summons
-    a Turret, that will <color=#1a66ff>magical damage</color> every 1 turns
+    <s><align=center>|                
+    |</align></s>
 
-    <color=#00ff11>Health: 
-    (<color=#3366ff>115%</color> of the user''s <color=#3366ff>Maximum Mana</color>)
-    + (<color=#1a66ff>200%</color> of the user''s <color=#1a66ff>Magic Power</color>)
-    + (<color=#946ACD>100%</color> of the user''s <color=#946ACD>Magic Resistance</color>)</color>
-
-    <color=#ffaa00>Attack
-    Power:  (<color=#1a66ff>75%</color> of the user''s <color=#1a66ff>Magic Power</color>)</color>
+    Deal <color=#ffaa00>25 + (<color=#ffaa00>60%</color> of the
+    user''s <color=#ffaa00>Attack Damage</color>) + (<color=#0095ff>14%</color> of
+    the user''s <color=#0095ff>Movement Speed</color>) physical damage</color>
 
 '
   wantSec: 0

@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
 using static LanguageManager;
 
 public class Player : MonoBehaviour
@@ -222,6 +225,92 @@ public class Player : MonoBehaviour
                 return unit1;
         }
     }
+    
+    public Unit GetRandom(int id)
+    {
+        int rng = 0;
+        while (rng == id)
+        {
+            rng = Random.Range(1, 3 + 1);
+        }
+        Unit unit = null;
+
+        switch (rng)
+        {
+            case 0:
+                unit = unit1;
+                break;
+            case 1:
+                unit = unit2;
+                break;
+            case 2:
+                unit = unit3;
+                break;
+        }
+
+        return unit;
+    }
+
+    public Moves.Target AIChooseTargetType(Unit user)
+    {
+        int enemy = 0;
+        int ally = 0;
+        int allyself = 0;
+        int self = 0;
+        foreach (Moves m in user.moves)
+        {
+            if (m.uses > 0 || m.uses == -1)
+                switch (m.target)
+                {
+                    case Moves.Target.SELF:
+                        self++;
+                        break;
+                    case Moves.Target.ALLYSELF: 
+                        allyself++;
+                        break;
+                    case Moves.Target.ALLY:
+                        ally++;
+                        break;
+                    case Moves.Target.ENEMY: 
+                        enemy++;
+                        break;
+                }
+        }
+
+        float[] chances = new float[] { 
+            enemy * 100 / user.moves.Count(), 
+            ally * 100 / user.moves.Count(), 
+            self * 100 / user.moves.Count() , 
+            allyself * 100 / user.moves.Count() 
+        };
+
+        float counter = 0;
+        float valRand = Random.Range(0, 100);
+        int num = -1;
+        for (int i = 0; i < chances.Length; i++)
+        {
+            counter += chances[i];
+            if (valRand <= counter)
+            {
+                num = i;
+                break;
+            }
+        }
+
+        switch (num)
+        {
+            case 0:
+                return Moves.Target.ENEMY;
+            case 1:
+                return Moves.Target.ALLY;
+            case 2:
+                return Moves.Target.SELF;
+            case 3:
+                return Moves.Target.ALLYSELF;
+            default:
+                return Moves.Target.ENEMY;
+        }
+    }
 
     public Moves AIChooseMove(Unit user, Unit target)
     {
@@ -391,7 +480,16 @@ public class Player : MonoBehaviour
     public void SetAsDead(Unit unit)
     {
         unit.WonLost(false);
-        unit.isDead = true;
+        unit.isDead = true; 
+
+        foreach(Effects e in unit.effects)
+        {
+            GameObject temp = unit.effectHud.transform.Find(e.id + "(Clone)").gameObject;
+            Destroy(temp.gameObject);
+        }
+
+        unit.effects.Clear();
+       
         deadCharacters++;
     }
 

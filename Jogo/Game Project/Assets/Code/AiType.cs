@@ -18,7 +18,8 @@ public class AiType : ScriptableObject
     public int anyStatUp;
     public int anyStatDown;
     public int hasSummon;
-    public AiType(int totalPhyDmg, int totalMagicDmg, int totalSanityDmg, int totalDmg, int totalHealing, int totalShielding, int applySelectedEffects, int applyAnyEffect, int block, int selectedStatUp, int anyStatUp, int anyStatDown, int hasSummon)
+    public int priorityAllies;
+    public AiType(int totalPhyDmg, int totalMagicDmg, int totalSanityDmg, int totalDmg, int totalHealing, int totalShielding, int applySelectedEffects, int applyAnyEffect, int block, int selectedStatUp, int anyStatUp, int anyStatDown, int hasSummon, int priorityAllies)
     {
         this.totalPhyDmg = totalPhyDmg;
         this.totalMagicDmg = totalMagicDmg;
@@ -33,6 +34,7 @@ public class AiType : ScriptableObject
         this.anyStatUp = anyStatUp;
         this.anyStatDown = anyStatDown;
         this.hasSummon = hasSummon;
+        this.priorityAllies = priorityAllies;
     }
     
 }

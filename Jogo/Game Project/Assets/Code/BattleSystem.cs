@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using static LanguageManager;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, CHANGETURN, ALLYKILLED, ENEMYKILLED, WIN, LOSE, TIE }
 
@@ -597,6 +598,7 @@ public class BattleSystem : MonoBehaviour
                 temp++;
                 //TODO: Make ally targetting for AI
                 enemy.chosenMove.target = this.player.GetRandom();
+
                 if (!enemy.chosenMove.target.isDead)
                     break;
 
@@ -604,8 +606,18 @@ public class BattleSystem : MonoBehaviour
                     break;
             }
             Moves moveEnemy = this.enemy.AIChooseMove(enemy, enemy.chosenMove.target);
+
             enemy.SetAnimHud("isSelected", true);
             enemy.chosenMove.move = moveEnemy;
+
+            Debug.Log(enemy.chosenMove.move.target);
+            if (enemy.chosenMove.move.target == Moves.Target.SELF)
+                enemy.chosenMove.target = enemy;
+            else if (enemy.chosenMove.move.target == Moves.Target.ALLY)
+                enemy.chosenMove.target = this.enemy.GetRandom(enemy.id);
+            else if (enemy.chosenMove.move.target == Moves.Target.ALLYSELF)
+                enemy.chosenMove.target = this.enemy.GetRandom();
+
             characters.Add(enemy);
             enemy.hasAttacked = true;
         }
@@ -2859,7 +2871,7 @@ public class BattleSystem : MonoBehaviour
                     ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
                     break;
 
-                case "bloodpath":
+                case "bloodbath":
                     foundEffect = false;
                     effects = new List<Effects>();
                     effects.AddRange(target.unit1.effects);

@@ -15,10 +15,10 @@ MonoBehaviour:
   type: 4
   playerStat: 0
   flatValue: 0
-  curHp: 0.0265
+  curHp: 0.0285
   missHp: 0
   maxHp: 0
-  hpRegen: 1.4
+  hpRegen: 1.45
   missMana: 0
   curMana: 0
   maxMana: 0

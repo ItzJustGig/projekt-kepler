@@ -19,7 +19,7 @@ public class AI : ScriptableObject
             float chance = 0;
             if (a.isUlt)
                 chance += 80;
-            
+
             if (a.inCooldown <= 0)
             {
                 DMG it = default;
@@ -69,9 +69,9 @@ public class AI : ScriptableObject
                 if (ai.totalHealing > 0)
                 {
                     chance += it.heal / ai.totalHealing;
-                    chance += it.healMana / (ai.totalHealing/2);
-                    chance += it.healStamina / (ai.totalHealing/2);
-                    chance += it.healSanity / (ai.totalHealing/2);
+                    chance += it.healMana / (ai.totalHealing / 2);
+                    chance += it.healStamina / (ai.totalHealing / 2);
+                    chance += it.healSanity / (ai.totalHealing / 2);
                 }
 
                 if (ai.totalShielding > 0)
@@ -100,6 +100,7 @@ public class AI : ScriptableObject
 
             chances.Add(chance);
             //Debug.Log(a.name + ": " + chance);
+            
         }
 
         return checkChances(chances);
