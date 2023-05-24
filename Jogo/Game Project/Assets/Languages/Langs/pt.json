@@ -289,7 +289,9 @@
             "stn": "Atorduado",
             "trd": "Cansado",
             "ulk": "Azar",
-            "sch": "Chamuscado"
+            "sch": "Chamuscado",
+            "grd": "A Proteger",
+            "tau": "Provoca\u00E7\u00E3o"
         },
         "cancelmsg": {
             "alr": "",
@@ -310,12 +312,16 @@
             "stn": "",
             "trd": "",
             "ulk": "",
-            "sch": ""
+            "sch": "",
+            "grd": "",
+            "tau": ""
         },
         "desc":{
             "brn": "Quando aplica-se outra Queimadura transforma-se em Chamuscado",
             "sch": "O tempo do efeito aumenta quando Queimadura \u00e9 aplicado.",
-			"bld": "Depois de 10 turnos a Sangrar, o utilizador leva <color=#ffaa00>%scale% dano f\u00edsico</color>"
+			"bld": "Depois de 10 turnos a Sangrar, o utilizador leva <color=#ffaa00>%scale% dano f\u00edsico</color>",
+            "grd": "A fonte do efeito \u00e9 atacado em vez do utilizador",
+            "tau": "O utilizador s\u00f3 pode atacar a fonte do efeito"
         }
     },
     "passive": {

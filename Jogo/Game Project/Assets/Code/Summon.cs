@@ -12,7 +12,7 @@ public class Summon : ScriptableObject
     public StatsSummon stats;
     public SumMove move;
     public int summonTurn = 0;
-    GameObject iconInGame;
+    [SerializeField] GameObject iconInGame;
     Unit owner;
     public Unit target;
 
@@ -139,8 +139,15 @@ public class Summon : ScriptableObject
     {
         LanguageManager languageManager = GetLanguageMan();
         string language = GetLanguage();
-
         iconInGame.gameObject.GetComponent<TooltipButton>().text = GetSummonInfoCombat(languageManager, language).ToString();
+    }
+
+    public bool CheckIfHasIcon()
+    {
+        if (iconInGame != null)
+            return true;
+
+        return false;
     }
 
     public StringBuilder GetSummonInfoCombat(LanguageManager languageManager, string language)

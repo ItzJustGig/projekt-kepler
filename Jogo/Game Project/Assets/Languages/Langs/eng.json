@@ -289,7 +289,9 @@
 			"stn": "Stun",
 			"trd": "Tired",
 			"ulk": "Unluck",
-			"sch": "Scorch"
+			"sch": "Scorch",
+			"grd": "Guarding",
+			"tau": "Taunt"
 		},
 		"cancelmsg": {
 			"alr": "",
@@ -310,12 +312,16 @@
 			"stn": "",
 			"trd": "",
 			"ulk": "",
-			"sch": ""
+			"sch": "",
+			"grd": "",
+			"tau": ""
         },
         "desc":{
             "brn": "When applied another Burn on top, transform into Scorched",
             "sch": "The time of the effect is increased when Burn is applied",
-			"bld": "After 10 turns of bleeding, the user takes <color=#ffaa00>%scale% physical damage</color>"
+			"bld": "After 10 turns of bleeding, the user takes <color=#ffaa00>%scale% physical damage</color>",
+			"grd": "The effect's source will be attacked instead of the user",
+			"tau": "The user will only attack the source"
         }
 	},
 	"passive": {
@@ -373,7 +379,7 @@
 			"bandofendurance": "Band of Endurance",
 			"mythicearrings": "Mythic Earrings",
 			"spectralpike": "Spectral Pike",
-			"spectralcloak": "Spectral Cloa",
+			"spectralcloak": "Spectral Cloak",
 			"thickarmour": "Thick Armour",
 			"combatrythm": "Combat Rythm",
 			"sackofbones": "Sack of Bones",

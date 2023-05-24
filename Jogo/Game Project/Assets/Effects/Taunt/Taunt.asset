@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Taunt
   m_EditorClassIdentifier: 
   id: TAU
-  sprite: {fileID: 21300000, guid: abef0f4889b19254a99eb2b94280c7fd, type: 3}
+  sprite: {fileID: 21300000, guid: b37bf3339635c1f4c8eda9142fd90959, type: 3}
   source: {fileID: 0}
   haveSpecialDesc: 1
   duration: 0

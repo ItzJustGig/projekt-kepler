@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ed72fab49f5154f94a638a0b79aa43, type: 3}
   m_Name: fairy
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 5ead55c0144e0f64f9ec67c5151449d3, type: 3}
+  icon: {fileID: 21300000, guid: 855d56a4e07aefb4d9667a3eb89176e6, type: 3}
   name: fairy
   stats: {fileID: 11400000, guid: 789dc5b2113f39348b0680d7b44af4c4, type: 2}
   move: {fileID: 11400000, guid: 47251a17e6e2e2448afad7f5d536b9c4, type: 2}
   summonTurn: 0
+  iconInGame: {fileID: 0}
+  target: {fileID: 0}

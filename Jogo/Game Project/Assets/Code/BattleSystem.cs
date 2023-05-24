@@ -640,7 +640,7 @@ public class BattleSystem : MonoBehaviour
 
             foreach (Effects e in charc.effects)
             {
-                if (e.id == "TAU")
+                if (e.id == "TAU" && !charc.chosenMove.target.isEnemy)
                 {
                     charc.chosenMove.target = e.source;
                     Debug.Log("TAUNT");
@@ -649,7 +649,7 @@ public class BattleSystem : MonoBehaviour
 
             foreach (Effects e in charc.chosenMove.target.effects)
             {
-                if (e.id == "GRD")
+                if (e.id == "GRD" && !charc.chosenMove.target.isEnemy)
                 {
                     charc.chosenMove.target = e.source;
                     Debug.Log("PROTECC");
@@ -2126,7 +2126,7 @@ public class BattleSystem : MonoBehaviour
 
                             if (dmgT > 0)
                             {
-                                if (!(move.isUlt))
+                                if (!move.isUlt)
                                     SetUltNumber(user, user.hud, dmgT, true);
 
                                 if (move.isUlt)
@@ -2137,7 +2137,7 @@ public class BattleSystem : MonoBehaviour
 
                             isDead = target.TakeDamage(dmgTarget, isCrit, isMagicCrit, user);
 
-                            if (move.target == Moves.Target.ALLY)
+                            if (move.target == Moves.Target.ALLY || (move.target == Moves.Target.ALLYSELF && target != user))
                                 target.TakeDamage(dmgUser, isCrit, isMagicCrit, user, move.name);
                             else
                                 user.TakeDamage(dmgUser, isCrit, isMagicCrit, user, move.name);
@@ -3756,8 +3756,6 @@ public class BattleSystem : MonoBehaviour
 
         isDead = target.TakeDamage(dmgT, isCrit, false, summoner);
         SetUltNumber(target, target.hud, dmgT.phyDmg + dmgT.magicDmg + dmgT.trueDmg, false);
-        
-        summoner.TakeDamage(dmgT, isCrit, false, summoner);
 
         return isDead;
     }
@@ -3808,7 +3806,7 @@ public class BattleSystem : MonoBehaviour
             if (sum.stats.hp > 0)
             {
                 summoner.effectHud.transform.Find(debugname + "(Clone)").gameObject.transform.Find("time").gameObject.GetComponent<Text>().text = sum.stats.hp.ToString();
-                Debug.Log("CD: " + sum.move.inCd);
+                
                 if (sum.move.inCd <= 0)
                 {
                     dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", name, langmanag.GetInfo("summon", sum.GetMoveTypeLangId()));
@@ -3998,7 +3996,7 @@ public class BattleSystem : MonoBehaviour
                     i++;
                     if (move.uses >= 0 && !unit.isEnemy)
                     {
-                        foreach (Transform movebtn in unit.moveListPanel.transform)
+                        foreach (Transform movebtn in unit.moveListPanel.transform.GetChild(0).transform)
                         {
                             Text id = movebtn.Find("Id").gameObject.GetComponent<Text>();
                             if (id.text == i.ToString())
@@ -4166,7 +4164,8 @@ public class BattleSystem : MonoBehaviour
     {
         foreach(Summon sum in unit.summons)
         {
-            sum.UpdateInfoCombat();
+            if (sum.CheckIfHasIcon())
+                sum.UpdateInfoCombat();
         }
     }
 

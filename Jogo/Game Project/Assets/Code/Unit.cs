@@ -437,7 +437,7 @@ public class Unit : MonoBehaviour
             canUseProtec = canUseProtec && a.canUseProtec;
             canUseEnchant = canUseEnchant && a.canUseEnchant;
             canUseSummon = canUseSummon && a.canUseSummon;
-            skipTurn = skipTurn && a.isStun;
+            skipTurn = a.isStun || skipTurn;
         }
     }
 

@@ -1472,6 +1472,8 @@ public class LanguageManager : MonoBehaviour
         public string trd;
         public string ulk;
         public string sch;
+        public string grd;
+        public string tau;
 
         public string Get_EffectInfo(string a)
         {
@@ -1534,6 +1536,12 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "sch":
                     returns = sch;
+                    break;
+                case "grd":
+                    returns = grd;
+                    break;
+                case "tau":
+                    returns = tau;
                     break;
                 default:
                     returns = "null";

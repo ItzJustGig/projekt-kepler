@@ -16,6 +16,7 @@ MonoBehaviour:
   classe: 6
   size: 3
   name: sandew
+  isBasicPhysical: 1
   sprite: {fileID: 5806852883944117854, guid: a9be5b2a64a4a8b42a7f6979da8ac051, type: 3}
   charcIcon: {fileID: 21300000, guid: c382f9bd64c89d541a30d7d9293b8b12, type: 3}
   audio: {fileID: 8300000, guid: 43d78e6233923c64996d17ac2ba4c27c, type: 3}
@@ -33,7 +34,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 91b4efea4dd0bda48be911438c154653, type: 2}
   - {fileID: 11400000, guid: fc0d3e66d0e2cf34db76858f6de109ae, type: 2}
   - {fileID: 11400000, guid: e8c2ee4d54733d041baf75318bc3c559, type: 2}
-  - {fileID: 11400000, guid: 2ef5f33f2a39d5b44912c7d77c2a5f72, type: 2}
+  - {fileID: 11400000, guid: c265a13f84e503644810691054576b8b, type: 2}
   - {fileID: 11400000, guid: 1969a027ecfa3c848aedcbf6476a0780, type: 2}
   recItems:
   - {fileID: 11400000, guid: 936d57aae7d000e4cbd6c6d8a88fda07, type: 2}
