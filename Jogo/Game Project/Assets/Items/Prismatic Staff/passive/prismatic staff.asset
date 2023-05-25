@@ -16,12 +16,14 @@ MonoBehaviour:
   showNameOnInfo: 0
   origin: 1
   sprite: {fileID: 21300000, guid: e5f87d80bc043034f972d0c43ac193f3, type: 3}
-  num: 0
+  num: 0.2
   maxNum: 0
   stacks: 0
   maxStacks: 8
   cd: 0
   inCd: 0
+  anim: 
+  anim2: 
   statScale: {fileID: 11400000, guid: dbda19dad4a59f4408b846856cf8af06, type: 2}
   statScale2: {fileID: 0}
   statMod: {fileID: 0}

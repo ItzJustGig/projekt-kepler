@@ -47,13 +47,13 @@ GameObject:
   - component: {fileID: 5219161011493750036}
   - component: {fileID: 5219161011493750038}
   - component: {fileID: 5219161011493750037}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LoadPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5219161011493750036
 RectTransform:
   m_ObjectHideFlags: 0

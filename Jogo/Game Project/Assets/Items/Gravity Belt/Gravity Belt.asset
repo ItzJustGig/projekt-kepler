@@ -18,8 +18,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e4e55fb63b4819e4e97b1b840955ed4e, type: 2}
   statmod:
   - {fileID: 11400000, guid: 960422b891cabae4e8698a0dcfd340f0, type: 2}
-  - {fileID: 11400000, guid: 94a587488ed404149a6666dda05277a0, type: 2}
   moves: []
   rarity: 2
-  minPrice: 70
-  maxPrice: 90
+  nonCombatItem: 0

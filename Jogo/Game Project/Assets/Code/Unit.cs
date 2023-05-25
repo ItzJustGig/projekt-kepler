@@ -735,14 +735,10 @@ public class Unit : MonoBehaviour
 
     public void DmgNumber(string msg, Color color, int size = 2)
     {
-        Vector3 pos;
+        Vector3 pos = this.transform.position;
+        pos += new Vector3(UnityEngine.Random.Range(-0.15f, 0.15f), UnityEngine.Random.Range(-0.3f, 0.5f));
 
-        if (isEnemy)
-            pos = new Vector3(UnityEngine.Random.Range(4, 6), UnityEngine.Random.Range(-1, 0.5f));
-        else
-            pos = new Vector3(UnityEngine.Random.Range(-4, -6), UnityEngine.Random.Range(-1, 0.5f));
-
-        GameObject go = Instantiate(dmgText, pos, Quaternion.identity) as GameObject;
+        GameObject go = Instantiate(dmgText, pos, Quaternion.identity);
         go.transform.GetChild(0).GetComponent<TextMesh>().text = msg;
         go.transform.GetChild(0).GetComponent<TextMesh>().color = color;
         /*string sizeText = "normal";
@@ -846,12 +842,8 @@ public class Unit : MonoBehaviour
     public void PassivePopup(string name)
     {
         Vector3 pos;
-        float hight = UnityEngine.Random.Range(0.5f, 1.5f);
-
-        if (isEnemy)
-            pos = new Vector3(6, hight);
-        else
-            pos = new Vector3(-6, hight);
+        float hight = UnityEngine.Random.Range(1.75f, 2.75f);
+        pos = new Vector3(transform.position.x, transform.position.y + hight);
 
         GameObject passive = Instantiate(passiveText, pos, Quaternion.identity) as GameObject;
         passive.transform.GetChild(0).GetChild(0).GetComponent<TextMesh>().text = name;

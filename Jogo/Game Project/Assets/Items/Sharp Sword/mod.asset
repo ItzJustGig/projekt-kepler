@@ -28,7 +28,7 @@ MonoBehaviour:
   atkDmg: 9
   magicPower: 0
   critChance: 0
-  critDmg: 0.0215
+  critDmg: 0.03
   dmgResis: 0
   magicResis: 0
   timing: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
   shieldBonus: 0
   accuracy: 0
   evasion: 0
-  armourPen: 0.0115
+  armourPen: 0
   magicPen: 0
   ultrate: 0
   size: 0

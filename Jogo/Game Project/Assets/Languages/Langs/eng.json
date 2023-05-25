@@ -389,7 +389,7 @@
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain%mod%and deal bonus %scale% on attacks.",
-			"bullsrage": "When the user takes <color=#f75145>%maxStacks% critical hits</color> gain%mod%and deal bonus %scale% on <color=#ffaa00>physical</color> or <color=#ffaa00>basic attacks</color> for 3 turns, or permanantly while below <color=#00ff11>%num%% health</color>",
+			"bullsrage": "When the user take or deal <color=#f75145>%maxStacks% critical strikes</color> gain%mod%and deal bonus %scale% on <color=#ffaa00>physical</color> or <color=#ffaa00>basic attacks</color> for 3 turns, or permanantly while below <color=#00ff11>%num%% health</color>",
 			"courage": "The user gain %scale% every %cd% turns and Fear have less %num% turns. When the user is Feared recover %scale2%",
 			"dreadofthesupernatural": "The user take bonus <color=#b829ff>+%num%% sanity damage</color> from enemy moves. (minimum bonus is %maxNum%)",
 			"ecolocation": "The user is immune to Blind.",
@@ -429,8 +429,8 @@
 			"shadowdagger": "The user's <color=#ffaa00>physical moves</color> deal bonus %scale% and gain%mod%. (%cd% turns cooldown)",
 			"spectralring": "The user gain%mod%every %cd% turns up to %maxStacks% times.\nWhen the user drops below <color=#00ff11>%num%% health</color>, <color=#1a66ff>magic moves</color> deal bonus %scale%.",
 			"huntersdirk": "If the target is above <color=#00ff11>%num%% health</color>, <color=#ffaa00>basic</color> or <color=#ffaa00>physical moves</color> deal bonus %scale%. (%cd% turns cooldown)",
-			"gravitychange": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> for %cd% turns",
-			"prismaticstaff": "Every %maxStacks% magic moves, the next will <color=#f75145>crit</color> (also applies to the <color=#1a66ff>magic damage</color>) and deal bonus %scale%",
+			"gravitychange": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> or <color=#ffaa00>basic attack</color> for %cd% turns",
+			"prismaticstaff": "Every %maxStacks% magic moves, the next will be a <color=#f75145>critical strike</color> (also applies to the <color=#1a66ff>magic damage</color>), have bonus <color=#f75145>%num%% critical damage bonus</color> and deal bonus %scale%",
 			"mechashield": "The user gain%mod%and converts %num%% of the <color=#ffaa00>physical damage</color> dealt into <color=#1a66ff>magic damage</color> while <color=#787878>shielded</color>, when runs out of <color=#787878>shield</color> take %scale2%. Also gain%mod2%and %scale% at the cost of %stacks% ultimate energy every turn.",
 			"combatrepair": "The user gain%mod%per <color=#B266FF>summon</color> alive (stack up to %maxStacks% times). When the user gains a <color=#787878>shield</color> that is not earned from the user's ultimate move, gain that <color=#787878>shield</color> over %num% turns.",
 			"magicwand": "The user's <color=#1a66ff>magical</color> and <color=#ffaa00>basic attacks</color> deal bonus %scale%",
@@ -444,8 +444,8 @@
 			"combatrythm": "The user deal bonus %scale% on <color=#ffaa00>physical</color> and <color=#1a66ff>magical moves</color>",
 			"sackofbones": "The user immune to Bleeding but Cripple have its duration increased by %num% turns and take bonus %scale% when applied",
 			"firescales": "The user gain %mod% istead of being Burned and Scorched",
-			"magicbody": "The user gain +(%num%% max mana) max hp and when takes magic damage gain %mod%",
-			"leafbeing": "The user take +%num%% damage from Burn, Scorch and Poison. When the target is with Allergy take %scale%"
+			"magicbody": "The user gain <color=#00ff11>+(<color=#1e68fc>%num%% max mana</color>) max hp</color> and when takes <color=#1a66ff>magic damage</color> gain %mod%",
+			"leafbeing": "The user take bonus <color=#f75145>+%num%% damage</color> from Burn, Scorch and Poison. When the target is with Allergy take %scale%"
 		}
 	},
 	"moves": {

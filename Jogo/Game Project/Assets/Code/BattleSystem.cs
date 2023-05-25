@@ -610,7 +610,6 @@ public class BattleSystem : MonoBehaviour
             enemy.SetAnimHud("isSelected", true);
             enemy.chosenMove.move = moveEnemy;
 
-            Debug.Log(enemy.chosenMove.move.target);
             if (enemy.chosenMove.move.target == Moves.Target.SELF)
                 enemy.chosenMove.target = enemy;
             else if (enemy.chosenMove.move.target == Moves.Target.ALLY)
@@ -797,6 +796,7 @@ public class BattleSystem : MonoBehaviour
             bool blockMagic = false;
             bool blockRanged = false;
             bool isCrit = false;
+            float critBonus = 0;
             bool isMagicCrit = false;
 
             Stats statsUser = user.SetModifiers();
@@ -1383,10 +1383,10 @@ public class BattleSystem : MonoBehaviour
                                 }
                             }
                         }
-
+                        
                         if (a.name == "gravitychange")
                         {
-                            if (move.type is Moves.MoveType.PHYSICAL)
+                            if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
                             {
                                 user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
 
@@ -1470,6 +1470,7 @@ public class BattleSystem : MonoBehaviour
 
                                 dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
 
+                                critBonus += a.num;
                                 isMagicCrit = true;
                                 DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
                             }
@@ -1931,7 +1932,7 @@ public class BattleSystem : MonoBehaviour
                             if (dmgTarget.phyDmg > 0)
                             {
                                 if (isCrit == true)
-                                    dmgTarget.ApplyCrit(isMagicCrit, statsUser.critDmg + move.critDmgBonus);
+                                    dmgTarget.ApplyCrit(isMagicCrit, statsUser.critDmg + move.critDmgBonus + critBonus);
                             }
                             else
                             {
@@ -1965,8 +1966,8 @@ public class BattleSystem : MonoBehaviour
                                             {
                                                 user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
                                                 dmgTarget.ApplyBonusPhyDmg((float)a.maxStacks / 100);
-                                                a.inCd = a.cd;
                                             }
+                                            a.stacks = 1;
                                         }
                                         break;
                                 }
@@ -2089,32 +2090,45 @@ public class BattleSystem : MonoBehaviour
 
                             foreach (Passives a in user.passives.ToArray())
                             {
-                                if (a.name == "perfectshooter")
+                                switch (a.name)
                                 {
-                                    if ((move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.BASIC) && isCrit == true && a.stacks < a.maxStacks)
-                                        a.num++;
+                                    case "perfectshooter":
+                                        if ((move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.BASIC) && isCrit == true && a.stacks < a.maxStacks)
+                                            a.num++;
 
-                                    bool isReady = false;
-                                    if (a.num == a.maxNum - 1)
-                                        isReady = true;
+                                        bool isReady = false;
+                                        if (a.num == a.maxNum - 1)
+                                            isReady = true;
 
-                                    if (a.num == a.maxNum && a.stacks < a.maxStacks)
-                                    {
-                                        a.num = 0;
-                                        a.stacks++;
-                                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                        StatMod mod = a.ifConditionTrueMod();
+                                        if (a.num == a.maxNum && a.stacks < a.maxStacks)
+                                        {
+                                            a.num = 0;
+                                            a.stacks++;
+                                            user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                            StatMod mod = a.ifConditionTrueMod();
 
-                                        StatMod statMod = a.statMod.ReturnStats();
-                                        statMod.inTime = statMod.time;
-                                        user.statMods.Add(statMod);
-                                        user.usedBonusStuff = false;
-                                        user.hud.SetStatsHud(user);
-                                        DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
-                                    }
+                                            StatMod statMod = a.statMod.ReturnStats();
+                                            statMod.inTime = statMod.time;
+                                            user.statMods.Add(statMod);
+                                            user.usedBonusStuff = false;
+                                            user.hud.SetStatsHud(user);
+                                            DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
+                                        }
 
-                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, (a.stacks + "S" + (a.maxNum - a.num) + "T").ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                                        ManagePassiveIcon(user.effectHud, a.sprite, a.name, (a.stacks + "S" + (a.maxNum - a.num) + "T").ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                                        break;
+                                    case "bullsrage":
+                                        if (isCrit)
+                                        {
+                                            if (a.stacks < a.maxStacks && a.stacks >= 0)
+                                            {
+                                                a.stacks++;
+                                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+                                            }
+                                        }
+                                        break;
                                 }
+
                             }
 
                             dmgTarget = target.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
@@ -3497,8 +3511,11 @@ public class BattleSystem : MonoBehaviour
 
                     if (a.inCd > 0)
                         a.inCd--;
-                    else if (a.inCd == 0)
+                    else if (a.inCd == 0 && a.stacks == 1)
+                    {
+                        a.stacks = 0;
                         a.inCd = a.cd;
+                    }
 
                     if (a.inCd == 0)
                         ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), true);

@@ -228,10 +228,10 @@ public class Player : MonoBehaviour
     
     public Unit GetRandom(int id)
     {
-        int rng = 0;
-        while (rng == id)
+        int rng = -1;
+        while (rng == id || rng == -1)
         {
-            rng = Random.Range(1, 3 + 1);
+            rng = Random.Range(0, 3);
         }
         Unit unit = null;
 

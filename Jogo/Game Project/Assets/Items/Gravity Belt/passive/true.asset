@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   playerStat: 1
-  flatValue: 35
+  flatValue: 5
   curHp: 0
   missHp: 0
-  maxHp: 0
+  maxHp: 0.0085
   hpRegen: 0
   missMana: 0
   curMana: 0

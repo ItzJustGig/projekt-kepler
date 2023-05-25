@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
+  - Options
   - LoadScene
-  - 
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: HUD
     uniqueID: 1004447663
+    locked: 0
+  - name: Options
+    uniqueID: 2639268523
     locked: 0
