@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Guarding
   m_EditorClassIdentifier: 
   id: GRD
-  sprite: {fileID: 21300000, guid: 2e9ec9c79875f54438109ff4903de819, type: 3}
+  sprite: {fileID: 21300000, guid: 25bf69ee417e1434cb96f61d235c6862, type: 3}
   source: {fileID: 0}
   haveSpecialDesc: 1
   duration: 0

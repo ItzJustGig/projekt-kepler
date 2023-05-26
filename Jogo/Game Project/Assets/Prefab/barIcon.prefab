@@ -83,21 +83,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=25><align=center>Plasma Blade</align></size>
+  text: '<size=25><align=center>Perfect Shooter</align></size>
 
     <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
 
     
 
-    The
-    user''s <color=#ffaa00>physical</color> or <color=#ffaa00>basic attacks</color>
-    deal bonus <color=#1a66ff>10 + (<color=#3366ff>1,2%</color> of the user''s <color=#3366ff>Maximum
-    Mana</color>)</color> as<color=#1a66ff> magical damage</color>. If the user is
-    below <color=#00ff11>20% health</color>, the bonus <color=#1a66ff>magic damage</color>
-    is increased by 75%, deal bonus <color=#a6a6a6>15</color> as<color=#a6a6a6> true
-    damage</color> and gain <color=#8360B3>5% Magic Penetration</color>  (If the
-    user is silenced or bellow <color=#1e68fc>30% mana</color>, the passive won''t
-    activate)
+    Every
+    <color=#f75145>6 critical ranged attacks</color> or <color=#ffaa00>basic attacks</color>,
+    the user gain <color=#ffaa00>4,85% Attack Damage</color>, <color=#f75145>2,85%
+    Critical Chance</color>, <color=#f75145>1,7% Critical Damage</color>, <color=#0984db>1,8%
+    Timing</color> and <color=#c87c32>1% Armour Penetration</color>  (stacks up to
+    4).
 
 '
   textSec: 
@@ -186,7 +183,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 16307b561aa462f459e2da6bdf91f0ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 902632ae439d16f43b28fcb2d2e50a78, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -274,4 +271,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 0S6T

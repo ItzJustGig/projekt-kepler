@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Tail Lash
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: taillash
   hitTime: 1
   priority: 0
@@ -50,4 +53,4 @@ MonoBehaviour:
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
   animUser: 
-  animTarget: 
+  animTarget: cut

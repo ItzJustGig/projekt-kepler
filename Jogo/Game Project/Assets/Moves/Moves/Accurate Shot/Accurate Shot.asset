@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Accurate Shot
   m_EditorClassIdentifier: 
   type: 2
+  target: 0
+  targetType: 0
+  id: 0
   name: accurateshot
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -34,6 +39,8 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 75
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0.1
   statModUser: {fileID: 0}
@@ -41,5 +48,9 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: ea742cdd307d5834c8aac38e5afe34fd, type: 2}
   - {fileID: 11400000, guid: e10bc5841b85714449ad23d4f5961cff, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: assault

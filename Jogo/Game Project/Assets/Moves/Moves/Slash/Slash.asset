@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Slash
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: slash
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -34,11 +39,17 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 0
   staminaCost: 40
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 11400000, guid: 4bf301b31aadf384eb3d2c711a010ab0, type: 2}
   scale:
   - {fileID: 11400000, guid: 440c274c884060245b283cb073fca4af, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: cut

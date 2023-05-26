@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Explosive Needles
   m_EditorClassIdentifier: 
   type: 1
+  target: 0
+  targetType: 0
+  id: 0
   name: explosiveneedles
   hitTime: 4
   priority: 0
@@ -51,4 +54,4 @@ MonoBehaviour:
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
   animUser: 
-  animTarget: 
+  animTarget: physicalhit

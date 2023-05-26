@@ -52,5 +52,5 @@ MonoBehaviour:
   effects: []
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
-  animUser: heal
-  animTarget: 
+  animUser: 
+  animTarget: refresh

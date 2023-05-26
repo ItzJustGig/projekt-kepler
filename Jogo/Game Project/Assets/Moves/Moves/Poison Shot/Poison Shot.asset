@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Poison Shot
   m_EditorClassIdentifier: 
   type: 2
+  target: 0
+  targetType: 0
+  id: 0
   name: poisonshot
   hitTime: 1
   priority: 0
   uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -35,6 +39,8 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 35
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
@@ -47,3 +53,6 @@ MonoBehaviour:
   effects:
   - {fileID: 11400000, guid: 7ed891bb7d889d840a176e368725223a, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: poison

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Keen Eye
   m_EditorClassIdentifier: 
   type: 5
+  target: 0
+  targetType: 0
+  id: 0
   name: keeneye
   hitTime: 1
   priority: 0
@@ -47,3 +50,5 @@ MonoBehaviour:
   effects: []
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
+  animUser: keeneye
+  animTarget: 

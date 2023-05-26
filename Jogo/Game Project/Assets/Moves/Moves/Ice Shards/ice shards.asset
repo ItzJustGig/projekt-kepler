@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: ice shards
   m_EditorClassIdentifier: 
   type: 1
+  target: 0
+  targetType: 0
+  id: 0
   name: iceshards
   hitTime: 3
   priority: 0
@@ -50,4 +53,4 @@ MonoBehaviour:
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
   animUser: 
-  animTarget: 
+  animTarget: cut

@@ -28,13 +28,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 92a62e8fc9c1a094ab0fb1b3aabcef33, type: 2}
   moves:
   - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
-  - {fileID: 11400000, guid: 1d9019547fd10064aa444ced13b25b41, type: 2}
-  - {fileID: 11400000, guid: 57c328f598bd20d4891ff118e489680e, type: 2}
-  - {fileID: 11400000, guid: 06e89e8a09d13cb4b91bb8923cc8995f, type: 2}
   - {fileID: 11400000, guid: deafb7c03c78bce449ec78114b9e7a31, type: 2}
   - {fileID: 11400000, guid: 43454bf733342d64585b5c78cc06f655, type: 2}
-  - {fileID: 11400000, guid: 9231fd6c7911b7f4098a5fd215b44376, type: 2}
+  - {fileID: 11400000, guid: 06e89e8a09d13cb4b91bb8923cc8995f, type: 2}
   - {fileID: 11400000, guid: 709578c464b54f94881d2ef3ebeee214, type: 2}
+  - {fileID: 11400000, guid: 57c328f598bd20d4891ff118e489680e, type: 2}
+  - {fileID: 11400000, guid: 1d9019547fd10064aa444ced13b25b41, type: 2}
+  - {fileID: 11400000, guid: 9231fd6c7911b7f4098a5fd215b44376, type: 2}
   - {fileID: 11400000, guid: b50e4ff5ac7d345448e2b606837843d0, type: 2}
   recItems:
   - {fileID: 11400000, guid: c945a420b56bf52449f684462fda543c, type: 2}
