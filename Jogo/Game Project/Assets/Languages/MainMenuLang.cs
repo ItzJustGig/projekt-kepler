@@ -16,6 +16,7 @@ public class MainMenuLang : MonoBehaviour
 
     [SerializeField] private Text fightBtnText;
     [SerializeField] private Text infoBtnText;
+    [SerializeField] private Text optionsBtnText;
     [SerializeField] private Text quitBtnText;
     [SerializeField] private Text endlessBtnText;
 
@@ -39,6 +40,7 @@ public class MainMenuLang : MonoBehaviour
         fightBtnText.text = languageManager.GetText(language, "gui", "button", "fight");
         infoBtnText.text = languageManager.GetText(language, "gui", "button", "info");
         quitBtnText.text = languageManager.GetText(language, "gui", "button", "quit");
+        optionsBtnText.text = languageManager.GetText(language, "gui", "button", "options");
         endlessBtnText.text = languageManager.GetText(language, "gui", "button", "endless");
         gameNameText.text = languageManager.GetText(language, "gui", "text", "game");
         versionText.text += Application.version;

@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+using static LanguageManager;
 
 public class FightLang : MonoBehaviour
 {
     [SerializeField] public string language;
     public LanguageManager languageManager;
 
-    [SerializeField] private Text movesBtnText;
-    [SerializeField] private Text basicAtkBtnText;
-    [SerializeField] private Text ultBtnText;
-    [SerializeField] private Text recovManaBtnText;
     [SerializeField] private Text statsPBtnText;
     [SerializeField] private Text statsEBtnText;
     [SerializeField] private Text overviewBtnText;
@@ -116,10 +113,6 @@ public class FightLang : MonoBehaviour
         language = PlayerPrefs.GetString("language", language);
 
         //buttons
-        movesBtnText.text = languageManager.GetText(language, "gui", "button", "moves");
-        basicAtkBtnText.text = languageManager.GetText(language, "moves", "basicattack");
-        ultBtnText.text = languageManager.GetText(language, "gui", "button", "ultimate");
-        recovManaBtnText.text = languageManager.GetText(language, "moves", "recovmana");
         //statsPBtnText.text = languageManager.GetText(language, "gui", "button", "stats");
         //statsEBtnText.text = languageManager.GetText(language, "gui", "button", "stats");
         overviewBtnText.text = languageManager.GetText(language, "gui", "button", "overview");
@@ -127,14 +120,12 @@ public class FightLang : MonoBehaviour
         //pHideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
         //eHideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
         leaveBtnText.text = languageManager.GetText(language, "gui", "button", "leave");
-        cancelMoveBtnText.text = languageManager.GetText(language, "gui", "button", "cancel");
         ffBtnText.text = languageManager.GetText(language, "gui", "button", "forfeit");
         ffConfirmBtnText.text = languageManager.GetText(language, "gui", "button", "forfeit");
         cancelConfirmBtnText.text = languageManager.GetText(language, "gui", "button", "cancelforfeit");
 
         //text
         overviewText.text = languageManager.GetText(language, "gui", "text", "overview");
-        chooseMoveText.text = languageManager.GetText(language, "gui", "text", "choosemove");
         turnsText.text = languageManager.GetText(language, "gui", "text", "turn");
         turnsText.text = turnsText.text.Replace("%n%", "0");
         leaveTextText.text = languageManager.GetText(language, "gui", "text", "leavetext");
@@ -184,45 +175,6 @@ public class FightLang : MonoBehaviour
         armourpenTooltipE.text = languageManager.GetText(language, "stats", "name", "armourpen") + " | " + languageManager.GetText(language, "stats", "name", "magicpen");
         armourpenTooltipE.text += "<br>" + languageManager.GetText(language, "stats", "desc", "armourpen");
         */
-        //overview player
-        physicDmgDealtP.text = languageManager.GetText(language, "gui", "text", "physicdmgdealt");
-        magicDmgDealtP.text = languageManager.GetText(language, "gui", "text", "magicdmgdealt");
-        trueDmgDealtP.text = languageManager.GetText(language, "gui", "text", "truedmgdealt");
-        sanityDmgDealtP.text = languageManager.GetText(language, "gui", "text", "sanitydmgdealt");
-        totalDmgDealtP.text = languageManager.GetText(language, "gui", "text", "totaldmgdealt");
-        physicDmgTakenP.text = languageManager.GetText(language, "gui", "text", "physicdmgtaken");
-        magicDmgTakenP.text = languageManager.GetText(language, "gui", "text", "magicdmgtaken");
-        trueDmgTakenP.text = languageManager.GetText(language, "gui", "text", "truedmgtaken");
-        sanityDmgTakenP.text = languageManager.GetText(language, "gui", "text", "sanitydmgtaken");
-        totalDmgTakenP.text = languageManager.GetText(language, "gui", "text", "totaldmgtaken");
-        physicDmgMitigatedP.text = languageManager.GetText(language, "gui", "text", "physicdmgmiti");
-        magicDmgMitigatedP.text = languageManager.GetText(language, "gui", "text", "magicdmgmiti");
-        totalDmgMitigatedP.text = languageManager.GetText(language, "gui", "text", "totaldmgmiti");
-        healDoneP.text = languageManager.GetText(language, "gui", "text", "healdone");
-        manaRecoveredP.text = languageManager.GetText(language, "gui", "text", "manarecov");
-        staminaRecoveredP.text = languageManager.GetText(language, "gui", "text", "staminarecov");
-        sanityRecoveredP.text = languageManager.GetText(language, "gui", "text", "sanityrecov");
-        shieldDoneP.text = languageManager.GetText(language, "gui", "text", "shielddone");
-
-        //overview enemy
-        physicDmgDealtE.text = languageManager.GetText(language, "gui", "text", "physicdmgdealt");
-        magicDmgDealtE.text = languageManager.GetText(language, "gui", "text", "magicdmgdealt");
-        trueDmgDealtE.text = languageManager.GetText(language, "gui", "text", "truedmgdealt");
-        sanityDmgDealtE.text = languageManager.GetText(language, "gui", "text", "sanitydmgdealt");
-        totalDmgDealtE.text = languageManager.GetText(language, "gui", "text", "totaldmgdealt");
-        physicDmgTakenE.text = languageManager.GetText(language, "gui", "text", "physicdmgtaken");
-        magicDmgTakenE.text = languageManager.GetText(language, "gui", "text", "magicdmgtaken");
-        trueDmgTakenE.text = languageManager.GetText(language, "gui", "text", "truedmgtaken");
-        sanityDmgTakenE.text = languageManager.GetText(language, "gui", "text", "sanitydmgtaken");
-        totalDmgTakenE.text = languageManager.GetText(language, "gui", "text", "totaldmgtaken");
-        physicDmgMitigatedE.text = languageManager.GetText(language, "gui", "text", "physicdmgmiti");
-        magicDmgMitigatedE.text = languageManager.GetText(language, "gui", "text", "magicdmgmiti");
-        totalDmgMitigatedE.text = languageManager.GetText(language, "gui", "text", "totaldmgmiti");
-        healDoneE.text = languageManager.GetText(language, "gui", "text", "healdone");
-        manaRecoveredE.text = languageManager.GetText(language, "gui", "text", "manarecov");
-        staminaRecoveredE.text = languageManager.GetText(language, "gui", "text", "staminarecov");
-        sanityRecoveredE.text = languageManager.GetText(language, "gui", "text", "sanityrecov");
-        shieldDoneE.text = languageManager.GetText(language, "gui", "text", "shielddone");
     }
 
     public string GetInfo(string arg1, string arg2)
@@ -259,12 +211,13 @@ public class FightLang : MonoBehaviour
         return builder.ToString();
     }
 
-    public string GetInfo(string arg1, string arg2, string arg3, string name, string move)
+    public string GetInfo(string arg1, string arg2, string arg3, string name, string move, string target)
     {
         StringBuilder builder = new StringBuilder();
         builder.Append(languageManager.GetText(language, arg1, arg2, arg3));
         builder.Replace("%p%", name);
         builder.Replace("%m%", move);
+        builder.Replace("%t%", target);
 
         return builder.ToString();
     }

@@ -16,6 +16,8 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject summaryList;
+    [SerializeField] private GameObject characterSumPrefab;
 
     [SerializeField] private Transform playerBattleStation;
     [SerializeField] private Transform enemyBattleStation;
@@ -45,8 +47,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private GameObject battleHudP;
     [SerializeField] private GameObject battleHudE;
 
-    [SerializeField] private SummaryHud sumPlayerHud;
-    [SerializeField] private SummaryHud sumEnemyHud;
+    [SerializeField] private SummaryHud moveLog;
     [SerializeField] private GameObject sumHud;
     [SerializeField] private GameObject sumHudHideBtn;
     [SerializeField] private GameObject leaveBtn;
@@ -124,6 +125,7 @@ public class BattleSystem : MonoBehaviour
 
         state = BattleState.START;
         langmanag = this.gameObject.GetComponent<FightLang>();
+        moveLog.SetupSum();
         StartCoroutine(SetupBattle());
     }
 
@@ -184,7 +186,7 @@ public class BattleSystem : MonoBehaviour
         actionBox1p.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, player.unit1);
         actionBox2p.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, player.unit2);
         actionBox3p.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, player.unit3);
-        player.SetStart(aiManaRecover, aiGaranteedManaRecover, battleHud1, battleHud2, battleHud3);
+        player.SetStart(aiManaRecover, aiGaranteedManaRecover, summaryList.transform, characterSumPrefab, battleHud1, battleHud2, battleHud3);
 
         battleHud1 = Instantiate(battleHudE, enemyHudList.transform).GetComponent<BattleHud>();
         battleHud2 = Instantiate(battleHudE, enemyHudList.transform).GetComponent<BattleHud>();
@@ -193,7 +195,7 @@ public class BattleSystem : MonoBehaviour
         actionBox1e.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, enemy.unit1);
         actionBox2e.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, enemy.unit2);
         actionBox3e.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, enemy.unit3);
-        enemy.SetStart(aiManaRecover, aiGaranteedManaRecover, battleHud1, battleHud2, battleHud3);
+        enemy.SetStart(aiManaRecover, aiGaranteedManaRecover, summaryList.transform, characterSumPrefab, battleHud1, battleHud2, battleHud3);
 
         dialogText.text = langmanag.GetInfo("gui", "text", "wantfight", langmanag.GetInfo("charc", "name", enemy.unit1.charc.name));
 
@@ -534,6 +536,7 @@ public class BattleSystem : MonoBehaviour
 
     void SelectMovingCharacter()
     {
+        bool skipText = false;
         if (combatCount < player.GetAliveCharacters() - player.GetIncapacitatedCharacters())
         {
             if (!player.unit1.hasAttacked && !player.unit1.CheckSkipTurn())
@@ -553,8 +556,14 @@ public class BattleSystem : MonoBehaviour
             else if (!player.unit3.hasAttacked && !player.unit3.isDead && !player.unit3.CheckSkipTurn())
                 player.EnableBtn(player.unit3);
             else
+            {
+                skipText = true;
                 StartCoroutine(Combat(null, enemy.AIGetAttacker(combatCount)));
+            }
         }
+
+        if (!skipText) 
+            dialogText.text = langmanag.GetInfo("gui", "text", "choosemove");
     }
 
     public void DoneSelecting()
@@ -776,17 +785,14 @@ public class BattleSystem : MonoBehaviour
 
             SetStatus();
 
+            moveLog.AddMoveLog(user, move);
+
             if (move.name == "recovmana")
             {
                 move.inCooldown = move.cooldown;
                 if (user.level <= levelToConsiderWeak)
                     move.inCooldown -= manaRecoverCdReducWeak;
             }
-
-            if (user.isEnemy)
-                sumEnemyHud.AddMoveLog(user, move);
-            else
-                sumPlayerHud.AddMoveLog(user, move);
 
             DMG dmgTarget = default;
             DMG dmgUser = default;
@@ -815,10 +821,16 @@ public class BattleSystem : MonoBehaviour
             //calculate evasion
             evasion = (float)((statsTarget.movSpeed * 0.035) + (statsTarget.timing * 0.5) + (target.curSanity * 0.01))/100;
 
+            string txtenemy = "";
+            if (user.isEnemy)
+                txtenemy = langmanag.GetInfo("showdetail", "target", "enemy");
+            else
+                txtenemy = langmanag.GetInfo("showdetail", "target", "ally");
+
             if ((target.isBlockingPhysical && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)) || (target.isBlockingMagical && move.type is Moves.MoveType.MAGICAL) || (target.isBlockingRanged && move.type is Moves.MoveType.RANGED))
             {
 
-                dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
+                dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name), txtenemy);
 
                 yield return new WaitForSeconds(1.15f);
                 target.DmgNumber("0", Color.white);
@@ -913,7 +925,7 @@ public class BattleSystem : MonoBehaviour
                                 dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
                                 
                                 isCrit = true;
-                                DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
+                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, "0", user.isEnemy, a.GetPassiveInfo());
                             }                            
                         }
 
@@ -1608,7 +1620,8 @@ public class BattleSystem : MonoBehaviour
                         }
                     }
 
-                    dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
+
+                    dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name), txtenemy);
 
                     dmgTarget.heal += move.heal;
                     dmgTarget.healMana += move.healMana;
@@ -1629,7 +1642,7 @@ public class BattleSystem : MonoBehaviour
                                 cancelText = langmanag.GetInfo("effect", "cancelmsg", a.id.ToLower());
                                 float shieldedDmg = 0;
                                 float recoil = a.recoil;
-                                user.trueDmgTaken += recoil;
+                                user.summary.trueDmgTaken += recoil;
 
                                 if (user.curShield > 0)
                                 {
@@ -1653,8 +1666,8 @@ public class BattleSystem : MonoBehaviour
                                     isDead = user.TakeDamage(recoildmg, false, false, user);
                                 }
 
-                                sumPlayerHud.UpdateValues(user, langmanag.GetInfo("charc", "name", user.charc.name));
-                                sumEnemyHud.UpdateValues(target, langmanag.GetInfo("charc", "name", target.charc.name));
+                                user.summary.UpdateValues(langmanag.GetInfo("charc", "name", user.charc.name), user.charc.charcIcon);
+                                target.summary.UpdateValues(langmanag.GetInfo("charc", "name", target.charc.name), target.charc.charcIcon);
 
                                 if (isDead)
                                 {
@@ -2050,7 +2063,7 @@ public class BattleSystem : MonoBehaviour
                                                 dmgTarget.phyDmg = 0;
                                             }
                                             //add mitigated dmg to the overview
-                                            target.phyDmgMitigated += dmgMitigated;
+                                            target.summary.phyDmgMitigated += dmgMitigated;
                                         }
                                         break;
                                     case "dreadofthesupernatural":
@@ -2112,7 +2125,6 @@ public class BattleSystem : MonoBehaviour
                                             user.statMods.Add(statMod);
                                             user.usedBonusStuff = false;
                                             user.hud.SetStatsHud(user);
-                                            DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
                                         }
 
                                         ManagePassiveIcon(user.effectHud, a.sprite, a.name, (a.stacks + "S" + (a.maxNum - a.num) + "T").ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
@@ -2217,8 +2229,8 @@ public class BattleSystem : MonoBehaviour
                                 dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", target.charc.name));
                             }
                         }
-                        sumPlayerHud.UpdateValues(user, langmanag.GetInfo("charc", "name", user.charc.name));
-                        sumEnemyHud.UpdateValues(target, langmanag.GetInfo("charc", "name", target.charc.name));
+                        user.summary.UpdateValues(langmanag.GetInfo("charc", "name", user.charc.name), user.charc.charcIcon);
+                        target.summary.UpdateValues(langmanag.GetInfo("charc", "name", target.charc.name), target.charc.charcIcon);
                     }
                     else
                     {
@@ -2662,7 +2674,7 @@ public class BattleSystem : MonoBehaviour
 
                         float healMana = a.statScale.SetScale(user.SetModifiers(), user);
                         user.curMana += healMana;
-                        user.manaHealDone += healMana;
+                        user.summary.manaHealDone += healMana;
 
                         StatMod statMod = a.statMod.ReturnStats();
                         statMod.inTime = statMod.time;
@@ -2793,7 +2805,6 @@ public class BattleSystem : MonoBehaviour
                     if (a.inCd == 0 && a.stacks == a.maxStacks)
                     {
                         a.stacks = 0;
-                        DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
                         ManagePassiveIcon(user.effectHud, a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     } else if (a.stacks == a.maxStacks + 1)
                     {
@@ -3044,7 +3055,7 @@ public class BattleSystem : MonoBehaviour
                         //heal sanity
                         user.curSanity += (int)healSanity;
                         //add the heal to the overview
-                        user.sanityHealDone += (int)healSanity;
+                        user.summary.sanityHealDone += (int)healSanity;
                         //reset cooldown
                         a.inCd = a.cd;
                         //show popup
@@ -3064,7 +3075,7 @@ public class BattleSystem : MonoBehaviour
                                 //heal sanity
                                 user.curSanity += (int)healSanity;
                                 //add the heal to the overview
-                                user.sanityHealDone += (int)healSanity;
+                                user.summary.sanityHealDone += (int)healSanity;
                                 //mark as bonus given
                                 a.stacks++;
                             }
@@ -3114,7 +3125,7 @@ public class BattleSystem : MonoBehaviour
                             {
                                 heal += heal * user.SetModifiers().healBonus;
                                 user.curHp += heal;
-                                user.healDone += heal;
+                                user.summary.healDone += heal;
                             }
                             else
                             {
@@ -3124,7 +3135,7 @@ public class BattleSystem : MonoBehaviour
                                 if (heal < 0)
                                     heal = 0;
 
-                                user.healDone += heal;
+                                user.summary.healDone += heal;
                             }
                             user.Heal(heal);
                         }
@@ -3410,11 +3421,7 @@ public class BattleSystem : MonoBehaviour
                         user.usedBonusStuff = false;
                         userHud.SetStatsHud(user);
                     }
-
-                    if (a.stacks <= 0)
-                        DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
-                    else
-                        ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
                     break;
 
                 case "mechashield":
@@ -3435,7 +3442,7 @@ public class BattleSystem : MonoBehaviour
                             float shield = a.statScale.SetScale(user.SetModifiers(), user);
                             shield += shield * user.SetModifiers().shieldBonus;
                             user.curShield += shield;
-                            user.shieldDone += shield;
+                            user.summary.shieldDone += shield;
 
                             user.ult -= a.stacks;
                         }
@@ -3622,7 +3629,6 @@ public class BattleSystem : MonoBehaviour
                         ManagePassiveIcon(user.effectHud, a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     
                     break;
-
                 case "roughskin":
                 case "magicwand":
                 case "crossbow":
@@ -3820,13 +3826,19 @@ public class BattleSystem : MonoBehaviour
         {
             string name = langmanag.GetInfo("summon", "name", sum.name);
             string debugname = sum.name + sum.summonTurn;
+            string txtenemy = "";
+            if (summoner.isEnemy)
+                txtenemy = langmanag.GetInfo("showdetail", "target", "enemy");
+            else
+                txtenemy = langmanag.GetInfo("showdetail", "target", "ally");
+
             if (sum.stats.hp > 0)
             {
                 summoner.effectHud.transform.Find(debugname + "(Clone)").gameObject.transform.Find("time").gameObject.GetComponent<Text>().text = sum.stats.hp.ToString();
                 
                 if (sum.move.inCd <= 0)
                 {
-                    dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", name, langmanag.GetInfo("summon", sum.GetMoveTypeLangId()));
+                    dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", name, langmanag.GetInfo("summon", sum.GetMoveTypeLangId()), txtenemy);
                     sum.move.inCd = sum.move.cd;
                     return SummonDmg(sum.move, sum.stats, target, summoner);
                 } else
@@ -4058,32 +4070,32 @@ public class BattleSystem : MonoBehaviour
                 unit.DoAnimParticle("heal");
                 unit.Heal(stats.hpRegen * (1 + stats.healBonus));
                 if (!(unit.curHp + (stats.hpRegen * (1 + stats.healBonus)) >= unit.SetModifiers().hp))
-                    unit.healDone += stats.hpRegen * (1 + stats.healBonus);
+                    unit.summary.healDone += stats.hpRegen * (1 + stats.healBonus);
                 else
-                    unit.healDone += unit.SetModifiers().hp - unit.curHp;
+                    unit.summary.healDone += unit.SetModifiers().hp - unit.curHp;
 
                 if (unit.curMana < stats.mana)
                     if ((unit.curMana + stats.manaRegen) > stats.mana)
                     {
                         unit.curMana = stats.mana;
-                        unit.manaHealDone += stats.mana - (unit.curMana + stats.manaRegen);
+                        unit.summary.manaHealDone += stats.mana - (unit.curMana + stats.manaRegen);
                     }
                     else
                     {
                         unit.curMana += stats.manaRegen;
-                        unit.manaHealDone += stats.manaRegen;
+                        unit.summary.manaHealDone += stats.manaRegen;
                     }
 
                 if (unit.curStamina < stats.stamina)
                     if ((unit.curStamina + stats.staminaRegen) > stats.stamina)
                     {
                         unit.curStamina = stats.stamina - (unit.curStamina + stats.staminaRegen);
-                        unit.staminaHealDone += stats.stamina - (unit.curStamina + stats.staminaRegen);
+                        unit.summary.staminaHealDone += stats.stamina - (unit.curStamina + stats.staminaRegen);
                     }
                     else
                     {
                         unit.curStamina += stats.staminaRegen;
-                        unit.staminaHealDone += stats.staminaRegen;
+                        unit.summary.staminaHealDone += stats.staminaRegen;
                     }
             }
         }
@@ -4114,7 +4126,7 @@ public class BattleSystem : MonoBehaviour
         SetStatus();
         unit.hud.SetStatsHud(unit);
 
-        sumPlayerHud.UpdateValues(unit, langmanag.GetInfo("charc", "name", unit.charc.name));
+        unit.summary.UpdateValues(langmanag.GetInfo("charc", "name", unit.charc.name), unit.charc.charcIcon);
     }
 
     void UpdateTooltips(Unit unit)

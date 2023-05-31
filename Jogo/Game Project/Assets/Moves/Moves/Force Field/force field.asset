@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: force field
   m_EditorClassIdentifier: 
   type: 4
-  target: 1
+  target: 0
   targetType: 1
   id: 0
   name: forcefield
@@ -25,14 +25,14 @@ MonoBehaviour:
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 0
+  magicDmg: 10
   trueDmg: 0
   sanityDmg: 0
   heal: 0
   healMana: 0
   healStamina: 0
   healSanity: 0
-  shield: 55
+  shield: 45
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 8
@@ -47,6 +47,7 @@ MonoBehaviour:
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 24d82d0eeef1e374889e18c548d18454, type: 2}
+  - {fileID: 11400000, guid: 806d0a406db0da7479b113a56f0a877a, type: 2}
   dot: []
   effects:
   - {fileID: 11400000, guid: 88d19a9db6f2a9c48afe2aa82b178f51, type: 2}

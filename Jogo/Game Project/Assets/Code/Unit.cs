@@ -73,11 +73,7 @@ public class Unit : MonoBehaviour
     private readonly string selectedLevel = "selectedLevel";
     private readonly string selectedLevelEnemy = "selectedLevelEnemy";
 
-    public float phyDmgDealt, magicDmgDealt, trueDmgDealt, sanityDmgDealt;
-    public float healDone, shieldDone, manaHealDone, staminaHealDone, sanityHealDone;
-    public float phyDmgTaken, magicDmgTaken, trueDmgTaken, sanityDmgTaken;
-    public float phyDmgMitigated, magicDmgMitigated;
-
+    [SerializeField] public CharacterSum summary;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject sprite;
     [SerializeField] private Animator particleAnimator;
@@ -446,38 +442,38 @@ public class Unit : MonoBehaviour
         if (dmg.phyDmg > 0)
         {
             if (attacker != null)
-                attacker.phyDmgDealt += dmg.phyDmg;
+                attacker.summary.phyDmgDealt += dmg.phyDmg;
 
             float dmgMitigated = (float)((SetModifiers().dmgResis - (SetModifiers().dmgResis * armourPen)) * dmgResisPer * dotReduc);
             if (dmgMitigated < dmg.phyDmg)
             {
                 dmg.phyDmg -= dmgMitigated;
-                phyDmgMitigated += dmgMitigated;
+                summary.phyDmgMitigated += dmgMitigated;
             }
             else
             {
                 dmgMitigated = dmg.phyDmg;
                 dmg.phyDmg = 0;
-                phyDmgMitigated += dmgMitigated;
+                summary.phyDmgMitigated += dmgMitigated;
             }
         }
 
         if (dmg.magicDmg > 0)
         {
             if (attacker != null)
-                attacker.magicDmgDealt += dmg.magicDmg;
+                attacker.summary.magicDmgDealt += dmg.magicDmg;
 
             float dmgMitigated = (float)((SetModifiers().magicResis - (SetModifiers().magicResis * magicPen)) * magicResisPer * dotReduc);
             if (dmgMitigated < dmg.magicDmg)
             {
                 dmg.magicDmg -= dmgMitigated;
-                magicDmgMitigated += dmgMitigated;
+                summary.magicDmgMitigated += dmgMitigated;
             }
             else
             {
                 dmgMitigated = dmg.magicDmg;
                 dmg.magicDmg = 0;
-                magicDmgMitigated += dmgMitigated;
+                summary.magicDmgMitigated += dmgMitigated;
             }
         }
 
@@ -578,18 +574,18 @@ public class Unit : MonoBehaviour
     {
         if (dmg.phyDmg > 0)
         {
-            phyDmgTaken += dmg.phyDmg;
+            summary.phyDmgTaken += dmg.phyDmg;
         }
 
         if (dmg.magicDmg > 0)
         {
-            magicDmgTaken += dmg.magicDmg;
+            summary.magicDmgTaken += dmg.magicDmg;
         }
 
         if (dmg.trueDmg > 0)
         {
-            attacker.trueDmgDealt += dmg.trueDmg;
-            trueDmgTaken += dmg.trueDmg;
+            attacker.summary.trueDmgDealt += dmg.trueDmg;
+            summary.trueDmgTaken += dmg.trueDmg;
         }
 
         if (dmg.sanityDmg > 0)
@@ -603,8 +599,8 @@ public class Unit : MonoBehaviour
                 dmg.sanityDmg = curSanity;
                 curSanity = 0;
             }
-            attacker.sanityDmgDealt += dmg.sanityDmg;
-            sanityDmgTaken += dmg.sanityDmg;
+            attacker.summary.sanityDmgDealt += dmg.sanityDmg;
+            summary.sanityDmgTaken += dmg.sanityDmg;
         }
 
         dmg = CalcRegens(dmg, movename);
@@ -702,28 +698,28 @@ public class Unit : MonoBehaviour
 
         if (dmg.heal > 0)
         {
-            healDone += dmg.heal;
+            summary.healDone += dmg.heal;
             Heal(dmg.heal);
         }
 
         if (dmg.healMana > 0)
         {
-            manaHealDone += dmg.healMana;
+            summary.manaHealDone += dmg.healMana;
         }
 
         if (dmg.healStamina > 0)
         {
-            staminaHealDone += dmg.healStamina;
+            summary.staminaHealDone += dmg.healStamina;
         }
 
         if (dmg.healSanity > 0)
         {
-            sanityHealDone += dmg.healSanity;
+            summary.sanityHealDone += dmg.healSanity;
         }
 
         if (dmg.shield > 0)
         {
-            shieldDone += dmg.shield;
+            summary.shieldDone += dmg.shield;
             curShield += dmg.shield;
         }
 
@@ -759,7 +755,10 @@ public class Unit : MonoBehaviour
         if (!(curHp + heal >= SetModifiers().hp))
             curHp += heal;
         else
+        {
             heal = SetModifiers().hp - curHp;
+            curHp = SetModifiers().hp;
+        }
 
         DmgNumber(heal.ToString("0"), Color.green);
     }

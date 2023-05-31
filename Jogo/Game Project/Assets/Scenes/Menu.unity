@@ -316,6 +316,7 @@ MonoBehaviour:
   flags: {fileID: 624978073}
   fightBtnText: {fileID: 689377571}
   infoBtnText: {fileID: 1998036715}
+  optionsBtnText: {fileID: 1549748921}
   quitBtnText: {fileID: 1493334480}
   endlessBtnText: {fileID: 1340702606}
   versionText: {fileID: 686927428}

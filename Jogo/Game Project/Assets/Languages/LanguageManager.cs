@@ -44,7 +44,7 @@ public class LanguageManager : MonoBehaviour
                     returns = charc.Get_Charc(sec, tri);
                     break;
                 case "showdetail":
-                    returns = showdetail.Get_ShowDetail(sec);
+                    returns = showdetail.Get_ShowDetail(sec, tri);
                     break;
                 case "effect":
                     returns = effect.Get_Effect(sec, tri);
@@ -284,8 +284,10 @@ public class LanguageManager : MonoBehaviour
         public string mana;
         public string stamina;
         public string cooldown;
+        public TargetType targettype; 
+        public TargetMove target; 
 
-        public string Get_ShowDetail(string a)
+        public string Get_ShowDetail(string a, string b)
         {
             string returns;
             switch (a)
@@ -473,6 +475,12 @@ public class LanguageManager : MonoBehaviour
                 case "cooldown":
                     returns = cooldown;
                     break;
+                case "targettype":
+                    returns = targettype.GetTargetType(b);
+                    break;
+                case "target":
+                    returns = target.GetTarget(b);
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -483,6 +491,52 @@ public class LanguageManager : MonoBehaviour
     }
 
     [Serializable]
+    public class TargetType
+    {
+        public string aoe;
+        public string single;
+
+        public string GetTargetType(string a)
+        {
+            switch (a)
+            {
+                case "aoe":
+                    return aoe;
+                case "single":
+                    return single;
+                default:
+                    return "null";
+            }
+        }
+    }
+
+    [Serializable]
+    public class TargetMove
+    {
+        public string enemy;
+        public string self;
+        public string ally;
+        public string selfally;
+
+        public string GetTarget(string a)
+        {
+            switch (a)
+            {
+                case "enemy":
+                    return enemy;
+                case "self":
+                    return self;
+                case "ally":
+                    return ally;
+                case "selfally":
+                    return selfally;
+                default:
+                    return "null";
+            }
+        }
+    }
+
+        [Serializable]
     public class Gui_Button
     {
         public string fight;
@@ -511,6 +565,7 @@ public class LanguageManager : MonoBehaviour
         public string coupon;
         public string reroll;
         public string rest;
+        public string options;
 
         public string Get_ButtonCont(string a)
         {
@@ -594,6 +649,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "rest":
                     returns = rest;
+                    break;
+                case "options":
+                    returns = options;
                     break;
                 default:
                     returns = "null";

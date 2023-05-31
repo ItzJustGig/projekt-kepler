@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 using System.Text;
+using static LanguageManager;
 
 public class SummaryHud : MonoBehaviour
 {
@@ -11,45 +12,59 @@ public class SummaryHud : MonoBehaviour
     [SerializeField] private TooltipPopUp tooltipMain;
     [SerializeField] private TooltipPopUp tooltipSec;
 
-    [SerializeField] private Text nameText;
-    [SerializeField] private Image charcIcon;
-
-    [SerializeField] private Text phyDmgDealt;
-    [SerializeField] private Text magicDmgDealt;
-    [SerializeField] private Text trueDmgDealt;
-    [SerializeField] private Text sanityDmgDealt;
-    [SerializeField] private Text totalDmgDealt;
-
-    [SerializeField] private Text phyDmgTaken;
-    [SerializeField] private Text magicDmgTaken;
-    [SerializeField] private Text trueDmgTaken;
-    [SerializeField] private Text sanityDmgTaken;
-    [SerializeField] private Text totalDmgTaken;
-
-    [SerializeField] private Text phyDmgMitigated;
-    [SerializeField] private Text magicDmgMitigated;
-    [SerializeField] private Text totalDmgMitigated;
-
-    [SerializeField] private Text healDone;
-    [SerializeField] private Text healManaDone;
-    [SerializeField] private Text healStaminaDone;
-    [SerializeField] private Text healSanityDone;
-    [SerializeField] private Text shieldDone;
-
-    [SerializeField] private Scrollbar scrollBar;
-
     [SerializeField] private Transform moveLogList;
     [SerializeField] private GameObject moveLogGO;
     [SerializeField] private Scrollbar moveLogScroll;
 
-    void Awake()
+    [SerializeField] private Text physicDmgDealt;
+    [SerializeField] private Text magicDmgDealt;
+    [SerializeField] private Text trueDmgDealt;
+    [SerializeField] private Text sanityDmgDealt;
+    [SerializeField] private Text totalDmgDealt;
+    [SerializeField] private Text physicDmgTaken;
+    [SerializeField] private Text magicDmgTaken;
+    [SerializeField] private Text trueDmgTaken;
+    [SerializeField] private Text sanityDmgTaken;
+    [SerializeField] private Text totalDmgTaken;
+    [SerializeField] private Text physicDmgMitigated;
+    [SerializeField] private Text magicDmgMitigated;
+    [SerializeField] private Text totalDmgMitigated;
+    [SerializeField] private Text healDone;
+    [SerializeField] private Text manaRecovered;
+    [SerializeField] private Text staminaRecovered;
+    [SerializeField] private Text sanityRecovered;
+    [SerializeField] private Text shieldDone;
+
+    public void SetupSum()
     {
-        scrollBar.value = 1;
+        physicDmgDealt.text = langmanag.GetInfo("gui", "text", "physicdmgdealt");
+        magicDmgDealt.text = langmanag.GetInfo("gui", "text", "magicdmgdealt");
+        trueDmgDealt.text = langmanag.GetInfo("gui", "text", "truedmgdealt");
+        sanityDmgDealt.text = langmanag.GetInfo("gui", "text", "sanitydmgdealt");
+        totalDmgDealt.text = langmanag.GetInfo("gui", "text", "totaldmgdealt");
+        physicDmgTaken.text = langmanag.GetInfo("gui", "text", "physicdmgtaken");
+        magicDmgTaken.text = langmanag.GetInfo("gui", "text", "magicdmgtaken");
+        trueDmgTaken.text = langmanag.GetInfo("gui", "text", "truedmgtaken");
+        sanityDmgTaken.text = langmanag.GetInfo("gui", "text", "sanitydmgtaken");
+        totalDmgTaken.text = langmanag.GetInfo("gui", "text", "totaldmgtaken");
+        physicDmgMitigated.text = langmanag.GetInfo("gui", "text", "physicdmgmiti");
+        magicDmgMitigated.text = langmanag.GetInfo("gui", "text", "magicdmgmiti");
+        totalDmgMitigated.text = langmanag.GetInfo("gui", "text", "totaldmgmiti");
+        healDone.text = langmanag.GetInfo("gui", "text", "healdone");
+        manaRecovered.text = langmanag.GetInfo("gui", "text", "manarecov");
+        staminaRecovered.text = langmanag.GetInfo("gui", "text", "staminarecov");
+        sanityRecovered.text = langmanag.GetInfo("gui", "text", "sanityrecov");
+        shieldDone.text = langmanag.GetInfo("gui", "text", "shielddone");
     }
 
     public void AddMoveLog(Unit user, Moves move)
     {
-        moveLogGO.GetComponent<Text>().text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name));
+        string txtenemy = "";
+        if (user.isEnemy)
+            txtenemy = langmanag.GetInfo("showdetail", "target", "enemy");
+        else
+            txtenemy = langmanag.GetInfo("showdetail", "target", "ally");
+        moveLogGO.GetComponent<Text>().text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name), txtenemy);
         moveLogGO.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
         moveLogGO.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
         moveLogGO.GetComponent<TooltipButton>().text = move.GetTooltipText(false);
@@ -58,33 +73,4 @@ public class SummaryHud : MonoBehaviour
         Instantiate(moveLogGO, moveLogList);
         moveLogScroll.value = 0;
     }
-
-    public void UpdateValues(Unit unit, string name)
-    {
-        nameText.text = name;
-        charcIcon.sprite = unit.charc.charcIcon;
-
-        phyDmgDealt.text = unit.phyDmgDealt.ToString();
-        magicDmgDealt.text = unit.magicDmgDealt.ToString();
-        trueDmgDealt.text = unit.trueDmgDealt.ToString();
-        sanityDmgDealt.text = unit.sanityDmgDealt.ToString();
-        totalDmgDealt.text = (unit.phyDmgDealt + unit.magicDmgDealt + unit.trueDmgDealt).ToString();
-
-        phyDmgTaken.text = unit.phyDmgTaken.ToString();
-        magicDmgTaken.text = unit.magicDmgTaken.ToString();
-        trueDmgTaken.text = unit.trueDmgTaken.ToString();
-        sanityDmgTaken.text = unit.sanityDmgTaken.ToString();
-        totalDmgTaken.text = (unit.phyDmgTaken + unit.magicDmgTaken + unit.trueDmgTaken).ToString();
-
-        phyDmgMitigated.text = unit.phyDmgMitigated.ToString();
-        magicDmgMitigated.text = unit.magicDmgMitigated.ToString();
-        totalDmgMitigated.text = (unit.phyDmgMitigated + unit.magicDmgMitigated).ToString();
-
-        healDone.text = unit.healDone.ToString();
-        healManaDone.text = unit.manaHealDone.ToString();
-        healStaminaDone.text = unit.staminaHealDone.ToString();
-        healSanityDone.text = unit.sanityHealDone.ToString();
-        shieldDone.text = unit.shieldDone.ToString();
-    }
-
 }

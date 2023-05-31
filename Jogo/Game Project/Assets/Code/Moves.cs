@@ -732,6 +732,38 @@ public class Moves : ScriptableObject
         return builder;
     }
 
+    private StringBuilder GetMoveTarget(LanguageManager languageManager, string language)
+    {
+        var builder = new StringBuilder();
+        switch (targetType)
+        {
+            case TargetType.SINGLE:
+                builder.Append(languageManager.GetText(language, "showdetail", "targettype", "single"));
+                break;
+            case TargetType.AOE:
+                builder.Append(languageManager.GetText(language, "showdetail", "targettype", "aoe"));
+                break;
+        }
+
+        builder.Append(" | ");
+
+        switch (target) {
+            case Target.ENEMY:
+                builder.Append(languageManager.GetText(language, "showdetail", "target", "enemy"));
+                break;
+            case Target.ALLY:
+                builder.Append(languageManager.GetText(language, "showdetail", "target", "ally"));
+                break;
+            case Target.SELF:
+                builder.Append(languageManager.GetText(language, "showdetail", "target", "self"));
+                break;
+            case Target.ALLYSELF:
+                builder.Append(languageManager.GetText(language, "showdetail", "target", "selfally"));
+                break;
+        }
+        return builder;
+    }
+
     public string GetTooltipText(bool showVal)
     {
         LanguageManager languageManager = GetLanguageMan();
@@ -740,6 +772,7 @@ public class Moves : ScriptableObject
 
         builder.Append("<size=24><align=center>").Append(GetDetail(languageManager, language, "moves", name)).Append("</align></size>").AppendLine();
         builder.Append("<size=20><align=center>").Append(GetMoveType(languageManager, language)).Append("</align></size>").AppendLine();
+        builder.Append("<size=15><align=center>").Append(GetMoveTarget(languageManager, language)).Append("</align></size>").AppendLine();
 
         if (!isUlt)
         {

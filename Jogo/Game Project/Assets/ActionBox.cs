@@ -7,14 +7,21 @@ using static LanguageManager;
 
 public class ActionBox : MonoBehaviour
 {
+    [SerializeField] private FightLang fightLang;
     [SerializeField] private TooltipPopUp tooltipMain;
     [SerializeField] private TooltipPopUp tooltipSec;
     [SerializeField] private Transform moveList;
     [SerializeField] private Transform movePanel;
     [SerializeField] private GameObject basicBtn;
+    [SerializeField] private Text basicBtnText;
     [SerializeField] private GameObject movesBtn;
+    [SerializeField] private Text movesBtnText;
     [SerializeField] private GameObject healManaBtn;
+    [SerializeField] private Text healManaBtnText;
     [SerializeField] private GameObject ultBtn;
+    [SerializeField] private Text ultBtnText;
+    [SerializeField] private Text cancelBtnText;
+    [SerializeField] private Text chooseMoveText;
     [SerializeField] private Transform actionPanel;
     [SerializeField] private Scrollbar scrollbar;
     [SerializeField] private int levelToConsiderWeak;
@@ -31,6 +38,13 @@ public class ActionBox : MonoBehaviour
 
         if (!unit.isEnemy)
         {
+            movesBtnText.text = fightLang.languageManager.GetText(fightLang.language, "gui", "button", "moves");
+            basicBtnText.text = fightLang.languageManager.GetText(fightLang.language, "moves", "basicattack");
+            ultBtnText.text = fightLang.languageManager.GetText(fightLang.language, "gui", "button", "ultimate");
+            healManaBtnText.text = fightLang.languageManager.GetText(fightLang.language, "moves", "recovmana");
+            cancelBtnText.text = fightLang.languageManager.GetText(fightLang.language, "gui", "button", "cancel");
+            chooseMoveText.text = fightLang.languageManager.GetText(fightLang.language, "gui", "text", "choosemove");
+
             this.unit.moveListPanel = moveList;
 
             basicBtn.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();

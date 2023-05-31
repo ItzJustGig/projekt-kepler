@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
         unit.hud.SetBlood(unit.bloodStacks);
     }
 
-    public void SetStart(float aiManaRecover, float aiGaranteedManaRecover, BattleHud hud1,  BattleHud hud2 = null, BattleHud hud3 = null)
+    public void SetStart(float aiManaRecover, float aiGaranteedManaRecover, Transform summaryList, GameObject sumPrefab, BattleHud hud1,  BattleHud hud2 = null, BattleHud hud3 = null)
     {
         this.aiManaRecover = aiManaRecover;
         this.aiGaranteedManaRecover = aiGaranteedManaRecover;
@@ -99,6 +99,10 @@ public class Player : MonoBehaviour
         unit1.effectHud = hud1.transform.Find("EffectList").Find("grid").transform;
         unit2.effectHud = hud2.transform.Find("EffectList").Find("grid").transform;
         unit3.effectHud = hud3.transform.Find("EffectList").Find("grid").transform;
+
+        unit1.summary = Instantiate(sumPrefab, summaryList).GetComponent<CharacterSum>();
+        unit2.summary = Instantiate(sumPrefab, summaryList).GetComponent<CharacterSum>();
+        unit3.summary = Instantiate(sumPrefab, summaryList).GetComponent<CharacterSum>();
     }
 
     public void EnableBtn(Unit unit1 = null, Unit unit2 = null, Unit unit3 = null)
