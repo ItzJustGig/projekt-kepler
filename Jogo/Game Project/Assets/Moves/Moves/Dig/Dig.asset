@@ -13,13 +13,18 @@ MonoBehaviour:
   m_Name: Dig
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: dig
   hitTime: 1
   priority: 1
+  uses: -1
+  isUlt: 0
   blocksPhysical: 1
   blocksMagical: 1
   blocksRanged: 1
-  phyDmg: 50
+  phyDmg: 55
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
@@ -27,16 +32,24 @@ MonoBehaviour:
   healMana: 0
   healStamina: 0
   healSanity: 0
-  shield: 10
+  shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 6
   inCooldown: 0
   manaCost: 0
   staminaCost: 50
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 8fbcd163d4d10df4abd0381df8d19d71, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

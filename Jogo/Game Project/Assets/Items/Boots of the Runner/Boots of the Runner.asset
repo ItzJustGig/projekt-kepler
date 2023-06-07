@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: bootsoftherunner
   icon: {fileID: 21300000, guid: a25e75bfd4a663546aa250568a0bc00b, type: 3}
-  passives: []
+  passives:
+  - {fileID: 11400000, guid: 8d5412f88b1de7144ba6c88c789bc4c4, type: 2}
   statmod:
   - {fileID: 11400000, guid: a77ddab3858c37f499352c77079f26a1, type: 2}
   moves: []
   rarity: 1
-  minPrice: 40
-  maxPrice: 65
+  nonCombatItem: 0

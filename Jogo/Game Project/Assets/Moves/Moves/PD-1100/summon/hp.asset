@@ -33,6 +33,6 @@ MonoBehaviour:
   atkDmg: 0
   magicPower: 1.3
   dmgResis: 0
-  magicResis: 1.15
+  magicResis: 1.1
   timing: 0
   movSpeed: 0

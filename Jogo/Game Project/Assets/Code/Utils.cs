@@ -64,7 +64,7 @@ public struct DMG
             heal += magicDmg * lifesteal;
     }
 
-    public void ApplyBonusDmg(float bonusPhy, float bonusMag, float bonusHeal)
+    public void ApplyBonusDmg(float bonusPhy, float bonusMag, float bonusHeal, float bonusShield)
     {
         if (phyDmg > 0)
             phyDmg += phyDmg * bonusPhy;
@@ -74,6 +74,9 @@ public struct DMG
 
         if (heal > 0)
             heal += heal * bonusHeal;
+
+        if (shield > 0)
+            shield += shield * bonusShield;
     }
 
     public void ApplyBonusPhyDmg(float bonusPhy)
@@ -92,6 +95,12 @@ public struct DMG
     {
         if (heal > 0)
             heal += heal * bonusHeal;
+    }
+
+    public void ApplyBonusShield(float bonusShield)
+    {
+        if (shield > 0)
+            shield += shield * bonusShield;
     }
 
     public DMG TransferHeals(DMG dmg)

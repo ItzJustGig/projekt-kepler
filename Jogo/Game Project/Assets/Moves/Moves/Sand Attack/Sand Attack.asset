@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Sand Attack
   m_EditorClassIdentifier: 
   type: 5
+  target: 0
+  targetType: 0
+  id: 0
   name: sandattack
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -24,19 +29,27 @@ MonoBehaviour:
   trueDmg: 5
   sanityDmg: 3
   heal: 0
-  healMana: 5
+  healMana: 0
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 6
   inCooldown: 0
   manaCost: 0
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 11400000, guid: 7c3f5d836daa3fa42a94ea39e8d41f74, type: 2}
   scale: []
+  dot: []
   effects:
   - {fileID: 11400000, guid: d82cd5b4d0a5d7f43ab8d3c21ee31192, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

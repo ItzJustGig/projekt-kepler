@@ -977,6 +977,8 @@ public class LanguageManager : MonoBehaviour
         public string firescales;
         public string magicbody;
         public string leafbeing;
+        public string bootsoftherunner;
+        public string holdingtheline;
 
         public string Get_Cont(string a)
         {
@@ -1157,6 +1159,12 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "leafbeing":
                     returns = leafbeing;
+                    break;
+                case "bootsoftherunner":
+                    returns = bootsoftherunner;
+                    break;
+                case "holdingtheline":
+                    returns = holdingtheline;
                     break;
                 default:
                     returns = "null";

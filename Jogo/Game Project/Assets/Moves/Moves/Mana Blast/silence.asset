@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88548b2442bb3a547adf43b5c3d57278, type: 3}
   m_Name: silence
   m_EditorClassIdentifier: 
-  durationMin: 2
+  durationMin: 3
   durationMax: 3
-  chance: 0.25
+  chance: 0.3
   targetPlayer: 1
   effect: {fileID: 11400000, guid: ad5bf556a3e9b8a4d8755cd280b45d43, type: 2}

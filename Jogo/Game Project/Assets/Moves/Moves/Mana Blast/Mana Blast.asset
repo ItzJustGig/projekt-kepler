@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: Mana Blast
   m_EditorClassIdentifier: 
   type: 1
+  target: 0
+  targetType: 1
+  id: 0
   name: manablast
   hitTime: 1
   priority: 0
   uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 30
+  magicDmg: 25
   trueDmg: 0
   sanityDmg: 0
   heal: 0
@@ -33,8 +37,10 @@ MonoBehaviour:
   healFromDmg: 0
   cooldown: 8
   inCooldown: 0
-  manaCost: 110
+  manaCost: 120
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: 01cf11162c7db3a48b43f1a7e8453e84, type: 2}
@@ -46,3 +52,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 348df176be0331a4f89b5ab8df5b9f23, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: 

@@ -445,6 +445,7 @@ public class Unit : MonoBehaviour
                 attacker.summary.phyDmgDealt += dmg.phyDmg;
 
             float dmgMitigated = (float)((SetModifiers().dmgResis - (SetModifiers().dmgResis * armourPen)) * dmgResisPer * dotReduc);
+            
             if (dmgMitigated < dmg.phyDmg)
             {
                 dmg.phyDmg -= dmgMitigated;
@@ -464,6 +465,7 @@ public class Unit : MonoBehaviour
                 attacker.summary.magicDmgDealt += dmg.magicDmg;
 
             float dmgMitigated = (float)((SetModifiers().magicResis - (SetModifiers().magicResis * magicPen)) * magicResisPer * dotReduc);
+            
             if (dmgMitigated < dmg.magicDmg)
             {
                 dmg.magicDmg -= dmgMitigated;

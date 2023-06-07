@@ -396,7 +396,9 @@
 			"sackofbones": "Sack of Bones",
 			"firescales": "Fire Scales",
 			"magicbody": "Magic Body",
-			"leafbeing": "Leaf Being"
+			"leafbeing": "Leaf Being",
+			"bootsoftherunner": "Boots of the Runner",
+			"holdingtheline": "Holding the Line"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain%mod%and deal bonus %scale% on attacks.",
@@ -456,7 +458,9 @@
 			"sackofbones": "The user immune to Bleeding but Cripple have its duration increased by %num% turns and take bonus %scale% when applied",
 			"firescales": "The user gain %mod% istead of being Burned and Scorched",
 			"magicbody": "The user gain <color=#00ff11>+(<color=#1e68fc>%num%% max mana</color>) max hp</color> and when takes <color=#1a66ff>magic damage</color> gain %mod%",
-			"leafbeing": "The user take bonus <color=#f75145>+%num%% damage</color> from Burn, Scorch and Poison. When the target is with Allergy take %scale%"
+			"leafbeing": "The user take bonus <color=#f75145>+%num%% damage</color> from Burn, Scorch and Poison. When the target is with Allergy take %scale%",
+			"bootsoftherunner": "The user gain%mod%every %cd% turns (stack up to %maxStacks% times)",
+			"holdingtheline": "When the user uses a <color=#787878>defencive</color>, <color=#CC66FF>enchantment</color> or <color=#ffaa00>basic attacks</color>, grant %scale% to the whole team. <color=#ffaa00>Physical</color>, <color=#1a66ff>magic</color> or <color=#f75145>ranged</color> moves grant %scale2% to the whole team."
 		}
 	},
 	"moves": {

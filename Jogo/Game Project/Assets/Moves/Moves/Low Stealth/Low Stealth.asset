@@ -32,12 +32,12 @@ MonoBehaviour:
   healMana: 0
   healStamina: 0
   healSanity: 0
-  shield: 10
+  shield: 0
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 7
   inCooldown: 0
-  manaCost: 35
+  manaCost: 25
   staminaCost: 0
   ultCost: 100
   needFullUlt: 1
@@ -45,8 +45,7 @@ MonoBehaviour:
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: db24389fa3f612f47bf38cd4a1748a1b, type: 2}
   statModEnemy: {fileID: 0}
-  scale:
-  - {fileID: 11400000, guid: 63027d6c7a11209498bcc51e80407dd1, type: 2}
+  scale: []
   dot: []
   effects: []
   grantPassive: {fileID: 0}

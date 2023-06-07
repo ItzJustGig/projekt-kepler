@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ed72fab49f5154f94a638a0b79aa43, type: 3}
   m_Name: pd-1100
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 4f0037672ef95684783c246309ff9a8f, type: 3}
+  icon: {fileID: 21300000, guid: 55635229209534a449d781c6dcf96222, type: 3}
   name: pd1100
   stats: {fileID: 11400000, guid: 5d6e2ff2e360e6b40be20c08259e90ab, type: 2}
   move: {fileID: 11400000, guid: a152666655234344faec43a98bb70b48, type: 2}
   summonTurn: 0
+  iconInGame: {fileID: 0}
+  target: {fileID: 0}
