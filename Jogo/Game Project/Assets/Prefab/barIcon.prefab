@@ -83,16 +83,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=25><align=center>Courage</align></size>
+  text: '<size=25><align=center>One with the Shadows</align></size>
 
     <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
 
     
 
-    The
-    user gain <color=#b641f0>2 sanity</color> every 8 turns and Fear have less 2
-    turns. When the user is Feared recover <color=#b641f0>2 + (<color=#b641f0>12%</color>
-    of the user''s <color=#b641f0>Missing Sanity</color>) sanity</color>
+    If
+    the user is not hit 3 times gain <color=#ffaa00>10% Attack Damage</color>, <color=#1a66ff>10%
+    Magic Power</color>, <color=#f75145>10% Critical Chance</color>, <color=#f75145>16%
+    Critical Damage</color>, <color=#0095ff>8% Movement Speed</color>, <color=#227da1>6,9%
+    Evasion</color> and <color=#c87c32>4,8% Armour Penetration</color>  until is
+    hit again.
 
 '
   textSec: 
@@ -181,7 +183,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1dad21aad67465a41acea497e0628872, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9e809eee1b860b4f8bab3c46b99229b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -269,4 +271,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 1

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: shadow sneak
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: shadowsneak
   hitTime: 1
   priority: 1
@@ -23,7 +26,7 @@ MonoBehaviour:
   blocksRanged: 0
   phyDmg: 55
   magicDmg: 0
-  trueDmg: 10
+  trueDmg: 4
   sanityDmg: 6
   heal: 0
   healMana: 0
@@ -38,7 +41,7 @@ MonoBehaviour:
   staminaCost: 65
   ultCost: 100
   needFullUlt: 1
-  critDmgBonus: 0.07
+  critDmgBonus: 0.1
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
@@ -50,3 +53,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b5e0bfc0bfafe2248b133eba036828f0, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: 

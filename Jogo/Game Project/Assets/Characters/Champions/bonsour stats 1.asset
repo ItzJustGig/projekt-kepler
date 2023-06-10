@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: bonsour stats 1
   m_EditorClassIdentifier: 
-  hp: 3385
+  hp: 2815
   hpRegen: 18
   mana: 225
   manaRegen: 0.69
@@ -35,5 +35,6 @@ MonoBehaviour:
   accuracy: 1
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 1
   sizeMod: 0

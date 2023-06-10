@@ -29,14 +29,16 @@ MonoBehaviour:
   magicPower: -0.25
   critChance: 0
   critDmg: -0.036
-  dmgResis: -0.14
-  magicResis: -0.23
+  dmgResis: -0.2
+  magicResis: -0.25
   timing: 0
   movSpeed: 0
   lifesteal: 0
   healBonus: -0.2
-  shieldBonus: -0.1
+  shieldBonus: -0.15
   accuracy: 0
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 0
+  size: 0

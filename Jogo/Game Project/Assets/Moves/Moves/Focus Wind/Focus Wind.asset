@@ -13,14 +13,19 @@ MonoBehaviour:
   m_Name: Focus Wind
   m_EditorClassIdentifier: 
   type: 1
+  target: 0
+  targetType: 0
+  id: 0
   name: focuswind
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 35
-  magicDmg: 110
+  magicDmg: 70
   trueDmg: 0
   sanityDmg: 0
   heal: 0
@@ -28,16 +33,24 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 8
   inCooldown: 0
-  manaCost: 80
+  manaCost: 85
   staminaCost: 50
-  critDmgBonus: 0
-  critChanceBonus: 0
+  ultCost: 100
+  needFullUlt: 1
+  critDmgBonus: 0.25
+  critChanceBonus: 0.1
   statModUser: {fileID: 11400000, guid: 9fcb2ebdc4d439043ba3f00607ef4e94, type: 2}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: b6580b7a367a14d43a49c1b2b5ee761f, type: 2}
   - {fileID: 11400000, guid: a00ed605ca23e0249ba8a29fd436bb4b, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

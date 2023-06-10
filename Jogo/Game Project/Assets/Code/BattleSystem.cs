@@ -2175,7 +2175,6 @@ public class BattleSystem : MonoBehaviour
                                         }
                                         break;
                                 }
-
                             }
 
                             if (move.targetType is Moves.TargetType.SINGLE)
@@ -2238,6 +2237,20 @@ public class BattleSystem : MonoBehaviour
                                     user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
                                     targetTeam.unit1.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit1.charc.name), targetTeam.unit1.charc.charcIcon);
                                     targetTeam.unit1.DoAnimParticle(move.animTarget);
+                                    if (isDead && !targetTeam.unit1.isDead)
+                                    {
+                                        if (!targetTeam.unit1.isEnemy)
+                                        {
+                                            player.SetAsDead(targetTeam.unit1);
+                                            state = BattleState.ALLYKILLED;
+                                        }
+                                        else
+                                        {
+                                            enemy.SetAsDead(targetTeam.unit1);
+                                            state = BattleState.ENEMYKILLED;
+                                        }
+                                        dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", targetTeam.unit1.charc.name));
+                                    }
                                     //
 
                                     tempDmg = dmgTarget;
@@ -2264,7 +2277,21 @@ public class BattleSystem : MonoBehaviour
                                     user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
                                     targetTeam.unit2.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit2.charc.name), targetTeam.unit2.charc.charcIcon);
 
-                                    targetTeam.unit2.DoAnimParticle(move.animTarget);
+                                    targetTeam.unit2.DoAnimParticle(move.animTarget); 
+                                    if (isDead && !targetTeam.unit2.isDead)
+                                    {
+                                        if (!targetTeam.unit2.isEnemy)
+                                        {
+                                            player.SetAsDead(targetTeam.unit2);
+                                            state = BattleState.ALLYKILLED;
+                                        }
+                                        else
+                                        {
+                                            enemy.SetAsDead(targetTeam.unit2);
+                                            state = BattleState.ENEMYKILLED;
+                                        }
+                                        dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", targetTeam.unit2.charc.name));
+                                    }
                                     //
                                     tempDmg = dmgTarget;
                                     tempDmg = targetTeam.unit3.MitigateDmg(tempDmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
@@ -2291,6 +2318,20 @@ public class BattleSystem : MonoBehaviour
                                     targetTeam.unit3.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit3.charc.name), targetTeam.unit3.charc.charcIcon);
 
                                     targetTeam.unit3.DoAnimParticle(move.animTarget);
+                                    if (isDead && !targetTeam.unit3.isDead)
+                                    {
+                                        if (!targetTeam.unit3.isEnemy)
+                                        {
+                                            player.SetAsDead(targetTeam.unit3);
+                                            state = BattleState.ALLYKILLED;
+                                        }
+                                        else
+                                        {
+                                            enemy.SetAsDead(targetTeam.unit3);
+                                            state = BattleState.ENEMYKILLED;
+                                        }
+                                        dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", targetTeam.unit3.charc.name));
+                                    }
                                 } else if (move.target is Moves.Target.ALLY || move.target is Moves.Target.ALLYSELF || move.target is Moves.Target.SELF)
                                 {
                                     user.TakeDamage(dmgUser, isCrit, isMagicCrit, user, move.name);
@@ -2319,7 +2360,22 @@ public class BattleSystem : MonoBehaviour
                                     isDead = userTeam.unit1.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
                                     user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
                                     userTeam.unit1.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit1.charc.name), userTeam.unit1.charc.charcIcon);
-                                    userTeam.unit1.DoAnimParticle(move.animTarget);
+                                    userTeam.unit1.DoAnimParticle(move.animTarget); 
+                                    
+                                    if (isDead && !userTeam.unit1.isDead)
+                                    {
+                                        if (!userTeam.unit1.isEnemy)
+                                        {
+                                            player.SetAsDead(userTeam.unit1);
+                                            state = BattleState.ALLYKILLED;
+                                        }
+                                        else
+                                        {
+                                            enemy.SetAsDead(userTeam.unit1);
+                                            state = BattleState.ENEMYKILLED;
+                                        }
+                                        dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", userTeam.unit1.charc.name));
+                                    }
                                     //
                                     tempDmg = userTeam.unit2.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
@@ -2345,6 +2401,20 @@ public class BattleSystem : MonoBehaviour
                                     userTeam.unit2.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit2.charc.name), userTeam.unit2.charc.charcIcon);
 
                                     userTeam.unit2.DoAnimParticle(move.animTarget);
+                                    if (isDead && !userTeam.unit2.isDead)
+                                    {
+                                        if (!userTeam.unit2.isEnemy)
+                                        {
+                                            player.SetAsDead(userTeam.unit2);
+                                            state = BattleState.ALLYKILLED;
+                                        }
+                                        else
+                                        {
+                                            enemy.SetAsDead(userTeam.unit2);
+                                            state = BattleState.ENEMYKILLED;
+                                        }
+                                        dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", userTeam.unit2.charc.name));
+                                    }
                                     //
                                     tempDmg = userTeam.unit3.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
@@ -2370,6 +2440,20 @@ public class BattleSystem : MonoBehaviour
                                     userTeam.unit3.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit3.charc.name), userTeam.unit3.charc.charcIcon);
 
                                     userTeam.unit3.DoAnimParticle(move.animTarget);
+                                    if (isDead && !userTeam.unit3.isDead)
+                                    {
+                                        if (!userTeam.unit3.isEnemy)
+                                        {
+                                            player.SetAsDead(userTeam.unit3);
+                                            state = BattleState.ALLYKILLED;
+                                        }
+                                        else
+                                        {
+                                            enemy.SetAsDead(userTeam.unit3);
+                                            state = BattleState.ENEMYKILLED;
+                                        }
+                                        dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", userTeam.unit3.charc.name));
+                                    }
                                 }
                             }
                             

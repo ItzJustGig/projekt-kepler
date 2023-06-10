@@ -34,5 +34,5 @@ MonoBehaviour:
   magicPower: 0
   dmgResis: 0
   magicResis: 0
-  timing: 4.1
-  movSpeed: 0
+  timing: 0
+  movSpeed: 0.0565

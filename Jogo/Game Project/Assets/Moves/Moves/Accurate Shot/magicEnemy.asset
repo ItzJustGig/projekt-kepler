@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 1
   playerStat: 0
   flatValue: 0
-  curHp: 0.024
+  curHp: 0.0275
   missHp: 0
   maxHp: 0
   hpRegen: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
   maxSanity: 0
   atkDmg: 0
   magicPower: 0
-  dmgResis: 0.05
+  dmgResis: 0
   magicResis: 0
   timing: 0
   movSpeed: 0
