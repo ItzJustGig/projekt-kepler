@@ -265,7 +265,8 @@
 			"basilisk": "Basilisk",
 			"golem": "Golem",
 			"predatormantis": "Predator Mantis",
-			"flecko": "Flecko"
+			"flecko": "Flecko",
+			"enya": "Enya"
 		},
 		"title": {
 			"alex": "the Bounty Hunter",
@@ -276,7 +277,8 @@
 			"shine": "the Futuristic SwordsPlayer",
 			"william": "the Malicious Vampire",
 			"hestia": "the Firebender",
-			"icer": "the Greedy Penguin"
+			"icer": "the Greedy Penguin",
+			"enya": "the Guardian of Yggdrasil"
 		}
 	},
 	"effect": {
@@ -398,7 +400,9 @@
 			"magicbody": "Magic Body",
 			"leafbeing": "Leaf Being",
 			"bootsoftherunner": "Boots of the Runner",
-			"holdingtheline": "Holding the Line"
+			"holdingtheline": "Holding the Line",
+			"druid": "Druid",
+			"elficmagic": "Elfic Magic"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain%mod%and deal bonus %scale% on attacks.",
@@ -460,7 +464,9 @@
 			"magicbody": "The user gain <color=#00ff11>+(<color=#1e68fc>%num%% max mana</color>) max hp</color> and when takes <color=#1a66ff>magic damage</color> gain %mod%",
 			"leafbeing": "The user take bonus <color=#f75145>+%num%% damage</color> from Burn, Scorch and Poison. When the target is with Allergy take %scale%",
 			"bootsoftherunner": "The user gain%mod%every %cd% turns (stack up to %maxStacks% times)",
-			"holdingtheline": "When the user uses a <color=#787878>defencive</color>, <color=#CC66FF>enchantment</color> or <color=#ffaa00>basic attacks</color>, grant %scale% to the whole team. <color=#ffaa00>Physical</color>, <color=#1a66ff>magic</color> or <color=#f75145>ranged</color> moves grant %scale2% to the whole team."
+			"holdingtheline": "When the user uses a <color=#787878>defencive</color>, <color=#CC66FF>enchantment</color> or <color=#ffaa00>basic attacks</color>, grant %scale% to the whole team. <color=#ffaa00>Physical</color>, <color=#1a66ff>magic</color> or <color=#f75145>ranged</color> moves grant %scale2% to the whole team.",
+			"druid": "The user's healing is increased by +(%num%% of the user's magic power)%, when an ally is affected by Blood, Allergy, Poison or Cripple, the user heal bonus %scale2% to that target.",
+			"elficmagic": "Every %maxStacks% magic or ranged moves the next will crit and deal bonus %scale%. (crit applies on magic damage aswell)"
 		}
 	},
 	"moves": {
@@ -598,7 +604,11 @@
 		"jewelofthedruid": "Jewel of the Druid",
 		"shadowshroom": "Shadow Shroom",
         "prismaticstaff": "Prismatic Staff",
-		"pd1100": "PD-1100"
+		"pd1100": "PD-1100",
+		"bloom": "Bloom",
+		"barrage": "Barrage",
+		"galeburst": "Gale Burst",
+		"yggdrasilsblessing": "Yggdrasil's Blessing"
 	},
 	"items": {
 		"title": "Item",

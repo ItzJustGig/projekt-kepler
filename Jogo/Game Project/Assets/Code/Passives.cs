@@ -232,7 +232,7 @@ public class Passives : ScriptableObject
                     desc.Replace("%scale2%", GetInfo(languageManager, language, "sanitydmg", statScale2.GetStatScaleInfo().ToString(), "b829ff").ToString());
                     break;
                 case DmgType.SHIELD:
-                    desc.Replace("%scale2%", GetInfo(languageManager, language, "shieldmg", statScale2.GetStatScaleInfo().ToString(), "787878").ToString());
+                    desc.Replace("%scale2%", GetInfo(languageManager, language, "shielddmg", statScale2.GetStatScaleInfo().ToString(), "787878").ToString());
                     break;
                 case DmgType.HEAL:
                     desc.Replace("%scale2%", GetInfo(languageManager, language, "healdmg", statScale2.GetStatScaleInfo().ToString(), "00ff11").ToString());

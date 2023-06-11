@@ -1632,8 +1632,58 @@ public class BattleSystem : MonoBehaviour
                                 dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
                             }
                         }
-                    }
 
+                        if (a.name == "druid")
+                        {
+                            foreach(Effects e in target.effects)
+                            {
+                                if (e.id == "BLD" || e.id == "ALG" || e.id == "PSN" || e.id == "CRP")
+                                {
+                                    StatScale scale = a.ifConditionTrueScale2();
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
+                                }
+                            }
+                        }
+
+                        if (a.name == "elficmagic")
+                        {
+                            if (move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.MAGICAL)
+                            {
+                                a.stacks++;
+                                bool isReady = false;
+                                if (a.stacks == a.maxStacks - 1)
+                                    isReady = true;
+                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, (a.maxStacks - a.stacks).ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                            }
+
+                            if (a.stacks == a.maxStacks && (move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.MAGICAL))
+                            {
+                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                a.stacks = 0;
+                                StatScale scale = a.ifConditionTrueScale();
+
+                                Unit unit;
+                                Stats stats;
+                                if (scale.playerStat)
+                                {
+                                    unit = user;
+                                    stats = statsUser;
+                                }
+                                else
+                                {
+                                    unit = target;
+                                    stats = statsTarget;
+                                }
+
+                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+
+                                isCrit = true;
+                                isMagicCrit = true;
+                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, "0", user.isEnemy, a.GetPassiveInfo());
+                            }
+                        }
+                    }
 
                     dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name), txtenemy);
 
@@ -2028,27 +2078,42 @@ public class BattleSystem : MonoBehaviour
                                     case Dotdmg.DmgType.HEAL:
                                         dotdmg.Setup(dmgTarget.heal, move.name, Dotdmg.SrcType.MOVE, user);
                                         dmgTarget.heal = 0;
-                                        user.dotDmg.Add(dotdmg);
+                                        if (move.target is Moves.Target.ALLY || move.target is Moves.Target.ALLYSELF)
+                                            target.dotDmg.Add(dotdmg);
+                                        else
+                                            user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALMANA:
                                         dotdmg.Setup(dmgTarget.healMana, move.name, Dotdmg.SrcType.MOVE, user);
                                         dmgTarget.healMana = 0;
-                                        user.dotDmg.Add(dotdmg);
+                                        if (move.target is Moves.Target.ALLY || move.target is Moves.Target.ALLYSELF)
+                                            target.dotDmg.Add(dotdmg);
+                                        else
+                                            user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALSTAMINA:
                                         dotdmg.Setup(dmgTarget.healStamina, move.name, Dotdmg.SrcType.MOVE, user);
                                         dmgTarget.healStamina = 0;
-                                        user.dotDmg.Add(dotdmg);
+                                        if (move.target is Moves.Target.ALLY || move.target is Moves.Target.ALLYSELF)
+                                            target.dotDmg.Add(dotdmg);
+                                        else
+                                            user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALSANITY:
                                         dotdmg.Setup(dmgTarget.healSanity, move.name, Dotdmg.SrcType.MOVE, user);
                                         dmgTarget.healSanity = 0;
-                                        user.dotDmg.Add(dotdmg);
+                                        if (move.target is Moves.Target.ALLY || move.target is Moves.Target.ALLYSELF)
+                                            target.dotDmg.Add(dotdmg);
+                                        else
+                                            user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.SHIELD:
                                         dotdmg.Setup(dmgTarget.shield, move.name, Dotdmg.SrcType.MOVE, user);
                                         dmgTarget.shield = 0;
-                                        user.dotDmg.Add(dotdmg);
+                                        if (move.target is Moves.Target.ALLY || move.target is Moves.Target.ALLYSELF)
+                                            target.dotDmg.Add(dotdmg);
+                                        else
+                                            user.dotDmg.Add(dotdmg);
                                         break;
                                     default:
                                         continue;
@@ -2233,11 +2298,11 @@ public class BattleSystem : MonoBehaviour
                                         else
                                             SetUltNumber(targetTeam.unit1, targetTeam.unit1.hud, dmgT, false);
                                     }
-                                    isDead = targetTeam.unit1.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
+                                    bool tempDead = targetTeam.unit1.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
                                     user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
                                     targetTeam.unit1.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit1.charc.name), targetTeam.unit1.charc.charcIcon);
                                     targetTeam.unit1.DoAnimParticle(move.animTarget);
-                                    if (isDead && !targetTeam.unit1.isDead)
+                                    if (tempDead && !targetTeam.unit1.isDead)
                                     {
                                         if (!targetTeam.unit1.isEnemy)
                                         {
@@ -2273,12 +2338,12 @@ public class BattleSystem : MonoBehaviour
                                             SetUltNumber(targetTeam.unit2, targetTeam.unit2.hud, dmgT, false);
                                     }
 
-                                    isDead = targetTeam.unit2.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
+                                    tempDead = targetTeam.unit2.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
                                     user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
                                     targetTeam.unit2.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit2.charc.name), targetTeam.unit2.charc.charcIcon);
 
                                     targetTeam.unit2.DoAnimParticle(move.animTarget); 
-                                    if (isDead && !targetTeam.unit2.isDead)
+                                    if (tempDead && !targetTeam.unit2.isDead)
                                     {
                                         if (!targetTeam.unit2.isEnemy)
                                         {
@@ -2313,12 +2378,12 @@ public class BattleSystem : MonoBehaviour
                                             SetUltNumber(targetTeam.unit3, targetTeam.unit3.hud, dmgT, false);
                                     }
 
-                                    isDead = targetTeam.unit3.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
+                                    tempDead = targetTeam.unit3.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
                                     user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
                                     targetTeam.unit3.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit3.charc.name), targetTeam.unit3.charc.charcIcon);
 
                                     targetTeam.unit3.DoAnimParticle(move.animTarget);
-                                    if (isDead && !targetTeam.unit3.isDead)
+                                    if (tempDead && !targetTeam.unit3.isDead)
                                     {
                                         if (!targetTeam.unit3.isEnemy)
                                         {
@@ -2357,12 +2422,12 @@ public class BattleSystem : MonoBehaviour
                                             SetUltNumber(userTeam.unit1, userTeam.unit3.hud, dmgT, false);
                                     }
 
-                                    isDead = userTeam.unit1.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
+                                    bool tempDead = userTeam.unit1.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
                                     user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
                                     userTeam.unit1.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit1.charc.name), userTeam.unit1.charc.charcIcon);
                                     userTeam.unit1.DoAnimParticle(move.animTarget); 
                                     
-                                    if (isDead && !userTeam.unit1.isDead)
+                                    if (tempDead && !userTeam.unit1.isDead)
                                     {
                                         if (!userTeam.unit1.isEnemy)
                                         {
@@ -2396,12 +2461,12 @@ public class BattleSystem : MonoBehaviour
                                             SetUltNumber(userTeam.unit2, userTeam.unit2.hud, dmgT, false);
                                     }
 
-                                    isDead = userTeam.unit2.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
+                                    tempDead = userTeam.unit2.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
                                     user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
                                     userTeam.unit2.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit2.charc.name), userTeam.unit2.charc.charcIcon);
 
                                     userTeam.unit2.DoAnimParticle(move.animTarget);
-                                    if (isDead && !userTeam.unit2.isDead)
+                                    if (tempDead && !userTeam.unit2.isDead)
                                     {
                                         if (!userTeam.unit2.isEnemy)
                                         {
@@ -2435,12 +2500,12 @@ public class BattleSystem : MonoBehaviour
                                             SetUltNumber(userTeam.unit3, userTeam.unit3.hud, dmgT, false);
                                     }
 
-                                    isDead = userTeam.unit3.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
+                                    tempDead = userTeam.unit3.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
                                     user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
                                     userTeam.unit3.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit3.charc.name), userTeam.unit3.charc.charcIcon);
 
                                     userTeam.unit3.DoAnimParticle(move.animTarget);
-                                    if (isDead && !userTeam.unit3.isDead)
+                                    if (tempDead && !userTeam.unit3.isDead)
                                     {
                                         if (!userTeam.unit3.isEnemy)
                                         {
@@ -2456,7 +2521,6 @@ public class BattleSystem : MonoBehaviour
                                     }
                                 }
                             }
-                            
 
                             if (blockPhysical)
                             {
@@ -3915,6 +3979,17 @@ public class BattleSystem : MonoBehaviour
                     if (!foundEffect)
                         ManagePassiveIcon(user.effectHud, a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     
+                    break;
+                case "druid":
+                        Stats statsU = user.SetModifiers();
+                        StatMod healBonus = a.statMod.ReturnStats();
+                        healBonus.inTime = healBonus.time;
+                        healBonus.healBonus = (statsU.magicPower * a.num)/100;
+                        user.statMods.Add(healBonus);
+                        user.usedBonusStuff = false;
+                        userHud.SetStatsHud(user);
+
+                        ManagePassiveIcon(user.effectHud, a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     break;
                 case "roughskin":
                 case "magicwand":

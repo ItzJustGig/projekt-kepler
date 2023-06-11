@@ -14,6 +14,7 @@ public class SelectManager : MonoBehaviour
     [SerializeField] private GameObject william;
     [SerializeField] private GameObject hestia;
     [SerializeField] private GameObject icer;
+    [SerializeField] private GameObject enya;
     [SerializeField] private GameObject arts;
 
     [SerializeField] private Text nameDisplay;
@@ -28,7 +29,7 @@ public class SelectManager : MonoBehaviour
 
     [SerializeField] private TooltipPopUp tooltipPopup;
 
-    private SpriteRenderer alexRender, leowindRender, bonsourRender, shineRender, sandewRender, isadoeRender, williamRender, hestiaRender, icerRender;
+    private SpriteRenderer alexRender, leowindRender, bonsourRender, shineRender, sandewRender, isadoeRender, williamRender, hestiaRender, icerRender, enyaRender;
     [SerializeField] private Sprite marksmanIcon, sourcererIcon, assassinIcon, tankIcon, duelistIcon, supportIcon;
     [SerializeField] private GameObject statsDisplay;
     [SerializeField] private Image classIcon;
@@ -86,6 +87,8 @@ public class SelectManager : MonoBehaviour
         hestiaRender = hestia.GetComponent<SpriteRenderer>();
         max++;
         icerRender = icer.GetComponent<SpriteRenderer>();
+        max++;
+        enyaRender = enya.GetComponent<SpriteRenderer>();
         max++;
 
         alexRender.enabled = true;
@@ -261,6 +264,19 @@ public class SelectManager : MonoBehaviour
                     Instantiate(passivePrefab, passiveList.transform);
                 }
                 break;
+            case 10:
+                foreach (Passives a in enya.GetComponent<CharacterInfo>().character.passives)
+                {
+                    Image icon = passivePrefab.transform.Find("icon").gameObject.GetComponent<Image>();
+                    icon.sprite = a.sprite;
+
+                    TooltipButton tooltipButton = passivePrefab.transform.GetComponent<TooltipButton>();
+                    tooltipButton.tooltipPopup = tooltipPopup;
+                    tooltipButton.text = a.GetPassiveInfo();
+
+                    Instantiate(passivePrefab, passiveList.transform);
+                }
+                break;
         }
     }
 
@@ -319,6 +335,9 @@ public class SelectManager : MonoBehaviour
                     break;
                 case 9:
                     SetupMoves(icer);
+                    break;
+                case 10:
+                    SetupMoves(enya);
                     break;
             }
 
@@ -421,6 +440,9 @@ public class SelectManager : MonoBehaviour
                 break;
             case 9:
                 SetupText(icer);
+                break;
+            case 10:
+                SetupText(enya);
                 break;
         }
     }
@@ -546,6 +568,11 @@ public class SelectManager : MonoBehaviour
                 break;
             case 9:
                 icerRender.enabled = false;
+                enyaRender.enabled = true;
+                i++;
+                break;
+            case 10:
+                enyaRender.enabled = false;
                 alexRender.enabled = true;
                 i++;
                 Reset();
@@ -566,7 +593,7 @@ public class SelectManager : MonoBehaviour
         {
             case 1:
                 alexRender.enabled = false;
-                icerRender.enabled = true;
+                enyaRender.enabled = true;
                 i--;
                 Reset();
                 break;
@@ -608,6 +635,11 @@ public class SelectManager : MonoBehaviour
             case 9:
                 icerRender.enabled = false;
                 hestiaRender.enabled = true;
+                i--;
+                break;
+            case 10:
+                enyaRender.enabled = false;
+                icerRender.enabled = true;
                 i--;
                 break;
             default:

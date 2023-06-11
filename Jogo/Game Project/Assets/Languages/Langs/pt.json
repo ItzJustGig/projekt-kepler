@@ -265,7 +265,8 @@
             "basilisk": "Basilisco",
             "golem": "Golem",
             "predatormantis": "Louva-a-Deus Predador",
-            "flecko": "Flecko"
+            "flecko": "Flecko",
+            "enya": "Enya"
         },
         "title": {
             "alex": "o Ca\u00E7ador de Recompen\u00E7as",
@@ -276,7 +277,8 @@
             "shine": "a Espadachim Futurista",
             "william": "o Vampiro Malicioso",
             "hestia": "a Dobradora de Fogo",
-            "icer": "o Pinguim Ganancionso"
+            "icer": "o Pinguim Ganancionso",
+            "enya": "a Guard\u00e3 de Yggdrasil"
         }
     },
     "effect": {
@@ -396,9 +398,11 @@
             "lackofbones": "Saco de Ossos",
             "firescales": "Escamas de Fogo",
             "magicbody": "Corpo M\u00e1gico",
-            "leafbeing": "Ser de Plata",
+            "leafbeing": "Ser de Planta",
             "bootsoftherunner": "Botas do Corredor",
-            "holdingtheline": "Segurando a Linha"
+            "holdingtheline": "Segurando a Linha",
+            "druid": "Druida",
+            "elficmagic": "Magia Elfica"
         },
         "desc": {
             "bloodbath": "Se um inimigo estiver a Sangrar, o utilizador vai ganhar%mod%e vai causar %scale% b\u00F3nus nos ataques.",
@@ -460,7 +464,9 @@
 			"magicbody": "O utilizador ganha <color=#00ff11>+(<color=#1e68fc>%num%% mana m\u00e1xima</color>) vida m\u00e1xima</color> e quando leva <color=#1a66ff>dano m\u00e1gico</color> ganha %mod%",
             "leafbeing": "O utilizador recebe mais <color=#f75145>+%num%% dano</color> de Queimado, Chamuscado e Envenenado. Quando um inimigo est\u00e1 com Alergia causa %scale%",
 			"bootsoftherunner": "O utilizador ganha%mod%a cada %cd% turnos (empilha at\u00e9 %maxStacks% vezes)",
-            "holdingtheline": "Quando o utilizador usa uma t\u00e9cnica <color=#787878>defenciva</color>, <color=#CC66FF>encantamento</color> ou <color=#ffaa00>b\u00e1sicos</color>, d\u00e1 %scale% \u00e0 equipa. T\u00e9cnicas <color=#ffaa00>f\u00edsicos</color>, <color=#1a66ff>m\u00e1gicos</color> ou <color=#f75145>de alcance</color> d\u00e3o %scale2% \u00e0 equipa."
+            "holdingtheline": "Quando o utilizador usa uma t\u00e9cnica <color=#787878>defenciva</color>, <color=#CC66FF>encantamento</color> ou <color=#ffaa00>b\u00e1sicos</color>, d\u00e1 %scale% \u00e0 equipa. T\u00e9cnicas <color=#ffaa00>f\u00edsicos</color>, <color=#1a66ff>m\u00e1gicos</color> ou <color=#f75145>de alcance</color> d\u00e3o %scale2% \u00e0 equipa.",
+			"druid": "O a cura b\u00f3nus do utilizador \u00e9 aumentada em +(%num%% do poder m\u00e1gico do utilizador)%, quando um aliado est\u00e1 afetado por Sangramento, Alergia, Envenenamento ou Aleijado, o utilizador cura %scale2% b\u00f3nus nesse alvo.",
+			"elficmagic": "A cada %maxStacks% t\u00e9cnicas de alcance ou m\u00e1gicas a pr\u00f3xima vai ser cr\u00edtica e causa %scale% b\u00f3nus. (dano magic causa dano critico tamb\u00e9m)"
         }
     },
     "moves": {
@@ -598,7 +604,11 @@
         "jewelofthedruid": "J\u00f3ia do Druida",
         "shadowshroom": "Cogulemo das Sombras",
         "prismaticstaff": "Cajato Prism\u00e1tico",
-		"pd1100": "PD-1100"
+		"pd1100": "PD-1100",
+		"bloom": "Florescer",
+		"barrage": "Barragem",
+		"galeburst": "Explos\u00e3o de Rajada",
+		"yggdrasilsblessing": "Ben\u00e7\u00e3o de Yggdrasil"
     },
     "items": {
         "title": "Iten",

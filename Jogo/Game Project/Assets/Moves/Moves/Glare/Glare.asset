@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Glare
   m_EditorClassIdentifier: 
   type: 1
+  target: 0
+  targetType: 0
+  id: 0
   name: glare
   hitTime: 1
   priority: 0
@@ -50,5 +53,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 290be62211f7f9449bed9259439f554d, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
-  animUser: 
-  animTarget: 
+  animUser: keeneye
+  animTarget: keeneye

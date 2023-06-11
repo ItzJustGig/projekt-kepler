@@ -979,6 +979,8 @@ public class LanguageManager : MonoBehaviour
         public string leafbeing;
         public string bootsoftherunner;
         public string holdingtheline;
+        public string druid;
+        public string elficmagic;
 
         public string Get_Cont(string a)
         {
@@ -1165,6 +1167,12 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "holdingtheline":
                     returns = holdingtheline;
+                    break;
+                case "druid":
+                    returns = druid;
+                    break;
+                case "elficmagic":
+                    returns = elficmagic;
                     break;
                 default:
                     returns = "null";
@@ -1384,6 +1392,7 @@ public class LanguageManager : MonoBehaviour
         public string golem;
         public string predatormantis;
         public string flecko;
+        public string enya;
 
         public string Get_CharcCont(string a)
         {
@@ -1473,6 +1482,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "flecko":
                     returns = flecko;
+                    break;
+                case "enya":
+                    returns = enya;
                     break;
                 default:
                     returns = "null";
@@ -1729,6 +1741,9 @@ public class LanguageManager : MonoBehaviour
         public string turret;
         public string frostbarrier;
         public string pd1100;
+        public string bloom;
+        public string barrage;
+        public string galeburst;
 
         public string bloodpressure;
         public string enchdeadlyshadow;
@@ -1739,6 +1754,7 @@ public class LanguageManager : MonoBehaviour
         public string windyvalleytornado;
         public string feirydance;
         public string mechasuit;
+        public string yggdrasilsblessing;
 
         public string healthpotion;
         public string manapotion;
@@ -2132,6 +2148,18 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "prismaticstaff":
                     returns = prismaticstaff;
+                    break;
+                case "bloom":
+                    returns = bloom;
+                    break;
+                case "barrage":
+                    returns = barrage;
+                    break;
+                case "galeburst":
+                    returns = galeburst;
+                    break;
+                case "yggdrasilsblessing":
+                    returns = yggdrasilsblessing;
                     break;
                 default:
                     returns = "null";

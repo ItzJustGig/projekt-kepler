@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
+  m_Name: enya stats
+  m_EditorClassIdentifier: 
+  hp: 1760
+  hpRegen: 10
+  mana: 405
+  manaRegen: 0.72
+  manaCost: 1
+  stamina: 290
+  staminaRegen: 0.75
+  staminaCost: 1
+  sanity: 185
+  atkDmg: 18
+  magicPower: 30
+  critChance: 0.0615
+  critDmg: 0.0865
+  dmgResis: 18.25
+  magicResis: 23.2
+  timing: 1.4
+  movSpeed: 195
+  lifesteal: 0
+  healBonus: 0
+  shieldBonus: 0
+  accuracy: 1
+  evasion: 0
+  armourPen: 0
+  magicPen: 0
+  ultrate: 1
+  sizeMod: 0

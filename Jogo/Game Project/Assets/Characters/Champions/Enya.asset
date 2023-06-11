@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d789de254ec901741a8cedbf21aabeda, type: 3}
+  m_Name: Enya
+  m_EditorClassIdentifier: 
+  strenght: 6
+  classe: 5
+  size: 2
+  name: enya
+  isBasicPhysical: 0
+  sprite: {fileID: 5806852883944117854, guid: e14ff431356231f42bbc0411eccf6784, type: 3}
+  charcIcon: {fileID: 21300000, guid: 81c433e2541357946a6f4e325a242c6c, type: 3}
+  audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
+  stats: {fileID: 11400000, guid: ba956d0fc2a9c21408e6fec5e3c7e3cc, type: 2}
+  growth: {fileID: 11400000, guid: a0d118b179354d145a4858fc0c1c6844, type: 2}
+  passives:
+  - {fileID: 11400000, guid: bbc7a37a6d72441429cb79a3e402d334, type: 2}
+  - {fileID: 11400000, guid: 160d52f4603cfc74584f395d7a1e19c0, type: 2}
+  moves:
+  - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
+  - {fileID: 11400000, guid: 675c6c28fdd2851468d63fa7ed92c1d4, type: 2}
+  - {fileID: 11400000, guid: f0f10eadd8221c0458a5fe26861a5893, type: 2}
+  - {fileID: 11400000, guid: e9f8a0ad5b9dd2f43a69b98d440728a8, type: 2}
+  - {fileID: 11400000, guid: 7e095cfa1d5af5f4db15692b3c215706, type: 2}
+  - {fileID: 11400000, guid: 92f634cf624b38b4cab85f286a90d5dd, type: 2}
+  - {fileID: 11400000, guid: 0c14c42d198201449b841e6e6802d0e7, type: 2}
+  - {fileID: 11400000, guid: e2efc40c4f063214e89d0e0da765bc5a, type: 2}
+  - {fileID: 11400000, guid: ad2207cad6e487b41b8ea4fce50fc326, type: 2}
+  recItems: []
+  ultimate: {fileID: 11400000, guid: 985f8e09ad5b1204da3a93ea1e3ec7b7, type: 2}
+  ai: {fileID: 11400000, guid: 03ef67d60b9012c49b367f839d1cad95, type: 2}

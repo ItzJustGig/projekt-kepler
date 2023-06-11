@@ -37,7 +37,7 @@ MonoBehaviour:
   healFromDmg: 0
   cooldown: 7
   inCooldown: 0
-  manaCost: 25
+  manaCost: 40
   staminaCost: 0
   ultCost: 100
   needFullUlt: 1
