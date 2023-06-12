@@ -875,6 +875,7 @@ public class BattleSystem : MonoBehaviour
                 {
                     user.DoMoveAnim(move.type);
 
+                    isMagicCrit = false;
                     isCrit = Random.Range(0f, 1f) <= (statsUser.critChance + move.critChanceBonus);
                     dmgTarget.Reset();
                     dmgUser.Reset();
@@ -949,37 +950,41 @@ public class BattleSystem : MonoBehaviour
                             {
                                 a.stacks = 1;
                                 ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-                            }  
+                            } 
 
                             if (a.inCd == 0 && a.stacks == 1 && move.type is Moves.MoveType.PHYSICAL)
                             {
-                                a.inCd = a.cd;
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                                StatScale scale = a.ifConditionTrueScale();
-                                StatScale scale2 = a.ifConditionTrueScale2();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
+                                if (target.SetModifiers().hp >= (user.SetModifiers().hp + (user.SetModifiers().hp * a.num)))
                                 {
-                                    unit = user;
-                                    stats = statsUser;
+                                    a.inCd = a.cd;
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                    StatScale scale = a.ifConditionTrueScale();
+                                    StatScale scale2 = a.ifConditionTrueScale2();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+
+                                    dmgTarget.AddDmg(scale2.SetScaleDmg(stats, unit));
+
+                                    StatMod statMod = a.statMod.ReturnStats();
+                                    statMod.inTime = statMod.time;
+                                    user.statMods.Add(statMod);
+                                    user.usedBonusStuff = false;
+                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
                                 }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-
-                                dmgTarget.AddDmg(scale2.SetScaleDmg(stats, unit));
-
-                                StatMod statMod = a.statMod.ReturnStats();
-                                statMod.inTime = statMod.time;
-                                user.statMods.Add(statMod);
-                                user.usedBonusStuff = false;
                             }
                         }
 
@@ -1071,6 +1076,7 @@ public class BattleSystem : MonoBehaviour
                                         target.hud.SetStatsHud(user);
                                     else
                                         user.hud.SetStatsHud(user);
+                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
                                 }
                             }
                         }
@@ -1381,6 +1387,7 @@ public class BattleSystem : MonoBehaviour
                                     }
 
                                     dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
                                 }
                             }
                         }

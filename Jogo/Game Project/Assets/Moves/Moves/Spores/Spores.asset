@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff75b619dd60884fac8560d9c44e22a, type: 3}
   m_Name: Spores
   m_EditorClassIdentifier: 
-  type: 1
+  type: 5
   target: 0
-  targetType: 1
+  targetType: 0
   id: 0
   name: spores
   hitTime: 1
@@ -25,7 +25,7 @@ MonoBehaviour:
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 40
+  magicDmg: 50
   trueDmg: 0
   sanityDmg: 0
   heal: 0
@@ -37,7 +37,7 @@ MonoBehaviour:
   healFromDmg: 0
   cooldown: 7
   inCooldown: 0
-  manaCost: 40
+  manaCost: 55
   staminaCost: 0
   ultCost: 100
   needFullUlt: 1
@@ -54,4 +54,4 @@ MonoBehaviour:
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
   animUser: 
-  animTarget: 
+  animTarget: spore

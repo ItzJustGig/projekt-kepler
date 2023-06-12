@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Light Speed Plasma Cut
   m_EditorClassIdentifier: 
   type: 1
+  target: 0
+  targetType: 0
+  id: 0
   name: lightspeedplasmacut
   hitTime: 1
   priority: 1
@@ -51,3 +54,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bc69ea7a8e8481c4f817eee1b4c5cf4a, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: cut

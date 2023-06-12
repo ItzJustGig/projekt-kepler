@@ -54,4 +54,4 @@ MonoBehaviour:
   grantPassive: {fileID: 11400000, guid: 2b046542b35a1d240b0c1d4e7d8b9ea8, type: 2}
   summon: {fileID: 0}
   animUser: 
-  animTarget: 
+  animTarget: keeneye

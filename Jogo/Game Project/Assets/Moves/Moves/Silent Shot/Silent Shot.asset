@@ -13,13 +13,18 @@ MonoBehaviour:
   m_Name: Silent Shot
   m_EditorClassIdentifier: 
   type: 2
+  target: 0
+  targetType: 0
+  id: 0
   name: silentshot
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 35
+  phyDmg: 40
   magicDmg: 20
   trueDmg: 0
   sanityDmg: 0
@@ -28,17 +33,25 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 5
   inCooldown: 0
-  manaCost: 55
+  manaCost: 60
   staminaCost: 0
-  critDmgBonus: 0.06
+  ultCost: 100
+  needFullUlt: 1
+  critDmgBonus: 0.12
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: d2ec5a91dfd75ae49b790d16163e7366, type: 2}
   - {fileID: 11400000, guid: 2a7c8bf07be50144bbd1021415cd1e22, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: d12d9a962c1c06f4ebd34e3bbe592fea, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

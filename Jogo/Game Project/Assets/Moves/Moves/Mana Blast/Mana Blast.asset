@@ -25,7 +25,7 @@ MonoBehaviour:
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 25
+  magicDmg: 15
   trueDmg: 0
   sanityDmg: 0
   heal: 0
@@ -37,13 +37,13 @@ MonoBehaviour:
   healFromDmg: 0
   cooldown: 8
   inCooldown: 0
-  manaCost: 120
+  manaCost: 125
   staminaCost: 0
   ultCost: 100
   needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
-  statModUser: {fileID: 11400000, guid: 01cf11162c7db3a48b43f1a7e8453e84, type: 2}
+  statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: cc0b31ab3271cef46be6d7d6f4de03f2, type: 2}

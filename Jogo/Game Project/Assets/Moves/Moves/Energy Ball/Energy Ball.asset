@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Energy Ball
   m_EditorClassIdentifier: 
   type: 1
+  target: 0
+  targetType: 0
+  id: 0
   name: energyball
   hitTime: 1
   priority: 0
@@ -22,7 +25,7 @@ MonoBehaviour:
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 20
+  magicDmg: 3
   trueDmg: 0
   sanityDmg: 0
   heal: 0
@@ -34,7 +37,7 @@ MonoBehaviour:
   healFromDmg: 0
   cooldown: 7
   inCooldown: 0
-  manaCost: 60
+  manaCost: 75
   staminaCost: 0
   ultCost: 100
   needFullUlt: 1

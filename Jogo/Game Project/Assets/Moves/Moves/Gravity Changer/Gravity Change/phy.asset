@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   playerStat: 1
-  flatValue: 10
+  flatValue: 6
   curHp: 0
   missHp: 0
   maxHp: 0
@@ -35,4 +35,4 @@ MonoBehaviour:
   dmgResis: 0
   magicResis: 0
   timing: 0
-  movSpeed: 0.07
+  movSpeed: 0.0585

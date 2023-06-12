@@ -16,7 +16,7 @@ MonoBehaviour:
   classe: 5
   size: 2
   name: enya
-  isBasicPhysical: 0
+  isBasicPhysical: 1
   sprite: {fileID: 5806852883944117854, guid: e14ff431356231f42bbc0411eccf6784, type: 3}
   charcIcon: {fileID: 21300000, guid: 81c433e2541357946a6f4e325a242c6c, type: 3}
   audio: {fileID: 8300000, guid: dc25044b17ab9ac47a3788f5bf9e4967, type: 3}
