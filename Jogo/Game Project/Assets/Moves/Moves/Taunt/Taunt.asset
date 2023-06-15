@@ -31,7 +31,7 @@ MonoBehaviour:
   heal: 0
   healMana: 5
   healStamina: 5
-  healSanity: 1
+  healSanity: 0
   shield: 0
   healFromDmgType: 0
   healFromDmg: 0

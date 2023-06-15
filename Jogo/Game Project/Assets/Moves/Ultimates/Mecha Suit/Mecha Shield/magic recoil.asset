@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   playerStat: 1
-  flatValue: 240
+  flatValue: 210
   curHp: 0
   missHp: 0
   maxHp: 0

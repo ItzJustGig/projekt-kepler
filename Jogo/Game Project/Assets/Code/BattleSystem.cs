@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using static LanguageManager;
 using UnityEditor.Experimental.GraphView;
+using Unity.Profiling;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, CHANGETURN, ALLYKILLED, ENEMYKILLED, WIN, LOSE, TIE }
 
@@ -606,7 +607,6 @@ public class BattleSystem : MonoBehaviour
             while (true)
             {
                 temp++;
-                //TODO: Make ally targetting for AI
                 enemy.chosenMove.target = this.player.GetRandom();
 
                 if (!enemy.chosenMove.target.isDead)
@@ -619,11 +619,11 @@ public class BattleSystem : MonoBehaviour
 
             enemy.SetAnimHud("isSelected", true);
             enemy.chosenMove.move = moveEnemy;
-
+            
             if (enemy.chosenMove.move.target == Moves.Target.SELF)
                 enemy.chosenMove.target = enemy;
             else if (enemy.chosenMove.move.target == Moves.Target.ALLY)
-                enemy.chosenMove.target = this.enemy.GetRandom(enemy.id);
+                enemy.chosenMove.target = this.enemy.GetRandom(enemy);
             else if (enemy.chosenMove.move.target == Moves.Target.ALLYSELF)
                 enemy.chosenMove.target = this.enemy.GetRandom();
 
@@ -662,7 +662,7 @@ public class BattleSystem : MonoBehaviour
 
             foreach (Effects e in charc.effects)
             {
-                if (e.id == "TAU" && !charc.chosenMove.target.isEnemy)
+                if (e.id == "TAU" && (charc.chosenMove.target.isEnemy != charc.isEnemy))
                 {
                     charc.chosenMove.target = e.source;
                     Debug.Log("TAUNT");
@@ -671,7 +671,7 @@ public class BattleSystem : MonoBehaviour
 
             foreach (Effects e in charc.chosenMove.target.effects)
             {
-                if (e.id == "GRD" && !charc.chosenMove.target.isEnemy)
+                if (e.id == "GRD" && (charc.chosenMove.target.isEnemy != charc.isEnemy))
                 {
                     charc.chosenMove.target = e.source;
                     Debug.Log("PROTECC");
@@ -1642,12 +1642,15 @@ public class BattleSystem : MonoBehaviour
 
                         if (a.name == "druid")
                         {
-                            foreach(Effects e in target.effects)
+                            if (target.isEnemy == user.isEnemy)
                             {
-                                if (e.id == "BLD" || e.id == "ALG" || e.id == "PSN" || e.id == "CRP")
+                                foreach (Effects e in target.effects)
                                 {
-                                    StatScale scale = a.ifConditionTrueScale2();
-                                    dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
+                                    if (e.id == "BLD" || e.id == "ALG" || e.id == "PSN" || e.id == "CRP")
+                                    {
+                                        StatScale scale = a.ifConditionTrueScale2();
+                                        dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
+                                    }
                                 }
                             }
                         }
@@ -1734,7 +1737,7 @@ public class BattleSystem : MonoBehaviour
                                     DMG recoildmg = default;
                                     recoildmg.Reset();
                                     recoildmg.trueDmg += recoil;
-                                    isDead = user.TakeDamage(recoildmg, false, false, user);
+                                    isDead = user.TakeDamage(recoildmg, false, false, user, false);
                                 }
 
                                 user.summary.UpdateValues(langmanag.GetInfo("charc", "name", user.charc.name), user.charc.charcIcon);
@@ -2063,27 +2066,27 @@ public class BattleSystem : MonoBehaviour
                                 switch (dotdmg.type)
                                 {
                                     case Dotdmg.DmgType.PHYSICAL:
-                                        dotdmg.Setup(dmgTarget.phyDmg, isCrit, move.name, Dotdmg.SrcType.MOVE, user);
+                                        dotdmg.Setup(dmgTarget.phyDmg, isCrit, move.name, Dotdmg.SrcType.MOVE, user, user.isEnemy == target.isEnemy);
                                         dmgTarget.phyDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.MAGICAL:
-                                        dotdmg.Setup(dmgTarget.magicDmg, isMagicCrit, move.name, Dotdmg.SrcType.MOVE, user);
+                                        dotdmg.Setup(dmgTarget.magicDmg, isMagicCrit, move.name, Dotdmg.SrcType.MOVE, user, user.isEnemy == target.isEnemy);
                                         dmgTarget.magicDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.TRUE:
-                                        dotdmg.Setup(dmgTarget.trueDmg, move.name, Dotdmg.SrcType.MOVE, user);
+                                        dotdmg.Setup(dmgTarget.trueDmg, move.name, Dotdmg.SrcType.MOVE, user, user.isEnemy == target.isEnemy);
                                         dmgTarget.trueDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.SANITY:
-                                        dotdmg.Setup(dmgTarget.sanityDmg, move.name, Dotdmg.SrcType.MOVE, user);
+                                        dotdmg.Setup(dmgTarget.sanityDmg, move.name, Dotdmg.SrcType.MOVE, user, user.isEnemy == target.isEnemy);
                                         dmgTarget.sanityDmg = 0;
                                         target.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEAL:
-                                        dotdmg.Setup(dmgTarget.heal, move.name, Dotdmg.SrcType.MOVE, user);
+                                        dotdmg.Setup(dmgTarget.heal, move.name, Dotdmg.SrcType.MOVE, user, user.isEnemy == target.isEnemy);
                                         dmgTarget.heal = 0;
                                         if (move.target is Moves.Target.ALLY || move.target is Moves.Target.ALLYSELF)
                                             target.dotDmg.Add(dotdmg);
@@ -2091,7 +2094,7 @@ public class BattleSystem : MonoBehaviour
                                             user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALMANA:
-                                        dotdmg.Setup(dmgTarget.healMana, move.name, Dotdmg.SrcType.MOVE, user);
+                                        dotdmg.Setup(dmgTarget.healMana, move.name, Dotdmg.SrcType.MOVE, user, user.isEnemy == target.isEnemy);
                                         dmgTarget.healMana = 0;
                                         if (move.target is Moves.Target.ALLY || move.target is Moves.Target.ALLYSELF)
                                             target.dotDmg.Add(dotdmg);
@@ -2099,7 +2102,7 @@ public class BattleSystem : MonoBehaviour
                                             user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALSTAMINA:
-                                        dotdmg.Setup(dmgTarget.healStamina, move.name, Dotdmg.SrcType.MOVE, user);
+                                        dotdmg.Setup(dmgTarget.healStamina, move.name, Dotdmg.SrcType.MOVE, user, user.isEnemy == target.isEnemy);
                                         dmgTarget.healStamina = 0;
                                         if (move.target is Moves.Target.ALLY || move.target is Moves.Target.ALLYSELF)
                                             target.dotDmg.Add(dotdmg);
@@ -2107,7 +2110,7 @@ public class BattleSystem : MonoBehaviour
                                             user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.HEALSANITY:
-                                        dotdmg.Setup(dmgTarget.healSanity, move.name, Dotdmg.SrcType.MOVE, user);
+                                        dotdmg.Setup(dmgTarget.healSanity, move.name, Dotdmg.SrcType.MOVE, user, user.isEnemy == target.isEnemy);
                                         dmgTarget.healSanity = 0;
                                         if (move.target is Moves.Target.ALLY || move.target is Moves.Target.ALLYSELF)
                                             target.dotDmg.Add(dotdmg);
@@ -2115,7 +2118,7 @@ public class BattleSystem : MonoBehaviour
                                             user.dotDmg.Add(dotdmg);
                                         break;
                                     case Dotdmg.DmgType.SHIELD:
-                                        dotdmg.Setup(dmgTarget.shield, move.name, Dotdmg.SrcType.MOVE, user);
+                                        dotdmg.Setup(dmgTarget.shield, move.name, Dotdmg.SrcType.MOVE, user, user.isEnemy == target.isEnemy);
                                         dmgTarget.shield = 0;
                                         if (move.target is Moves.Target.ALLY || move.target is Moves.Target.ALLYSELF)
                                             target.dotDmg.Add(dotdmg);
@@ -2232,18 +2235,18 @@ public class BattleSystem : MonoBehaviour
                                             shield.shield = a.statScale.SetScale(user.SetModifiers(), user);
                                             shield.ApplyBonusShield(user.SetModifiers().shieldBonus);
 
-                                            userTeam.unit1.TakeDamage(shield, false, false, user);
-                                            userTeam.unit2.TakeDamage(shield, false, false, user);
-                                            userTeam.unit3.TakeDamage(shield, false, false, user);
+                                            userTeam.unit1.TakeDamage(shield, false, false, user, true);
+                                            userTeam.unit2.TakeDamage(shield, false, false, user, true);
+                                            userTeam.unit3.TakeDamage(shield, false, false, user, true);
                                         } else if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.RANGED)
                                         {
                                             DMG shield = default;
                                             shield.shield = a.statScale2.SetScale(user.SetModifiers(), user);
                                             shield.ApplyBonusShield(user.SetModifiers().shieldBonus);
 
-                                            userTeam.unit1.TakeDamage(shield, false, false, user);
-                                            userTeam.unit2.TakeDamage(shield, false, false, user);
-                                            userTeam.unit3.TakeDamage(shield, false, false, user);
+                                            userTeam.unit1.TakeDamage(shield, false, false, user, true);
+                                            userTeam.unit2.TakeDamage(shield, false, false, user, true);
+                                            userTeam.unit3.TakeDamage(shield, false, false, user, true);
                                         }
                                         break;
                                 }
@@ -2269,12 +2272,12 @@ public class BattleSystem : MonoBehaviour
                                         SetUltNumber(target, target.hud, dmgT, false);
                                 }
 
-                                isDead = target.TakeDamage(dmgTarget, isCrit, isMagicCrit, user);
+                                isDead = target.TakeDamage(dmgTarget, isCrit, isMagicCrit, user, false);
 
                                 if (move.target == Moves.Target.ALLY || (move.target == Moves.Target.ALLYSELF && target != user))
-                                    target.TakeDamage(dmgUser, isCrit, isMagicCrit, user, move.name);
+                                    target.TakeDamage(dmgUser, isCrit, isMagicCrit, user, true, move.name);
                                 else
-                                    user.TakeDamage(dmgUser, isCrit, isMagicCrit, user, move.name);
+                                    user.TakeDamage(dmgUser, isCrit, isMagicCrit, user, false, move.name);
 
                                 target.DoAnimParticle(move.animTarget);
                                 user.DoAnimParticle(move.animUser);
@@ -2283,249 +2286,275 @@ public class BattleSystem : MonoBehaviour
                                 if (move.target is Moves.Target.ENEMY)
                                 {
                                     dmgTarget = dmgUser.TransferHeals(dmgTarget);
-                                    user.TakeDamage(dmgUser, isCrit, isMagicCrit, user, move.name);
+                                    user.TakeDamage(dmgUser, isCrit, isMagicCrit, user, false, move.name);
                                     user.DoAnimParticle(move.animUser);
 
                                     DMG tempDmg = dmgTarget;
-                                    tempDmg = targetTeam.unit1.MitigateDmg(tempDmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
-
-                                    tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
-                                    tempDmg = user.ApplyLifesteal(tempDmg);
                                     DMG tempHeal = default;
-                                    tempHeal = tempDmg.TransferHeals(tempHeal);
-                                    float dmgT = tempDmg.phyDmg + tempDmg.magicDmg + tempDmg.trueDmg;
-
-                                    if (dmgT > 0)
+                                    float dmgT = 0;
+                                    bool tempDead = false;
+                                    if (!targetTeam.unit1.isDead)
                                     {
-                                        if (!move.isUlt)
-                                            SetUltNumber(user, user.hud, dmgT, true);
+                                        tempDmg = targetTeam.unit1.MitigateDmg(tempDmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
-                                        if (move.isUlt)
-                                            SetUltNumber(targetTeam.unit1, targetTeam.unit1.hud, (dmgT / 2), false);
-                                        else
-                                            SetUltNumber(targetTeam.unit1, targetTeam.unit1.hud, dmgT, false);
+                                        tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
+                                        tempDmg = user.ApplyLifesteal(tempDmg);
+                                        tempHeal = default;
+                                        tempHeal = tempDmg.TransferHeals(tempHeal);
+                                        dmgT = tempDmg.phyDmg + tempDmg.magicDmg + tempDmg.trueDmg;
+
+                                        if (dmgT > 0)
+                                        {
+                                            if (!move.isUlt)
+                                                SetUltNumber(user, user.hud, dmgT, true);
+
+                                            if (move.isUlt)
+                                                SetUltNumber(targetTeam.unit1, targetTeam.unit1.hud, (dmgT / 2), false);
+                                            else
+                                                SetUltNumber(targetTeam.unit1, targetTeam.unit1.hud, dmgT, false);
+                                        }
+                                        tempDead = targetTeam.unit1.TakeDamage(tempDmg, isCrit, isMagicCrit, user, false);
+                                        user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, false, move.name);
+                                        targetTeam.unit1.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit1.charc.name), targetTeam.unit1.charc.charcIcon);
+                                        targetTeam.unit1.DoAnimParticle(move.animTarget);
+                                        if (tempDead && !targetTeam.unit1.isDead)
+                                        {
+                                            if (!targetTeam.unit1.isEnemy)
+                                            {
+                                                player.SetAsDead(targetTeam.unit1);
+                                                state = BattleState.ALLYKILLED;
+                                            }
+                                            else
+                                            {
+                                                enemy.SetAsDead(targetTeam.unit1);
+                                                state = BattleState.ENEMYKILLED;
+                                            }
+                                            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", targetTeam.unit1.charc.name));
+                                        }
                                     }
-                                    bool tempDead = targetTeam.unit1.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
-                                    user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
-                                    targetTeam.unit1.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit1.charc.name), targetTeam.unit1.charc.charcIcon);
-                                    targetTeam.unit1.DoAnimParticle(move.animTarget);
-                                    if (tempDead && !targetTeam.unit1.isDead)
+                                    
+                                    if (!targetTeam.unit2.isDead)
                                     {
-                                        if (!targetTeam.unit1.isEnemy)
+
+                                        tempDmg = dmgTarget;
+                                        tempDmg = targetTeam.unit2.MitigateDmg(tempDmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
+
+                                        tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
+                                        tempDmg = user.ApplyLifesteal(tempDmg);
+                                        tempHeal = default;
+                                        tempHeal = tempDmg.TransferHeals(tempHeal);
+                                        dmgT = tempDmg.phyDmg + tempDmg.magicDmg + tempDmg.trueDmg;
+
+                                        if (dmgT > 0)
                                         {
-                                            player.SetAsDead(targetTeam.unit1);
-                                            state = BattleState.ALLYKILLED;
+                                            if (!move.isUlt)
+                                                SetUltNumber(user, user.hud, dmgT, true);
+
+                                            if (move.isUlt)
+                                                SetUltNumber(targetTeam.unit2, targetTeam.unit2.hud, (dmgT / 2), false);
+                                            else
+                                                SetUltNumber(targetTeam.unit2, targetTeam.unit2.hud, dmgT, false);
                                         }
-                                        else
+
+                                        tempDead = targetTeam.unit2.TakeDamage(tempDmg, isCrit, isMagicCrit, user, false);
+                                        user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, false, move.name);
+                                        targetTeam.unit2.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit2.charc.name), targetTeam.unit2.charc.charcIcon);
+
+                                        targetTeam.unit2.DoAnimParticle(move.animTarget);
+                                        if (tempDead && !targetTeam.unit2.isDead)
                                         {
-                                            enemy.SetAsDead(targetTeam.unit1);
-                                            state = BattleState.ENEMYKILLED;
+                                            if (!targetTeam.unit2.isEnemy)
+                                            {
+                                                player.SetAsDead(targetTeam.unit2);
+                                                state = BattleState.ALLYKILLED;
+                                            }
+                                            else
+                                            {
+                                                enemy.SetAsDead(targetTeam.unit2);
+                                                state = BattleState.ENEMYKILLED;
+                                            }
+                                            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", targetTeam.unit2.charc.name));
                                         }
-                                        dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", targetTeam.unit1.charc.name));
                                     }
-                                    //
-
-                                    tempDmg = dmgTarget;
-                                    tempDmg = targetTeam.unit2.MitigateDmg(tempDmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
-
-                                    tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
-                                    tempDmg = user.ApplyLifesteal(tempDmg);
-                                    tempHeal = default;
-                                    tempHeal = tempDmg.TransferHeals(tempHeal);
-                                    dmgT = tempDmg.phyDmg + tempDmg.magicDmg + tempDmg.trueDmg;
-
-                                    if (dmgT > 0)
+                                    
+                                    if (!targetTeam.unit3.isDead)
                                     {
-                                        if (!move.isUlt)
-                                            SetUltNumber(user, user.hud, dmgT, true);
+                                        tempDmg = dmgTarget;
+                                        tempDmg = targetTeam.unit3.MitigateDmg(tempDmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
-                                        if (move.isUlt)
-                                            SetUltNumber(targetTeam.unit2, targetTeam.unit2.hud, (dmgT / 2), false);
-                                        else
-                                            SetUltNumber(targetTeam.unit2, targetTeam.unit2.hud, dmgT, false);
-                                    }
+                                        tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
+                                        tempDmg = user.ApplyLifesteal(tempDmg);
+                                        tempHeal = default;
+                                        tempHeal = tempDmg.TransferHeals(tempHeal);
+                                        dmgT = tempDmg.phyDmg + tempDmg.magicDmg + tempDmg.trueDmg;
 
-                                    tempDead = targetTeam.unit2.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
-                                    user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
-                                    targetTeam.unit2.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit2.charc.name), targetTeam.unit2.charc.charcIcon);
-
-                                    targetTeam.unit2.DoAnimParticle(move.animTarget); 
-                                    if (tempDead && !targetTeam.unit2.isDead)
-                                    {
-                                        if (!targetTeam.unit2.isEnemy)
+                                        if (dmgT > 0)
                                         {
-                                            player.SetAsDead(targetTeam.unit2);
-                                            state = BattleState.ALLYKILLED;
+                                            if (!move.isUlt)
+                                                SetUltNumber(user, user.hud, dmgT, true);
+
+                                            if (move.isUlt)
+                                                SetUltNumber(targetTeam.unit3, targetTeam.unit3.hud, (dmgT / 2), false);
+                                            else
+                                                SetUltNumber(targetTeam.unit3, targetTeam.unit3.hud, dmgT, false);
                                         }
-                                        else
+
+                                        tempDead = targetTeam.unit3.TakeDamage(tempDmg, isCrit, isMagicCrit, user, false);
+                                        user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, false, move.name);
+                                        targetTeam.unit3.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit3.charc.name), targetTeam.unit3.charc.charcIcon);
+
+                                        targetTeam.unit3.DoAnimParticle(move.animTarget);
+                                        if (tempDead && !targetTeam.unit3.isDead)
                                         {
-                                            enemy.SetAsDead(targetTeam.unit2);
-                                            state = BattleState.ENEMYKILLED;
+                                            if (!targetTeam.unit3.isEnemy)
+                                            {
+                                                player.SetAsDead(targetTeam.unit3);
+                                                state = BattleState.ALLYKILLED;
+                                            }
+                                            else
+                                            {
+                                                enemy.SetAsDead(targetTeam.unit3);
+                                                state = BattleState.ENEMYKILLED;
+                                            }
+                                            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", targetTeam.unit3.charc.name));
                                         }
-                                        dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", targetTeam.unit2.charc.name));
-                                    }
-                                    //
-                                    tempDmg = dmgTarget;
-                                    tempDmg = targetTeam.unit3.MitigateDmg(tempDmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
-
-                                    tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
-                                    tempDmg = user.ApplyLifesteal(tempDmg);
-                                    tempHeal = default;
-                                    tempHeal = tempDmg.TransferHeals(tempHeal);
-                                    dmgT = tempDmg.phyDmg + tempDmg.magicDmg + tempDmg.trueDmg;
-
-                                    if (dmgT > 0)
-                                    {
-                                        if (!move.isUlt)
-                                            SetUltNumber(user, user.hud, dmgT, true);
-
-                                        if (move.isUlt)
-                                            SetUltNumber(targetTeam.unit3, targetTeam.unit3.hud, (dmgT / 2), false);
-                                        else
-                                            SetUltNumber(targetTeam.unit3, targetTeam.unit3.hud, dmgT, false);
-                                    }
-
-                                    tempDead = targetTeam.unit3.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
-                                    user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
-                                    targetTeam.unit3.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit3.charc.name), targetTeam.unit3.charc.charcIcon);
-
-                                    targetTeam.unit3.DoAnimParticle(move.animTarget);
-                                    if (tempDead && !targetTeam.unit3.isDead)
-                                    {
-                                        if (!targetTeam.unit3.isEnemy)
-                                        {
-                                            player.SetAsDead(targetTeam.unit3);
-                                            state = BattleState.ALLYKILLED;
-                                        }
-                                        else
-                                        {
-                                            enemy.SetAsDead(targetTeam.unit3);
-                                            state = BattleState.ENEMYKILLED;
-                                        }
-                                        dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", targetTeam.unit3.charc.name));
                                     }
                                 } else if (move.target is Moves.Target.ALLY || move.target is Moves.Target.ALLYSELF || move.target is Moves.Target.SELF)
                                 {
-                                    user.TakeDamage(dmgUser, isCrit, isMagicCrit, user, move.name);
+                                    user.TakeDamage(dmgUser, isCrit, isMagicCrit, user, false, move.name);
                                     user.DoAnimParticle(move.animUser);
                                     DMG healing = dmgUser.TransferHeals(dmgTarget);
-                                    //
-                                    DMG tempDmg = userTeam.unit1.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
-
-                                    tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
-                                    tempDmg = user.ApplyLifesteal(tempDmg);
+                                    DMG tempDmg = default;
                                     DMG tempHeal = default;
-                                    tempHeal = tempDmg.TransferHeals(healing);
-                                    float dmgT = tempDmg.phyDmg + tempDmg.magicDmg + tempDmg.trueDmg;
-
-                                    if (dmgT > 0)
+                                    float dmgT = 0;
+                                    bool tempDead = false;
+                                    if (!userTeam.unit1.isDead)
                                     {
-                                        if (!move.isUlt)
-                                            SetUltNumber(user, user.hud, dmgT, true);
+                                        tempDmg = userTeam.unit1.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
-                                        if (move.isUlt)
-                                            SetUltNumber(userTeam.unit1, userTeam.unit3.hud, (dmgT / 2), false);
-                                        else
-                                            SetUltNumber(userTeam.unit1, userTeam.unit3.hud, dmgT, false);
+                                        tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
+                                        tempDmg = user.ApplyLifesteal(tempDmg);
+                                        tempHeal = tempDmg.TransferHeals(healing);
+                                        dmgT = tempDmg.phyDmg + tempDmg.magicDmg + tempDmg.trueDmg;
+
+                                        if (dmgT > 0)
+                                        {
+                                            if (!move.isUlt)
+                                                SetUltNumber(user, user.hud, dmgT, true);
+
+                                            if (move.isUlt)
+                                                SetUltNumber(userTeam.unit1, userTeam.unit3.hud, (dmgT / 2), false);
+                                            else
+                                                SetUltNumber(userTeam.unit1, userTeam.unit3.hud, dmgT, false);
+                                        }
+
+                                        tempDead = userTeam.unit1.TakeDamage(tempDmg, isCrit, isMagicCrit, user, true);
+                                        user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, true, move.name);
+                                        userTeam.unit1.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit1.charc.name), userTeam.unit1.charc.charcIcon);
+                                        userTeam.unit1.DoAnimParticle(move.animTarget);
+
+                                        if (tempDead && !userTeam.unit1.isDead)
+                                        {
+                                            if (!userTeam.unit1.isEnemy)
+                                            {
+                                                player.SetAsDead(userTeam.unit1);
+                                                state = BattleState.ALLYKILLED;
+                                            }
+                                            else
+                                            {
+                                                enemy.SetAsDead(userTeam.unit1);
+                                                state = BattleState.ENEMYKILLED;
+                                            }
+                                            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", userTeam.unit1.charc.name));
+                                        }
                                     }
+                                    //
 
-                                    bool tempDead = userTeam.unit1.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
-                                    user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
-                                    userTeam.unit1.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit1.charc.name), userTeam.unit1.charc.charcIcon);
-                                    userTeam.unit1.DoAnimParticle(move.animTarget); 
+                                    if (!userTeam.unit2.isDead)
+                                    {
+                                        tempDmg = userTeam.unit2.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
+
+                                        tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
+                                        tempDmg = user.ApplyLifesteal(tempDmg);
+                                        tempHeal = default;
+                                        tempHeal = tempDmg.TransferHeals(healing);
+                                        dmgT = tempDmg.phyDmg + tempDmg.magicDmg + tempDmg.trueDmg;
+
+                                        if (dmgT > 0)
+                                        {
+                                            if (!move.isUlt)
+                                                SetUltNumber(user, user.hud, dmgT, true);
+
+                                            if (move.isUlt)
+                                                SetUltNumber(userTeam.unit2, userTeam.unit2.hud, (dmgT / 2), false);
+                                            else
+                                                SetUltNumber(userTeam.unit2, userTeam.unit2.hud, dmgT, false);
+                                        }
+
+                                        tempDead = userTeam.unit2.TakeDamage(tempDmg, isCrit, isMagicCrit, user, true);
+                                        user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, true, move.name);
+                                        userTeam.unit2.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit2.charc.name), userTeam.unit2.charc.charcIcon);
+
+                                        userTeam.unit2.DoAnimParticle(move.animTarget);
+                                        if (tempDead && !userTeam.unit2.isDead)
+                                        {
+                                            if (!userTeam.unit2.isEnemy)
+                                            {
+                                                player.SetAsDead(userTeam.unit2);
+                                                state = BattleState.ALLYKILLED;
+                                            }
+                                            else
+                                            {
+                                                enemy.SetAsDead(userTeam.unit2);
+                                                state = BattleState.ENEMYKILLED;
+                                            }
+                                            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", userTeam.unit2.charc.name));
+                                        }
+                                    }
                                     
-                                    if (tempDead && !userTeam.unit1.isDead)
-                                    {
-                                        if (!userTeam.unit1.isEnemy)
-                                        {
-                                            player.SetAsDead(userTeam.unit1);
-                                            state = BattleState.ALLYKILLED;
-                                        }
-                                        else
-                                        {
-                                            enemy.SetAsDead(userTeam.unit1);
-                                            state = BattleState.ENEMYKILLED;
-                                        }
-                                        dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", userTeam.unit1.charc.name));
-                                    }
                                     //
-                                    tempDmg = userTeam.unit2.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
-
-                                    tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
-                                    tempDmg = user.ApplyLifesteal(tempDmg);
-                                    tempHeal = default;
-                                    tempHeal = tempDmg.TransferHeals(healing);
-                                    dmgT = tempDmg.phyDmg + tempDmg.magicDmg + tempDmg.trueDmg;
-
-                                    if (dmgT > 0)
+                                    if (!userTeam.unit3.isDead)
                                     {
-                                        if (!move.isUlt)
-                                            SetUltNumber(user, user.hud, dmgT, true);
+                                        tempDmg = userTeam.unit3.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
-                                        if (move.isUlt)
-                                            SetUltNumber(userTeam.unit2, userTeam.unit2.hud, (dmgT / 2), false);
-                                        else
-                                            SetUltNumber(userTeam.unit2, userTeam.unit2.hud, dmgT, false);
-                                    }
+                                        tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
+                                        tempDmg = user.ApplyLifesteal(tempDmg);
+                                        tempHeal = default;
+                                        tempHeal = tempDmg.TransferHeals(healing);
+                                        dmgT = tempDmg.phyDmg + tempDmg.magicDmg + tempDmg.trueDmg;
 
-                                    tempDead = userTeam.unit2.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
-                                    user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
-                                    userTeam.unit2.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit2.charc.name), userTeam.unit2.charc.charcIcon);
-
-                                    userTeam.unit2.DoAnimParticle(move.animTarget);
-                                    if (tempDead && !userTeam.unit2.isDead)
-                                    {
-                                        if (!userTeam.unit2.isEnemy)
+                                        if (dmgT > 0)
                                         {
-                                            player.SetAsDead(userTeam.unit2);
-                                            state = BattleState.ALLYKILLED;
+                                            if (!move.isUlt)
+                                                SetUltNumber(user, user.hud, dmgT, true);
+
+                                            if (move.isUlt)
+                                                SetUltNumber(userTeam.unit3, userTeam.unit3.hud, (dmgT / 2), false);
+                                            else
+                                                SetUltNumber(userTeam.unit3, userTeam.unit3.hud, dmgT, false);
                                         }
-                                        else
+
+                                        tempDead = userTeam.unit3.TakeDamage(tempDmg, isCrit, isMagicCrit, user, true);
+                                        user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, true, move.name);
+                                        userTeam.unit3.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit3.charc.name), userTeam.unit3.charc.charcIcon);
+
+                                        userTeam.unit3.DoAnimParticle(move.animTarget);
+                                        if (tempDead && !userTeam.unit3.isDead)
                                         {
-                                            enemy.SetAsDead(userTeam.unit2);
-                                            state = BattleState.ENEMYKILLED;
+                                            if (!userTeam.unit3.isEnemy)
+                                            {
+                                                player.SetAsDead(userTeam.unit3);
+                                                state = BattleState.ALLYKILLED;
+                                            }
+                                            else
+                                            {
+                                                enemy.SetAsDead(userTeam.unit3);
+                                                state = BattleState.ENEMYKILLED;
+                                            }
+                                            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", userTeam.unit3.charc.name));
                                         }
-                                        dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", userTeam.unit2.charc.name));
                                     }
-                                    //
-                                    tempDmg = userTeam.unit3.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
-
-                                    tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
-                                    tempDmg = user.ApplyLifesteal(tempDmg);
-                                    tempHeal = default;
-                                    tempHeal = tempDmg.TransferHeals(healing);
-                                    dmgT = tempDmg.phyDmg + tempDmg.magicDmg + tempDmg.trueDmg;
-
-                                    if (dmgT > 0)
-                                    {
-                                        if (!move.isUlt)
-                                            SetUltNumber(user, user.hud, dmgT, true);
-
-                                        if (move.isUlt)
-                                            SetUltNumber(userTeam.unit3, userTeam.unit3.hud, (dmgT / 2), false);
-                                        else
-                                            SetUltNumber(userTeam.unit3, userTeam.unit3.hud, dmgT, false);
-                                    }
-
-                                    tempDead = userTeam.unit3.TakeDamage(tempDmg, isCrit, isMagicCrit, user);
-                                    user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, move.name);
-                                    userTeam.unit3.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit3.charc.name), userTeam.unit3.charc.charcIcon);
-
-                                    userTeam.unit3.DoAnimParticle(move.animTarget);
-                                    if (tempDead && !userTeam.unit3.isDead)
-                                    {
-                                        if (!userTeam.unit3.isEnemy)
-                                        {
-                                            player.SetAsDead(userTeam.unit3);
-                                            state = BattleState.ALLYKILLED;
-                                        }
-                                        else
-                                        {
-                                            enemy.SetAsDead(userTeam.unit3);
-                                            state = BattleState.ENEMYKILLED;
-                                        }
-                                        dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", userTeam.unit3.charc.name));
-                                    }
+                                   
                                 }
                             }
 
@@ -2742,64 +2771,6 @@ public class BattleSystem : MonoBehaviour
         enemy.ResetAttacker();
         dialogText.text = langmanag.GetInfo("gui", "text", "choosemove");
         SelectMovingCharacter();
-        //movesBtn.interactable = true;
-        //basicBtn.interactable = true;
-
-        //if ((playerUnit.ult == 100 && playerUnit.ultMove.needFullUlt) ||
-        //(playerUnit.ult == playerUnit.ultMove.ultCost && !playerUnit.ultMove.needFullUlt))
-        //{
-        //    bool canUse = true;
-
-        //    switch (playerUnit.ultMove.type)
-        //    {
-        //        case Moves.MoveType.PHYSICAL:
-        //            if (!playerUnit.canUsePhysical)
-        //                canUse = false;
-        //            break;
-        //        case Moves.MoveType.MAGICAL:
-        //            if (!playerUnit.canUseMagic)
-        //                canUse = false;
-        //            break;
-        //        case Moves.MoveType.RANGED:
-        //            if (!playerUnit.canUseRanged)
-        //                canUse = false;
-        //            break;
-        //        case Moves.MoveType.DEFFENCIVE:
-        //            if (!playerUnit.canUseProtec)
-        //                canUse = false;
-        //            break;
-        //        case Moves.MoveType.SUPPORT:
-        //            if (!playerUnit.canUseSupp)
-        //                canUse = false;
-        //            break;
-        //        case Moves.MoveType.ENCHANT:
-        //            if (!playerUnit.canUseEnchant)
-        //                canUse = false;
-        //            break;
-        //        case Moves.MoveType.SUMMON:
-        //            if (!playerUnit.canUseSummon)
-        //                canUse = false;
-        //            break;
-        //    }
-
-        //    if (canUse)
-        //        ultBtn.interactable = true;
-        //    else
-        //        ultBtn.interactable = false;
-        //}
-
-        //if (playerUnit.recoverMana.inCooldown <= 0)
-        //{
-        //    healManaBtn.interactable = true;
-        //    healBtnText.text = langmanag.GetInfo("moves", "recovmana");
-        //    if (!playerUnit.canUseSupp)
-        //        healManaBtn.interactable = false;
-        //}
-        //else
-        //{
-        //    healManaBtn.interactable = false;
-        //    healBtnText.text = langmanag.GetInfo("moves", "recovmana") + " (" + playerUnit.recoverMana.inCooldown + ")";
-        //}  
     }
 
     public void GrantUltCompansation(Unit user)
@@ -2854,7 +2825,7 @@ public class BattleSystem : MonoBehaviour
         dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, null, dotReduc);
         dmg = user.CalcRegens(dmg);
 
-        isDead = user.TakeDamage(dmg, false, false, user);
+        isDead = user.TakeDamage(dmg, false, false, user, false);
 
         /*user.sanityDmgTaken += dmg.sanityDmg;
 
@@ -2932,9 +2903,9 @@ public class BattleSystem : MonoBehaviour
                 }
             }
         }
-        
+
         //isDead
-        return user.TakeDamage(dmg, false, false, user);
+        return user.TakeDamage(dmg, false, false, a.source, a.fromAlly);
     }
 
     void CreatePassiveIcon(Transform panel, Sprite pIcon, string name, string num, bool isEnemy, string passiveDesc)
@@ -3473,7 +3444,7 @@ public class BattleSystem : MonoBehaviour
 
                             //user.curHp -= trueDmg;
                             //user.trueDmgTaken += trueDmg;
-                            user.TakeDamage(dmg, false, false, user);
+                            user.TakeDamage(dmg, false, false, user, true);
                         }
                         else
                         {
@@ -3815,7 +3786,7 @@ public class BattleSystem : MonoBehaviour
 
                         dmg.magicDmg = a.statScale2.SetScaleFlat(user.SetModifiers(), user);
                         dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0);
-                        user.TakeDamage(dmg, false, false, user);
+                        user.TakeDamage(dmg, false, false, user, true);
 
                         userHud.SetStatsHud(user);
                         DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
@@ -3943,7 +3914,7 @@ public class BattleSystem : MonoBehaviour
 
                             dmg.magicDmg = a.statScale.SetScaleFlat(user.SetModifiers(), user);
                             dmg = target.unit1.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
-                            target.unit1.TakeDamage(dmg, false, false, user);
+                            target.unit1.TakeDamage(dmg, false, false, user, false);
 
                             userHud.SetStatsHud(user);
                         }
@@ -3960,7 +3931,7 @@ public class BattleSystem : MonoBehaviour
 
                             dmg.magicDmg = a.statScale.SetScaleFlat(user.SetModifiers(), user);
                             dmg = target.unit2.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
-                            target.unit2.TakeDamage(dmg, false, false, user);
+                            target.unit2.TakeDamage(dmg, false, false, user, false);
 
                             userHud.SetStatsHud(user);
                         }
@@ -3977,7 +3948,7 @@ public class BattleSystem : MonoBehaviour
 
                             dmg.magicDmg = a.statScale.SetScaleFlat(user.SetModifiers(), user);
                             dmg = target.unit3.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
-                            target.unit3.TakeDamage(dmg, false, false, user);
+                            target.unit3.TakeDamage(dmg, false, false, user, false);
 
                             userHud.SetStatsHud(user);
                         }
@@ -4147,7 +4118,7 @@ public class BattleSystem : MonoBehaviour
             dmgT = target.MitigateDmg(dmgT, dmgResisPer, magicResisPer, statsT.armourPen, statsT.magicPen, summoner);
         }
 
-        isDead = target.TakeDamage(dmgT, isCrit, false, summoner);
+        isDead = target.TakeDamage(dmgT, isCrit, false, summoner, summoner.isEnemy == target.isEnemy);
         SetUltNumber(target, target.hud, dmgT.phyDmg + dmgT.magicDmg + dmgT.trueDmg, false);
 
         return isDead;
@@ -4244,7 +4215,7 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(ManageEndTurn(enemy.unit1, player));
         StartCoroutine(ManageEndTurn(enemy.unit2, player));
         StartCoroutine(ManageEndTurn(enemy.unit3, player));
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.85f);
 
         //set turn number
         combatCount = 0;
@@ -4301,7 +4272,7 @@ public class BattleSystem : MonoBehaviour
         foreach (Summon a in unit.summons.ToArray())
         {
             bool isDead = SpawnSummon(a, unit, a.target);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.4f);
 
             if (isDead)
             {

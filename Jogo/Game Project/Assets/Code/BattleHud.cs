@@ -362,9 +362,9 @@ public class BattleHud : MonoBehaviour
         }*/
 
         yield return null;
-        hpSlider.maxValue = maxHp+shield;
-        hpSlider.value = hp+shield;
-        hpText.text = hpSlider.value.ToString("0") + "/" + maxHp;
+        hpSlider.maxValue = maxHp;
+        hpSlider.value = hp;
+        hpText.text = (hpSlider.value+shield).ToString("0") + "/" + maxHp;
         hpInfo.text = langmang.languageManager.GetText(language, "stats", "name", "hp");
         hpInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "healbonus") + ": " + healBonus.ToString("0.00") + "%";
         fillHp.color = gradientHp.Evaluate(hpSlider.normalizedValue);

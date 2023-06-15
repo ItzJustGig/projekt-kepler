@@ -12,12 +12,13 @@ public class Dotdmg : ScriptableObject
     public int time;
     public int inTime;
     public bool isCrit=false;
+    public bool fromAlly = false;
     public Unit source;
     public enum SrcType { MOVE, PASSIVE }
     public string srcId;
     public SrcType srcType;
 
-    public void Setup(float dmgT, bool crit, string srcId, SrcType srcType, Unit source)
+    public void Setup(float dmgT, bool crit, string srcId, SrcType srcType, Unit source, bool fromAlly)
     {
         if (time < 1)
             time = 1;
@@ -28,9 +29,10 @@ public class Dotdmg : ScriptableObject
         this.srcId = srcId;
         this.srcType = srcType;
         this.source = source;
+        this.fromAlly = fromAlly;
     }
 
-    public void Setup(float dmgT, string srcId, SrcType srcType, Unit source)
+    public void Setup(float dmgT, string srcId, SrcType srcType, Unit source, bool fromAlly)
     {
         if (time < 1)
             time = 1;
@@ -40,9 +42,10 @@ public class Dotdmg : ScriptableObject
         this.srcId = srcId;
         this.srcType = srcType;
         this.source = source;
+        this.fromAlly = fromAlly;
     }
 
-    public void Setup(float dmgT, float time, string srcId, SrcType srcType, DmgType dmgType, Unit source)
+    public void Setup(float dmgT, float time, string srcId, SrcType srcType, DmgType dmgType, Unit source, bool fromAlly)
     {
         if (time < 1)
             time = 1;
@@ -53,6 +56,7 @@ public class Dotdmg : ScriptableObject
         this.srcType = srcType;
         this.type = dmgType;
         this.source = source;
+        this.fromAlly = fromAlly;
     }
 
     public Dotdmg ReturnDOT()
@@ -66,6 +70,7 @@ public class Dotdmg : ScriptableObject
         dot.type = type;
         dot.srcId = srcId;
         dot.srcType = srcType;
+        dot.fromAlly = fromAlly;
 
         return dot;
     }

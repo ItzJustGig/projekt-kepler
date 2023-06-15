@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   playerStat: 1
-  flatValue: 3
+  flatValue: 8
   curHp: 0
   missHp: 0
   maxHp: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
   missSanity: 0
   maxSanity: 0
   atkDmg: 0
-  magicPower: 0.15
+  magicPower: 0.2
   dmgResis: 0
   magicResis: 0
   timing: 0

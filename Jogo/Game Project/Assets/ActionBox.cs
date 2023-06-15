@@ -239,7 +239,7 @@ public class ActionBox : MonoBehaviour
             
         bool canUse = true;
 
-        if (move.isUlt && unit.ult < move.ultCost)
+        if (move.isUlt && (unit.ult < move.ultCost || (unit.ult < 100 && move.needFullUlt)))
         {
             canUse = false;
         }

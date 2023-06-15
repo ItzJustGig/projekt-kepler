@@ -27,12 +27,12 @@ MonoBehaviour:
   phyDmg: 0
   magicDmg: 0
   trueDmg: 0
-  sanityDmg: 10
+  sanityDmg: 0
   heal: 0
   healMana: 0
   healStamina: 0
   healSanity: 0
-  shield: 435
+  shield: 540
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 0

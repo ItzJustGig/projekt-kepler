@@ -36,7 +36,7 @@ MonoBehaviour:
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0
-  accuracy: 0.05
+  accuracy: 0
   evasion: 0
   armourPen: 0
   magicPen: 0

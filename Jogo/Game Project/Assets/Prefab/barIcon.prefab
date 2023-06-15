@@ -83,20 +83,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=25><align=center>Spectral Ring</align></size>
+  text: '<size=25><align=center>Plasma Blade</align></size>
 
-    <size=19><align=center><color=#B2B2B2>Item</color></align></size>
+    <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
 
     
 
     The
-    user gain <color=#1a66ff>3 Magic Power</color>  every 6 turns up to 7 times.
-
-    When
-    the user drops below <color=#00ff11>20% health</color>, <color=#1a66ff>magic
-    moves</color> deal bonus <color=#1a66ff>10 + (<color=#1a66ff>15%</color> of the
-    user''s <color=#1a66ff>Magic Power</color>)</color> as<color=#1a66ff> magical
-    damage</color>.
+    user''s <color=#ffaa00>physical</color> or <color=#ffaa00>basic attacks</color>
+    deal bonus <color=#1a66ff>12 + (<color=#3366ff>1,65%</color> of the user''s <color=#3366ff>Maximum
+    Mana</color>)</color> as<color=#1a66ff> magical damage</color>. If the user is
+    below <color=#00ff11>25% health</color>, the bonus <color=#1a66ff>magic damage</color>
+    is increased by 75%, deal bonus <color=#a6a6a6>8 + (<color=#3366ff>1,2%</color>
+    of the user''s <color=#3366ff>Maximum Mana</color>)</color> as<color=#a6a6a6>
+    true damage</color> and gain <color=#8360B3>5% Magic Penetration</color>  (If
+    the user is silenced or bellow <color=#1e68fc>30% mana</color>, the passive won''t
+    activate)
 
 '
   textSec: 
@@ -185,7 +187,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ee4b75241f289104f9157f42c4a0abb4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 16307b561aa462f459e2da6bdf91f0ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -229,8 +231,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.8727, y: -4.2422}
-  m_SizeDelta: {x: 1.7453, y: -5.2495}
+  m_AnchoredPosition: {x: -0.9, y: -3.8977}
+  m_SizeDelta: {x: 3.4871, y: -6.2448}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3892656255660345959
 CanvasRenderer:
@@ -262,10 +264,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b03279c5f598ca845b5882dfca378369, type: 3}
-    m_FontSize: 10
+    m_FontSize: 8
     m_FontStyle: 1
     m_BestFit: 1
-    m_MinSize: 10
+    m_MinSize: 8
     m_MaxSize: 20
     m_Alignment: 8
     m_AlignByGeometry: 0
@@ -273,4 +275,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: 

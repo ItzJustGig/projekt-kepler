@@ -19,9 +19,10 @@ MonoBehaviour:
   totalHealing: 5
   totalShielding: 5
   applySelectedEffects: 0
-  applyAnyEffect: 4
+  applyAnyEffect: 15
   block: 3
   selectedStatUp: 0
   anyStatUp: 15
   anyStatDown: 5
   hasSummon: 30
+  priorityAllies: 0

@@ -230,26 +230,30 @@ public class Player : MonoBehaviour
         }
     }
     
-    public Unit GetRandom(int id)
+    public Unit GetRandom(Unit user)
     {
-        int rng = -1;
-        while (rng == id || rng == -1)
+        int id = user.id;
+        Unit unit = user;
+        while (unit == user)
         {
-            rng = Random.Range(0, 3);
-        }
-        Unit unit = null;
+            int rng = -1;
+            while (rng == id || rng == -1)
+            {
+                rng = Random.Range(0, 3);
+            }
 
-        switch (rng)
-        {
-            case 0:
-                unit = unit1;
-                break;
-            case 1:
-                unit = unit2;
-                break;
-            case 2:
-                unit = unit3;
-                break;
+            switch (rng)
+            {
+                case 0:
+                    unit = unit1;
+                    break;
+                case 1:
+                    unit = unit2;
+                    break;
+                case 2:
+                    unit = unit3;
+                    break;
+            }
         }
 
         return unit;

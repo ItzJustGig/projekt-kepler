@@ -329,7 +329,7 @@ public class Unit : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(0.65f);
+        yield return new WaitForSeconds(0.5f);
     }
 
     public Effects CheckIfEffectExists(string id)
@@ -376,7 +376,7 @@ public class Unit : MonoBehaviour
                             dmg = this.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, null, dotReduc);
                             dmg = this.CalcRegens(dmg);
 
-                            isDead = this.TakeDamage(dmg, false, false, this);
+                            isDead = this.TakeDamage(dmg, false, false, this, false);
                             DoAnimParticle(a.specialAnim);
                         }
                         bloodStacks = 0;
@@ -559,7 +559,7 @@ public class Unit : MonoBehaviour
                     if (a.name == "combatrepair")
                     {
                         Dotdmg dot = Dotdmg.CreateInstance<Dotdmg>();
-                        dot.Setup(dmg.shield, a.num, moveName, Dotdmg.SrcType.MOVE, Dotdmg.DmgType.SHIELD, this);
+                        dot.Setup(dmg.shield, a.num, moveName, Dotdmg.SrcType.MOVE, Dotdmg.DmgType.SHIELD, this, true);
                         dmg.shield = 0;
                         dotDmg.Add(dot);
                     }
@@ -572,7 +572,7 @@ public class Unit : MonoBehaviour
         return dmg;
     }
 
-    public bool TakeDamage (DMG dmg, bool isCrit, bool magicCrit, Unit attacker, string movename = "")
+    public bool TakeDamage (DMG dmg, bool isCrit, bool magicCrit, Unit attacker, bool fromAlly, string movename = "")
     {
         if (dmg.phyDmg > 0)
         {
@@ -700,28 +700,45 @@ public class Unit : MonoBehaviour
 
         if (dmg.heal > 0)
         {
-            summary.healDone += dmg.heal;
+            if (fromAlly == false)
+                summary.healDone += dmg.heal;
+            else
+                attacker.summary.healDone += dmg.heal;
+
             Heal(dmg.heal);
         }
 
         if (dmg.healMana > 0)
         {
-            summary.manaHealDone += dmg.healMana;
+            if (fromAlly == false)
+                summary.manaHealDone += dmg.healMana;
+            else
+                attacker.summary.manaHealDone += dmg.healMana;
         }
 
         if (dmg.healStamina > 0)
         {
-            summary.staminaHealDone += dmg.healStamina;
+            if (fromAlly == false)
+                summary.staminaHealDone += dmg.healStamina;
+            else
+                attacker.summary.staminaHealDone += dmg.healStamina;
         }
 
         if (dmg.healSanity > 0)
         {
-            summary.sanityHealDone += dmg.healSanity;
+            if (fromAlly == false)
+                summary.sanityHealDone += dmg.healSanity;
+            else
+                attacker.summary.sanityHealDone += dmg.healSanity;
         }
 
         if (dmg.shield > 0)
         {
-            summary.shieldDone += dmg.shield;
+            if (fromAlly == false)
+                summary.shieldDone += dmg.shield;
+            else
+                attacker.summary.shieldDone += dmg.shield;
+
             curShield += dmg.shield;
         }
 
