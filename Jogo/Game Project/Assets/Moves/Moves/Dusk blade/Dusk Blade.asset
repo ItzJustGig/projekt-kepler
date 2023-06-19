@@ -47,7 +47,6 @@ MonoBehaviour:
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: f58f1d676c9d2e94a8ca976b41d8f48e, type: 2}
-  - {fileID: 11400000, guid: 2b0d78672571d6d418edc67bd10972ce, type: 2}
   - {fileID: 11400000, guid: 54961bc26ab9c65499cbc08f5b3f424b, type: 2}
   - {fileID: 11400000, guid: 325c37107f4fee743a17d90799da9f80, type: 2}
   dot: []

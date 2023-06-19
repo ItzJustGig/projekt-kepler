@@ -19,7 +19,7 @@ MonoBehaviour:
   totalHealing: 5
   totalShielding: 5
   applySelectedEffects: 0
-  applyAnyEffect: 15
+  applyAnyEffect: 20
   block: 3
   selectedStatUp: 0
   anyStatUp: 15

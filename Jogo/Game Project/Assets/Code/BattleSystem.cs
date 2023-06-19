@@ -635,60 +635,64 @@ public class BattleSystem : MonoBehaviour
 
         foreach (Unit charc in characters)
         {
-            Player userTeam;
-            Player targetTeam;
-
-            if (charc.isEnemy)
+            if (!charc.isDead)
             {
-                userTeam = enemyTeam;
-                targetTeam = playerTeam;
-            } else
-            {
-                userTeam = playerTeam;
-                targetTeam = enemyTeam;
-            }
+                Player userTeam;
+                Player targetTeam;
 
-            charc.chosenMove.move.inCooldown = charc.chosenMove.move.cooldown;
-
-            bool canUseNormal = true;
-
-            if (charc.chosenMove.move == null)
-                canUseNormal = false;
-
-            if (charc.isEnemy)
-                state = BattleState.ENEMYTURN;
-            else
-                state = BattleState.PLAYERTURN;
-
-            foreach (Effects e in charc.effects)
-            {
-                if (e.id == "TAU" && (charc.chosenMove.target.isEnemy != charc.isEnemy))
+                if (charc.isEnemy)
                 {
-                    charc.chosenMove.target = e.source;
-                    Debug.Log("TAUNT");
+                    userTeam = enemyTeam;
+                    targetTeam = playerTeam;
                 }
-            }
-
-            foreach (Effects e in charc.chosenMove.target.effects)
-            {
-                if (e.id == "GRD" && (charc.chosenMove.target.isEnemy != charc.isEnemy))
+                else
                 {
-                    charc.chosenMove.target = e.source;
-                    Debug.Log("PROTECC");
+                    userTeam = playerTeam;
+                    targetTeam = enemyTeam;
                 }
-            }
 
-            if (canUseNormal)
-            {
-                yield return StartCoroutine(Attack(charc.chosenMove.move, charc, charc.chosenMove.target, userTeam, targetTeam));
-                charc.hud.SetStatsHud(charc);
-                charc.chosenMove.target.hud.SetStatsHud(charc.chosenMove.target);
-            }
-            else
-            {
-                yield return StartCoroutine(Attack(charc.chosenMove.move, charc, charc.chosenMove.target, userTeam, targetTeam));
-                charc.hud.SetStatsHud(charc);
-                charc.chosenMove.target.hud.SetStatsHud(charc.chosenMove.target);
+                charc.chosenMove.move.inCooldown = charc.chosenMove.move.cooldown;
+
+                bool canUseNormal = true;
+
+                if (charc.chosenMove.move == null)
+                    canUseNormal = false;
+
+                if (charc.isEnemy)
+                    state = BattleState.ENEMYTURN;
+                else
+                    state = BattleState.PLAYERTURN;
+
+                foreach (Effects e in charc.effects)
+                {
+                    if (e.id == "TAU" && (charc.chosenMove.target.isEnemy != charc.isEnemy))
+                    {
+                        charc.chosenMove.target = e.source;
+                        Debug.Log("TAUNT");
+                    }
+                }
+
+                foreach (Effects e in charc.chosenMove.target.effects)
+                {
+                    if (e.id == "GRD" && (charc.chosenMove.target.isEnemy != charc.isEnemy))
+                    {
+                        charc.chosenMove.target = e.source;
+                        Debug.Log("PROTECC");
+                    }
+                }
+
+                if (canUseNormal)
+                {
+                    yield return StartCoroutine(Attack(charc.chosenMove.move, charc, charc.chosenMove.target, userTeam, targetTeam));
+                    charc.hud.SetStatsHud(charc);
+                    charc.chosenMove.target.hud.SetStatsHud(charc.chosenMove.target);
+                }
+                else
+                {
+                    yield return StartCoroutine(Attack(charc.chosenMove.move, charc, charc.chosenMove.target, userTeam, targetTeam));
+                    charc.hud.SetStatsHud(charc);
+                    charc.chosenMove.target.hud.SetStatsHud(charc.chosenMove.target);
+                }
             }
         }
 
@@ -1072,10 +1076,7 @@ public class BattleSystem : MonoBehaviour
                                     user.statMods.Add(statMod);
                                     user.usedBonusStuff = false;
 
-                                    if (user.isEnemy)
-                                        target.hud.SetStatsHud(user);
-                                    else
-                                        user.hud.SetStatsHud(user);
+                                    user.hud.SetStatsHud(user);
                                     ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
                                 }
                             }
@@ -1304,7 +1305,7 @@ public class BattleSystem : MonoBehaviour
 
                         if (a.name == "shadowdagger")
                         {
-                            if (a.inCd == 0 && move.type is Moves.MoveType.PHYSICAL)
+                            if (a.inCd == 0 && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC))
                             {
                                 user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
 
@@ -1327,11 +1328,38 @@ public class BattleSystem : MonoBehaviour
 
                                 dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
 
-                                StatMod mod = a.statMod.ReturnStats();
-                                mod.inTime = mod.time+1;
-                                user.statMods.Add(mod);
-                                statsUser = user.SetModifiers();
+                                float hpPer = (100 * target.curHp) / target.SetModifiers().hp;
+                                if (hpPer >= a.num)
+                                {
+                                    scale = a.ifConditionTrueScale2();
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                }
 
+                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                            }
+                        }
+
+                        if (a.name == "shadowdagger2")
+                        {
+                            if (a.inCd == 0 && move.type is Moves.MoveType.PHYSICAL)
+                            {
+                                a.inCd = a.cd;
+                                StatMod statMod = a.statMod.ReturnStats();
+                                statMod.inTime = statMod.time;
+                                user.statMods.Add(statMod);
+                                user.usedBonusStuff = false;
+
+                                user.hud.SetStatsHud(user);
                                 ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
                             }
                         }
@@ -3682,6 +3710,17 @@ public class BattleSystem : MonoBehaviour
                     ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
                     break;
 
+                case "shadowdagger2":
+                    if (a.inCd > 0)
+                        a.inCd--;
+
+                    isReady = false;
+                    if (a.inCd == 0)
+                        isReady = true;
+
+                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                    break;
+
                 case "toxicteeth":
                     if (a.inCd > 0)
                         a.inCd--;
@@ -4207,15 +4246,14 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator NewTurn()
     {
-        yield return new WaitForSeconds(0.5f);
-
+        yield return new WaitForSeconds(0.4f);
         StartCoroutine(ManageEndTurn(player.unit1, enemy));
         StartCoroutine(ManageEndTurn(player.unit2, enemy));
         StartCoroutine(ManageEndTurn(player.unit3, enemy));
         StartCoroutine(ManageEndTurn(enemy.unit1, player));
         StartCoroutine(ManageEndTurn(enemy.unit2, player));
         StartCoroutine(ManageEndTurn(enemy.unit3, player));
-        yield return new WaitForSeconds(0.85f);
+        yield return new WaitForSeconds(0.9f);
 
         //set turn number
         combatCount = 0;

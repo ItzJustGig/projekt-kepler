@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 266200e1cfac25c4aa7c5a406a38c002, type: 3}
-  m_Name: phy ene
+  m_Name: physical
   m_EditorClassIdentifier: 
   type: 0
   playerStat: 0
-  flatValue: 0
+  flatValue: 2
   curHp: 0
-  missHp: 0
+  missHp: 0.03
   maxHp: 0
   hpRegen: 0
   missMana: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
   maxSanity: 0
   atkDmg: 0
   magicPower: 0
-  dmgResis: 0.12
+  dmgResis: 0
   magicResis: 0
   timing: 0
   movSpeed: 0

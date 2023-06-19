@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c40be94f130cb7f409300204aedd3b37, type: 3}
-  m_Name: shadowdagger
+  m_Name: shadowdagger2
   m_EditorClassIdentifier: 
-  name: shadowdagger
+  name: shadowdagger2
   showNameOnInfo: 0
   origin: 1
   sprite: {fileID: 21300000, guid: b86dd3d8fe128fb4fa85120f887b1ed8, type: 3}
-  num: 0.2
+  num: 0
   maxNum: 0
   stacks: 0
   maxStacks: 0
-  cd: 5
-  inCd: 3
+  cd: 9
+  inCd: 9
   anim: 
   anim2: 
-  statScale: {fileID: 11400000, guid: d40974fde5d330d40ad41897eb945f88, type: 2}
-  statScale2: {fileID: 11400000, guid: 89de86e8cd9f3044091e952eee2a7583, type: 2}
-  statMod: {fileID: 11400000, guid: 26892e29c4822fc4abf32765a1470d02, type: 2}
+  statScale: {fileID: 0}
+  statScale2: {fileID: 0}
+  statMod: {fileID: 11400000, guid: defd8f38247894f44a029b658a42e52a, type: 2}
   statMod2: {fileID: 0}

@@ -28,7 +28,7 @@ MonoBehaviour:
   atkDmg: 0
   magicPower: 0
   critChance: 0.18
-  critDmg: 0.485
+  critDmg: 0.4
   dmgResis: 0
   magicResis: 0
   timing: 0

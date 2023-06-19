@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 11
+  m_Text: 9
 --- !u!1 &7954924221204952151
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hunter's Dirk
+  m_Text: Healing Apple
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7e8c3244c112b3b43a26a1b635eed6f2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -405,56 +405,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Hunter''s Dirk</align></size>
+  text: '<size=24><align=center>Healing Apple</align></size>
 
-    <size=20><align=center><color=#ffaa00>Physical</color></align></size>
+    <size=20><align=center><color=#00ff11>Support</color></align></size>
 
     <size=15><align=center>Single
-    Target | Enemy</align></size>
+    Target | Self or Ally</align></size>
 
-    <color=#2d71fa>Mana Cost</color>: 0
+    <color=#2d71fa>Mana Cost</color>:
+    45
 
-    <color=#ebdb28>Stamina
-    Cost</color>: 0
+    <color=#ebdb28>Stamina Cost</color>: 0
 
-    Cooldown: 7
+    Cooldown: 6
 
-    Priority: 0
-
-    <color=#f75145>Bonus
-    critical damage: 10%</color>
+    Priority:
+    0
 
     <s><align=center>|                 |</align></s>
 
-    Deal
-    <color=#ffaa00>114,6 physical damage</color>
+    100% chance to
+    <color=#946ACD>15% Magic Resistance</color> to the user for 3 turns
+
+    <s><align=center>|                
+    |</align></s>
+
+    <color=#00ff11>Heal 37,0 health</color>
+
+    Recover <color=#f0dd0a>4,0
+    stamina</color>
 
 '
-  textSec: '<size=24><align=center>Hunter''s Dirk</align></size>
+  textSec: '<size=24><align=center>Healing Apple</align></size>
 
-    <size=20><align=center><color=#ffaa00>Physical</color></align></size>
+    <size=20><align=center><color=#00ff11>Support</color></align></size>
 
     <size=15><align=center>Single
-    Target | Enemy</align></size>
+    Target | Self or Ally</align></size>
 
-    <color=#2d71fa>Mana Cost</color>: 0
+    <color=#2d71fa>Mana Cost</color>:
+    45
 
-    <color=#ebdb28>Stamina
-    Cost</color>: 0
+    <color=#ebdb28>Stamina Cost</color>: 0
 
-    Cooldown: 7
+    Cooldown: 6
 
-    Priority: 0
-
-    <color=#f75145>Bonus
-    critical damage: 10%</color>
+    Priority:
+    0
 
     <s><align=center>|                 |</align></s>
 
-    Deal
-    <color=#ffaa00>25 + (<color=#ffaa00>60%</color> of the user''s <color=#ffaa00>Attack
-    Damage</color>) + (<color=#0095ff>14%</color> of the user''s <color=#0095ff>Movement
-    Speed</color>) physical damage</color>
+    100% chance to
+    <color=#946ACD>15% Magic Resistance</color> to the user for 3 turns
+
+    <s><align=center>|                
+    |</align></s>
+
+    <color=#00ff11>Heal 10 + (<color=#2ffa3d>40%</color> of the
+    user''s <color=#2ffa3d>Health Regen</color>) + (<color=#1a66ff>60%</color> of
+    the user''s <color=#1a66ff>Magic Power</color>) health</color>
+
+    Recover
+    <color=#f0dd0a>4 stamina</color>
 
 '
   wantSec: 0

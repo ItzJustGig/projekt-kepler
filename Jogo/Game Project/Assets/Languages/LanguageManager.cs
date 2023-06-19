@@ -958,6 +958,7 @@ public class LanguageManager : MonoBehaviour
         public string manasword;
         public string manascepter;
         public string shadowdagger;
+        public string shadowdagger2;
         public string spectralring;
         public string huntersdirk;
         public string gravitychange;
@@ -1104,6 +1105,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "shadowdagger":
                     returns = shadowdagger;
+                    break;
+                case "shadowdagger2":
+                    returns = shadowdagger2;
                     break;
                 case "spectralring":
                     returns = spectralring;

@@ -402,7 +402,8 @@
             "bootsoftherunner": "Botas do Corredor",
             "holdingtheline": "Segurando a Linha",
             "druid": "Druida",
-            "elficmagic": "Magia Elfica"
+            "elficmagic": "Magia Elfica",
+            "shadowdagger2": "Adaga Sombria"
         },
         "desc": {
             "bloodbath": "Se um inimigo estiver a Sangrar, o utilizador vai ganhar%mod%e vai causar %scale% b\u00F3nus nos ataques.",
@@ -443,7 +444,7 @@
             "gravitybelt": "Quando o utilizador usa uma <color=#ffaa00>t\u00E9cnica f\u00EDsica</color> ou um <color=#ffaa00>ataque b\u00E1sico</color> e \u00E9 <color=#f75145>cr\u00EDtico</color>, causa %scale% b\u00F3nus e ganha%mod%",
             "manasword": "A cada <color=#ffaa00>t\u00E9cnica f\u00EDsica</color> que o utilizador usa, ganha%mod%at\u00E9 %maxStacks% vezes.\nQuando estiver completamente empilhado o utilizador ganha%mod2%e causa %scale% b\u00F3nus com <color=#ffaa00>t\u00E9cnicas f\u00EDsicas</color>.",
             "manascepter": "A cada t\u00E9cnica <color=#1a66ff>m\u00E1gicas</color>, <color=#CC66FF>encantamento</color> ou <color=#787878>defenciva</color> o utilizador ganha%mod%at\u00E9 %maxStacks% vezes.\nQuando estiver completamente empilhado o utilizador ganha%mod2%e causa %scale% b\u00f3nus em t\u00E9cnicas <color=#1a66ff>m\u00E1gicas</color> e <color=#CC66FF>encantamentos</color>.",
-            "shadowdagger": "As <color=#ffaa00>t\u00E9cnicas f\u00EDsicas</color> do utilizador causam %scale% b\u00F3nus e ganha%mod%(%cd% turnos de recarga)",
+            "shadowdagger": "O utilizador causa %scale% bonus com ataques <color=#ffaa00>f\u00EDsicos</color> e <color=#ffaa00>b\u00e1sicos</color>. Quando o alvo est\u00e1 abaixo de <color=#00ff11>%maxNum%% vida</color> causa %scale2% bonus (%cd% turnos de recarga)",
             "spectralring": "O utilizador ganha%mod%a cada %cd% turnos, at\u00E9 %maxStacks% vezes.\nQuando o utilizador cai abaixo de <color=#00ff11>%num%% vida</color>, <color=#1a66ff>t\u00E9cnicas m\u00E1gicas</color> causam %scale% b\u00F3nus.",
             "huntersdirk": "Se o alvo estiver a cima de %num%% de vida, <color=#ffaa00>t\u00e9cnicas b\u00e1scas</color> ou <color=#ffaa00>f\u00edsicas</color> causam %scale% b\u00f3nus. (%cd% turnos de recarga)",
             "gravitychange": "O utilizador causa %scale% b\u00F3nus com <color=#ffaa00>ataques f\u00EDsicos</color> ou <color=#ffaa00>b\u00e1sicos</color> por %cd% turnos.",
@@ -466,7 +467,8 @@
 			"bootsoftherunner": "O utilizador ganha%mod%a cada %cd% turnos (empilha at\u00e9 %maxStacks% vezes)",
             "holdingtheline": "Quando o utilizador usa uma t\u00e9cnica <color=#787878>defenciva</color>, <color=#CC66FF>encantamento</color> ou <color=#ffaa00>b\u00e1sicos</color>, d\u00e1 %scale% \u00e0 equipa. T\u00e9cnicas <color=#ffaa00>f\u00edsicos</color>, <color=#1a66ff>m\u00e1gicos</color> ou <color=#f75145>de alcance</color> d\u00e3o %scale2% \u00e0 equipa.",
 			"druid": "O a cura b\u00f3nus do utilizador \u00e9 aumentada em +(%num%% do poder m\u00e1gico do utilizador)%, quando um aliado est\u00e1 afetado por Sangramento, Alergia, Envenenamento ou Aleijado, o utilizador cura %scale2% b\u00f3nus nesse alvo.",
-			"elficmagic": "A cada %maxStacks% t\u00e9cnicas de alcance ou m\u00e1gicas a pr\u00f3xima vai ser cr\u00edtica e causa %scale% b\u00f3nus. (dano magic causa dano critico tamb\u00e9m)"
+			"elficmagic": "A cada %maxStacks% t\u00e9cnicas de alcance ou m\u00e1gicas a pr\u00f3xima vai ser cr\u00edtica e causa %scale% b\u00f3nus. (dano magic causa dano critico tamb\u00e9m)",
+            "shadowdagger2": "Depois de utilizar um ataque <color=#ffaa00>f\u00EDsico</color> o utilizador ganha%mod% (%cd% turnos de recarga)"
         }
     },
     "moves": {

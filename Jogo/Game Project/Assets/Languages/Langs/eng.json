@@ -402,7 +402,8 @@
 			"bootsoftherunner": "Boots of the Runner",
 			"holdingtheline": "Holding the Line",
 			"druid": "Druid",
-			"elficmagic": "Elfic Magic"
+			"elficmagic": "Elfic Magic",
+			"shadowdagger2": "Shadow Dagger"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain%mod%and deal bonus %scale% on attacks.",
@@ -443,7 +444,7 @@
 			"gravitybelt": "When the carrier uses a <color=#ffaa00>physical move</color> or <color=#ffaa00>basic attack</color> and <color=#f75145>crits</color>, deal bonus %scale% and gain%mod%",
 			"manasword": "Every <color=#ffaa00>physical moves</color> the carrier gain%mod%up to %maxStacks% times.\nWhen at maximum stacks the user gain%mod2%and deal bonus %scale% on <color=#ffaa00>physical moves</color>.",
 			"manascepter": "Every <color=#1a66ff>magic</color>, <color=#CC66FF>enchantment</color> or <color=#787878>defencive</color> move the carrier gain%mod%up to %maxStacks% times.\nWhen at maximum stacks the user gain%mod2%and deal bonus %scale% on <color=#1a66ff>magic</color> and <color=#CC66FF>enchantment</color> moves.",
-			"shadowdagger": "The user's <color=#ffaa00>physical moves</color> deal bonus %scale% and gain%mod%. (%cd% turns cooldown)",
+			"shadowdagger": "The user deal bonus %scale% on <color=#ffaa00>physical</color> and <color=#ffaa00>basic attacks</color>. When the target is below <color=#00ff11>%num%% health</color> deal bonus %scale2% (%cd% turns cooldown)",
 			"spectralring": "The user gain%mod%every %cd% turns up to %maxStacks% times.\nWhen the user drops below <color=#00ff11>%num%% health</color>, <color=#1a66ff>magic moves</color> deal bonus %scale%.",
 			"huntersdirk": "If the target is above <color=#00ff11>%num%% health</color>, <color=#ffaa00>basic</color> or <color=#ffaa00>physical moves</color> deal bonus %scale%. (%cd% turns cooldown)",
 			"gravitychange": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> or <color=#ffaa00>basic attack</color> for %cd% turns",
@@ -466,7 +467,8 @@
 			"bootsoftherunner": "The user gain%mod%every %cd% turns (stack up to %maxStacks% times)",
 			"holdingtheline": "When the user uses a <color=#787878>defencive</color>, <color=#CC66FF>enchantment</color> or <color=#ffaa00>basic attacks</color>, grant %scale% to the whole team. <color=#ffaa00>Physical</color>, <color=#1a66ff>magic</color> or <color=#f75145>ranged</color> moves grant %scale2% to the whole team.",
 			"druid": "The user's healing is increased by +(%num%% of the user's magic power)%, when an ally is affected by Blood, Allergy, Poison or Cripple, the user heal bonus %scale2% to that target.",
-			"elficmagic": "Every %maxStacks% magic or ranged moves the next will crit and deal bonus %scale%. (crit applies on magic damage aswell)"
+			"elficmagic": "Every %maxStacks% magic or ranged moves the next will crit and deal bonus %scale%. (crit applies on magic damage aswell)",
+			"shadowdagger2": "After using a <color=#ffaa00>physical move</color> the user gain%mod% (%cd% turns cooldown)"
 		}
 	},
 	"moves": {
