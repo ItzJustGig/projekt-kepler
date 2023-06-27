@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Blazing Strike
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: blazingstrike
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -34,6 +39,8 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 45
   staminaCost: 115
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0.15
   critChanceBonus: 0.05
   statModUser: {fileID: 11400000, guid: 80ad492d4e98b174592a840492633dd2, type: 2}
@@ -41,7 +48,11 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: 1b1f0dd2eeddbcf4eafb795688ae32ae, type: 2}
   - {fileID: 11400000, guid: 9bc7e33f4b1398f41a1091289d0fea5b, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: 32b76f6ce4221b440b8ad2c89406dc49, type: 2}
   - {fileID: 11400000, guid: 516c4c7618f2e94408ee9c89ad358564, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: physicalhit

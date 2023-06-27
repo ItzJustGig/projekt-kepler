@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Blazing Uppercut
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: blazinguppercut
   hitTime: 1
   priority: 0
   uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -35,6 +39,8 @@ MonoBehaviour:
   inCooldown: 0
   manaCost: 30
   staminaCost: 85
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: e202904f5fb43e34f8ef561e3324b890, type: 2}
@@ -47,3 +53,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4379fe44145b4b74fab3d8e195d12bd8, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: physicalhit

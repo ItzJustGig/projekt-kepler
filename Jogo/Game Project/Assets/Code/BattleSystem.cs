@@ -77,6 +77,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private GameObject moveButton;
 
     [SerializeField] private GameObject barIconPrefab;
+    [SerializeField] private GameObject statsGO;
 
     [SerializeField] private Sprite phyAtk;
     [SerializeField] private Sprite magiAtk;
@@ -206,13 +207,13 @@ public class BattleSystem : MonoBehaviour
         //healManaBtn.interactable = false;
         //ultBtn.interactable = false;
 
-        player.SetUpStats(player.unit1, info, tiredStart + (tiredGrowth * tiredStacks));
-        player.SetUpStats(player.unit2, info, tiredStart + (tiredGrowth * tiredStacks));
-        player.SetUpStats(player.unit3, info, tiredStart + (tiredGrowth * tiredStacks));
+        player.SetUpStats(player.unit1, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
+        player.SetUpStats(player.unit2, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
+        player.SetUpStats(player.unit3, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
 
-        enemy.SetUpStats(enemy.unit1, info, tiredStart + (tiredGrowth * tiredStacks));
-        enemy.SetUpStats(enemy.unit2, info, tiredStart + (tiredGrowth * tiredStacks));
-        enemy.SetUpStats(enemy.unit3, info, tiredStart + (tiredGrowth * tiredStacks));
+        enemy.SetUpStats(enemy.unit1, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
+        enemy.SetUpStats(enemy.unit2, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
+        enemy.SetUpStats(enemy.unit3, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
 
         player.unit1.GetItems(info, items);
         player.unit2.GetItems(info, items);
@@ -665,7 +666,7 @@ public class BattleSystem : MonoBehaviour
 
                 foreach (Effects e in charc.effects)
                 {
-                    if (e.id == "TAU" && (charc.chosenMove.target.isEnemy != charc.isEnemy))
+                    if (e.id == "TAU" && (charc.chosenMove.target.isEnemy != charc.isEnemy) && !e.source.isDead)
                     {
                         charc.chosenMove.target = e.source;
                         Debug.Log("TAUNT");
@@ -674,7 +675,7 @@ public class BattleSystem : MonoBehaviour
 
                 foreach (Effects e in charc.chosenMove.target.effects)
                 {
-                    if (e.id == "GRD" && (charc.chosenMove.target.isEnemy != charc.isEnemy))
+                    if (e.id == "GRD" && (charc.chosenMove.target.isEnemy != charc.isEnemy) && !e.source.isDead)
                     {
                         charc.chosenMove.target = e.source;
                         Debug.Log("PROTECC");

@@ -50,5 +50,5 @@ MonoBehaviour:
   effects: []
   grantPassive: {fileID: 11400000, guid: 8759809e781aa004f9f9c5e1e79cb2b2, type: 2}
   summon: {fileID: 0}
-  animUser: 
+  animUser: burn
   animTarget: 

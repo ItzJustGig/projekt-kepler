@@ -61,8 +61,9 @@ public class BattleHud : MonoBehaviour
         shieldSlider.value = 0;
     }
 
-    public void SetHud (Unit unit, int staminaTired)
+    public void SetHud (Unit unit, int staminaTired, GameObject statsGO)
     {
+        this.statsGO = statsGO;
         language = langmang.language;
         icon.sprite = unit.charc.charcIcon;
         nameText.text = langmang.languageManager.GetText(language, "charc", "name", unit.charc.name);
@@ -108,208 +109,89 @@ public class BattleHud : MonoBehaviour
     {
         Stats stats = user.SetModifiers();
         user.LoadSize(user.size + stats.sizeMod);
-        //SetStats(stats.ReturnStats(), user.charc.stats.ReturnStats(), user.curSanity);
+        SetStats(stats.ReturnStats(), user.charc.stats.ReturnStats(), user.curSanity);
     }
 
     public void SetStats(Stats statsTemp, Stats originalTemp, int curSanity)
     {
-        Text hp = statsGO.transform.Find("hp").GetChild(0).GetComponent<Text>();
-        Text hpRegen = statsGO.transform.Find("hpregen").GetChild(0).GetComponent<Text>();
-        Text mana = statsGO.transform.Find("mana").GetChild(0).GetComponent<Text>();
-        Text manaRegen = statsGO.transform.Find("manaregen").GetChild(0).GetComponent<Text>();
-        Text stamina = statsGO.transform.Find("stamina").GetChild(0).GetComponent<Text>();
-        Text staminaRegen = statsGO.transform.Find("staminaregen").GetChild(0).GetComponent<Text>();
-        Text sanity = statsGO.transform.Find("sanity").GetChild(0).GetComponent<Text>();
-        Text dmgResis = statsGO.transform.Find("dmgresis").GetChild(0).GetComponent<Text>();
-        Text magicResis = statsGO.transform.Find("magicresis").GetChild(0).GetComponent<Text>();
-        Text atkDmg = statsGO.transform.Find("atkdmg").GetChild(0).GetComponent<Text>();
-        Text mp = statsGO.transform.Find("mp").GetChild(0).GetComponent<Text>();
-        Text critChance = statsGO.transform.Find("critchance").GetChild(0).GetComponent<Text>();
-        Text critDmg = statsGO.transform.Find("critdmg").GetChild(0).GetComponent<Text>();
-        Text timing = statsGO.transform.Find("timing").GetChild(0).GetComponent<Text>();
-        Text movSpeed = statsGO.transform.Find("movspeed").GetChild(0).GetComponent<Text>();
-        Text evasion = statsGO.transform.Find("evasion").GetChild(0).GetComponent<Text>();
-        Text lifesteal = statsGO.transform.Find("lifesteal").GetChild(0).GetComponent<Text>();
-        Text accuracy = statsGO.transform.Find("accuracy").GetChild(0).GetComponent<Text>();
-        Text armourpen = statsGO.transform.Find("armourpen").GetChild(0).GetComponent<Text>();
+        Text hp = statsGO.transform.Find("HP").GetComponent<Text>();
+        Text hpRegen = statsGO.transform.Find("HP REGEN").GetComponent<Text>();
+        Text mana = statsGO.transform.Find("MN").GetComponent<Text>();
+        Text manaRegen = statsGO.transform.Find("MN REGEN").GetComponent<Text>();
+        Text stamina = statsGO.transform.Find("STA").GetComponent<Text>();
+        Text staminaRegen = statsGO.transform.Find("STA REGEN").GetComponent<Text>();
+        Text sanity = statsGO.transform.Find("SANITY").GetComponent<Text>();
+        Text dmgResis = statsGO.transform.Find("DEF").GetComponent<Text>();
+        Text magicResis = statsGO.transform.Find("MR").GetComponent<Text>();
+        Text atkDmg = statsGO.transform.Find("ATK").GetComponent<Text>();
+        Text mp = statsGO.transform.Find("MP").GetComponent<Text>();
+        Text critChance = statsGO.transform.Find("CRIT CHANCE").GetComponent<Text>();
+        Text critDmg = statsGO.transform.Find("CRIT DMG").GetComponent<Text>();
+        Text timing = statsGO.transform.Find("TIMING").GetComponent<Text>();
+        Text movSpeed = statsGO.transform.Find("MOV").GetComponent<Text>();
+        Text evasion = statsGO.transform.Find("EVA").GetComponent<Text>();
+        Text lifesteal = statsGO.transform.Find("LIFESTEAL").GetComponent<Text>();
+        Text accuracy = statsGO.transform.Find("ACC").GetComponent<Text>();
+        Text armourpen = statsGO.transform.Find("ARM PEN").GetComponent<Text>();
+        Text magicpen = statsGO.transform.Find("MAGIC PEN").GetComponent<Text>();
+        Text healbonus = statsGO.transform.Find("HEALBONUS").GetComponent<Text>();
+        Text shieldbonus = statsGO.transform.Find("SHIELD BONUS").GetComponent<Text>();
+        Text manacost = statsGO.transform.Find("MN COST").GetComponent<Text>();
+        Text staminacost = statsGO.transform.Find("STA COST").GetComponent<Text>();
 
-        Image sanityIcon = statsGO.transform.Find("sanity").GetComponent<Image>();
+        Image sanityIcon = statsGO.transform.Find("SANITY").GetChild(0).GetComponent<Image>();
 
         Stats stats = statsTemp.ReturnStats();
         Stats original = originalTemp.ReturnStats();
 
-        hp.text = stats.hp.ToString("0");
+        hp.text = original.hp.ToString("0") + "+(" + (stats.hp - original.hp).ToString("0") + ")";
 
-        if (stats.hp > original.hp)
-            hp.color = Color.green;
-        else if (stats.hp < original.hp)
-            hp.color = Color.red;
-        else
-            hp.color = Color.black;
+        hpRegen.text = original.hpRegen.ToString("0.0") + "+(" + (stats.hpRegen - original.hpRegen).ToString("0.0") + ")";
 
-        hpRegen.text = stats.hpRegen.ToString("0");
+        mana.text = original.mana.ToString("0") + "+(" + (stats.mana - original.mana).ToString("0") + ")";
 
-        if (stats.hpRegen > original.hpRegen)
-            hpRegen.color = Color.green;
-        else if (stats.hpRegen < original.hpRegen)
-            hpRegen.color = Color.red;
-        else
-            hpRegen.color = Color.black;
+        manaRegen.text = original.manaRegen.ToString("0.0") + "+(" + (stats.manaRegen - original.manaRegen).ToString("0.0") + ")";
 
-        mana.text = stats.mana.ToString("0");
+        stamina.text = original.stamina.ToString("0") + "+(" + (stats.stamina - original.stamina).ToString("0") + ")";
 
-        if (stats.mana > original.mana)
-            mana.color = Color.green;
-        else if (stats.mana < original.mana)
-            mana.color = Color.red;
-        else
-            mana.color = Color.black;
-
-        manaRegen.text = stats.manaRegen.ToString("0.00");
-
-        if (stats.manaRegen > original.manaRegen)
-            manaRegen.color = Color.green;
-        else if (stats.manaRegen < original.manaRegen)
-            manaRegen.color = Color.red;
-        else
-            manaRegen.color = Color.black;
-
-        stamina.text = stats.stamina.ToString("0");
-
-        if (stats.stamina > original.stamina)
-            stamina.color = Color.green;
-        else if (stats.stamina < original.stamina)
-            stamina.color = Color.red;
-        else
-            stamina.color = Color.black;
-
-        staminaRegen.text = stats.staminaRegen.ToString("0.00");
-
-        if (stats.staminaRegen > original.staminaRegen)
-            staminaRegen.color = Color.green;
-        else if (stats.staminaRegen < original.staminaRegen)
-            staminaRegen.color = Color.red;
-        else
-            staminaRegen.color = Color.black;
+        staminaRegen.text = original.staminaRegen.ToString("0.0") + "+(" + (stats.staminaRegen - original.staminaRegen).ToString("0.0") + ")";
 
         sanity.text = curSanity.ToString("0") + "/" + stats.sanity.ToString("0");
 
-        if (stats.sanity > original.sanity)
-            sanity.color = Color.green;
-        else if (stats.sanity < original.sanity)
-            sanity.color = Color.red;
-        else
-            sanity.color = Color.black;
+        dmgResis.text = original.dmgResis.ToString("0") + "+(" + (stats.dmgResis - original.dmgResis).ToString("0") + ")";
 
-        dmgResis.text = stats.dmgResis.ToString("0");
+        magicResis.text = original.magicResis.ToString("0") + "+(" + (stats.magicResis - original.magicResis).ToString("0") + ")";
 
-        if (stats.dmgResis > original.dmgResis)
-            dmgResis.color = Color.green;
-        else if (stats.dmgResis < original.dmgResis)
-            dmgResis.color = Color.red;
-        else
-            dmgResis.color = Color.black;
+        atkDmg.text = original.atkDmg.ToString("0") + "+(" + (stats.atkDmg - original.atkDmg).ToString("0") + ")";
 
-        magicResis.text = stats.magicResis.ToString("0");
 
-        if (stats.magicResis > original.magicResis)
-            magicResis.color = Color.green;
-        else if (stats.magicResis < original.magicResis)
-            magicResis.color = Color.red;
-        else
-            magicResis.color = Color.black;
+        mp.text = original.magicPower.ToString("0") + "+(" + (stats.magicPower - original.magicPower).ToString("0") + ")";
 
-        atkDmg.text = stats.atkDmg.ToString("0");
-
-        if (stats.atkDmg > original.atkDmg)
-            atkDmg.color = Color.green;
-        else if (stats.atkDmg < original.atkDmg)
-            atkDmg.color = Color.red;
-        else
-            atkDmg.color = Color.black;
-
-        mp.text = stats.magicPower.ToString("0");
-
-        if (stats.magicPower > original.magicPower)
-            mp.color = Color.green;
-        else if (stats.magicPower < original.magicPower)
-            mp.color = Color.red;
-        else
-            mp.color = Color.black;
 
         if (stats.critChance > 0)
-            critChance.text = stats.critChance.ToString("0.0%");
+            critChance.text = original.critChance.ToString("0.0%") + "+(" + (stats.critChance - original.critChance).ToString("0.0%") + ")";
         else
             critChance.text = 0 + "%"; 
 
-        if (stats.critChance > original.critChance)
-            critChance.color = Color.green;
-        else if (stats.critChance < original.critChance)
-            critChance.color = Color.red;
-        else
-            critChance.color = Color.black;
-
-        critDmg.text = stats.critDmg.ToString("0.0%");
-
-        if (stats.critDmg > original.critDmg)
-            critDmg.color = Color.green;
-        else if (stats.critDmg < original.critDmg)
-            critDmg.color = Color.red;
-        else
-            critDmg.color = Color.black;
+        critDmg.text = original.critDmg.ToString("0.0%") + "+(" + (stats.critDmg - original.critDmg).ToString("0.0%") + ")";
 
         float timingVal = stats.timing;
 
         if (stats.timing > 5)
             timingVal = 5;
 
-        timing.text = timingVal.ToString("0.00");
+        timing.text = original.timing.ToString("0.00") + "+(" + (timingVal - original.timing).ToString("0.00") + ")";
 
-        if (timingVal > original.timing)
-            timing.color = Color.green;
-        else if (timingVal < original.timing && original.timing <= 5)
-            timing.color = Color.red;
-        else
-            timing.color = Color.black;
-
-        movSpeed.text = stats.movSpeed.ToString("0");
-
-        if (stats.movSpeed > original.movSpeed)
-            movSpeed.color = Color.green;
-        else if (stats.movSpeed < original.movSpeed)
-            movSpeed.color = Color.red;
-        else
-            movSpeed.color = Color.black;
+        movSpeed.text = original.movSpeed.ToString("0") + "+(" + (stats.movSpeed - original.movSpeed).ToString("0") + ")";
 
         if ((stats.movSpeed * 0.035) + (timingVal * 0.5) + (curSanity * 0.01) + stats.evasion > 0)
-            evasion.text = ((stats.movSpeed * 0.035) + (timingVal * 0.5) + (curSanity * 0.01) + stats.evasion).ToString("0.00") + "%";
+            evasion.text = ((stats.movSpeed * 0.035) + (timingVal * 0.5) + (curSanity * 0.01)).ToString("0.00")+"%" + "+(" + stats.evasion.ToString("0.00") + "%)";
         else
             evasion.text =  0 + "%";
 
-        if (stats.evasion > 0)
-            evasion.color = Color.green;
-        else if (stats.evasion < 0)
-            evasion.color = Color.red;
-        else
-            evasion.color = Color.black;
+        lifesteal.text = original.lifesteal.ToString("0.0%") + "+(" + (stats.lifesteal - original.lifesteal).ToString("0.0%") + ")";
 
-        lifesteal.text = stats.lifesteal.ToString("0.00%");
-
-        if (stats.lifesteal > original.lifesteal)
-            lifesteal.color = Color.green;
-        else if (stats.lifesteal < original.lifesteal)
-            lifesteal.color = Color.red;
-        else
-            lifesteal.color = Color.black;
-
-        accuracy.text = stats.accuracy.ToString("0.0%");
-
-        if (stats.accuracy > original.accuracy)
-            accuracy.color = Color.green;
-        else if (stats.accuracy < original.accuracy)
-            accuracy.color = Color.red;
-        else
-            accuracy.color = Color.black;
+        accuracy.text = original.accuracy.ToString("0.0%") + "+(" + (stats.accuracy - original.accuracy).ToString("0.0%") + ")";
 
         float sanityPer = (curSanity * 100) / stats.sanity;
 
@@ -322,7 +204,17 @@ public class BattleHud : MonoBehaviour
         else if (sanityPer <= 25)
             sanityIcon.sprite = sanity25;
 
-        armourpen.text = stats.armourPen.ToString("0.0%") + " | " + stats.magicPen.ToString("0.0%");
+        armourpen.text = original.armourPen.ToString("0.0%") + "+(" + (stats.armourPen - original.armourPen).ToString("0.0%") + ")";
+
+        healbonus.text = original.healBonus.ToString("0.0%") + "+(" + (stats.healBonus - original.healBonus).ToString("0.0%") + ")";
+        
+        shieldbonus.text = original.shieldBonus.ToString("0.0%") + "+(" + (stats.shieldBonus - original.shieldBonus).ToString("0.0%") + ")";
+        
+        magicpen.text = original.magicPen.ToString("0.0%") + "+(" + (stats.magicPen - original.magicPen).ToString("0.0%") + ")";
+
+        manacost.text = original.manaCost.ToString("0.0%") + "+(" + (stats.manaCost - original.manaCost).ToString("0.0%") + ")";
+
+        staminacost.text = original.staminaCost.ToString("0.0%") + "+(" + (stats.staminaCost - original.staminaCost).ToString("0.0%") + ")";
     }
 
     public void OpenStatsMenu()

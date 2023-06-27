@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     public int deadCharacters = 0;
     public int playableCharacters = 3;
 
-    public void SetUpStats(Unit unit, EndlessInfo info, float tired)
+    public void SetUpStats(Unit unit, EndlessInfo info, float tired, GameObject statsGO)
     {
         if (PlayerPrefs.GetInt("isEndless") == 1 && !unit.isEnemy)
         {
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
             unit.curSanity = unit.charc.stats.sanity;
         }
 
-        unit.hud.SetHud(unit, (int)(unit.curStamina * tired));
+        unit.hud.SetHud(unit, (int)(unit.curStamina * tired), statsGO);
         unit.curShield = 0;
 
         unit.statMods.Clear();

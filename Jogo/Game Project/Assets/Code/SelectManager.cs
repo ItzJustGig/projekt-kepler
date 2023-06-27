@@ -1,6 +1,8 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class SelectManager : MonoBehaviour
 {
@@ -711,12 +713,26 @@ public class SelectManager : MonoBehaviour
         DisablePortraits();
         if (PlayerPrefs.GetInt("isEndless") == 0)
         {
+            List<int> list = new List<int>();
+
+            if (PlayerPrefs.HasKey(selectedEnemy + (characterId - 1)))
+                list.Add(PlayerPrefs.GetInt(selectedEnemy + (characterId - 1)));
+
+            if (PlayerPrefs.HasKey(selectedEnemy + (characterId - 2)))
+                list.Add(PlayerPrefs.GetInt(selectedEnemy + (characterId - 2)));
+
+            if (PlayerPrefs.HasKey(selectedCharacter + (characterId - 1)))
+                list.Add(PlayerPrefs.GetInt(selectedCharacter + (characterId - 1)));
+
+            if (PlayerPrefs.HasKey(selectedCharacter + (characterId - 2)))
+                list.Add(PlayerPrefs.GetInt(selectedCharacter + (characterId - 2)));
+
             int random;
             do
             {
                 random = Random.Range(1, max + 1);
                 StartCoroutine(WaitWhile());
-            } while (random == i);
+            } while (random == i || list.Contains(random));
 
             PlayerPrefs.SetInt(selectedLevel, charcLevel);
             PlayerPrefs.SetInt(selectedCharacter + characterId, i);
