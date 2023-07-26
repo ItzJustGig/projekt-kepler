@@ -16,7 +16,7 @@ MonoBehaviour:
   playerStat: 1
   flatValue: 0
   curHp: 0
-  missHp: 0.0435
+  missHp: 0.05
   maxHp: 0
   hpRegen: 0
   missMana: 0

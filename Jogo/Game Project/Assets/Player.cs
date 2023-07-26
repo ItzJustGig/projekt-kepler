@@ -88,21 +88,28 @@ public class Player : MonoBehaviour
         this.aiManaRecover = aiManaRecover;
         this.aiGaranteedManaRecover = aiGaranteedManaRecover;
         unit1.hud = hud1;
-        unit2.hud = hud2;
-        unit3.hud = hud3;
         unit1.id = 1;
-        unit2.id = 2;
-        unit3.id = 3;
         unit1.selectBtn = unit1Btn;
-        unit2.selectBtn = unit2Btn;
-        unit3.selectBtn = unit3Btn;
         unit1.effectHud = hud1.transform.Find("EffectList").Find("grid").transform;
-        unit2.effectHud = hud2.transform.Find("EffectList").Find("grid").transform;
-        unit3.effectHud = hud3.transform.Find("EffectList").Find("grid").transform;
-
         unit1.summary = Instantiate(sumPrefab, summaryList).GetComponent<CharacterSum>();
-        unit2.summary = Instantiate(sumPrefab, summaryList).GetComponent<CharacterSum>();
-        unit3.summary = Instantiate(sumPrefab, summaryList).GetComponent<CharacterSum>();
+
+        if (hud2 != null)
+        {
+            unit2.hud = hud2;
+            unit2.id = 2;
+            unit2.selectBtn = unit2Btn;
+            unit2.effectHud = hud2.transform.Find("EffectList").Find("grid").transform;
+            unit2.summary = Instantiate(sumPrefab, summaryList).GetComponent<CharacterSum>();
+        }
+
+        if (hud3 != null)
+        {
+            unit3.hud = hud3;
+            unit3.id = 3;
+            unit3.selectBtn = unit3Btn;
+            unit3.effectHud = hud3.transform.Find("EffectList").Find("grid").transform;
+            unit3.summary = Instantiate(sumPrefab, summaryList).GetComponent<CharacterSum>();
+        }
     }
 
     public void EnableBtn(Unit unit1 = null, Unit unit2 = null, Unit unit3 = null)

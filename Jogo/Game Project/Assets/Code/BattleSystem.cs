@@ -116,6 +116,9 @@ public class BattleSystem : MonoBehaviour
 
     private SceneLoader loader;
 
+    private readonly string selectedCharacter = "SelectedCharacter";
+    private readonly string selectedEnemy = "SelectedEnemy";
+
     void Start()
     {
         gameObject.AddComponent<SceneLoader>();
@@ -175,29 +178,50 @@ public class BattleSystem : MonoBehaviour
     IEnumerator SetupBattle()
     {
         player.unit1 = Instantiate(playerPrefab, playerBattleStation.Find("P1")).GetComponent<Unit>();
-        player.unit2 = Instantiate(playerPrefab, playerBattleStation.Find("P2")).GetComponent<Unit>();
-        player.unit3 = Instantiate(playerPrefab, playerBattleStation.Find("P3")).GetComponent<Unit>();
-
-        enemy.unit1 = Instantiate(enemyPrefab, enemyBattleStation.Find("P1")).GetComponent<Unit>();
-        enemy.unit2 = Instantiate(enemyPrefab, enemyBattleStation.Find("P2")).GetComponent<Unit>();
-        enemy.unit3 = Instantiate(enemyPrefab, enemyBattleStation.Find("P3")).GetComponent<Unit>();
-
         BattleHud battleHud1 = Instantiate(battleHudP, playerHudList.transform).GetComponent<BattleHud>();
-        BattleHud battleHud2 = Instantiate(battleHudP, playerHudList.transform).GetComponent<BattleHud>();
-        BattleHud battleHud3 = Instantiate(battleHudP, playerHudList.transform).GetComponent<BattleHud>();
+        BattleHud battleHud2 = null;
+        BattleHud battleHud3 = null;
+
+        if (PlayerPrefs.HasKey(selectedCharacter + "2"))
+        {
+            player.unit2 = Instantiate(playerPrefab, playerBattleStation.Find("P2")).GetComponent<Unit>();
+            battleHud2 = Instantiate(battleHudP, playerHudList.transform).GetComponent<BattleHud>();
+        }
+
+        if (PlayerPrefs.HasKey(selectedCharacter + "3"))
+        {
+            player.unit3 = Instantiate(playerPrefab, playerBattleStation.Find("P3")).GetComponent<Unit>();
+            battleHud3 = Instantiate(battleHudP, playerHudList.transform).GetComponent<BattleHud>();
+        }
 
         actionBox1p.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, player.unit1);
-        actionBox2p.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, player.unit2);
-        actionBox3p.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, player.unit3);
+
+        if (PlayerPrefs.HasKey(selectedCharacter + "2"))
+            actionBox2p.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, player.unit2);
+
+        if (PlayerPrefs.HasKey(selectedCharacter + "2"))
+            actionBox3p.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, player.unit3);
+
         player.SetStart(aiManaRecover, aiGaranteedManaRecover, summaryList.transform, characterSumPrefab, battleHud1, battleHud2, battleHud3);
 
-        battleHud1 = Instantiate(battleHudE, enemyHudList.transform).GetComponent<BattleHud>();
-        battleHud2 = Instantiate(battleHudE, enemyHudList.transform).GetComponent<BattleHud>();
-        battleHud3 = Instantiate(battleHudE, enemyHudList.transform).GetComponent<BattleHud>();
-
+        enemy.unit1 = Instantiate(enemyPrefab, enemyBattleStation.Find("P1")).GetComponent<Unit>();
         actionBox1e.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, enemy.unit1);
-        actionBox2e.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, enemy.unit2);
-        actionBox3e.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, enemy.unit3);
+        battleHud1 = Instantiate(battleHudE, enemyHudList.transform).GetComponent<BattleHud>();
+
+        if (PlayerPrefs.HasKey(selectedEnemy + "2"))
+        {
+            enemy.unit2 = Instantiate(enemyPrefab, enemyBattleStation.Find("P2")).GetComponent<Unit>();
+            actionBox2e.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, enemy.unit2);
+            battleHud2 = Instantiate(battleHudE, enemyHudList.transform).GetComponent<BattleHud>();
+        }
+
+        if (PlayerPrefs.HasKey(selectedEnemy + "3"))
+        {
+            enemy.unit3 = Instantiate(enemyPrefab, enemyBattleStation.Find("P3")).GetComponent<Unit>();
+            actionBox3e.Setup(levelToConsiderWeak, manaRecoverCdReducWeak, enemy.unit3);
+            battleHud3 = Instantiate(battleHudE, enemyHudList.transform).GetComponent<BattleHud>();
+        }
+
         enemy.SetStart(aiManaRecover, aiGaranteedManaRecover, summaryList.transform, characterSumPrefab, battleHud1, battleHud2, battleHud3);
 
         dialogText.text = langmanag.GetInfo("gui", "text", "wantfight", langmanag.GetInfo("charc", "name", enemy.unit1.charc.name));
@@ -2976,7 +3000,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    void CheckPassiveTurn(Unit user, BattleHud userHud, Player target)
+    void CheckPassiveTurn(Unit user, BattleHud userHud, Player userTeam, Player targetTeam)
     {
         foreach (Passives a in user.passives.ToArray())
         {
@@ -3194,9 +3218,9 @@ public class BattleSystem : MonoBehaviour
 
                 case "fearsmell":
                     //enemy sanity in %
-                    int sanityPerU1 = (int)((100 * target.unit1.curSanity) / target.unit1.SetModifiers().sanity);
-                    int sanityPerU2 = (int)((100 * target.unit2.curSanity) / target.unit2.SetModifiers().sanity);
-                    int sanityPerU3 = (int)((100 * target.unit3.curSanity) / target.unit3.SetModifiers().sanity);
+                    int sanityPerU1 = (int)((100 * targetTeam.unit1.curSanity) / targetTeam.unit1.SetModifiers().sanity);
+                    int sanityPerU2 = (int)((100 * targetTeam.unit2.curSanity) / targetTeam.unit2.SetModifiers().sanity);
+                    int sanityPerU3 = (int)((100 * targetTeam.unit3.curSanity) / targetTeam.unit3.SetModifiers().sanity);
 
                     if ((sanityPerU1 < (a.num * 100)) || (sanityPerU2 < (a.num * 100)) || (sanityPerU3 < (a.num * 100)))
                     {
@@ -3211,9 +3235,9 @@ public class BattleSystem : MonoBehaviour
                     bool foundEffect = false;
 
                     List<Effects> effects = new List<Effects>();
-                    effects.AddRange(target.unit1.effects);
-                    effects.AddRange(target.unit2.effects);
-                    effects.AddRange(target.unit3.effects);
+                    effects.AddRange(targetTeam.unit1.effects);
+                    effects.AddRange(targetTeam.unit2.effects);
+                    effects.AddRange(targetTeam.unit3.effects);
 
                     foreach (Effects b in effects)
                     {
@@ -3257,9 +3281,9 @@ public class BattleSystem : MonoBehaviour
                 case "bloodbath":
                     foundEffect = false;
                     effects = new List<Effects>();
-                    effects.AddRange(target.unit1.effects);
-                    effects.AddRange(target.unit2.effects);
-                    effects.AddRange(target.unit3.effects);
+                    effects.AddRange(targetTeam.unit1.effects);
+                    effects.AddRange(targetTeam.unit2.effects);
+                    effects.AddRange(targetTeam.unit3.effects);
 
                     foreach (Effects b in effects)
                     {
@@ -3565,9 +3589,9 @@ public class BattleSystem : MonoBehaviour
                 case "successoroffire":
                     foundEffect = false;
                     effects = new List<Effects>();
-                    effects.AddRange(target.unit1.effects);
-                    effects.AddRange(target.unit2.effects);
-                    effects.AddRange(target.unit3.effects);
+                    effects.AddRange(targetTeam.unit1.effects);
+                    effects.AddRange(targetTeam.unit2.effects);
+                    effects.AddRange(targetTeam.unit3.effects);
                     foreach (Effects b in effects)
                     {
                         if (b.id == "BRN" || b.id == "SCH")
@@ -3754,9 +3778,9 @@ public class BattleSystem : MonoBehaviour
                     if (a.inCd == 0)
                         isReady = true;
 
-                    float hpPerF1 = ((100 * target.unit1.curHp) / target.unit1.SetModifiers().hp)*100;
-                    float hpPerF2 = ((100 * target.unit2.curHp) / target.unit2.SetModifiers().hp)*100;
-                    float hpPerF3 = ((100 * target.unit3.curHp) / target.unit3.SetModifiers().hp)*100;
+                    float hpPerF1 = ((100 * targetTeam.unit1.curHp) / targetTeam.unit1.SetModifiers().hp)*100;
+                    float hpPerF2 = ((100 * targetTeam.unit2.curHp) / targetTeam.unit2.SetModifiers().hp)*100;
+                    float hpPerF3 = ((100 * targetTeam.unit3.curHp) / targetTeam.unit3.SetModifiers().hp)*100;
 
                     if ((hpPerF1 < a.num) && (hpPerF2 < a.num) && (hpPerF3 < a.num))
                     {
@@ -3837,9 +3861,9 @@ public class BattleSystem : MonoBehaviour
                 case "funchase":
                     foundEffect = false;
                     effects = new List<Effects>();
-                    effects.AddRange(target.unit1.effects);
-                    effects.AddRange(target.unit2.effects);
-                    effects.AddRange(target.unit3.effects);
+                    effects.AddRange(targetTeam.unit1.effects);
+                    effects.AddRange(targetTeam.unit2.effects);
+                    effects.AddRange(targetTeam.unit3.effects);
 
                     foreach (Effects b in effects)
                     {
@@ -3943,7 +3967,7 @@ public class BattleSystem : MonoBehaviour
                 case "leafbeing":
                     foundEffect = false;
 
-                    foreach (Effects b in target.unit1.effects)
+                    foreach (Effects b in targetTeam.unit1.effects)
                     {
                         if (b.id == "ALR")
                         {
@@ -3953,14 +3977,14 @@ public class BattleSystem : MonoBehaviour
                             dmg.Reset();
 
                             dmg.magicDmg = a.statScale.SetScaleFlat(user.SetModifiers(), user);
-                            dmg = target.unit1.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
-                            target.unit1.TakeDamage(dmg, false, false, user, false);
+                            dmg = targetTeam.unit1.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
+                            targetTeam.unit1.TakeDamage(dmg, false, false, user, false);
 
                             userHud.SetStatsHud(user);
                         }
                     }
 
-                    foreach (Effects b in target.unit2.effects)
+                    foreach (Effects b in targetTeam.unit2.effects)
                     {
                         if (b.id == "ALR")
                         {
@@ -3970,14 +3994,14 @@ public class BattleSystem : MonoBehaviour
                             dmg.Reset();
 
                             dmg.magicDmg = a.statScale.SetScaleFlat(user.SetModifiers(), user);
-                            dmg = target.unit2.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
-                            target.unit2.TakeDamage(dmg, false, false, user, false);
+                            dmg = targetTeam.unit2.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
+                            targetTeam.unit2.TakeDamage(dmg, false, false, user, false);
 
                             userHud.SetStatsHud(user);
                         }
                     }
 
-                    foreach (Effects b in target.unit3.effects)
+                    foreach (Effects b in targetTeam.unit3.effects)
                     {
                         if (b.id == "ALR")
                         {
@@ -3987,8 +4011,8 @@ public class BattleSystem : MonoBehaviour
                             dmg.Reset();
 
                             dmg.magicDmg = a.statScale.SetScaleFlat(user.SetModifiers(), user);
-                            dmg = target.unit3.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
-                            target.unit3.TakeDamage(dmg, false, false, user, false);
+                            dmg = targetTeam.unit3.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
+                            targetTeam.unit3.TakeDamage(dmg, false, false, user, false);
 
                             userHud.SetStatsHud(user);
                         }
@@ -4008,6 +4032,63 @@ public class BattleSystem : MonoBehaviour
                         userHud.SetStatsHud(user);
 
                         ManagePassiveIcon(user.effectHud, a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+                    break;
+                case "subzero":
+                    //hp in %
+                    hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
+
+                    if (hpPer <= (a.num * 100) && a.stacks != 1)
+                    {
+                        a.stacks = 1;
+                    }
+                    else if (hpPer > (a.num * 100))
+                    {
+                        a.stacks = 0;
+                    }
+
+                    isReady = false;
+
+                    if (a.stacks == 1)
+                    {
+                        StatMod statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        userTeam.unit1.statMods.Add(statMod);
+                        userTeam.unit1.usedBonusStuff = false;
+                        userTeam.unit1.hud.SetStatsHud(userTeam.unit1);
+
+                        statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        userTeam.unit2.statMods.Add(statMod);
+                        userTeam.unit2.usedBonusStuff = false;
+                        userTeam.unit2.hud.SetStatsHud(userTeam.unit2);
+
+                        statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        userTeam.unit3.statMods.Add(statMod);
+                        userTeam.unit3.usedBonusStuff = false;
+                        userTeam.unit3.hud.SetStatsHud(userTeam.unit3);
+
+                        statMod = a.statMod2.ReturnStats();
+                        statMod.inTime = statMod.time+1;
+                        targetTeam.unit1.statMods.Add(statMod);
+                        targetTeam.unit1.usedBonusStuff = false;
+                        targetTeam.unit1.hud.SetStatsHud(targetTeam.unit1);
+
+                        statMod = a.statMod2.ReturnStats();
+                        statMod.inTime = statMod.time+1;
+                        targetTeam.unit2.statMods.Add(statMod);
+                        targetTeam.unit2.usedBonusStuff = false;
+                        targetTeam.unit2.hud.SetStatsHud(targetTeam.unit2);
+
+                        statMod = a.statMod2.ReturnStats();
+                        statMod.inTime = statMod.time+1;
+                        targetTeam.unit3.statMods.Add(statMod);
+                        targetTeam.unit3.usedBonusStuff = false;
+                        targetTeam.unit3.hud.SetStatsHud(targetTeam.unit3);
+                        isReady = true;
+                    }
+
+                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
                     break;
                 case "roughskin":
                 case "magicwand":
@@ -4248,12 +4329,12 @@ public class BattleSystem : MonoBehaviour
     IEnumerator NewTurn()
     {
         yield return new WaitForSeconds(0.4f);
-        StartCoroutine(ManageEndTurn(player.unit1, enemy));
-        StartCoroutine(ManageEndTurn(player.unit2, enemy));
-        StartCoroutine(ManageEndTurn(player.unit3, enemy));
-        StartCoroutine(ManageEndTurn(enemy.unit1, player));
-        StartCoroutine(ManageEndTurn(enemy.unit2, player));
-        StartCoroutine(ManageEndTurn(enemy.unit3, player));
+        StartCoroutine(ManageEndTurn(player.unit1, player, enemy));
+        StartCoroutine(ManageEndTurn(player.unit2, player, enemy));
+        StartCoroutine(ManageEndTurn(player.unit3, player, enemy));
+        StartCoroutine(ManageEndTurn(enemy.unit1, enemy, player));
+        StartCoroutine(ManageEndTurn(enemy.unit2, enemy, player));
+        StartCoroutine(ManageEndTurn(enemy.unit3, enemy, player));
         yield return new WaitForSeconds(0.9f);
 
         //set turn number
@@ -4293,7 +4374,7 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     } 
 
-    IEnumerator ManageEndTurn(Unit unit, Player enemy)
+    IEnumerator ManageEndTurn(Unit unit, Player user, Player enemy)
     {
         unit.chosenMove.move = null;
         unit.chosenMove.target = null;
@@ -4441,7 +4522,7 @@ public class BattleSystem : MonoBehaviour
 
             unit.hud.SetStatsHud(unit);
 
-            CheckPassiveTurn(unit, unit.hud, enemy);
+            CheckPassiveTurn(unit, unit.hud, user, enemy);
 
             stats = unit.SetModifiers();
 

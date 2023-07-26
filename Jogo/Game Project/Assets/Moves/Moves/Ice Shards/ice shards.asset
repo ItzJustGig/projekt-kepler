@@ -35,14 +35,14 @@ MonoBehaviour:
   shield: 0
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 7
+  cooldown: 5
   inCooldown: 0
-  manaCost: 70
+  manaCost: 60
   staminaCost: 25
   ultCost: 100
   needFullUlt: 1
-  critDmgBonus: 0.2
-  critChanceBonus: 0.15
+  critDmgBonus: 0.15
+  critChanceBonus: 0.12
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
   scale:

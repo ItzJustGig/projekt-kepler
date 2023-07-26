@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c40be94f130cb7f409300204aedd3b37, type: 3}
-  m_Name: Elfic Magic
+  m_Name: subzero
   m_EditorClassIdentifier: 
-  name: elficmagic
+  name: subzero
   showNameOnInfo: 1
   origin: 0
-  sprite: {fileID: 21300000, guid: 9f5be396b16edb1458dfb2fa2b6b4554, type: 3}
-  num: 0
+  sprite: {fileID: 21300000, guid: 97a974dec2947e94185c846dd002d337, type: 3}
+  num: 0.25
   maxNum: 0
   stacks: 0
-  maxStacks: 8
+  maxStacks: 0
   cd: 0
   inCd: 0
   anim: 
   anim2: 
-  statScale: {fileID: 11400000, guid: b14e11cff5c71f84480231a3166feeed, type: 2}
+  statScale: {fileID: 0}
   statScale2: {fileID: 0}
-  statMod: {fileID: 0}
-  statMod2: {fileID: 0}
+  statMod: {fileID: 11400000, guid: 957d59803181ff54b90f9f3d106e1d33, type: 2}
+  statMod2: {fileID: 11400000, guid: a70846aeb68625143b16372967eca5b7, type: 2}

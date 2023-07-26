@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Jaws of the Beast
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: jawsofthebeast
   hitTime: 1
   priority: 0
@@ -31,7 +34,7 @@ MonoBehaviour:
   healSanity: 0
   shield: 0
   healFromDmgType: 1
-  healFromDmg: 0.18
+  healFromDmg: 0.25
   cooldown: 10
   inCooldown: 0
   manaCost: 50

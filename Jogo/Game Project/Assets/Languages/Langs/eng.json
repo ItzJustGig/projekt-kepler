@@ -403,7 +403,8 @@
 			"holdingtheline": "Holding the Line",
 			"druid": "Druid",
 			"elficmagic": "Elfic Magic",
-			"shadowdagger2": "Shadow Dagger"
+			"shadowdagger2": "Shadow Dagger",
+			"subzero": "Subzero"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain%mod%and deal bonus %scale% on attacks.",
@@ -419,7 +420,7 @@
 			"musicup": "Every %cd% turns, the user get%mod%(stacks up to %maxStacks%).",
 			"onewiththeshadows": "If the user is not hit %cd% times gain%mod%until is hit again.",
 			"perfectshooter": "Every <color=#f75145>%maxNum% critical ranged attacks</color> or <color=#ffaa00>basic attacks</color>, the user gain%mod%(stacks up to %maxStacks%).",
-			"plasmablade": "The user's <color=#ffaa00>physical</color> or <color=#ffaa00>basic attacks</color> deal bonus %scale%. If the user is below <color=#00ff11>%stacks%% health</color>, the bonus <color=#1a66ff>magic damage</color> is increased by %num%%, deal bonus %scale2% and gain%mod%(If the user is silenced or bellow <color=#1e68fc>%maxNum%% mana</color>, the passive won't activate)",
+			"plasmablade": "The user's <color=#ffaa00>physical</color> or <color=#ffaa00>basic attacks</color> deal bonus %scale%. If the user is below <color=#00ff11>%stacks%% health</color>, the bonus <color=#1a66ff>magic damage</color> is increased by %num%%, deal bonus %scale2% and gain%mod%(If the user is silenced or below <color=#1e68fc>%maxNum%% mana</color>, the passive won't activate)",
 			"roughskin": "The user blocks <color=#ffaa00>(<color=#937264>%num%%</color> of the user's <color=#937264>damage resistance</color>)% of the physical damage</color> taken from <color=#ffaa00>physical moves</color> and <color=#f75145>ranged moves</color>.",
 			"sharpshooter": "Every <color=#f75145>%maxNum% ranged attacks</color>, the next <color=#f75145>ranged attack</color> will <color=#f75145>crit</color> and deal bonus %scale%.",
 			"strongmind": "The user is immune to Confusion, Charm and Sleep.",
@@ -432,7 +433,7 @@
 			"blazingfists": "The user deal bonus %scale% on <color=#ffaa00>physical moves</color> or <color=#ffaa00>basic attacks</color> for %cd% turns.",
 			"fighterinstinct": "When the user is below <color=#00ff11>%num%% health</color>, gain%mod%and deal bonus %scale% on <color=#ffaa00>physical moves</color> and <color=#ffaa00>basic attacks</color>.",
 			"successoroffire": "The user deal bonus %scale% to Burn or Schorched enemies with <color=#ffaa00>basic</color>, <color=#ffaa00>physical</color>, <color=#1a66ff>magical</color> and <color=#f75145>ranged moves</color>, also gain bonus <color=#ffaa00>+(<color=#1a66ff>%num%% magic power</color>) attack damage</color>.",
-			"zenmode": "The user is immune to Tired, but when is bellow <color=#f0dd0a>%num%% stamina</color>, gain%mod%and regen %scale% and %scale2% until the user is at %maxNum%% stamina.",
+			"zenmode": "The user is immune to Tired, but when is below <color=#f0dd0a>%num%% stamina</color>, gain%mod%and regen %scale% and %scale2% until the user is at %maxNum%% stamina.",
 			"baby": "But its just a baby! (Some of your stats were lowered by %num%%)",
 			"weak": "The enemy is too weak. (Some of your stats were lowered by %num%%)",
 			"normal": "Avarage normal enemy, nothing special. (Some of your stats were lowered by %num%%)",
@@ -456,8 +457,8 @@
 			"funchase": "The user will gain bonus%mod%and deals bonus %scale% on <color=#ffaa00>basic</color> or <color=#ffaa00>physical moves</color> if an enemy is Bleeding",
 			"bandofendurance": "The user recover %scale% on <color=#ffaa00>physical</color> and <color=#ffaa00>basic attacks</color>, this effect is increased by %num%% on <color=#f75145>critical hits</color>",
 			"mythicearrings": "The user recover %scale% on <color=#1a66ff>magical</color> and <color=#ffaa00>basic attacks</color>",
-			"spectralpike": "The carrier's <color=#ffaa00>physical</color> or <color=#f75145>ranged</color> moves, have %num%% (doubles if bellow <color=#00ff11>%maxNum%% health</color>) chance to deal bonus <color=#ffaa00>%maxStacks%% physical damage</color> once (%cd% turns cooldown regardless activates or not)\nWhen the carrier is bellow <color=#00ff11>%maxNum%% health</color> gain%mod%",
-			"spectralcloak": "The carrier gain %scale% per <color=#946ACD>%maxNum% magic resistance</color> when take <color=#1a66ff>magic damage</color>\nAlso when bellow <color=#00ff11>%num%% health</color>, gain%mod%",
+			"spectralpike": "The carrier's <color=#ffaa00>physical</color> or <color=#f75145>ranged</color> moves, have %num%% (doubles if below <color=#00ff11>%maxNum%% health</color>) chance to deal bonus <color=#ffaa00>%maxStacks%% physical damage</color> once (%cd% turns cooldown regardless activates or not)\nWhen the carrier is below <color=#00ff11>%maxNum%% health</color> gain%mod%",
+			"spectralcloak": "The carrier gain %scale% per <color=#946ACD>%maxNum% magic resistance</color> when take <color=#1a66ff>magic damage</color>\nAlso when below <color=#00ff11>%num%% health</color>, gain%mod%",
 			"thickarmour": "The user take <color=#ffaa00>%num%% physical damage</color> on <color=#f75145>critical strikes</color>",
 			"combatrythm": "The user deal bonus %scale% on <color=#ffaa00>physical</color> and <color=#1a66ff>magical moves</color>",
 			"sackofbones": "The user immune to Bleeding but Cripple have its duration increased by %num% turns and take bonus %scale% when applied",
@@ -468,7 +469,8 @@
 			"holdingtheline": "When the user uses a <color=#787878>defencive</color>, <color=#CC66FF>enchantment</color> or <color=#ffaa00>basic attacks</color>, grant %scale% to the whole team. <color=#ffaa00>Physical</color>, <color=#1a66ff>magic</color> or <color=#f75145>ranged</color> moves grant %scale2% to the whole team.",
 			"druid": "The user's healing is increased by +(%num%% of the user's magic power)%, when an ally is affected by Blood, Allergy, Poison or Cripple, the user heal bonus %scale2% to that target.",
 			"elficmagic": "Every %maxStacks% magic or ranged moves the next will crit and deal bonus %scale%. (crit applies on magic damage aswell)",
-			"shadowdagger2": "After using a <color=#ffaa00>physical move</color> the user gain%mod% (%cd% turns cooldown)"
+			"shadowdagger2": "After using a <color=#ffaa00>physical move</color> the user gain%mod% (%cd% turns cooldown)",
+			"subzero": "While the user is below %num%% health, the user grant whole team%mod%and the enemy team have reduced%mod2%while in subzero."
 		}
 	},
 	"moves": {

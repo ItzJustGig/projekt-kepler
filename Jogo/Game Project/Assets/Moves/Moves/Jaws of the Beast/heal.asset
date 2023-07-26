@@ -16,7 +16,7 @@ MonoBehaviour:
   playerStat: 1
   flatValue: 0
   curHp: 0
-  missHp: 0.0086
+  missHp: 0
   maxHp: 0
   hpRegen: 0
   missMana: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
   curSanity: 0
   missSanity: 0
   maxSanity: 0
-  atkDmg: 0
+  atkDmg: 0.6
   magicPower: 0
   dmgResis: 0
   magicResis: 0

@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Enchanted Fangs
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: enchantedfangs
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
@@ -28,10 +33,14 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 10
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 6
   inCooldown: 0
   manaCost: 40
   staminaCost: 30
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
@@ -39,8 +48,11 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: b70af4b1f408b764eb57018dce55f8d7, type: 2}
   - {fileID: 11400000, guid: 45bf0f3cf41932f4e88758d8b2d4bfcc, type: 2}
-  - {fileID: 11400000, guid: b9cf9dfcad750d04c9ca335e76006d1d, type: 2}
   - {fileID: 11400000, guid: 326339538b4164e4194609ec6c1f8e64, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: 7dd246e970f562d49b712f9c7e615a9a, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

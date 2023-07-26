@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88548b2442bb3a547adf43b5c3d57278, type: 3}
   m_Name: guarding
   m_EditorClassIdentifier: 
-  durationMin: 2
-  durationMax: 2
+  durationMin: 3
+  durationMax: 4
   chance: 1
   targetPlayer: 0
   effect: {fileID: 11400000, guid: 5cf8e2574b5bcd140840a63e959f67e2, type: 2}

@@ -25,6 +25,7 @@ MonoBehaviour:
   passives:
   - {fileID: 11400000, guid: df72980005ebc0e4ab808bd593956531, type: 2}
   - {fileID: 11400000, guid: 59b7b0d8f4bd3214fbc2f029535b3d92, type: 2}
+  - {fileID: 11400000, guid: 9fcd49cb12500fd43905c6786b360cd6, type: 2}
   moves:
   - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
   - {fileID: 11400000, guid: 6fc447a741959f0448d7f6ed6df17792, type: 2}

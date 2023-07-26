@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: bonsour stats 1
   m_EditorClassIdentifier: 
   hp: 2815
-  hpRegen: 18
+  hpRegen: 17
   mana: 225
   manaRegen: 0.69
   manaCost: 1
-  stamina: 438
+  stamina: 405
   staminaRegen: 0.73
   staminaCost: 1
   sanity: 140

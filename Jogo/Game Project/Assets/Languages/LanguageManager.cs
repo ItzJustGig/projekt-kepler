@@ -982,6 +982,7 @@ public class LanguageManager : MonoBehaviour
         public string holdingtheline;
         public string druid;
         public string elficmagic;
+        public string subzero;
 
         public string Get_Cont(string a)
         {
@@ -1177,6 +1178,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "elficmagic":
                     returns = elficmagic;
+                    break;
+                case "subzero":
+                    returns = subzero;
                     break;
                 default:
                     returns = "null";

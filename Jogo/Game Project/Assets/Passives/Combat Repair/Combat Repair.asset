@@ -16,7 +16,7 @@ MonoBehaviour:
   showNameOnInfo: 1
   origin: 0
   sprite: {fileID: 21300000, guid: 51296180819df2a4fa1faa8b901f6195, type: 3}
-  num: 3
+  num: 2
   maxNum: 0
   stacks: 0
   maxStacks: 5
