@@ -16,10 +16,10 @@ MonoBehaviour:
   hpRegen: 19.4
   mana: 250
   manaRegen: 0.33
-  manaCost: 1
+  manaCost: 0.7
   stamina: 295
   staminaRegen: 0.45
-  staminaCost: 1
+  staminaCost: 0.7
   sanity: 160
   atkDmg: 17
   magicPower: 22

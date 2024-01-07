@@ -454,8 +454,8 @@ public class EndlessManager : MonoBehaviour
     public void StartBtn()
     {
         SaveSystem.Save(info);
-        PlayerPrefs.SetInt(selectedCharacter, info.playerId);
-        PlayerPrefs.SetInt(selectedEnemy, info.enemyIdNext+1);
+        PlayerPrefs.SetInt(selectedCharacter+"1", info.playerId);
+        PlayerPrefs.SetInt(selectedEnemy+"1", info.enemyIdNext+1);
         PlayerPrefs.SetInt(isPlayerChamp, System.Convert.ToInt32(info.isPlayerChamp));
         PlayerPrefs.SetInt(isEnemyChamp, System.Convert.ToInt32(info.isEnemyChampNext));
         PlayerPrefs.SetInt(isEnemyBoss, System.Convert.ToInt32(isBoss));

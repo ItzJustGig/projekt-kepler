@@ -29,8 +29,8 @@ MonoBehaviour:
   magicPower: 0
   critChance: 0
   critDmg: 0
-  dmgResis: 9
-  magicResis: 17
+  dmgResis: 7
+  magicResis: 15
   timing: 0
   movSpeed: 0
   lifesteal: 0

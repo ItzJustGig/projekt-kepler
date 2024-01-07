@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField] private bool isEnemy;
     public int incapacitatedCharacters = 0;
     public int deadCharacters = 0;
-    public int playableCharacters = 3;
+    public int playableCharacters = 0;
 
     public void SetUpStats(Unit unit, EndlessInfo info, float tired, GameObject statsGO)
     {
@@ -92,6 +92,10 @@ public class Player : MonoBehaviour
         unit1.selectBtn = unit1Btn;
         unit1.effectHud = hud1.transform.Find("EffectList").Find("grid").transform;
         unit1.summary = Instantiate(sumPrefab, summaryList).GetComponent<CharacterSum>();
+        unit1.isLeader = true;
+        playableCharacters++;
+
+        Debug.Log(isEnemy + " " + playableCharacters);
 
         if (hud2 != null)
         {
@@ -100,7 +104,10 @@ public class Player : MonoBehaviour
             unit2.selectBtn = unit2Btn;
             unit2.effectHud = hud2.transform.Find("EffectList").Find("grid").transform;
             unit2.summary = Instantiate(sumPrefab, summaryList).GetComponent<CharacterSum>();
+            playableCharacters++;
         }
+
+        Debug.Log(isEnemy + " " + playableCharacters);
 
         if (hud3 != null)
         {
@@ -109,6 +116,7 @@ public class Player : MonoBehaviour
             unit3.selectBtn = unit3Btn;
             unit3.effectHud = hud3.transform.Find("EffectList").Find("grid").transform;
             unit3.summary = Instantiate(sumPrefab, summaryList).GetComponent<CharacterSum>();
+            playableCharacters++;
         }
     }
 
@@ -169,10 +177,18 @@ public class Player : MonoBehaviour
         attacking = null;
         unit1.chosenMove.move = null;
         unit1.chosenMove.target = null;
-        unit2.chosenMove.move = null;
-        unit2.chosenMove.target = null;
-        unit3.chosenMove.move = null;
-        unit3.chosenMove.target = null;
+
+        if (unit2)
+        {
+            unit2.chosenMove.move = null;
+            unit2.chosenMove.target = null;
+        }
+
+        if (unit3)
+        {
+            unit3.chosenMove.move = null;
+            unit3.chosenMove.target = null;
+        }
     }
 
     public Unit GetAttacker() 
@@ -183,8 +199,12 @@ public class Player : MonoBehaviour
     public void ResetHasAttacked()
     {
         unit1.hasAttacked = false;
-        unit2.hasAttacked = false;
-        unit3.hasAttacked = false;
+
+        if (unit2)
+            unit2.hasAttacked = false;
+
+        if (unit3)
+            unit3.hasAttacked = false;
     }
 
     public Unit AIGetAttacker(int combatCount)
@@ -222,7 +242,7 @@ public class Player : MonoBehaviour
 
     public Unit GetRandom()
     {
-        int rng = Random.Range(1, 3+1);
+        int rng = Random.Range(1, playableCharacters+1);
 
         switch (rng)
         {
@@ -520,26 +540,43 @@ public class Player : MonoBehaviour
         if (unit1.CheckSkipTurn())
             i++;
 
-        unit2.SetCC();
-        if (unit2.CheckSkipTurn())
-            i++;
+        if (unit2)
+        {
+            unit2.SetCC();
+            if (unit2.CheckSkipTurn())
+                i++;
+        }
 
-        unit3.SetCC();
-        if (unit3.CheckSkipTurn())
-            i++;
+        if (unit3)
+        {
+            unit3.SetCC();
+            if (unit3.CheckSkipTurn())
+                i++;
+        }
 
         return i;
     }
 
     public bool HaveLost()
     {
-        return unit1.isDead && unit2.isDead && unit3.isDead;
+        bool lost = unit1.isDead;
+
+        if (unit2)
+            lost = lost && unit2.isDead;
+
+        if (unit3)
+            lost = lost && unit3.isDead;
+
+        return lost;
     }
 
     public void Victory()
     {
         unit1.WonLost(true);
-        unit2.WonLost(true);
-        unit3.WonLost(true);
+        if (unit2)
+            unit2.WonLost(true);
+
+        if (unit3)
+            unit3.WonLost(true);
     }
 }

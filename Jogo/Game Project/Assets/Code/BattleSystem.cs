@@ -232,24 +232,37 @@ public class BattleSystem : MonoBehaviour
         //ultBtn.interactable = false;
 
         player.SetUpStats(player.unit1, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
-        player.SetUpStats(player.unit2, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
-        player.SetUpStats(player.unit3, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
+        player.unit1.GetItems(info, items);
+
+        if (player.unit2)
+        {
+            player.SetUpStats(player.unit2, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
+            player.unit2.GetItems(info, items);
+        }
+
+        if (player.unit3)
+        {
+            player.SetUpStats(player.unit3, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
+            player.unit3.GetItems(info, items);
+        }
 
         enemy.SetUpStats(enemy.unit1, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
-        enemy.SetUpStats(enemy.unit2, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
-        enemy.SetUpStats(enemy.unit3, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
-
-        player.unit1.GetItems(info, items);
-        player.unit2.GetItems(info, items);
-        player.unit3.GetItems(info, items);
-
         enemy.PickItemAi(enemy.unit1, player.unit1.items.Count());
-        enemy.PickItemAi(enemy.unit2, player.unit2.items.Count());
-        enemy.PickItemAi(enemy.unit3, player.unit3.items.Count());
-
         enemy.unit1.GetItems(info, items);
-        enemy.unit2.GetItems(info, items);
-        enemy.unit3.GetItems(info, items);
+
+        if (enemy.unit2)
+        {
+            enemy.SetUpStats(enemy.unit2, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
+            enemy.PickItemAi(enemy.unit2, player.unit2.items.Count());
+            enemy.unit2.GetItems(info, items);
+        }
+
+        if (enemy.unit3)
+        {
+            enemy.SetUpStats(enemy.unit3, info, tiredStart + (tiredGrowth * tiredStacks), statsGO);
+            enemy.PickItemAi(enemy.unit3, player.unit3.items.Count());
+            enemy.unit3.GetItems(info, items);
+        }
 
         SetStatus();
 
@@ -267,27 +280,29 @@ public class BattleSystem : MonoBehaviour
                 move.inCooldown = 0;
         }
 
-        foreach (Moves move in enemy.unit2.moves)
-        {
-            foreach (EffectsMove a in move.effects)
+        if (enemy.unit2)
+            foreach (Moves move in enemy.unit2.moves)
             {
-                a.SetApply(false);
+                foreach (EffectsMove a in move.effects)
+                {
+                    a.SetApply(false);
+                }
+
+                if (move.name != "recovmana")
+                    move.inCooldown = 0;
             }
 
-            if (move.name != "recovmana")
-                move.inCooldown = 0;
-        }
-
-        foreach (Moves move in enemy.unit3.moves)
-        {
-            foreach (EffectsMove a in move.effects)
+        if (enemy.unit3)
+            foreach (Moves move in enemy.unit3.moves)
             {
-                a.SetApply(false);
-            }
+                foreach (EffectsMove a in move.effects)
+                {
+                    a.SetApply(false);
+                }
 
-            if (move.name != "recovmana")
-                move.inCooldown = 0;
-        }
+                if (move.name != "recovmana")
+                    move.inCooldown = 0;
+            }
 
         if (PlayerPrefs.GetInt("isEndless") == 1)
         {
@@ -318,6 +333,7 @@ public class BattleSystem : MonoBehaviour
             if (PlayerPrefs.GetInt("isEnemyBoss") == 1)
                 enemy.GetLeader().passives.Add(endlessStuff.bossPassive.ReturnPassive());
         }
+
         int i = 0;
         foreach (Moves move in player.unit1.moves)
         {
@@ -334,8 +350,8 @@ public class BattleSystem : MonoBehaviour
 
                 moveButton.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
                 moveButton.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
-                moveButton.GetComponent<TooltipButton>().text = move.GetTooltipText(false);
-                moveButton.GetComponent<TooltipButton>().textSec = move.GetTooltipText(true);
+                moveButton.GetComponent<TooltipButton>().text = move.GetTooltipText(false, player.unit1.SetModifiers().manaCost, player.unit1.SetModifiers().staminaCost);
+                moveButton.GetComponent<TooltipButton>().textSec = move.GetTooltipText(true, player.unit1.SetModifiers().manaCost, player.unit1.SetModifiers().staminaCost);
 
                 moveButton.name = move.name;
 
@@ -391,165 +407,170 @@ public class BattleSystem : MonoBehaviour
                 }
 
                 Instantiate(moveButton, player.unit1.moveListPanel.GetChild(0));
-            }   
-
-        }
-        i = 0;
-        foreach (Moves move in player.unit2.moves)
-        {
-            i++;
-
-            foreach (EffectsMove a in move.effects)
-            {
-                a.SetApply(false);
             }
+            UpdateTooltips(player.unit1);
+        }
 
-            if (move.name != "basicattack")
+        if (player.unit2)
+        {
+            i = 0;
+            foreach (Moves move in player.unit2.moves)
             {
-                move.inCooldown = 0;
+                i++;
 
-                moveButton.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
-                moveButton.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
-                moveButton.GetComponent<TooltipButton>().text = move.GetTooltipText(false);
-                moveButton.GetComponent<TooltipButton>().textSec = move.GetTooltipText(true);
-
-                moveButton.name = move.name;
-
-                Text id = moveButton.transform.Find("Id").gameObject.GetComponent<Text>();
-                id.text = i.ToString();
-                move.id = i;
-
-                Text name = moveButton.transform.Find("Name").gameObject.GetComponent<Text>();
-                name.text = langmanag.GetInfo("moves", move.name);
-
-                //Text mana = moveButton.transform.Find("Mana").gameObject.GetComponent<Text>();
-                //mana.text = move.manaCost.ToString();
-
-                //Text stamina = moveButton.transform.Find("Stamina").gameObject.GetComponent<Text>();
-                //stamina.text = move.staminaCost.ToString();
-
-                //Text cdn = moveButton.transform.Find("Cooldown").gameObject.GetComponent<Text>();
-                //cdn.text = move.cooldown.ToString();
-
-                //Text cd = moveButton.transform.Find("CD").gameObject.GetComponent<Text>();
-                //cd.text = langmanag.GetInfo("gui", "text", "cd");
-
-                //Text sta = moveButton.transform.Find("STA").gameObject.GetComponent<Text>();
-                //sta.text = langmanag.GetInfo("gui", "text", "sta");
-
-                //Text mn = moveButton.transform.Find("MN").gameObject.GetComponent<Text>();
-                //mn.text = langmanag.GetInfo("gui", "text", "mn");
-
-                Image icon = moveButton.transform.Find("Icon").gameObject.GetComponent<Image>();
-                switch (move.type)
+                foreach (EffectsMove a in move.effects)
                 {
-                    case Moves.MoveType.PHYSICAL:
-                        icon.sprite = phyAtk;
-                        break;
-                    case Moves.MoveType.MAGICAL:
-                        icon.sprite = magiAtk;
-                        break;
-                    case Moves.MoveType.RANGED:
-                        icon.sprite = rangeAtk;
-                        break;
-                    case Moves.MoveType.DEFFENCIVE:
-                        icon.sprite = defAtk;
-                        break;
-                    case Moves.MoveType.SUPPORT:
-                        icon.sprite = suppAtk;
-                        break;
-                    case Moves.MoveType.ENCHANT:
-                        icon.sprite = statAtk;
-                        break;
-                    case Moves.MoveType.SUMMON:
-                        icon.sprite = summAtk;
-                        break;
+                    a.SetApply(false);
                 }
 
-                Instantiate(moveButton, player.unit2.moveListPanel.GetChild(0));
-            }
-
-        }
-        i = 0;
-        foreach (Moves move in player.unit3.moves)
-        {
-            i++;
-
-            foreach (EffectsMove a in move.effects)
-            {
-                a.SetApply(false);
-            }
-
-            if (move.name != "basicattack")
-            {
-                move.inCooldown = 0;
-
-                moveButton.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
-                moveButton.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
-                moveButton.GetComponent<TooltipButton>().text = move.GetTooltipText(false);
-                moveButton.GetComponent<TooltipButton>().textSec = move.GetTooltipText(true);
-
-                moveButton.name = move.name;
-
-                Text id = moveButton.transform.Find("Id").gameObject.GetComponent<Text>();
-                id.text = i.ToString();
-                move.id = i;
-
-                Text name = moveButton.transform.Find("Name").gameObject.GetComponent<Text>();
-                name.text = langmanag.GetInfo("moves", move.name);
-
-                //Text mana = moveButton.transform.Find("Mana").gameObject.GetComponent<Text>();
-                //mana.text = move.manaCost.ToString();
-
-                //Text stamina = moveButton.transform.Find("Stamina").gameObject.GetComponent<Text>();
-                //stamina.text = move.staminaCost.ToString();
-
-                //Text cdn = moveButton.transform.Find("Cooldown").gameObject.GetComponent<Text>();
-                //cdn.text = move.cooldown.ToString();
-
-                //Text cd = moveButton.transform.Find("CD").gameObject.GetComponent<Text>();
-                //cd.text = langmanag.GetInfo("gui", "text", "cd");
-
-                //Text sta = moveButton.transform.Find("STA").gameObject.GetComponent<Text>();
-                //sta.text = langmanag.GetInfo("gui", "text", "sta");
-
-                //Text mn = moveButton.transform.Find("MN").gameObject.GetComponent<Text>();
-                //mn.text = langmanag.GetInfo("gui", "text", "mn");
-
-                Image icon = moveButton.transform.Find("Icon").gameObject.GetComponent<Image>();
-                switch (move.type)
+                if (move.name != "basicattack")
                 {
-                    case Moves.MoveType.PHYSICAL:
-                        icon.sprite = phyAtk;
-                        break;
-                    case Moves.MoveType.MAGICAL:
-                        icon.sprite = magiAtk;
-                        break;
-                    case Moves.MoveType.RANGED:
-                        icon.sprite = rangeAtk;
-                        break;
-                    case Moves.MoveType.DEFFENCIVE:
-                        icon.sprite = defAtk;
-                        break;
-                    case Moves.MoveType.SUPPORT:
-                        icon.sprite = suppAtk;
-                        break;
-                    case Moves.MoveType.ENCHANT:
-                        icon.sprite = statAtk;
-                        break;
-                    case Moves.MoveType.SUMMON:
-                        icon.sprite = summAtk;
-                        break;
+                    move.inCooldown = 0;
+
+                    moveButton.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
+                    moveButton.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
+                    moveButton.GetComponent<TooltipButton>().text = move.GetTooltipText(false, player.unit2.SetModifiers().manaCost, player.unit2.SetModifiers().staminaCost);
+                    moveButton.GetComponent<TooltipButton>().textSec = move.GetTooltipText(true, player.unit2.SetModifiers().manaCost, player.unit2.SetModifiers().staminaCost);
+
+                    moveButton.name = move.name;
+
+                    Text id = moveButton.transform.Find("Id").gameObject.GetComponent<Text>();
+                    id.text = i.ToString();
+                    move.id = i;
+
+                    Text name = moveButton.transform.Find("Name").gameObject.GetComponent<Text>();
+                    name.text = langmanag.GetInfo("moves", move.name);
+
+                    //Text mana = moveButton.transform.Find("Mana").gameObject.GetComponent<Text>();
+                    //mana.text = move.manaCost.ToString();
+
+                    //Text stamina = moveButton.transform.Find("Stamina").gameObject.GetComponent<Text>();
+                    //stamina.text = move.staminaCost.ToString();
+
+                    //Text cdn = moveButton.transform.Find("Cooldown").gameObject.GetComponent<Text>();
+                    //cdn.text = move.cooldown.ToString();
+
+                    //Text cd = moveButton.transform.Find("CD").gameObject.GetComponent<Text>();
+                    //cd.text = langmanag.GetInfo("gui", "text", "cd");
+
+                    //Text sta = moveButton.transform.Find("STA").gameObject.GetComponent<Text>();
+                    //sta.text = langmanag.GetInfo("gui", "text", "sta");
+
+                    //Text mn = moveButton.transform.Find("MN").gameObject.GetComponent<Text>();
+                    //mn.text = langmanag.GetInfo("gui", "text", "mn");
+
+                    Image icon = moveButton.transform.Find("Icon").gameObject.GetComponent<Image>();
+                    switch (move.type)
+                    {
+                        case Moves.MoveType.PHYSICAL:
+                            icon.sprite = phyAtk;
+                            break;
+                        case Moves.MoveType.MAGICAL:
+                            icon.sprite = magiAtk;
+                            break;
+                        case Moves.MoveType.RANGED:
+                            icon.sprite = rangeAtk;
+                            break;
+                        case Moves.MoveType.DEFFENCIVE:
+                            icon.sprite = defAtk;
+                            break;
+                        case Moves.MoveType.SUPPORT:
+                            icon.sprite = suppAtk;
+                            break;
+                        case Moves.MoveType.ENCHANT:
+                            icon.sprite = statAtk;
+                            break;
+                        case Moves.MoveType.SUMMON:
+                            icon.sprite = summAtk;
+                            break;
+                    }
+
+                    Instantiate(moveButton, player.unit2.moveListPanel.GetChild(0));
+                }
+            }
+            UpdateTooltips(player.unit2);
+        }
+        
+        if (player.unit3)
+        {
+            i = 0;
+            foreach (Moves move in player.unit3.moves)
+            {
+                i++;
+
+                foreach (EffectsMove a in move.effects)
+                {
+                    a.SetApply(false);
                 }
 
-                Instantiate(moveButton, player.unit3.moveListPanel.GetChild(0));
+                if (move.name != "basicattack")
+                {
+                    move.inCooldown = 0;
+
+                    moveButton.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
+                    moveButton.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
+                    moveButton.GetComponent<TooltipButton>().text = move.GetTooltipText(false, player.unit3.SetModifiers().manaCost, player.unit3.SetModifiers().staminaCost);
+                    moveButton.GetComponent<TooltipButton>().textSec = move.GetTooltipText(true, player.unit3.SetModifiers().manaCost, player.unit3.SetModifiers().staminaCost);
+
+                    moveButton.name = move.name;
+
+                    Text id = moveButton.transform.Find("Id").gameObject.GetComponent<Text>();
+                    id.text = i.ToString();
+                    move.id = i;
+
+                    Text name = moveButton.transform.Find("Name").gameObject.GetComponent<Text>();
+                    name.text = langmanag.GetInfo("moves", move.name);
+
+                    //Text mana = moveButton.transform.Find("Mana").gameObject.GetComponent<Text>();
+                    //mana.text = move.manaCost.ToString();
+
+                    //Text stamina = moveButton.transform.Find("Stamina").gameObject.GetComponent<Text>();
+                    //stamina.text = move.staminaCost.ToString();
+
+                    //Text cdn = moveButton.transform.Find("Cooldown").gameObject.GetComponent<Text>();
+                    //cdn.text = move.cooldown.ToString();
+
+                    //Text cd = moveButton.transform.Find("CD").gameObject.GetComponent<Text>();
+                    //cd.text = langmanag.GetInfo("gui", "text", "cd");
+
+                    //Text sta = moveButton.transform.Find("STA").gameObject.GetComponent<Text>();
+                    //sta.text = langmanag.GetInfo("gui", "text", "sta");
+
+                    //Text mn = moveButton.transform.Find("MN").gameObject.GetComponent<Text>();
+                    //mn.text = langmanag.GetInfo("gui", "text", "mn");
+
+                    Image icon = moveButton.transform.Find("Icon").gameObject.GetComponent<Image>();
+                    switch (move.type)
+                    {
+                        case Moves.MoveType.PHYSICAL:
+                            icon.sprite = phyAtk;
+                            break;
+                        case Moves.MoveType.MAGICAL:
+                            icon.sprite = magiAtk;
+                            break;
+                        case Moves.MoveType.RANGED:
+                            icon.sprite = rangeAtk;
+                            break;
+                        case Moves.MoveType.DEFFENCIVE:
+                            icon.sprite = defAtk;
+                            break;
+                        case Moves.MoveType.SUPPORT:
+                            icon.sprite = suppAtk;
+                            break;
+                        case Moves.MoveType.ENCHANT:
+                            icon.sprite = statAtk;
+                            break;
+                        case Moves.MoveType.SUMMON:
+                            icon.sprite = summAtk;
+                            break;
+                    }
+
+                    Instantiate(moveButton, player.unit3.moveListPanel.GetChild(0));
+                }
             }
-
+            UpdateTooltips(player.unit3);
         }
-
-        UpdateTooltips(player.unit1);
-        UpdateTooltips(player.unit2);
-        UpdateTooltips(player.unit3);
+        
         yield return new WaitForSeconds(1.2f);
         if (PlayerPrefs.GetInt("isEndless") == 1 && PlayerPrefs.GetInt("isEnemyBoss") == 1)
             cameraAudio.clip = bossfightMusic;
@@ -569,18 +590,18 @@ public class BattleSystem : MonoBehaviour
             if (!player.unit1.hasAttacked && !player.unit1.CheckSkipTurn())
                 player.EnableBtn(player.unit1);
 
-            if (!player.unit2.hasAttacked && !player.unit2.CheckSkipTurn())
+            if (player.unit2 && !player.unit2.hasAttacked && !player.unit2.CheckSkipTurn())
                 player.EnableBtn(player.unit2);
 
-            if (!player.unit3.hasAttacked && !player.unit3.CheckSkipTurn())
+            if (player.unit3 && !player.unit3.hasAttacked && !player.unit3.CheckSkipTurn())
                 player.EnableBtn(player.unit3);
         } else
         {
             if (!player.unit1.hasAttacked && !player.unit1.isDead && !player.unit1.CheckSkipTurn())
                 player.EnableBtn(player.unit1);
-            else if (!player.unit2.hasAttacked && !player.unit2.isDead && !player.unit2.CheckSkipTurn())
+            else if (player.unit2 && !player.unit2.hasAttacked && !player.unit2.isDead && !player.unit2.CheckSkipTurn())
                 player.EnableBtn(player.unit2);
-            else if (!player.unit3.hasAttacked && !player.unit3.isDead && !player.unit3.CheckSkipTurn())
+            else if (player.unit3 && !player.unit3.hasAttacked && !player.unit3.isDead && !player.unit3.CheckSkipTurn())
                 player.EnableBtn(player.unit3);
             else
             {
@@ -2288,18 +2309,24 @@ public class BattleSystem : MonoBehaviour
                                             shield.shield = a.statScale.SetScale(user.SetModifiers(), user);
                                             shield.ApplyBonusShield(user.SetModifiers().shieldBonus);
 
-                                            userTeam.unit1.TakeDamage(shield, false, false, user, true);
-                                            userTeam.unit2.TakeDamage(shield, false, false, user, true);
-                                            userTeam.unit3.TakeDamage(shield, false, false, user, true);
+                                            if (!userTeam.unit1.isDead)
+                                                userTeam.unit1.TakeDamage(shield, false, false, user, true);
+                                            if (userTeam.unit2 && !userTeam.unit2.isDead)
+                                                userTeam.unit2.TakeDamage(shield, false, false, user, true);
+                                            if (userTeam.unit3 && !userTeam.unit3.isDead)
+                                                userTeam.unit3.TakeDamage(shield, false, false, user, true);
                                         } else if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.RANGED)
                                         {
                                             DMG shield = default;
                                             shield.shield = a.statScale2.SetScale(user.SetModifiers(), user);
                                             shield.ApplyBonusShield(user.SetModifiers().shieldBonus);
 
-                                            userTeam.unit1.TakeDamage(shield, false, false, user, true);
-                                            userTeam.unit2.TakeDamage(shield, false, false, user, true);
-                                            userTeam.unit3.TakeDamage(shield, false, false, user, true);
+                                            if (!userTeam.unit1.isDead)
+                                                userTeam.unit1.TakeDamage(shield, false, false, user, true);
+                                            if (userTeam.unit2 && !userTeam.unit2.isDead)
+                                                userTeam.unit2.TakeDamage(shield, false, false, user, true);
+                                            if (userTeam.unit3 && !userTeam.unit3.isDead)
+                                                userTeam.unit3.TakeDamage(shield, false, false, user, true);
                                         }
                                         break;
                                 }
@@ -2386,7 +2413,7 @@ public class BattleSystem : MonoBehaviour
                                         }
                                     }
                                     
-                                    if (!targetTeam.unit2.isDead)
+                                    if (targetTeam.unit2 && !targetTeam.unit2.isDead)
                                     {
 
                                         tempDmg = dmgTarget;
@@ -2430,7 +2457,7 @@ public class BattleSystem : MonoBehaviour
                                         }
                                     }
                                     
-                                    if (!targetTeam.unit3.isDead)
+                                    if (targetTeam.unit3 && !targetTeam.unit3.isDead)
                                     {
                                         tempDmg = dmgTarget;
                                         tempDmg = targetTeam.unit3.MitigateDmg(tempDmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
@@ -2523,7 +2550,7 @@ public class BattleSystem : MonoBehaviour
                                     }
                                     //
 
-                                    if (!userTeam.unit2.isDead)
+                                    if (userTeam.unit2 && !userTeam.unit2.isDead)
                                     {
                                         tempDmg = userTeam.unit2.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
@@ -2566,7 +2593,7 @@ public class BattleSystem : MonoBehaviour
                                     }
                                     
                                     //
-                                    if (!userTeam.unit3.isDead)
+                                    if (userTeam.unit3 && !userTeam.unit3.isDead)
                                     {
                                         tempDmg = userTeam.unit3.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
@@ -2751,12 +2778,18 @@ public class BattleSystem : MonoBehaviour
     void SetStatus()
     {
         player.SetStats(player.unit1, turnCount, tiredStart, tiredGrowth, tiredStacks, state, info);
-        player.SetStats(player.unit2, turnCount, tiredStart, tiredGrowth, tiredStacks, state, info);
-        player.SetStats(player.unit3, turnCount, tiredStart, tiredGrowth, tiredStacks, state, info);
+        if (player.unit2)
+            player.SetStats(player.unit2, turnCount, tiredStart, tiredGrowth, tiredStacks, state, info);
+
+        if (player.unit3)
+            player.SetStats(player.unit3, turnCount, tiredStart, tiredGrowth, tiredStacks, state, info);
 
         enemy.SetStats(enemy.unit1, turnCount, tiredStart, tiredGrowth, tiredStacks, state, info);
-        enemy.SetStats(enemy.unit2, turnCount, tiredStart, tiredGrowth, tiredStacks, state, info);
-        enemy.SetStats(enemy.unit3, turnCount, tiredStart, tiredGrowth, tiredStacks, state, info);
+        if (enemy.unit2)
+            enemy.SetStats(enemy.unit2, turnCount, tiredStart, tiredGrowth, tiredStacks, state, info);
+
+        if (enemy.unit3)
+            enemy.SetStats(enemy.unit3, turnCount, tiredStart, tiredGrowth, tiredStacks, state, info);
     }
 
     IEnumerator EndBattle()
@@ -2765,25 +2798,25 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.WIN)
         {
             //TO DO
-            /*if (PlayerPrefs.GetInt("isEndless") == 1)
+            if (PlayerPrefs.GetInt("isEndless") == 1)
             {
                 PlayerPrefs.SetInt("wonLastRound", 1);
                 info.round++;
                 
-                float health = playerUnit.curHp + (playerUnit.SetModifiers().hp - playerUnit.curHp) * perHealthRegenEndless;
-                float mana = playerUnit.curMana + (playerUnit.SetModifiers().mana - playerUnit.curMana) * perCostsRegenEndless;
-                float stamina = playerUnit.curStamina + (playerUnit.SetModifiers().stamina - playerUnit.curStamina) * perCostsRegenEndless;
-                int sanity = (int)(playerUnit.curSanity + (playerUnit.SetModifiers().sanity - playerUnit.curSanity) * perSanityRegenEndless);
-                float ult = playerUnit.ult - (playerUnit.ult*perUltReduce);
+                float health = player.unit1.curHp + (player.unit1.SetModifiers().hp - player.unit1.curHp) * perHealthRegenEndless;
+                float mana = player.unit1.curMana + (player.unit1.SetModifiers().mana - player.unit1.curMana) * perCostsRegenEndless;
+                float stamina = player.unit1.curStamina + (player.unit1.SetModifiers().stamina - player.unit1.curStamina) * perCostsRegenEndless;
+                int sanity = (int)(player.unit1.curSanity + (player.unit1.SetModifiers().sanity - player.unit1.curSanity) * perSanityRegenEndless);
+                float ult = player.unit1.ult - (player.unit1.ult*perUltReduce);
 
-                info.playerHp = ((100 * health) / playerUnit.SetModifiers().hp)/100;
-                info.playerMn = ((100 * mana) / playerUnit.SetModifiers().mana)/100;
-                info.playerSta = ((100 * stamina) / playerUnit.SetModifiers().stamina)/100;
-                info.playerSan = ((float)(100 * sanity) / playerUnit.SetModifiers().sanity) / 100;
+                info.playerHp = ((100 * health) / player.unit1.SetModifiers().hp)/100;
+                info.playerMn = ((100 * mana) / player.unit1.SetModifiers().mana)/100;
+                info.playerSta = ((100 * stamina) / player.unit1.SetModifiers().stamina)/100;
+                info.playerSan = ((float)(100 * sanity) / player.unit1.SetModifiers().sanity) / 100;
                 info.playerUlt = ult;
 
                 SaveSystem.Save(info);
-            }*/
+            }
                 
             yield return new WaitForSeconds(1.6f);
             player.Victory();
@@ -3015,6 +3048,11 @@ public class BattleSystem : MonoBehaviour
                         user.usedBonusStuff = false;
                         userHud.SetStatsHud(user);
                         ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo());
+
+                        user.curHp = user.SetModifiers().hp;
+                        user.curMana = user.SetModifiers().mana;
+                        user.curStamina = user.SetModifiers().stamina;
+                        user.curSanity = user.SetModifiers().sanity;
                         a.stacks++;
                     }
                     break;
@@ -3219,8 +3257,13 @@ public class BattleSystem : MonoBehaviour
                 case "fearsmell":
                     //enemy sanity in %
                     int sanityPerU1 = (int)((100 * targetTeam.unit1.curSanity) / targetTeam.unit1.SetModifiers().sanity);
-                    int sanityPerU2 = (int)((100 * targetTeam.unit2.curSanity) / targetTeam.unit2.SetModifiers().sanity);
-                    int sanityPerU3 = (int)((100 * targetTeam.unit3.curSanity) / targetTeam.unit3.SetModifiers().sanity);
+                    int sanityPerU2 = 100;
+                    int sanityPerU3 = 100;
+                    if (targetTeam.unit2)
+                        sanityPerU2 = (int)((100 * targetTeam.unit2.curSanity) / targetTeam.unit2.SetModifiers().sanity);
+
+                    if (targetTeam.unit3)
+                        sanityPerU3 = (int)((100 * targetTeam.unit3.curSanity) / targetTeam.unit3.SetModifiers().sanity);
 
                     if ((sanityPerU1 < (a.num * 100)) || (sanityPerU2 < (a.num * 100)) || (sanityPerU3 < (a.num * 100)))
                     {
@@ -3236,8 +3279,10 @@ public class BattleSystem : MonoBehaviour
 
                     List<Effects> effects = new List<Effects>();
                     effects.AddRange(targetTeam.unit1.effects);
-                    effects.AddRange(targetTeam.unit2.effects);
-                    effects.AddRange(targetTeam.unit3.effects);
+                    if (targetTeam.unit2)
+                        effects.AddRange(targetTeam.unit2.effects);
+                    if (targetTeam.unit3)
+                        effects.AddRange(targetTeam.unit3.effects);
 
                     foreach (Effects b in effects)
                     {
@@ -3282,8 +3327,10 @@ public class BattleSystem : MonoBehaviour
                     foundEffect = false;
                     effects = new List<Effects>();
                     effects.AddRange(targetTeam.unit1.effects);
-                    effects.AddRange(targetTeam.unit2.effects);
-                    effects.AddRange(targetTeam.unit3.effects);
+                    if (targetTeam.unit2)
+                        effects.AddRange(targetTeam.unit2.effects);
+                    if (targetTeam.unit3)
+                        effects.AddRange(targetTeam.unit3.effects);
 
                     foreach (Effects b in effects)
                     {
@@ -3590,8 +3637,10 @@ public class BattleSystem : MonoBehaviour
                     foundEffect = false;
                     effects = new List<Effects>();
                     effects.AddRange(targetTeam.unit1.effects);
-                    effects.AddRange(targetTeam.unit2.effects);
-                    effects.AddRange(targetTeam.unit3.effects);
+                    if (targetTeam.unit2)
+                        effects.AddRange(targetTeam.unit2.effects);
+                    if (targetTeam.unit3)
+                        effects.AddRange(targetTeam.unit3.effects);
                     foreach (Effects b in effects)
                     {
                         if (b.id == "BRN" || b.id == "SCH")
@@ -3779,8 +3828,12 @@ public class BattleSystem : MonoBehaviour
                         isReady = true;
 
                     float hpPerF1 = ((100 * targetTeam.unit1.curHp) / targetTeam.unit1.SetModifiers().hp)*100;
-                    float hpPerF2 = ((100 * targetTeam.unit2.curHp) / targetTeam.unit2.SetModifiers().hp)*100;
-                    float hpPerF3 = ((100 * targetTeam.unit3.curHp) / targetTeam.unit3.SetModifiers().hp)*100;
+                    float hpPerF2 = 100;
+                    float hpPerF3 = 100;
+                    if (targetTeam.unit2)
+                        hpPerF2 = ((100 * targetTeam.unit2.curHp) / targetTeam.unit2.SetModifiers().hp)*100;
+                    if (targetTeam.unit3)
+                        hpPerF3 = ((100 * targetTeam.unit3.curHp) / targetTeam.unit3.SetModifiers().hp)*100;
 
                     if ((hpPerF1 < a.num) && (hpPerF2 < a.num) && (hpPerF3 < a.num))
                     {
@@ -3862,8 +3915,10 @@ public class BattleSystem : MonoBehaviour
                     foundEffect = false;
                     effects = new List<Effects>();
                     effects.AddRange(targetTeam.unit1.effects);
-                    effects.AddRange(targetTeam.unit2.effects);
-                    effects.AddRange(targetTeam.unit3.effects);
+                    if (targetTeam.unit2)
+                        effects.AddRange(targetTeam.unit2.effects);
+                    if (targetTeam.unit3)
+                        effects.AddRange(targetTeam.unit3.effects);
 
                     foreach (Effects b in effects)
                     {
@@ -3984,39 +4039,41 @@ public class BattleSystem : MonoBehaviour
                         }
                     }
 
-                    foreach (Effects b in targetTeam.unit2.effects)
-                    {
-                        if (b.id == "ALR")
+                    if (targetTeam.unit2)
+                        foreach (Effects b in targetTeam.unit2.effects)
                         {
-                            foundEffect = true;
-                            ManagePassiveIcon(user.effectHud, a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo(), true);
-                            DMG dmg = default;
-                            dmg.Reset();
+                            if (b.id == "ALR")
+                            {
+                                foundEffect = true;
+                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo(), true);
+                                DMG dmg = default;
+                                dmg.Reset();
 
-                            dmg.magicDmg = a.statScale.SetScaleFlat(user.SetModifiers(), user);
-                            dmg = targetTeam.unit2.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
-                            targetTeam.unit2.TakeDamage(dmg, false, false, user, false);
+                                dmg.magicDmg = a.statScale.SetScaleFlat(user.SetModifiers(), user);
+                                dmg = targetTeam.unit2.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
+                                targetTeam.unit2.TakeDamage(dmg, false, false, user, false);
 
-                            userHud.SetStatsHud(user);
+                                userHud.SetStatsHud(user);
+                            }
                         }
-                    }
 
-                    foreach (Effects b in targetTeam.unit3.effects)
-                    {
-                        if (b.id == "ALR")
+                    if (targetTeam.unit3)
+                        foreach (Effects b in targetTeam.unit3.effects)
                         {
-                            foundEffect = true;
-                            ManagePassiveIcon(user.effectHud, a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo(), true);
-                            DMG dmg = default;
-                            dmg.Reset();
+                            if (b.id == "ALR")
+                            {
+                                foundEffect = true;
+                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo(), true);
+                                DMG dmg = default;
+                                dmg.Reset();
 
-                            dmg.magicDmg = a.statScale.SetScaleFlat(user.SetModifiers(), user);
-                            dmg = targetTeam.unit3.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
-                            targetTeam.unit3.TakeDamage(dmg, false, false, user, false);
+                                dmg.magicDmg = a.statScale.SetScaleFlat(user.SetModifiers(), user);
+                                dmg = targetTeam.unit3.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
+                                targetTeam.unit3.TakeDamage(dmg, false, false, user, false);
 
-                            userHud.SetStatsHud(user);
+                                userHud.SetStatsHud(user);
+                            }
                         }
-                    }
 
                     if (!foundEffect)
                         ManagePassiveIcon(user.effectHud, a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
@@ -4051,41 +4108,60 @@ public class BattleSystem : MonoBehaviour
                     if (a.stacks == 1)
                     {
                         StatMod statMod = a.statMod.ReturnStats();
-                        statMod.inTime = statMod.time;
-                        userTeam.unit1.statMods.Add(statMod);
-                        userTeam.unit1.usedBonusStuff = false;
-                        userTeam.unit1.hud.SetStatsHud(userTeam.unit1);
 
-                        statMod = a.statMod.ReturnStats();
-                        statMod.inTime = statMod.time;
-                        userTeam.unit2.statMods.Add(statMod);
-                        userTeam.unit2.usedBonusStuff = false;
-                        userTeam.unit2.hud.SetStatsHud(userTeam.unit2);
+                        if (!userTeam.unit1.isDead)
+                        {
+                            statMod.inTime = statMod.time;
+                            userTeam.unit1.statMods.Add(statMod);
+                            userTeam.unit1.usedBonusStuff = false;
+                            userTeam.unit1.hud.SetStatsHud(userTeam.unit1);
+                        }
 
-                        statMod = a.statMod.ReturnStats();
-                        statMod.inTime = statMod.time;
-                        userTeam.unit3.statMods.Add(statMod);
-                        userTeam.unit3.usedBonusStuff = false;
-                        userTeam.unit3.hud.SetStatsHud(userTeam.unit3);
+                        if (userTeam.unit2 && !userTeam.unit2.isDead)
+                        {
+                            statMod = a.statMod.ReturnStats();
+                            statMod.inTime = statMod.time;
+                            userTeam.unit2.statMods.Add(statMod);
+                            userTeam.unit2.usedBonusStuff = false;
+                            userTeam.unit2.hud.SetStatsHud(userTeam.unit2);
+                        }
 
-                        statMod = a.statMod2.ReturnStats();
-                        statMod.inTime = statMod.time+1;
-                        targetTeam.unit1.statMods.Add(statMod);
-                        targetTeam.unit1.usedBonusStuff = false;
-                        targetTeam.unit1.hud.SetStatsHud(targetTeam.unit1);
+                        if (userTeam.unit3 && !userTeam.unit3.isDead)
+                        {
+                            statMod = a.statMod.ReturnStats();
+                            statMod.inTime = statMod.time;
+                            userTeam.unit3.statMods.Add(statMod);
+                            userTeam.unit3.usedBonusStuff = false;
+                            userTeam.unit3.hud.SetStatsHud(userTeam.unit3);
+                        }
 
-                        statMod = a.statMod2.ReturnStats();
-                        statMod.inTime = statMod.time+1;
-                        targetTeam.unit2.statMods.Add(statMod);
-                        targetTeam.unit2.usedBonusStuff = false;
-                        targetTeam.unit2.hud.SetStatsHud(targetTeam.unit2);
+                        if (!targetTeam.unit1.isDead)
+                        {
+                            statMod = a.statMod2.ReturnStats();
+                            statMod.inTime = statMod.time + 1;
+                            targetTeam.unit1.statMods.Add(statMod);
+                            targetTeam.unit1.usedBonusStuff = false;
+                            targetTeam.unit1.hud.SetStatsHud(targetTeam.unit1);
+                        }
 
-                        statMod = a.statMod2.ReturnStats();
-                        statMod.inTime = statMod.time+1;
-                        targetTeam.unit3.statMods.Add(statMod);
-                        targetTeam.unit3.usedBonusStuff = false;
-                        targetTeam.unit3.hud.SetStatsHud(targetTeam.unit3);
-                        isReady = true;
+                        if (targetTeam.unit2 && !targetTeam.unit2.isDead)
+                        {
+                            statMod = a.statMod2.ReturnStats();
+                            statMod.inTime = statMod.time + 1;
+                            targetTeam.unit2.statMods.Add(statMod);
+                            targetTeam.unit2.usedBonusStuff = false;
+                            targetTeam.unit2.hud.SetStatsHud(targetTeam.unit2);
+                        }
+
+                        if (targetTeam.unit3 && !targetTeam.unit3.isDead)
+                        {
+                            statMod = a.statMod2.ReturnStats();
+                            statMod.inTime = statMod.time + 1;
+                            targetTeam.unit3.statMods.Add(statMod);
+                            targetTeam.unit3.usedBonusStuff = false;
+                            targetTeam.unit3.hud.SetStatsHud(targetTeam.unit3);
+                            isReady = true;
+                        }
                     }
 
                     ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
@@ -4330,11 +4406,20 @@ public class BattleSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(0.4f);
         StartCoroutine(ManageEndTurn(player.unit1, player, enemy));
-        StartCoroutine(ManageEndTurn(player.unit2, player, enemy));
-        StartCoroutine(ManageEndTurn(player.unit3, player, enemy));
+
+        if (player.unit2)
+            StartCoroutine(ManageEndTurn(player.unit2, player, enemy));
+
+        if (player.unit3)
+            StartCoroutine(ManageEndTurn(player.unit3, player, enemy));
+
         StartCoroutine(ManageEndTurn(enemy.unit1, enemy, player));
-        StartCoroutine(ManageEndTurn(enemy.unit2, enemy, player));
-        StartCoroutine(ManageEndTurn(enemy.unit3, enemy, player));
+
+        if (enemy.unit2)
+            StartCoroutine(ManageEndTurn(enemy.unit2, enemy, player));
+
+        if (enemy.unit3)
+            StartCoroutine(ManageEndTurn(enemy.unit3, enemy, player));
         yield return new WaitForSeconds(0.9f);
 
         //set turn number
@@ -4357,19 +4442,37 @@ public class BattleSystem : MonoBehaviour
 
         //Some optimization needed
         UpdateTooltips(enemy.unit1);
-        UpdateTooltips(enemy.unit2);
-        UpdateTooltips(enemy.unit3);
+
+        if (enemy.unit2)
+            UpdateTooltips(enemy.unit2);
+
+        if (enemy.unit3)
+            UpdateTooltips(enemy.unit3);
+
         UpdateTooltips(player.unit1);
-        UpdateTooltips(player.unit2);
-        UpdateTooltips(player.unit3);
+
+        if (player.unit2)
+            UpdateTooltips(player.unit2);
+
+        if (player.unit3)
+            UpdateTooltips(player.unit3);
         // ^
 
         UpdateSummonTooltip(enemy.unit1);
-        UpdateSummonTooltip(enemy.unit2);
-        UpdateSummonTooltip(enemy.unit3);
+
+        if (enemy.unit2)
+            UpdateSummonTooltip(enemy.unit2);
+
+        if (enemy.unit3)
+            UpdateSummonTooltip(enemy.unit3);
+
         UpdateSummonTooltip(player.unit1);
-        UpdateSummonTooltip(player.unit2);
-        UpdateSummonTooltip(player.unit3);
+
+        if (player.unit2)
+            UpdateSummonTooltip(player.unit2);
+
+        if (player.unit3)
+            UpdateSummonTooltip(player.unit3);
 
         PlayerTurn();
     } 
@@ -4603,13 +4706,16 @@ public class BattleSystem : MonoBehaviour
                 if (id >= 1 && id <= unit.moves.Count)
                 {
                     Moves a = unit.moves.Find(x => x.id == id);
-                    child.GetComponent<BtnMoveSetup>().UpdateToolTip(a.GetTooltipText(false), a.GetTooltipText(true));
+                    child.GetComponent<BtnMoveSetup>().UpdateToolTip(a.GetTooltipText(false, unit.SetModifiers().manaCost, unit.SetModifiers().staminaCost), a.GetTooltipText(true, unit.SetModifiers().manaCost, unit.SetModifiers().staminaCost));
                 }
             }
 
             actionBox1p.UpdateTooltips();
-            actionBox2p.UpdateTooltips();
-            actionBox3p.UpdateTooltips();
+            if (player.unit2)
+                actionBox2p.UpdateTooltips();
+
+            if (player.unit3)
+                actionBox3p.UpdateTooltips();
         }
 
         //if (!unit.canUsePhysical)

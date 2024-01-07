@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Photosynthesis
   m_EditorClassIdentifier: 
   type: 3
-  target: 1
+  target: 3
   targetType: 0
   id: 0
   name: photosynthesis
@@ -28,9 +28,9 @@ MonoBehaviour:
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
-  heal: 10
-  healMana: 10
-  healStamina: 10
+  heal: 15
+  healMana: 8
+  healStamina: 8
   healSanity: 2
   shield: 0
   healFromDmgType: 0

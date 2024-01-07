@@ -7462,7 +7462,7 @@ MonoBehaviour:
   isEnemy: 0
   incapacitatedCharacters: 0
   deadCharacters: 0
-  playableCharacters: 3
+  playableCharacters: 0
 --- !u!1 &859068251
 GameObject:
   m_ObjectHideFlags: 0
@@ -9292,7 +9292,7 @@ MonoBehaviour:
   isEnemy: 1
   incapacitatedCharacters: 0
   deadCharacters: 0
-  playableCharacters: 3
+  playableCharacters: 0
 --- !u!1 &1034389945
 GameObject:
   m_ObjectHideFlags: 0

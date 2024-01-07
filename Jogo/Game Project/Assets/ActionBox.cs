@@ -60,14 +60,14 @@ public class ActionBox : MonoBehaviour
 
     public void UpdateTooltips()
     {
-        healManaBtn.GetComponent<TooltipButton>().text = unit.recoverMana.GetTooltipText(false);
-        healManaBtn.GetComponent<TooltipButton>().textSec = unit.recoverMana.GetTooltipText(true);
+        healManaBtn.GetComponent<TooltipButton>().text = unit.recoverMana.GetTooltipText(false, unit.SetModifiers().manaCost, unit.SetModifiers().staminaCost);
+        healManaBtn.GetComponent<TooltipButton>().textSec = unit.recoverMana.GetTooltipText(true, unit.SetModifiers().manaCost, unit.SetModifiers().staminaCost);
 
-        basicBtn.GetComponent<TooltipButton>().text = unit.basicAttack.GetTooltipText(false);
-        basicBtn.GetComponent<TooltipButton>().textSec = unit.basicAttack.GetTooltipText(true);
+        basicBtn.GetComponent<TooltipButton>().text = unit.basicAttack.GetTooltipText(false, unit.SetModifiers().manaCost, unit.SetModifiers().staminaCost);
+        basicBtn.GetComponent<TooltipButton>().textSec = unit.basicAttack.GetTooltipText(true, unit.SetModifiers().manaCost, unit.SetModifiers().staminaCost);
 
-        ultBtn.GetComponent<TooltipButton>().text = unit.ultMove.GetTooltipText(false);
-        ultBtn.GetComponent<TooltipButton>().textSec = unit.ultMove.GetTooltipText(true);
+        ultBtn.GetComponent<TooltipButton>().text = unit.ultMove.GetTooltipText(false, unit.SetModifiers().manaCost, unit.SetModifiers().staminaCost);
+        ultBtn.GetComponent<TooltipButton>().textSec = unit.ultMove.GetTooltipText(true, unit.SetModifiers().manaCost, unit.SetModifiers().staminaCost);
     }
 
     public void ManageActions()

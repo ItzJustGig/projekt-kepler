@@ -83,18 +83,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=25><align=center>Fun Chase</align></size>
+  text: '<size=25><align=center>One with the Shadows</align></size>
 
     <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
 
     
 
-    The
-    user will gain bonus <color=#ebdb28>20% Stamina Regen</color> and <color=#0095ff>15%
-    Movement Speed</color>  and deals bonus <color=#ffaa00>12 + (<color=#ffaa00>15%</color>
-    of the user''s <color=#ffaa00>Attack Damage</color>)</color> as<color=#ffaa00>
-    physical damage</color> on <color=#ffaa00>basic</color> or <color=#ffaa00>physical
-    moves</color> if an enemy is Bleeding
+    If
+    the user is not hit 3 times gain <color=#ffaa00>10% Attack Damage</color>, <color=#1a66ff>10%
+    Magic Power</color>, <color=#f75145>10% Critical Chance</color>, <color=#f75145>16%
+    Critical Damage</color>, <color=#0095ff>8% Movement Speed</color>, <color=#227da1>6,9%
+    Evasion</color> and <color=#c87c32>4,8% Armour Penetration</color>  until is
+    hit again.
 
 '
   textSec: 
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7755a5213df33e5489c20eb5ddb62730, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9e809eee1b860b4f8bab3c46b99229b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -271,4 +271,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 1

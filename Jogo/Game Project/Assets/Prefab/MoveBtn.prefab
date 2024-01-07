@@ -157,7 +157,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jewel of the Druid
+  m_Text: Mana Potion
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: edc4bbb7d32a9024b81094d5d9894628, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7e8c3244c112b3b43a26a1b635eed6f2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -405,68 +405,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Jewel of the Druid</align></size>
+  text: '<size=24><align=center>Mana Potion</align></size>
 
-    <size=20><align=center><color=#B266FF>Summon</color></align></size>
+    <size=20><align=center><color=#00ff11>Support</color></align></size>
 
     <size=15><align=center>Single
-    Target | Self or Ally</align></size>
+    Target | Self</align></size>
 
-    <color=#2d71fa>Mana Cost</color>:
-    0
+    <color=#2d71fa>Mana Cost</color>: 0
 
-    <color=#ebdb28>Stamina Cost</color>: 0
+    <color=#ebdb28>Stamina
+    Cost</color>: 0
 
-    Cooldown: 16
+    Cooldown: 12
 
-    Priority:
-    0
+    Priority: 0
 
-    Uses: 3
+    Uses: 4
 
-    <s><align=center>|                 |</align></s>
+    <s><align=center>|                
+    |</align></s>
 
-    Summons
-    a Fairy, that will <color=#00ff11>heal</color> every 3 turns
-
-    <color=#00ff11>Health:
-    987</color>
-
-    <color=#ffaa00>Attack Power: 77,5</color>
+    Recover <color=#1e68fc>15,0 mana</color> over 5 turns
 
 '
-  textSec: '<size=24><align=center>Jewel of the Druid</align></size>
+  textSec: '<size=24><align=center>Mana Potion</align></size>
 
-    <size=20><align=center><color=#B266FF>Summon</color></align></size>
+    <size=20><align=center><color=#00ff11>Support</color></align></size>
 
     <size=15><align=center>Single
-    Target | Self or Ally</align></size>
+    Target | Self</align></size>
 
-    <color=#2d71fa>Mana Cost</color>:
-    0
+    <color=#2d71fa>Mana Cost</color>: 0
 
-    <color=#ebdb28>Stamina Cost</color>: 0
+    <color=#ebdb28>Stamina
+    Cost</color>: 0
 
-    Cooldown: 16
+    Cooldown: 12
 
-    Priority:
-    0
+    Priority: 0
 
-    Uses: 3
+    Uses: 4
 
-    <s><align=center>|                 |</align></s>
+    <s><align=center>|                
+    |</align></s>
 
-    Summons
-    a Fairy, that will <color=#00ff11>heal</color> every 3 turns
-
-    <color=#00ff11>Health: 
-    (<color=#3366ff>130%</color> of the user''s <color=#3366ff>Maximum Mana</color>)
-    + (<color=#1a66ff>50%</color> of the user''s <color=#1a66ff>Magic Power</color>)</color>
-
-    <color=#ffaa00>Attack
-    Power:  (<color=#3366ff>6%</color> of the user''s <color=#3366ff>Maximum Mana</color>)
-    + (<color=#ffaa00>35%</color> of the user''s <color=#ffaa00>Attack Damage</color>)
-    + (<color=#1a66ff>28%</color> of the user''s <color=#1a66ff>Magic Power</color>)</color>
+    Recover <color=#1e68fc>15 + (<color=#3366ff>18,15%</color>
+    of the user''s <color=#3366ff>Missing Mana</color>) mana</color> over 5 turns
 
 '
   wantSec: 0

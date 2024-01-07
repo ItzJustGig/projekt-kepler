@@ -13,30 +13,43 @@ MonoBehaviour:
   m_Name: Fake Tears
   m_EditorClassIdentifier: 
   type: 5
+  target: 0
+  targetType: 0
+  id: 0
   name: faketears
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 15
+  magicDmg: 0
   trueDmg: 0
   sanityDmg: 4
   heal: 0
-  healMana: 15
+  healMana: 5
   healStamina: 0
   healSanity: 0
   shield: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 7
   inCooldown: 0
   manaCost: 5
   staminaCost: 5
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 11400000, guid: 24d71a1111752654aa1faed3e2865320, type: 2}
   scale:
   - {fileID: 11400000, guid: d0df348cae7b9cb44af1496f3044b69e, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

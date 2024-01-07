@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: seedling stats
   m_EditorClassIdentifier: 
   hp: 430
-  hpRegen: 16
+  hpRegen: 9
   mana: 280
   manaRegen: 0.35
   manaCost: 1
@@ -35,5 +35,6 @@ MonoBehaviour:
   accuracy: 1
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 1
   sizeMod: 0

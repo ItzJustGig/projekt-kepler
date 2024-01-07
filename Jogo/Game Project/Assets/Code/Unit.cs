@@ -356,7 +356,7 @@ public class Unit : MonoBehaviour
             a.timesInc++;
             bool skipDmg = false;
 
-            if (a.id == "TAU" || a.id == "GRD" && a.source.isDead)
+            if ((a.id == "TAU" || a.id == "GRD") && a.source.isDead)
                 a.duration = 0;
 
             if (!a.grantsOnRunOut)

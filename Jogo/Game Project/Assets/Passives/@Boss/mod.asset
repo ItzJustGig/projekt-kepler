@@ -40,5 +40,5 @@ MonoBehaviour:
   evasion: 0
   armourPen: 0
   magicPen: 0
-  ultrate: 0
+  ultrate: 0.25
   size: 2

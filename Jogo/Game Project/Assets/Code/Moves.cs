@@ -764,7 +764,7 @@ public class Moves : ScriptableObject
         return builder;
     }
 
-    public string GetTooltipText(bool showVal)
+    public string GetTooltipText(bool showVal, float manaCostPer=1, float staminaCostPer=1)
     {
         LanguageManager languageManager = GetLanguageMan();
         string language = GetLanguage();
@@ -776,8 +776,8 @@ public class Moves : ScriptableObject
 
         if (!isUlt)
         {
-            builder.Append(GetDmg(languageManager, language, "mana", manaCost, "2d71fa")).AppendLine();
-            builder.Append(GetDmg(languageManager, language, "stamina", staminaCost, "ebdb28")).AppendLine();
+            builder.Append(GetDmg(languageManager, language, "mana", manaCost*manaCostPer, "2d71fa")).AppendLine();
+            builder.Append(GetDmg(languageManager, language, "stamina", staminaCost*staminaCostPer, "ebdb28")).AppendLine();
         }
 
         if (cooldown > 0)
