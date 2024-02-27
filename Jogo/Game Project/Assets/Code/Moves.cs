@@ -35,6 +35,7 @@ public class Moves : ScriptableObject
     public int healStamina;
     public int healSanity;
     public int shield;
+    public int ultEnergy;
     public HealFromDmg healFromDmgType = HealFromDmg.NONE;
     public float healFromDmg = 0;
 
@@ -112,6 +113,7 @@ public class Moves : ScriptableObject
         move.healMana = healMana;
         move.healStamina = healStamina;
         move.shield = shield;
+        move.ultEnergy = ultEnergy;
 
         move.healFromDmgType = healFromDmgType;
         move.healFromDmg = healFromDmg;
@@ -501,6 +503,22 @@ public class Moves : ScriptableObject
                 }
                 builder.Append(GetDmg(languageManager, language, "shield", "787878", val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
+            
+            if (ultEnergy > 0 || HasScale(DmgType.ULTENEGY))
+            {
+                hasText = true;
+                StringBuilder temp = new StringBuilder();
+                float val = ultEnergy;
+                foreach (StatScale a in scale)
+                {
+                    if (a.type is DmgType.ULTENEGY)
+                        if (a.playerStat)
+                            val += a.SetScale(owner.SetModifiers(), owner);
+                        else
+                            temp.Append(a.GetStatScaleInfo());
+                }
+                builder.Append(GetDmg(languageManager, language, "ultenergy", "d0d0d0", val.ToString("0.0")+ temp.ToString())).AppendLine();
+            }
         } catch
         {
 
@@ -675,6 +693,22 @@ public class Moves : ScriptableObject
                     temp.Append(a.GetStatScaleInfo());
             }
             builder.Append(GetDmg(languageManager, language, "shield", shield, "787878", temp.ToString()));
+            if (!isActive)
+                builder.AppendLine();
+            else
+                builder.Append(" ");
+        }
+
+        if (shield > 0 || HasScale(DmgType.ULTENEGY))
+        {
+            hasText = true;
+            StringBuilder temp = new StringBuilder();
+            foreach (StatScale a in scale)
+            {
+                if (a.type is DmgType.ULTENEGY)
+                    temp.Append(a.GetStatScaleInfo());
+            }
+            builder.Append(GetDmg(languageManager, language, "ultenergy", ultEnergy, "d0d0d0", temp.ToString()));
             if (!isActive)
                 builder.AppendLine();
             else

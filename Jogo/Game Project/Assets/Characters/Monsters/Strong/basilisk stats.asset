@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: basilisk stats
   m_EditorClassIdentifier: 
-  hp: 430
+  hp: 550
   hpRegen: 20
   mana: 270
   manaRegen: 0.15

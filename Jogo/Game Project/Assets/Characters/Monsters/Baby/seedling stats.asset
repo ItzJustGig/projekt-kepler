@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: seedling stats
   m_EditorClassIdentifier: 
-  hp: 430
+  hp: 400
   hpRegen: 9
   mana: 280
   manaRegen: 0.35
@@ -25,8 +25,8 @@ MonoBehaviour:
   magicPower: 29
   critChance: 0.02
   critDmg: 0.04
-  dmgResis: 28
-  magicResis: 31
+  dmgResis: -10
+  magicResis: 23
   timing: 0.7
   movSpeed: 80
   lifesteal: 0

@@ -12,22 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: child infernus stats
   m_EditorClassIdentifier: 
-  hp: 495
+  hp: 445
   hpRegen: 16
-  mana: 340
+  mana: 350
   manaRegen: 0.4
+  manaCost: 1
   stamina: 140
   staminaRegen: 0.15
+  staminaCost: 1
   sanity: 60
   atkDmg: 18
   magicPower: 57
   critChance: 0.025
   critDmg: 0.04
-  dmgResis: 26
-  magicResis: 34
+  dmgResis: 21
+  magicResis: 30
   timing: 0.85
   movSpeed: 90
   lifesteal: 0
+  healBonus: 0
+  shieldBonus: 0
   accuracy: 1
   evasion: 0
   armourPen: 0
+  magicPen: 0
+  ultrate: 1
+  sizeMod: 0

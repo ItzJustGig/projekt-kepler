@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c40be94f130cb7f409300204aedd3b37, type: 3}
+  m_Name: Ancient Machine
+  m_EditorClassIdentifier: 
+  name: ancientmachine
+  showNameOnInfo: 1
+  origin: 0
+  sprite: {fileID: 21300000, guid: 4bbd149be44d05049b2c4023eb5e0f29, type: 3}
+  num: 1
+  maxNum: 0
+  stacks: 0
+  maxStacks: 0
+  cd: 0
+  inCd: 0
+  anim: 
+  anim2: 
+  statScale: {fileID: 0}
+  statScale2: {fileID: 0}
+  statMod: {fileID: 11400000, guid: f2dead1474bb71d419fd803c792fcae1, type: 2}
+  statMod2: {fileID: 11400000, guid: 0506f840010447145aee5dd45ecb2043, type: 2}
+  grantPassive: {fileID: 0}
+  grantMove: {fileID: 11400000, guid: efbf822b5b5be0a4f93dff553cfbae39, type: 2}

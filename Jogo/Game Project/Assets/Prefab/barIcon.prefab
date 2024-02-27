@@ -83,20 +83,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=25><align=center>One with the Shadows</align></size>
-
-    <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
-
-    
-
-    If
-    the user is not hit 3 times gain <color=#ffaa00>10% Attack Damage</color>, <color=#1a66ff>10%
-    Magic Power</color>, <color=#f75145>10% Critical Chance</color>, <color=#f75145>16%
-    Critical Damage</color>, <color=#0095ff>8% Movement Speed</color>, <color=#227da1>6,9%
-    Evasion</color> and <color=#c87c32>4,8% Armour Penetration</color>  until is
-    hit again.
-
-'
+  text: "<size=25><align=center>Cripple</align></size>\r\n<size=19><align=center><color=#B2B2B2>Effect</color></align></size>\r\n<s><align=center>|                
+    |</align></s>\r\nDoesn't allow the user to use:\r\n<color=#ffaa00>Physical moves</color>\r\n<s><align=center>|                
+    |</align></s>\r\nTake <color=#b829ff>2-6 sanity damage</color> each turn.\r\n<s><align=center>|                
+    |</align></s>\r\n <color=#0984db>-55% Timing</color>, <color=#0095ff>-32% Movement
+    Speed</color> and <color=#227da1>-2,5% Evasion</color> to the user \r\n"
   textSec: 
   wantSec: 0
 --- !u!95 &4874516270294335299
@@ -183,7 +174,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c9e809eee1b860b4f8bab3c46b99229b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 91bba625f109cb84b82fe38e5d3f7d14, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -271,4 +262,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 2

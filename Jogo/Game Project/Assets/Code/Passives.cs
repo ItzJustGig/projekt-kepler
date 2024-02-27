@@ -25,6 +25,13 @@ public class Passives : ScriptableObject
     public StatScale statScale;
     public StatScale statScale2;
 
+    public StatMod statMod;
+    public StatMod statMod2;
+
+    public Passives grantPassive;
+    public Moves grantMove;
+    public EffectsMove grantEffect;
+
     public StatScale ifConditionTrueScale()
     {
         return statScale;
@@ -35,8 +42,6 @@ public class Passives : ScriptableObject
         return statScale2;
     }
 
-    public StatMod statMod;
-    public StatMod statMod2;
 
     public StatMod ifConditionTrueMod()
     {
@@ -60,6 +65,9 @@ public class Passives : ScriptableObject
         passive.statScale2 = statScale2;
         passive.statMod = statMod;
         passive.statMod2 = statMod2;
+        passive.grantPassive = grantPassive;
+        passive.grantMove = grantMove;
+        passive.grantEffect = grantEffect;
         passive.anim = anim;
         passive.anim2 = anim2;
 
@@ -212,6 +220,9 @@ public class Passives : ScriptableObject
                 case DmgType.HEALSANITY:
                     desc.Replace("%scale%", GetInfo(languageManager, language, "healsanitydmg", statScale.GetStatScaleInfo().ToString(), "b641f0").ToString());
                     break;
+                case DmgType.ULTENEGY:
+                    desc.Replace("%scale%", GetInfo(languageManager, language, "ultenergydmg", statScale.GetStatScaleInfo().ToString(), "d0d0d0").ToString());
+                    break;
             }
         }
 
@@ -245,6 +256,9 @@ public class Passives : ScriptableObject
                     break;
                 case DmgType.HEALSANITY:
                     desc.Replace("%scale2%", GetInfo(languageManager, language, "healsanitydmg", statScale2.GetStatScaleInfo().ToString(), "b641f0").ToString());
+                    break;
+                case DmgType.ULTENEGY:
+                    desc.Replace("%scale2%", GetInfo(languageManager, language, "ultenergydmg", statScale2.GetStatScaleInfo().ToString(), "d0d0d0").ToString());
                     break;
             }
         }

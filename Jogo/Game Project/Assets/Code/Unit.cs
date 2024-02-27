@@ -745,6 +745,11 @@ public class Unit : MonoBehaviour
             curShield += dmg.shield;
         }
 
+        if (dmg.ultenergy > 0)
+        {
+            ult += dmg.ultenergy;
+        }
+
         if (curHp <= 0)
             return true;
         else

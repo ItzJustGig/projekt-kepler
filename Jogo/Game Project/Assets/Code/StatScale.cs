@@ -140,13 +140,13 @@ public class StatScale : ScriptableObject
             builder.Append(GetStat(languageManager, language, "hpregen", hpRegen, "2ffa3d", onWho));
 
         if (curMana > 0)
-            builder.Append(GetStat(languageManager, language, "curmana", curMana, "3366ff", onWho));
+            builder.Append(GetStat(languageManager, language, "curmana", curMana, "2d71fa", onWho));
 
         if (missMana > 0)
-            builder.Append(GetStat(languageManager, language, "missmana", missMana, "3366ff", onWho));
+            builder.Append(GetStat(languageManager, language, "missmana", missMana, "2d71fa", onWho));
 
         if (maxMana > 0)
-            builder.Append(GetStat(languageManager, language, "maxmana", maxMana, "3366ff", onWho));
+            builder.Append(GetStat(languageManager, language, "maxmana", maxMana, "2d71fa", onWho));
 
         if (manaRegen > 0)
             builder.Append(GetStat(languageManager, language, "manaregen", manaRegen, "2d71fa", onWho));
@@ -276,6 +276,7 @@ public class StatScale : ScriptableObject
         dmg.healStamina = 0;
         dmg.healSanity = 0;
         dmg.shield = 0;
+        dmg.ultenergy = 0;
 
         switch (type)
         {
@@ -313,7 +314,11 @@ public class StatScale : ScriptableObject
                 break;
             case DmgType.SHIELD:
                 dmg.shield += flatValue;
-                dmg.shield += (int)SetScale(stats, unit);
+                dmg.shield += SetScale(stats, unit);
+                break;
+            case DmgType.ULTENEGY:
+                dmg.ultenergy += flatValue;
+                dmg.ultenergy += SetScale(stats, unit);
                 break;
         }
 

@@ -4466,16 +4466,16 @@ MonoBehaviour:
   nonCombatPriceIncrease: 0.15
   nonCombatChanceDecrease: 0
   commonMin: 10
-  commonMax: 30
-  uncommonMin: 40
-  uncommonMax: 65
-  rareMin: 70
-  rareMax: 90
-  epicMin: 100
-  epicMax: 140
+  commonMax: 25
+  uncommonMin: 30
+  uncommonMax: 50
+  rareMin: 60
+  rareMax: 80
+  epicMin: 90
+  epicMax: 110
   legendaryMin: 150
   legendaryMax: 180
-  hpRecover: 0.3
+  hpRecover: 0.4
   costsRecover: 1
   sanityRecover: 0.3
 --- !u!114 &1250475053

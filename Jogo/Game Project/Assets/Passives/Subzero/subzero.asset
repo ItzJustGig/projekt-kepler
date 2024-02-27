@@ -15,7 +15,7 @@ MonoBehaviour:
   name: subzero
   showNameOnInfo: 1
   origin: 0
-  sprite: {fileID: 21300000, guid: 97a974dec2947e94185c846dd002d337, type: 3}
+  sprite: {fileID: 21300000, guid: f68239843b083ef4f885490ff3a957d9, type: 3}
   num: 0.25
   maxNum: 0
   stacks: 0
@@ -28,3 +28,4 @@ MonoBehaviour:
   statScale2: {fileID: 0}
   statMod: {fileID: 11400000, guid: 957d59803181ff54b90f9f3d106e1d33, type: 2}
   statMod2: {fileID: 11400000, guid: a70846aeb68625143b16372967eca5b7, type: 2}
+  grantPassive: {fileID: 0}

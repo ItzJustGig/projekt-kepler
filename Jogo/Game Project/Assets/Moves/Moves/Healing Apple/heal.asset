@@ -18,7 +18,7 @@ MonoBehaviour:
   curHp: 0
   missHp: 0
   maxHp: 0
-  hpRegen: 0.4
+  hpRegen: 0.45
   missMana: 0
   curMana: 0
   maxMana: 0

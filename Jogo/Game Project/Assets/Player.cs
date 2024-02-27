@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
 using static LanguageManager;
+using static UnityEngine.UI.CanvasScaler;
 
 public class Player : MonoBehaviour
 {
@@ -242,19 +243,22 @@ public class Player : MonoBehaviour
 
     public Unit GetRandom()
     {
-        int rng = Random.Range(1, playableCharacters+1);
-
-        switch (rng)
+        do
         {
-            case 1:
-                return unit1;
-            case 2:
-                return unit2;
-            case 3:
-                return unit3;
-            default:
-                return unit1;
-        }
+            int rng = Random.Range(1, playableCharacters + 1);
+
+            switch (rng)
+            {
+                case 1:
+                    return unit1;
+                case 2:
+                    return unit2;
+                case 3:
+                    return unit3;
+                default:
+                    return unit1;
+            }
+        } while (true);
     }
     
     public Unit GetRandom(Unit user)
@@ -400,63 +404,115 @@ public class Player : MonoBehaviour
                 if (!skip)
                 {
                     if (i == random)
-                        if (user.curMana >= a.manaCost && user.curStamina >= a.staminaCost)
+                    {
+                        bool canUse = true;
+                        int unitNum = 1;
+
+                        if (unit2 && user == unit2)
+                            unitNum = 2;
+                        else if (unit3 && user == unit3)
+                            unitNum = 3;
+
+                        if (a.target is Moves.Target.ALLY)
                         {
-                            int inCd = a.inCooldown;
-
-                            if (inCd <= 0)
+                            switch (unitNum)
                             {
-                                bool canUse = true;
-
-                                if (!a.isUlt)
-                                {
-                                    switch (a.type)
+                                case 1:
+                                    if (unit2 && unit3)
                                     {
-                                        case Moves.MoveType.PHYSICAL:
-                                            if (!user.canUsePhysical)
-                                                canUse = false;
-                                            break;
-                                        case Moves.MoveType.MAGICAL:
-                                            if (!user.canUseMagic)
-                                                canUse = false;
-                                            break;
-                                        case Moves.MoveType.RANGED:
-                                            if (!user.canUseRanged)
-                                                canUse = false;
-                                            break;
-                                        case Moves.MoveType.DEFFENCIVE:
-                                            if (!user.canUseProtec)
-                                                canUse = false;
-                                            break;
-                                        case Moves.MoveType.SUPPORT:
-                                            if (!user.canUseSupp)
-                                                canUse = false;
-                                            break;
-                                        case Moves.MoveType.ENCHANT:
-                                            if (!user.canUseEnchant)
-                                                canUse = false;
-                                            break;
-                                        case Moves.MoveType.SUMMON:
-                                            if (!user.canUseSummon)
-                                                canUse = false;
-                                            break;
+                                        if (unit2.isDead && unit3.isDead)
+                                            canUse = false;
                                     }
+                                    else if (!unit2 && !unit3)
+                                        canUse = false;
+
+                                    break;
+                                case 2:
+                                    if (unit1 && unit3)
+                                    {
+                                        if (unit1.isDead && unit3.isDead)
+                                            canUse = false;
+                                    }
+                                    else if (!unit1 && !unit3)
+                                        canUse = false;
+
+                                    break;
+                                case 3:
+                                    if (unit1 && unit2)
+                                    {
+                                        if (unit1.isDead && unit2.isDead)
+                                            canUse = false;
+                                    }
+                                    else if (!unit1 && !unit2)
+                                        canUse = false;
+
+                                    break;
+                            }
+                        }
+
+                        if (canUse)
+                        {
+                            if (user.curMana >= a.manaCost && user.curStamina >= a.staminaCost)
+                            {
+                                int inCd = a.inCooldown;
+
+                                if (inCd <= 0)
+                                {
+                                    if (!a.isUlt)
+                                    {
+                                        switch (a.type)
+                                        {
+                                            case Moves.MoveType.PHYSICAL:
+                                                if (!user.canUsePhysical)
+                                                    canUse = false;
+                                                break;
+                                            case Moves.MoveType.MAGICAL:
+                                                if (!user.canUseMagic)
+                                                    canUse = false;
+                                                break;
+                                            case Moves.MoveType.RANGED:
+                                                if (!user.canUseRanged)
+                                                    canUse = false;
+                                                break;
+                                            case Moves.MoveType.DEFFENCIVE:
+                                                if (!user.canUseProtec)
+                                                    canUse = false;
+                                                break;
+                                            case Moves.MoveType.SUPPORT:
+                                                if (!user.canUseSupp)
+                                                    canUse = false;
+                                                break;
+                                            case Moves.MoveType.ENCHANT:
+                                                if (!user.canUseEnchant)
+                                                    canUse = false;
+                                                break;
+                                            case Moves.MoveType.SUMMON:
+                                                if (!user.canUseSummon)
+                                                    canUse = false;
+                                                break;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        user.ult -= user.ultMove.ultCost;
+                                    }
+
+                                    if (canUse)
+                                        move = a;
                                 }
                                 else
-                                {
-                                    user.ult -= user.ultMove.ultCost;
-                                }
-
-                                if (canUse)
-                                    move = a;
+                                    move = null;
                             }
                             else
+                            {
                                 move = null;
+                            }
                         }
                         else
                         {
                             move = null;
                         }
+                    }   
                 }
                 else
                     move = a;
@@ -524,7 +580,8 @@ public class Player : MonoBehaviour
         }
 
         unit.effects.Clear();
-       
+        unit.dotDmg.Clear();
+
         deadCharacters++;
     }
 

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strenght: 0
   chance: 1
-  minLvl: 2
-  maxLvl: 4
+  minLvl: 5
+  maxLvl: 7

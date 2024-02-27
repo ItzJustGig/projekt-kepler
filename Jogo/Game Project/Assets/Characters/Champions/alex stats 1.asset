@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: alex stats 1
   m_EditorClassIdentifier: 
-  hp: 2174
+  hp: 1620
   hpRegen: 11
   mana: 405
   manaRegen: 0.742
@@ -21,12 +21,12 @@ MonoBehaviour:
   staminaRegen: 0.93
   staminaCost: 0.7
   sanity: 200
-  atkDmg: 22
-  magicPower: 12
-  critChance: 0.14
+  atkDmg: 21
+  magicPower: 9
+  critChance: 0.1
   critDmg: 0.2
-  dmgResis: 23.65
-  magicResis: 19
+  dmgResis: 13
+  magicResis: 8
   timing: 1.7
   movSpeed: 208
   lifesteal: 0

@@ -27,7 +27,7 @@ MonoBehaviour:
   phyDmg: 0
   magicDmg: 30
   trueDmg: 0
-  sanityDmg: 4
+  sanityDmg: 2
   heal: 0
   healMana: 0
   healStamina: 0

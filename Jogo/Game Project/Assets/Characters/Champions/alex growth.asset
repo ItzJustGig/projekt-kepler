@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: alex growth
   m_EditorClassIdentifier: 
-  hp: 18.2
+  hp: 15
   hpRegen: 0.5
   mana: 9
   manaRegen: 0.0036
@@ -21,12 +21,12 @@ MonoBehaviour:
   staminaRegen: 0.009
   staminaCost: 0.01
   sanity: 0
-  atkDmg: 1.6
-  magicPower: 0.55
+  atkDmg: 1.35
+  magicPower: 0.4
   critChance: 0.008
-  critDmg: 0.01
-  dmgResis: 1.4
-  magicResis: 1.2
+  critDmg: 0.0083
+  dmgResis: 0.8
+  magicResis: 0.62
   timing: 0.03
   movSpeed: 4.4
   lifesteal: 0

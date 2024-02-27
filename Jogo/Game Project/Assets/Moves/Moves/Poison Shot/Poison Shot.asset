@@ -25,7 +25,7 @@ MonoBehaviour:
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 35
-  magicDmg: 25
+  magicDmg: 10
   trueDmg: 0
   sanityDmg: 0
   heal: 0

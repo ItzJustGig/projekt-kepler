@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Jumpscare
   m_EditorClassIdentifier: 
   type: 5
+  target: 0
+  targetType: 0
+  id: 0
   name: jumpscare
   hitTime: 1
   priority: 1
@@ -24,7 +27,7 @@ MonoBehaviour:
   phyDmg: 0
   magicDmg: 25
   trueDmg: 0
-  sanityDmg: 7
+  sanityDmg: 4
   heal: 0
   healMana: 0
   healStamina: 0
@@ -34,7 +37,7 @@ MonoBehaviour:
   healFromDmg: 0
   cooldown: 6
   inCooldown: 0
-  manaCost: 35
+  manaCost: 45
   staminaCost: 0
   ultCost: 100
   needFullUlt: 1

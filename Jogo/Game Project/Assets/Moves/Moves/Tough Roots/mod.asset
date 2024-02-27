@@ -15,7 +15,7 @@ MonoBehaviour:
   flat: 0
   time: 4
   inTime: 0
-  chance: 0.7
+  chance: 0.65
   hp: 0
   hpRegen: 0
   mana: 0
@@ -29,8 +29,8 @@ MonoBehaviour:
   magicPower: 0
   critChance: 0
   critDmg: 0
-  dmgResis: 0.25
-  magicResis: 0.2
+  dmgResis: 0.2
+  magicResis: 0.15
   timing: 0
   movSpeed: 0
   lifesteal: 0

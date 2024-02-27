@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fea3700a7b486f84d86ec9fe0aada3f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32d5874568e07f34192f036f93870c93, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -153,7 +153,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enchanted Spear
+  m_Text: Leeching Branch
 --- !u!1 &5427755121742644162
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,8 +227,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: "<size=24><align=center>Enchanted Spear</align></size>\r\n<s><align=center>|                
-    |</align></s>\r\n<color=#ffaa00>+9 Attack Damage</color>\r\n<color=#946ACD>+4
-    Magic Resistance</color>\r\n<color=#0095ff>+15 Movement Speed</color>\r\n  \r\n"
+  text: "<size=24><align=center>Leeching Branch</align></size>\r\n<s><align=center>|                
+    |</align></s>\r\n<color=#00ff11>+25 Maximum Health</color>\r\n<color=#ffaa00>+6
+    Attack Damage</color>\r\n<color=#078f10>+3,75% Lifesteal</color>\r\n  \r\n"
   textSec: 
   wantSec: 0

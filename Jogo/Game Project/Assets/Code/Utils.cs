@@ -1,4 +1,4 @@
-public enum DmgType { PHYSICAL, MAGICAL, TRUE, SANITY, HEAL, HEALMANA, HEALSTAMINA, HEALSANITY, SHIELD };
+public enum DmgType { PHYSICAL, MAGICAL, TRUE, SANITY, HEAL, HEALMANA, HEALSTAMINA, HEALSANITY, SHIELD, ULTENEGY };
 
 public struct DMG
 {
@@ -11,6 +11,7 @@ public struct DMG
     public float healStamina;
     public int healSanity;
     public float shield;
+    public float ultenergy;
 
     public void Reset()
     {
@@ -23,6 +24,7 @@ public struct DMG
         healStamina = 0;
         healSanity = 0;
         shield = 0;
+        ultenergy = 0;
     }
 
     public void AddDmg(DMG dmg)
@@ -36,6 +38,7 @@ public struct DMG
         healStamina += dmg.healStamina;
         healSanity += dmg.healSanity;
         shield += dmg.shield;
+        ultenergy += dmg.ultenergy;
     }
 
     public void AddBaseDmg(Moves move)
@@ -115,6 +118,8 @@ public struct DMG
         dmg.healSanity = 0;
         shield += dmg.shield;
         dmg.shield = 0;
+        ultenergy += dmg.ultenergy;
+        dmg.ultenergy = 0;
 
         return dmg;
     }
@@ -133,6 +138,7 @@ public struct DMG
         healSanity += move.healSanity;
 
         shield += move.shield;
+        ultenergy += move.ultEnergy;
     }
 
     //used on AI
@@ -149,5 +155,6 @@ public struct DMG
         healSanity *= (int)num;
 
         shield *= num;
+        ultenergy *= num;
     }
 };

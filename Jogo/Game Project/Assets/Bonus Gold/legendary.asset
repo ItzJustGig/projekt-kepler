@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: legendary
   m_EditorClassIdentifier: 
   id: 5
-  minGold: 22
-  maxGold: 28
+  minGold: 36
+  maxGold: 42

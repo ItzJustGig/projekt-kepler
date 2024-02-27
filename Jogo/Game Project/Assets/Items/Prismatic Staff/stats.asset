@@ -18,7 +18,7 @@ MonoBehaviour:
   chance: 0
   hp: 0
   hpRegen: 0
-  mana: 35
+  mana: 40
   manaRegen: 0
   manaCost: 0
   stamina: 0

@@ -201,6 +201,50 @@ public class ActionBox : MonoBehaviour
                         break;
                 }
 
+                int unitNum = 1;
+
+                if (battleSystem.player.unit2 && unit == battleSystem.player.unit2)
+                    unitNum = 2;
+                else if (battleSystem.player.unit3 && unit == battleSystem.player.unit3)
+                    unitNum = 3;
+
+                if (move.target is Moves.Target.ALLY)
+                {
+                    switch (unitNum)
+                    {
+                        case 1:
+                            if (battleSystem.player.unit2 && battleSystem.player.unit3)
+                            {
+                                if (battleSystem.player.unit2.isDead && battleSystem.player.unit3.isDead)
+                                    canUse = false;
+                            }
+                            else if(!battleSystem.player.unit2 && !battleSystem.player.unit3)
+                                canUse = false;
+
+                            break;
+                        case 2:
+                            if (battleSystem.player.unit1 && battleSystem.player.unit3)
+                            {
+                                if (battleSystem.player.unit1.isDead && battleSystem.player.unit3.isDead)
+                                    canUse = false;
+                            }
+                            else if(!battleSystem.player.unit1 && !battleSystem.player.unit3)
+                                canUse = false;
+                                
+                            break;
+                        case 3:
+                            if (battleSystem.player.unit1 && battleSystem.player.unit2)
+                            {
+                                if (battleSystem.player.unit1.isDead && battleSystem.player.unit2.isDead)
+                                    canUse = false;
+                            }
+                            else if(!battleSystem.player.unit1 && !battleSystem.player.unit2) 
+                                canUse = false;
+                               
+                            break;
+                    }
+                }
+
                 if (unit.curMana < (move.manaCost * unit.SetModifiers().manaCost)
                     || unit.curStamina < (move.staminaCost * unit.SetModifiers().staminaCost) || inCd > 0)
                     canUse = false;

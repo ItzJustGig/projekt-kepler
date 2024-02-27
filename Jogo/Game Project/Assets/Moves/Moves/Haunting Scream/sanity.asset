@@ -27,7 +27,7 @@ MonoBehaviour:
   curStamina: 0
   missStamina: 0
   staminaRegen: 0
-  curSanity: 0.055
+  curSanity: 0.025
   missSanity: 0
   maxSanity: 0
   atkDmg: 0

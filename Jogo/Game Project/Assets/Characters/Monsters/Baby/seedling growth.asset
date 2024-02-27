@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: seedling growth
   m_EditorClassIdentifier: 
   hp: 20
-  hpRegen: 0.41
+  hpRegen: 0.35
   mana: 12.2
   manaRegen: 0.015
   manaCost: 0
-  stamina: 5.1
-  staminaRegen: 0.003
+  stamina: 4
+  staminaRegen: 0.002
   staminaCost: 0
   sanity: 0
   atkDmg: 0.8
-  magicPower: 1.6
+  magicPower: 1.2
   critChance: 0.002
   critDmg: 0.001
-  dmgResis: 0.75
-  magicResis: 1
+  dmgResis: 0.7
+  magicResis: 0.9
   timing: 0.095
   movSpeed: 3.5
   lifesteal: 0

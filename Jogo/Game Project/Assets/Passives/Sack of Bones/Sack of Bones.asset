@@ -26,5 +26,8 @@ MonoBehaviour:
   anim2: 
   statScale: {fileID: 11400000, guid: 33da6491c0272564888053a015124650, type: 2}
   statScale2: {fileID: 0}
-  statMod: {fileID: 0}
+  statMod: {fileID: 11400000, guid: bdf388e53a6de824aaf67d37d4a5ec62, type: 2}
   statMod2: {fileID: 0}
+  grantPassive: {fileID: 0}
+  grantMove: {fileID: 0}
+  grantEffect: {fileID: 0}

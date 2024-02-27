@@ -19,7 +19,7 @@ MonoBehaviour:
   hp: 0
   hpRegen: 0
   mana: 80
-  manaRegen: 0.85
+  manaRegen: 0.5
   manaCost: 0
   stamina: 0
   staminaRegen: 0

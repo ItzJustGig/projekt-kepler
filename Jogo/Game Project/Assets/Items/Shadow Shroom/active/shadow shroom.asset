@@ -30,9 +30,10 @@ MonoBehaviour:
   sanityDmg: 0
   heal: 0
   healMana: 0
-  healStamina: 60
+  healStamina: 65
   healSanity: 0
-  shield: 120
+  shield: 130
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 13

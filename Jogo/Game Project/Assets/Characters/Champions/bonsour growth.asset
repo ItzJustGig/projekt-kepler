@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: bonsour growth
   m_EditorClassIdentifier: 
-  hp: 70
+  hp: 50
   hpRegen: 0.3
   mana: 5
   manaRegen: 0.007
@@ -21,12 +21,12 @@ MonoBehaviour:
   staminaRegen: 0.024
   staminaCost: 0.01
   sanity: 0
-  atkDmg: 1.2
-  magicPower: 0.42
-  critChance: 0.0034
-  critDmg: 0.0042
-  dmgResis: 1.8
-  magicResis: 0.52
+  atkDmg: 0.9
+  magicPower: 0.3
+  critChance: 0.003
+  critDmg: 0.004
+  dmgResis: 1.6
+  magicResis: 0.5
   timing: 0.0106
   movSpeed: 2.5
   lifesteal: 0

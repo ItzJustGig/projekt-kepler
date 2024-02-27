@@ -33,7 +33,7 @@ MonoBehaviour:
   magicResis: 0
   timing: 0
   movSpeed: 0
-  lifesteal: 0
+  lifesteal: 0.25
   healBonus: 0
   shieldBonus: 0
   accuracy: 0

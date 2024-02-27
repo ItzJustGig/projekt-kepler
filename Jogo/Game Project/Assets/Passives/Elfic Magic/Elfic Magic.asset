@@ -15,7 +15,7 @@ MonoBehaviour:
   name: elficmagic
   showNameOnInfo: 1
   origin: 0
-  sprite: {fileID: 21300000, guid: 9f5be396b16edb1458dfb2fa2b6b4554, type: 3}
+  sprite: {fileID: 21300000, guid: 0f73d8e2973759c4d9e20675b48157eb, type: 3}
   num: 0
   maxNum: 0
   stacks: 0
@@ -28,3 +28,4 @@ MonoBehaviour:
   statScale2: {fileID: 0}
   statMod: {fileID: 0}
   statMod2: {fileID: 0}
+  grantPassive: {fileID: 0}

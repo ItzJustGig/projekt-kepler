@@ -26,13 +26,13 @@ MonoBehaviour:
   staminaCost: 0
   sanity: 0
   atkDmg: 5
-  magicPower: 10
+  magicPower: 8
   critChance: 0
   critDmg: 0
   dmgResis: 0
   magicResis: 0
   timing: 1
-  movSpeed: 25
+  movSpeed: 20
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0

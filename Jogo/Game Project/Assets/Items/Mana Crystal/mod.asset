@@ -18,7 +18,7 @@ MonoBehaviour:
   chance: 1
   hp: 0
   hpRegen: 0
-  mana: 85
+  mana: 90
   manaRegen: 0
   manaCost: 0
   stamina: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
   staminaCost: 0
   sanity: 0
   atkDmg: 0
-  magicPower: 8
+  magicPower: 0
   critChance: 0
   critDmg: 0
   dmgResis: 0
@@ -39,4 +39,6 @@ MonoBehaviour:
   accuracy: 0
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 0
+  size: 0

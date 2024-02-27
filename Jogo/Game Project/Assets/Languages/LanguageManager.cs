@@ -240,6 +240,7 @@ public class LanguageManager : MonoBehaviour
         public string healstamina;
         public string healsanity;
         public string shield;
+        public string ultenergy;
         public string bonuscritchance;
         public string bonuscritdmg;
         public string blockphysic;
@@ -275,6 +276,7 @@ public class LanguageManager : MonoBehaviour
         public string healstaminadmg;
         public string healsanitydmg;
         public string shielddmg;
+        public string ultenergydmg;
         public string inflicteffect;
         public string overtime;
         public string as_;
@@ -342,6 +344,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "shield":
                     returns = shield;
+                    break;
+                case "ultenergy":
+                    returns = ultenergy;
                     break;
                 case "bonuscritchance":
                     returns = bonuscritchance;
@@ -447,6 +452,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "shielddmg":
                     returns = shielddmg;
+                    break;
+                case "ultenergydmg":
+                    returns = ultenergydmg;
                     break;
                 case "inflicteffect":
                     returns = inflicteffect;
@@ -983,6 +991,15 @@ public class LanguageManager : MonoBehaviour
         public string druid;
         public string elficmagic;
         public string subzero;
+        public string serratedblade;
+        public string ancientmachine;
+        public string guardianoftheforest;
+        public string forestpower;
+        public string lichsamulet;
+        public string roseguardplate;
+        public string multielement;
+        public string enchantedshades;
+        public string quickfeet;
 
         public string Get_Cont(string a)
         {
@@ -1181,6 +1198,33 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "subzero":
                     returns = subzero;
+                    break;
+                case "serratedblade":
+                    returns = serratedblade;
+                    break;
+                case "ancientmachine":
+                    returns = ancientmachine;
+                    break;
+                case "guardianoftheforest":
+                    returns = guardianoftheforest;
+                    break;
+                case "forestpower":
+                    returns = forestpower;
+                    break;
+                case "roseguardplate":
+                    returns = roseguardplate;
+                    break;
+                case "lichsamulet":
+                    returns = lichsamulet;
+                    break;
+                case "multielement":
+                    returns = multielement;
+                    break;
+                case "enchantedshades":
+                    returns = enchantedshades;
+                    break;
+                case "quickfeet":
+                    returns = quickfeet;
                     break;
                 default:
                     returns = "null";
@@ -1401,6 +1445,7 @@ public class LanguageManager : MonoBehaviour
         public string predatormantis;
         public string flecko;
         public string enya;
+        public string fonke;
 
         public string Get_CharcCont(string a)
         {
@@ -1493,6 +1538,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "enya":
                     returns = enya;
+                    break;
+                case "fonke":
+                    returns = fonke;
                     break;
                 default:
                     returns = "null";
@@ -1752,6 +1800,8 @@ public class LanguageManager : MonoBehaviour
         public string bloom;
         public string barrage;
         public string galeburst;
+        public string naturegift;
+        public string coolingsystem;
 
         public string bloodpressure;
         public string enchdeadlyshadow;
@@ -1763,6 +1813,7 @@ public class LanguageManager : MonoBehaviour
         public string feirydance;
         public string mechasuit;
         public string yggdrasilsblessing;
+        public string enchantedshades;
 
         public string healthpotion;
         public string manapotion;
@@ -1773,6 +1824,7 @@ public class LanguageManager : MonoBehaviour
         public string jewelofthedruid;
         public string shadowshroom;
         public string prismaticstaff;
+        public string lichsamulet;
 
         public string Get_Moves(string a, string b)
         {
@@ -2103,6 +2155,9 @@ public class LanguageManager : MonoBehaviour
                 case "pd1100":
                     returns = pd1100;
                     break;
+                case "naturegift":
+                    returns = naturegift;
+                    break;
                 case "bloodpressure":
                     returns = bloodpressure;
                     break;
@@ -2168,6 +2223,15 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "yggdrasilsblessing":
                     returns = yggdrasilsblessing;
+                    break;
+                case "lichsamulet":
+                    returns = lichsamulet;
+                    break;
+                case "coolingsystem":
+                    returns = coolingsystem;
+                    break;
+                case "enchantedshades":
+                    returns = enchantedshades;
                     break;
                 default:
                     returns = "null";
@@ -2325,6 +2389,9 @@ public class LanguageManager : MonoBehaviour
         public string shoppass;
         public string shopcoupon;
         public string aprenticetome;
+        public string serratedblade;
+        public string lichsamulet;
+        public string roseguardplate;
 
         public string Get_ItemName(string a)
         {
@@ -2436,6 +2503,15 @@ public class LanguageManager : MonoBehaviour
                 case "aprenticetome":
                     returns = aprenticetome;
                     break;
+                case "serratedblade":
+                    returns = serratedblade;
+                    break;
+                case "lichsamulet":
+                    returns = lichsamulet;
+                    break;
+                case "roseguardplate":
+                    returns = roseguardplate;
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -2493,6 +2569,7 @@ public class LanguageManager : MonoBehaviour
         public string jewelofthedruid;
         public string shadowshroom;
         public string prismaticstaff;
+        public string lichsamulet;
 
         public string Get_ItemMove(string a)
         {
@@ -2525,6 +2602,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "prismaticstaff":
                     returns = prismaticstaff;
+                    break;
+                case "lichsamulet":
+                    returns = lichsamulet;
                     break;
                 default:
                     returns = "null";

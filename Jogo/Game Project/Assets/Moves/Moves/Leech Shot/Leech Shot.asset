@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Leech Shot
   m_EditorClassIdentifier: 
   type: 1
+  target: 0
+  targetType: 0
+  id: 0
   name: leechshot
   hitTime: 1
   priority: 0
@@ -21,20 +24,20 @@ MonoBehaviour:
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 10
-  magicDmg: 20
+  phyDmg: 15
+  magicDmg: 10
   trueDmg: 0
   sanityDmg: 0
-  heal: 5
+  heal: 8
   healMana: 0
   healStamina: 0
   healSanity: 0
   shield: 0
   healFromDmgType: 4
-  healFromDmg: 0.7
+  healFromDmg: 1.05
   cooldown: 5
   inCooldown: 0
-  manaCost: 40
+  manaCost: 55
   staminaCost: 0
   ultCost: 100
   needFullUlt: 1

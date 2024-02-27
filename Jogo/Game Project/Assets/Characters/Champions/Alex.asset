@@ -35,7 +35,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 02bdf00caa1b7044287ed75d19caa190, type: 2}
   - {fileID: 11400000, guid: e09b81d81d8fa554ba54657928af0219, type: 2}
   - {fileID: 11400000, guid: aa000c6ce6772c949b6395bd1b52ece5, type: 2}
-  - {fileID: 11400000, guid: 6863e508bba7a3b4fa358c9e36b4c8c1, type: 2}
   - {fileID: 11400000, guid: e25d29c899182fa40a71c73327d1780a, type: 2}
   recItems:
   - {fileID: 11400000, guid: f0a47b92b24d4ec44be853fcc432af5c, type: 2}

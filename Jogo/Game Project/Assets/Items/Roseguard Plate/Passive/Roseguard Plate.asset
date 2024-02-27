@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c40be94f130cb7f409300204aedd3b37, type: 3}
+  m_Name: Roseguard Plate
+  m_EditorClassIdentifier: 
+  name: roseguardplate
+  showNameOnInfo: 0
+  origin: 1
+  sprite: {fileID: 21300000, guid: 4918b5097ca207a4cbce8c2dff47577b, type: 3}
+  num: 0
+  maxNum: 0
+  stacks: 0
+  maxStacks: 0
+  cd: 0
+  inCd: 0
+  anim: 
+  anim2: 
+  statScale: {fileID: 11400000, guid: 3a6a14ea6c6f9c64aa159804b0ffa434, type: 2}
+  statScale2: {fileID: 0}
+  statMod: {fileID: 11400000, guid: c6aab1a9d9714e74d88b7793bad715b8, type: 2}
+  statMod2: {fileID: 0}
+  grantPassive: {fileID: 0}
+  grantMove: {fileID: 0}
+  grantEffect: {fileID: 0}

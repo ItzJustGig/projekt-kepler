@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Big Steak
   m_EditorClassIdentifier: 
   type: 3
+  target: 0
+  targetType: 0
+  id: 0
   name: bigsteak
   hitTime: 1
   priority: 0
-  uses: 4
+  uses: 5
   isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
@@ -25,14 +28,15 @@ MonoBehaviour:
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
-  heal: 10
+  heal: 70
   healMana: 0
-  healStamina: 30
+  healStamina: 215
   healSanity: 0
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 13
+  cooldown: 8
   inCooldown: 0
   manaCost: 0
   staminaCost: 0
@@ -42,9 +46,7 @@ MonoBehaviour:
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
-  scale:
-  - {fileID: 11400000, guid: b6320929442c65c4f8f5d40356bc80c0, type: 2}
-  - {fileID: 11400000, guid: 2aaab9dc28e7a1f4590587f56caf535f, type: 2}
+  scale: []
   dot:
   - {fileID: 11400000, guid: fea7dadd1272ebc4c8dc7b87d7414e0c, type: 2}
   - {fileID: 11400000, guid: ba176fd1a7ed6b34cbf192c10a3a86c9, type: 2}

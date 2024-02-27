@@ -25,6 +25,7 @@ MonoBehaviour:
   passives:
   - {fileID: 11400000, guid: bbc7a37a6d72441429cb79a3e402d334, type: 2}
   - {fileID: 11400000, guid: 160d52f4603cfc74584f395d7a1e19c0, type: 2}
+  - {fileID: 11400000, guid: a1db57d746b3153419b088fd72977b66, type: 2}
   moves:
   - {fileID: 11400000, guid: 9a0640e73b6d3d64db32660ba01846fb, type: 2}
   - {fileID: 11400000, guid: 675c6c28fdd2851468d63fa7ed92c1d4, type: 2}
@@ -33,7 +34,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7e095cfa1d5af5f4db15692b3c215706, type: 2}
   - {fileID: 11400000, guid: 92f634cf624b38b4cab85f286a90d5dd, type: 2}
   - {fileID: 11400000, guid: 0c14c42d198201449b841e6e6802d0e7, type: 2}
-  - {fileID: 11400000, guid: e2efc40c4f063214e89d0e0da765bc5a, type: 2}
+  - {fileID: 11400000, guid: 6d4c451f0d2c4ab47ba71c25a07b8189, type: 2}
   - {fileID: 11400000, guid: ad2207cad6e487b41b8ea4fce50fc326, type: 2}
   recItems:
   - {fileID: 11400000, guid: 429fce6b4bace0a439742be56b0bde17, type: 2}

@@ -12,23 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: isadoe stats 1
   m_EditorClassIdentifier: 
-  hp: 1465
+  hp: 1495
   hpRegen: 11.4
-  mana: 290
+  mana: 310
   manaRegen: 1.3
   manaCost: 0.7
-  stamina: 325
-  staminaRegen: 0.5
+  stamina: 345
+  staminaRegen: 0.65
   staminaCost: 0.7
   sanity: 185
   atkDmg: 20
   magicPower: 17
   critChance: 0.11
   critDmg: 0.074
-  dmgResis: 19
-  magicResis: 27.5
+  dmgResis: 20
+  magicResis: 28
   timing: 1.05
-  movSpeed: 115
+  movSpeed: 120
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0

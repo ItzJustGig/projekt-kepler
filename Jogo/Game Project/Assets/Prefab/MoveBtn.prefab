@@ -157,7 +157,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Mana Potion
+  m_Text: Health Potion
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Mana Potion</align></size>
+  text: '<size=24><align=center>Health Potion</align></size>
 
     <size=20><align=center><color=#00ff11>Support</color></align></size>
 
@@ -417,7 +417,7 @@ MonoBehaviour:
     <color=#ebdb28>Stamina
     Cost</color>: 0
 
-    Cooldown: 12
+    Cooldown: 9
 
     Priority: 0
 
@@ -426,10 +426,10 @@ MonoBehaviour:
     <s><align=center>|                
     |</align></s>
 
-    Recover <color=#1e68fc>15,0 mana</color> over 5 turns
+    <color=#00ff11>Heal 340,0 health</color> over 7 turns
 
 '
-  textSec: '<size=24><align=center>Mana Potion</align></size>
+  textSec: '<size=24><align=center>Health Potion</align></size>
 
     <size=20><align=center><color=#00ff11>Support</color></align></size>
 
@@ -441,7 +441,7 @@ MonoBehaviour:
     <color=#ebdb28>Stamina
     Cost</color>: 0
 
-    Cooldown: 12
+    Cooldown: 9
 
     Priority: 0
 
@@ -450,8 +450,7 @@ MonoBehaviour:
     <s><align=center>|                
     |</align></s>
 
-    Recover <color=#1e68fc>15 + (<color=#3366ff>18,15%</color>
-    of the user''s <color=#3366ff>Missing Mana</color>) mana</color> over 5 turns
+    <color=#00ff11>Heal 340 health</color> over 7 turns
 
 '
   wantSec: 0

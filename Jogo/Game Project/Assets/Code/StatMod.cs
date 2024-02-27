@@ -336,7 +336,7 @@ public class StatMod : ScriptableObject
         if (mana != 0)
         {
             i--;
-            builder.Append(GetInfo(languageManager, language, "3366ff", mana, languageManager.GetText(language, "stats", "name", "mana"), false, i, false));
+            builder.Append(GetInfo(languageManager, language, "2d71fa", mana, languageManager.GetText(language, "stats", "name", "mana"), false, i, false));
         }
 
         if (manaRegen != 0)
@@ -420,7 +420,7 @@ public class StatMod : ScriptableObject
         if (evasion != 0)
         {
             i--;
-            builder.Append(GetInfo(languageManager, language, "227da1", evasion, languageManager.GetText(language, "stats", "name", "evasion"), true, i, false));
+            builder.Append(GetInfo(languageManager, language, "4FA5A0", evasion, languageManager.GetText(language, "stats", "name", "evasion"), true, i, false));
         }
 
         if (accuracy != 0)
@@ -444,7 +444,7 @@ public class StatMod : ScriptableObject
         if (ultrate != 0)
         {
             i--;
-            builder.Append(GetInfo(languageManager, language, "E6E6E6", ultrate, languageManager.GetText(language, "stats", "name", "ultrate"), true, i, false));
+            builder.Append(GetInfo(languageManager, language, "d0d0d0", ultrate, languageManager.GetText(language, "stats", "name", "ultrate"), true, i, false));
         }
 
         if (manaCost != 0)
