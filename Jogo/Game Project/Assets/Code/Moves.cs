@@ -699,7 +699,7 @@ public class Moves : ScriptableObject
                 builder.Append(" ");
         }
 
-        if (shield > 0 || HasScale(DmgType.ULTENEGY))
+        if (ultEnergy > 0 || HasScale(DmgType.ULTENEGY))
         {
             hasText = true;
             StringBuilder temp = new StringBuilder();

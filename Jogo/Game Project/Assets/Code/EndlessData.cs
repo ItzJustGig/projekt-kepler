@@ -5,27 +5,16 @@ using UnityEngine;
 [System.Serializable]
 public class EndlessData
 {
-    public bool isEnemyChampPrev;
-    public int enemyIdPrev;
-    public int enemyLevelPrev;
+    public EndlessCharacterInfo enemyPrev;
     public bool isEnemyBossPrev;
 
-    public bool isEnemyChampNext;
-    public int enemyIdNext;
-    public int enemyLevelNext;
+
+    public EndlessCharacterInfo enemyNext;
     public bool isEnemyBossNext;
 
-    public bool isPlayerChamp;
-    public int playerId;
-
-    public float playerHp;
-    public float playerMn;
-    public float playerSta;
-    public float playerSan;
-    public float playerUlt;
+    public EndlessCharacterInfo player;
 
     public int gold;
-    public int level;
     public int round;
     public int shoppass;
     public int shopcoupon;
@@ -41,24 +30,13 @@ public class EndlessData
 
     public EndlessData (EndlessInfo data)
     {
-        this.isEnemyChampNext = data.isEnemyChampNext;
+        this.enemyNext = data.enemyNext;
         this.isEnemyBossNext = data.isEnemyBossNext;
-        this.enemyIdNext = data.enemyIdNext;
-        this.enemyLevelNext = data.enemyLevelNext;
-        this.isEnemyChampPrev = data.isEnemyChampPrev;
-        this.enemyLevelPrev = data.enemyLevelPrev;
+        this.enemyPrev = data.enemyPrev;
         this.isEnemyBossPrev = data.isEnemyBossPrev;
-        this.enemyIdPrev = data.enemyIdPrev;
-        this.isPlayerChamp = data.isPlayerChamp;
-        this.playerId = data.playerId;
-        this.playerHp = data.playerHp;
-        this.playerMn = data.playerMn;
-        this.playerSta = data.playerSta;
-        this.playerSan = data.playerSan;
-        this.playerUlt = data.playerUlt;
+        this.player = data.player;
         this.gold = data.gold;
         this.round = data.round;
-        this.level = data.level;
         this.shoprerolls = data.shoprerolls;
         this.shoppass = data.shoppass;
         this.shopcoupon = data.shopcoupon;
@@ -87,28 +65,17 @@ public class EndlessData
 
     public EndlessData ()
     {
-        this.isEnemyChampPrev = false;
-        this.enemyIdPrev = -1;
-        this.enemyLevelPrev = 0;
+        this.enemyPrev = new EndlessCharacterInfo();
         this.isEnemyBossPrev = false;
-        this.isEnemyChampNext = false;
-        this.enemyIdNext = -1;
-        this.enemyLevelNext = -1;
+        this.enemyNext = new EndlessCharacterInfo();
         this.isEnemyBossNext = false;
-        this.isPlayerChamp = false;
-        this.playerId = -1;
-        this.playerHp = 1;
-        this.playerMn = 1;
-        this.playerSta = 1;
-        this.playerSan = 1;
-        this.playerUlt = 0;
+        this.player = new EndlessCharacterInfo();
         this.gold = 0;
         this.round = -1;
         this.shoppass = 0;
         this.shopcoupon = 0;
         this.shoprerolls = 2;
         this.round = -1;
-        this.level = 0;
         this.wonLastRound = 1;
         this.generateShop = true;
         this.isShopOpen = false;

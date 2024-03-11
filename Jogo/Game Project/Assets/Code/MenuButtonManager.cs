@@ -45,7 +45,7 @@ public class MenuButtonManager : MonoBehaviour
         EndlessData data = SaveSystem.Load();
 
         PlayerPrefs.SetInt("isEndless", 1);
-        if (data.playerId != -1)
+        if (data.player.id != -1)
             loader.LoadScene(3, slider, loadPanel);
         else
             loader.LoadScene(1, slider, loadPanel);

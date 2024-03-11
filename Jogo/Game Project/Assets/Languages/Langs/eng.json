@@ -420,7 +420,7 @@
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain%mod%and deal bonus %scale% on attacks.",
-			"bullsrage": "When the user take or deal <color=#f75145>%maxStacks% critical strikes</color> gain%mod%and deal bonus %scale% on <color=#ffaa00>physical</color> or <color=#ffaa00>basic attacks</color> for 3 turns, or permanantly while below <color=#00ff11>%num%% health</color>",
+			"bullsrage": "When the user take or deal <color=#f75145>%maxStacks% critical strikes</color> or uses <color=#CC66FF>Enchantment moves</color> gain%mod%and deal bonus %scale% on <color=#ffaa00>physical</color> or <color=#ffaa00>basic attacks</color> for 3 turns, or permanantly while below <color=#00ff11>%num%% health</color>. If the move is an <color=#d0d0d0>Ultimate Move</color>, grant maximum stacks instantly, if the passive is already active, increase the current duration by %cd% turns.",
 			"courage": "The user gain %scale% every %cd% turns and Fear have less %num% turns. When the user is Feared recover %scale2%",
 			"dreadofthesupernatural": "The user take bonus <color=#b829ff>+%num%% sanity damage</color> from enemy moves. (minimum bonus is %maxNum%)",
 			"ecolocation": "The user is immune to Blind.",
@@ -484,7 +484,7 @@
 			"shadowdagger2": "After using a <color=#ffaa00>physical move</color> the user gain%mod% (%cd% turns cooldown)",
 			"subzero": "While the user is below %num%% health, the user grant whole team%mod%and the enemy team have reduced%mod2%while in subzero.",
 			"serratedblade": "The user gain %mod%, when an enemy is Bleeding and enemies Bleeding have%mod2%\nAddicionally, the user's Bleeding effects have +%num%% chance to apply",
-            "guardianoftheforest": "After the user uses <color=#3366ff>Recover Mana</color> or the Ultimate, the whole team gain Forest Power",
+            "guardianoftheforest": "After the user uses <color=#3366ff>Recover Mana</color> or the <color=#d0d0d0>Ultimate Move</color>, the whole team gain Forest Power",
             "forestpower": "The user gain %mod%and deal bonus %scale% on <color=#ffaa00>physical</color>, <color=#f75145>ranged</color>, <color=#1a66ff>magic</color> or <color=#ffaa00>basic attacks</color> for %cd% turns",
             "ancientmachine": "The user doesn't have <color=#f0dd0a>stamina</color>, moves <color=#3366ff>mana cost</color> is increased by the <color=#f0dd0a>stamina cost</color> and <color=#3366ff>Recover Mana</color> gets replaced with Cooling System",
             "lichsamulet": "After using a <color=#ffaa00>basic attack</color>, the next <color=#1a66ff>magic move</color> deal bonus %scale%, the <color=#1a66ff>base damage</color> is increased by %scale2% every %cd% turns or every cast (stack up to %maxStacks% times)",

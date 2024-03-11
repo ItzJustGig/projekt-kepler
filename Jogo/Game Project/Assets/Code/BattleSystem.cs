@@ -1545,6 +1545,20 @@ public class BattleSystem : MonoBehaviour
 
                         if (a.name == "bullsrage")
                         {
+                            if (move.isUlt)
+                            {
+                                if (a.stacks < a.maxStacks && a.stacks >= 0)
+                                {
+                                    a.stacks = a.maxStacks;
+                                    ManagePassiveIcon(target.effectHud, a.sprite, a.name, a.stacks.ToString(), target.isEnemy, a.GetPassiveInfo());
+                                }
+                                else if (a.inCd > 0)
+                                {
+                                    a.inCd += a.cd;
+                                    ManagePassiveIcon(target.effectHud, a.sprite, a.name, a.stacks.ToString(), target.isEnemy, a.GetPassiveInfo());
+                                }
+                            }
+
                             if (a.stacks >= a.maxStacks && (a.inCd > 0 || a.inCd < 0))
                             {
                                 if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
@@ -1568,6 +1582,10 @@ public class BattleSystem : MonoBehaviour
 
                                     dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
                                 }
+                            } else if (move.type is Moves.MoveType.ENCHANT && a.stacks < a.maxStacks && a.stacks >= 0)
+                            {
+                                a.stacks++;
+                                ManagePassiveIcon(target.effectHud, a.sprite, a.name, a.stacks.ToString(), target.isEnemy, a.GetPassiveInfo());
                             }
                         }
 
@@ -3040,11 +3058,11 @@ public class BattleSystem : MonoBehaviour
                 int sanity = (int)(player.unit1.curSanity + (player.unit1.SetModifiers().sanity - player.unit1.curSanity) * perSanityRegenEndless);
                 float ult = player.unit1.ult - (player.unit1.ult*perUltReduce);
 
-                info.playerHp = ((100 * health) / player.unit1.SetModifiers().hp)/100;
-                info.playerMn = ((100 * mana) / player.unit1.SetModifiers().mana)/100;
-                info.playerSta = ((100 * stamina) / player.unit1.SetModifiers().stamina)/100;
-                info.playerSan = ((float)(100 * sanity) / player.unit1.SetModifiers().sanity) / 100;
-                info.playerUlt = ult;
+                info.player.hp = ((100 * health) / player.unit1.SetModifiers().hp)/100;
+                info.player.mn = ((100 * mana) / player.unit1.SetModifiers().mana)/100;
+                info.player.sta = ((100 * stamina) / player.unit1.SetModifiers().stamina)/100;
+                info.player.san = ((float)(100 * sanity) / player.unit1.SetModifiers().sanity) / 100;
+                info.player.ult = ult;
 
                 SaveSystem.Save(info);
             }

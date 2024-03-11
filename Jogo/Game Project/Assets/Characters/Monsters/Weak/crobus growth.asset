@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: crobus growth
   m_EditorClassIdentifier: 
-  hp: 39.3
+  hp: 37
   hpRegen: 0.32
   mana: 7.35
   manaRegen: 0.015
@@ -25,8 +25,8 @@ MonoBehaviour:
   magicPower: 0.6
   critChance: 0.0025
   critDmg: 0.004
-  dmgResis: 1.75
-  magicResis: 0.85
+  dmgResis: 1.55
+  magicResis: 0.7
   timing: 0.02
   movSpeed: 2
   lifesteal: 0

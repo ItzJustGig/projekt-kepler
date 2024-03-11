@@ -13,14 +13,19 @@ MonoBehaviour:
   m_Name: Magic Shot
   m_EditorClassIdentifier: 
   type: 1
+  target: 0
+  targetType: 0
+  id: 0
   name: magicshot
   hitTime: 3
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 35
+  magicDmg: 30
   trueDmg: 0
   sanityDmg: 0
   heal: 0
@@ -28,10 +33,15 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  ultEnergy: 0
+  healFromDmgType: 0
+  healFromDmg: 0
   cooldown: 7
   inCooldown: 0
   manaCost: 90
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
@@ -39,5 +49,9 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: ae6eb6f487a84ca40838b58782a47904, type: 2}
   - {fileID: 11400000, guid: 6b34579a883749a41994165dd525b46e, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

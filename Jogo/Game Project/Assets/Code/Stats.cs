@@ -74,9 +74,6 @@ public class Stats : ScriptableObject
 
     public Stats ReturnStatsLevel(Stats level, Stats growth)
     {
-        //level is Stats with level per stat
-        //maxLevelStat is max level a stat can have
-        //growth is how much a stat increases per level
         Stats stats = CreateInstance<Stats>();
         stats.hp = hp + (growth.hp*level.hp);
         stats.hpRegen = hpRegen + (growth.hpRegen * level.hpRegen);

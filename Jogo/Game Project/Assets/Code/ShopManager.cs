@@ -88,10 +88,10 @@ public class ShopManager : MonoBehaviour
             mons.Add(t.GetCharcInfo());
         }
 
-        if (info.isPlayerChamp)
-            charcIcon.sprite = champs[info.playerId-1].charcIcon;
+        if (info.player.isChamp)
+            charcIcon.sprite = champs[info.player.id-1].charcIcon;
         else
-            charcIcon.sprite = mons[info.playerId].charcIcon;
+            charcIcon.sprite = mons[info.player.id].charcIcon;
 
         if (info.items.Count > 0)
         {
@@ -513,21 +513,21 @@ public class ShopManager : MonoBehaviour
 
     public void Rest()
     {
-        info.playerHp += hpRecover;
-        if (info.playerHp > 1)
-            info.playerHp = 1;
+        info.player.hp += hpRecover;
+        if (info.player.hp > 1)
+            info.player.hp = 1;
 
-        info.playerMn += costsRecover;
-        if (info.playerMn > 1)
-            info.playerMn = 1;
+        info.player.mn += costsRecover;
+        if (info.player.mn > 1)
+            info.player.mn = 1;
 
-        info.playerSta += costsRecover;
-        if (info.playerSta > 1)
-            info.playerSta = 1;
+        info.player.sta += costsRecover;
+        if (info.player.sta > 1)
+            info.player.sta = 1;
 
-        info.playerSan += sanityRecover;
-        if (info.playerSan > 1)
-            info.playerSan = 1;
+        info.player.san += sanityRecover;
+        if (info.player.san > 1)
+            info.player.san = 1;
 
         info.gold -= restPrice;
         info.hasRested = true;
@@ -563,13 +563,13 @@ public class ShopManager : MonoBehaviour
             switch (shopItem.itemName)
             {
                 case "xpflask":
-                    info.level += 1;
+                    info.player.level += 1;
                     break;
                 case "xpbottle":
-                    info.level += 2;
+                    info.player.level += 2;
                     break;
                 case "xppot":
-                    info.level += 3;
+                    info.player.level += 3;
                     break;
                 case "shoppass":
                     info.shoppass += 1;

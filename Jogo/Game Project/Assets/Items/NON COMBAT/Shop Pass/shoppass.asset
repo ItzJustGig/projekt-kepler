@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: shoppass
   m_EditorClassIdentifier: 
   name: shoppass
-  icon: {fileID: 21300000, guid: 0a95b99dcf64b9945ab3865cbfdb95ad, type: 3}
+  icon: {fileID: 21300000, guid: 9ac811d12b70a5b41b7efbacd25be1b0, type: 3}
   passives: []
   statmod: []
   moves: []

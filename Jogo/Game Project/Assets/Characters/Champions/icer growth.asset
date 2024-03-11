@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 8.2
   hpRegen: 0.4
-  mana: 10
+  mana: 12
   manaRegen: 0.029
   manaCost: 0.01
   stamina: 7.65

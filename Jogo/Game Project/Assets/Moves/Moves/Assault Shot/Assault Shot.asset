@@ -24,7 +24,7 @@ MonoBehaviour:
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 35
+  phyDmg: 10
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
   staminaCost: 50
   ultCost: 100
   needFullUlt: 1
-  critDmgBonus: 0
+  critDmgBonus: 0.2
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}

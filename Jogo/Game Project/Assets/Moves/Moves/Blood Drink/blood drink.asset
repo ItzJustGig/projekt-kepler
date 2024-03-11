@@ -25,7 +25,7 @@ MonoBehaviour:
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 45
+  magicDmg: 15
   trueDmg: 0
   sanityDmg: 0
   heal: 10
@@ -33,12 +33,13 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 2
   healFromDmg: 0.72
   cooldown: 6
   inCooldown: 0
-  manaCost: 45
-  staminaCost: 10
+  manaCost: 50
+  staminaCost: 15
   ultCost: 100
   needFullUlt: 1
   critDmgBonus: 0

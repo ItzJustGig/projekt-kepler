@@ -81,7 +81,9 @@ public class EndlessManager : MonoBehaviour
 
         info.Load();
         EndlessInfo data = new EndlessInfo();
-
+        data.player = info.player;
+        data.enemyNext = info.enemyNext;
+        data.enemyPrev = info.enemyPrev;
         data.wonLastRound = info.wonLastRound;
         data.round = info.round;
         data.shoprerolls = info.shoprerolls;
@@ -113,17 +115,17 @@ public class EndlessManager : MonoBehaviour
         {
             mons.Add(t.GetCharcInfo());
         }
-        data.level = info.level;
+        data.player.level = info.player.level;
         if (data.wonLastRound == 1)
         {
-            if (info.enemyIdNext != -1)
+            if (info.enemyNext.id != -1)
             {
                 int gold = baseGold;
-                int tempId = info.enemyIdNext;
+                int tempId = info.enemyNext.id;
                 bool tempIsBoss = info.isEnemyBossNext;
                 Character.Strenght tempStrenght;
 
-                if (info.isEnemyChampNext)
+                if (info.enemyNext.isChamp)
                     tempStrenght = Character.Strenght.CHAMPION;
                 else
                     tempStrenght = Character.Strenght.BABY;
@@ -169,7 +171,7 @@ public class EndlessManager : MonoBehaviour
             info.generateShop = true;
             if (info.round != -1 && info.round % 3 == 0)
             {
-                data.level = info.level + 1;
+                data.player.level = info.player.level + 1;
                 PlayLevelUp();
             }
             data.isShopOpen = false;
@@ -177,11 +179,11 @@ public class EndlessManager : MonoBehaviour
         }
         else
         {
-            enemyId = info.enemyIdNext;
+            enemyId = info.enemyNext.id;
             isBoss = info.isEnemyBossNext;
-            enemyLevel = info.enemyLevelNext;
+            enemyLevel = info.enemyNext.level;
 
-            if (info.isEnemyChampNext)
+            if (info.enemyNext.isChamp)
                 strenght = Character.Strenght.CHAMPION;
             else
                 strenght = Character.Strenght.BABY;
@@ -195,51 +197,51 @@ public class EndlessManager : MonoBehaviour
         if (strenght is Character.Strenght.CHAMPION)
         {
             nextCard.charc = champs[enemyId];
-            data.isEnemyChampNext = true;
+            data.enemyNext.isChamp = true;
         }
         else
         {
             nextCard.charc = mons[enemyId];
-            data.isEnemyChampNext = false;
+            data.enemyNext.isChamp = false;
         }
         data.isEnemyBossNext = isBoss;
-        data.enemyIdNext = enemyId;
-        data.enemyLevelNext = enemyLevel;
+        data.enemyNext.id = enemyId;
+        data.enemyNext.level = enemyLevel;
 
-        if (info.enemyIdPrev <= -1)
+        if (info.enemyPrev.id <= -1)
         {
             prevCard.charc = mons[0];
-            data.enemyIdPrev = 0;
-            data.enemyLevelPrev = 0;
+            data.enemyPrev.id = 0;
+            data.enemyPrev.level = 0;
         }
         else
         {
-            if (info.isEnemyChampNext)
+            if (info.enemyNext.isChamp)
             {
-                prevCard.charc = champs[info.enemyIdNext];
+                prevCard.charc = champs[info.enemyNext.id];
             }
             else
             {
-                prevCard.charc = mons[info.enemyIdNext];
+                prevCard.charc = mons[info.enemyNext.id];
             }
-            data.isEnemyChampPrev = info.isEnemyChampNext;
-            data.enemyIdPrev = info.enemyIdNext;
-            data.enemyLevelPrev = info.enemyLevelNext;
+            data.enemyPrev.isChamp = info.enemyNext.isChamp;
+            data.enemyPrev.id = info.enemyNext.id;
+            data.enemyPrev.level = info.enemyNext.level;
             data.isEnemyBossPrev = info.isEnemyBossNext;
         }
 
-        data.isPlayerChamp = PlayerPrefs.GetInt(isPlayerChamp) != 0;
+        data.player.isChamp = PlayerPrefs.GetInt(isPlayerChamp) != 0;
 
-        if (info.playerId == -1)
-            data.playerId = PlayerPrefs.GetInt(selectedCharacter);
+        if (info.player.id == -1)
+            data.player.id = PlayerPrefs.GetInt(selectedCharacter);
         else
-            data.playerId = info.playerId;
+            data.player.id = info.player.id;
 
-        data.playerHp = info.playerHp;
-        data.playerMn = info.playerMn;
-        data.playerSta = info.playerSta;
-        data.playerSan = info.playerSan;
-        data.playerUlt = info.playerUlt;
+        data.player.hp = info.player.hp;
+        data.player.mn = info.player.mn;
+        data.player.sta = info.player.sta;
+        data.player.san = info.player.san;
+        data.player.ult = info.player.ult;
         data.gold = info.gold;
         data.gold = info.gold;
         data.generateShop = info.generateShop;
@@ -251,9 +253,9 @@ public class EndlessManager : MonoBehaviour
 
         SaveSystem.Save(data);
         info.Load();
-        prevCard.level = info.enemyLevelPrev;
-        nextCard.level = info.enemyLevelNext;
-        Debug.Log("AAAA " + info.level);
+        prevCard.level = info.enemyPrev.level;
+        nextCard.level = info.enemyNext.level;
+        Debug.Log("AAAA " + info.player.level);
     }
 
     void Start()
@@ -291,8 +293,8 @@ public class EndlessManager : MonoBehaviour
         if (info.wonLastRound == 1)
             goldAnim.SetTrigger("g");
 
-        nameChampTxt.text = langmanag.GetInfo("charc", "name", champs[info.playerId-1].name);
-        champIcon.sprite = champs[info.playerId-1].charcIcon;
+        nameChampTxt.text = langmanag.GetInfo("charc", "name", champs[info.player.id-1].name);
+        champIcon.sprite = champs[info.player.id-1].charcIcon;
 
         if (info.wonLastRound == 1)
         {
@@ -403,20 +405,20 @@ public class EndlessManager : MonoBehaviour
         }
         else
         {
-            if (info.isEnemyChampNext == true)
+            if (info.enemyNext.isChamp == true)
             {
                 do
                 {
                     enemyId = Random.Range(0, champions.returnStuff().Count);
                     StartCoroutine(WaitWhile());
-                } while (enemyId == (info.playerId - 1) || enemyId == info.enemyIdPrev);
+                } while (enemyId == (info.player.id - 1) || enemyId == info.enemyPrev.id);
             } else
             {
                 do
                 {
                     enemyId = Random.Range(0, champions.returnStuff().Count);
                     StartCoroutine(WaitWhile());
-                } while (enemyId == (info.playerId - 1));
+                } while (enemyId == (info.player.id - 1));
             }
             
         }
@@ -434,7 +436,7 @@ public class EndlessManager : MonoBehaviour
 
     public int GetLevel()
     {
-        return info.level;
+        return info.player.level;
     }
 
     public void BackBtn()
@@ -454,13 +456,13 @@ public class EndlessManager : MonoBehaviour
     public void StartBtn()
     {
         SaveSystem.Save(info);
-        PlayerPrefs.SetInt(selectedCharacter+"1", info.playerId);
-        PlayerPrefs.SetInt(selectedEnemy+"1", info.enemyIdNext+1);
-        PlayerPrefs.SetInt(isPlayerChamp, System.Convert.ToInt32(info.isPlayerChamp));
-        PlayerPrefs.SetInt(isEnemyChamp, System.Convert.ToInt32(info.isEnemyChampNext));
+        PlayerPrefs.SetInt(selectedCharacter+"1", info.player.id);
+        PlayerPrefs.SetInt(selectedEnemy+"1", info.enemyNext.id+1);
+        PlayerPrefs.SetInt(isPlayerChamp, System.Convert.ToInt32(info.player.isChamp));
+        PlayerPrefs.SetInt(isEnemyChamp, System.Convert.ToInt32(info.enemyNext.isChamp));
         PlayerPrefs.SetInt(isEnemyBoss, System.Convert.ToInt32(isBoss));
-        PlayerPrefs.SetInt(selectedLevel, info.level);
-        PlayerPrefs.SetInt(selectedLevelEnemy, info.enemyLevelNext);
+        PlayerPrefs.SetInt(selectedLevel, info.player.id);
+        PlayerPrefs.SetInt(selectedLevelEnemy, info.enemyNext.level);
 
         //HideIcons();
         loader.LoadScene(2, slider, loadPanel);

@@ -4,6 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
+
     public static void Save(EndlessInfo info)
     {
         BinaryFormatter formatter = new BinaryFormatter();

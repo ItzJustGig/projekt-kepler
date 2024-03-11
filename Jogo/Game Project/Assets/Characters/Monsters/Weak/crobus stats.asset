@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: crobus stats
   m_EditorClassIdentifier: 
   hp: 540
-  hpRegen: 24
+  hpRegen: 16
   mana: 230
   manaRegen: 0.25
   manaCost: 1
@@ -25,7 +25,7 @@ MonoBehaviour:
   magicPower: 12
   critChance: 0.12
   critDmg: 0.0875
-  dmgResis: 60
+  dmgResis: 40
   magicResis: -35
   timing: 1.15
   movSpeed: 80

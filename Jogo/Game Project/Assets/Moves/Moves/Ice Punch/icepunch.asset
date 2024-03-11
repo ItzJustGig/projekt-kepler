@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: icepunch
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: icepunch
   hitTime: 1
   priority: 0
@@ -21,8 +24,8 @@ MonoBehaviour:
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 30
-  magicDmg: 15
+  phyDmg: 40
+  magicDmg: 25
   trueDmg: 0
   sanityDmg: 0
   heal: 0
@@ -30,6 +33,7 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 5

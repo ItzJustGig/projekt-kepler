@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: mod
   m_EditorClassIdentifier: 
   flat: 0
-  time: 4
+  time: 3
   inTime: 0
   chance: 1
   hp: 0

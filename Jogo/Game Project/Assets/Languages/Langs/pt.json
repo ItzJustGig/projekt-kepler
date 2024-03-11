@@ -420,7 +420,7 @@
         },
         "desc": {
             "bloodbath": "Se um inimigo estiver a Sangrar, o utilizador vai ganhar%mod%e vai causar %scale% b\u00F3nus nos ataques.",
-            "bullsrage": "Quando o utilizador causa ou recebe <color=#f75145>%maxstacks% ataques cr\u00EDticos</color> ganha%mod%e causa %scale% b\u00f3nus em <color=#ffaa00>t\u00E9cnicas f\u00EDsicas</color> ou <color=#ffaa00>ataques b\u00E1sicos</color> por %cd% turnos, ou permanentemente enquanto estiver abaixo de <color=#00ff11>%num%% vida</color>",
+            "bullsrage": "Quando o utilizador causa ou recebe <color=#f75145>%maxStacks% ataques cr\u00EDticos</color> ou ao usar <color=#CC66FF>encantamentos</color> ganha%mod%e causa %scale% b\u00f3nus em <color=#ffaa00>t\u00E9cnicas f\u00EDsicas</color> ou <color=#ffaa00>ataques b\u00E1sicos</color> por %cd% turnos, ou permanentemente enquanto estiver abaixo de <color=#00ff11>%num%% vida</color>. Se a t\u00e9cnica for uma <color=#d0d0d0>T\u00e9cnica Suprema</color>, ganha todos os enpilhamentos, se a passive j\u00e1 estiver ativa, aumenta a dura\u00e7\u00e3o em %cd% turnos.",
             "courage": "O utilizador ganha %scale% a cada %cd% turnos e Medo tem menos %num% turnos. Quando fica com Medo recupera %scale2%",
             "dreadofthesupernatural": "O utilizador sofre <color=#b829ff>+%num%% dano de sanidade</color> de t\u00E9cnicas inimigas. (b\u00F3nus m\u00EDnimo \u00E9 %maxNum%)",
             "ecolocation": "O utilizador \u00E9 imune a Cegueira.",
@@ -484,7 +484,7 @@
             "shadowdagger2": "Depois de utilizar um ataque <color=#ffaa00>f\u00EDsico</color> o utilizador ganha%mod% (%cd% turnos de recarga)",
 			"subzero": "Enquanto o utilizador est\u00e1 abaixo de %num%% vida, o utilizador d\u00e1 \u00e0 sua equipa%mod%e a equipa inimiga perde%mod2%.",
             "serratedblade": "O utilizador ganha %mod%quando um inimigo est\u00e1 a Sangrar, inimigos a Sangrar t\u00eam %mod2%\nAdcionalmente, efeitos de Sangramento do utilizador t\u00eam +%num%% chance de aplicar",
-            "guardianoftheforest": "Depois do utilizador usar <color=#3366ff>Recupera\u00e7\u00e3o de Mana</color> ou a T\u00e9cnica Suprema, toda a equipa ganha Poder da Floresta",
+            "guardianoftheforest": "Depois do utilizador usar <color=#3366ff>Recupera\u00e7\u00e3o de Mana</color> ou a <color=#d0d0d0>T\u00e9cnica Suprema</color>, toda a equipa ganha Poder da Floresta",
             "forestpower": "O utilizador ganha %mod%e d\u00e1 %scale% b\u00f3nus em <color=#ffaa00>t\u00e9cnicas f\u00edsicas</color>, <color=#f75145>de alcance</color>, <color=#1a66ff>m\u00e1gicas</color> ou <color=#ffaa00>b\u00e1sicas</color> durante %cd% turnos",
             "ancientmachine": "O utilizador n\u00e3a tem <color=#f0dd0a>energia</color>, o <color=#3366ff>custo de mana</color> de todas as t\u00e9cnicas \u00e9 aumentado pelo <color=#f0dd0a>custo de energia</color> e <color=#3366ff>Recupera\u00e7\u00e3o de Mana</color> \u00e9 substitu\u00eddo por Sistema de Arrefecimento",
             "lichsamulet": "Depois de um <color=#ffaa00>at\u00e1que b\u00e1sico</color>, a pr\u00f3xima <color=#1a66ff>t\u00e9cnica m\u00e1gica</color> causa %scale% b\u00f3nus, o <color=#1a66ff>dano base</color> \u00e9 aumentado em %scale2% a cada %cd% turnos ou cada vez que \u00e9 utilizado (empilha at\u00e9 %maxStacks% vezes)",

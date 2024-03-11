@@ -13,13 +13,18 @@ MonoBehaviour:
   m_Name: Iron Fangs
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: ironfangs
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 40
+  phyDmg: 30
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
@@ -27,11 +32,16 @@ MonoBehaviour:
   healMana: 0
   healStamina: 0
   healSanity: 0
-  shield: 15
-  cooldown: 5
+  shield: 3
+  ultEnergy: 0
+  healFromDmgType: 0
+  healFromDmg: 0
+  cooldown: 6
   inCooldown: 0
-  manaCost: 10
-  staminaCost: 45
+  manaCost: 15
+  staminaCost: 50
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
@@ -39,6 +49,10 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: 8af02de2d57760a4784a6385e75c6747, type: 2}
   - {fileID: 11400000, guid: 167fdf126af0486409feed828ff9cae2, type: 2}
+  dot: []
   effects:
   - {fileID: 11400000, guid: e70f038bc08782f4592db39857e395b1, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

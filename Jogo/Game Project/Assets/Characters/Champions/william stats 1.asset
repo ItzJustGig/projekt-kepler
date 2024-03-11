@@ -12,24 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: william stats 1
   m_EditorClassIdentifier: 
-  hp: 2120
-  hpRegen: 10.2
-  mana: 340
+  hp: 1920
+  hpRegen: 6
+  mana: 330
   manaRegen: 0.44
   manaCost: 0.7
-  stamina: 475
+  stamina: 455
   staminaRegen: 0.445
   staminaCost: 0.7
   sanity: 185
-  atkDmg: 18
-  magicPower: 20.5
-  critChance: 0.0705
+  atkDmg: 15
+  magicPower: 19
+  critChance: 0.0525
   critDmg: 0.064
-  dmgResis: 24
-  magicResis: 31.5
+  dmgResis: 18
+  magicResis: 28
   timing: 0.7
-  movSpeed: 134
-  lifesteal: 0.05
+  movSpeed: 120
+  lifesteal: 0.03
   healBonus: 0
   shieldBonus: 0
   accuracy: 1

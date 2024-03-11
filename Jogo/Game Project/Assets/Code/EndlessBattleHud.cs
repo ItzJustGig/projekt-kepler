@@ -50,30 +50,30 @@ public class EndlessBattleHud : MonoBehaviour
     {
         //language = langmang.language;
 
-        hpText.text = (info.playerHp*100).ToString("0.00") + "%";
+        hpText.text = (info.player.hp*100).ToString("0.00") + "%";
         hpSlider.maxValue = 1;
-        hpSlider.value = info.playerHp;
+        hpSlider.value = info.player.hp;
         fillHp.color = gradientHp.Evaluate(1f);
         //hpInfo.text = langmang.languageManager.GetText(language, "stats", "name", "hp");
 
-        manaText.text = (info.playerMn*100).ToString("0.00") + "%";
+        manaText.text = (info.player.mn*100).ToString("0.00") + "%";
         manaSlider.maxValue = 1;
-        manaSlider.value = info.playerMn;
+        manaSlider.value = info.player.mn;
         fillMana.color = gradientMana.Evaluate(1f);
         //manaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "mana");
 
-        staminaText.text = (info.playerSta*100).ToString("0.00") + "%";
+        staminaText.text = (info.player.sta*100).ToString("0.00") + "%";
         staminaSlider.maxValue = 1;
-        staminaSlider.value = info.playerSta;
+        staminaSlider.value = info.player.sta;
         fillStamina.color = gradientStamina.Evaluate(1f);
 
         //ultInfo.text = langmang.languageManager.GetText(language, "gui", "text", "ultimate");
-        ultText.text = info.playerUlt.ToString("0.00")+"%";
+        ultText.text = info.player.ult.ToString("0.00")+"%";
         ultSlider.maxValue = 100;
-        ultSlider.value = info.playerUlt;
+        ultSlider.value = info.player.ult;
 
         //sanityInfo.text = langmang.languageManager.GetText(language, "stats", "name", "sanity");
-        float sanityPer = info.playerSan * 100;
+        float sanityPer = info.player.san * 100;
         sanityText.text = sanityPer.ToString("0.00") + "%";
         
         if (sanityPer > 75)

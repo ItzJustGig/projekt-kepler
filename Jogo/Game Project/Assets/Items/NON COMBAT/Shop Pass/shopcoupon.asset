@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: shopcoupon
   m_EditorClassIdentifier: 
   name: shopcoupon
-  icon: {fileID: 21300000, guid: e9c1d141bbf354042895b1685ab69439, type: 3}
+  icon: {fileID: 21300000, guid: 58f551380f25f2848915329bd7d4871b, type: 3}
   passives: []
   statmod: []
   moves: []

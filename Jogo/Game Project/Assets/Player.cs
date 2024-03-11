@@ -29,11 +29,11 @@ public class Player : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("isEndless") == 1 && !unit.isEnemy)
         {
-            unit.curHp = unit.charc.stats.hp * info.playerHp;
-            unit.curMana = unit.charc.stats.mana * info.playerMn;
-            unit.curStamina = unit.charc.stats.stamina * info.playerSta;
-            unit.curSanity = (int)(unit.charc.stats.sanity * info.playerSan);
-            unit.ult = info.playerUlt;
+            unit.curHp = unit.charc.stats.hp * info.player.hp;
+            unit.curMana = unit.charc.stats.mana * info.player.mn;
+            unit.curStamina = unit.charc.stats.stamina * info.player.sta;
+            unit.curSanity = (int)(unit.charc.stats.sanity * info.player.san);
+            unit.ult = info.player.ult;
         }
         else
         {
@@ -64,9 +64,9 @@ public class Player : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("isEndless") == 1)
             {
-                unit.curHp = stats.hp * info.playerHp;
-                unit.curMana = stats.mana * info.playerMn;
-                unit.curStamina = stats.stamina * info.playerSta;
+                unit.curHp = stats.hp * info.player.hp;
+                unit.curMana = stats.mana * info.player.mn;
+                unit.curStamina = stats.stamina * info.player.sta;
             }
             else
             {
@@ -222,9 +222,9 @@ public class Player : MonoBehaviour
             {
                 if (!unit1.hasAttacked && !unit1.isDead && !unit1.CheckSkipTurn())
                     return unit1;
-                else if (!unit2.hasAttacked && !unit2.isDead && !unit2.CheckSkipTurn())
+                else if (unit2 && !unit2.hasAttacked && !unit2.isDead && !unit2.CheckSkipTurn())
                     return unit2;
-                else if (!unit3.hasAttacked && !unit3.isDead && !unit3.CheckSkipTurn())
+                else if (unit3 && !unit3.hasAttacked && !unit3.isDead && !unit3.CheckSkipTurn())
                     return unit3;
                 else
                     return null;
