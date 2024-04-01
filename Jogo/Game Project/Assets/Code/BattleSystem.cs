@@ -63,6 +63,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private Text turnsTextOverview;
     [SerializeField] private int turnCount = 0;
     [SerializeField] private int combatCount = 0;
+    private bool battleEnded = false;
     [SerializeField] private float ultEnergyDealt;
     [SerializeField] private float ultEnergyTaken;
 
@@ -773,7 +774,7 @@ public class BattleSystem : MonoBehaviour
 
         CheckVictory();
 
-        if (state == BattleState.WIN || state == BattleState.LOSE)
+        if (state == BattleState.WIN || state == BattleState.LOSE && !battleEnded)
             StartCoroutine(EndBattle());
         else
         {
@@ -855,13 +856,19 @@ public class BattleSystem : MonoBehaviour
         {
             int manaCost = (int)(move.manaCost*user.SetModifiers().manaCost);
             int staminaCost = (int)(move.staminaCost*user.SetModifiers().staminaCost);
+            bool skipBlockCheck = false;
 
             foreach (Passives a in user.passives.ToArray())
             {
-                if (a.name == "ancientmachine")
+                switch (a.name)
                 {
-                    manaCost += staminaCost;
-                    staminaCost = 0;
+                    case "ancientmachine":
+                        manaCost += staminaCost;
+                        staminaCost = 0;
+                        break;
+                    case "watcher":
+                        skipBlockCheck = true;
+                        break;
                 }
             }
 
@@ -908,7 +915,11 @@ public class BattleSystem : MonoBehaviour
                 statsUser.timing = 5;
 
             float evasion = 0;
-            bool isStoped = false;       
+            bool isStoped = false;
+            bool isBlocked = false;
+
+            if (!skipBlockCheck)
+                isBlocked = (target.isBlockingPhysical && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)) || (target.isBlockingMagical && move.type is Moves.MoveType.MAGICAL) || (target.isBlockingRanged && move.type is Moves.MoveType.RANGED); ;
 
             //calculate evasion
             evasion = (float)((statsTarget.movSpeed * evasionSpeed) + (statsTarget.timing * evasionTiming) + (target.curSanity * evasionSanity))/100;
@@ -919,7 +930,7 @@ public class BattleSystem : MonoBehaviour
             else
                 txtenemy = langmanag.GetInfo("showdetail", "target", "ally");
 
-            if ((target.isBlockingPhysical && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)) || (target.isBlockingMagical && move.type is Moves.MoveType.MAGICAL) || (target.isBlockingRanged && move.type is Moves.MoveType.RANGED))
+            if (isBlocked)
             {
                 dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name), txtenemy);
 
@@ -1125,7 +1136,7 @@ public class BattleSystem : MonoBehaviour
                                 user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
                             }
 
-                            if (move.type is Moves.MoveType.MAGICAL && a.stacks < a.maxStacks)
+                            if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.ENCHANT || move.type is Moves.MoveType.DEFFENCIVE) && a.stacks < a.maxStacks)
                             {
                                 a.stacks++;
                             }
@@ -1758,7 +1769,11 @@ public class BattleSystem : MonoBehaviour
                                     unit = target;
                                     stats = statsTarget;
                                 }
-                                dmgTarget.phyDmg += scale.SetScaleFlat(stats, unit);
+                                dmgTarget.phyDmg += scale.SetScaleFlat(stats, unit); 
+
+                                StatScale scale2 = a.ifConditionTrueScale2();
+                                dmgTarget.heal += scale2.SetScaleFlat(stats, unit);
+                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
                             }
                         }
 
@@ -1984,6 +1999,7 @@ public class BattleSystem : MonoBehaviour
                     dmgTarget.healStamina += move.healStamina;
                     dmgTarget.healSanity += move.healSanity;
                     dmgTarget.shield += move.shield;
+                    dmgTarget.ultenergy += move.ultEnergy;
 
                     foreach (Effects a in user.effects)
                     {
@@ -2455,7 +2471,6 @@ public class BattleSystem : MonoBehaviour
                                 }
                             }
 
-
                             foreach (Passives a in target.passives.ToArray())
                             {
                                 switch (a.name)
@@ -2590,6 +2605,7 @@ public class BattleSystem : MonoBehaviour
                                 dmgTarget = user.ApplyHealFrom(dmgTarget, move.healFromDmgType, move.healFromDmg);
                                 dmgTarget = user.ApplyLifesteal(dmgTarget);
                                 dmgTarget = dmgUser.TransferHeals(dmgTarget);
+
                                 float dmgT = dmgTarget.phyDmg + dmgTarget.magicDmg + dmgTarget.trueDmg;
 
                                 if (dmgT > 0)
@@ -2626,12 +2642,20 @@ public class BattleSystem : MonoBehaviour
                                     bool tempDead = false;
                                     if (!targetTeam.unit1.isDead)
                                     {
+                                        /*foreach (Passives a in targetTeam.unit1.passives.ToArray())
+                                        {
+                                            switch (a.name)
+                                            {
+                                            }
+                                        }*/
+
                                         tempDmg = targetTeam.unit1.MitigateDmg(tempDmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
                                         tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
                                         tempDmg = user.ApplyLifesteal(tempDmg);
                                         tempHeal = default;
                                         tempDmg = tempHeal.TransferHeals(tempDmg);
+
                                         dmgT = tempDmg.phyDmg + tempDmg.magicDmg + tempDmg.trueDmg;
                                         if (dmgT > 0)
                                         {
@@ -2666,6 +2690,14 @@ public class BattleSystem : MonoBehaviour
                                     if (targetTeam.unit2 && !targetTeam.unit2.isDead)
                                     {
                                         tempDmg = dmgTarget;
+
+                                        /*foreach (Passives a in targetTeam.unit2.passives.ToArray())
+                                        {
+                                            switch (a.name)
+                                            {
+                                            }
+                                        }*/
+
                                         tempDmg = targetTeam.unit2.MitigateDmg(tempDmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
                                         tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
@@ -2709,6 +2741,11 @@ public class BattleSystem : MonoBehaviour
                                     if (targetTeam.unit3 && !targetTeam.unit3.isDead)
                                     {
                                         tempDmg = dmgTarget;
+
+                                        foreach (Passives a in targetTeam.unit2.passives.ToArray())
+                                        {
+                                        }
+
                                         tempDmg = targetTeam.unit3.MitigateDmg(tempDmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
                                         tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
@@ -2761,6 +2798,13 @@ public class BattleSystem : MonoBehaviour
                                     {
                                         tempDmg = userTeam.unit1.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
+                                        /*foreach (Passives a in userTeam.unit1.passives.ToArray())
+                                        {
+                                            switch (a.name)
+                                            {
+                                            }
+                                        }*/
+
                                         tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
                                         tempDmg = user.ApplyLifesteal(tempDmg);
                                         tempHeal = tempDmg.TransferHeals(healing);
@@ -2801,7 +2845,15 @@ public class BattleSystem : MonoBehaviour
 
                                     if (userTeam.unit2 && !userTeam.unit2.isDead)
                                     {
+                                        healing = dmgUser.TransferHeals(dmgTarget);
+
                                         tempDmg = userTeam.unit2.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
+                                        /*foreach (Passives a in userTeam.unit2.passives.ToArray())
+                                        {
+                                            switch (a.name)
+                                            {
+                                            }
+                                        }*/
 
                                         tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
                                         tempDmg = user.ApplyLifesteal(tempDmg);
@@ -2844,8 +2896,15 @@ public class BattleSystem : MonoBehaviour
                                     //
                                     if (userTeam.unit3 && !userTeam.unit3.isDead)
                                     {
-                                        tempDmg = userTeam.unit3.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
+                                        healing = dmgUser.TransferHeals(dmgTarget);
 
+                                        tempDmg = userTeam.unit3.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
+                                        /*foreach (Passives a in userTeam.unit3.passives.ToArray())
+                                        {
+                                            switch (a.name)
+                                            {
+                                            }
+                                        }*/
                                         tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
                                         tempDmg = user.ApplyLifesteal(tempDmg);
                                         tempHeal = default;
@@ -3043,7 +3102,10 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EndBattle()
     {
+        battleEnded = true;
+        player.DisableAllBtn();
         SetStatus();
+
         if (state == BattleState.WIN)
         {
             //TO DO
@@ -3051,7 +3113,6 @@ public class BattleSystem : MonoBehaviour
             {
                 PlayerPrefs.SetInt("wonLastRound", 1);
                 info.round++;
-                
                 float health = player.unit1.curHp + (player.unit1.SetModifiers().hp - player.unit1.curHp) * perHealthRegenEndless;
                 float mana = player.unit1.curMana + (player.unit1.SetModifiers().mana - player.unit1.curMana) * perCostsRegenEndless;
                 float stamina = player.unit1.curStamina + (player.unit1.SetModifiers().stamina - player.unit1.curStamina) * perCostsRegenEndless;
@@ -3221,21 +3282,23 @@ public class BattleSystem : MonoBehaviour
 
         foreach (Passives p in user.passives.ToArray())
         {
-            if (p.name == "dreadofthesupernatural")
+            switch (p.name)
             {
-                //if sanityDmg bellow 0
-                if (a.dmg > 0 && a.type is Dotdmg.DmgType.SANITY)
-                {
-                    //show passive popup
-                    user.PassivePopup(langmanag.GetInfo("passive", "name", p.name));
-                    //get bonus sanityDmg
-                    int bonusSanityDmg = (int)(a.dmg * p.num);
-                    //if bonus under a.maxNum, set to it
-                    if (bonusSanityDmg < p.maxNum)
-                        bonusSanityDmg = (int)p.maxNum;
-                    //add bonus damage
-                    a.dmg += bonusSanityDmg;
-                }
+                case "dreadofthesupernatural":
+                    //if sanityDmg bellow 0
+                    if (a.dmg > 0 && a.type is Dotdmg.DmgType.SANITY)
+                    {
+                        //show passive popup
+                        user.PassivePopup(langmanag.GetInfo("passive", "name", p.name));
+                        //get bonus sanityDmg
+                        int bonusSanityDmg = (int)(a.dmg * p.num);
+                        //if bonus under a.maxNum, set to it
+                        if (bonusSanityDmg < p.maxNum)
+                            bonusSanityDmg = (int)p.maxNum;
+                        //add bonus damage
+                        a.dmg += bonusSanityDmg;
+                    }
+                    break;
             }
         }
 
@@ -4174,24 +4237,27 @@ public class BattleSystem : MonoBehaviour
                     {
                         if (b.id == "BLD")
                         {
-                            foundEffect = true;
-
-                            if (a.stacks == 0)
+                            if (b.duration > 1 && !b.timeReducImmunity)
                             {
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                a.stacks = 1;
-                            }
-                            else if (a.stacks == 1)
-                            {
-                                a.stacks = 2;
-                            }
+                                foundEffect = true;
 
-                            StatMod statMod = a.statMod.ReturnStats();
-                            statMod.inTime = statMod.time;
-                            user.statMods.Add(statMod);
-                            user.usedBonusStuff = false;
-                            userHud.SetStatsHud(user);
-                            ManagePassiveIcon(user.effectHud, a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+                                if (a.stacks == 0)
+                                {
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    a.stacks = 1;
+                                }
+                                else if (a.stacks == 1)
+                                {
+                                    a.stacks = 2;
+                                }
+
+                                StatMod statMod = a.statMod.ReturnStats();
+                                statMod.inTime = statMod.time;
+                                user.statMods.Add(statMod);
+                                user.usedBonusStuff = false;
+                                userHud.SetStatsHud(user);
+                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
+                            }
                         }
                         break;
                     }
@@ -4548,7 +4614,7 @@ public class BattleSystem : MonoBehaviour
                             e.SetApply(false);
                         }
                     }
-
+                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     break;
                 case "sackofbones":
                     foundEffect = false;
@@ -4580,6 +4646,32 @@ public class BattleSystem : MonoBehaviour
                     }
 
                     ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                    break;
+                case "watcher":
+                    temp = 0;
+                    if (a.num == 1)
+                    {
+                        a.num = 0;
+                        user.basicAttack = a.grantMove.ReturnMove();
+                        user.moves[0] = user.basicAttack;
+                    }
+
+                    //move to effect calc
+                    if (user.effects.Count > 0)
+                    {
+                        temp += user.effects.Count;
+                        user.effects.ForEach(x => x.duration = 0);
+                    }
+
+                    if (temp > 0)
+                    {
+                        DMG dmg = default;
+                        dmg.Reset();
+
+                        dmg.trueDmg = a.statScale.flatValue * temp;
+                        user.TakeDamage(dmg, false, false, user, true);
+                    }
+
                     break;
                 case "guardianoftheforest":
                 case "roughskin":
@@ -4890,7 +4982,8 @@ public class BattleSystem : MonoBehaviour
         if (player.unit3)
             UpdateSummonTooltip(player.unit3);
 
-        PlayerTurn();
+        if (state != BattleState.WIN || state != BattleState.LOSE || state != BattleState.TIE)
+            PlayerTurn();
     } 
 
     IEnumerator ManageEndTurn(Unit unit, Player user, Player enemy)
@@ -4899,6 +4992,7 @@ public class BattleSystem : MonoBehaviour
         unit.chosenMove.target = null;
 
         bool CanTired = true;
+        bool CanFear = true;
 
         foreach (Passives a in unit.passives.ToArray())
         {
@@ -4907,6 +5001,19 @@ public class BattleSystem : MonoBehaviour
                 case "zenmode":
                 case "ancientmachine":
                     CanTired = false;
+                    break;
+                case "watcher":
+                    CanFear = false;
+                    CanTired = false;
+
+                    int temp = unit.effects.Count;
+                    unit.effects.ForEach(x => x.duration = 0);
+
+                    DMG dmg = default;
+                    dmg.Reset();
+
+                    dmg.trueDmg = a.statScale.flatValue * temp;
+                    unit.TakeDamage(dmg, false, false, unit, true);
                     break;
             }
         }
@@ -4920,15 +5027,15 @@ public class BattleSystem : MonoBehaviour
 
             if (isDead)
             {
-                if (unit.isEnemy)
+                if (a.target.isEnemy)
                 {
-                    player.SetAsDead(unit);
-                    state = BattleState.ALLYKILLED;
+                    this.enemy.SetAsDead(a.target);
+                    state = BattleState.ENEMYKILLED;
                 }
                 else
                 {
-                    this.enemy.SetAsDead(unit);
-                    state = BattleState.ENEMYKILLED;
+                    player.SetAsDead(a.target);
+                    state = BattleState.ALLYKILLED;
                 }
             }
         }
@@ -4944,15 +5051,14 @@ public class BattleSystem : MonoBehaviour
             unit.ResetCanUse();
             if (unit.CountEffectTimer(unit.effectHud.gameObject, bloodLossStacks, dmgResisPer, magicResisPer, dotReduc))
             {
+                user.SetAsDead(unit);
                 if (unit.isEnemy)
                 {
-                    player.SetAsDead(unit);
-                    state = BattleState.ALLYKILLED;
+                    state = BattleState.ENEMYKILLED;
                 }
                 else
                 {
-                    this.enemy.SetAsDead(unit);
-                    state = BattleState.ENEMYKILLED;
+                    state = BattleState.ALLYKILLED;
                 }
             }
 
@@ -4965,15 +5071,14 @@ public class BattleSystem : MonoBehaviour
 
                 if (isDead)
                 {
+                    user.SetAsDead(unit);
                     if (unit.isEnemy)
                     {
-                        player.SetAsDead(unit);
-                        state = BattleState.ALLYKILLED;
+                        state = BattleState.ENEMYKILLED;
                     }
                     else
                     {
-                        this.enemy.SetAsDead(unit);
-                        state = BattleState.ENEMYKILLED;
+                        state = BattleState.ALLYKILLED;
                     }
                 }
 
@@ -4990,11 +5095,10 @@ public class BattleSystem : MonoBehaviour
 
         }
         CheckVictory();
-
         if (!unit.isDead)
         {
             //apply fear
-            if (unit.curSanity <= 0)
+            if (unit.curSanity <= 0 && CanFear)
             {
                 ApplyFear(unit, unit.effectHud.gameObject);
             }
@@ -5035,6 +5139,24 @@ public class BattleSystem : MonoBehaviour
             }
 
             if (unit.statMods.Count > 0)
+            {
+                foreach (Passives a in unit.passives.ToArray())
+                {
+                    switch (a.name)
+                    {
+                        case "watcher":
+                            int temp = unit.statMods.Count;
+                            unit.statMods.ForEach(x => x.inTime = 0);
+
+                            DMG dmg = default;
+                            dmg.Reset();
+
+                            dmg.trueDmg = a.statScale.flatValue * temp;
+                            unit.TakeDamage(dmg, false, false, unit, true);
+                            break;
+                    }
+                }
+               
                 foreach (StatMod statMod in unit.statMods.ToArray())
                 {
                     if (statMod.inTime > 0)
@@ -5043,6 +5165,7 @@ public class BattleSystem : MonoBehaviour
                     if (statMod.inTime == 0)
                         unit.statMods.Remove(statMod);
                 }
+            }
 
             unit.hud.SetStatsHud(unit);
 
@@ -5198,7 +5321,7 @@ public class BattleSystem : MonoBehaviour
         else if (enemyS)
             state = BattleState.WIN;
 
-        if (state == BattleState.TIE || state == BattleState.LOSE || state == BattleState.WIN) 
+        if (state == BattleState.TIE || state == BattleState.LOSE || state == BattleState.WIN && !battleEnded) 
             StartCoroutine(EndBattle());
     }
 }

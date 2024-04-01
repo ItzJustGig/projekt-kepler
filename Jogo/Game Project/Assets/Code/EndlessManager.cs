@@ -316,8 +316,16 @@ public class EndlessManager : MonoBehaviour
 
         SaveSystem.Save(info);
 
+        if (info.shoppass > 0)
+        {
+            passBtn.interactable=false;
+        }
+
         if (info.isShopOpen)
+        {
             shopBtn.interactable = true;
+            passBtn.interactable = false;
+        }
         else
             shopBtn.interactable = false;
 
@@ -461,7 +469,7 @@ public class EndlessManager : MonoBehaviour
         PlayerPrefs.SetInt(isPlayerChamp, System.Convert.ToInt32(info.player.isChamp));
         PlayerPrefs.SetInt(isEnemyChamp, System.Convert.ToInt32(info.enemyNext.isChamp));
         PlayerPrefs.SetInt(isEnemyBoss, System.Convert.ToInt32(isBoss));
-        PlayerPrefs.SetInt(selectedLevel, info.player.id);
+        PlayerPrefs.SetInt(selectedLevel, info.player.level);
         PlayerPrefs.SetInt(selectedLevelEnemy, info.enemyNext.level);
 
         //HideIcons();

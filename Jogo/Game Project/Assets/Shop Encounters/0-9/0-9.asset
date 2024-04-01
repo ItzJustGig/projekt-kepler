@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rarity:
   - {fileID: 11400000, guid: 893d79d7e06f7514bb2874a281a62cfd, type: 2}
+  - {fileID: 11400000, guid: e82d194b68d2df04799ea2286739b4e1, type: 2}
   startRound: 0
   endRound: 9

@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: PLZ
   sprite: {fileID: 21300000, guid: a2446039734503548b91cfc129668bef, type: 3}
+  source: {fileID: 0}
   haveSpecialDesc: 0
   duration: 0
   timeReducImmunity: 1
   grantsOnRunOut: 0
   timesInc: 0
+  canStack: 1
+  isStun: 0
   canUsePhysical: 1
   canUseRanged: 1
   canUseMagic: 1
@@ -29,14 +32,14 @@ MonoBehaviour:
   phyDmgMin: 0
   phyDmgMax: 0
   phyDmgInc: 0
-  magicDmgMin: 10
-  magicDmgMax: 20
+  magicDmgMin: 8
+  magicDmgMax: 14
   magicDmgInc: 0
   trueDmgMin: 0
   trueDmgMax: 0
   trueDmgInc: 0
   sanityDmgMin: 1
-  sanityDmgMax: 3
+  sanityDmgMax: 1
   sanityDmgInc: 0
   sanityHealMin: 0
   sanityHealMax: 0
@@ -53,7 +56,7 @@ MonoBehaviour:
   shieldMin: 0
   shieldMax: 0
   shieldInc: 0
-  cancelAtkChance: 0.2
+  cancelAtkChance: 0.16
   recoil: 0
   isScaleSpecial: 0
   scale:

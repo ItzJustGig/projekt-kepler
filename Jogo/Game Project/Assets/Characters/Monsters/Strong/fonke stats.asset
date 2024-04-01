@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: fonke stats
   m_EditorClassIdentifier: 
   hp: 595
-  hpRegen: 19
+  hpRegen: 16
   mana: 460
   manaRegen: 0.1
   manaCost: 1
@@ -28,7 +28,7 @@ MonoBehaviour:
   dmgResis: 26
   magicResis: 12
   timing: 1.25
-  movSpeed: 120
+  movSpeed: 110
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0

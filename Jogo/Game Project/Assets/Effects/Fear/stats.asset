@@ -39,4 +39,6 @@ MonoBehaviour:
   accuracy: 0
   evasion: -0.005
   armourPen: 0
+  magicPen: 0
   ultrate: 0
+  size: 0

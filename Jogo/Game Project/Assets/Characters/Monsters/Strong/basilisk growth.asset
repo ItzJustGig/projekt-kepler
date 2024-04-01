@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: basilisk growth
   m_EditorClassIdentifier: 
   hp: 21
-  hpRegen: 0.42
-  mana: 10.4
+  hpRegen: 0.38
+  mana: 9.45
   manaRegen: 0.04
   manaCost: 0
   stamina: 8.75
@@ -29,7 +29,7 @@ MonoBehaviour:
   magicResis: 1.3
   timing: 0.05
   movSpeed: 6.5
-  lifesteal: 0.002
+  lifesteal: 0
   healBonus: 0
   shieldBonus: 0
   accuracy: 0

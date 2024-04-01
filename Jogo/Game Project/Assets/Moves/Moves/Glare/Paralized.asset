@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88548b2442bb3a547adf43b5c3d57278, type: 3}
   m_Name: Paralized
   m_EditorClassIdentifier: 
-  durationMin: 2
-  durationMax: 5
-  chance: 0.8
+  durationMin: 1
+  durationMax: 3
+  chance: 0.7
   targetPlayer: 0
   effect: {fileID: 11400000, guid: a848d0213b37a2045a7e2d1d30862993, type: 2}

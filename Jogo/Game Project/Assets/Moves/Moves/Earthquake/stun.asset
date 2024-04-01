@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durationMin: 1
   durationMax: 1
-  chance: 0.3
+  chance: 0.2
   targetPlayer: 0
   effect: {fileID: 11400000, guid: 0c155a253e827a24a9531de028891b1f, type: 2}

@@ -25,8 +25,8 @@ MonoBehaviour:
   staminaRegen: 0
   staminaCost: 0
   sanity: 0
-  atkDmg: -0.05
-  magicPower: -0.05
+  atkDmg: -0.1
+  magicPower: -0.1
   critChance: 0
   critDmg: 0
   dmgResis: -0.1
@@ -39,5 +39,6 @@ MonoBehaviour:
   accuracy: -0.05
   evasion: 0
   armourPen: 0
+  magicPen: 0
   ultrate: 0
   size: 0

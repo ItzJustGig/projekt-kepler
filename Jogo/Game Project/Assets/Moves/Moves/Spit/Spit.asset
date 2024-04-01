@@ -13,14 +13,19 @@ MonoBehaviour:
   m_Name: Spit
   m_EditorClassIdentifier: 
   type: 2
+  target: 0
+  targetType: 0
+  id: 0
   name: spit
   hitTime: 1
   priority: 0
+  uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
   phyDmg: 0
-  magicDmg: 35
+  magicDmg: 40
   trueDmg: 0
   sanityDmg: 1
   heal: 0
@@ -28,17 +33,24 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 4
   inCooldown: 0
   manaCost: 25
   staminaCost: 0
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 11400000, guid: bba79e5eff14ca644acbe6ea882d871f, type: 2}
   scale:
   - {fileID: 11400000, guid: 68be07a8162dffb458991455f4ef2c6c, type: 2}
+  dot: []
   effects: []
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

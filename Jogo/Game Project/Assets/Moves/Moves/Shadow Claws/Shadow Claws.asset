@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Shadow Claws
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: shadowclaws
   hitTime: 1
   priority: 0
@@ -21,8 +24,8 @@ MonoBehaviour:
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 40
-  magicDmg: 20
+  phyDmg: 55
+  magicDmg: 30
   trueDmg: 5
   sanityDmg: 0
   heal: 0
@@ -30,6 +33,7 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 5
@@ -38,13 +42,14 @@ MonoBehaviour:
   staminaCost: 0
   ultCost: 100
   needFullUlt: 1
-  critDmgBonus: 0.08
+  critDmgBonus: 0
   critChanceBonus: 0
-  statModUser: {fileID: 0}
+  statModUser: {fileID: 11400000, guid: fcd1ecccd43b7a6479069f62665f6a24, type: 2}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 5d27a2359ee9b8c41ab3dba4b5cfec59, type: 2}
   - {fileID: 11400000, guid: 2213b5dd11f3e804fbe2a12c19658d09, type: 2}
+  - {fileID: 11400000, guid: 9c69bb8f11bb2f04390b5f784224e742, type: 2}
   dot: []
   effects: []
   grantPassive: {fileID: 0}

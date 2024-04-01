@@ -1000,6 +1000,7 @@ public class LanguageManager : MonoBehaviour
         public string multielement;
         public string enchantedshades;
         public string quickfeet;
+        public string watcher;
 
         public string Get_Cont(string a)
         {
@@ -1226,6 +1227,9 @@ public class LanguageManager : MonoBehaviour
                 case "quickfeet":
                     returns = quickfeet;
                     break;
+                case "watcher":
+                    returns = watcher;
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -1446,6 +1450,7 @@ public class LanguageManager : MonoBehaviour
         public string flecko;
         public string enya;
         public string fonke;
+        public string watcher;
 
         public string Get_CharcCont(string a)
         {
@@ -1542,6 +1547,9 @@ public class LanguageManager : MonoBehaviour
                 case "fonke":
                     returns = fonke;
                     break;
+                case "watcher":
+                    returns = watcher;
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -1608,6 +1616,7 @@ public class LanguageManager : MonoBehaviour
         public string sch;
         public string grd;
         public string tau;
+        public string cls;
 
         public string Get_EffectInfo(string a)
         {
@@ -1676,6 +1685,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "tau":
                     returns = tau;
+                    break;
+                case "cls":
+                    returns = cls;
                     break;
                 default:
                     returns = "null";
@@ -1802,6 +1814,8 @@ public class LanguageManager : MonoBehaviour
         public string galeburst;
         public string naturegift;
         public string coolingsystem;
+        public string observe;
+        public string erase;
 
         public string bloodpressure;
         public string enchdeadlyshadow;
@@ -2232,6 +2246,12 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "enchantedshades":
                     returns = enchantedshades;
+                    break;
+                case "observe":
+                    returns = observe;
+                    break;
+                case "erase":
+                    returns = erase;
                     break;
                 default:
                     returns = "null";

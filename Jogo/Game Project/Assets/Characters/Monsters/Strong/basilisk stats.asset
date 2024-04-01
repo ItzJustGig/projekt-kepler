@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: basilisk stats
   m_EditorClassIdentifier: 
   hp: 550
-  hpRegen: 20
-  mana: 270
+  hpRegen: 14
+  mana: 235
   manaRegen: 0.15
   manaCost: 1
   stamina: 310
@@ -25,8 +25,8 @@ MonoBehaviour:
   magicPower: 35
   critChance: 0.18
   critDmg: 0.195
-  dmgResis: 32
-  magicResis: 38
+  dmgResis: 28
+  magicResis: 32
   timing: 1.25
   movSpeed: 155
   lifesteal: 0

@@ -9960,7 +9960,7 @@ MonoBehaviour:
   levelToConsiderWeak: 12
   dmgResisPer: 0.18
   magicResisPer: 0.14
-  dotReduc: 0.6
+  dotReduc: 0.7
   ultComp: 0.25
   ultCompDuration: 6
   summonHpLostBase: 40
@@ -10130,42 +10130,6 @@ MonoBehaviour:
   accuracyTooltipE: {fileID: 0}
   armourpenTooltipE: {fileID: 0}
   overviewText: {fileID: 201482621}
-  physicDmgDealtP: {fileID: 0}
-  magicDmgDealtP: {fileID: 0}
-  trueDmgDealtP: {fileID: 0}
-  sanityDmgDealtP: {fileID: 0}
-  totalDmgDealtP: {fileID: 0}
-  physicDmgTakenP: {fileID: 0}
-  magicDmgTakenP: {fileID: 0}
-  trueDmgTakenP: {fileID: 0}
-  sanityDmgTakenP: {fileID: 0}
-  totalDmgTakenP: {fileID: 0}
-  physicDmgMitigatedP: {fileID: 0}
-  magicDmgMitigatedP: {fileID: 0}
-  totalDmgMitigatedP: {fileID: 0}
-  healDoneP: {fileID: 0}
-  manaRecoveredP: {fileID: 0}
-  staminaRecoveredP: {fileID: 0}
-  sanityRecoveredP: {fileID: 0}
-  shieldDoneP: {fileID: 0}
-  physicDmgDealtE: {fileID: 0}
-  magicDmgDealtE: {fileID: 0}
-  trueDmgDealtE: {fileID: 0}
-  sanityDmgDealtE: {fileID: 0}
-  totalDmgDealtE: {fileID: 0}
-  physicDmgTakenE: {fileID: 0}
-  magicDmgTakenE: {fileID: 0}
-  trueDmgTakenE: {fileID: 0}
-  sanityDmgTakenE: {fileID: 0}
-  totalDmgTakenE: {fileID: 0}
-  physicDmgMitigatedE: {fileID: 0}
-  magicDmgMitigatedE: {fileID: 0}
-  totalDmgMitigatedE: {fileID: 0}
-  healDoneE: {fileID: 0}
-  manaRecoveredE: {fileID: 0}
-  staminaRecoveredE: {fileID: 0}
-  sanityRecoveredE: {fileID: 0}
-  shieldDoneE: {fileID: 0}
 --- !u!114 &1001587209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10193,28 +10157,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cc1c59a4e34b04e9e1ab7aa8629609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnemyChampPrev: 0
-  enemyIdPrev: 0
-  enemyLevelPrev: 0
+  enemyPrev:
+    isChamp: 0
+    id: -1
+    level: 0
+    hp: 1
+    mn: 1
+    sta: 1
+    san: 1
+    ult: 0
   isEnemyBossPrev: 0
-  isEnemyChampNext: 0
-  enemyIdNext: 0
-  enemyLevelNext: 0
+  enemyNext:
+    isChamp: 0
+    id: -1
+    level: 0
+    hp: 1
+    mn: 1
+    sta: 1
+    san: 1
+    ult: 0
   isEnemyBossNext: 0
-  isPlayerChamp: 0
-  playerId: 0
-  playerHp: 0
-  playerMn: 0
-  playerSta: 0
-  playerSan: 0
-  playerUlt: 0
+  player:
+    isChamp: 0
+    id: -1
+    level: 0
+    hp: 1
+    mn: 1
+    sta: 1
+    san: 1
+    ult: 0
   wonLastRound: 0
   generateShop: 0
   isShopOpen: 0
   wasPassUsed: 0
   hasRested: 0
   gold: 0
-  level: 0
   round: 0
   shopcoupon: 0
   shoppass: 0
@@ -10233,12 +10210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34ca504a97a92124a9f1f3167a361d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  babyPassive: {fileID: 0}
-  weakPassive: {fileID: 0}
-  normalPassive: {fileID: 0}
-  strongPassive: {fileID: 0}
-  superStrongPassive: {fileID: 0}
-  legendaryPassive: {fileID: 0}
   bossPassive: {fileID: 11400000, guid: 735b7b0b1d673214ca62c5a9d9f82d6c, type: 2}
 --- !u!114 &1001587212
 MonoBehaviour:

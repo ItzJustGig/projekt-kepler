@@ -269,7 +269,8 @@
 			"predatormantis": "Predator Mantis",
 			"flecko": "Flecko",
 			"enya": "Enya",
-			"fonke": "Fonke"
+			"fonke": "Fonke",
+			"watcher": "Watcher"
 		},
 		"title": {
 			"alex": "the Bounty Hunter",
@@ -307,37 +308,24 @@
 			"ulk": "Unluck",
 			"sch": "Scorch",
 			"grd": "Guarding",
-			"tau": "Taunt"
+			"tau": "Taunt",
+			"cls": "Cleanse"
 		},
 		"cancelmsg": {
-			"alr": "",
-			"bli": "",
-			"bld": "",
-			"brn": "",
 			"cfs": "%p% hurt itself because of confusion!",
-			"crp": "",
 			"fea": "%p% is in fear.",
 			"frz": "%p% cannot move due the freezing.",
 			"hau": "%p% is crying in fear.",
-			"lck": "",
 			"plz": "%p% cannot move due to the paralize.",
-			"psn": "",
-			"rot": "",
-			"slc": "",
-			"slp": "%p% is asleep.",
-			"stn": "",
-			"trd": "",
-			"ulk": "",
-			"sch": "",
-			"grd": "",
-			"tau": ""
+			"slp": "%p% is asleep."
         },
         "desc":{
             "brn": "When applied another Burn on top, transform into Scorched",
             "sch": "The time of the effect is increased when Burn is applied",
 			"bld": "After 10 turns of bleeding, the user takes <color=#ffaa00>%scale% physical damage</color>",
 			"grd": "The effect's source will be attacked instead of the user",
-			"tau": "The user will only attack the source"
+			"tau": "The user will only attack the source",
+			"cls": "Removes all current effects. (Dont work on Fear, Tired, Luck and Guarding)"
         }
 	},
 	"passive": {
@@ -416,7 +404,8 @@
             "roseguardplate": "Roseguard Plate",
 			"multielement": "Multi Element",
 			"enchantedshades": "Enchanted Shades",
-			"quickfeet": "Quick Feet"
+			"quickfeet": "Quick Feet",
+			"watcher": "Watcher"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain%mod%and deal bonus %scale% on attacks.",
@@ -466,7 +455,7 @@
 			"combatrepair": "The user gain%mod%per <color=#B266FF>summon</color> alive (stack up to %maxStacks% times). When the user gains a <color=#787878>shield</color> that is not earned from the user's ultimate move, gain that <color=#787878>shield</color> over %num% turns.",
 			"magicwand": "The user's <color=#1a66ff>magical</color> and <color=#ffaa00>basic attacks</color> deal bonus %scale%",
 			"crossbow": "The user's <color=#f75145>ranged</color> and <color=#ffaa00>basic attacks</color> deal bonus %scale%",
-			"funchase": "The user will gain bonus%mod%and deals bonus %scale% on <color=#ffaa00>basic</color> or <color=#ffaa00>physical moves</color> if an enemy is Bleeding",
+			"funchase": "The user will gain bonus%mod%and deals bonus %scale% and recover %scale2% on <color=#ffaa00>basic</color> or <color=#ffaa00>physical moves</color> if an enemy is Bleeding",
 			"bandofendurance": "The user recover %scale% on <color=#ffaa00>physical</color> and <color=#ffaa00>basic attacks</color>, this effect is increased to %scale2% on <color=#f75145>critical hits</color>",
 			"mythicearrings": "The user recover %scale% on <color=#1a66ff>magical</color> and <color=#ffaa00>basic attacks</color>",
 			"spectralpike": "The carrier's <color=#ffaa00>physical</color> or <color=#f75145>ranged</color> moves, have %num%% (doubles if below <color=#00ff11>%maxNum%% health</color>) chance to deal bonus <color=#ffaa00>%maxStacks%% physical damage</color> once (%cd% turns cooldown regardless activates or not)\nWhen the carrier is below <color=#00ff11>%maxNum%% health</color> gain%mod%",
@@ -491,7 +480,8 @@
             "roseguardplate": "When the carrier takes <color=#ffaa00>physical damage</color> from <color=#ffaa00>physical</color>, <color=#f75145>ranged</color> or <color=#ffaa00>basic attacks</color>, the attacker receives %scale% in return.\nWhen the carrier takes a <color=#f75145>critical hit</color>, the attacker gets %mod%.",
 			"multielement": "The user deal bonus %scale% to targets with Burn, Scorched, Paralize, Freeze or Poison with <color=#1a66ff>magic</color>, <color=#ffaa00>physical</color> and <color=#ffaa00>basic attacks</color>.",
 			"enchantedshades": "The user deal bonus %scale% on targets with at least <color=#00ff11>%num%% more maximum health</color> than the user, or on targets with less than <color=#00ff11>%maxNum%% health</color>, with <color=#ffaa00>basic</color> and <color=#ffaa00>physical attacks</color>. Additionally, the user deals bonus %scale2% on <color=#f75145>critical hits</color> with <color=#ffaa00>basic</color> and <color=#ffaa00>physical attacks</color>. Last %cd% turns.",
-			"quickfeet": "The user gain%mod%on the next <color=#ffaa00>physical</color> or <color=#ffaa00>basic attack</color> and recover %scale% (%cd% turns cooldown)"
+			"quickfeet": "The user gain%mod%on the next <color=#ffaa00>physical</color> or <color=#ffaa00>basic attack</color> and recover %scale% (%cd% turns cooldown)",
+			"watcher": "When the user is inflicted with any effect, buff, debuff or takes <color=#ffaa00>physical</color>, <color=#1a66ff>magic</color>, <color=#a6a6a6>true</color> or <color=#b641f0>sanity</color> damage takes %scale% instead. The basic attack is changed to Observe. The user's attacks cannot be blocked."
 		}
 	},
 	"moves": {
@@ -636,7 +626,10 @@
 		"yggdrasilsblessing": "Yggdrasil's Blessing",
 		"naturegift": "Nature Gift",
         "lichsamulet":"Lich's Amulet",
-		"enchantedshades": "Shadow Arts: Enchanted Shades"
+		"enchantedshades": "Shadow Arts: Enchanted Shades",
+		"observe": "Observe",
+        "erase": "Erase",
+		"coolingsystem": "Cooling System"
 	},
 	"items": {
 		"title": "Item",

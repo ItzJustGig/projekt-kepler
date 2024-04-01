@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: champion
   m_EditorClassIdentifier: 
   id: 6
-  minGold: 28
-  maxGold: 36
+  minGold: 30
+  maxGold: 38

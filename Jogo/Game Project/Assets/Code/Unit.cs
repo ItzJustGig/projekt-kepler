@@ -6,6 +6,7 @@ using UnityEditor;
 using TMPro;
 using static UnityEngine.GraphicsBuffer;
 using System;
+using System.Linq;
 
 public class Unit : MonoBehaviour
 {
@@ -345,66 +346,89 @@ public class Unit : MonoBehaviour
     public bool CountEffectTimer(GameObject panelEffects, int bloodLossStacks, float dmgResisPer, float magicResisPer, float dotReduc)
     {
         bool isDead = false;
+        bool cleanse = false;
+        bool skipLastTurn = false;
+
+        if (effects.Any(x=>x.id == "CLS"))
+        {
+            cleanse = true;
+            skipLastTurn = true;
+        }
+
+        if (passives.Any(x => x.name == "watcher"))
+        {
+            skipLastTurn = true;
+        }
 
         foreach (Effects a in effects.ToArray())
         {
-            if (a.timeReducImmunity)
-                a.timeReducImmunity = false;
-            else
-                a.duration--;
-
-            a.timesInc++;
-            bool skipDmg = false;
-
-            if ((a.id == "TAU" || a.id == "GRD") && a.source.isDead)
-                a.duration = 0;
-
-            if (!a.grantsOnRunOut)
+            if (cleanse && a.id != "FEA" && a.id != "TRD" && a.id != "GRD" && a.id != "LCK")
             {
-                if (a.id == "BLD")
+                a.duration = 0;
+            } else
+            {
+                if (a.timeReducImmunity)
+                    a.timeReducImmunity = false;
+                else
+                    a.duration--;
+            }
+
+            if (a.duration > 0 || !skipLastTurn)
+            {
+                a.timesInc++;
+                bool skipDmg = false;
+
+                if ((a.id == "TAU" || a.id == "GRD") && a.source.isDead)
+                    a.duration = 0;
+
+                if (!a.grantsOnRunOut)
                 {
-                    bloodStacks++;
-                    if (bloodStacks == bloodLossStacks)
+                    if (a.id == "BLD")
                     {
-                        foreach (StatScale b in a.scale)
+                        bloodStacks++;
+                        if (bloodStacks == bloodLossStacks)
                         {
-                            DMG dmg = default;
-                            foreach (StatScale scale in a.scale.ToArray())
+                            foreach (StatScale b in a.scale)
                             {
-                                Stats stats = this.SetModifiers().ReturnStats();
+                                DMG dmg = default;
+                                foreach (StatScale scale in a.scale.ToArray())
+                                {
+                                    Stats stats = this.SetModifiers().ReturnStats();
 
-                                dmg.AddDmg(scale.SetScaleDmg(stats, this));
+                                    dmg.AddDmg(scale.SetScaleDmg(stats, this));
+                                }
+
+                                dmg = this.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, null, dotReduc);
+                                dmg = this.CalcRegens(dmg);
+
+                                isDead = this.TakeDamage(dmg, false, false, this, false);
+                                DoAnimParticle(a.specialAnim);
                             }
-
-                            dmg = this.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, null, dotReduc);
-                            dmg = this.CalcRegens(dmg);
-
-                            isDead = this.TakeDamage(dmg, false, false, this, false);
-                            DoAnimParticle(a.specialAnim);
+                            bloodStacks = 0;
+                            skipDmg = true;
                         }
-                        bloodStacks = 0;
-                        skipDmg = true;
+                    }
+
+                    if (!skipDmg)
+                    {
+                        DoAnimParticle(a.hitAnim);
+                        isDead = GameObject.Find("GameManager").GetComponent<BattleSystem>().EffectCalcDmg(a, this);
+                    }
+                }
+                else
+                {
+                    if (a.duration <= 0)
+                    {
+                        DoAnimParticle(a.hitAnim);
+                        isDead = GameObject.Find("GameManager").GetComponent<BattleSystem>().EffectCalcDmg(a, this);
                     }
                 }
 
-                if (!skipDmg)
-                {
-                    DoAnimParticle(a.hitAnim);
-                    isDead = GameObject.Find("GameManager").GetComponent<BattleSystem>().EffectCalcDmg(a, this);
-                }
-            } else
-            {
-                if (a.duration <= 0)
-                {
-                    DoAnimParticle(a.hitAnim);
-                    isDead = GameObject.Find("GameManager").GetComponent<BattleSystem>().EffectCalcDmg(a, this);
-                }
+                if (isDead)
+                    break;
+
+                Wait();
             }
-
-            if (isDead)
-                break;
-
-            Wait();
 
             if (a.duration <= 0)
             {
@@ -577,6 +601,22 @@ public class Unit : MonoBehaviour
 
     public bool TakeDamage (DMG dmg, bool isCrit, bool magicCrit, Unit attacker, bool fromAlly, string movename = "")
     {
+        foreach (Passives a in passives.ToArray())
+        {
+            switch (a.name)
+            {
+                case "watcher":
+                    dmg.ResetHeals();
+                    int temp = dmg.GetOffenciveNumbers();
+                    if (temp > 0)
+                    {
+                        dmg.ResetOffencive();
+                        dmg.trueDmg += a.statScale.flatValue * temp;
+                    }
+                    break;
+            }
+        }
+
         if (dmg.phyDmg > 0)
         {
             summary.phyDmgTaken += dmg.phyDmg;

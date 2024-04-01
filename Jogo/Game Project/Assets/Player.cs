@@ -452,7 +452,16 @@ public class Player : MonoBehaviour
 
                         if (canUse)
                         {
-                            if (user.curMana >= a.manaCost && user.curStamina >= a.staminaCost)
+                            float manaCost = a.manaCost;
+                            float staminaCost = a.staminaCost;
+
+                            if (user.passives.Any(x => x.name == "ancientmachine"))
+                            {
+                                manaCost += staminaCost;
+                                staminaCost = 0;
+                            }
+
+                            if (user.curMana >= manaCost && user.curStamina >= staminaCost)
                             {
                                 int inCd = a.inCooldown;
 

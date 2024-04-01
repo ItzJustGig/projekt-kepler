@@ -17,7 +17,7 @@ MonoBehaviour:
   flatValue: 0
   curHp: 0
   missHp: 0
-  maxHp: 0
+  maxHp: 0.012
   hpRegen: 0
   missMana: 0
   curMana: 0
@@ -34,5 +34,5 @@ MonoBehaviour:
   magicPower: 0.4
   dmgResis: 0
   magicResis: 0
-  timing: 2.7
+  timing: 0
   movSpeed: 0

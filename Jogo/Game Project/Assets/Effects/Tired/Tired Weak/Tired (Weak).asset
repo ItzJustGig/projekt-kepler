@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: TRD
   sprite: {fileID: 21300000, guid: 554ececede4055a4ab042e77225dcc6f, type: 3}
+  source: {fileID: 0}
   haveSpecialDesc: 0
   duration: 0
   timeReducImmunity: 1
   grantsOnRunOut: 0
   timesInc: 0
+  canStack: 1
+  isStun: 0
   canUsePhysical: 1
   canUseRanged: 1
   canUseMagic: 1
@@ -47,9 +50,9 @@ MonoBehaviour:
   healManaMin: 0
   healManaMax: 0
   healManaInc: 0
-  healStaminaMin: 10
-  healStaminaMax: 20
-  healStaminaInc: 15
+  healStaminaMin: 5
+  healStaminaMax: 12
+  healStaminaInc: 12
   shieldMin: 0
   shieldMax: 0
   shieldInc: 0

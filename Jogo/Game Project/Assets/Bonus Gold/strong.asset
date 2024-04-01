@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: strong
   m_EditorClassIdentifier: 
   id: 3
-  minGold: 13
-  maxGold: 19
+  minGold: 15
+  maxGold: 20

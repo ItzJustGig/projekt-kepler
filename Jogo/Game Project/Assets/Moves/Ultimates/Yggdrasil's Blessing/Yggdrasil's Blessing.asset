@@ -33,6 +33,7 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 12
   shield: 5
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 0
@@ -50,7 +51,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 358074470515fe8438582da57a47ec4e, type: 2}
   dot:
   - {fileID: 11400000, guid: 5590a5ee5b79bf94e8175f2c6b93766a, type: 2}
-  effects: []
+  effects:
+  - {fileID: 11400000, guid: d845143c8be5f574583637c07c0984e4, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
   animUser: 

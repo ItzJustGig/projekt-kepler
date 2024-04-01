@@ -27,6 +27,23 @@ public struct DMG
         ultenergy = 0;
     }
 
+    public void ResetOffencive()
+    {
+        phyDmg = 0;
+        magicDmg = 0;
+        trueDmg = 0;
+        sanityDmg = 0;
+    }
+
+    public void ResetHeals()
+    {
+        heal = 0;
+        healMana = 0;
+        healStamina = 0;
+        healSanity = 0;
+        shield = 0;
+    }
+
     public void AddDmg(DMG dmg)
     {
         phyDmg += dmg.phyDmg;
@@ -156,5 +173,23 @@ public struct DMG
 
         shield *= num;
         ultenergy *= num;
+    }
+
+    public int GetOffenciveNumbers()
+    {
+        int i = 0;
+        if (phyDmg > 0)
+            i++;
+
+        if (magicDmg > 0)
+            i++;
+
+        if (trueDmg > 0)
+            i++;
+
+        if (sanityDmg > 0)
+            i++;
+
+        return i;
     }
 };

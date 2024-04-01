@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Pound
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: pound
   hitTime: 1
   priority: 0
@@ -21,7 +24,7 @@ MonoBehaviour:
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 25
+  phyDmg: 35
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
@@ -30,6 +33,7 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 4

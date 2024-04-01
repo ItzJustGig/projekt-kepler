@@ -32,7 +32,8 @@ MonoBehaviour:
   healMana: 5
   healStamina: 0
   healSanity: 0
-  shield: 0
+  shield: 150
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 0
@@ -47,6 +48,7 @@ MonoBehaviour:
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 1d39b3605b5b10e468e70a52c5065806, type: 2}
+  - {fileID: 11400000, guid: e4390eac38ff5ad4a826319a7c95b4d5, type: 2}
   dot:
   - {fileID: 11400000, guid: b3b8186326799c84abc2eb6f6a5a240c, type: 2}
   effects:

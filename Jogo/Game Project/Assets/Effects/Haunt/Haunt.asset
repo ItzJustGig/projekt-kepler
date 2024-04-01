@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: HAU
   sprite: {fileID: 21300000, guid: 3b933707ebf84604b90b1d8d233ddc55, type: 3}
+  source: {fileID: 0}
   haveSpecialDesc: 0
   duration: 0
+  timeReducImmunity: 1
   grantsOnRunOut: 0
   timesInc: 0
+  canStack: 1
+  isStun: 0
   canUsePhysical: 1
   canUseRanged: 1
   canUseMagic: 1
@@ -25,16 +29,16 @@ MonoBehaviour:
   canUseProtec: 0
   canUseEnchant: 1
   canUseSummon: 0
-  phyDmgMin: 5
-  phyDmgMax: 15
+  phyDmgMin: 3
+  phyDmgMax: 13
   phyDmgInc: 2
-  magicDmgMin: 5
-  magicDmgMax: 15
+  magicDmgMin: 3
+  magicDmgMax: 13
   magicDmgInc: 2
-  trueDmgMin: 5
-  trueDmgMax: 15
+  trueDmgMin: 3
+  trueDmgMax: 13
   trueDmgInc: 2
-  sanityDmgMin: 2
+  sanityDmgMin: 3
   sanityDmgMax: 5
   sanityDmgInc: 1
   sanityHealMin: 0
@@ -52,7 +56,7 @@ MonoBehaviour:
   shieldMin: 0
   shieldMax: 0
   shieldInc: 0
-  cancelAtkChance: 0.2
+  cancelAtkChance: 0.16
   recoil: 0
   isScaleSpecial: 0
   scale: []

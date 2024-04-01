@@ -1161,7 +1161,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 317268546}
+  m_TargetGraphic: {fileID: 1240614756}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4490,28 +4490,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cc1c59a4e34b04e9e1ab7aa8629609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnemyChampPrev: 0
-  enemyIdPrev: 0
-  enemyLevelPrev: 0
+  enemyPrev:
+    isChamp: 0
+    id: -1
+    level: 0
+    hp: 1
+    mn: 1
+    sta: 1
+    san: 1
+    ult: 0
   isEnemyBossPrev: 0
-  isEnemyChampNext: 0
-  enemyIdNext: 0
-  enemyLevelNext: 0
+  enemyNext:
+    isChamp: 0
+    id: -1
+    level: 0
+    hp: 1
+    mn: 1
+    sta: 1
+    san: 1
+    ult: 0
   isEnemyBossNext: 0
-  isPlayerChamp: 0
-  playerId: 0
-  playerHp: 0
-  playerMn: 0
-  playerSta: 0
-  playerSan: 0
-  playerUlt: 0
+  player:
+    isChamp: 0
+    id: -1
+    level: 0
+    hp: 1
+    mn: 1
+    sta: 1
+    san: 1
+    ult: 0
   wonLastRound: 0
   generateShop: 0
   isShopOpen: 0
   wasPassUsed: 0
   hasRested: 0
   gold: 0
-  level: 0
   round: 0
   shopcoupon: 0
   shoppass: 0

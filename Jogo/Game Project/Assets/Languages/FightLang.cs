@@ -69,44 +69,6 @@ public class FightLang : MonoBehaviour
     [SerializeField] private TooltipButton armourpenTooltipE;
 
     [SerializeField] private Text overviewText;
-    //overview player
-    [SerializeField] private Text physicDmgDealtP;
-    [SerializeField] private Text magicDmgDealtP;
-    [SerializeField] private Text trueDmgDealtP;
-    [SerializeField] private Text sanityDmgDealtP;
-    [SerializeField] private Text totalDmgDealtP;
-    [SerializeField] private Text physicDmgTakenP;
-    [SerializeField] private Text magicDmgTakenP;
-    [SerializeField] private Text trueDmgTakenP;
-    [SerializeField] private Text sanityDmgTakenP;
-    [SerializeField] private Text totalDmgTakenP;
-    [SerializeField] private Text physicDmgMitigatedP;
-    [SerializeField] private Text magicDmgMitigatedP;
-    [SerializeField] private Text totalDmgMitigatedP;
-    [SerializeField] private Text healDoneP;
-    [SerializeField] private Text manaRecoveredP;
-    [SerializeField] private Text staminaRecoveredP;
-    [SerializeField] private Text sanityRecoveredP;
-    [SerializeField] private Text shieldDoneP;
-    //overview enemy
-    [SerializeField] private Text physicDmgDealtE;
-    [SerializeField] private Text magicDmgDealtE;
-    [SerializeField] private Text trueDmgDealtE;
-    [SerializeField] private Text sanityDmgDealtE;
-    [SerializeField] private Text totalDmgDealtE;
-    [SerializeField] private Text physicDmgTakenE;
-    [SerializeField] private Text magicDmgTakenE;
-    [SerializeField] private Text trueDmgTakenE;
-    [SerializeField] private Text sanityDmgTakenE;
-    [SerializeField] private Text totalDmgTakenE;
-    [SerializeField] private Text physicDmgMitigatedE;
-    [SerializeField] private Text magicDmgMitigatedE;
-    [SerializeField] private Text totalDmgMitigatedE;
-    [SerializeField] private Text healDoneE;
-    [SerializeField] private Text manaRecoveredE;
-    [SerializeField] private Text staminaRecoveredE;
-    [SerializeField] private Text sanityRecoveredE;
-    [SerializeField] private Text shieldDoneE;
 
     private void Awake()
     {

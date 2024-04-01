@@ -21,8 +21,8 @@ MonoBehaviour:
   staminaRegen: 2.1
   staminaCost: 0.7
   sanity: 130
-  atkDmg: 24
-  magicPower: 17.2
+  atkDmg: 22
+  magicPower: 10
   critChance: 0.091
   critDmg: 0.0925
   dmgResis: 28.6

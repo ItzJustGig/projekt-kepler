@@ -14,22 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: BRN
   sprite: {fileID: 21300000, guid: fbd50cf541bc27441892cb49cbe55429, type: 3}
+  source: {fileID: 0}
   haveSpecialDesc: 1
   duration: 0
+  timeReducImmunity: 1
   grantsOnRunOut: 0
   timesInc: 0
+  canStack: 1
+  isStun: 0
   canUsePhysical: 1
   canUseRanged: 1
   canUseMagic: 1
   canUseSupp: 1
   canUseProtec: 1
-  canUseStatMod: 1
+  canUseEnchant: 1
   canUseSummon: 1
   phyDmgMin: 0
   phyDmgMax: 0
   phyDmgInc: 0
-  magicDmgMin: 30
-  magicDmgMax: 55
+  magicDmgMin: 25
+  magicDmgMax: 40
   magicDmgInc: 0
   trueDmgMin: 0
   trueDmgMax: 0

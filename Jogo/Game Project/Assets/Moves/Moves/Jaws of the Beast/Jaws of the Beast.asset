@@ -24,15 +24,16 @@ MonoBehaviour:
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 155
+  phyDmg: 70
   magicDmg: 0
-  trueDmg: 20
-  sanityDmg: 8
+  trueDmg: 2
+  sanityDmg: 4
   heal: 3
   healMana: 0
   healStamina: 0
   healSanity: 0
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 1
   healFromDmg: 0.25
   cooldown: 10
@@ -48,6 +49,7 @@ MonoBehaviour:
   scale:
   - {fileID: 11400000, guid: 9d8dfebb52b995848ac6f0ff5e4b8c8a, type: 2}
   - {fileID: 11400000, guid: fc11fce152532034289de39f1df4d410, type: 2}
+  - {fileID: 11400000, guid: 838f66dc3c93f1044b00aef4b9f0efaa, type: 2}
   dot: []
   effects:
   - {fileID: 11400000, guid: cd8a17d14c24ab3449018668080fb061, type: 2}

@@ -98,6 +98,9 @@ public class EndlessInfo : MonoBehaviour
 
     public void DeleteNoSceneChange()
     {
+        this.enemyPrev = new EndlessCharacterInfo();
+        this.enemyNext = new EndlessCharacterInfo();
+        this.player = new EndlessCharacterInfo();
         this.isEnemyBossPrev = false;
         this.isEnemyBossNext = false;
         this.gold = 0;

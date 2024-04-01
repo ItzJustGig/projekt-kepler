@@ -13,35 +13,46 @@ MonoBehaviour:
   m_Name: Bone Crush
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: bonecrush
   hitTime: 1
   priority: 0
   uses: -1
+  isUlt: 0
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 60
+  phyDmg: 65
   magicDmg: 0
-  trueDmg: 10
+  trueDmg: 8
   sanityDmg: 2
   heal: 0
   healMana: 0
   healStamina: 0
   healSanity: 0
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 6
   inCooldown: 0
   manaCost: 0
   staminaCost: 75
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0
   critChanceBonus: 0
   statModUser: {fileID: 11400000, guid: f15a22bbae31f5e4aa2a777de11482c4, type: 2}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 539edfe17a50ec84f927b00f895891e4, type: 2}
+  - {fileID: 11400000, guid: f5a367389e4632641b22a0c7b47ba629, type: 2}
   dot: []
   effects:
   - {fileID: 11400000, guid: 8b14481dd8124414bb16a5b38c09df0d, type: 2}
   grantPassive: {fileID: 0}
+  summon: {fileID: 0}
+  animUser: 
+  animTarget: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fonke
   m_EditorClassIdentifier: 
   strenght: 3
-  classe: 0
+  classe: 6
   size: 2
   name: fonke
   isBasicPhysical: 1
@@ -31,7 +31,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0ae6c006296f5e042a63e2b4edb1bdff, type: 2}
   - {fileID: 11400000, guid: 9231fd6c7911b7f4098a5fd215b44376, type: 2}
   - {fileID: 11400000, guid: b597c68ce43a7c3438b0c18bdb6d04cf, type: 2}
-  - {fileID: 11400000, guid: 8c7bb729897ba9144a9f64ea48eeec56, type: 2}
+  - {fileID: 11400000, guid: 21c4e2ad6cbc66b46934bf3631f20cb2, type: 2}
   - {fileID: 11400000, guid: e8c2ee4d54733d041baf75318bc3c559, type: 2}
   recItems: []
   ultimate: {fileID: 11400000, guid: 91b4efea4dd0bda48be911438c154653, type: 2}

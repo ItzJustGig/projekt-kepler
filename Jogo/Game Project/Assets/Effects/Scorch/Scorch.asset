@@ -32,8 +32,8 @@ MonoBehaviour:
   phyDmgMin: 0
   phyDmgMax: 0
   phyDmgInc: 0
-  magicDmgMin: 90
-  magicDmgMax: 115
+  magicDmgMin: 95
+  magicDmgMax: 125
   magicDmgInc: 0
   trueDmgMin: 10
   trueDmgMax: 25

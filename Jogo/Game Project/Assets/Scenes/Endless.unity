@@ -550,7 +550,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f2726f096f94e314f8a85aeae0bc0d92, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ac811d12b70a5b41b7efbacd25be1b0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1264,8 +1264,8 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 268615116}
+  m_Interactable: 0
+  m_TargetGraphic: {fileID: 128088586}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -4408,28 +4408,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cc1c59a4e34b04e9e1ab7aa8629609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnemyChampPrev: 255
-  enemyIdPrev: -1
-  enemyLevelPrev: 0
+  enemyPrev:
+    isChamp: 0
+    id: -1
+    level: 0
+    hp: 1
+    mn: 1
+    sta: 1
+    san: 1
+    ult: 0
   isEnemyBossPrev: 0
-  isEnemyChampNext: 255
-  enemyIdNext: -1
-  enemyLevelNext: 0
+  enemyNext:
+    isChamp: 0
+    id: -1
+    level: 0
+    hp: 1
+    mn: 1
+    sta: 1
+    san: 1
+    ult: 0
   isEnemyBossNext: 0
-  isPlayerChamp: 255
-  playerId: -1
-  playerHp: 0
-  playerMn: 0
-  playerSta: 0
-  playerSan: 0
-  playerUlt: 0
+  player:
+    isChamp: 0
+    id: -1
+    level: 0
+    hp: 1
+    mn: 1
+    sta: 1
+    san: 1
+    ult: 0
   wonLastRound: 1
   generateShop: 0
   isShopOpen: 0
   wasPassUsed: 0
   hasRested: 0
   gold: 0
-  level: 0
   round: -1
   shopcoupon: 0
   shoppass: 0

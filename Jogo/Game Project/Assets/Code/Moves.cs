@@ -112,6 +112,7 @@ public class Moves : ScriptableObject
         move.heal = heal;
         move.healMana = healMana;
         move.healStamina = healStamina;
+        move.healSanity = healSanity;
         move.shield = shield;
         move.ultEnergy = ultEnergy;
 

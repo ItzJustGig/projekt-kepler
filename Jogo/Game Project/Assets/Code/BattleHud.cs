@@ -193,16 +193,22 @@ public class BattleHud : MonoBehaviour
 
         accuracy.text = original.accuracy.ToString("0.0%") + "+(" + (stats.accuracy - original.accuracy).ToString("0.0%") + ")";
 
-        float sanityPer = (curSanity * 100) / stats.sanity;
+        if (stats.sanity > 0)
+        {
+            float sanityPer = (curSanity * 100) / stats.sanity;
 
-        if (sanityPer > 75)
+            if (sanityPer > 75)
+                sanityIcon.sprite = sanity100;
+            else if (sanityPer <= 75 && sanityPer > 50)
+                sanityIcon.sprite = sanity75;
+            else if (sanityPer <= 50 && sanityPer > 25)
+                sanityIcon.sprite = sanity50;
+            else if (sanityPer <= 25)
+                sanityIcon.sprite = sanity25;
+        } else
+        {
             sanityIcon.sprite = sanity100;
-        else if (sanityPer <= 75 && sanityPer > 50)
-            sanityIcon.sprite = sanity75;
-        else if (sanityPer <= 50 && sanityPer > 25)
-            sanityIcon.sprite = sanity50;
-        else if (sanityPer <= 25)
-            sanityIcon.sprite = sanity25;
+        }
 
         armourpen.text = original.armourPen.ToString("0.0%") + "+(" + (stats.armourPen - original.armourPen).ToString("0.0%") + ")";
 

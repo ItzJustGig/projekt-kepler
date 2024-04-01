@@ -83,19 +83,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=25><align=center>Subzero</align></size>
+  text: '<size=25><align=center>Forest Power</align></size>
 
     <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
 
     
 
-    While
-    the user is below 25% health, the user grant whole team <color=#1a66ff>14 Magic
-    Power</color> and <color=#946ACD>30 Magic Resistance</color>  and the enemy team
-    have reduced <color=#2d71fa>-20% Mana Regen</color>, <color=#ffaa00>-14% Attack
-    Damage</color>, <color=#1a66ff>-10% Magic Power</color>, <color=#f75145>-8% Critical
-    Damage</color>, <color=#0984db>-35% Timing</color> and <color=#0095ff>-30% Movement
-    Speed</color>  while in subzero.
+    The
+    user gain  <color=#00ff11>8% Healing Bonus</color> and <color=#787878>8% Shielding
+    Bonus</color>  and deal bonus <color=#1a66ff>30</color> as<color=#1a66ff> magical
+    damage</color> on <color=#ffaa00>physical</color>, <color=#f75145>ranged</color>,
+    <color=#1a66ff>magic</color> or <color=#ffaa00>basic attacks</color> for 4 turns
 
 '
   textSec: 
@@ -184,7 +182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f68239843b083ef4f885490ff3a957d9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 67b1e7c69f93e784a896def7d486a86a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -272,4 +270,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 4
