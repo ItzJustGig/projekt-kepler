@@ -113,6 +113,7 @@ public class StatScale : ScriptableObject
 
     public StringBuilder GetStatScaleInfo()
     {
+        Debug.Log(flatValue);
         LanguageManager languageManager = GetLanguageMan();
         string language = GetLanguage();
 
@@ -189,6 +190,7 @@ public class StatScale : ScriptableObject
 
         if (movSpeed > 0)
             builder.Append(GetStat(languageManager, language, "movspeed", movSpeed, "0095ff", onWho));
+
 
         return builder;
     }

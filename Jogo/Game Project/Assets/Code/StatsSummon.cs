@@ -16,9 +16,9 @@ public class StatsSummon : ScriptableObject
     public StatsSummon ReturnStats()
     {
         StatsSummon stats = CreateInstance<StatsSummon>();
-        stats.hpScale = hpScale;
-        stats.atkScale = atkScale;
-        stats.movScale = movScale;
+        stats.hpScale = hpScale.ReturnScale();
+        stats.atkScale = atkScale.ReturnScale();
+        stats.movScale = movScale.ReturnScale();
 
         return stats;
     }

@@ -109,8 +109,20 @@ public class Summon : ScriptableObject
     {
         StringBuilder text = new StringBuilder();
 
-        text.Append("<color=#00ff11>" + languageManager.GetText(language, "stats", "name", "hp") + ": " + stats.hpScale.GetStatScaleInfo().Remove(0, 2) + "</color>").AppendLine();
-        text.Append("<color=#ffaa00>" + languageManager.GetText(language, "stats", "name", "attackpower") + ": " + stats.atkScale.GetStatScaleInfo().Remove(0, 2) + "</color>").AppendLine();
+        StringBuilder temp = stats.hpScale.GetStatScaleInfo();
+        if (stats.hpScale.flatValue <= 0 )
+        {
+            temp.Remove(0, 2);
+        }
+        text.Append("<color=#00ff11>" + languageManager.GetText(language, "stats", "name", "hp") + ": " + temp + "</color>").AppendLine();
+
+        temp = stats.atkScale.GetStatScaleInfo();
+        if (stats.atkScale.flatValue <= 0)
+        {
+            temp.Remove(0, 2);
+        }
+
+        text.Append("<color=#ffaa00>" + languageManager.GetText(language, "stats", "name", "attackpower") + ": " + temp + "</color>").AppendLine();
 
         return text;
     }
@@ -119,8 +131,8 @@ public class Summon : ScriptableObject
     {
         StringBuilder text = new StringBuilder();
 
-        text.Append("<color=#00ff11>" + languageManager.GetText(language, "stats", "name", "hp") + ": " + stats.hpScale.SetScale(owner.SetModifiers(), owner).ToString("0") + "</color>").AppendLine();
-        text.Append("<color=#ffaa00>" + languageManager.GetText(language, "stats", "name", "attackpower") + ": " + stats.atkScale.SetScale(owner.SetModifiers(), owner).ToString("0.0") + "</color>").AppendLine();
+        text.Append("<color=#00ff11>" + languageManager.GetText(language, "stats", "name", "hp") + ": " + (stats.hpScale.SetScale(owner.SetModifiers(), owner) + stats.hpScale.flatValue).ToString("0") + "</color>").AppendLine();
+        text.Append("<color=#ffaa00>" + languageManager.GetText(language, "stats", "name", "attackpower") + ": " + (stats.atkScale.SetScale(owner.SetModifiers(), owner) + stats.atkScale.flatValue).ToString("0.0") + "</color>").AppendLine();
 
         return text;
     }
@@ -212,7 +224,7 @@ public class Summon : ScriptableObject
 
     float SetScale(StatScale scale, Stats stats, Unit summoner)
     {
-        float temp = 0;
+        float temp = scale.flatValue;
 
         temp += (summoner.curHp * scale.curHp);
         temp += ((stats.hp - summoner.curHp) * scale.missHp);

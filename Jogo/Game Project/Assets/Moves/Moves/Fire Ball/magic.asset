@@ -31,7 +31,7 @@ MonoBehaviour:
   missSanity: 0
   maxSanity: 0
   atkDmg: 0
-  magicPower: 0.55
+  magicPower: 0.65
   dmgResis: 0
   magicResis: 0
   timing: 0

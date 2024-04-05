@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Sudden Jab
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: suddenjab
   hitTime: 1
   priority: 1
@@ -21,7 +24,7 @@ MonoBehaviour:
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 60
+  phyDmg: 50
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
@@ -30,12 +33,13 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 7
   inCooldown: 0
   manaCost: 0
-  staminaCost: 60
+  staminaCost: 65
   ultCost: 100
   needFullUlt: 1
   critDmgBonus: 0
