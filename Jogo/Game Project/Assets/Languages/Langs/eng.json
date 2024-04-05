@@ -405,7 +405,8 @@
 			"multielement": "Multi Element",
 			"enchantedshades": "Enchanted Shades",
 			"quickfeet": "Quick Feet",
-			"watcher": "Watcher"
+			"watcher": "Watcher",
+			"tormentedsoul": "Tormented Soul"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain%mod%and deal bonus %scale% on attacks.",
@@ -481,7 +482,8 @@
 			"multielement": "The user deal bonus %scale% to targets with Burn, Scorched, Paralize, Freeze or Poison with <color=#1a66ff>magic</color>, <color=#ffaa00>physical</color> and <color=#ffaa00>basic attacks</color>.",
 			"enchantedshades": "The user deal bonus %scale% on targets with at least <color=#00ff11>%num%% more maximum health</color> than the user, or on targets with less than <color=#00ff11>%maxNum%% health</color>, with <color=#ffaa00>basic</color> and <color=#ffaa00>physical attacks</color>. Additionally, the user deals bonus %scale2% on <color=#f75145>critical hits</color> with <color=#ffaa00>basic</color> and <color=#ffaa00>physical attacks</color>. Last %cd% turns.",
 			"quickfeet": "The user gain%mod%on the next <color=#ffaa00>physical</color> or <color=#ffaa00>basic attack</color> and recover %scale% (%cd% turns cooldown)",
-			"watcher": "When the user is inflicted with any effect, buff, debuff or takes <color=#ffaa00>physical</color>, <color=#1a66ff>magic</color>, <color=#a6a6a6>true</color> or <color=#b641f0>sanity</color> damage takes %scale% instead. The basic attack is changed to Observe. The user's attacks cannot be blocked."
+			"watcher": "When the user is inflicted with any effect, buff, debuff or takes <color=#ffaa00>physical</color>, <color=#1a66ff>magic</color>, <color=#a6a6a6>true</color> or <color=#b641f0>sanity</color> damage takes %scale% instead. The basic attack is changed to Observe. The user's attacks cannot be blocked.",
+			"tormentedsoul": "The user deal bonus %scale% on <color=#1a66ff>magic moves</color>. Gain%mod%when any enemy is below <color=#b641f0>%num%% sanity</color>"
 		}
 	},
 	"moves": {

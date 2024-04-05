@@ -1001,6 +1001,7 @@ public class LanguageManager : MonoBehaviour
         public string enchantedshades;
         public string quickfeet;
         public string watcher;
+        public string tormentedsoul;
 
         public string Get_Cont(string a)
         {
@@ -1229,6 +1230,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "watcher":
                     returns = watcher;
+                    break;
+                case "tormentedsoul":
+                    returns = tormentedsoul;
                     break;
                 default:
                     returns = "null";

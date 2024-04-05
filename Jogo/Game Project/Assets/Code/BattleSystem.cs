@@ -994,59 +994,329 @@ public class BattleSystem : MonoBehaviour
 
                     foreach (Passives a in user.passives.ToArray())
                     {
-                        if (a.name == "sharpshooter")
+                        switch (a.name)
                         {
-                            if (move.type is Moves.MoveType.RANGED)
-                            {
-                                a.num++;
-                                bool isReady = false;
-                                if (a.num == a.maxNum - 1)
-                                    isReady = true;
-                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, (a.maxNum - a.num).ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-                            }
-
-                            if (a.num == a.maxNum)
-                            {
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                                a.num = 0;
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
+                            case "sharpshooter":
+                                if (move.type is Moves.MoveType.RANGED)
                                 {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
+                                    a.num++;
+                                    bool isReady = false;
+                                    if (a.num == a.maxNum - 1)
+                                        isReady = true;
+                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, (a.maxNum - a.num).ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
                                 }
 
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                                
-                                isCrit = true;
-                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, "0", user.isEnemy, a.GetPassiveInfo());
-                            }                            
-                        }
-
-                        if (a.name == "vendetta")
-                        {
-                            if (target.SetModifiers().hp >= (user.SetModifiers().hp + (user.SetModifiers().hp * a.num)) && a.stacks != 1)
-                            {
-                                a.stacks = 1;
-                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-                            } 
-
-                            if (a.inCd == 0 && a.stacks == 1 && move.type is Moves.MoveType.PHYSICAL)
-                            {
-                                if (target.SetModifiers().hp >= (user.SetModifiers().hp + (user.SetModifiers().hp * a.num)))
+                                if (a.num == a.maxNum)
                                 {
-                                    a.inCd = a.cd;
                                     user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
 
+                                    a.num = 0;
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+
+                                    isCrit = true;
+                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, "0", user.isEnemy, a.GetPassiveInfo());
+                                }
+                                break;
+                            case "vendetta":
+                                if (target.SetModifiers().hp >= (user.SetModifiers().hp + (user.SetModifiers().hp * a.num)) && a.stacks != 1)
+                                {
+                                    a.stacks = 1;
+                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                                }
+
+                                if (a.inCd == 0 && a.stacks == 1 && move.type is Moves.MoveType.PHYSICAL)
+                                {
+                                    if (target.SetModifiers().hp >= (user.SetModifiers().hp + (user.SetModifiers().hp * a.num)))
+                                    {
+                                        a.inCd = a.cd;
+                                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                        StatScale scale = a.ifConditionTrueScale();
+                                        StatScale scale2 = a.ifConditionTrueScale2();
+
+                                        Unit unit;
+                                        Stats stats;
+                                        if (scale.playerStat)
+                                        {
+                                            unit = user;
+                                            stats = statsUser;
+                                        }
+                                        else
+                                        {
+                                            unit = target;
+                                            stats = statsTarget;
+                                        }
+
+                                        dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+
+                                        dmgTarget.AddDmg(scale2.SetScaleDmg(stats, unit));
+
+                                        StatMod statMod = a.statMod.ReturnStats();
+                                        statMod.inTime = statMod.time;
+                                        user.statMods.Add(statMod);
+                                        user.usedBonusStuff = false;
+                                        ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                                    }
+                                }
+                                break;
+                            case "phantomhand":
+                                if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
+                                {
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    StatScale scale = a.ifConditionTrueScale();
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
+                                }
+                                break;
+                            case "manasword":
+                                if (move.type is Moves.MoveType.PHYSICAL && a.stacks == a.maxStacks)
+                                {
+                                    StatScale scale = a.ifConditionTrueScale();
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                }
+
+                                if (move.type is Moves.MoveType.PHYSICAL && a.stacks < a.maxStacks)
+                                {
+                                    a.stacks++;
+                                }
+                                break;
+                            case "manascepter":
+                                if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.ENCHANT || move.type is Moves.MoveType.DEFFENCIVE) && a.stacks == a.maxStacks)
+                                {
+                                    StatScale scale = a.ifConditionTrueScale();
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                }
+
+                                if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.ENCHANT || move.type is Moves.MoveType.DEFFENCIVE) && a.stacks < a.maxStacks)
+                                {
+                                    a.stacks++;
+                                }
+                                break;
+                            case "gravitybelt":
+                                if (a.inCd == 0)
+                                {
+                                    if ((move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL) && isCrit)
+                                    {
+                                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                        StatScale scale = a.ifConditionTrueScale();
+                                        dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
+
+                                        a.inCd = a.cd;
+
+                                        //apply statmod
+                                        StatMod statMod = a.statMod.ReturnStats();
+                                        statMod.inTime = statMod.time;
+                                        user.statMods.Add(statMod);
+                                        user.usedBonusStuff = false;
+
+                                        user.hud.SetStatsHud(user);
+                                        ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                                    }
+                                }
+                                break;
+                            case "blazingfists":
+                                if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
+                                {
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                }
+                                break;
+                            case "magicremains":
+                                if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.ENCHANT || move.type is Moves.MoveType.BASIC) && a.inCd == 0)
+                                {
+                                    a.inCd = a.cd;
+                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, (a.maxNum - a.num).ToString(), user.isEnemy, a.GetPassiveInfo());
+
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                    a.num = 0;
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+
+                                    DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
+                                }
+                                break;
+                            case "plasmablade":
+                                bool isSilence = false;
+                                foreach (Effects b in user.effects)
+                                {
+                                    if (b.id == "SLC")
+                                        isSilence = true;
+                                }
+
+                                int manaPer = (int)((100 * user.curMana) / user.SetModifiers().mana);
+                                bool enoughMana = false;
+
+                                if (manaPer > a.maxNum * 100)
+                                {
+                                    enoughMana = true;
+                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo());
+                                }
+
+                                if (!enoughMana || isSilence)
+                                {
+                                    DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
+                                }
+
+                                if ((move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC) && !isSilence && enoughMana)
+                                {
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    float magicBonus = 0;
+                                    magicBonus += scale.SetScaleFlat(stats, unit);
+
+                                    float hpPerc = (100 * user.curHp / user.SetModifiers().hp);
+
+                                    if (hpPerc <= a.stacks)
+                                    {
+                                        StatScale scale2 = a.ifConditionTrueScale2();
+
+                                        magicBonus += magicBonus * a.num;
+                                        dmgTarget.trueDmg += scale2.SetScaleFlat(stats, unit);
+                                    }
+
+                                    dmgTarget.magicDmg += magicBonus;
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                }
+                                break;
+                            case "bloodbath":
+                                if (a.stacks == 1)
+                                {
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+                                    dmgTarget.sanityDmg += (int)scale.SetScaleFlat(stats, unit);
+                                }
+                                break;
+                            case "successoroffire":
+                                bool isBurn = false;
+                                foreach (Effects b in target.effects)
+                                {
+                                    if (b.id == "BRN" || b.id == "SCH")
+                                        isBurn = true;
+                                }
+
+                                if (isBurn && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.RANGED))
+                                {
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                }
+                                break;
+                            case "zenmode":
+                                if (a.stacks == 1)
+                                {
                                     StatScale scale = a.ifConditionTrueScale();
                                     StatScale scale2 = a.ifConditionTrueScale2();
 
@@ -1066,95 +1336,81 @@ public class BattleSystem : MonoBehaviour
                                     dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
 
                                     dmgTarget.AddDmg(scale2.SetScaleDmg(stats, unit));
-
-                                    StatMod statMod = a.statMod.ReturnStats();
-                                    statMod.inTime = statMod.time;
-                                    user.statMods.Add(statMod);
-                                    user.usedBonusStuff = false;
-                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
                                 }
-                            }
-                        }
+                                break;
+                            case "spectralring":
+                                //hp in %
+                                float hpPer = ((100 * user.curHp) / user.SetModifiers().hp);
 
-                        if (a.name == "phantomhand")
-                        {
-                            if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
-                            {
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                StatScale scale = a.ifConditionTrueScale();
-                                dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
-                            }
-                        }
-
-                        if (a.name == "manasword")
-                        {
-                            if (move.type is Moves.MoveType.PHYSICAL && a.stacks == a.maxStacks)
-                            {
-                                StatScale scale = a.ifConditionTrueScale();
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                            }
-
-                            if (move.type is Moves.MoveType.PHYSICAL && a.stacks < a.maxStacks)
-                            {
-                                a.stacks++;
-                            } 
-                        }
-
-                        if (a.name == "manascepter")
-                        {
-                            if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.ENCHANT || move.type is Moves.MoveType.DEFFENCIVE) && a.stacks == a.maxStacks)
-                            {
-                                StatScale scale = a.ifConditionTrueScale();
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                            }
-
-                            if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.ENCHANT || move.type is Moves.MoveType.DEFFENCIVE) && a.stacks < a.maxStacks)
-                            {
-                                a.stacks++;
-                            }
-                        }
-
-                        if (a.name == "gravitybelt")
-                        {
-                            if (a.inCd == 0)
-                            {
-                                if ((move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL) && isCrit)
+                                if (hpPer <= (a.num * 100) && move.type is Moves.MoveType.MAGICAL)
                                 {
                                     user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
                                     StatScale scale = a.ifConditionTrueScale();
-                                    dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                }
+                                break;
+                            case "shadowdagger":
+                                if (a.inCd == 0 && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC))
+                                {
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
 
                                     a.inCd = a.cd;
 
-                                    //apply statmod
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+
+                                    hpPer = (100 * target.curHp) / target.SetModifiers().hp;
+                                    if (hpPer >= a.num)
+                                    {
+                                        scale = a.ifConditionTrueScale2();
+                                        if (scale.playerStat)
+                                        {
+                                            unit = user;
+                                            stats = statsUser;
+                                        }
+                                        else
+                                        {
+                                            unit = target;
+                                            stats = statsTarget;
+                                        }
+                                        dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                    }
+
+                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                                }
+                                break;
+                            case "shadowdagger2":
+                                if (a.inCd == 0 && move.type is Moves.MoveType.PHYSICAL)
+                                {
+                                    a.inCd = a.cd;
                                     StatMod statMod = a.statMod.ReturnStats();
                                     statMod.inTime = statMod.time;
                                     user.statMods.Add(statMod);
@@ -1163,415 +1419,8 @@ public class BattleSystem : MonoBehaviour
                                     user.hud.SetStatsHud(user);
                                     ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
                                 }
-                            }
-                        }
-
-                        if (a.name == "blazingfists")
-                        {
-                            if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
-                            {
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                            }
-                        }
-
-                        if (a.name == "magicremains")
-                        {
-                            if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.ENCHANT || move.type is Moves.MoveType.BASIC) && a.inCd == 0)
-                            {
-                                a.inCd = a.cd;
-                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, (a.maxNum - a.num).ToString(), user.isEnemy, a.GetPassiveInfo());
-
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                                a.num = 0;
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-
-                                DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
-                            }
-                        }
-
-                        if (a.name == "plasmablade")
-                        {
-                            bool isSilence = false;
-                            foreach (Effects b in user.effects)
-                            {
-                                if (b.id == "SLC")
-                                    isSilence = true;
-                            }
-
-                            int manaPer = (int)((100 * user.curMana) / user.SetModifiers().mana);
-                            bool enoughMana = false;
-
-                            if (manaPer > a.maxNum * 100)
-                            {
-                                enoughMana = true;
-                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, 0.ToString(), user.isEnemy, a.GetPassiveInfo());
-                            }
-                            
-                            if (!enoughMana || isSilence)
-                            {
-                                DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
-                            }
-
-                            if ((move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC) && !isSilence && enoughMana)
-                            {
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                float magicBonus = 0;
-                                magicBonus += scale.SetScaleFlat(stats, unit);
-
-                                int hpPer = (int)(100 * user.curHp / user.SetModifiers().hp);
-                                
-                                if (hpPer <= a.stacks)
-                                {
-                                    StatScale scale2 = a.ifConditionTrueScale2();
-                                    
-                                    magicBonus += magicBonus * a.num;
-                                    dmgTarget.trueDmg += scale2.SetScaleFlat(stats, unit);
-                                }
-
-                                dmgTarget.magicDmg += magicBonus;
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                            }
-                        }
-
-                        if (a.name == "bloodbath")
-                        {
-                            if (a.stacks == 1)
-                            {
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-                                dmgTarget.sanityDmg += (int)scale.SetScaleFlat(stats, unit);
-                            }
-                        }
-
-                        if (a.name == "successoroffire")
-                        {
-                            bool isBurn = false;
-                            foreach (Effects b in target.effects)
-                            {
-                                if (b.id == "BRN" || b.id == "SCH")
-                                    isBurn = true;
-                            }
-
-                            if (isBurn && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.RANGED))
-                            {
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                            }
-                        }
-
-                        if (a.name == "zenmode")
-                        {
-                            if (a.stacks == 1)
-                            {
-                                StatScale scale = a.ifConditionTrueScale();
-                                StatScale scale2 = a.ifConditionTrueScale2();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-
-                                dmgTarget.AddDmg(scale2.SetScaleDmg(stats, unit));
-                            }
-                        }
-
-                        if (a.name == "spectralring")
-                        {
-                            //hp in %
-                            int hpPer = (int)((100 * user.curHp) / user.SetModifiers().hp);
-
-                            if (hpPer <= (a.num * 100) && move.type is Moves.MoveType.MAGICAL)
-                            {
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                            }
-                        }
-
-                        if (a.name == "shadowdagger")
-                        {
-                            if (a.inCd == 0 && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC))
-                            {
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                                a.inCd = a.cd;
-
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-
-                                float hpPer = (100 * target.curHp) / target.SetModifiers().hp;
-                                if (hpPer >= a.num)
-                                {
-                                    scale = a.ifConditionTrueScale2();
-                                    if (scale.playerStat)
-                                    {
-                                        unit = user;
-                                        stats = statsUser;
-                                    }
-                                    else
-                                    {
-                                        unit = target;
-                                        stats = statsTarget;
-                                    }
-                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                                }
-
-                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-                            }
-                        }
-
-                        if (a.name == "shadowdagger2")
-                        {
-                            if (a.inCd == 0 && move.type is Moves.MoveType.PHYSICAL)
-                            {
-                                a.inCd = a.cd;
-                                StatMod statMod = a.statMod.ReturnStats();
-                                statMod.inTime = statMod.time;
-                                user.statMods.Add(statMod);
-                                user.usedBonusStuff = false;
-
-                                user.hud.SetStatsHud(user);
-                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-                            }
-                        }
-
-                        if (a.name == "toxicteeth")
-                        {
-                            if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
-                            {
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                            }
-                        }
-
-                        if (a.name == "huntersdirk")
-                        {
-                            if (a.inCd == 0)
-                            {
-                                float hpPer = (100 * target.curHp) / target.SetModifiers().hp;
-                                if ((move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL) && hpPer >= a.num)
-                                {
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                                    a.inCd = a.cd;
-                                    StatScale scale = a.ifConditionTrueScale();
-
-                                    Unit unit;
-                                    Stats stats;
-                                    if (scale.playerStat)
-                                    {
-                                        unit = user;
-                                        stats = statsUser;
-                                    }
-                                    else
-                                    {
-                                        unit = target;
-                                        stats = statsTarget;
-                                    }
-
-                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-                                }
-                            }
-                        }
-
-                        if (a.name == "fighterinstinct")
-                        {
-                            if (a.stacks == 1)
-                            {
-                                if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
-                                {
-                                    StatScale scale = a.ifConditionTrueScale();
-                                    Unit unit;
-                                    Stats stats;
-                                    if (scale.playerStat)
-                                    {
-                                        unit = user;
-                                        stats = statsUser;
-                                    }
-                                    else
-                                    {
-                                        unit = target;
-                                        stats = statsTarget;
-                                    }
-
-                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                                }
-                            }
-                        }
-                        
-                        if (a.name == "gravitychange")
-                        {
-                            if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
-                            {
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                            }
-                        }
-
-                        if (a.name == "bullsrage")
-                        {
-                            if (move.isUlt)
-                            {
-                                if (a.stacks < a.maxStacks && a.stacks >= 0)
-                                {
-                                    a.stacks = a.maxStacks;
-                                    ManagePassiveIcon(target.effectHud, a.sprite, a.name, a.stacks.ToString(), target.isEnemy, a.GetPassiveInfo());
-                                }
-                                else if (a.inCd > 0)
-                                {
-                                    a.inCd += a.cd;
-                                    ManagePassiveIcon(target.effectHud, a.sprite, a.name, a.stacks.ToString(), target.isEnemy, a.GetPassiveInfo());
-                                }
-                            }
-
-                            if (a.stacks >= a.maxStacks && (a.inCd > 0 || a.inCd < 0))
-                            {
+                                break;
+                            case "toxicteeth":
                                 if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
                                 {
                                     user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
@@ -1593,402 +1442,512 @@ public class BattleSystem : MonoBehaviour
 
                                     dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
                                 }
-                            } else if (move.type is Moves.MoveType.ENCHANT && a.stacks < a.maxStacks && a.stacks >= 0)
-                            {
-                                a.stacks++;
-                                ManagePassiveIcon(target.effectHud, a.sprite, a.name, a.stacks.ToString(), target.isEnemy, a.GetPassiveInfo());
-                            }
-                        }
-
-                        if (a.name == "prismaticstaff")
-                        {
-                            if (move.type is Moves.MoveType.MAGICAL)
-                            {
-                                a.stacks++;
-                                bool isReady = false;
-                                if (a.stacks == a.maxStacks - 1)
-                                    isReady = true;
-                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-                            }
-
-                            if (a.stacks == a.maxStacks)
-                            {
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                                a.stacks = 0;
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
+                                break;
+                            case "huntersdirk":
+                                if (a.inCd == 0)
                                 {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-
-                                critBonus += a.num;
-                                isMagicCrit = true;
-
-                                StatMod statMod = a.statMod.ReturnStats();
-                                statMod.inTime = statMod.time+1;
-                                target.statMods.Add(statMod);
-                                target.usedBonusStuff = false;
-                                target.hud.SetStatsHud(target);
-
-                                DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
-                            }
-                        }
-
-                        if (a.name == "magicwand")
-                        {
-                            if (move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.BASIC)
-                            {
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                            }
-                        }
-
-                        if (a.name == "crossbow")
-                        {
-                            if (move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.BASIC)
-                            {
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                            }
-                        }
-
-                        if (a.name == "bandofendurance")
-                        {
-                            if (move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL)
-                            {
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                DMG temp = default;
-
-                                if (isCrit)
-                                {
-                                    StatScale scale2 = a.ifConditionTrueScale2();
-                                    temp = scale2.SetScaleDmg(stats, unit);
-                                } else
-                                {
-                                    temp = scale.SetScaleDmg(stats, unit);
-                                }
-
-                                dmgTarget.AddDmg(temp);
-                            }
-                        }
-
-                        if (a.name == "mythicearrings")
-                        {
-                            if (move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.MAGICAL)
-                            {
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                DMG temp = scale.SetScaleDmg(stats, unit);
-
-                                dmgTarget.AddDmg(temp);
-                            }
-                        }
-
-                        if (a.name == "funchase")
-                        {
-                            if (a.stacks == 1 && (move.type == Moves.MoveType.PHYSICAL || move.type == Moves.MoveType.BASIC))
-                            {
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-                                dmgTarget.phyDmg += scale.SetScaleFlat(stats, unit); 
-
-                                StatScale scale2 = a.ifConditionTrueScale2();
-                                dmgTarget.heal += scale2.SetScaleFlat(stats, unit);
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                            }
-                        }
-
-                        if (a.name == "combatrythm")
-                        {
-                            if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL)
-                            {
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                StatScale scale = a.ifConditionTrueScale();
-                                dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
-                            }
-                        }
-
-                        if (a.name == "druid")
-                        {
-                            if (target.isEnemy == user.isEnemy)
-                            {
-                                bool applied = false;
-                                foreach (Effects e in target.effects)
-                                {
-                                    if (e.id == "BLD" || e.id == "ALG" || e.id == "PSN" || e.id == "CRP" && !applied)
+                                    hpPer = (100 * target.curHp) / target.SetModifiers().hp;
+                                    if ((move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL) && hpPer >= a.num)
                                     {
-                                        StatScale scale = a.ifConditionTrueScale2();
-                                        dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
-                                        applied = true;
-                                    }
-                                }
-                            }
-                        }
+                                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
 
-                        if (a.name == "elficmagic")
-                        {
-                            if (move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.MAGICAL)
-                            {
-                                a.stacks++;
-                                bool isReady = false;
-                                if (a.stacks == a.maxStacks - 1)
-                                    isReady = true;
-                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, (a.maxStacks - a.stacks).ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
-                            }
+                                        a.inCd = a.cd;
+                                        StatScale scale = a.ifConditionTrueScale();
 
-                            if (a.stacks == a.maxStacks && (move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.MAGICAL))
-                            {
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                                a.stacks = 0;
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-
-                                isCrit = true;
-                                isMagicCrit = true;
-                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, "0", user.isEnemy, a.GetPassiveInfo());
-                            }
-                        }
-
-                        if (a.name == "lichsamulet")
-                        {
-                            if (a.num == 0 && move.type is Moves.MoveType.BASIC)
-                            {
-                                a.num = 1;
-                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, (a.statScale.flatValue + (a.statScale2.flatValue * a.stacks)).ToString(), user.isEnemy, a.GetPassiveInfo(), true);
-                            } else if (a.num == 1 && move.type is Moves.MoveType.MAGICAL)
-                            {
-                                a.num = 0;
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                                StatScale scale = a.ifConditionTrueScale();
-                                StatScale scale2 = a.ifConditionTrueScale2();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                                for(i = 0; i < a.stacks; i++)
-                                    dmgTarget.AddDmg(scale2.SetScaleDmg(stats, unit));
-
-                                if (a.stacks < a.maxStacks)
-                                    a.stacks++;
-                            }
-                        }
-
-                        if (a.name == "guardianoftheforest")
-                        {
-                            if (move.isUlt || move.name == "recovmana")
-                            {
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-                                if (!userTeam.unit1.isDead)
-                                    userTeam.unit1.passives.Add(a.grantPassive.ReturnPassive());
-                                if (userTeam.unit2 && !userTeam.unit2.isDead)
-                                    userTeam.unit2.passives.Add(a.grantPassive.ReturnPassive());
-                                if (userTeam.unit3 && !userTeam.unit3.isDead)
-                                    userTeam.unit3.passives.Add(a.grantPassive.ReturnPassive());
-                            }
-                        }
-
-                        if (a.name == "forestpower")
-                        {
-                            if (move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL)
-                            {
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
-                                {
-                                    unit = user;
-                                    stats = statsUser;
-                                }
-                                else
-                                {
-                                    unit = target;
-                                    stats = statsTarget;
-                                }
-
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                            }
-                        }
-
-                        if (a.name == "multielement")
-                        {
-                            if (target.isEnemy == user.isEnemy)
-                            {
-                                bool applied = false;
-                                foreach (Effects e in target.effects)
-                                {
-                                    if (e.id == "BRN" || e.id == "PAR" || e.id == "PSN" || e.id == "FRZ" || e.id == "SCH" && !applied)
-                                    {
-                                        if (move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL)
+                                        Unit unit;
+                                        Stats stats;
+                                        if (scale.playerStat)
                                         {
-                                            StatScale scale = a.ifConditionTrueScale();
+                                            unit = user;
+                                            stats = statsUser;
+                                        }
+                                        else
+                                        {
+                                            unit = target;
+                                            stats = statsTarget;
+                                        }
+
+                                        dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                        ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                                    }
+                                }
+                                break;
+                            case "fighterinstinct":
+                                if (a.stacks == 1)
+                                {
+                                    if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
+                                    {
+                                        StatScale scale = a.ifConditionTrueScale();
+                                        Unit unit;
+                                        Stats stats;
+                                        if (scale.playerStat)
+                                        {
+                                            unit = user;
+                                            stats = statsUser;
+                                        }
+                                        else
+                                        {
+                                            unit = target;
+                                            stats = statsTarget;
+                                        }
+
+                                        dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                    }
+                                }
+                                break;
+                            case "gravitychange":
+                                if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
+                                {
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                }
+                                break;
+                            case "bullsrage":
+                                if (move.isUlt)
+                                {
+                                    if (a.stacks < a.maxStacks && a.stacks >= 0)
+                                    {
+                                        a.stacks = a.maxStacks;
+                                        ManagePassiveIcon(target.effectHud, a.sprite, a.name, a.stacks.ToString(), target.isEnemy, a.GetPassiveInfo());
+                                    }
+                                    else if (a.inCd > 0)
+                                    {
+                                        a.inCd += a.cd;
+                                        ManagePassiveIcon(target.effectHud, a.sprite, a.name, a.stacks.ToString(), target.isEnemy, a.GetPassiveInfo());
+                                    }
+                                }
+
+                                if (a.stacks >= a.maxStacks && (a.inCd > 0 || a.inCd < 0))
+                                {
+                                    if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
+                                    {
+                                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                        StatScale scale = a.ifConditionTrueScale();
+
+                                        Unit unit;
+                                        Stats stats;
+                                        if (scale.playerStat)
+                                        {
+                                            unit = user;
+                                            stats = statsUser;
+                                        }
+                                        else
+                                        {
+                                            unit = target;
+                                            stats = statsTarget;
+                                        }
+
+                                        dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                    }
+                                }
+                                else if (move.type is Moves.MoveType.ENCHANT && a.stacks < a.maxStacks && a.stacks >= 0)
+                                {
+                                    a.stacks++;
+                                    ManagePassiveIcon(target.effectHud, a.sprite, a.name, a.stacks.ToString(), target.isEnemy, a.GetPassiveInfo());
+                                }
+                                break;
+                            case "prismaticstaff":
+                                if (move.type is Moves.MoveType.MAGICAL)
+                                {
+                                    a.stacks++;
+                                    bool isReady = false;
+                                    if (a.stacks == a.maxStacks - 1)
+                                        isReady = true;
+                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.stacks.ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                                }
+
+                                if (a.stacks == a.maxStacks)
+                                {
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                    a.stacks = 0;
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+
+                                    critBonus += a.num;
+                                    isMagicCrit = true;
+
+                                    StatMod statMod = a.statMod.ReturnStats();
+                                    statMod.inTime = statMod.time + 1;
+                                    target.statMods.Add(statMod);
+                                    target.usedBonusStuff = false;
+                                    target.hud.SetStatsHud(target);
+
+                                    DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
+                                }
+                                break;
+                            case "magicwand":
+                                if (move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.BASIC)
+                                {
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                }
+                                break;
+                            case "crossbow":
+                                if (move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.BASIC)
+                                {
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                }
+                                break;
+                            case "bandofendurance":
+                                if (move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL)
+                                {
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    DMG temp = default;
+
+                                    if (isCrit)
+                                    {
+                                        StatScale scale2 = a.ifConditionTrueScale2();
+                                        temp = scale2.SetScaleDmg(stats, unit);
+                                    }
+                                    else
+                                    {
+                                        temp = scale.SetScaleDmg(stats, unit);
+                                    }
+
+                                    dmgTarget.AddDmg(temp);
+                                }
+                                break;
+                            case "mythicearrings":
+                                if (move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.MAGICAL)
+                                {
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    DMG temp = scale.SetScaleDmg(stats, unit);
+
+                                    dmgTarget.AddDmg(temp);
+                                }
+                                break;
+                            case "funchase":
+                                if (a.stacks == 1 && (move.type == Moves.MoveType.PHYSICAL || move.type == Moves.MoveType.BASIC))
+                                {
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+                                    dmgTarget.phyDmg += scale.SetScaleFlat(stats, unit);
+
+                                    StatScale scale2 = a.ifConditionTrueScale2();
+                                    dmgTarget.heal += scale2.SetScaleFlat(stats, unit);
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                }
+                                break;
+                            case "combatrythm":
+                                if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL)
+                                {
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    StatScale scale = a.ifConditionTrueScale();
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
+                                }
+                                break;
+                            case "druid":
+                                if (target.isEnemy == user.isEnemy)
+                                {
+                                    bool applied = false;
+                                    foreach (Effects e in target.effects)
+                                    {
+                                        if (e.id == "BLD" || e.id == "ALG" || e.id == "PSN" || e.id == "CRP" && !applied)
+                                        {
+                                            StatScale scale = a.ifConditionTrueScale2();
                                             dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
                                             applied = true;
                                         }
                                     }
                                 }
-                            }
-                        }
-
-                        if (a.name == "enchantedshades")
-                        {
-                            if (target.isEnemy == user.isEnemy)
-                            {
-                                if (move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL)
+                                break;
+                            case "elficmagic":
+                                if (move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.MAGICAL)
                                 {
-                                    if (isCrit)
+                                    a.stacks++;
+                                    bool isReady = false;
+                                    if (a.stacks == a.maxStacks - 1)
+                                        isReady = true;
+                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, (a.maxStacks - a.stacks).ToString(), user.isEnemy, a.GetPassiveInfo(), isReady);
+                                }
+
+                                if (a.stacks == a.maxStacks && (move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.MAGICAL))
+                                {
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                    a.stacks = 0;
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
                                     {
-                                        StatScale scale2 = a.ifConditionTrueScale2();
-                                        dmgTarget.AddDmg(scale2.SetScaleDmg(statsUser, user));
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
                                     }
 
-                                    float hpPer = (100 * target.curHp) / target.SetModifiers().hp;
-                                    if (target.SetModifiers().hp >= (user.SetModifiers().hp + (user.SetModifiers().hp * a.num)) || hpPer >= a.maxNum)
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+
+                                    isCrit = true;
+                                    isMagicCrit = true;
+                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, "0", user.isEnemy, a.GetPassiveInfo());
+                                }
+                                break;
+                            case "lichsamulet":
+                                if (a.num == 0 && move.type is Moves.MoveType.BASIC)
+                                {
+                                    a.num = 1;
+                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, (a.statScale.flatValue + (a.statScale2.flatValue * a.stacks)).ToString(), user.isEnemy, a.GetPassiveInfo(), true);
+                                }
+                                else if (a.num == 1 && move.type is Moves.MoveType.MAGICAL)
+                                {
+                                    a.num = 0;
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                    StatScale scale = a.ifConditionTrueScale();
+                                    StatScale scale2 = a.ifConditionTrueScale2();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
                                     {
-                                        StatScale scale = a.ifConditionTrueScale();
-                                        dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                    for (i = 0; i < a.stacks; i++)
+                                        dmgTarget.AddDmg(scale2.SetScaleDmg(stats, unit));
+
+                                    if (a.stacks < a.maxStacks)
+                                        a.stacks++;
+                                }
+                                break;
+                            case "guardianoftheforest":
+                                if (move.isUlt || move.name == "recovmana")
+                                {
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    if (!userTeam.unit1.isDead)
+                                        userTeam.unit1.passives.Add(a.grantPassive.ReturnPassive());
+                                    if (userTeam.unit2 && !userTeam.unit2.isDead)
+                                        userTeam.unit2.passives.Add(a.grantPassive.ReturnPassive());
+                                    if (userTeam.unit3 && !userTeam.unit3.isDead)
+                                        userTeam.unit3.passives.Add(a.grantPassive.ReturnPassive());
+                                }
+                                break;
+                            case "forestpower":
+                                if (move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL)
+                                {
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                }
+                                break;
+                            case "multielement":
+                                if (target.isEnemy == user.isEnemy)
+                                {
+                                    bool applied = false;
+                                    foreach (Effects e in target.effects)
+                                    {
+                                        if (e.id == "BRN" || e.id == "PAR" || e.id == "PSN" || e.id == "FRZ" || e.id == "SCH" && !applied)
+                                        {
+                                            if (move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL)
+                                            {
+                                                StatScale scale = a.ifConditionTrueScale();
+                                                dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
+                                                applied = true;
+                                            }
+                                        }
                                     }
                                 }
-                            }
-                        }
-
-                        if (a.name == "quickfeet")
-                        {
-                            if ((move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL) && a.inCd == 0)
-                            {
-                                a.inCd = a.cd;
-                                ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
-
-                                StatScale scale = a.ifConditionTrueScale();
-
-                                Unit unit;
-                                Stats stats;
-                                if (scale.playerStat)
+                                break;
+                            case "enchantedshades":
+                                if (target.isEnemy == user.isEnemy)
                                 {
-                                    unit = user;
-                                    stats = statsUser;
+                                    if (move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL)
+                                    {
+                                        if (isCrit)
+                                        {
+                                            StatScale scale2 = a.ifConditionTrueScale2();
+                                            dmgTarget.AddDmg(scale2.SetScaleDmg(statsUser, user));
+                                        }
+
+                                        hpPer = (100 * target.curHp) / target.SetModifiers().hp;
+                                        if (target.SetModifiers().hp >= (user.SetModifiers().hp + (user.SetModifiers().hp * a.num)) || hpPer >= a.maxNum)
+                                        {
+                                            StatScale scale = a.ifConditionTrueScale();
+                                            dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
+                                        }
+                                    }
                                 }
-                                else
+                                break;
+                            case "quickfeet":
+                                if ((move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL) && a.inCd == 0)
                                 {
-                                    unit = target;
-                                    stats = statsTarget;
+                                    a.inCd = a.cd;
+                                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+
+                                    StatMod statMod = a.statMod.ReturnStats();
+                                    statMod.inTime = statMod.time + 1;
+                                    user.statMods.Add(statMod);
+                                    user.usedBonusStuff = false;
+                                    user.hud.SetStatsHud(user);
                                 }
+                                break;
+                            case "tormentedsoul":
+                                if (move.type is Moves.MoveType.MAGICAL)
+                                {
+                                    StatScale scale = a.ifConditionTrueScale();
 
-                                dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
 
-                                StatMod statMod = a.statMod.ReturnStats();
-                                statMod.inTime = statMod.time + 1;
-                                user.statMods.Add(statMod);
-                                user.usedBonusStuff = false;
-                                user.hud.SetStatsHud(user);
-                            }
+                                    dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
+                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                }
+                                break;
                         }
                     }
 
@@ -4672,6 +4631,30 @@ public class BattleSystem : MonoBehaviour
                         user.TakeDamage(dmg, false, false, user, true);
                     }
 
+                    break;
+                case "tormentedsoul":
+                    float sanPerF1 = ((100 * targetTeam.unit1.curSanity) / targetTeam.unit1.SetModifiers().sanity) * 100;
+                    float sanPerF2 = 100;
+                    float sanPerF3 = 100;
+                    if (targetTeam.unit2)
+                        sanPerF2 = ((100 * targetTeam.unit2.curSanity) / targetTeam.unit2.SetModifiers().sanity) * 100;
+                    if (targetTeam.unit3)
+                        sanPerF3 = ((100 * targetTeam.unit3.curSanity) / targetTeam.unit3.SetModifiers().sanity) * 100;
+
+                    if ((sanPerF1 < a.num) && (sanPerF2 < a.num) && (sanPerF3 < a.num))
+                    {
+                        DestroyPassiveIcon(user.effectHud, a.name, user.isEnemy);
+                    }
+                    else
+                    {
+                        ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
+
+                        StatMod statMod = a.statMod.ReturnStats();
+                        statMod.inTime = statMod.time;
+                        user.statMods.Add(statMod);
+                        user.usedBonusStuff = false;
+                        user.hud.SetStatsHud(user);
+                    }
                     break;
                 case "guardianoftheforest":
                 case "roughskin":
