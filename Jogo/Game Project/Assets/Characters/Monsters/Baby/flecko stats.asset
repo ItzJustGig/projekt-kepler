@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: flecko stats
   m_EditorClassIdentifier: 
   hp: 560
-  hpRegen: 15
+  hpRegen: 11
   mana: 325
   manaRegen: 0.25
   manaCost: 1
@@ -25,10 +25,10 @@ MonoBehaviour:
   magicPower: 40
   critChance: 0.04
   critDmg: 0.0475
-  dmgResis: 23
-  magicResis: 34
+  dmgResis: 25
+  magicResis: 35
   timing: 0.9
-  movSpeed: 95
+  movSpeed: 105
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0

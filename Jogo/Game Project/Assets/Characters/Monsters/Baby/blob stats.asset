@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: blob stats
   m_EditorClassIdentifier: 
   hp: 410
-  hpRegen: 21
-  mana: 250
+  hpRegen: 15
+  mana: 280
   manaRegen: 0.8
   manaCost: 1
   stamina: 140

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: babymimi stats
   m_EditorClassIdentifier: 
   hp: 480
-  hpRegen: 17
+  hpRegen: 12
   mana: 125
   manaRegen: 0.1
   manaCost: 1
-  stamina: 280
+  stamina: 290
   staminaRegen: 0.3
   staminaCost: 1
   sanity: 65

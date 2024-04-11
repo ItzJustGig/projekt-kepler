@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: child infernus stats
   m_EditorClassIdentifier: 
   hp: 445
-  hpRegen: 16
+  hpRegen: 10
   mana: 350
   manaRegen: 0.4
   manaCost: 1

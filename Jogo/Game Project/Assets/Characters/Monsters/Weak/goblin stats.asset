@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: goblin stats
   m_EditorClassIdentifier: 
-  hp: 500
+  hp: 525
   hpRegen: 19
   mana: 135
   manaRegen: 0.015

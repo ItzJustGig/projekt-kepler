@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: crobus stats
   m_EditorClassIdentifier: 
-  hp: 540
-  hpRegen: 16
+  hp: 550
+  hpRegen: 12
   mana: 230
   manaRegen: 0.25
   manaCost: 1

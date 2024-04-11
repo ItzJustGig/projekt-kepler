@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: skull troop stats
   m_EditorClassIdentifier: 
-  hp: 525
-  hpRegen: 20
+  hp: 540
+  hpRegen: 13
   mana: 140
   manaRegen: 0.2
   manaCost: 1

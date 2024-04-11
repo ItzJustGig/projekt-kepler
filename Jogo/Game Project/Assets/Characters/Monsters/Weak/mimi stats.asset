@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: mimi stats
   m_EditorClassIdentifier: 
-  hp: 555
-  hpRegen: 26
+  hp: 590
+  hpRegen: 16
   mana: 280
   manaRegen: 0.25
   manaCost: 1
