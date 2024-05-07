@@ -343,7 +343,7 @@ public class Unit : MonoBehaviour
         return null;
     }
 
-    public bool CountEffectTimer(GameObject panelEffects, int bloodLossStacks, float dmgResisPer, float magicResisPer, float dotReduc)
+    public bool CountEffectTimer(GameObject panelEffects, int bloodLossStacks, float dotReduc)
     {
         bool isDead = false;
         bool cleanse = false;
@@ -398,7 +398,7 @@ public class Unit : MonoBehaviour
                                     dmg.AddDmg(scale.SetScaleDmg(stats, this));
                                 }
 
-                                dmg = this.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, null, dotReduc);
+                                dmg = this.MitigateDmg(dmg, 0, 0, null, dotReduc);
                                 dmg = this.CalcRegens(dmg);
 
                                 isDead = this.TakeDamage(dmg, false, false, this, false);
@@ -464,14 +464,14 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public DMG MitigateDmg(DMG dmg, float dmgResisPer, float magicResisPer, float armourPen, float magicPen, Unit attacker=null, float dotReduc = 1)
+    public DMG MitigateDmg(DMG dmg, float armourPen, float magicPen, Unit attacker=null, float dotReduc = 1)
     {
         if (dmg.phyDmg > 0)
         {
             if (attacker != null)
                 attacker.summary.phyDmgDealt += dmg.phyDmg;
 
-            float dmgMitigated = (float)((SetModifiers().dmgResis - (SetModifiers().dmgResis * armourPen)) * dmgResisPer * dotReduc);
+            float dmgMitigated = dmg.phyDmg * (float)((SetModifiers().dmgResis - (SetModifiers().dmgResis * armourPen)) / ((SetModifiers().dmgResis - (SetModifiers().dmgResis * armourPen)) + 200)) * dotReduc;
             
             if (dmgMitigated < dmg.phyDmg)
             {
@@ -491,8 +491,8 @@ public class Unit : MonoBehaviour
             if (attacker != null)
                 attacker.summary.magicDmgDealt += dmg.magicDmg;
 
-            float dmgMitigated = (float)((SetModifiers().magicResis - (SetModifiers().magicResis * magicPen)) * magicResisPer * dotReduc);
-            
+            float dmgMitigated = dmg.magicDmg * (float)((SetModifiers().magicResis - (SetModifiers().magicResis * magicPen)) / ((SetModifiers().magicResis - (SetModifiers().magicResis * magicPen)) + 200)) * dotReduc;
+
             if (dmgMitigated < dmg.magicDmg)
             {
                 dmg.magicDmg -= dmgMitigated;

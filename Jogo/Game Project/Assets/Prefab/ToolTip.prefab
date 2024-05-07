@@ -434,7 +434,7 @@ MonoBehaviour:
   infoText: {fileID: 1217040612803189466}
   lastBtn: {fileID: 0}
   otherTooltip: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: -195, y: 0, z: 0}
   padding: 10
   isMain: 0
 --- !u!1 &1217040613677298543

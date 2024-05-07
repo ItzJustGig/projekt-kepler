@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: Gravitacional Axe Kick
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: gravaxekick
   hitTime: 1
   priority: 0
   uses: -1
+  isUlt: 0
   blocksPhysical: 1
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 70
-  magicDmg: 40
+  phyDmg: 30
+  magicDmg: 25
   trueDmg: 0
   sanityDmg: 0
   heal: 0
@@ -29,12 +33,15 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 7
   inCooldown: 0
   manaCost: 40
   staminaCost: 85
+  ultCost: 100
+  needFullUlt: 1
   critDmgBonus: 0.2
   critChanceBonus: 0
   statModUser: {fileID: 0}
@@ -47,3 +54,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 114f0ca2562cdb24582ae57bc167db84, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
+  animUser: 
+  animTarget: 

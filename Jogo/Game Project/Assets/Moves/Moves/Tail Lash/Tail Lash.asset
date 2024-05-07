@@ -24,7 +24,7 @@ MonoBehaviour:
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 60
+  phyDmg: 45
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
@@ -43,14 +43,14 @@ MonoBehaviour:
   ultCost: 100
   needFullUlt: 1
   critDmgBonus: 0.15
-  critChanceBonus: 0.28
+  critChanceBonus: 0.2
   statModUser: {fileID: 0}
   statModEnemy: {fileID: 0}
   scale:
   - {fileID: 11400000, guid: 7be0e419b1be1fd4a8815535e457d4b3, type: 2}
   dot: []
   effects:
-  - {fileID: 11400000, guid: d2b4a42961658c44482a94a7a9a6c2ab, type: 2}
+  - {fileID: 11400000, guid: 3852f6ed96c557f4891d9f35f48f79e5, type: 2}
   grantPassive: {fileID: 0}
   summon: {fileID: 0}
   animUser: 

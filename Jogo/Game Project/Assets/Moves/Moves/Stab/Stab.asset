@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Stab
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: stab
   hitTime: 1
   priority: 0
@@ -21,15 +24,16 @@ MonoBehaviour:
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 50
+  phyDmg: 40
   magicDmg: 0
-  trueDmg: 15
+  trueDmg: 10
   sanityDmg: 0
   heal: 0
   healMana: 0
   healStamina: 0
   healSanity: 0
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 5

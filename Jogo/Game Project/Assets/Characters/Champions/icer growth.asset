@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: icer growth
   m_EditorClassIdentifier: 
-  hp: 8.2
+  hp: 9.1
   hpRegen: 0.4
   mana: 12
   manaRegen: 0.029
@@ -26,7 +26,7 @@ MonoBehaviour:
   critChance: 0.004
   critDmg: 0.0022
   dmgResis: 0.67
-  magicResis: 0.75
+  magicResis: 0.78
   timing: 0.06
   movSpeed: 3
   lifesteal: 0

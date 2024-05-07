@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: sandew stats 1
   m_EditorClassIdentifier: 
-  hp: 2580
+  hp: 2460
   hpRegen: 14.6
   mana: 275
   manaRegen: 0.596

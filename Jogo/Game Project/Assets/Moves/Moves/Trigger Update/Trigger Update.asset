@@ -32,7 +32,7 @@ MonoBehaviour:
   healMana: 12
   healStamina: 0
   healSanity: 2
-  shield: 10
+  shield: 4
   ultEnergy: 5
   healFromDmgType: 0
   healFromDmg: 0

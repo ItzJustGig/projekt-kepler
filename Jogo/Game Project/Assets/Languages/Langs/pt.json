@@ -184,7 +184,7 @@
             "cursanity": "Sanidade Atual",
             "misssanity": "Sanidade em Falta",
             "def": "Defesa",
-            "magicdef": "Defesa M\u00E1gica",
+            "magicdef": "Resistencia M\u00E1gica",
             "attack": "Ataque",
             "magicpower": "Poder M\u00E1gico",
             "critchance": "Chance de Cr\u00EDtico",
@@ -270,7 +270,8 @@
             "flecko": "Flecko",
             "enya": "Enya",
             "fonke": "Fonke",
-            "watcher": "Observador"
+            "watcher": "Observador",
+            "molerat": "Rato-Toupeira"
         },
         "title": {
             "alex": "o Ca\u00E7ador de Recompen\u00E7as",
@@ -646,7 +647,8 @@
         "enchantedshades": "Sombras Encantadas",
         "observe": "Observar",
         "erase": "Apagar",
-        "coolingsystem": "Sistema de Arrefecimento"
+        "coolingsystem": "Sistema de Arrefecimento",
+        "piercingblow": "Golpe Penetrante"
     },
     "items": {
         "title": "Iten",

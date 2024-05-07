@@ -24,8 +24,8 @@ MonoBehaviour:
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 35
-  magicDmg: 5
+  phyDmg: 45
+  magicDmg: 10
   trueDmg: 0
   sanityDmg: 0
   heal: 0
@@ -33,6 +33,7 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 7

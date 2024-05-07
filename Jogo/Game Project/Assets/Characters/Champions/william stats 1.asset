@@ -28,7 +28,7 @@ MonoBehaviour:
   dmgResis: 18
   magicResis: 28
   timing: 0.7
-  movSpeed: 120
+  movSpeed: 105
   lifesteal: 0.03
   healBonus: 0
   shieldBonus: 0

@@ -26,7 +26,7 @@ MonoBehaviour:
   critChance: 0.085
   critDmg: 0.1075
   dmgResis: 29
-  magicResis: 26
+  magicResis: 22
   timing: 1.05
   movSpeed: 90
   lifesteal: 0

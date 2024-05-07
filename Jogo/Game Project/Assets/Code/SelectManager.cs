@@ -518,8 +518,8 @@ public class SelectManager : MonoBehaviour
         lifesteal.text = (stats.lifesteal * 100).ToString() + "%";
         accuracy.text = (stats.accuracy * 100).ToString() + "%";
 
-        if ((stats.movSpeed * 0.035) + (stats.timing * 0.5) + (stats.sanity * 0.01) + stats.evasion > 0)
-            evasion.text = ((stats.movSpeed * 0.035) + (stats.timing * 0.5) + (stats.sanity * 0.01) + stats.evasion).ToString("0.00") + "%";
+        if ((stats.movSpeed * 0.02) + (stats.timing * 0.4) + (stats.sanity * 0.09) + stats.evasion > 0)
+            evasion.text = ((stats.movSpeed * 0.02) + (stats.timing * 0.4) + (stats.sanity * 0.09) + stats.evasion).ToString("0.00") + "%";
         else
             evasion.text = 0 + "%";
     }

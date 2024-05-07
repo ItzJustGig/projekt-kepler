@@ -35,7 +35,7 @@ MonoBehaviour:
   movSpeed: -0.09
   lifesteal: 0
   healBonus: 0
-  shieldBonus: 0
+  shieldBonus: -0.04
   accuracy: 0
   evasion: -0.0375
   armourPen: 0

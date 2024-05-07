@@ -9958,17 +9958,15 @@ MonoBehaviour:
   tiredStacks: 0
   maxShield: 2000
   levelToConsiderWeak: 12
-  dmgResisPer: 0.18
-  magicResisPer: 0.14
-  dotReduc: 0.7
+  dotReduc: 0.8
   ultComp: 0.25
   ultCompDuration: 6
   summonHpLostBase: 40
   summonHpLostPer: 0.25
   bloodLossStacks: 10
-  evasionSpeed: 0.03
-  evasionTiming: 0.45
-  evasionSanity: 0.1
+  evasionSpeed: 0.02
+  evasionTiming: 0.4
+  evasionSanity: 0.09
   dialogText: {fileID: 2435926}
   playerHudList: {fileID: 2099022623}
   enemyHudList: {fileID: 872632356}
@@ -10009,13 +10007,6 @@ MonoBehaviour:
   defAtk: {fileID: 21300000, guid: 4918b5097ca207a4cbce8c2dff47577b, type: 3}
   statAtk: {fileID: 21300000, guid: c630b18e457a2f946b998787276542ce, type: 3}
   summAtk: {fileID: 21300000, guid: edc4bbb7d32a9024b81094d5d9894628, type: 3}
-  phyCancel: {fileID: 0}
-  magiCancel: {fileID: 0}
-  rangeCancel: {fileID: 0}
-  suppCancel: {fileID: 0}
-  defCancel: {fileID: 0}
-  statCancel: {fileID: 0}
-  summCancel: {fileID: 0}
   tooltipMain: {fileID: 3422808952827454667}
   tooltipSec: {fileID: 1544077368}
   cameraAudio: {fileID: 519420030}

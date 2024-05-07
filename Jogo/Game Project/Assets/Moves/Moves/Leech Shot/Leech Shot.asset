@@ -33,11 +33,12 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 4
   healFromDmg: 1.05
   cooldown: 5
   inCooldown: 0
-  manaCost: 55
+  manaCost: 60
   staminaCost: 0
   ultCost: 100
   needFullUlt: 1

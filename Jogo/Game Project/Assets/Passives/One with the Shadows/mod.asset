@@ -37,8 +37,8 @@ MonoBehaviour:
   healBonus: 0
   shieldBonus: 0
   accuracy: 0
-  evasion: 0.069
-  armourPen: 0.05
+  evasion: 0.08
+  armourPen: 0.075
   magicPen: 0
   ultrate: 0.1
   size: 0

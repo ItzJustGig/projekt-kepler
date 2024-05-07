@@ -16,7 +16,7 @@ MonoBehaviour:
   time: -1
   inTime: -1
   chance: 1
-  hp: 25
+  hp: 30
   hpRegen: 0
   mana: 0
   manaRegen: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
   magicResis: 0
   timing: 0
   movSpeed: 0
-  lifesteal: 0.0375
+  lifesteal: 0.04
   healBonus: 0
   shieldBonus: 0
   accuracy: 0

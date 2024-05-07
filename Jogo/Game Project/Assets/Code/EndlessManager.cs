@@ -316,7 +316,7 @@ public class EndlessManager : MonoBehaviour
 
         SaveSystem.Save(info);
 
-        if (info.shoppass > 0)
+        if (info.shoppass <= 0)
         {
             passBtn.interactable=false;
         }

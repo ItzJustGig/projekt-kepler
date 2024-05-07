@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
   m_Name: crobus stats
   m_EditorClassIdentifier: 
-  hp: 550
+  hp: 580
   hpRegen: 12
   mana: 230
   manaRegen: 0.25
@@ -25,8 +25,8 @@ MonoBehaviour:
   magicPower: 12
   critChance: 0.12
   critDmg: 0.0875
-  dmgResis: 40
-  magicResis: -35
+  dmgResis: 43
+  magicResis: -25
   timing: 1.15
   movSpeed: 80
   lifesteal: 0

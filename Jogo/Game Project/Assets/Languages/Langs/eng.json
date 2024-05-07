@@ -183,13 +183,13 @@
 			"maxsanity": "Maximum Sanity",
 			"cursanity": "Current Sanity",
 			"misssanity": "Missing Sanity",
-			"def": "Damage Resistance",
+			"def": "Defence",
 			"magicdef": "Magic Resistance",
 			"attack": "Attack Damage",
 			"magicpower": "Magic Power",
 			"critchance": "Critical Chance",
 			"critdmg": "Critical Damage",
-			"movspeed": "Movement Speed",
+			"movspeed": "Speed",
 			"timing": "Timing",
 			"lifesteal": "Lifesteal",
 			"evasion": "Evasion",
@@ -270,7 +270,8 @@
 			"flecko": "Flecko",
 			"enya": "Enya",
 			"fonke": "Fonke",
-			"watcher": "Watcher"
+			"watcher": "Watcher",
+			"molerat": "Molerat"
 		},
 		"title": {
 			"alex": "the Bounty Hunter",
@@ -631,7 +632,8 @@
 		"enchantedshades": "Shadow Arts: Enchanted Shades",
 		"observe": "Observe",
         "erase": "Erase",
-		"coolingsystem": "Cooling System"
+		"coolingsystem": "Cooling System",
+		"piercingblow": "Piercing Blow"
 	},
 	"items": {
 		"title": "Item",

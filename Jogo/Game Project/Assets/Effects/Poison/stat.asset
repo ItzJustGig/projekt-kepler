@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25cbb6c1520490c4cbe5c685482d1204, type: 3}
   m_Name: stat
   m_EditorClassIdentifier: 
+  flat: 0
   time: 0
   inTime: 0
   chance: 0
   hp: 0
-  hpRegen: -0.2
+  hpRegen: -0.1
   mana: 0
   manaRegen: 0
+  manaCost: 0
   stamina: 0
   staminaRegen: -0.12
+  staminaCost: 0
   sanity: 0
   atkDmg: 0
   magicPower: 0
@@ -31,5 +34,11 @@ MonoBehaviour:
   timing: 0
   movSpeed: 0
   lifesteal: 0
+  healBonus: -0.08
+  shieldBonus: 0
   accuracy: 0
   evasion: 0
+  armourPen: 0
+  magicPen: 0
+  ultrate: 0
+  size: 0

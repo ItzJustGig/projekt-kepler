@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 5
   playerStat: 1
-  flatDmg: 0
+  flatValue: 0
   curHp: 0
   missHp: 0
   maxHp: 0
   hpRegen: 0
-  missMana: 0.6
+  missMana: 0.65
   curMana: 0
   maxMana: 0
-  manaRegen: 0.85
+  manaRegen: 1.1
   maxStamina: 0
   curStamina: 0
   missStamina: 0

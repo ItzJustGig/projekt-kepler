@@ -28,16 +28,17 @@ MonoBehaviour:
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
-  heal: 12
+  heal: 25
   healMana: 0
-  healStamina: 4
+  healStamina: 8
   healSanity: 2
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
-  cooldown: 6
+  cooldown: 7
   inCooldown: 0
-  manaCost: 40
+  manaCost: 50
   staminaCost: 0
   ultCost: 100
   needFullUlt: 1

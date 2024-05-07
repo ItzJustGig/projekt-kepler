@@ -1455,6 +1455,7 @@ public class LanguageManager : MonoBehaviour
         public string enya;
         public string fonke;
         public string watcher;
+        public string molerat;
 
         public string Get_CharcCont(string a)
         {
@@ -1553,6 +1554,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "watcher":
                     returns = watcher;
+                    break;
+                case "molerat":
+                    returns = molerat;
                     break;
                 default:
                     returns = "null";
@@ -1820,6 +1824,7 @@ public class LanguageManager : MonoBehaviour
         public string coolingsystem;
         public string observe;
         public string erase;
+        public string piercingblow;
 
         public string bloodpressure;
         public string enchdeadlyshadow;
@@ -2256,6 +2261,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "erase":
                     returns = erase;
+                    break;
+                case "piercingblow":
+                    returns = piercingblow;
                     break;
                 default:
                     returns = "null";

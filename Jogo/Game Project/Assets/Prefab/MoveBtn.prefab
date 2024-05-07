@@ -157,7 +157,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Wind Cut
+  m_Text: Flash
 --- !u!1 &7954924221277920593
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a9d8d1d7eee74734990bceef438f0a17, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c630b18e457a2f946b998787276542ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -405,66 +405,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=24><align=center>Wind Cut</align></size>
+  text: '<size=24><align=center>Flash</align></size>
 
-    <size=20><align=center><color=#1a66ff>Magic</color></align></size>
+    <size=20><align=center><color=#CC66FF>Enchantment</color></align></size>
 
-    <size=15><align=center>Single
-    Target | Enemy</align></size>
+    <size=15><align=center>Attack
+    in Area | Enemy</align></size>
 
-    <color=#2d71fa>Mana Cost</color>: 25
+    <color=#2d71fa>Mana Cost</color>: 31,95
 
     <color=#ebdb28>Stamina
     Cost</color>: 0
 
-    Cooldown: 3
+    Cooldown: 7
 
     Priority: 0
 
     <s><align=center>|                
     |</align></s>
 
-    20% chance to inflict Blood to the target for 1-2 turns.
+    70% chance to inflict Blindness to the target for 2 turns.
 
     <s><align=center>|                
     |</align></s>
 
-    Deal <color=#ffaa00>29,3 physical damage</color>
+    Deal <color=#1a66ff>22,8 magical damage</color>
 
     Deal
-    <color=#1a66ff>61,2 magical damage</color>
+    <color=#b829ff>2,0 sanity damage</color>
 
 '
-  textSec: '<size=24><align=center>Wind Cut</align></size>
+  textSec: '<size=24><align=center>Flash</align></size>
 
-    <size=20><align=center><color=#1a66ff>Magic</color></align></size>
+    <size=20><align=center><color=#CC66FF>Enchantment</color></align></size>
 
-    <size=15><align=center>Single
-    Target | Enemy</align></size>
+    <size=15><align=center>Attack
+    in Area | Enemy</align></size>
 
-    <color=#2d71fa>Mana Cost</color>: 25
+    <color=#2d71fa>Mana Cost</color>: 31,95
 
     <color=#ebdb28>Stamina
     Cost</color>: 0
 
-    Cooldown: 3
+    Cooldown: 7
 
     Priority: 0
 
     <s><align=center>|                
     |</align></s>
 
-    20% chance to inflict Blood to the target for 1-2 turns.
+    70% chance to inflict Blindness to the target for 2 turns.
 
     <s><align=center>|                
     |</align></s>
 
-    Deal <color=#ffaa00>20 + (<color=#ffaa00>15%</color> of the
-    user''s <color=#ffaa00>Attack Damage</color>) physical damage</color>
+    Deal <color=#1a66ff>20 + (<color=#1a66ff>30%</color> of the
+    user''s <color=#1a66ff>Magic Power</color>) magical damage</color>
 
     Deal
-    <color=#1a66ff>50 + (<color=#1a66ff>20%</color> of the user''s <color=#1a66ff>Magic
-    Power</color>) magical damage</color>
+    <color=#b829ff>2 sanity damage</color>
 
 '
   wantSec: 0

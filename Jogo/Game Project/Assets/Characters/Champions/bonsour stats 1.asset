@@ -25,7 +25,7 @@ MonoBehaviour:
   magicPower: 8
   critChance: 0.058
   critDmg: 0.095
-  dmgResis: 32
+  dmgResis: 30
   magicResis: 11
   timing: 0.182
   movSpeed: 135

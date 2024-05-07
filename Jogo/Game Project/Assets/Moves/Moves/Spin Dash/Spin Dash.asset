@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Spin Dash
   m_EditorClassIdentifier: 
   type: 0
+  target: 0
+  targetType: 0
+  id: 0
   name: spindash
   hitTime: 3
   priority: 1
@@ -21,7 +24,7 @@ MonoBehaviour:
   blocksPhysical: 0
   blocksMagical: 0
   blocksRanged: 0
-  phyDmg: 30
+  phyDmg: 20
   magicDmg: 0
   trueDmg: 0
   sanityDmg: 0
@@ -30,6 +33,7 @@ MonoBehaviour:
   healStamina: 0
   healSanity: 0
   shield: 0
+  ultEnergy: 0
   healFromDmgType: 0
   healFromDmg: 0
   cooldown: 6

@@ -34,8 +34,6 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private int tiredStacks = 0;
     [SerializeField] public int maxShield = 2000;
     [SerializeField] private int levelToConsiderWeak = 15;
-    [SerializeField] private float dmgResisPer = 0.18f;
-    [SerializeField] private float magicResisPer = 0.12f;
     [SerializeField] private float dotReduc = 0.3f;
     [SerializeField] private float ultComp = 0.25f;
     [SerializeField] private int ultCompDuration = 6;
@@ -92,13 +90,13 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private Sprite statAtk;
     [SerializeField] private Sprite summAtk;
 
-    [SerializeField] private GameObject phyCancel;
+    /*[SerializeField] private GameObject phyCancel;
     [SerializeField] private GameObject magiCancel;
     [SerializeField] private GameObject rangeCancel;
     [SerializeField] private GameObject suppCancel;
     [SerializeField] private GameObject defCancel;
     [SerializeField] private GameObject statCancel;
-    [SerializeField] private GameObject summCancel;
+    [SerializeField] private GameObject summCancel;*/
 
     [SerializeField] private GameObject tooltipMain;
     [SerializeField] private GameObject tooltipSec;
@@ -2559,7 +2557,7 @@ public class BattleSystem : MonoBehaviour
 
                             if (move.targetType is Moves.TargetType.SINGLE)
                             {
-                                dmgTarget = target.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
+                                dmgTarget = target.MitigateDmg(dmgTarget, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
                                 dmgTarget = user.ApplyHealFrom(dmgTarget, move.healFromDmgType, move.healFromDmg);
                                 dmgTarget = user.ApplyLifesteal(dmgTarget);
@@ -2608,7 +2606,7 @@ public class BattleSystem : MonoBehaviour
                                             }
                                         }*/
 
-                                        tempDmg = targetTeam.unit1.MitigateDmg(tempDmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
+                                        tempDmg = targetTeam.unit1.MitigateDmg(tempDmg, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
                                         tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
                                         tempDmg = user.ApplyLifesteal(tempDmg);
@@ -2657,7 +2655,7 @@ public class BattleSystem : MonoBehaviour
                                             }
                                         }*/
 
-                                        tempDmg = targetTeam.unit2.MitigateDmg(tempDmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
+                                        tempDmg = targetTeam.unit2.MitigateDmg(tempDmg, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
                                         tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
                                         tempDmg = user.ApplyLifesteal(tempDmg);
@@ -2705,7 +2703,7 @@ public class BattleSystem : MonoBehaviour
                                         {
                                         }
 
-                                        tempDmg = targetTeam.unit3.MitigateDmg(tempDmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
+                                        tempDmg = targetTeam.unit3.MitigateDmg(tempDmg, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
                                         tempDmg = user.ApplyHealFrom(tempDmg, move.healFromDmgType, move.healFromDmg);
                                         tempDmg = user.ApplyLifesteal(tempDmg);
@@ -2755,7 +2753,7 @@ public class BattleSystem : MonoBehaviour
                                     bool tempDead = false;
                                     if (!userTeam.unit1.isDead)
                                     {
-                                        tempDmg = userTeam.unit1.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
+                                        tempDmg = userTeam.unit1.MitigateDmg(dmgTarget, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
 
                                         /*foreach (Passives a in userTeam.unit1.passives.ToArray())
                                         {
@@ -2806,7 +2804,7 @@ public class BattleSystem : MonoBehaviour
                                     {
                                         healing = dmgUser.TransferHeals(dmgTarget);
 
-                                        tempDmg = userTeam.unit2.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
+                                        tempDmg = userTeam.unit2.MitigateDmg(dmgTarget, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
                                         /*foreach (Passives a in userTeam.unit2.passives.ToArray())
                                         {
                                             switch (a.name)
@@ -2857,7 +2855,7 @@ public class BattleSystem : MonoBehaviour
                                     {
                                         healing = dmgUser.TransferHeals(dmgTarget);
 
-                                        tempDmg = userTeam.unit3.MitigateDmg(dmgTarget, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
+                                        tempDmg = userTeam.unit3.MitigateDmg(dmgTarget, user.SetModifiers().armourPen, user.SetModifiers().magicPen, user);
                                         /*foreach (Passives a in userTeam.unit3.passives.ToArray())
                                         {
                                             switch (a.name)
@@ -3177,7 +3175,7 @@ public class BattleSystem : MonoBehaviour
         }
         
 
-        dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, null, dotReduc);
+        dmg = user.MitigateDmg(dmg, 0, 0, null, dotReduc);
         dmg = user.CalcRegens(dmg);
 
         isDead = user.TakeDamage(dmg, false, false, user, false);
@@ -3205,7 +3203,7 @@ public class BattleSystem : MonoBehaviour
                 if (a.dmg > 0)
                 {
                     dmg.phyDmg += a.dmg;
-                    dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, a.source, dotReduc);
+                    dmg = user.MitigateDmg(dmg, 0, 0, a.source, dotReduc);
                     user.ApplyLifesteal(dmg);
                 }
                 break;
@@ -3213,7 +3211,7 @@ public class BattleSystem : MonoBehaviour
                 if (a.dmg > 0)
                 {
                     dmg.magicDmg += a.dmg;
-                    dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0, a.source, dotReduc);
+                    dmg = user.MitigateDmg(dmg, 0, 0, a.source, dotReduc);
                 }
                 break;
             case Dotdmg.DmgType.TRUE:
@@ -4174,7 +4172,7 @@ public class BattleSystem : MonoBehaviour
                         dmg.Reset();
 
                         dmg.magicDmg = a.statScale2.SetScaleFlat(user.SetModifiers(), user);
-                        dmg = user.MitigateDmg(dmg, dmgResisPer, magicResisPer, 0, 0);
+                        dmg = user.MitigateDmg(dmg, 0, 0);
                         user.TakeDamage(dmg, false, false, user, true);
 
                         userHud.SetStatsHud(user);
@@ -4308,7 +4306,7 @@ public class BattleSystem : MonoBehaviour
                             dmg.Reset();
 
                             dmg.magicDmg = a.statScale.SetScaleFlat(user.SetModifiers(), user);
-                            dmg = targetTeam.unit1.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
+                            dmg = targetTeam.unit1.MitigateDmg(dmg, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
                             targetTeam.unit1.TakeDamage(dmg, false, false, user, false);
 
                             userHud.SetStatsHud(user);
@@ -4326,7 +4324,7 @@ public class BattleSystem : MonoBehaviour
                                 dmg.Reset();
 
                                 dmg.magicDmg = a.statScale.SetScaleFlat(user.SetModifiers(), user);
-                                dmg = targetTeam.unit2.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
+                                dmg = targetTeam.unit2.MitigateDmg(dmg, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
                                 targetTeam.unit2.TakeDamage(dmg, false, false, user, false);
 
                                 userHud.SetStatsHud(user);
@@ -4344,7 +4342,7 @@ public class BattleSystem : MonoBehaviour
                                 dmg.Reset();
 
                                 dmg.magicDmg = a.statScale.SetScaleFlat(user.SetModifiers(), user);
-                                dmg = targetTeam.unit3.MitigateDmg(dmg, dmgResisPer, magicResisPer, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
+                                dmg = targetTeam.unit3.MitigateDmg(dmg, user.SetModifiers().armourPen, user.SetModifiers().magicPen);
                                 targetTeam.unit3.TakeDamage(dmg, false, false, user, false);
 
                                 userHud.SetStatsHud(user);
@@ -4631,6 +4629,7 @@ public class BattleSystem : MonoBehaviour
                         user.TakeDamage(dmg, false, false, user, true);
                     }
 
+                    ManagePassiveIcon(user.effectHud, a.sprite, a.name, "", user.isEnemy, a.GetPassiveInfo());
                     break;
                 case "tormentedsoul":
                     float sanPerF1 = ((100 * targetTeam.unit1.curSanity) / targetTeam.unit1.SetModifiers().sanity) * 100;
@@ -4803,7 +4802,7 @@ public class BattleSystem : MonoBehaviour
             if (isCrit)
                 dmgT.ApplyCrit(false, statsS.critDmg);
 
-            dmgT = target.MitigateDmg(dmgT, dmgResisPer, magicResisPer, statsT.armourPen, statsT.magicPen, summoner);
+            dmgT = target.MitigateDmg(dmgT, statsT.armourPen, statsT.magicPen, summoner);
         }
 
         isDead = target.TakeDamage(dmgT, isCrit, false, summoner, summoner.isEnemy == target.isEnemy);
@@ -5032,7 +5031,7 @@ public class BattleSystem : MonoBehaviour
             }
 
             unit.ResetCanUse();
-            if (unit.CountEffectTimer(unit.effectHud.gameObject, bloodLossStacks, dmgResisPer, magicResisPer, dotReduc))
+            if (unit.CountEffectTimer(unit.effectHud.gameObject, bloodLossStacks, dotReduc))
             {
                 user.SetAsDead(unit);
                 if (unit.isEnemy)

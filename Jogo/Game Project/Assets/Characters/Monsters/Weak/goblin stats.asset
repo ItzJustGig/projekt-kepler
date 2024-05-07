@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: goblin stats
   m_EditorClassIdentifier: 
   hp: 525
-  hpRegen: 19
+  hpRegen: 14
   mana: 135
   manaRegen: 0.015
   manaCost: 1

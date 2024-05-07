@@ -303,7 +303,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 30
+  m_Text: 25
 --- !u!1 &7461933490601653143
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +382,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 6
+  m_Text: 3
 --- !u!1 &7461933490921630933
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,15 +502,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: "<size=24><align=center>Onda de Impacto</align></size>\r\n<size=20><align=center><color=#ffaa00>F\xEDsico</color></align></size>\r\n<size=15><align=center>Ataque
-    em Area | Inimigo</align></size>\r\n<color=#2d71fa>Custo de Mana</color>: 30\r\n<color=#ebdb28>Custo
-    de Stamina</color>: 65\r\nTempo de Recarga: 6\r\nPrioridade: 0\r\n<s><align=center>|                
-    |</align></s>\r\n17% chance de infligir Aleijado ao alvo por 1-3 turnos\r\n<s><align=center>|                
-    |</align></s>\r\nCausa <color=#ffaa00>60 + (<color=#ffaa00>55%</color> do/a <color=#ffaa00>Ataque</color>
-    do utilizador) + (<color=#937264>20%</color> do/a <color=#937264>Defesa</color>
-    do utilizador) dano f\xEDsico</color>\r\nCausa <color=#1a66ff>15 + (<color=#1a66ff>55%</color>
-    do/a <color=#1a66ff>Poder M\xE1gico</color> do utilizador) + (<color=#946ACD>20%</color>
-    do/a <color=#946ACD>Defesa M\xE1gica</color> do utilizador) dano m\xE1gico</color>\r\n"
+  text: '<size=24><align=center>Wind Cut</align></size>
+
+    <size=20><align=center><color=#1a66ff>Magic</color></align></size>
+
+    <size=15><align=center>Single
+    Target | Enemy</align></size>
+
+    <color=#2d71fa>Mana Cost</color>: 25
+
+    <color=#ebdb28>Stamina
+    Cost</color>: 0
+
+    Cooldown: 3
+
+    Priority: 0
+
+    <s><align=center>|                
+    |</align></s>
+
+    20% chance to inflict Blood to the target for 1-2 turns.
+
+    <s><align=center>|                
+    |</align></s>
+
+    Deal <color=#ffaa00>20 + (<color=#ffaa00>15%</color> of the
+    user''s <color=#ffaa00>Attack Damage</color>) physical damage</color>
+
+    Deal
+    <color=#1a66ff>50 + (<color=#1a66ff>20%</color> of the user''s <color=#1a66ff>Magic
+    Power</color>) magical damage</color>
+
+'
   textSec: 
   wantSec: 0
 --- !u!1 &7461933492413409170
@@ -591,7 +614,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 65
+  m_Text: 0
 --- !u!1 &7461933492528101758
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,7 +680,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9d8d1d7eee74734990bceef438f0a17, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -745,4 +768,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Onda de Impacto
+  m_Text: Wind Cut
