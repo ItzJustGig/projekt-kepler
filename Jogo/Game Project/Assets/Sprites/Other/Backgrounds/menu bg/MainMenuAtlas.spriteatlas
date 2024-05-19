@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MainMenuAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 970354fb1c718e04cabdf1175beedec9, type: 3}
+    - {fileID: 2800000, guid: da7a20f5befec984c8805349a8a3e3d0, type: 3}
+    - {fileID: 2800000, guid: 9699c863c7b9dda4cb162195d80551ab, type: 3}
+    - {fileID: 2800000, guid: 30143257ccbabba4eb0984d2762d0718, type: 3}
+    - {fileID: 2800000, guid: 47ff3f89ea4dec446b9c08ea8fc0fd79, type: 3}
+    - {fileID: 2800000, guid: 2a2679a8b4872544baaca224fd0b18ed, type: 3}
+    - {fileID: 2800000, guid: 990f6f79b0298c8488b9533b39986417, type: 3}
+    totalSpriteSurfaceArea: 14680064
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 9699c863c7b9dda4cb162195d80551ab, type: 3}
+  - {fileID: 21300000, guid: da7a20f5befec984c8805349a8a3e3d0, type: 3}
+  - {fileID: 21300000, guid: 30143257ccbabba4eb0984d2762d0718, type: 3}
+  - {fileID: 21300000, guid: 2a2679a8b4872544baaca224fd0b18ed, type: 3}
+  - {fileID: 21300000, guid: 990f6f79b0298c8488b9533b39986417, type: 3}
+  - {fileID: 21300000, guid: 47ff3f89ea4dec446b9c08ea8fc0fd79, type: 3}
+  - {fileID: 21300000, guid: 970354fb1c718e04cabdf1175beedec9, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Kepler 1 (Big)
+  - Kepler (Big)
+  - Kepler 2 (Big)
+  - Kepler 4 (Big)
+  - Kepler 5 (Big)
+  - Kepler 3 (Big)
+  - Kepler 6 (Big)
+  m_RenderDataMap: {}
+  m_Tag: MainMenuAtlas
+  m_IsVariant: 0

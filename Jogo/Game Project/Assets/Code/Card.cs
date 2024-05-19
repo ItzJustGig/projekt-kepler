@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static LanguageManager;
 
 public class Card : MonoBehaviour
 {
@@ -78,8 +79,8 @@ public class Card : MonoBehaviour
         }
 
         Destroy(class2.gameObject);
-        cardName.text = langmanag.GetInfo("charc", "name", charc.name);
-        cardLevel.text = langmanag.GetInfo("gui", "text", "level")+level;
+        cardName.text = langmanag.GetInfo(new ArgumentsFetch("charc", "name", charc.name));
+        cardLevel.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "level"))+level;
         charcSprite.sprite = charc.sprite.GetComponent<SpriteRenderer>().sprite;
     }
 

@@ -83,20 +83,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipPopup: {fileID: 0}
   tooltipPopupSec: {fileID: 0}
-  text: '<size=25><align=center>Perfect Shooter</align></size>
-
-    <size=19><align=center><color=#B2B2B2>Passive</color></align></size>
-
-    
-
-    Every
-    <color=#f75145>6 critical ranged attacks</color> or <color=#ffaa00>basic attacks</color>,
-    the user gain <color=#ffaa00>4,85% Attack Damage</color>, <color=#f75145>2,85%
-    Critical Chance</color>, <color=#f75145>1,7% Critical Damage</color>, <color=#0984db>1,8%
-    Timing</color> and <color=#c87c32>1% Armour Penetration</color>  (stacks up to
-    4).
-
-'
+  text: "<size=25><align=center>Allergy</align></size>\r\n<size=19><align=center><color=#B2B2B2>null</color></align></size>\r\n<s><align=center>|                
+    |</align></s>\r\nDoesn't allow the user to use:\r\n<color=#00ff11>Supportive
+    moves</color>\r\n<s><align=center>|                 |</align></s>\r\nTake <color=#b829ff>1-2
+    sanity damage</color> each turn.\r\n<s><align=center>|                 |</align></s>\r\n
+    <color=#2ffa3d>-20% Health Regen</color>, <color=#ffaa00>-10% Attack Damage</color>,
+    <color=#1a66ff>-10% Magic Power</color>, <color=#e04419>-10% Accuracy</color>
+    and <color=#00ff11>-25% Healing Bonus</color> to the user \r\n"
   textSec: 
   wantSec: 0
 --- !u!95 &4874516270294335299
@@ -183,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 902632ae439d16f43b28fcb2d2e50a78, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c18f25ae28068a34d88b18389537f729, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -271,4 +264,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0S6T
+  m_Text: 1

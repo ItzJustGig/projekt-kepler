@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static LanguageManager;
 
 public class EndlessManager : MonoBehaviour
 {
@@ -145,9 +146,9 @@ public class EndlessManager : MonoBehaviour
                     if (Random.Range(0f, 1f) <= bossDropsChance)
                     {
                         int temp = Random.Range(0, bossDrops.Count);
-                        dropItemBox.transform.Find("drop").Find("dropTxt").GetComponent<Text>().text = langmanag.GetInfo("items", "name", bossDrops[temp].name);
+                        dropItemBox.transform.Find("drop").Find("dropTxt").GetComponent<Text>().text = langmanag.GetInfo(new ArgumentsFetch("items", "name", bossDrops[temp].name));
                         dropItemBox.transform.Find("drop").Find("dropIcon").GetComponent<Image>().sprite = bossDrops[temp].sprite;
-                        dropItemBox.transform.Find("drop").GetComponent<TooltipButton>().text = langmanag.GetInfo("items", "purchase", bossDrops[temp].name);
+                        dropItemBox.transform.Find("drop").GetComponent<TooltipButton>().text = langmanag.GetInfo(new ArgumentsFetch("items", "purchase", bossDrops[temp].name));
                         dropItemPanel.SetActive(true);
                         dropItemBox.SetActive(true);
                         switch (bossDrops[temp].name)
@@ -293,7 +294,7 @@ public class EndlessManager : MonoBehaviour
         if (info.wonLastRound == 1)
             goldAnim.SetTrigger("g");
 
-        nameChampTxt.text = langmanag.GetInfo("charc", "name", champs[info.player.id-1].name);
+        nameChampTxt.text = langmanag.GetInfo(new ArgumentsFetch("charc", "name", champs[info.player.id-1].name));
         champIcon.sprite = champs[info.player.id-1].charcIcon;
 
         if (info.wonLastRound == 1)
@@ -329,11 +330,11 @@ public class EndlessManager : MonoBehaviour
         else
             shopBtn.interactable = false;
 
-        hpInfo.text = langmanag.GetInfo("stats", "name", "hp");
-        manaInfo.text = langmanag.GetInfo("stats", "name", "mana");
-        staminaInfo.text = langmanag.GetInfo("stats", "name", "stamina");
-        sanityInfo.text = langmanag.GetInfo("stats", "name", "sanity");
-        ultInfo.text = langmanag.GetInfo("stats", "name", "ultimate");
+        hpInfo.text = langmanag.GetInfo(new ArgumentsFetch("stats", "name", "hp"));
+        manaInfo.text = langmanag.GetInfo(new ArgumentsFetch("stats", "name", "mana"));
+        staminaInfo.text = langmanag.GetInfo(new ArgumentsFetch("stats", "name", "stamina"));
+        sanityInfo.text = langmanag.GetInfo(new ArgumentsFetch("stats", "name", "sanity"));
+        ultInfo.text = langmanag.GetInfo(new ArgumentsFetch("stats", "name", "ultimate"));
     }
 
     void PlayLevelUp()

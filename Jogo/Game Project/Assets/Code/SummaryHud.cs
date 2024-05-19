@@ -37,34 +37,34 @@ public class SummaryHud : MonoBehaviour
 
     public void SetupSum()
     {
-        physicDmgDealt.text = langmanag.GetInfo("gui", "text", "physicdmgdealt");
-        magicDmgDealt.text = langmanag.GetInfo("gui", "text", "magicdmgdealt");
-        trueDmgDealt.text = langmanag.GetInfo("gui", "text", "truedmgdealt");
-        sanityDmgDealt.text = langmanag.GetInfo("gui", "text", "sanitydmgdealt");
-        totalDmgDealt.text = langmanag.GetInfo("gui", "text", "totaldmgdealt");
-        physicDmgTaken.text = langmanag.GetInfo("gui", "text", "physicdmgtaken");
-        magicDmgTaken.text = langmanag.GetInfo("gui", "text", "magicdmgtaken");
-        trueDmgTaken.text = langmanag.GetInfo("gui", "text", "truedmgtaken");
-        sanityDmgTaken.text = langmanag.GetInfo("gui", "text", "sanitydmgtaken");
-        totalDmgTaken.text = langmanag.GetInfo("gui", "text", "totaldmgtaken");
-        physicDmgMitigated.text = langmanag.GetInfo("gui", "text", "physicdmgmiti");
-        magicDmgMitigated.text = langmanag.GetInfo("gui", "text", "magicdmgmiti");
-        totalDmgMitigated.text = langmanag.GetInfo("gui", "text", "totaldmgmiti");
-        healDone.text = langmanag.GetInfo("gui", "text", "healdone");
-        manaRecovered.text = langmanag.GetInfo("gui", "text", "manarecov");
-        staminaRecovered.text = langmanag.GetInfo("gui", "text", "staminarecov");
-        sanityRecovered.text = langmanag.GetInfo("gui", "text", "sanityrecov");
-        shieldDone.text = langmanag.GetInfo("gui", "text", "shielddone");
+        physicDmgDealt.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "physicdmgdealt"));
+        magicDmgDealt.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "magicdmgdealt"));
+        trueDmgDealt.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "truedmgdealt"));
+        sanityDmgDealt.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "sanitydmgdealt"));
+        totalDmgDealt.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "totaldmgdealt"));
+        physicDmgTaken.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "physicdmgtaken"));
+        magicDmgTaken.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "magicdmgtaken"));
+        trueDmgTaken.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "truedmgtaken"));
+        sanityDmgTaken.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "sanitydmgtaken"));
+        totalDmgTaken.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "totaldmgtaken"));
+        physicDmgMitigated.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "physicdmgmiti"));
+        magicDmgMitigated.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "magicdmgmiti"));
+        totalDmgMitigated.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "totaldmgmiti"));
+        healDone.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "healdone"));
+        manaRecovered.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "manarecov"));
+        staminaRecovered.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "staminarecov"));
+        sanityRecovered.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "sanityrecov"));
+        shieldDone.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "shielddone"));
     }
 
     public void AddMoveLog(Unit user, Moves move)
     {
         string txtenemy = "";
         if (user.isEnemy)
-            txtenemy = langmanag.GetInfo("showdetail", "target", "enemy");
+            txtenemy = langmanag.GetInfo(new ArgumentsFetch("showdetail", "target", "enemy"));
         else
-            txtenemy = langmanag.GetInfo("showdetail", "target", "ally");
-        moveLogGO.GetComponent<Text>().text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name), txtenemy);
+            txtenemy = langmanag.GetInfo(new ArgumentsFetch("showdetail", "target", "ally"));
+        moveLogGO.GetComponent<Text>().text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "usedmove"), langmanag.GetInfo(new ArgumentsFetch("charc", "name", user.charc.name)), langmanag.GetInfo(new ArgumentsFetch("moves", move.name)), txtenemy);
         moveLogGO.GetComponent<TooltipButton>().tooltipPopup = tooltipMain.GetComponent<TooltipPopUp>();
         moveLogGO.GetComponent<TooltipButton>().tooltipPopupSec = tooltipSec.GetComponent<TooltipPopUp>();
         moveLogGO.GetComponent<TooltipButton>().text = move.GetTooltipText(false);

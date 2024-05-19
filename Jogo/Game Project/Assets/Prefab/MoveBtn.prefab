@@ -412,7 +412,7 @@ MonoBehaviour:
     <size=15><align=center>Attack
     in Area | Enemy</align></size>
 
-    <color=#2d71fa>Mana Cost</color>: 31,95
+    <color=#2d71fa>Mana Cost</color>: 31,5
 
     <color=#ebdb28>Stamina
     Cost</color>: 0
@@ -429,7 +429,7 @@ MonoBehaviour:
     <s><align=center>|                
     |</align></s>
 
-    Deal <color=#1a66ff>22,8 magical damage</color>
+    Deal <color=#1a66ff>22,7 magical damage</color>
 
     Deal
     <color=#b829ff>2,0 sanity damage</color>
@@ -442,7 +442,7 @@ MonoBehaviour:
     <size=15><align=center>Attack
     in Area | Enemy</align></size>
 
-    <color=#2d71fa>Mana Cost</color>: 31,95
+    <color=#2d71fa>Mana Cost</color>: 31,5
 
     <color=#ebdb28>Stamina
     Cost</color>: 0

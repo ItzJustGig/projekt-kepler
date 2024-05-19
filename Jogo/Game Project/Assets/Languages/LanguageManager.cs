@@ -3,10 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Text.RegularExpressions;
 
 public class LanguageManager : MonoBehaviour
 {
     [SerializeField] private List<TextAsset> languages;
+
+    public struct ArgumentsFetch
+    {
+        public string langId;
+        public string main;
+        public string sec;
+        public string tri;
+
+        public ArgumentsFetch(string langId, string main, string sec, string tri)
+        {
+            this.langId = langId;
+            this.main = main;
+            this.sec = sec;
+            this.tri = tri;
+        }
+
+        public ArgumentsFetch (string main, string sec, string tri)
+        {
+            langId = "";
+            this.main = main;
+            this.sec = sec;
+            this.tri = tri;
+        }
+
+        public ArgumentsFetch (string main, string sec)
+        {
+            langId = "";
+            this.main = main;
+            this.sec = sec;
+            tri = "";
+        }
+    }
 
     [Serializable]
     public class Json
@@ -23,43 +56,43 @@ public class LanguageManager : MonoBehaviour
         public Items items;
         public Summon summon;
 
-        public string GetStuff(string main, string sec, string tri)
+        public string GetStuff(ArgumentsFetch fetch)
         {
             string returns;
-            switch (main)
+            switch (fetch.main)
             {
                 case "language":
-                    returns = language.Get_Language(sec);
+                    returns = language.Get_Language(fetch.sec);
                     break;
                 case "gui":
-                    returns = gui.Get_Gui(sec, tri);
+                    returns = gui.Get_Gui(fetch.sec, fetch.tri);
                     break;
                 case "stats":
-                    returns = stats.Get_Stats(sec, tri);
+                    returns = stats.Get_Stats(fetch.sec, fetch.tri);
                     break;
                 case "class":
-                    returns = classe.Get_Class(sec);
+                    returns = classe.Get_Class(fetch.sec);
                     break;
                 case "charc":
-                    returns = charc.Get_Charc(sec, tri);
+                    returns = charc.Get_Charc(fetch.sec, fetch.tri);
                     break;
                 case "showdetail":
-                    returns = showdetail.Get_ShowDetail(sec, tri);
+                    returns = showdetail.Get_ShowDetail(fetch.sec, fetch.tri);
                     break;
                 case "effect":
-                    returns = effect.Get_Effect(sec, tri);
+                    returns = effect.Get_Effect(fetch.sec, fetch.tri);
                     break;
                 case "moves":
-                    returns = moves.Get_Moves(sec, tri);
+                    returns = moves.Get_Moves(fetch.sec, fetch.tri);
                     break;
                 case "passive":
-                    returns = passive.Get_Passive(sec, tri);
+                    returns = passive.Get_Passive(fetch.sec, fetch.tri);
                     break;
                 case "items":
-                    returns = items.Get_Item(sec, tri);
+                    returns = items.Get_Item(fetch.sec, fetch.tri);
                     break;
                 case "summon":
-                    returns = summon.Get_Summon(sec, tri);
+                    returns = summon.Get_Summon(fetch.sec, fetch.tri);
                     break;
                 default:
                     returns = "null";
@@ -2768,31 +2801,16 @@ public class LanguageManager : MonoBehaviour
         }
     }
 
-    public string GetText(string languageId, string main, string sec, string tri)
+    public string GetText(ArgumentsFetch fetch)
     {
         foreach (TextAsset a in languages)
         {
             string json = a.ToString();
             Json lang = JsonUtility.FromJson<Json>(json);
             
-            if (lang.language.Get_Language("code") == languageId)
+            if (lang.language.Get_Language("code") == fetch.langId)
             {   
-                return lang.GetStuff(main, sec, tri);
-            }
-        }
-        return "null";
-    }
-
-    public string GetText(string languageId, string main, string sec)
-    {
-        foreach (TextAsset a in languages)
-        {
-            string json = a.ToString();
-            Json lang = JsonUtility.FromJson<Json>(json);
-
-            if (lang.language.Get_Language("code") == languageId)
-            {
-                return lang.GetStuff(main, sec, "");
+                return lang.GetStuff(fetch);
             }
         }
         return "null";

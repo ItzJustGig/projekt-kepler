@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
+using UnityEditor.ShortcutManagement;
 using UnityEngine;
+using static LanguageManager;
+using static Utils;
 
 [CreateAssetMenu (fileName = "New Move", menuName = "Move")]
 
@@ -147,7 +151,8 @@ public class Moves : ScriptableObject
     private StringBuilder GetDmg(LanguageManager languageManager, string language, string whatIs, float val, string colour)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", whatIs));
+        ArgumentsFetch fetch = new ArgumentsFetch(language, "showdetail", whatIs, "");
+        builder.Append(languageManager.GetText(fetch));
 
         builder.Replace("%c%", "<color=#" + colour + ">");
         builder.Replace("%c/%", "</color>");
@@ -160,7 +165,8 @@ public class Moves : ScriptableObject
     private StringBuilder GetDmg(LanguageManager languageManager, string language, string whatIs, float val)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", whatIs));
+        ArgumentsFetch fetch = new ArgumentsFetch(language, "showdetail", whatIs, "");
+        builder.Append(languageManager.GetText(fetch));
         builder.Replace("%val%", val.ToString());
 
         return builder;
@@ -169,7 +175,8 @@ public class Moves : ScriptableObject
     private StringBuilder GetDmg(LanguageManager languageManager, string language, string whatIs, float val, string colour, float scale)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", whatIs));
+        ArgumentsFetch fetch = new ArgumentsFetch(language, "showdetail", whatIs, "");
+        builder.Append(languageManager.GetText(fetch));
 
         builder.Replace("%c%", "<color=#" + colour + ">");
         builder.Replace("%c/%", "</color>");
@@ -187,7 +194,8 @@ public class Moves : ScriptableObject
     private StringBuilder GetDmg(LanguageManager languageManager, string language, string whatIs, float val, string colour, string scale)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", whatIs));
+        ArgumentsFetch fetch = new ArgumentsFetch(language, "showdetail", whatIs, "");
+        builder.Append(languageManager.GetText(fetch));
 
         builder.Replace("%c%", "<color=#" + colour + ">");
         builder.Replace("%c/%", "</color>");
@@ -205,7 +213,8 @@ public class Moves : ScriptableObject
     private StringBuilder GetDmg(LanguageManager languageManager, string language, string whatIs, string colour, string scale)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", whatIs));
+        ArgumentsFetch fetch = new ArgumentsFetch(language, "showdetail", whatIs, "");
+        builder.Append(languageManager.GetText(fetch));
 
         builder.Replace("%c%", "<color=#" + colour + ">");
         builder.Replace("%c/%", "</color>");
@@ -219,7 +228,8 @@ public class Moves : ScriptableObject
     private StringBuilder GetDmg(LanguageManager languageManager, string language, string whatIs, string colour)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", whatIs));
+        ArgumentsFetch fetch = new ArgumentsFetch(language, "showdetail", whatIs, "");
+        builder.Append(languageManager.GetText(fetch));
 
         builder.Replace("%c%", "<color=#" + colour + ">");
         builder.Replace("%c/%", "</color>");
@@ -230,7 +240,8 @@ public class Moves : ScriptableObject
     private StringBuilder GetDetail(LanguageManager languageManager, string language, string whatIsMain, string whatIsSec)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, whatIsMain, whatIsSec));
+        ArgumentsFetch fetch = new ArgumentsFetch(language, whatIsMain, whatIsSec, "");
+        builder.Append(languageManager.GetText(fetch));
 
         return builder;
     }
@@ -238,82 +249,102 @@ public class Moves : ScriptableObject
     private StringBuilder GetHealFromDmg(LanguageManager languageManager, string language, float val, HealFromDmg type)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", "healfromdmg"));
+        ArgumentsFetch fetch = new ArgumentsFetch(language, "showdetail", "healfromdmg", "");
+        builder.Append(languageManager.GetText(fetch));
 
         switch (type)
         {
             case HealFromDmg.PHYSICAL:
-                
-                builder.Replace("%type%", languageManager.GetText(language, "showdetail", "physicdmg"));
+                fetch = new ArgumentsFetch(language, "showdetail", "physicdmg", "");
+                builder.Replace("%type%", languageManager.GetText(fetch));
                 builder.Replace("%val%", val.ToString("0%"));
-                builder.Replace("%ao%", languageManager.GetText(language, "showdetail", "of"));
+                fetch = new ArgumentsFetch(language, "showdetail", "of", "");
+                builder.Replace("%ao%", languageManager.GetText(fetch));
                 builder.Replace("%c%", "<color=#ffaa00>");
                 builder.Replace("%c/%", "</color>");
                 break;
             case HealFromDmg.MAGICAL:
-                
-                builder.Replace("%type%", languageManager.GetText(language, "showdetail", "magicdmg"));
+                fetch = new ArgumentsFetch(language, "showdetail", "magicdmg", "");
+                builder.Replace("%type%", languageManager.GetText(fetch));
                 builder.Replace("%val%", val.ToString("0%"));
-                builder.Replace("%ao%", languageManager.GetText(language, "showdetail", "of"));
+                fetch = new ArgumentsFetch(language, "showdetail", "of", "");
+                builder.Replace("%ao%", languageManager.GetText(fetch));
                 builder.Replace("%c%", "<color=#1a66ff>");
                 builder.Replace("%c/%", "</color>");
                 break;
             case HealFromDmg.TRUE:
-                builder.Replace("%type%", languageManager.GetText(language, "showdetail", "truedmg"));
+                fetch = new ArgumentsFetch(language, "showdetail", "truedmg", "");
+                builder.Replace("%type%", languageManager.GetText(fetch));
                 builder.Replace("%val%", val.ToString("0%"));
-                builder.Replace("%ao%", languageManager.GetText(language, "showdetail", "of"));
+                fetch = new ArgumentsFetch(language, "showdetail", "of", "");
+                builder.Replace("%ao%", languageManager.GetText(fetch));
                 builder.Replace("%c%", "<color=#a6a6a6>");
                 builder.Replace("%c/%", "</color>");
                 break;
             case HealFromDmg.PHYSICAL_MAGICAL:
-                builder.Replace("%type%", (languageManager.GetText(language, "showdetail", "physicdmg") + "%and%"));
+                fetch = new ArgumentsFetch(language, "showdetail", "physicdmg", "");
+                builder.Replace("%type%", (languageManager.GetText(fetch) + "%and%"));
                 builder.Replace("%val%", val.ToString("0%"));
-                builder.Replace("%ao%", languageManager.GetText(language, "showdetail", "of"));
+                fetch = new ArgumentsFetch(language, "showdetail", "of", "");
+                builder.Replace("%ao%", languageManager.GetText(fetch));
                 builder.Replace("%c%", "<color=#ffaa00>");
                 builder.Replace("%c/%", "</color>");
 
-                builder.Replace("%and%", (languageManager.GetText(language, "showdetail", "and") + "%type%").ToString());
+                fetch = new ArgumentsFetch(language, "showdetail", "and", "");
+                builder.Replace("%and%", (languageManager.GetText(fetch) + "%type%").ToString());
 
-                builder.Replace("%type%", languageManager.GetText(language, "showdetail", "magicdmg"));
+                fetch = new ArgumentsFetch(language, "showdetail", "magicdmg", "");
+                builder.Replace("%type%", languageManager.GetText(fetch));
                 builder.Replace("%val%", "");
                 builder.Replace("%ao%", "");
                 builder.Replace("%c%", "<color=#1a66ff>");
                 builder.Replace("%c/%", "</color>");
                 break;
             case HealFromDmg.PHYSICAL_TRUE:
-                builder.Replace("%type%", (languageManager.GetText(language, "showdetail", "physicdmg") + "%and%"));
+                fetch = new ArgumentsFetch(language, "showdetail", "physicdmg", "");
+                builder.Replace("%type%", (languageManager.GetText(fetch) + "%and%"));
                 builder.Replace("%val%", val.ToString("0%"));
-                builder.Replace("%ao%", languageManager.GetText(language, "showdetail", "of"));
+                fetch = new ArgumentsFetch(language, "showdetail", "of", "");
+                builder.Replace("%ao%", languageManager.GetText(fetch));
                 builder.Replace("%c%", "<color=#ffaa00>");
                 builder.Replace("%c/%", "</color>");
 
-                builder.Replace("%and%", (languageManager.GetText(language, "showdetail", "and") + "%type%").ToString());
+                fetch = new ArgumentsFetch(language, "showdetail", "and", "");
+                builder.Replace("%and%", (languageManager.GetText(fetch) + "%type%").ToString());
 
-                builder.Replace("%type%", languageManager.GetText(language, "showdetail", "truedmg"));
+                fetch = new ArgumentsFetch(language, "showdetail", "truedmg", "");
+                builder.Replace("%type%", languageManager.GetText(fetch));
                 builder.Replace("%val%", val.ToString("0%"));
-                builder.Replace("%ao%", languageManager.GetText(language, "showdetail", "of"));
+                fetch = new ArgumentsFetch(language, "showdetail", "of", "");
+                builder.Replace("%ao%", languageManager.GetText(fetch));
                 builder.Replace("%c%", "<color=#a6a6a6>");
                 builder.Replace("%c/%", "</color>");
                 break;
             case HealFromDmg.MAGICAL_TRUE:
-                builder.Replace("%type%", (languageManager.GetText(language, "showdetail", "magicdmg") + "%and%"));
+                fetch = new ArgumentsFetch(language, "showdetail", "magicdmg", "");
+                builder.Replace("%type%", (languageManager.GetText(fetch) + "%and%"));
                 builder.Replace("%val%", val.ToString("0%"));
-                builder.Replace("%ao%", languageManager.GetText(language, "showdetail", "of"));
+                fetch = new ArgumentsFetch(language, "showdetail", "of", "");
+                builder.Replace("%ao%", languageManager.GetText(fetch));
                 builder.Replace("%c%", "<color=#1a66ff>");
                 builder.Replace("%c/%", "</color>");
 
-                builder.Replace("%and%", (languageManager.GetText(language, "showdetail", "and") + "%type%").ToString());
+                fetch = new ArgumentsFetch(language, "showdetail", "and", "");
+                builder.Replace("%and%", (languageManager.GetText(fetch) + "%type%").ToString());
 
-                builder.Replace("%type%", languageManager.GetText(language, "showdetail", "truedmg"));
+                fetch = new ArgumentsFetch(language, "showdetail", "truedmg", "");
+                builder.Replace("%type%", languageManager.GetText(fetch));
                 builder.Replace("%val%", "");
                 builder.Replace("%ao%", "");
                 builder.Replace("%c%", "<color=#a6a6a6>");
                 builder.Replace("%c/%", "</color>");
                 break;
             case HealFromDmg.ALL:
-                builder.Replace("%type%", languageManager.GetText(language, "showdetail", "alldmg"));
+                fetch = new ArgumentsFetch(language, "showdetail", "alldmg", "");
+                builder.Replace("%type%", languageManager.GetText(fetch));
                 builder.Replace("%val%", val.ToString("0%"));
-                builder.Replace("%ao%", languageManager.GetText(language, "showdetail", "of"));
+                fetch = new ArgumentsFetch(language, "showdetail", "of", "");
+                builder.Replace("%ao%", languageManager.GetText(fetch));
                 builder.Replace("%c%", "<color=#f75145>");
                 builder.Replace("%c/%", "</color>");
                 break;
@@ -730,35 +761,43 @@ public class Moves : ScriptableObject
         {
             case MoveType.BASIC:
                 color = "#ffaa00";
-                builder.Append(languageManager.GetText(language, "moves", "type", "basic"));
+                ArgumentsFetch fetch = new ArgumentsFetch(language, "moves", "type", "basic");
+                builder.Append(languageManager.GetText(fetch));
                 break;
             case MoveType.PHYSICAL:
                 color = "#ffaa00";
-                builder.Append(languageManager.GetText(language, "moves", "type", "physical"));
+                fetch = new ArgumentsFetch(language, "moves", "type", "physical");
+                builder.Append(languageManager.GetText(fetch));
                 break;
             case MoveType.MAGICAL:
                 color = "#1a66ff";
-                builder.Append(languageManager.GetText(language, "moves", "type", "magic"));
+                fetch = new ArgumentsFetch(language, "moves", "type", "magic");
+                builder.Append(languageManager.GetText(fetch));
                 break;
             case MoveType.RANGED:
                 color = "#f75145";
-                builder.Append(languageManager.GetText(language, "moves", "type", "ranged"));
+                fetch = new ArgumentsFetch(language, "moves", "type", "ranged");
+                builder.Append(languageManager.GetText(fetch));
                 break;
             case MoveType.ENCHANT:
                 color = "#CC66FF";
-                builder.Append(languageManager.GetText(language, "moves", "type", "enchant"));
+                fetch = new ArgumentsFetch(language, "moves", "type", "enchant");
+                builder.Append(languageManager.GetText(fetch));
                 break;
             case MoveType.DEFFENCIVE:
                 color = "#787878";
-                builder.Append(languageManager.GetText(language, "moves", "type", "defence"));
+                fetch = new ArgumentsFetch(language, "moves", "type", "defence");
+                builder.Append(languageManager.GetText(fetch));
                 break;
             case MoveType.SUPPORT:
                 color = "#00ff11";
-                builder.Append(languageManager.GetText(language, "moves", "type", "support"));
+                fetch = new ArgumentsFetch(language, "moves", "type", "support");
+                builder.Append(languageManager.GetText(fetch));
                 break;
             case MoveType.SUMMON:
                 color = "#B266FF";
-                builder.Append(languageManager.GetText(language, "moves", "type", "summon"));
+                fetch = new ArgumentsFetch(language, "moves", "type", "summon");
+                builder.Append(languageManager.GetText(fetch));
                 break;
         }
 
@@ -773,10 +812,12 @@ public class Moves : ScriptableObject
         switch (targetType)
         {
             case TargetType.SINGLE:
-                builder.Append(languageManager.GetText(language, "showdetail", "targettype", "single"));
+                ArgumentsFetch fetch = new ArgumentsFetch(language, "showdetail", "targettype", "single");
+                builder.Append(languageManager.GetText(fetch));
                 break;
             case TargetType.AOE:
-                builder.Append(languageManager.GetText(language, "showdetail", "targettype", "aoe"));
+                fetch = new ArgumentsFetch(language, "showdetail", "targettype", "aoe");
+                builder.Append(languageManager.GetText(fetch));
                 break;
         }
 
@@ -784,16 +825,20 @@ public class Moves : ScriptableObject
 
         switch (target) {
             case Target.ENEMY:
-                builder.Append(languageManager.GetText(language, "showdetail", "target", "enemy"));
+                ArgumentsFetch fetch = new ArgumentsFetch(language, "showdetail", "target", "enemy");
+                builder.Append(languageManager.GetText(fetch));
                 break;
             case Target.ALLY:
-                builder.Append(languageManager.GetText(language, "showdetail", "target", "ally"));
+                fetch = new ArgumentsFetch(language, "showdetail", "target", "ally");
+                builder.Append(languageManager.GetText(fetch));
                 break;
             case Target.SELF:
-                builder.Append(languageManager.GetText(language, "showdetail", "target", "self"));
+                fetch = new ArgumentsFetch(language, "showdetail", "target", "self");
+                builder.Append(languageManager.GetText(fetch));
                 break;
             case Target.ALLYSELF:
-                builder.Append(languageManager.GetText(language, "showdetail", "target", "selfally"));
+                fetch = new ArgumentsFetch(language, "showdetail", "target", "selfally");
+                builder.Append(languageManager.GetText(fetch));
                 break;
         }
         return builder;
@@ -911,8 +956,10 @@ public class Moves : ScriptableObject
     public StringBuilder GetMoveInfoSummon(LanguageManager languageManager, string language, bool showvalue)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "summon", "desc"));
-        builder.Replace("%summonname%", languageManager.GetText(language, "summon", "name", summon.name.ToString()));
+        ArgumentsFetch fetch = new ArgumentsFetch(language, "summon", "desc", "");
+        builder.Append(languageManager.GetText(fetch));
+        fetch = new ArgumentsFetch(language, "summon", "name", summon.name.ToString());
+        builder.Replace("%summonname%", languageManager.GetText(fetch));
         builder.Replace("%summonactioncd%", summon.move.cd.ToString());
         StringBuilder temp = new StringBuilder();
 
@@ -948,7 +995,8 @@ public class Moves : ScriptableObject
     {
         StringBuilder summonaction = new StringBuilder();
         summonaction.Append("<color=#" + colour + ">");
-        summonaction.Append(languageManager.GetText(language, "summon", whatis));
+        ArgumentsFetch fetch = new ArgumentsFetch(language, "summon", whatis, "");
+        summonaction.Append(languageManager.GetText(fetch));
         summonaction.Append("</color>");
 
         return summonaction;
@@ -960,7 +1008,7 @@ public class Moves : ScriptableObject
         string language = GetLanguage();
         StringBuilder builder = new StringBuilder();
 
-        builder.Append(languageManager.GetText(language, "items", "move", name));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "items", "move", name)));
 
         builder.Replace("%dmg%", GetDmgMove(true).ToString());
         builder.Replace("%mcost%", manaCost.ToString());
@@ -994,31 +1042,31 @@ public class Moves : ScriptableObject
             switch (type)
             {
                 case MoveType.PHYSICAL:
-                    temp.Append(languageManager.GetText(language, "moves", "type", "physical"));
+                    temp.Append(languageManager.GetText(new ArgumentsFetch(language, "moves", "type", "physical")));
                     temp.Replace("%c%", "<color=#ffaa00>");
                     break;
                 case MoveType.MAGICAL:
-                    temp.Append(languageManager.GetText(language, "moves", "type", "magic"));
+                    temp.Append(languageManager.GetText(new ArgumentsFetch(language, "moves", "type", "magic")));
                     temp.Replace("%c%", "<color=#1a66ff>");
                     break;
                 case MoveType.RANGED:
-                    temp.Append(languageManager.GetText(language, "moves", "type", "ranged"));
+                    temp.Append(languageManager.GetText(new ArgumentsFetch(language, "moves", "type", "ranged")));
                     temp.Replace("%c%", "<color=#f75145>");
                     break;
                 case MoveType.ENCHANT:
-                    temp.Append(languageManager.GetText(language, "moves", "type", "enchant"));
+                    temp.Append(languageManager.GetText(new ArgumentsFetch(language, "moves", "type", "enchant")));
                     temp.Replace("%c%", "<color=#CC66FF>");
                     break;
                 case MoveType.SUPPORT:
-                    temp.Append(languageManager.GetText(language, "moves", "type", "support"));
+                    temp.Append(languageManager.GetText(new ArgumentsFetch(language, "moves", "type", "support")));
                     temp.Replace("%c%", "<color=#00ff11>");
                     break;
                 case MoveType.DEFFENCIVE:
-                    temp.Append(languageManager.GetText(language, "moves", "type", "defence"));
+                    temp.Append(languageManager.GetText(new ArgumentsFetch(language, "moves", "type", "defence")));
                     temp.Replace("%c%", "<color=#787878>");
                     break;
                 case MoveType.SUMMON:
-                    temp.Append(languageManager.GetText(language, "moves", "type", "summon"));
+                    temp.Append(languageManager.GetText(new ArgumentsFetch(language, "moves", "type", "summon")));
                     temp.Replace("%c%", "<color=#B266FF>");
                     break;
             }

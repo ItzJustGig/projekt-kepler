@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static Utils;
 
 [CreateAssetMenu(fileName = "New Summon Move", menuName = "Summon/Move")]
 public class SumMove : ScriptableObject

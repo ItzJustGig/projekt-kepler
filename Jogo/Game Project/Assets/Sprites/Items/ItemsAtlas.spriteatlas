@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ItemsAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 0c4e98f34aab71d43a1152d2cabe8e34, type: 3}
+    - {fileID: 2800000, guid: 78d0639cbe23ffd49a16b9331235b42c, type: 3}
+    - {fileID: 2800000, guid: 1b1b768d1fb15904886021a15af691f0, type: 3}
+    - {fileID: 2800000, guid: a25e75bfd4a663546aa250568a0bc00b, type: 3}
+    - {fileID: 2800000, guid: 02f0a9f59fddc0640a534b75eaeaadee, type: 3}
+    - {fileID: 2800000, guid: fea3700a7b486f84d86ec9fe0aada3f8, type: 3}
+    - {fileID: 2800000, guid: d367d3d7d355f7847983884b91c60b19, type: 3}
+    - {fileID: 2800000, guid: 92ec7204dd4ee284fb528f66c5f9463e, type: 3}
+    - {fileID: 2800000, guid: 60a41e2dabd2f994a8c65bd72a3b9754, type: 3}
+    - {fileID: 2800000, guid: ecfdc32236a472e4cb2e6aee552cc85f, type: 3}
+    - {fileID: 2800000, guid: 812f067d5d60add448aa657880474a92, type: 3}
+    - {fileID: 2800000, guid: 32d5874568e07f34192f036f93870c93, type: 3}
+    - {fileID: 2800000, guid: e3cb4ba6baa998043ba74c2f1ac1c1b6, type: 3}
+    - {fileID: 2800000, guid: 2b43cd2a04e2be741bffda09be540f17, type: 3}
+    - {fileID: 2800000, guid: 7619eeceae94e5c4f8d676c0cae02987, type: 3}
+    - {fileID: 2800000, guid: ad4327f658b61624a84bc333da3a8df0, type: 3}
+    - {fileID: 2800000, guid: ef256e359d2cc974586f9d2e6678f618, type: 3}
+    - {fileID: 2800000, guid: cd8c70e0e981e65499c88721dd72bba0, type: 3}
+    - {fileID: 2800000, guid: 0e9edfaf2283c534fb03543c1ce1836b, type: 3}
+    - {fileID: 2800000, guid: bbed6e7a9301d4f4f9b2f195de3e3dd0, type: 3}
+    - {fileID: 2800000, guid: e5f87d80bc043034f972d0c43ac193f3, type: 3}
+    - {fileID: 2800000, guid: 8e1cd562ced4dcf4987f5daa929c4e99, type: 3}
+    - {fileID: 2800000, guid: 07a4a86a6abfcf94c9c2bf51833a38e9, type: 3}
+    - {fileID: 2800000, guid: b86dd3d8fe128fb4fa85120f887b1ed8, type: 3}
+    - {fileID: 2800000, guid: 180127bbb2fc9b74d8d0e5949fe01aa7, type: 3}
+    - {fileID: 2800000, guid: c4d765dca4191f74caed2e677cbc8983, type: 3}
+    - {fileID: 2800000, guid: 0cada5f66bf6a2a43914477e4af33785, type: 3}
+    - {fileID: 2800000, guid: b70609c3dd8cd6845bdf02653435afdb, type: 3}
+    - {fileID: 2800000, guid: ee4b75241f289104f9157f42c4a0abb4, type: 3}
+    - {fileID: 2800000, guid: ce7d297b57444464e9a01910a85fdccc, type: 3}
+    totalSpriteSurfaceArea: 546750
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: e5f87d80bc043034f972d0c43ac193f3, type: 3}
+  - {fileID: 21300000, guid: cd8c70e0e981e65499c88721dd72bba0, type: 3}
+  - {fileID: 21300000, guid: ecfdc32236a472e4cb2e6aee552cc85f, type: 3}
+  - {fileID: 21300000, guid: 8e1cd562ced4dcf4987f5daa929c4e99, type: 3}
+  - {fileID: 21300000, guid: b70609c3dd8cd6845bdf02653435afdb, type: 3}
+  - {fileID: 21300000, guid: 0c4e98f34aab71d43a1152d2cabe8e34, type: 3}
+  - {fileID: 21300000, guid: 92ec7204dd4ee284fb528f66c5f9463e, type: 3}
+  - {fileID: 21300000, guid: ee4b75241f289104f9157f42c4a0abb4, type: 3}
+  - {fileID: 21300000, guid: ef256e359d2cc974586f9d2e6678f618, type: 3}
+  - {fileID: 21300000, guid: 32d5874568e07f34192f036f93870c93, type: 3}
+  - {fileID: 21300000, guid: 02f0a9f59fddc0640a534b75eaeaadee, type: 3}
+  - {fileID: 21300000, guid: e3cb4ba6baa998043ba74c2f1ac1c1b6, type: 3}
+  - {fileID: 21300000, guid: 0cada5f66bf6a2a43914477e4af33785, type: 3}
+  - {fileID: 21300000, guid: ad4327f658b61624a84bc333da3a8df0, type: 3}
+  - {fileID: 21300000, guid: d367d3d7d355f7847983884b91c60b19, type: 3}
+  - {fileID: 21300000, guid: b86dd3d8fe128fb4fa85120f887b1ed8, type: 3}
+  - {fileID: 21300000, guid: fea3700a7b486f84d86ec9fe0aada3f8, type: 3}
+  - {fileID: 21300000, guid: 2b43cd2a04e2be741bffda09be540f17, type: 3}
+  - {fileID: 21300000, guid: 07a4a86a6abfcf94c9c2bf51833a38e9, type: 3}
+  - {fileID: 21300000, guid: bbed6e7a9301d4f4f9b2f195de3e3dd0, type: 3}
+  - {fileID: 21300000, guid: ce7d297b57444464e9a01910a85fdccc, type: 3}
+  - {fileID: 21300000, guid: 180127bbb2fc9b74d8d0e5949fe01aa7, type: 3}
+  - {fileID: 21300000, guid: 78d0639cbe23ffd49a16b9331235b42c, type: 3}
+  - {fileID: 21300000, guid: c4d765dca4191f74caed2e677cbc8983, type: 3}
+  - {fileID: 21300000, guid: 60a41e2dabd2f994a8c65bd72a3b9754, type: 3}
+  - {fileID: 21300000, guid: 812f067d5d60add448aa657880474a92, type: 3}
+  - {fileID: 21300000, guid: 1b1b768d1fb15904886021a15af691f0, type: 3}
+  - {fileID: 21300000, guid: 7619eeceae94e5c4f8d676c0cae02987, type: 3}
+  - {fileID: 21300000, guid: 0e9edfaf2283c534fb03543c1ce1836b, type: 3}
+  - {fileID: 21300000, guid: a25e75bfd4a663546aa250568a0bc00b, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Prismatic Staff
+  - Mana Scepter
+  - Jewel of the Druid
+  - Raven's Feather
+  - Spectral Pike
+  - Band Of Endurance
+  - Health Potion
+  - Spectral Ring
+  - Mana Potion
+  - Leeching Stick
+  - Crossbow
+  - Lich's Amulet
+  - Spectral Cloak
+  - Mana Crystal
+  - Gravity Belt
+  - Shadow Dagger
+  - Enchanted spear
+  - Long Bow
+  - Rusty Knife
+  - Mythic Earrings
+  - Zap
+  - Shadow Mushroom
+  - Big Steak
+  - Sharp Sword
+  - Hunter's Dirk
+  - Leather Jacket
+  - Book of Disaster
+  - Magic Wand
+  - Mana Sword
+  - Boots of the Runner
+  m_RenderDataMap: {}
+  m_Tag: ItemsAtlas
+  m_IsVariant: 0

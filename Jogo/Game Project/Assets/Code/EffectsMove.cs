@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using static LanguageManager;
 
 [CreateAssetMenu(fileName = "New Effect On Move", menuName = "Effect Move")]
 
@@ -40,11 +41,11 @@ public class EffectsMove : ScriptableObject
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string detail, string chance, string effect, string user, string time)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", detail));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", detail, "")));
 
         builder.Replace("%chance%", chance);
         builder.Replace("%e%", effect);
-        builder.Replace("%u%", languageManager.GetText(language, "showdetail", user));
+        builder.Replace("%u%", languageManager.GetText(new ArgumentsFetch(language, "showdetail", user, "")));
         builder.Replace("%time%", time);
 
         return builder;
@@ -53,7 +54,7 @@ public class EffectsMove : ScriptableObject
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string detail, int timeMax, int timeMin)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", detail));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", detail, "")));
 
         if (timeMax > timeMin)
             builder.Replace("%val%", timeMin.ToString() + "-" + timeMax.ToString());
@@ -66,7 +67,7 @@ public class EffectsMove : ScriptableObject
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string detail, float chance)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", detail));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", detail, "")));
 
         builder.Replace("%val%", chance.ToString());
 
@@ -76,7 +77,7 @@ public class EffectsMove : ScriptableObject
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string effect)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "effect", "name", effect));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "effect", "name", effect)));
 
         return builder;
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Utils;
 
 
 [CreateAssetMenu(fileName = "New Ai", menuName = "Ai/Ai", order = 3)]

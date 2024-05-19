@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MoveIcons
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
+    - {fileID: 2800000, guid: feb10e4bf4cb2d5419c9c619d6136a3d, type: 3}
+    - {fileID: 2800000, guid: edc4bbb7d32a9024b81094d5d9894628, type: 3}
+    - {fileID: 2800000, guid: 7e8c3244c112b3b43a26a1b635eed6f2, type: 3}
+    - {fileID: 2800000, guid: 4918b5097ca207a4cbce8c2dff47577b, type: 3}
+    - {fileID: 2800000, guid: c630b18e457a2f946b998787276542ce, type: 3}
+    - {fileID: 2800000, guid: a9d8d1d7eee74734990bceef438f0a17, type: 3}
+    totalSpriteSurfaceArea: 98961
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 7e8c3244c112b3b43a26a1b635eed6f2, type: 3}
+  - {fileID: 21300000, guid: edc4bbb7d32a9024b81094d5d9894628, type: 3}
+  - {fileID: 21300000, guid: a9d8d1d7eee74734990bceef438f0a17, type: 3}
+  - {fileID: 21300000, guid: 4918b5097ca207a4cbce8c2dff47577b, type: 3}
+  - {fileID: 21300000, guid: feb10e4bf4cb2d5419c9c619d6136a3d, type: 3}
+  - {fileID: 21300000, guid: 8a46573cc8f1d8f4ab705b14b389003d, type: 3}
+  - {fileID: 21300000, guid: c630b18e457a2f946b998787276542ce, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Support
+  - Summon
+  - Magicalatk
+  - DefenceMove
+  - RangedAtk
+  - PhysicalAtk
+  - Enchantment
+  m_RenderDataMap: {}
+  m_Tag: MoveIcons
+  m_IsVariant: 0

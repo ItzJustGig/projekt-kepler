@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using static LanguageManager;
+using static Utils;
 
 [CreateAssetMenu(fileName = "New Passive", menuName = "Passive")]
 public class Passives : ScriptableObject
@@ -77,7 +79,7 @@ public class Passives : ScriptableObject
     private StringBuilder GetName(LanguageManager languageManager, string language, string passive)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "passive", "name", passive));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "passive", "name", passive)));
 
         return builder;
     }
@@ -85,7 +87,7 @@ public class Passives : ScriptableObject
     private StringBuilder GetDesc(LanguageManager languageManager, string language, string passive)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "passive", "desc", passive));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "passive", "desc", passive)));
 
         return builder;
     }
@@ -93,11 +95,11 @@ public class Passives : ScriptableObject
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string detail, string dmg, string color)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", detail));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", detail, "")));
         builder.Replace("%c%", "<color=#"+color+">");
         builder.Replace("%c/%", "</color>");
         builder.Replace("%val%", dmg);
-        builder.Replace("%ao%", languageManager.GetText(language, "showdetail", "as_"));
+        builder.Replace("%ao%", languageManager.GetText(new ArgumentsFetch(language, "showdetail", "as_", "")));
 
         return builder;
     }
@@ -105,9 +107,9 @@ public class Passives : ScriptableObject
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string detail, string user)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", detail));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", detail, "")));
 
-        builder.Replace("%u%", languageManager.GetText(language, "showdetail", user));
+        builder.Replace("%u%", languageManager.GetText(new ArgumentsFetch(language, "showdetail", user, "")));
 
         return builder;
     }
@@ -115,7 +117,7 @@ public class Passives : ScriptableObject
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string detail, int turns)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", detail));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", detail, "")));
 
         builder.Replace("%val%", turns.ToString());
 
@@ -159,16 +161,15 @@ public class Passives : ScriptableObject
             switch (origin)
             {
                 case Origin.PASSIVE:
-                    desc.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(language, "passive", "title")).Append("</color></align></size>").AppendLine().AppendLine();
+                    desc.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(new ArgumentsFetch(language, "passive", "title", ""))).Append("</color></align></size>").AppendLine().AppendLine();
                     break;
                 case Origin.MOVE:
-                    desc.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(language, "passive", "titlemove")).Append("</color></align></size>").AppendLine().AppendLine();
+                    desc.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(new ArgumentsFetch(language, "passive", "titlemove", ""))).Append("</color></align></size>").AppendLine().AppendLine();
                     break;
                 case Origin.ITEM:
-                    desc.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(language, "items", "title")).Append("</color></align></size>").AppendLine().AppendLine();
+                    desc.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(new ArgumentsFetch(language, "items", "title", ""))).Append("</color></align></size>").AppendLine().AppendLine();
                     break;
             }
-                
         }
             
         desc.Append(GetDesc(languageManager, language, name)).AppendLine();

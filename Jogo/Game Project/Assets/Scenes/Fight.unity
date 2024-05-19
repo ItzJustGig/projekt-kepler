@@ -10067,59 +10067,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   language: eng
   languageManager: {fileID: 1001587209}
-  statsPBtnText: {fileID: 0}
-  statsEBtnText: {fileID: 0}
   overviewBtnText: {fileID: 1380457908}
   sumHideBtnText: {fileID: 1065878109}
-  pHideBtnText: {fileID: 0}
-  eHideBtnText: {fileID: 0}
   leaveBtnText: {fileID: 1835748351}
-  chooseMoveText: {fileID: 0}
-  cancelMoveBtnText: {fileID: 0}
   turnsText: {fileID: 865819993}
   ffBtnText: {fileID: 1037246854}
   ffConfirmBtnText: {fileID: 336202679}
   cancelConfirmBtnText: {fileID: 1971725953}
   leaveTitleText: {fileID: 1661252085}
   leaveTextText: {fileID: 1600938745}
-  hpTooltipP: {fileID: 0}
-  hpRegenTooltipP: {fileID: 0}
-  manaTooltipP: {fileID: 0}
-  manaRegenTooltipP: {fileID: 0}
-  staminaTooltipP: {fileID: 0}
-  staminaRegenTooltipP: {fileID: 0}
-  sanityTooltipP: {fileID: 0}
-  defTooltipP: {fileID: 0}
-  magicdefTooltipP: {fileID: 0}
-  atkTooltipP: {fileID: 0}
-  mpTooltipP: {fileID: 0}
-  critchanceTooltipP: {fileID: 0}
-  critdmgTooltipP: {fileID: 0}
-  movspeedTooltipP: {fileID: 0}
-  timingTooltipP: {fileID: 0}
-  lifestealTooltipP: {fileID: 0}
-  evasionTooltipP: {fileID: 0}
-  accuracyTooltipP: {fileID: 0}
-  armourpenTooltipP: {fileID: 0}
-  hpTooltipE: {fileID: 0}
-  hpRegenTooltipE: {fileID: 0}
-  manaTooltipE: {fileID: 0}
-  manaRegenTooltipE: {fileID: 0}
-  staminaTooltipE: {fileID: 0}
-  staminaRegenTooltipE: {fileID: 0}
-  sanityTooltipE: {fileID: 0}
-  defTooltipE: {fileID: 0}
-  magicdefTooltipE: {fileID: 0}
-  atkTooltipE: {fileID: 0}
-  mpTooltipE: {fileID: 0}
-  critchanceTooltipE: {fileID: 0}
-  critdmgTooltipE: {fileID: 0}
-  movspeedTooltipE: {fileID: 0}
-  timingTooltipE: {fileID: 0}
-  lifestealTooltipE: {fileID: 0}
-  evasionTooltipE: {fileID: 0}
-  accuracyTooltipE: {fileID: 0}
-  armourpenTooltipE: {fileID: 0}
   overviewText: {fileID: 201482621}
 --- !u!114 &1001587209
 MonoBehaviour:

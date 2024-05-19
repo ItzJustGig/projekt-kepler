@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using static LanguageManager;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Item")]
 public class Items : ScriptableObject
@@ -57,7 +58,7 @@ public class Items : ScriptableObject
     private StringBuilder GetName(LanguageManager languageManager, string language, string whatIs, string whatIsIt, string whatIsComp)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, whatIs, whatIsIt, whatIsComp));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, whatIs, whatIsIt, whatIsComp)));
 
         return builder;
     }
@@ -65,12 +66,12 @@ public class Items : ScriptableObject
     public StringBuilder GetActive(LanguageManager languageManager, string language, int uses, int cd)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "items", "active"));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "items", "active", "")));
 
-        builder.Replace("%uses%", languageManager.GetText(language, "items", "uses"));
+        builder.Replace("%uses%", languageManager.GetText(new ArgumentsFetch(language, "items", "uses", "")));
         builder.Replace("%val%", uses.ToString());
 
-        builder.Replace("%cd%", languageManager.GetText(language, "items", "cd"));
+        builder.Replace("%cd%", languageManager.GetText(new ArgumentsFetch(language, "items", "cd", "")));
         builder.Replace("%val%", cd.ToString());
 
         return builder;
@@ -79,7 +80,7 @@ public class Items : ScriptableObject
     public StringBuilder GetBuy(LanguageManager languageManager, string language)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "items", "purchase", name));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "items", "purchase", name)));
 
         return builder;
     }
@@ -88,11 +89,11 @@ public class Items : ScriptableObject
     {
         StringBuilder builder = new StringBuilder();
 
-        builder.Append(languageManager.GetText(language, "items", "active"));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "items", "active", "")));
 
         builder.Replace("%uses%", "");
 
-        builder.Replace("%cd%", languageManager.GetText(language, "items", "cd"));
+        builder.Replace("%cd%", languageManager.GetText(new ArgumentsFetch(language, "items", "cd", "")));
         builder.Replace("%val%", cd.ToString());
 
         return builder;
@@ -126,7 +127,7 @@ public class Items : ScriptableObject
             if (passives.Count > 0) 
                 foreach(Passives p in passives)
                 {
-                    builder.Append(languageManager.GetText(language, "items", "passive")).AppendLine();
+                    builder.Append(languageManager.GetText(new ArgumentsFetch(language, "items", "passive", ""))).AppendLine();
 
                     builder.Replace("%txt%", p.GetPassiveInfo());
                 }
@@ -144,7 +145,7 @@ public class Items : ScriptableObject
         } else if (nonCombatItem)
         {
             builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
-            builder.Append(languageManager.GetText(language, "items", "buy"));
+            builder.Append(languageManager.GetText(new ArgumentsFetch(language, "items", "buy", "")));
             builder.Replace("%txt%", GetBuy(languageManager, language).ToString());
         }
 

@@ -9,8 +9,24 @@ using static LanguageManager;
 using UnityEditor.Experimental.GraphView;
 using Unity.Profiling;
 using static UnityEngine.UI.CanvasScaler;
+using static Utils;
+using System.Text.RegularExpressions;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, CHANGETURN, ALLYKILLED, ENEMYKILLED, WIN, LOSE, TIE }
+
+struct TurnEndInfo
+{
+    public Unit unit;
+    public Player user;
+    public Player enemy;
+
+    public TurnEndInfo(Unit unit, Player user, Player enemy)
+    {
+        this.unit = unit;
+        this.user = user;
+        this.enemy = enemy;
+    }
+}
 
 public class BattleSystem : MonoBehaviour
 {
@@ -138,7 +154,17 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(SetupBattle());
     }
 
-    void Update()
+    private void OnEnable()
+    {
+        Ticker.OnTickAction += Tick;
+    } 
+    
+    private void OnDisable()
+    {
+        Ticker.OnTickAction -= Tick;
+    }
+
+    private void Tick()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -148,7 +174,7 @@ public class BattleSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S) && !(state == BattleState.WIN || state == BattleState.LOSE))
         {
             ShowOverview(false);
-        }   
+        }
     }
 
     public void ShowOverview(bool forceShow)
@@ -227,7 +253,7 @@ public class BattleSystem : MonoBehaviour
 
         enemy.SetStart(aiManaRecover, aiGaranteedManaRecover, summaryList.transform, characterSumPrefab, battleHud1, battleHud2, battleHud3);
 
-        dialogText.text = langmanag.GetInfo("gui", "text", "wantfight", langmanag.GetInfo("charc", "name", enemy.unit1.charc.name));
+        dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "wantfight"), langmanag.GetInfo(new ArgumentsFetch("charc", "name", enemy.unit1.charc.name)));
 
         //movesBtn.interactable = false;
         //basicBtn.interactable = false;
@@ -363,7 +389,8 @@ public class BattleSystem : MonoBehaviour
                 move.id = i;
 
                 Text name = moveButton.transform.Find("Name").gameObject.GetComponent<Text>();
-                name.text = langmanag.GetInfo("moves", move.name);
+
+                name.text = langmanag.GetInfo(new ArgumentsFetch("moves", move.name));
 
                 /*Text mana = moveButton.transform.Find("Mana").gameObject.GetComponent<Text>();
                 mana.text = move.manaCost.ToString();
@@ -442,7 +469,7 @@ public class BattleSystem : MonoBehaviour
                     move.id = i;
 
                     Text name = moveButton.transform.Find("Name").gameObject.GetComponent<Text>();
-                    name.text = langmanag.GetInfo("moves", move.name);
+                    name.text = langmanag.GetInfo(new ArgumentsFetch("moves", move.name));
 
                     //Text mana = moveButton.transform.Find("Mana").gameObject.GetComponent<Text>();
                     //mana.text = move.manaCost.ToString();
@@ -522,7 +549,7 @@ public class BattleSystem : MonoBehaviour
                     move.id = i;
 
                     Text name = moveButton.transform.Find("Name").gameObject.GetComponent<Text>();
-                    name.text = langmanag.GetInfo("moves", move.name);
+                    name.text = langmanag.GetInfo(new ArgumentsFetch("moves", move.name));
 
                     //Text mana = moveButton.transform.Find("Mana").gameObject.GetComponent<Text>();
                     //mana.text = move.manaCost.ToString();
@@ -613,8 +640,10 @@ public class BattleSystem : MonoBehaviour
             }
         }
 
-        if (!skipText) 
-            dialogText.text = langmanag.GetInfo("gui", "text", "choosemove");
+        if (!skipText)
+        {
+            dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "choosemove"));
+        }
     }
 
     public void DoneSelecting()
@@ -772,9 +801,7 @@ public class BattleSystem : MonoBehaviour
 
         CheckVictory();
 
-        if (state == BattleState.WIN || state == BattleState.LOSE && !battleEnded)
-            StartCoroutine(EndBattle());
-        else
+        if (!battleEnded)
         {
             if (combatCount == GetCombatCountMax())
                 StartCoroutine(NewTurn());
@@ -839,9 +866,10 @@ public class BattleSystem : MonoBehaviour
         if (move == null || !canAttack)
         {
             if (!canMove)
-                dialogText.text = langmanag.GetInfo("gui", "text", "cantmove", langmanag.GetInfo("charc", "name", user.charc.name));
+                dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "cantmove"), langmanag.GetInfo(new ArgumentsFetch("charc", "name", user.charc.name)));
             else
-                dialogText.text = langmanag.GetInfo("gui", "text", "cantattack", langmanag.GetInfo("charc", "name", user.charc.name));
+                dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "cantattack"), langmanag.GetInfo(new ArgumentsFetch("charc", "name", user.charc.name)));
+
 
             if (move != null && move.isUlt)
             {
@@ -924,13 +952,15 @@ public class BattleSystem : MonoBehaviour
 
             string txtenemy = "";
             if (user.isEnemy)
-                txtenemy = langmanag.GetInfo("showdetail", "target", "enemy");
+                txtenemy = langmanag.GetInfo(new ArgumentsFetch("showdetail", "target", "enemy"));
             else
-                txtenemy = langmanag.GetInfo("showdetail", "target", "ally");
+                txtenemy = langmanag.GetInfo(new ArgumentsFetch("showdetail", "target", "ally"));
 
             if (isBlocked)
             {
-                dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name), txtenemy);
+                dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "usedmove"), 
+                    langmanag.GetInfo(new ArgumentsFetch("charc", "name", user.charc.name)), 
+                    langmanag.GetInfo(new ArgumentsFetch("moves", move.name)), txtenemy);
 
                 yield return new WaitForSeconds(1.1f);
                 target.DmgNumber("0", Color.white);
@@ -975,7 +1005,7 @@ public class BattleSystem : MonoBehaviour
                                 //reset cd
                                 a.inCd = a.cd;
                                 //show popup
-                                target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                target.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                 //delete icon
                                 DestroyPassiveIcon(user.effectHud, a.name, target.isEnemy);
                                 //get evasion bonus
@@ -1006,7 +1036,7 @@ public class BattleSystem : MonoBehaviour
 
                                 if (a.num == a.maxNum)
                                 {
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                                     a.num = 0;
                                     StatScale scale = a.ifConditionTrueScale();
@@ -1042,7 +1072,8 @@ public class BattleSystem : MonoBehaviour
                                     if (target.SetModifiers().hp >= (user.SetModifiers().hp + (user.SetModifiers().hp * a.num)))
                                     {
                                         a.inCd = a.cd;
-                                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+
+                                        user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                                         StatScale scale = a.ifConditionTrueScale();
                                         StatScale scale2 = a.ifConditionTrueScale2();
@@ -1075,7 +1106,7 @@ public class BattleSystem : MonoBehaviour
                             case "phantomhand":
                                 if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
                                 {
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                     StatScale scale = a.ifConditionTrueScale();
                                     dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
                                 }
@@ -1098,7 +1129,7 @@ public class BattleSystem : MonoBehaviour
                                     }
 
                                     dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                 }
 
                                 if (move.type is Moves.MoveType.PHYSICAL && a.stacks < a.maxStacks)
@@ -1124,7 +1155,7 @@ public class BattleSystem : MonoBehaviour
                                     }
 
                                     dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                 }
 
                                 if ((move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.ENCHANT || move.type is Moves.MoveType.DEFFENCIVE) && a.stacks < a.maxStacks)
@@ -1137,7 +1168,7 @@ public class BattleSystem : MonoBehaviour
                                 {
                                     if ((move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL) && isCrit)
                                     {
-                                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                        user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                         StatScale scale = a.ifConditionTrueScale();
                                         dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
 
@@ -1157,7 +1188,7 @@ public class BattleSystem : MonoBehaviour
                             case "blazingfists":
                                 if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
                                 {
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                                     StatScale scale = a.ifConditionTrueScale();
 
@@ -1183,7 +1214,7 @@ public class BattleSystem : MonoBehaviour
                                     a.inCd = a.cd;
                                     ManagePassiveIcon(user.effectHud, a.sprite, a.name, (a.maxNum - a.num).ToString(), user.isEnemy, a.GetPassiveInfo());
 
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                                     a.num = 0;
                                     StatScale scale = a.ifConditionTrueScale();
@@ -1259,7 +1290,7 @@ public class BattleSystem : MonoBehaviour
                                     }
 
                                     dmgTarget.magicDmg += magicBonus;
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                 }
                                 break;
                             case "bloodbath":
@@ -1292,7 +1323,7 @@ public class BattleSystem : MonoBehaviour
 
                                 if (isBurn && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL || move.type is Moves.MoveType.RANGED))
                                 {
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                                     StatScale scale = a.ifConditionTrueScale();
 
@@ -1342,7 +1373,7 @@ public class BattleSystem : MonoBehaviour
 
                                 if (hpPer <= (a.num * 100) && move.type is Moves.MoveType.MAGICAL)
                                 {
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                     StatScale scale = a.ifConditionTrueScale();
 
                                     Unit unit;
@@ -1364,7 +1395,7 @@ public class BattleSystem : MonoBehaviour
                             case "shadowdagger":
                                 if (a.inCd == 0 && (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC))
                                 {
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                                     a.inCd = a.cd;
 
@@ -1421,7 +1452,7 @@ public class BattleSystem : MonoBehaviour
                             case "toxicteeth":
                                 if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
                                 {
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                                     StatScale scale = a.ifConditionTrueScale();
 
@@ -1447,7 +1478,7 @@ public class BattleSystem : MonoBehaviour
                                     hpPer = (100 * target.curHp) / target.SetModifiers().hp;
                                     if ((move.type is Moves.MoveType.BASIC || move.type is Moves.MoveType.PHYSICAL) && hpPer >= a.num)
                                     {
-                                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                        user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                                         a.inCd = a.cd;
                                         StatScale scale = a.ifConditionTrueScale();
@@ -1496,7 +1527,7 @@ public class BattleSystem : MonoBehaviour
                             case "gravitychange":
                                 if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
                                 {
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                                     StatScale scale = a.ifConditionTrueScale();
 
@@ -1535,7 +1566,7 @@ public class BattleSystem : MonoBehaviour
                                 {
                                     if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.BASIC)
                                     {
-                                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                        user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                                         StatScale scale = a.ifConditionTrueScale();
 
@@ -1573,7 +1604,7 @@ public class BattleSystem : MonoBehaviour
 
                                 if (a.stacks == a.maxStacks)
                                 {
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                                     a.stacks = 0;
                                     StatScale scale = a.ifConditionTrueScale();
@@ -1724,13 +1755,13 @@ public class BattleSystem : MonoBehaviour
 
                                     StatScale scale2 = a.ifConditionTrueScale2();
                                     dmgTarget.heal += scale2.SetScaleFlat(stats, unit);
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                 }
                                 break;
                             case "combatrythm":
                                 if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.MAGICAL)
                                 {
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                     StatScale scale = a.ifConditionTrueScale();
                                     dmgTarget.AddDmg(scale.SetScaleDmg(statsUser, user));
                                 }
@@ -1762,7 +1793,7 @@ public class BattleSystem : MonoBehaviour
 
                                 if (a.stacks == a.maxStacks && (move.type is Moves.MoveType.RANGED || move.type is Moves.MoveType.MAGICAL))
                                 {
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                                     a.stacks = 0;
                                     StatScale scale = a.ifConditionTrueScale();
@@ -1796,7 +1827,7 @@ public class BattleSystem : MonoBehaviour
                                 else if (a.num == 1 && move.type is Moves.MoveType.MAGICAL)
                                 {
                                     a.num = 0;
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                                     StatScale scale = a.ifConditionTrueScale();
                                     StatScale scale2 = a.ifConditionTrueScale2();
@@ -1825,7 +1856,7 @@ public class BattleSystem : MonoBehaviour
                             case "guardianoftheforest":
                                 if (move.isUlt || move.name == "recovmana")
                                 {
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                     if (!userTeam.unit1.isDead)
                                         userTeam.unit1.passives.Add(a.grantPassive.ReturnPassive());
                                     if (userTeam.unit2 && !userTeam.unit2.isDead)
@@ -1898,7 +1929,7 @@ public class BattleSystem : MonoBehaviour
                                 {
                                     a.inCd = a.cd;
                                     ManagePassiveIcon(user.effectHud, a.sprite, a.name, a.inCd.ToString(), user.isEnemy, a.GetPassiveInfo());
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                                     StatScale scale = a.ifConditionTrueScale();
 
@@ -1943,13 +1974,15 @@ public class BattleSystem : MonoBehaviour
                                     }
 
                                     dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                 }
                                 break;
                         }
                     }
 
-                    dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", langmanag.GetInfo("charc", "name", user.charc.name), langmanag.GetInfo("moves", move.name), txtenemy);
+                    dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "usedmove"),
+                        langmanag.GetInfo(new ArgumentsFetch("charc", "name", user.charc.name)), 
+                        langmanag.GetInfo(new ArgumentsFetch("moves", move.name)), txtenemy);
 
                     dmgTarget.heal += move.heal;
                     dmgTarget.healMana += move.healMana;
@@ -1968,7 +2001,7 @@ public class BattleSystem : MonoBehaviour
                             {
                                 isStoped = true;
                                 user.DoAnimParticle(a.specialAnim);
-                                cancelText = langmanag.GetInfo("effect", "cancelmsg", a.id.ToLower());
+                                cancelText = langmanag.GetInfo(new ArgumentsFetch("effect", "cancelmsg", a.id.ToLower()));
                                 float shieldedDmg = 0;
                                 float recoil = a.recoil;
                                 user.summary.trueDmgTaken += recoil;
@@ -1995,8 +2028,8 @@ public class BattleSystem : MonoBehaviour
                                     isDead = user.TakeDamage(recoildmg, false, false, user, false);
                                 }
 
-                                user.summary.UpdateValues(langmanag.GetInfo("charc", "name", user.charc.name), user.charc.charcIcon);
-                                target.summary.UpdateValues(langmanag.GetInfo("charc", "name", target.charc.name), target.charc.charcIcon);
+                                user.summary.UpdateValues(langmanag.GetInfo(new ArgumentsFetch("charc", "name", user.charc.name)), user.charc.charcIcon);
+                                target.summary.UpdateValues(langmanag.GetInfo(new ArgumentsFetch("charc", "name", target.charc.name)), target.charc.charcIcon);
 
                                 if (isDead)
                                 {
@@ -2010,8 +2043,9 @@ public class BattleSystem : MonoBehaviour
                                         enemy.SetAsDead(user);
                                         state = BattleState.ENEMYKILLED;
                                     }
-                                    
-                                    dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", user.charc.name));
+
+                                    dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "defeat"), 
+                                        langmanag.GetInfo(new ArgumentsFetch("charc", "name", user.charc.name)));
                                 }
                             }
                         }
@@ -2033,7 +2067,8 @@ public class BattleSystem : MonoBehaviour
                                 GrantUltCompansation(user);
 
                             yield return new WaitForSeconds(1.05f);
-                            dialogText.text = langmanag.GetInfo("gui", "text", "dodge", langmanag.GetInfo("charc", "name", target.charc.name));
+                            dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "dodge"),
+                                langmanag.GetInfo(new ArgumentsFetch("charc", "name", target.charc.name)));
                             yield return new WaitForSeconds(1.05f);
 
                             foreach (Passives a in target.passives.ToArray())
@@ -2089,25 +2124,25 @@ public class BattleSystem : MonoBehaviour
                                                     if (effect.id == "BLI")
                                                     {
                                                         skipEffect = true;
-                                                        target.PassivePopup(langmanag.GetInfo("passive", "name", b.name));
+                                                        target.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", b.name)));
                                                     }
                                                 break;
                                                 case "strongmind":
                                                     if (effect.id == "CFS" || effect.id == "SLP" || effect.id == "CHR")
                                                     {
                                                         skipEffect = true;
-                                                        target.PassivePopup(langmanag.GetInfo("passive", "name", b.name));
+                                                        target.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", b.name)));
                                                     }
                                                 break;
                                                 case "sackofbones":
                                                     if (effect.id == "BLD")
                                                     {
                                                         skipEffect = true;
-                                                        target.PassivePopup(langmanag.GetInfo("passive", "name", b.name));
+                                                        target.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", b.name)));
                                                     } else if (effect.id == "CRP")
                                                     {
                                                         dmgTarget.trueDmg = b.statScale.SetScaleFlat(user.SetModifiers(), user);
-                                                        target.PassivePopup(langmanag.GetInfo("passive", "name", b.name));
+                                                        target.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", b.name)));
                                                         bonusDuration += (int)b.num;
                                                     }
                                                 break;
@@ -2115,7 +2150,7 @@ public class BattleSystem : MonoBehaviour
                                                     if (effect.id == "BRN" || effect.id == "SCH")
                                                     {
                                                         skipEffect = true;
-                                                        target.PassivePopup(langmanag.GetInfo("passive", "name", b.name));
+                                                        target.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", b.name)));
                                                         StatMod mod = b.statMod.ReturnStats();
                                                         mod.inTime = mod.time + 1;
                                                         target.statMods.Add(mod);
@@ -2315,7 +2350,7 @@ public class BattleSystem : MonoBehaviour
                                                 statMod.inTime = a.statMod.time+1;
                                                 user.statMods.Add(statMod);
                                                 user.hud.SetStatsHud(user);
-                                                target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                                target.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                             }
                                         }
                                         break;
@@ -2346,7 +2381,7 @@ public class BattleSystem : MonoBehaviour
 
                                             if (Random.Range(0f, 1f) <= chance)
                                             {
-                                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                                user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                                 dmgTarget.ApplyBonusPhyDmg((float)a.maxStacks / 100);
                                             }
                                             a.stacks = 1;
@@ -2437,7 +2472,7 @@ public class BattleSystem : MonoBehaviour
                                         if (move.type is Moves.MoveType.PHYSICAL || move.type is Moves.MoveType.RANGED)
                                         {
                                             //show passive popup
-                                            target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                            target.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                             //get the mitigated dmg
                                             float dmgMitigated = dmgTarget.phyDmg * ((statsTarget.dmgResis * a.num) / 100);
                                             //subtract mitigated dmg from the dmg
@@ -2457,7 +2492,7 @@ public class BattleSystem : MonoBehaviour
                                         if (dmgTarget.sanityDmg > 0)
                                         {
                                             //show passive popup
-                                            target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                            target.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                             //get bonus sanityDmg
                                             int bonusSanityDmg = (int)(dmgTarget.sanityDmg * a.num);
                                             //if bonus under a.maxNum, set to it
@@ -2481,7 +2516,7 @@ public class BattleSystem : MonoBehaviour
                                         if (isCrit)
                                         {
                                             dmgTarget.ApplyBonusPhyDmg(a.num);
-                                            target.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                            target.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                         }
                                         break;
                                 }
@@ -2503,7 +2538,7 @@ public class BattleSystem : MonoBehaviour
                                         {
                                             a.num = 0;
                                             a.stacks++;
-                                            user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                            user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                             StatMod mod = a.ifConditionTrueMod();
 
                                             StatMod statMod = a.statMod.ReturnStats();
@@ -2626,7 +2661,7 @@ public class BattleSystem : MonoBehaviour
                                         }
                                         tempDead = targetTeam.unit1.TakeDamage(tempDmg, isCrit, isMagicCrit, user, false);
                                         user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, false, move.name);
-                                        targetTeam.unit1.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit1.charc.name), targetTeam.unit1.charc.charcIcon);
+                                        targetTeam.unit1.summary.UpdateValues(langmanag.GetInfo(new ArgumentsFetch("charc", "name", targetTeam.unit1.charc.name)), targetTeam.unit1.charc.charcIcon);
                                         targetTeam.unit1.DoAnimParticle(move.animTarget);
                                         if (tempDead && !targetTeam.unit1.isDead)
                                         {
@@ -2640,7 +2675,9 @@ public class BattleSystem : MonoBehaviour
                                                 enemy.SetAsDead(targetTeam.unit1);
                                                 state = BattleState.ENEMYKILLED;
                                             }
-                                            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", targetTeam.unit1.charc.name));
+
+                                            dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "defeat"), 
+                                                langmanag.GetInfo(new ArgumentsFetch("charc", "name", targetTeam.unit1.charc.name)));
                                         }
                                     }
                                     
@@ -2676,7 +2713,7 @@ public class BattleSystem : MonoBehaviour
 
                                         tempDead = targetTeam.unit2.TakeDamage(tempDmg, isCrit, isMagicCrit, user, false);
                                         user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, false, move.name);
-                                        targetTeam.unit2.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit2.charc.name), targetTeam.unit2.charc.charcIcon);
+                                        targetTeam.unit2.summary.UpdateValues(langmanag.GetInfo(new ArgumentsFetch("charc", "name", targetTeam.unit2.charc.name)), targetTeam.unit2.charc.charcIcon);
 
                                         targetTeam.unit2.DoAnimParticle(move.animTarget);
                                         if (tempDead && !targetTeam.unit2.isDead)
@@ -2691,7 +2728,8 @@ public class BattleSystem : MonoBehaviour
                                                 enemy.SetAsDead(targetTeam.unit2);
                                                 state = BattleState.ENEMYKILLED;
                                             }
-                                            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", targetTeam.unit2.charc.name));
+                                            dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "defeat"),
+                                                langmanag.GetInfo(new ArgumentsFetch("charc", "name", targetTeam.unit2.charc.name)));
                                         }
                                     }
                                     
@@ -2724,7 +2762,7 @@ public class BattleSystem : MonoBehaviour
 
                                         tempDead = targetTeam.unit3.TakeDamage(tempDmg, isCrit, isMagicCrit, user, false);
                                         user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, false, move.name);
-                                        targetTeam.unit3.summary.UpdateValues(langmanag.GetInfo("charc", "name", targetTeam.unit3.charc.name), targetTeam.unit3.charc.charcIcon);
+                                        targetTeam.unit3.summary.UpdateValues(langmanag.GetInfo(new ArgumentsFetch("charc", "name", targetTeam.unit3.charc.name)), targetTeam.unit3.charc.charcIcon);
 
                                         targetTeam.unit3.DoAnimParticle(move.animTarget);
                                         if (tempDead && !targetTeam.unit3.isDead)
@@ -2739,7 +2777,8 @@ public class BattleSystem : MonoBehaviour
                                                 enemy.SetAsDead(targetTeam.unit3);
                                                 state = BattleState.ENEMYKILLED;
                                             }
-                                            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", targetTeam.unit3.charc.name));
+                                            dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "defeat"),
+                                                langmanag.GetInfo(new ArgumentsFetch("charc", "name", targetTeam.unit3.charc.name)));
                                         }
                                     }
                                 } else if (move.target is Moves.Target.ALLY || move.target is Moves.Target.ALLYSELF || move.target is Moves.Target.SELF)
@@ -2780,7 +2819,7 @@ public class BattleSystem : MonoBehaviour
 
                                         tempDead = userTeam.unit1.TakeDamage(tempDmg, isCrit, isMagicCrit, user, true);
                                         user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, true, move.name);
-                                        userTeam.unit1.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit1.charc.name), userTeam.unit1.charc.charcIcon);
+                                        userTeam.unit1.summary.UpdateValues(langmanag.GetInfo(new ArgumentsFetch("charc", "name", userTeam.unit1.charc.name)), userTeam.unit1.charc.charcIcon);
                                         userTeam.unit1.DoAnimParticle(move.animTarget);
 
                                         if (tempDead && !userTeam.unit1.isDead)
@@ -2795,7 +2834,8 @@ public class BattleSystem : MonoBehaviour
                                                 enemy.SetAsDead(userTeam.unit1);
                                                 state = BattleState.ENEMYKILLED;
                                             }
-                                            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", userTeam.unit1.charc.name));
+                                            dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "defeat"), 
+                                                langmanag.GetInfo(new ArgumentsFetch("charc", "name", userTeam.unit1.charc.name)));
                                         }
                                     }
                                     //
@@ -2831,7 +2871,7 @@ public class BattleSystem : MonoBehaviour
 
                                         tempDead = userTeam.unit2.TakeDamage(tempDmg, isCrit, isMagicCrit, user, true);
                                         user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, true, move.name);
-                                        userTeam.unit2.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit2.charc.name), userTeam.unit2.charc.charcIcon);
+                                        userTeam.unit2.summary.UpdateValues(langmanag.GetInfo(new ArgumentsFetch("charc", "name", userTeam.unit2.charc.name)), userTeam.unit2.charc.charcIcon);
 
                                         userTeam.unit2.DoAnimParticle(move.animTarget);
                                         if (tempDead && !userTeam.unit2.isDead)
@@ -2846,7 +2886,8 @@ public class BattleSystem : MonoBehaviour
                                                 enemy.SetAsDead(userTeam.unit2);
                                                 state = BattleState.ENEMYKILLED;
                                             }
-                                            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", userTeam.unit2.charc.name));
+                                            dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "defeat"),
+                                                langmanag.GetInfo(new ArgumentsFetch("charc", "name", userTeam.unit2.charc.name)));
                                         }
                                     }
                                     
@@ -2881,7 +2922,7 @@ public class BattleSystem : MonoBehaviour
 
                                         tempDead = userTeam.unit3.TakeDamage(tempDmg, isCrit, isMagicCrit, user, true);
                                         user.TakeDamage(tempHeal, isCrit, isMagicCrit, user, true, move.name);
-                                        userTeam.unit3.summary.UpdateValues(langmanag.GetInfo("charc", "name", userTeam.unit3.charc.name), userTeam.unit3.charc.charcIcon);
+                                        userTeam.unit3.summary.UpdateValues(langmanag.GetInfo(new ArgumentsFetch("charc", "name", userTeam.unit3.charc.name)), userTeam.unit3.charc.charcIcon);
 
                                         userTeam.unit3.DoAnimParticle(move.animTarget);
                                         if (tempDead && !userTeam.unit3.isDead)
@@ -2896,7 +2937,8 @@ public class BattleSystem : MonoBehaviour
                                                 enemy.SetAsDead(userTeam.unit3);
                                                 state = BattleState.ENEMYKILLED;
                                             }
-                                            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", userTeam.unit3.charc.name));
+                                            dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "defeat"),
+                                                langmanag.GetInfo(new ArgumentsFetch("charc", "name", userTeam.unit3.charc.name)));
                                         }
                                     }
                                    
@@ -2958,11 +3000,12 @@ public class BattleSystem : MonoBehaviour
                                     enemy.SetAsDead(target);
                                     state = BattleState.ENEMYKILLED;
                                 }
-                                dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", target.charc.name));
+                                dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "defeat"),
+                                    langmanag.GetInfo(new ArgumentsFetch("charc", "name", target.charc.name)));
                             }
                         }
-                        user.summary.UpdateValues(langmanag.GetInfo("charc", "name", user.charc.name), user.charc.charcIcon);
-                        target.summary.UpdateValues(langmanag.GetInfo("charc", "name", target.charc.name), target.charc.charcIcon);
+                        user.summary.UpdateValues(langmanag.GetInfo(new ArgumentsFetch("charc", "name", user.charc.name)), user.charc.charcIcon);
+                        target.summary.UpdateValues(langmanag.GetInfo(new ArgumentsFetch("charc", "name", target.charc.name)), target.charc.charcIcon);
                     }
                     else
                     {
@@ -2977,9 +3020,9 @@ public class BattleSystem : MonoBehaviour
                         yield return new WaitForSeconds(1.15f);
 
                         if (cancelText == "")
-                            cancelText = langmanag.GetInfo("gui", "text", "miss");
+                            cancelText = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "miss"));
 
-                        dialogText.text = cancelText.Replace("%p%", langmanag.GetInfo("charc", "name", user.charc.name));
+                        dialogText.text = cancelText.Replace("%p%", langmanag.GetInfo(new ArgumentsFetch("charc", "name", user.charc.name)));
                         yield return new WaitForSeconds(1.1f);
 
                         foreach (Passives a in target.passives.ToArray())
@@ -3087,9 +3130,11 @@ public class BattleSystem : MonoBehaviour
                 
             yield return new WaitForSeconds(1.6f);
             player.Victory();
-            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", enemy.GetLeader().charc.name));
+            dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "defeat"), 
+                langmanag.GetInfo(new ArgumentsFetch("charc", "name", enemy.GetLeader().charc.name)));
             yield return new WaitForSeconds(1.8f);
-            dialogText.text = langmanag.GetInfo("gui", "text", "win", langmanag.GetInfo("charc", "name", player.GetLeader().charc.name));
+            dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "win"), 
+                langmanag.GetInfo(new ArgumentsFetch("charc", "name", player.GetLeader().charc.name)));
         } else if (state == BattleState.LOSE)
         {
             if (PlayerPrefs.GetInt("isEndless") == 1)
@@ -3097,18 +3142,23 @@ public class BattleSystem : MonoBehaviour
 
             yield return new WaitForSeconds(1.6f);
             enemy.Victory();
-            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", player.GetLeader().charc.name));
+            dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "defeat"),
+                langmanag.GetInfo(new ArgumentsFetch("charc", "name", player.GetLeader().charc.name)));
             yield return new WaitForSeconds(1.8f);
-            dialogText.text = langmanag.GetInfo("gui", "text", "win", langmanag.GetInfo("charc", "name", enemy.GetLeader().charc.name));
+            dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "win"), 
+                langmanag.GetInfo(new ArgumentsFetch("charc", "name", enemy.GetLeader().charc.name)));
         } else if (state == BattleState.TIE)
         {
             if (PlayerPrefs.GetInt("isEndless") == 1)
                 PlayerPrefs.SetInt("wonLastRound", 0);
 
             yield return new WaitForSeconds(1.6f);
-            dialogText.text = langmanag.GetInfo("gui", "text", "defeat", langmanag.GetInfo("charc", "name", player.GetLeader().charc.name));
+            dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "defeat"),
+                langmanag.GetInfo(new ArgumentsFetch("charc", "name", player.GetLeader().charc.name)));
+
             yield return new WaitForSeconds(1.8f);
-            dialogText.text = langmanag.GetInfo("gui", "text", "win", langmanag.GetInfo("charc", "name", enemy.GetLeader().charc.name));
+            dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "win"), 
+                langmanag.GetInfo(new ArgumentsFetch("charc", "name", enemy.GetLeader().charc.name)));
         }
 
         yield return new WaitForSeconds(1.5f);
@@ -3122,7 +3172,7 @@ public class BattleSystem : MonoBehaviour
     {
         player.ResetAttacker();
         enemy.ResetAttacker();
-        dialogText.text = langmanag.GetInfo("gui", "text", "choosemove");
+        dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "choosemove"));
         SelectMovingCharacter();
     }
 
@@ -3168,7 +3218,7 @@ public class BattleSystem : MonoBehaviour
                     if (a.name == "BRN" || a.name == "SCH" || a.name == "PSN")
                     {
                         dmg.ApplyBonusDmg(b.num, b.num, 0, 0);
-                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                        user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                     }
                     break;
             }
@@ -3246,7 +3296,7 @@ public class BattleSystem : MonoBehaviour
                     if (a.dmg > 0 && a.type is Dotdmg.DmgType.SANITY)
                     {
                         //show passive popup
-                        user.PassivePopup(langmanag.GetInfo("passive", "name", p.name));
+                        user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", p.name)));
                         //get bonus sanityDmg
                         int bonusSanityDmg = (int)(a.dmg * p.num);
                         //if bonus under a.maxNum, set to it
@@ -3333,7 +3383,7 @@ public class BattleSystem : MonoBehaviour
                     {
                         a.inCd = a.cd;
                         a.stacks++;
-                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                        user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                         StatMod statMod = a.statMod.ReturnStats();
                         statMod.inTime = statMod.time;
                         user.statMods.Add(statMod);
@@ -3359,7 +3409,7 @@ public class BattleSystem : MonoBehaviour
                     if (a.inCd == 0 && (user.curMana <= (user.SetModifiers().mana * a.num)))
                     {
                         a.inCd = a.cd;
-                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                        user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                         float healMana = a.statScale.SetScale(user.SetModifiers(), user);
                         user.curMana += healMana;
@@ -3443,7 +3493,7 @@ public class BattleSystem : MonoBehaviour
                     {
                         if (a.stacks < a.maxStacks + 1)
                         {
-                            user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                            user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                             a.stacks = a.maxStacks + 1;
                         }
                     }
@@ -3458,7 +3508,7 @@ public class BattleSystem : MonoBehaviour
                         StatMod statMod = a.statMod.ReturnStats();
                         if (a.stacks == a.maxStacks)
                         {
-                            user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                            user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                             statMod.inTime = a.cd;
                             a.inCd = a.cd + 1;
                         }
@@ -3609,7 +3659,7 @@ public class BattleSystem : MonoBehaviour
 
                             if (a.stacks == 0)
                             {
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                 a.stacks = 1;
                             }
                             else if (a.stacks == 1)
@@ -3684,7 +3734,7 @@ public class BattleSystem : MonoBehaviour
                             if (a.stacks == 0)
                             {
                                 //show popup
-                                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                 a.stacks = 1;
                             }
 
@@ -3716,7 +3766,7 @@ public class BattleSystem : MonoBehaviour
                         if (a.stacks == 0)
                         {
                             //show popup
-                            user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                            user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                             a.stacks = 1;
                         }
 
@@ -3757,7 +3807,7 @@ public class BattleSystem : MonoBehaviour
                         //reset cooldown
                         a.inCd = a.cd;
                         //show popup
-                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                        user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                     }
 
                     bool isFear = false;
@@ -3943,7 +3993,7 @@ public class BattleSystem : MonoBehaviour
                     {
                         if (a.stacks != 1)
                         {
-                            user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                            user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                             a.stacks++;
                         }
                     }
@@ -4022,7 +4072,7 @@ public class BattleSystem : MonoBehaviour
                     {
                         a.inCd = a.cd;
                         a.stacks++;
-                        user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                        user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
 
                         StatMod statMod = a.statMod.ReturnStats();
                         statMod.inTime = statMod.time;
@@ -4200,7 +4250,7 @@ public class BattleSystem : MonoBehaviour
 
                                 if (a.stacks == 0)
                                 {
-                                    user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                                    user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
                                     a.stacks = 1;
                                 }
                                 else if (a.stacks == 1)
@@ -4738,7 +4788,7 @@ public class BattleSystem : MonoBehaviour
             if (a.name == "courage")
             {
                 effect.duration -= (int)a.num;
-                user.PassivePopup(langmanag.GetInfo("passive", "name", a.name));
+                user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
             }
         }
 
@@ -4846,19 +4896,20 @@ public class BattleSystem : MonoBehaviour
                 {
                     if (a.stacks < a.maxStacks)
                     a.stacks++;
-                    summoner.PassivePopup(langmanag.GetInfo("passive", "name", a.name, a.stacks));
+                    summoner.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name), a.stacks));
                 }
             }
         }
         else
         {
-            string name = langmanag.GetInfo("summon", "name", sum.name);
+            string name = langmanag.GetInfo(new ArgumentsFetch("summon", "name", sum.name));
             string debugname = sum.name + sum.summonTurn;
             string txtenemy = "";
             if (summoner.isEnemy)
-                txtenemy = langmanag.GetInfo("showdetail", "target", "enemy");
+                txtenemy = langmanag.GetInfo(new ArgumentsFetch("showdetail", "target", "enemy"));
             else
-                txtenemy = langmanag.GetInfo("showdetail", "target", "ally");
+                txtenemy = langmanag.GetInfo(new ArgumentsFetch("showdetail", "target", "ally"));
+
 
             if (sum.stats.hp > 0)
             {
@@ -4866,7 +4917,8 @@ public class BattleSystem : MonoBehaviour
                 
                 if (sum.move.inCd <= 0)
                 {
-                    dialogText.text = langmanag.GetInfo("gui", "text", "usedmove", name, langmanag.GetInfo("summon", sum.GetMoveTypeLangId()), txtenemy);
+                    dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "usedmove"), name, 
+                        langmanag.GetInfo(new ArgumentsFetch("summon", sum.GetMoveTypeLangId())), txtenemy);
                     sum.move.inCd = sum.move.cd;
                     return SummonDmg(sum.move, sum.stats, target, summoner);
                 } else
@@ -4883,7 +4935,7 @@ public class BattleSystem : MonoBehaviour
                         a.stacks--;
                     }
                 }
-                dialogText.text = langmanag.GetInfo("gui", "text", "defeat", name);
+                dialogText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "defeat"), name);
                 Destroy(summoner.effectHud.transform.Find(debugname + "(Clone)").gameObject);
                 summoner.summons.Remove(sum);
             }
@@ -4895,28 +4947,43 @@ public class BattleSystem : MonoBehaviour
     IEnumerator NewTurn()
     {
         yield return new WaitForSeconds(0.4f);
-        StartCoroutine(ManageEndTurn(player.unit1, player, enemy));
+        TurnEndInfo info = new TurnEndInfo(player.unit1, player, enemy);
+        StartCoroutine(ManageEndTurn(info));
 
         if (player.unit2)
-            StartCoroutine(ManageEndTurn(player.unit2, player, enemy));
+        {
+            info = new TurnEndInfo(player.unit2, player, enemy);
+            StartCoroutine(ManageEndTurn(info));
+        }
 
         if (player.unit3)
-            StartCoroutine(ManageEndTurn(player.unit3, player, enemy));
+        {
+            info = new TurnEndInfo(player.unit3, player, enemy);
+            StartCoroutine(ManageEndTurn(info));
+        }
 
-        StartCoroutine(ManageEndTurn(enemy.unit1, enemy, player));
+        info = new TurnEndInfo(enemy.unit1, enemy, player);
+        StartCoroutine(ManageEndTurn(info));
 
         if (enemy.unit2)
-            StartCoroutine(ManageEndTurn(enemy.unit2, enemy, player));
+        {
+            info = new TurnEndInfo(enemy.unit2, enemy, player);
+            StartCoroutine(ManageEndTurn(info));
+        }
 
         if (enemy.unit3)
-            StartCoroutine(ManageEndTurn(enemy.unit3, enemy, player));
+        {
+            info = new TurnEndInfo(enemy.unit3, enemy, player);
+            StartCoroutine(ManageEndTurn(info));
+        }
+
         yield return new WaitForSeconds(0.9f);
 
         //set turn number
         combatCount = 0;
         turnCount++;
-        turnsText.text = langmanag.GetInfo("gui", "text", "turn", turnCount);
-        turnsTextOverview.text = langmanag.GetInfo("gui", "text", "turn", turnCount);
+        turnsText.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "turn"), turnCount);
+        turnsTextOverview.text = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "turn"), turnCount);
 
         //change needed stamina to be tired (increases with the number of turns)
         if (turnCount > 25 && turnCount%10 == 0 && tiredStacks < 10)
@@ -4930,6 +4997,7 @@ public class BattleSystem : MonoBehaviour
         player.ResetHasAttacked();
         enemy.ResetHasAttacked();
 
+        //Update Tooltips
         //Some optimization needed
         UpdateTooltips(enemy.unit1);
 
@@ -4948,35 +5016,29 @@ public class BattleSystem : MonoBehaviour
             UpdateTooltips(player.unit3);
         // ^
 
-        UpdateSummonTooltip(enemy.unit1);
-
-        if (enemy.unit2)
-            UpdateSummonTooltip(enemy.unit2);
-
-        if (enemy.unit3)
-            UpdateSummonTooltip(enemy.unit3);
-
-        UpdateSummonTooltip(player.unit1);
-
+        //update action boxes
+        actionBox1p.UpdateTooltips();
         if (player.unit2)
-            UpdateSummonTooltip(player.unit2);
+            actionBox2p.UpdateTooltips();
 
         if (player.unit3)
-            UpdateSummonTooltip(player.unit3);
+            actionBox3p.UpdateTooltips();
+        //^
 
         if (state != BattleState.WIN || state != BattleState.LOSE || state != BattleState.TIE)
             PlayerTurn();
     } 
 
-    IEnumerator ManageEndTurn(Unit unit, Player user, Player enemy)
+    IEnumerator ManageEndTurn(TurnEndInfo info)
     {
-        unit.chosenMove.move = null;
-        unit.chosenMove.target = null;
+        info.unit.chosenMove.move = null;
+        info.unit.chosenMove.target = null;
 
         bool CanTired = true;
         bool CanFear = true;
+        bool isDead = false;
 
-        foreach (Passives a in unit.passives.ToArray())
+        foreach (Passives a in info.unit.passives.ToArray())
         {
             switch (a.name)
             {
@@ -4988,30 +5050,30 @@ public class BattleSystem : MonoBehaviour
                     CanFear = false;
                     CanTired = false;
 
-                    int temp = unit.effects.Count;
-                    unit.effects.ForEach(x => x.duration = 0);
+                    int temp = info.unit.effects.Count;
+                    info.unit.effects.ForEach(x => x.duration = 0);
 
                     DMG dmg = default;
                     dmg.Reset();
 
                     dmg.trueDmg = a.statScale.flatValue * temp;
-                    unit.TakeDamage(dmg, false, false, unit, true);
+                    info.unit.TakeDamage(dmg, false, false, info.unit, true);
                     break;
             }
         }
 
-        Stats stats = unit.SetModifiers();
+        Stats stats = info.unit.SetModifiers();
 
-        foreach (Summon a in unit.summons.ToArray())
+        foreach (Summon a in info.unit.summons.ToArray())
         {
-            bool isDead = SpawnSummon(a, unit, a.target);
+            isDead = SpawnSummon(a, info.unit, a.target);
             yield return new WaitForSeconds(0.4f);
 
             if (isDead)
             {
                 if (a.target.isEnemy)
                 {
-                    this.enemy.SetAsDead(a.target);
+                    enemy.SetAsDead(a.target);
                     state = BattleState.ENEMYKILLED;
                 }
                 else
@@ -5022,19 +5084,19 @@ public class BattleSystem : MonoBehaviour
             }
         }
 
-        if (!unit.isDead)
+        if (!info.unit.isDead)
         {
             //apply tired
-            if (unit.curStamina <= (int)(stats.stamina * (tiredStart + (tiredGrowth * tiredStacks))) && CanTired)
+            if (info.unit.curStamina <= (int)(stats.stamina * (tiredStart + (tiredGrowth * tiredStacks))) && CanTired)
             {
-                ApplyTired(unit, unit.effectHud.gameObject);
+                ApplyTired(info.unit, info.unit.effectHud.gameObject);
             }
 
-            unit.ResetCanUse();
-            if (unit.CountEffectTimer(unit.effectHud.gameObject, bloodLossStacks, dotReduc))
+            info.unit.ResetCanUse();
+            if (info.unit.CountEffectTimer(info.unit.effectHud.gameObject, bloodLossStacks, dotReduc))
             {
-                user.SetAsDead(unit);
-                if (unit.isEnemy)
+                info.user.SetAsDead(info.unit);
+                if (info.unit.isEnemy)
                 {
                     state = BattleState.ENEMYKILLED;
                 }
@@ -5044,17 +5106,17 @@ public class BattleSystem : MonoBehaviour
                 }
             }
 
-            foreach (Dotdmg a in unit.dotDmg.ToArray())
+            foreach (Dotdmg a in info.unit.dotDmg.ToArray())
             {
                 a.inTime--;
 
-                bool isDead = DotCalc(a, unit);
+                isDead = DotCalc(a, info.unit);
                 yield return new WaitForSeconds(0.6f);
 
                 if (isDead)
                 {
-                    user.SetAsDead(unit);
-                    if (unit.isEnemy)
+                    info.user.SetAsDead(info.unit);
+                    if (info.unit.isEnemy)
                     {
                         state = BattleState.ENEMYKILLED;
                     }
@@ -5065,46 +5127,37 @@ public class BattleSystem : MonoBehaviour
                 }
 
                 if (a.inTime <= 0)
-                {
-                    unit.dotDmg.Remove(a);
-
-                    /*GameObject temp = panelEffectsP.transform.Find(a.id + "(Clone)").gameObject;
-
-                    Destroy(temp.gameObject);*/
-                }
+                    info.unit.dotDmg.Remove(a);
             }
-            SetStatus();
-
         }
         CheckVictory();
-        if (!unit.isDead)
+        if (!info.unit.isDead)
         {
             //apply fear
-            if (unit.curSanity <= 0 && CanFear)
+            if (info.unit.curSanity <= 0 && CanFear)
             {
-                ApplyFear(unit, unit.effectHud.gameObject);
+                ApplyFear(info.unit, info.unit.effectHud.gameObject);
             }
 
-            if (unit.recoverMana.inCooldown > 0)
-                unit.recoverMana.inCooldown--;
+            if (info.unit.recoverMana.inCooldown > 0)
+                info.unit.recoverMana.inCooldown--;
 
-            if (unit.moves.Count > 0)
+            if (info.unit.moves.Count > 0)
             {
                 int i = 0;
-                foreach (Moves move in unit.moves.ToArray())
+                foreach (Moves move in info.unit.moves.ToArray())
                 {
                     i++;
-                    if (move.uses >= 0 && !unit.isEnemy)
+                    if (move.uses >= 0 && !info.unit.isEnemy)
                     {
-                        foreach (Transform movebtn in unit.moveListPanel.transform.GetChild(0).transform)
+                        foreach (Transform movebtn in info.unit.moveListPanel.transform.GetChild(0).transform)
                         {
-                            Text id = movebtn.Find("Id").gameObject.GetComponent<Text>();
-                            if (id.text == i.ToString())
+                            if (movebtn.Find("Id").gameObject.GetComponent<Text>().text == i.ToString())
                             {
                                 if (move.uses == 0)
                                 {
                                     Destroy(movebtn.gameObject);
-                                    unit.moves.Remove(move);
+                                    info.unit.moves.Remove(move);
                                 }
                             }
                         }
@@ -5120,103 +5173,103 @@ public class BattleSystem : MonoBehaviour
                 }
             }
 
-            if (unit.statMods.Count > 0)
+            if (info.unit.statMods.Count > 0)
             {
-                foreach (Passives a in unit.passives.ToArray())
+                foreach (Passives a in info.unit.passives.ToArray())
                 {
                     switch (a.name)
                     {
                         case "watcher":
-                            int temp = unit.statMods.Count;
-                            unit.statMods.ForEach(x => x.inTime = 0);
+                            int temp = info.unit.statMods.Count;
+                            info.unit.statMods.ForEach(x => x.inTime = 0);
 
                             DMG dmg = default;
                             dmg.Reset();
 
                             dmg.trueDmg = a.statScale.flatValue * temp;
-                            unit.TakeDamage(dmg, false, false, unit, true);
+                            info.unit.TakeDamage(dmg, false, false, info.unit, true);
                             break;
                     }
                 }
                
-                foreach (StatMod statMod in unit.statMods.ToArray())
+                foreach (StatMod statMod in info.unit.statMods.ToArray())
                 {
                     if (statMod.inTime > 0)
                         statMod.inTime--;
 
                     if (statMod.inTime == 0)
-                        unit.statMods.Remove(statMod);
+                        info.unit.statMods.Remove(statMod);
                 }
             }
 
-            unit.hud.SetStatsHud(unit);
+            info.unit.hud.SetStatsHud(info.unit);
 
-            CheckPassiveTurn(unit, unit.hud, user, enemy);
+            CheckPassiveTurn(info.unit, info.unit.hud, info.user, enemy);
 
-            stats = unit.SetModifiers();
+            stats = info.unit.SetModifiers();
 
             if (turnCount > 1)
             {
-                unit.DoAnimParticle("heal");
-                unit.Heal(stats.hpRegen * (1 + stats.healBonus));
-                if (!(unit.curHp + (stats.hpRegen * (1 + stats.healBonus)) >= unit.SetModifiers().hp))
-                    unit.summary.healDone += stats.hpRegen * (1 + stats.healBonus);
+                info.unit.DoAnimParticle("heal");
+                info.unit.Heal(stats.hpRegen * (1 + stats.healBonus));
+                if (!(info.unit.curHp + (stats.hpRegen * (1 + stats.healBonus)) >= info.unit.SetModifiers().hp))
+                    info.unit.summary.healDone += stats.hpRegen * (1 + stats.healBonus);
                 else
-                    unit.summary.healDone += unit.SetModifiers().hp - unit.curHp;
+                    info.unit.summary.healDone += info.unit.SetModifiers().hp - info.unit.curHp;
 
-                if (unit.curMana < stats.mana)
-                    if ((unit.curMana + stats.manaRegen) > stats.mana)
+                if (info.unit.curMana < stats.mana)
+                    if ((info.unit.curMana + stats.manaRegen) > stats.mana)
                     {
-                        unit.curMana = stats.mana;
-                        unit.summary.manaHealDone += (unit.curMana + stats.manaRegen) - stats.mana;
+                        info.unit.curMana = stats.mana;
+                        info.unit.summary.manaHealDone += (info.unit.curMana + stats.manaRegen) - stats.mana;
                     }
                     else
                     {
-                        unit.curMana += stats.manaRegen;
-                        unit.summary.manaHealDone += stats.manaRegen;
+                        info.unit.curMana += stats.manaRegen;
+                        info.unit.summary.manaHealDone += stats.manaRegen;
                     }
 
-                if (unit.curStamina < stats.stamina)
-                    if ((unit.curStamina + stats.staminaRegen) > stats.stamina)
+                if (info.unit.curStamina < stats.stamina)
+                    if ((info.unit.curStamina + stats.staminaRegen) > stats.stamina)
                     {
-                        unit.curStamina = stats.stamina;
-                        unit.summary.staminaHealDone += (unit.curStamina + stats.staminaRegen) - stats.stamina;
+                        info.unit.curStamina = stats.stamina;
+                        info.unit.summary.staminaHealDone += (info.unit.curStamina + stats.staminaRegen) - stats.stamina;
                     }
                     else
                     {
-                        unit.curStamina += stats.staminaRegen;
-                        unit.summary.staminaHealDone += stats.staminaRegen;
+                        info.unit.curStamina += stats.staminaRegen;
+                        info.unit.summary.staminaHealDone += stats.staminaRegen;
                     }
             }
         }
-        unit.isBlockingPhysical = false;
-        unit.isBlockingMagical = false;
-        unit.isBlockingRanged = false;
+        info.unit.isBlockingPhysical = false;
+        info.unit.isBlockingMagical = false;
+        info.unit.isBlockingRanged = false;
 
         yield return new WaitForSeconds(0.9f);
 
-        foreach (Effects a in unit.effects)
+        foreach (Effects a in info.unit.effects)
         {
             if (!a.canUseMagic && !a.canUsePhysical && !a.canUseRanged && !a.canUseEnchant && !a.canUseSupp && !a.canUseProtec && !a.canUseSummon)
-                unit.SetSkipTurn(true);
+                info.unit.SetSkipTurn(true);
         }
 
         //apply item buffs at the start
         if (turnCount == 0)
         {
-            foreach (Items item in unit.items)
+            foreach (Items item in info.unit.items)
             {
                 foreach (StatMod mod in item.statmod)
                 {
-                    unit.statMods.Add(mod.ReturnStats());
+                    info.unit.statMods.Add(mod.ReturnStats());
                 }
             }
         }
 
         SetStatus();
-        unit.hud.SetStatsHud(unit);
+        info.unit.hud.SetStatsHud(info.unit);
 
-        unit.summary.UpdateValues(langmanag.GetInfo("charc", "name", unit.charc.name), unit.charc.charcIcon);
+        info.unit.summary.UpdateValues(langmanag.GetInfo(new ArgumentsFetch("charc", "name", info.unit.charc.name)), info.unit.charc.charcIcon);
     }
 
     void UpdateTooltips(Unit unit)
@@ -5235,13 +5288,6 @@ public class BattleSystem : MonoBehaviour
                     child.GetComponent<BtnMoveSetup>().UpdateToolTip(a.GetTooltipText(false, unit.SetModifiers().manaCost, unit.SetModifiers().staminaCost), a.GetTooltipText(true, unit.SetModifiers().manaCost, unit.SetModifiers().staminaCost));
                 }
             }
-
-            actionBox1p.UpdateTooltips();
-            if (player.unit2)
-                actionBox2p.UpdateTooltips();
-
-            if (player.unit3)
-                actionBox3p.UpdateTooltips();
         }
 
         //if (!unit.canUsePhysical)
@@ -5303,7 +5349,7 @@ public class BattleSystem : MonoBehaviour
         else if (enemyS)
             state = BattleState.WIN;
 
-        if (state == BattleState.TIE || state == BattleState.LOSE || state == BattleState.WIN && !battleEnded) 
+        if (state == BattleState.TIE || state == BattleState.LOSE || state == BattleState.WIN) 
             StartCoroutine(EndBattle());
     }
 }

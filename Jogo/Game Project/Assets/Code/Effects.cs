@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using static LanguageManager;
+using static Utils;
 
 [CreateAssetMenu(fileName = "New Effect", menuName = "Effect")]
 public class Effects : ScriptableObject
@@ -153,7 +155,7 @@ public class Effects : ScriptableObject
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string whatIs)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", whatIs));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", whatIs, "")));
 
         return builder;
     }
@@ -161,7 +163,7 @@ public class Effects : ScriptableObject
     private StringBuilder GetEffect(LanguageManager languageManager, string language, string whatIs, string effect)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "effect", whatIs, effect));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "effect", whatIs, effect)));
 
         return builder;
     }
@@ -169,7 +171,7 @@ public class Effects : ScriptableObject
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string whatIs, float val)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", whatIs));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", whatIs, "")));
         builder.Replace("%val%", val.ToString());
 
         return builder;
@@ -178,7 +180,7 @@ public class Effects : ScriptableObject
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string whatIs, string colour, float val)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", whatIs));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", whatIs, "")));
 
         builder.Replace("%c%", "<color=#" + colour + ">");
         builder.Replace("%c/%", "</color>");
@@ -192,7 +194,7 @@ public class Effects : ScriptableObject
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string whatIs, string colour, float val, string whatIsOp, float valOp)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", whatIs));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", whatIs, "")));
 
         builder.Replace("%val%", val.ToString());
         builder.Replace("%chance%", (val*100).ToString());
@@ -211,7 +213,7 @@ public class Effects : ScriptableObject
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string whatIs, string colour, float valmin, float valmax, float valinc, string scale, bool grantEnd)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", whatIs));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", whatIs, "")));
 
         builder.Replace("%c%", "<color=#" + colour + ">");
         builder.Replace("%c/%", "</color>");
@@ -243,7 +245,7 @@ public class Effects : ScriptableObject
     private StringBuilder GetInfo(LanguageManager languageManager, string language, string whatIs, string colour)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", whatIs));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", whatIs, "")));
 
         builder.Replace("%c%", "<color=#" + colour + ">");
         builder.Replace("%c/%", "</color>");
@@ -278,7 +280,7 @@ public class Effects : ScriptableObject
         StringBuilder builder = new StringBuilder();
 
         builder.Append("<size=25><align=center>").Append(GetEffect(languageManager, language, "name", id.ToLower())).Append("</align></size>").AppendLine();
-        builder.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(language, "effect", "title")).Append("</color></align></size>").AppendLine();
+        builder.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(new ArgumentsFetch(language, "effect", "title"))).Append("</color></align></size>").AppendLine();
         builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
         if (!canUseMagic || !canUsePhysical || !canUseProtec || !canUseRanged || !canUseEnchant || !canUseSupp)
         {

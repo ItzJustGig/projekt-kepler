@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static LanguageManager;
 using static UnityEditor.Progress;
 
 public class SelectManager : MonoBehaviour
@@ -101,18 +102,29 @@ public class SelectManager : MonoBehaviour
     {
         gameObject.AddComponent<SceneLoader>();
         loader = gameObject.GetComponent<SceneLoader>();
-        SetText(i);
-        SetPassives(i);
-        SetMoves(i);
 
         if (PlayerPrefs.GetInt("isEndless") != 0)
         {
             itemSelect.SetActive(false);
             charcLevel = 0;
         }
+
+        SetText(i);
+        SetPassives(i);
+        SetMoves(i);
     }
 
-    void Update()
+    private void OnEnable()
+    {
+        Ticker.OnTickAction += Tick;
+    }
+
+    private void OnDisable()
+    {
+        Ticker.OnTickAction -= Tick;
+    }
+
+    private void Tick()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -359,7 +371,7 @@ public class SelectManager : MonoBehaviour
         movePrefab.name = a.name;
 
         Text name = movePrefab.transform.Find("Name").gameObject.GetComponent<Text>();
-        name.text = thisLangManager.languageManager.GetText(thisLangManager.language, "moves", a.name);
+        name.text = thisLangManager.languageManager.GetText(new ArgumentsFetch(thisLangManager.language, "moves", a.name, ""));
 
         Text mana = movePrefab.transform.Find("Mana").gameObject.GetComponent<Text>();
         mana.text = a.manaCost.ToString();
@@ -401,8 +413,8 @@ public class SelectManager : MonoBehaviour
 
     private void SetupText(GameObject charc)
     {
-        nameDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "name", charc.GetComponent<CharacterInfo>().character.name);
-        titleDisplay.text = thisLangManager.languageManager.GetText(thisLangManager.language, "charc", "title", charc.GetComponent<CharacterInfo>().character.name);
+        nameDisplay.text = thisLangManager.languageManager.GetText(new ArgumentsFetch(thisLangManager.language, "charc", "name", charc.GetComponent<CharacterInfo>().character.name));
+        titleDisplay.text = thisLangManager.languageManager.GetText(new ArgumentsFetch(thisLangManager.language, "charc", "title", charc.GetComponent<CharacterInfo>().character.name));
         charcIcon.sprite = charc.GetComponent<CharacterInfo>().character.charcIcon;
         if (PlayerPrefs.GetInt("isEndless") != 0)
             SetStats(charc.GetComponent<CharacterInfo>().character.GetStatLevel(charcLevel));
@@ -473,7 +485,7 @@ public class SelectManager : MonoBehaviour
                 break;
         }
 
-        classIcon.transform.GetComponent<TooltipButton>().text = thisLangManager.languageManager.GetText(thisLangManager.language, "class", classe.ToString().ToLower());
+        classIcon.transform.GetComponent<TooltipButton>().text = thisLangManager.languageManager.GetText(new ArgumentsFetch(thisLangManager.language, "class", classe.ToString().ToLower(), ""));
     }
 
     public void SetStats(Stats statsTemp)
@@ -576,7 +588,6 @@ public class SelectManager : MonoBehaviour
             case 10:
                 enyaRender.enabled = false;
                 alexRender.enabled = true;
-                i++;
                 Reset();
                 break;
             default:

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 using UnityEngine.UI;
+using static Utils;
+using static LanguageManager;
 
 [CreateAssetMenu(fileName = "New Summon", menuName = "Summon/Summon")]
 public class Summon : ScriptableObject
@@ -114,7 +116,7 @@ public class Summon : ScriptableObject
         {
             temp.Remove(0, 2);
         }
-        text.Append("<color=#00ff11>" + languageManager.GetText(language, "stats", "name", "hp") + ": " + temp + "</color>").AppendLine();
+        text.Append("<color=#00ff11>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "hp")) + ": " + temp + "</color>").AppendLine();
 
         temp = stats.atkScale.GetStatScaleInfo();
         if (stats.atkScale.flatValue <= 0)
@@ -122,7 +124,7 @@ public class Summon : ScriptableObject
             temp.Remove(0, 2);
         }
 
-        text.Append("<color=#ffaa00>" + languageManager.GetText(language, "stats", "name", "attackpower") + ": " + temp + "</color>").AppendLine();
+        text.Append("<color=#ffaa00>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "attackpower")) + ": " + temp + "</color>").AppendLine();
 
         return text;
     }
@@ -131,8 +133,8 @@ public class Summon : ScriptableObject
     {
         StringBuilder text = new StringBuilder();
 
-        text.Append("<color=#00ff11>" + languageManager.GetText(language, "stats", "name", "hp") + ": " + (stats.hpScale.SetScale(owner.SetModifiers(), owner) + stats.hpScale.flatValue).ToString("0") + "</color>").AppendLine();
-        text.Append("<color=#ffaa00>" + languageManager.GetText(language, "stats", "name", "attackpower") + ": " + (stats.atkScale.SetScale(owner.SetModifiers(), owner) + stats.atkScale.flatValue).ToString("0.0") + "</color>").AppendLine();
+        text.Append("<color=#00ff11>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "hp")) + ": " + (stats.hpScale.SetScale(owner.SetModifiers(), owner) + stats.hpScale.flatValue).ToString("0") + "</color>").AppendLine();
+        text.Append("<color=#ffaa00>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "attackpower")) + ": " + (stats.atkScale.SetScale(owner.SetModifiers(), owner) + stats.atkScale.flatValue).ToString("0.0") + "</color>").AppendLine();
 
         return text;
     }
@@ -165,10 +167,10 @@ public class Summon : ScriptableObject
     public StringBuilder GetSummonInfoCombat(LanguageManager languageManager, string language)
     {
         StringBuilder text = new StringBuilder();
-        text.Append("<size=25><align=center>").Append(languageManager.GetText(language, "summon", "name", name)).Append("</align></size>").AppendLine();
-        text.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(language, "summon", "title")).Append("</color></align></size>").AppendLine().AppendLine();
+        text.Append("<size=25><align=center>").Append(languageManager.GetText(new ArgumentsFetch(language, "summon", "name", name))).Append("</align></size>").AppendLine();
+        text.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(new ArgumentsFetch(language, "summon", "title", ""))).Append("</color></align></size>").AppendLine().AppendLine();
 
-        text.Append(languageManager.GetText(language, "summon", "descsum"));
+        text.Append(languageManager.GetText(new ArgumentsFetch(language, "summon", "descsum", "")));
 
         string colour = "";
         string whatis = "";
@@ -195,7 +197,7 @@ public class Summon : ScriptableObject
                 whatis = "shield";
                 break;
         }
-        whatis = languageManager.GetText(language, "summon", whatis);
+        whatis = languageManager.GetText(new ArgumentsFetch(language, "summon", whatis));
 
         text.Replace("%c%", "<color=#" + colour + ">");
         text.Replace("%c/%", "</color>");
@@ -205,7 +207,7 @@ public class Summon : ScriptableObject
             text.Replace("%cd%", "");
         else
         {
-            text.Replace("%cd%", languageManager.GetText(language, "summon", "cd"));
+            text.Replace("%cd%", languageManager.GetText(new ArgumentsFetch(language, "summon", "cd", "")));
             text.Replace("%num%", move.inCd.ToString());
         }
 

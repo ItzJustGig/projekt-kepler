@@ -38,12 +38,12 @@ public class ActionBox : MonoBehaviour
 
         if (!unit.isEnemy)
         {
-            movesBtnText.text = fightLang.languageManager.GetText(fightLang.language, "gui", "button", "moves");
-            basicBtnText.text = fightLang.languageManager.GetText(fightLang.language, "moves", "basicattack");
-            ultBtnText.text = fightLang.languageManager.GetText(fightLang.language, "gui", "button", "ultimate");
-            healManaBtnText.text = fightLang.languageManager.GetText(fightLang.language, "moves", "recovmana");
-            cancelBtnText.text = fightLang.languageManager.GetText(fightLang.language, "gui", "button", "cancel");
-            chooseMoveText.text = fightLang.languageManager.GetText(fightLang.language, "gui", "text", "choosemove");
+            movesBtnText.text = fightLang.GetInfo(new ArgumentsFetch("gui", "button", "moves"));
+            basicBtnText.text = fightLang.GetInfo(new ArgumentsFetch("moves", "basicattack"));
+            ultBtnText.text = fightLang.GetInfo(new ArgumentsFetch("gui", "button", "ultimate"));
+            healManaBtnText.text = fightLang.GetInfo(new ArgumentsFetch("moves", "recovmana"));
+            cancelBtnText.text = fightLang.GetInfo(new ArgumentsFetch("gui", "button", "cancel"));
+            chooseMoveText.text = fightLang.GetInfo(new ArgumentsFetch("gui", "text", "choosemove"));
 
             this.unit.moveListPanel = moveList;
 

@@ -10,15 +10,15 @@ public class FightLang : MonoBehaviour
     [SerializeField] public string language;
     public LanguageManager languageManager;
 
-    [SerializeField] private Text statsPBtnText;
-    [SerializeField] private Text statsEBtnText;
+    //[SerializeField] private Text statsPBtnText;
+    //[SerializeField] private Text statsEBtnText;
     [SerializeField] private Text overviewBtnText;
     [SerializeField] private Text sumHideBtnText;
-    [SerializeField] private Text pHideBtnText;
-    [SerializeField] private Text eHideBtnText;
+    //[SerializeField] private Text pHideBtnText;
+    //[SerializeField] private Text eHideBtnText;
     [SerializeField] private Text leaveBtnText;
-    [SerializeField] private Text chooseMoveText;
-    [SerializeField] private Text cancelMoveBtnText;
+    //[SerializeField] private Text chooseMoveText;
+    //[SerializeField] private Text cancelMoveBtnText;
     [SerializeField] private Text turnsText;
     [SerializeField] private Text ffBtnText;
     [SerializeField] private Text ffConfirmBtnText;
@@ -27,7 +27,7 @@ public class FightLang : MonoBehaviour
     [SerializeField] private Text leaveTextText;
 
     //stats player
-    [SerializeField] private TooltipButton hpTooltipP;
+    /*[SerializeField] private TooltipButton hpTooltipP;
     [SerializeField] private TooltipButton hpRegenTooltipP;
     [SerializeField] private TooltipButton manaTooltipP;
     [SerializeField] private TooltipButton manaRegenTooltipP;
@@ -66,7 +66,7 @@ public class FightLang : MonoBehaviour
     [SerializeField] private TooltipButton lifestealTooltipE;
     [SerializeField] private TooltipButton evasionTooltipE;
     [SerializeField] private TooltipButton accuracyTooltipE;
-    [SerializeField] private TooltipButton armourpenTooltipE;
+    [SerializeField] private TooltipButton armourpenTooltipE;*/
 
     [SerializeField] private Text overviewText;
 
@@ -77,21 +77,23 @@ public class FightLang : MonoBehaviour
         //buttons
         //statsPBtnText.text = languageManager.GetText(language, "gui", "button", "stats");
         //statsEBtnText.text = languageManager.GetText(language, "gui", "button", "stats");
-        overviewBtnText.text = languageManager.GetText(language, "gui", "button", "overview");
-        sumHideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
+        overviewBtnText.text = GetInfo(new ArgumentsFetch("gui", "button", "overview"));
+        sumHideBtnText.text = GetInfo(new ArgumentsFetch("gui", "button", "hide"));
         //pHideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
         //eHideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
-        leaveBtnText.text = languageManager.GetText(language, "gui", "button", "leave");
-        ffBtnText.text = languageManager.GetText(language, "gui", "button", "forfeit");
-        ffConfirmBtnText.text = languageManager.GetText(language, "gui", "button", "forfeit");
-        cancelConfirmBtnText.text = languageManager.GetText(language, "gui", "button", "cancelforfeit");
+        leaveBtnText.text = GetInfo(new ArgumentsFetch("gui", "button", "leave"));
+        ffBtnText.text = GetInfo(new ArgumentsFetch("gui", "button", "forfeit"));
+        ffConfirmBtnText.text = GetInfo(new ArgumentsFetch("gui", "button", "forfeit"));
+        cancelConfirmBtnText.text = GetInfo(new ArgumentsFetch("gui", "button", "cancelforfeit"));
 
         //text
-        overviewText.text = languageManager.GetText(language, "gui", "text", "overview");
-        turnsText.text = languageManager.GetText(language, "gui", "text", "turn");
+        overviewText.text = GetInfo(new ArgumentsFetch("gui", "text", "overview"));
+        turnsText.text = GetInfo(new ArgumentsFetch("gui", "text", "turn"));
+        leaveTextText.text = GetInfo(new ArgumentsFetch("gui", "text", "leavetext"));
+        leaveTitleText.text = GetInfo(new ArgumentsFetch("gui", "text", "leavetitle"));
+
         turnsText.text = turnsText.text.Replace("%n%", "0");
-        leaveTextText.text = languageManager.GetText(language, "gui", "text", "leavetext");
-        leaveTitleText.text = languageManager.GetText(language, "gui", "text", "leavetitle");
+
 
         //stats player
         /*hpTooltipP.text = languageManager.GetText(language, "stats", "name", "hp") + "<br>" + languageManager.GetText(language, "stats", "desc", "hp");
@@ -139,44 +141,40 @@ public class FightLang : MonoBehaviour
         */
     }
 
-    public string GetInfo(string arg1, string arg2)
+    public string GetInfo(ArgumentsFetch fetch)
     {
+        fetch.langId = language;
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, arg1, arg2));
+        builder.Append(languageManager.GetText(fetch));
 
         return builder.ToString();
     }
 
-    public string GetInfo(string arg1, string arg2, string arg3)
+    public string GetInfo(ArgumentsFetch fetch, string thing)
     {
+        fetch.langId = language;
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, arg1, arg2, arg3));
-
-        return builder.ToString();
-    }
-
-    public string GetInfo(string arg1, string arg2, string arg3, string thing)
-    {
-        StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, arg1, arg2, arg3));
+        builder.Append(languageManager.GetText(fetch));
         builder.Replace("%p%", thing);
 
         return builder.ToString();
     }
     
-    public string GetInfo(string arg1, string arg2, string arg3, int turns)
+    public string GetInfo(ArgumentsFetch fetch, int turns)
     {
+        fetch.langId = language;
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, arg1, arg2, arg3));
+        builder.Append(languageManager.GetText(fetch));
         builder.Replace("%n%", turns.ToString());
 
         return builder.ToString();
     }
 
-    public string GetInfo(string arg1, string arg2, string arg3, string name, string move, string target)
+    public string GetInfo(ArgumentsFetch fetch, string name, string move, string target)
     {
+        fetch.langId = language;
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, arg1, arg2, arg3));
+        builder.Append(languageManager.GetText(fetch));
         builder.Replace("%p%", name);
         builder.Replace("%m%", move);
         builder.Replace("%t%", target);

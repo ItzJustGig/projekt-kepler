@@ -63,7 +63,7 @@ public class ShopLangManager : MonoBehaviour
     public string GetInfo(string arg1, string arg2)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, arg1, arg2));
+        builder.Append(languageManager.GetText(new LanguageManager.ArgumentsFetch(arg1, arg2)));
 
         return builder.ToString();
     }
@@ -71,7 +71,7 @@ public class ShopLangManager : MonoBehaviour
     public string GetInfo(string arg1, string arg2, string arg3)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, arg1, arg2, arg3));
+        builder.Append(languageManager.GetText(new LanguageManager.ArgumentsFetch(language, arg1, arg2, arg3)));
 
         return builder.ToString();
     }

@@ -76,10 +76,10 @@ public class Player : MonoBehaviour
             }
         }
 
-        StartCoroutine(unit.hud.SetHp(unit.curHp, stats.hp, unit.SetModifiers().healBonus * 100, unit.curShield));
-        StartCoroutine(unit.hud.SetMana(unit.curMana, stats.mana, unit.SetModifiers().manaCost * 100));
-        StartCoroutine(unit.hud.SetStamina(unit.curStamina, stats.stamina, (int)(stats.stamina * (tiredStart + (tiredGrowth * tiredStacks))), unit.SetModifiers().staminaCost * 100));
-        StartCoroutine(unit.hud.SetShield(unit.curShield, unit.SetModifiers().shieldBonus * 100));
+        unit.hud.SetHp(unit.curHp, stats.hp, unit.SetModifiers().healBonus * 100, unit.curShield);
+        unit.hud.SetMana(unit.curMana, stats.mana, unit.SetModifiers().manaCost * 100);
+        unit.hud.SetStamina(unit.curStamina, stats.stamina, (int)(stats.stamina * (tiredStart + (tiredGrowth * tiredStacks))), unit.SetModifiers().staminaCost * 100);
+        unit.hud.SetShield(unit.curShield, unit.SetModifiers().shieldBonus * 100);
         unit.hud.SetUlt(unit.ult, unit.SetModifiers().ultrate);
         unit.hud.SetBlood(unit.bloodStacks);
     }

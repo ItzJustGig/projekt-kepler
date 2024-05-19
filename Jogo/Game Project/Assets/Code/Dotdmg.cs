@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using static LanguageManager;
 
 [CreateAssetMenu(fileName = "New DOT", menuName = "DOT")]
 public class Dotdmg : ScriptableObject
@@ -78,7 +79,7 @@ public class Dotdmg : ScriptableObject
     private StringBuilder GetDOT(LanguageManager languageManager, string language, int time)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", "overtime"));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", "overtime", "")));
 
         builder.Replace("%n%", time.ToString());
 

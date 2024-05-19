@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using static Utils;
+using static LanguageManager;
 
 [CreateAssetMenu (fileName = "New Stat Scale", menuName = "Stat Scale")]
 
@@ -76,13 +78,13 @@ public class StatScale : ScriptableObject
     private StringBuilder GetStat(LanguageManager languageManager, string language, string statName,float statVal, string colour, string onWho)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, "showdetail", "statscale"));
+        builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", "statscale", "")));
 
         builder.Replace("%c%", "<color=#" + colour + ">");
         builder.Replace("%c/%", "</color>");
         builder.Replace("%u%", onWho);
         builder.Replace("%n%", (statVal * 100).ToString());
-        builder.Replace("%s%", languageManager.GetText(language, "stats", "name", statName));
+        builder.Replace("%s%", languageManager.GetText(new ArgumentsFetch(language, "stats", "name", statName)));
 
         return builder;
     }
@@ -121,9 +123,9 @@ public class StatScale : ScriptableObject
         string onWho = "";
 
         if (playerStat)
-            onWho = languageManager.GetText(language, "showdetail", "user");
+            onWho = languageManager.GetText(new ArgumentsFetch(language, "showdetail", "user", ""));
         else
-            onWho = languageManager.GetText(language, "showdetail", "enemy");
+            onWho = languageManager.GetText(new ArgumentsFetch(language, "showdetail", "enemy", ""));
 
         if (flatValue > 0)
             builder.Append(flatValue);

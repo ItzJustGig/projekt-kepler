@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEditor;
+using static LanguageManager;
 
 public class MainMenuLang : MonoBehaviour
 {
@@ -37,12 +38,12 @@ public class MainMenuLang : MonoBehaviour
             flags.sprite = flagPt;
         }
 
-        fightBtnText.text = languageManager.GetText(language, "gui", "button", "fight");
-        infoBtnText.text = languageManager.GetText(language, "gui", "button", "info");
-        quitBtnText.text = languageManager.GetText(language, "gui", "button", "quit");
-        optionsBtnText.text = languageManager.GetText(language, "gui", "button", "options");
-        endlessBtnText.text = languageManager.GetText(language, "gui", "button", "endless");
-        gameNameText.text = languageManager.GetText(language, "gui", "text", "game");
+        fightBtnText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "button", "fight"));
+        infoBtnText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "button", "info"));
+        quitBtnText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "button", "quit"));
+        optionsBtnText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "button", "options"));
+        endlessBtnText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "button", "endless"));
+        gameNameText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "text", "game"));
         versionText.text += Application.version;
     }
 

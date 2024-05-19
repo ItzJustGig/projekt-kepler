@@ -7,6 +7,8 @@ using TMPro;
 using static UnityEngine.GraphicsBuffer;
 using System;
 using System.Linq;
+using static LanguageManager;
+using static Utils;
 
 public class Unit : MonoBehaviour
 {
@@ -82,6 +84,14 @@ public class Unit : MonoBehaviour
     float lastSize = 2;
     public bool skipTurn = false;
     public bool hasAttacked = false;
+
+    private int _physicalAnim = Animator.StringToHash("physical");
+    private int _magicalAnim = Animator.StringToHash("magical");
+    private int _rangedAnim = Animator.StringToHash("ranged");
+    private int _suppAnim = Animator.StringToHash("support");
+    private int _defAnim = Animator.StringToHash("defencive");
+    private int _enchantAnim = Animator.StringToHash("statmod");
+    private int _summonAnim = Animator.StringToHash("summon");
 
     public struct ChosenMove
     {
@@ -919,10 +929,11 @@ public class Unit : MonoBehaviour
     {
         FightLang langmanag = GameObject.Find("GameManager").GetComponent<FightLang>();
         string msg;
+
         if (isDodge)
-            msg = langmanag.GetInfo("gui", "text", "dodgepop");
+            msg = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "dodgepop"));
         else
-            msg = langmanag.GetInfo("gui", "text", "misspop");
+            msg = langmanag.GetInfo(new ArgumentsFetch("gui", "text", "misspop"));
 
         DmgNumber(msg, Color.white);
     }
@@ -941,28 +952,28 @@ public class Unit : MonoBehaviour
         switch (moveType)
         {
             case Moves.MoveType.BASIC:
-                animator.SetTrigger("physical");
+                animator.SetTrigger(_physicalAnim);
                 break;
             case Moves.MoveType.PHYSICAL:
-                animator.SetTrigger("physical");
+                animator.SetTrigger(_physicalAnim);
                 break;
             case Moves.MoveType.MAGICAL:
-                animator.SetTrigger("magical");
+                animator.SetTrigger(_magicalAnim);
                 break;
             case Moves.MoveType.RANGED:
-                animator.SetTrigger("ranged");
+                animator.SetTrigger(_rangedAnim);
                 break;
             case Moves.MoveType.SUPPORT:
-                animator.SetTrigger("support");
+                animator.SetTrigger(_suppAnim);
                 break;
             case Moves.MoveType.DEFFENCIVE:
-                animator.SetTrigger("defencive");
+                animator.SetTrigger(_defAnim);
                 break;
             case Moves.MoveType.ENCHANT:
-                animator.SetTrigger("statmod");
+                animator.SetTrigger(_enchantAnim);
                 break;
             case Moves.MoveType.SUMMON:
-                animator.SetTrigger("summon");
+                animator.SetTrigger(_summonAnim);
                 break;
         }
     }

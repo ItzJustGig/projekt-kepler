@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 using System.Text;
+using System;
+using static LanguageManager;
 
 public class EndlessLanguageManager : MonoBehaviour
 {
@@ -30,35 +32,28 @@ public class EndlessLanguageManager : MonoBehaviour
     {
         language = PlayerPrefs.GetString("language", language);
 
-        goldText.text = GetInfo("gui", "text", "gold");
-        roundText.text = GetInfo("gui", "text", "round");
-        leaveBtnText.text = GetInfo("gui", "button", "leave");
-        startBtnText.text = GetInfo("gui", "button", "start");
-        delSaveBtnText.text = GetInfo("gui", "button", "delsave");
-        shopBtnText.text = GetInfo("gui", "button", "shop");
-        levelText.text = GetInfo("gui", "text", "level") + this.gameObject.GetComponent<EndlessManager>().GetLevel();
-        dropTitle.text = GetInfo("gui", "text", "loottitle");
-        confirmDeleteTitle.text = GetInfo("gui", "text", "confirmdeletetitle");
-        confirmDeleteText.text = GetInfo("gui", "text", "confirmdeletetext");
+        goldText.text = GetInfo(new ArgumentsFetch("gui", "text", "gold"));
+        roundText.text = GetInfo(new ArgumentsFetch("gui", "text", "round"));
+        leaveBtnText.text = GetInfo(new ArgumentsFetch("gui", "button", "leave"));
+        startBtnText.text = GetInfo(new ArgumentsFetch("gui", "button", "start"));
+        delSaveBtnText.text = GetInfo(new ArgumentsFetch("gui", "button", "delsave"));
+        shopBtnText.text = GetInfo(new ArgumentsFetch("gui", "button", "shop"));
+        levelText.text = GetInfo(new ArgumentsFetch("gui", "text", "level")) + this.gameObject.GetComponent<EndlessManager>().GetLevel();
+        dropTitle.text = GetInfo(new ArgumentsFetch("gui", "text", "loottitle"));
+        confirmDeleteTitle.text = GetInfo(new ArgumentsFetch("gui", "text", "confirmdeletetitle"));
+        confirmDeleteText.text = GetInfo(new ArgumentsFetch("gui", "text", "confirmdeletetext"));
 
-        okBtn.text = GetInfo("gui", "button", "ok");
-        confirmBtn.text = GetInfo("gui", "button", "confirm");
-        cancelBtn.text = GetInfo("gui", "button", "cancel");
-        passBtn.text = GetInfo("gui", "button", "pass");
+        okBtn.text = GetInfo(new ArgumentsFetch("gui", "button", "ok"));
+        confirmBtn.text = GetInfo(new ArgumentsFetch("gui", "button", "confirm"));
+        cancelBtn.text = GetInfo(new ArgumentsFetch("gui", "button", "cancel"));
+        passBtn.text = GetInfo(new ArgumentsFetch("gui", "button", "pass"));
     }
 
-    public string GetInfo(string arg1, string arg2)
+    public string GetInfo(ArgumentsFetch fetch)
     {
         StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, arg1, arg2));
-
-        return builder.ToString();
-    }
-
-    public string GetInfo(string arg1, string arg2, string arg3)
-    {
-        StringBuilder builder = new StringBuilder();
-        builder.Append(languageManager.GetText(language, arg1, arg2, arg3));
+        fetch.langId = language;
+        builder.Append(languageManager.GetText(fetch));
 
         return builder.ToString();
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using static LanguageManager;
 
 public class BattleHud : MonoBehaviour
 {
@@ -66,39 +67,39 @@ public class BattleHud : MonoBehaviour
         this.statsGO = statsGO;
         language = langmang.language;
         icon.sprite = unit.charc.charcIcon;
-        nameText.text = langmang.languageManager.GetText(language, "charc", "name", unit.charc.name);
-        levelText.text = langmang.languageManager.GetText(language, "gui", "text", "level")+unit.level;
+        nameText.text = langmang.languageManager.GetText(new ArgumentsFetch(language, "charc", "name", unit.charc.name));
+        levelText.text = langmang.languageManager.GetText(new ArgumentsFetch(language, "gui", "text", "level"))+unit.level;
 
         hpText.text = unit.curHp + "/" + unit.charc.stats.hp;
         hpSlider.maxValue = unit.SetModifiers().hp;
         hpSlider.value = unit.curHp;
         fillHp.color = gradientHp.Evaluate(1f);
-        hpInfo.text = langmang.languageManager.GetText(language, "stats", "name", "hp");
-        hpInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "healbonus") + ": " + unit.SetModifiers().healBonus.ToString("0.00") + "%";
+        hpInfo.text = langmang.languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "hp"));
+        hpInfo.text += "\n" + langmang.languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "healbonus")) + ": " + unit.SetModifiers().healBonus.ToString("0.00") + "%";
 
         manaText.text = unit.curMana + "/" + unit.charc.stats.mana;
         manaSlider.maxValue = unit.SetModifiers().mana;
         manaSlider.value = unit.curMana;
         fillMana.color = gradientMana.Evaluate(1f);
-        manaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "mana");
-        manaInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "manacost") + ": " + unit.SetModifiers().manaCost.ToString("0.00") + "%";
+        manaInfo.text = langmang.languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "mana"));
+        manaInfo.text += "\n" + langmang.languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "manacost")) + ": " + unit.SetModifiers().manaCost.ToString("0.00") + "%";
 
         staminaText.text = unit.curStamina + "/" + unit.charc.stats.stamina;
         staminaSlider.maxValue = unit.SetModifiers().stamina;
         staminaSlider.value = unit.curStamina;
         fillStamina.color = gradientStamina.Evaluate(1f);
 
-        staminaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "stamina");
-        staminaInfo.text += "\n" + langmang.languageManager.GetText(language, "gui", "text", "staminatired");
-        staminaInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "staminacost") + ": " + unit.SetModifiers().staminaCost.ToString("0.00") + "%";
+        staminaInfo.text = langmang.languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "stamina"));
+        staminaInfo.text += "\n" + langmang.languageManager.GetText(new ArgumentsFetch(language, "gui", "text", "staminatired"));
+        staminaInfo.text += "\n" + langmang.languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "staminacost")) + ": " + unit.SetModifiers().staminaCost.ToString("0.00") + "%";
         staminaInfo.text = staminaInfo.text.Replace("%v%", staminaTired.ToString());
 
         shieldText.text = unit.curShield.ToString();
         shieldSlider.value = unit.curShield;
-        shieldInfo.text = langmang.languageManager.GetText(language, "gui", "text", "shield");
-        shieldInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "shieldbonus") + ": " + unit.SetModifiers().shieldBonus.ToString("0.00") + "%";
+        shieldInfo.text = langmang.languageManager.GetText(new ArgumentsFetch(language, "gui", "text", "shield"));
+        shieldInfo.text += "\n" + langmang.languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "shieldbonus")) + ": " + unit.SetModifiers().shieldBonus.ToString("0.00") + "%";
 
-        ultInfo.text = langmang.languageManager.GetText(language, "gui", "text", "ultimate");
+        ultInfo.text = langmang.languageManager.GetText(new ArgumentsFetch(language, "gui", "text", "ultimate"));
         ultInfo.text = ultInfo.text.Replace("%v%", ultSlider.value.ToString("0.00") +"%");
         ultInfo.text = ultInfo.text.Replace("%r%", unit.SetModifiers().ultrate.ToString("0.00") +"%");
 
@@ -233,150 +234,63 @@ public class BattleHud : MonoBehaviour
         statsGO.SetActive(false);
     }
 
-    public IEnumerator SetHp (float hp, float maxHp, float healBonus, float shield)
+    public void SetHp (float hp, float maxHp, float healBonus, float shield)
     {
         if (hp < 0)
             hp = 0;
 
-        /*lerpTimer = 0f;
-        while (lerpTimer < chipSpeed)
-        {
-            lerpTimer += Time.deltaTime;
-            float curHp = hpSlider.value;
-
-            if (curHp > hp)
-            {
-                float completedPercent = lerpTimer / chipSpeed;
-                hpSlider.value = Mathf.Lerp(curHp, hp, completedPercent);
-                hpText.text = hpSlider.value.ToString("0") + "/" + maxHp;
-            }
-            
-            if (curHp < hp)
-            {
-                float completedPercent = lerpTimer / chipSpeed;
-                hpSlider.value = Mathf.Lerp(hp, curHp, completedPercent);
-                hpText.text = hpSlider.value.ToString("0") + "/" + maxHp;
-            }
-        }*/
-
-        yield return null;
         hpSlider.maxValue = maxHp;
         hpSlider.value = hp;
         hpText.text = (hpSlider.value+shield).ToString("0") + "/" + maxHp;
-        hpInfo.text = langmang.languageManager.GetText(language, "stats", "name", "hp");
-        hpInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "healbonus") + ": " + healBonus.ToString("0.00") + "%";
+        hpInfo.text = langmang.languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "hp"));
+        hpInfo.text += "\n" + langmang.languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "healbonus")) + ": " + healBonus.ToString("0.00") + "%";
         fillHp.color = gradientHp.Evaluate(hpSlider.normalizedValue);
     }
 
-    public IEnumerator SetMana(float mana, float maxMana, float manaCost)
+    public void SetMana(float mana, float maxMana, float manaCost)
     {
         if (mana < 0)
             mana = 0;
 
-        /*lerpTimer = 0f;
-        while (lerpTimer < chipSpeed)
-        {
-            lerpTimer += Time.deltaTime;
-            float curMana = manaSlider.value;
-
-            if (manaSlider.value > mana)
-            {
-                float completedPercent = lerpTimer / chipSpeed;
-                manaSlider.value = Mathf.Lerp(curMana, mana, completedPercent);
-                manaText.text = manaSlider.value.ToString("0") + "/" + maxMana;
-            }
-
-            if (manaSlider.value < mana)
-            {
-                float completedPercent = lerpTimer / chipSpeed;
-                manaSlider.value = Mathf.Lerp(mana, curMana, completedPercent);
-                manaText.text = manaSlider.value.ToString("0") + "/" + maxMana;
-            }
-        }*/
-
-        yield return null;
         manaSlider.maxValue = maxMana;
         manaSlider.value = mana;
         manaText.text = manaSlider.value.ToString("0") + "/" + maxMana;
-        manaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "mana");
-        manaInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "manacost") + ": " + manaCost.ToString("0.00") + "%";
+        manaInfo.text = langmang.languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "mana"));
+        manaInfo.text += "\n" + langmang.languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "manacost")) + ": " + manaCost.ToString("0.00") + "%";
         fillMana.color = gradientMana.Evaluate(manaSlider.normalizedValue);
     }
 
-    public IEnumerator SetStamina(float stamina, float maxStamina, int staminaTired, float staminaCost)
+    public void SetStamina(float stamina, float maxStamina, int staminaTired, float staminaCost)
     {
         if (stamina < 0)
             stamina = 0;
 
-        /*lerpTimer = 0f;
-        while (lerpTimer < chipSpeed)
-        {
-            lerpTimer += Time.deltaTime;
-            float curStamina = staminaSlider.value;
-
-            if (staminaSlider.value > stamina)
-            {
-                float completedPercent = lerpTimer / chipSpeed;
-                staminaSlider.value = Mathf.Lerp(curStamina, stamina, completedPercent);
-                staminaText.text = staminaSlider.value.ToString("0") + "/" + maxStamina;
-            }
-
-            if (staminaSlider.value < stamina)
-            {
-                float completedPercent = lerpTimer / chipSpeed;
-                staminaSlider.value = Mathf.Lerp(stamina, curStamina, completedPercent);
-                staminaText.text = staminaSlider.value.ToString("0") + "/" + maxStamina;
-            }
-        }*/
-
-        yield return null;
+        
         staminaSlider.maxValue = maxStamina;
         staminaSlider.value = stamina;
         staminaText.text = staminaSlider.value.ToString("0") + "/" + maxStamina; 
-        staminaInfo.text = langmang.languageManager.GetText(language, "stats", "name", "stamina");
-        staminaInfo.text += "\n" + langmang.languageManager.GetText(language, "gui", "text", "staminatired");
-        staminaInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "staminacost") + ": " + staminaCost.ToString("0.00") + "%";
+        staminaInfo.text = langmang.languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "stamina"));
+        staminaInfo.text += "\n" + langmang.languageManager.GetText(new ArgumentsFetch(language, "gui", "text", "staminatired"));
+        staminaInfo.text += "\n" + langmang.languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "staminacost")) + ": " + staminaCost.ToString("0.00") + "%";
         staminaInfo.text = staminaInfo.text.Replace("%v%", staminaTired.ToString());
         fillStamina.color = gradientStamina.Evaluate(staminaSlider.normalizedValue);
     }
 
-    public IEnumerator SetShield(float shield, float shieldBonus)
+    public void SetShield(float shield, float shieldBonus)
     {
         if (shield < 0)
             shield = 0;
-
-        /*lerpTimer = 0f;
-        while (lerpTimer < chipSpeed)
-        {
-            lerpTimer += Time.deltaTime;
-            float curShield = shieldSlider.value;
-
-            if (shieldSlider.value > shield)
-            {
-                float completedPercent = lerpTimer / chipSpeed;
-                shieldSlider.value = Mathf.Lerp(curShield, shield, completedPercent);
-                shieldText.text = shieldSlider.value.ToString("0");
-            }
-
-            if (shieldSlider.value < shield)
-            {
-                float completedPercent = lerpTimer / chipSpeed;
-                shieldSlider.value = Mathf.Lerp(shield, curShield, completedPercent);
-                shieldText.text = shieldSlider.value.ToString("0");
-            }
-        }*/
-
-        yield return null;
+        
         shieldSlider.value = shield;
         shieldText.text = shieldSlider.value.ToString("0");
-        shieldInfo.text = langmang.languageManager.GetText(language, "gui", "text", "shield");
-        shieldInfo.text += "\n" + langmang.languageManager.GetText(language, "stats", "name", "shieldbonus") + ": " + shieldBonus.ToString("0.00") + "%";
+        shieldInfo.text = langmang.languageManager.GetText(new ArgumentsFetch(language, "gui", "text", "shield"));
+        shieldInfo.text += "\n" + langmang.languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "shieldbonus")) + ": " + shieldBonus.ToString("0.00") + "%";
     }
 
     public void SetUlt(float value, float ultrate)
     {
         ultSlider.value = value;
-        ultInfo.text = langmang.languageManager.GetText(language, "gui", "text", "ultimate");
+        ultInfo.text = langmang.languageManager.GetText(new ArgumentsFetch(language, "gui", "text", "ultimate"));
         ultInfo.text = ultInfo.text.Replace("%v%", ultSlider.value.ToString("0.00") + "%");
         ultInfo.text = ultInfo.text.Replace("%r%", (ultrate*100).ToString("0.00") + "%");
     }

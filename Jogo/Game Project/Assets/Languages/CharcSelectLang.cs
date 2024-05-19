@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using static LanguageManager;
 
 public class CharcSelectLang : MonoBehaviour
 {
@@ -50,41 +51,41 @@ public class CharcSelectLang : MonoBehaviour
 
         //buttons
         //main menu
-        moveBtnText.text = languageManager.GetText(language, "gui", "button", "moves");
-        selectBtnText.text = languageManager.GetText(language, "gui", "button", "select");
-        returnBtnText.text = languageManager.GetText(language, "gui", "button", "back");
-        hideBtnText.text = languageManager.GetText(language, "gui", "button", "hide");
-        ultimateBtnText.text = languageManager.GetText(language, "gui", "button", "ultimate");
+        moveBtnText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "button", "moves"));
+        selectBtnText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "button", "select"));
+        returnBtnText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "button", "back"));
+        hideBtnText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "button", "hide"));
+        ultimateBtnText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "button", "ultimate"));
         //items
-        itemBtnText.text = languageManager.GetText(language, "gui", "button", "items");
-        slcItemBtnText.text = languageManager.GetText(language, "gui", "button", "select");
-        cancelItemBtnText.text = languageManager.GetText(language, "gui", "button", "cancel");
+        itemBtnText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "button", "items"));
+        slcItemBtnText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "button", "select"));
+        cancelItemBtnText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "button", "cancel"));
 
         //text boxes
-        passiveText.text = languageManager.GetText(language, "gui", "text", "passives");
-        movesText.text = languageManager.GetText(language, "gui", "text", "moves");
-        cdText.text = languageManager.GetText(language, "gui", "text", "cd");
-        staText.text = languageManager.GetText(language, "gui", "text", "sta");
-        mnText.text = languageManager.GetText(language, "gui", "text", "mn");
+        passiveText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "text", "passives"));
+        movesText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "text", "moves"));
+        cdText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "text", "cd"));
+        staText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "text", "sta"));
+        mnText.text = languageManager.GetText(new ArgumentsFetch(language, "gui", "text", "mn"));
 
         //stats
-        hpTooltip.text = languageManager.GetText(language, "stats", "name", "hp") + "<br>" + languageManager.GetText(language, "stats", "desc", "hp");
-        hpRegenTooltip.text = languageManager.GetText(language, "stats", "name", "hpregen") + "<br>" + languageManager.GetText(language, "stats", "desc", "hpregen");
-        manaTooltip.text = languageManager.GetText(language, "stats", "name", "mana") + "<br>" + languageManager.GetText(language, "stats", "desc", "mana");
-        manaRegenTooltip.text = languageManager.GetText(language, "stats", "name", "manaregen") + "<br>" + languageManager.GetText(language, "stats", "desc", "manaregen");
-        staminaTooltip.text = languageManager.GetText(language, "stats", "name", "stamina") + "<br>" + languageManager.GetText(language, "stats", "desc", "stamina");
-        staminaRegenTooltip.text = languageManager.GetText(language, "stats", "name", "staminaregen") + "<br>" + languageManager.GetText(language, "stats", "desc", "staminaregen");
-        sanityTooltip.text = languageManager.GetText(language, "stats", "name", "sanity") + "<br>" + languageManager.GetText(language, "stats", "desc", "sanity");
-        defTooltip.text = languageManager.GetText(language, "stats", "name", "def") + "<br>" + languageManager.GetText(language, "stats", "desc", "def");
-        magicdefTooltip.text = languageManager.GetText(language, "stats", "name", "magicdef") + "<br>" + languageManager.GetText(language, "stats", "desc", "magicdef");
-        atkTooltip.text = languageManager.GetText(language, "stats", "name", "attack") + "<br>" + languageManager.GetText(language, "stats", "desc", "attack");
-        mpTooltip.text = languageManager.GetText(language, "stats", "name", "magicpower") + "<br>" + languageManager.GetText(language, "stats", "desc", "magicpower");
-        critchanceTooltip.text = languageManager.GetText(language, "stats", "name", "critchance") + "<br>" + languageManager.GetText(language, "stats", "desc", "critchance");
-        critdmgTooltip.text = languageManager.GetText(language, "stats", "name", "critdmg") + "<br>" + languageManager.GetText(language, "stats", "desc", "critdmg");
-        movspeedTooltip.text = languageManager.GetText(language, "stats", "name", "movspeed") + "<br>" + languageManager.GetText(language, "stats", "desc", "movspeed");
-        timingTooltip.text = languageManager.GetText(language, "stats", "name", "timing") + "<br>" + languageManager.GetText(language, "stats", "desc", "timing");
-        lifestealTooltip.text = languageManager.GetText(language, "stats", "name", "lifesteal") + "<br>" + languageManager.GetText(language, "stats", "desc", "lifesteal");
-        evasionTooltip.text = languageManager.GetText(language, "stats", "name", "evasion") + "<br>" + languageManager.GetText(language, "stats", "desc", "evasion");
-        accuracyTooltip.text = languageManager.GetText(language, "stats", "name", "accuracy") + "<br>" + languageManager.GetText(language, "stats", "desc", "accuracy");
+        hpTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "hp")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "hp"));
+        hpRegenTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "hpregen")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "hpregen"));
+        manaTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "mana")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "mana"));
+        manaRegenTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "manaregen")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "manaregen"));
+        staminaTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "stamina")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "stamina"));
+        staminaRegenTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "staminaregen")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "staminaregen"));
+        sanityTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "sanity")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "sanity"));
+        defTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "def")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "def"));
+        magicdefTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "magicdef")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "magicdef"));
+        atkTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "attack")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "attack"));
+        mpTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "magicpower")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "magicpower"));
+        critchanceTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "critchance")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "critchance"));
+        critdmgTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "critdmg")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "critdmg"));
+        movspeedTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "movspeed")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "movspeed"));
+        timingTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "timing")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "timing"));
+        lifestealTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "lifesteal")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "lifesteal"));
+        evasionTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "evasion")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "evasion"));
+        accuracyTooltip.text = languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "accuracy")) + "<br>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "desc", "accuracy"));
     }
 }
