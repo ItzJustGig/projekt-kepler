@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 266200e1cfac25c4aa7c5a406a38c002, type: 3}
-  m_Name: magic
+  m_Name: recov mana
   m_EditorClassIdentifier: 
-  type: 1
+  type: 5
   playerStat: 1
-  flatValue: 35
+  flatValue: 4
   curHp: 0
   missHp: 0
   maxHp: 0

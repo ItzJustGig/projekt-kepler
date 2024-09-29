@@ -18,30 +18,6 @@ public class Summon : ScriptableObject
     Unit owner;
     public Unit target;
 
-    public string GetLanguage()
-    {
-        if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
-            return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().language;
-        else if (GameObject.Find("GameManager").GetComponent<FightLang>())
-            return GameObject.Find("GameManager").GetComponent<FightLang>().language;
-        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
-            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().language;
-        else
-            return null;
-    }
-
-    public LanguageManager GetLanguageMan()
-    {
-        if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
-            return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().languageManager;
-        else if (GameObject.Find("GameManager").GetComponent<FightLang>())
-            return GameObject.Find("GameManager").GetComponent<FightLang>().languageManager;
-        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
-            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().languageManager;
-        else
-            return null;
-    }
-
     public Summon ReturnSummon()
     {
         Summon summon = CreateInstance<Summon>();
@@ -116,7 +92,7 @@ public class Summon : ScriptableObject
         {
             temp.Remove(0, 2);
         }
-        text.Append("<color=#00ff11>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "hp")) + ": " + temp + "</color>").AppendLine();
+        text.Append($"<color={GetColor("health")}>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "hp")) + ": " + temp + "</color>").AppendLine();
 
         temp = stats.atkScale.GetStatScaleInfo();
         if (stats.atkScale.flatValue <= 0)
@@ -124,7 +100,7 @@ public class Summon : ScriptableObject
             temp.Remove(0, 2);
         }
 
-        text.Append("<color=#ffaa00>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "attackpower")) + ": " + temp + "</color>").AppendLine();
+        text.Append($"<color={GetColor("attack")}>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "attackpower")) + ": " + temp + "</color>").AppendLine();
 
         return text;
     }
@@ -133,8 +109,8 @@ public class Summon : ScriptableObject
     {
         StringBuilder text = new StringBuilder();
 
-        text.Append("<color=#00ff11>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "hp")) + ": " + (stats.hpScale.SetScale(owner.SetModifiers(), owner) + stats.hpScale.flatValue).ToString("0") + "</color>").AppendLine();
-        text.Append("<color=#ffaa00>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "attackpower")) + ": " + (stats.atkScale.SetScale(owner.SetModifiers(), owner) + stats.atkScale.flatValue).ToString("0.0") + "</color>").AppendLine();
+        text.Append($"<color={GetColor("health")}>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "hp")) + ": " + (stats.hpScale.SetScale(owner.SetModifiers(), owner) + stats.hpScale.flatValue).ToString("0") + "</color>").AppendLine();
+        text.Append($"<color={GetColor("attack")}>" + languageManager.GetText(new ArgumentsFetch(language, "stats", "name", "attackpower")) + ": " + (stats.atkScale.SetScale(owner.SetModifiers(), owner) + stats.atkScale.flatValue).ToString("0.0") + "</color>").AppendLine();
 
         return text;
     }
@@ -168,7 +144,7 @@ public class Summon : ScriptableObject
     {
         StringBuilder text = new StringBuilder();
         text.Append("<size=25><align=center>").Append(languageManager.GetText(new ArgumentsFetch(language, "summon", "name", name))).Append("</align></size>").AppendLine();
-        text.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(new ArgumentsFetch(language, "summon", "title", ""))).Append("</color></align></size>").AppendLine().AppendLine();
+        text.Append($"<size=19><align=center><color={GetColor("origin")}>").Append(languageManager.GetText(new ArgumentsFetch(language, "summon", "title", ""))).Append("</color></align></size>").AppendLine().AppendLine();
 
         text.Append(languageManager.GetText(new ArgumentsFetch(language, "summon", "descsum", "")));
 
@@ -177,29 +153,29 @@ public class Summon : ScriptableObject
         switch (move.dmgType)
         {
             case DmgType.PHYSICAL:
-                colour = "ffaa00";
+                colour = GetColor("attack");
                 whatis = "physic";
                 break;
             case DmgType.MAGICAL:
-                colour = "1a66ff";
+                colour = GetColor("magic");
                 whatis = "magic";
                 break;
             case DmgType.TRUE:
-                colour = "a6a6a6";
+                colour = GetColor("true");
                 whatis = "trued";
                 break;
             case DmgType.HEAL:
-                colour = "00ff11";
+                colour = GetColor("healthregen");
                 whatis = "heal";
                 break;
             case DmgType.SHIELD:
-                colour = "787878";
+                colour = GetColor("shield");
                 whatis = "shield";
                 break;
         }
         whatis = languageManager.GetText(new ArgumentsFetch(language, "summon", whatis));
 
-        text.Replace("%c%", "<color=#" + colour + ">");
+        text.Replace("%c%", "<color=" + colour + ">");
         text.Replace("%c/%", "</color>");
         text.Replace("%dmg%", stats.atkPower.ToString("0.0"));
 

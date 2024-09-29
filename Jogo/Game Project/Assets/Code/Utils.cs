@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class Utils
 {
+    public enum BattleState { START, PLAYERTURN, ENEMYTURN, CHANGETURN, ALLYKILLED, ENEMYKILLED, WIN, LOSE, TIE }
     public enum DmgType { PHYSICAL, MAGICAL, TRUE, SANITY, HEAL, HEALMANA, HEALSTAMINA, HEALSANITY, SHIELD, ULTENEGY };
 
     public struct DMG
@@ -201,17 +203,33 @@ public static class Utils
 
     private static readonly Dictionary<string, string> Colors = new Dictionary<string, string>
     {
-        {"physical", "#ffaa00"},
-        {"magical", "#1a66ff"},
         {"true", "#a6a6a6"},
-        {"heal", "#00ff11"},
+        {"healmana", "#6698fb"},
+        {"healstamina", "#ebdb28"},
+        {"healsanity", "#d175ff"},
         {"shield", "#787878"},
-        {"sanity", "#ffaa00"},
-        {"crit", "#f75145"},
-        {"enchant", "#CC66FF"},
+        {"ult", "#d0d0d0"},
+        {"sanity", "#CC66FF"},     
         {"summon", "#B266FF"},
-    }; 
-    
+        {"origin", "#B2B2B2"},
+        {"health", "#00ff11"},
+        {"healthregen", "#2ffa3d"},
+        {"mana", "#568dfb"},
+        {"stamina", "#f0dd0a"},
+        {"attack", "#ffaa00"},
+        {"magic", "#4d7ee1"},
+        {"def", "#937264"},
+        {"magicdef", "#946ACD"},
+        {"timing", "#0984db"},
+        {"speed", "#0095ff"},
+        {"crit", "#f75145"},
+        {"lifesteal", "#078f10"},
+        {"evasion", "#4FA5A0"},
+        {"accuracy", "#e04419"},
+        {"defpen", "#c87c32"},
+        {"magicpen", "#8360B3"},
+    };
+    //GetColor("")
     public static string GetColor(string key)
     {
         if (Colors.TryGetValue(key, out var color))
@@ -219,6 +237,11 @@ public static class Utils
             return color;
         }
 
+        return "#ffffff";
+    }
+    
+    public static string GetColor()
+    {
         return "#ffffff";
     }
 }

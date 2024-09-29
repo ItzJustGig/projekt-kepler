@@ -154,7 +154,7 @@ public class Moves : ScriptableObject
         ArgumentsFetch fetch = new ArgumentsFetch(language, "showdetail", whatIs, "");
         builder.Append(languageManager.GetText(fetch));
 
-        builder.Replace("%c%", "<color=#" + colour + ">");
+        builder.Replace("%c%", "<color=" + colour + ">");
         builder.Replace("%c/%", "</color>");
         builder.Replace("%val%", val.ToString());
         builder.Replace("%n%", val.ToString());
@@ -172,13 +172,13 @@ public class Moves : ScriptableObject
         return builder;
     }
 
-    private StringBuilder GetDmg(LanguageManager languageManager, string language, string whatIs, float val, string colour, float scale)
+    /*private StringBuilder GetDmg(LanguageManager languageManager, string language, string whatIs, float val, string colour, float scale)
     {
         StringBuilder builder = new StringBuilder();
         ArgumentsFetch fetch = new ArgumentsFetch(language, "showdetail", whatIs, "");
         builder.Append(languageManager.GetText(fetch));
 
-        builder.Replace("%c%", "<color=#" + colour + ">");
+        builder.Replace("%c%", "<color=" + colour + ">");
         builder.Replace("%c/%", "</color>");
 
         if (scale != 0)
@@ -189,7 +189,7 @@ public class Moves : ScriptableObject
         builder = Dotdmg.ReplaceDot(builder, whatIs, dot);
 
         return builder;
-    }
+    }*/
 
     private StringBuilder GetDmg(LanguageManager languageManager, string language, string whatIs, float val, string colour, string scale)
     {
@@ -197,7 +197,7 @@ public class Moves : ScriptableObject
         ArgumentsFetch fetch = new ArgumentsFetch(language, "showdetail", whatIs, "");
         builder.Append(languageManager.GetText(fetch));
 
-        builder.Replace("%c%", "<color=#" + colour + ">");
+        builder.Replace("%c%", "<color=" + colour + ">");
         builder.Replace("%c/%", "</color>");
 
         if (scale != "")
@@ -216,7 +216,7 @@ public class Moves : ScriptableObject
         ArgumentsFetch fetch = new ArgumentsFetch(language, "showdetail", whatIs, "");
         builder.Append(languageManager.GetText(fetch));
 
-        builder.Replace("%c%", "<color=#" + colour + ">");
+        builder.Replace("%c%", "<color=" + colour + ">");
         builder.Replace("%c/%", "</color>");
         builder.Replace("%val%", scale);
 
@@ -231,7 +231,7 @@ public class Moves : ScriptableObject
         ArgumentsFetch fetch = new ArgumentsFetch(language, "showdetail", whatIs, "");
         builder.Append(languageManager.GetText(fetch));
 
-        builder.Replace("%c%", "<color=#" + colour + ">");
+        builder.Replace("%c%", "<color=" + colour + ">");
         builder.Replace("%c/%", "</color>");
 
         return builder;
@@ -260,7 +260,7 @@ public class Moves : ScriptableObject
                 builder.Replace("%val%", val.ToString("0%"));
                 fetch = new ArgumentsFetch(language, "showdetail", "of", "");
                 builder.Replace("%ao%", languageManager.GetText(fetch));
-                builder.Replace("%c%", "<color=#ffaa00>");
+                builder.Replace("%c%", $"<color={GetColor("attack")}>");
                 builder.Replace("%c/%", "</color>");
                 break;
             case HealFromDmg.MAGICAL:
@@ -269,7 +269,7 @@ public class Moves : ScriptableObject
                 builder.Replace("%val%", val.ToString("0%"));
                 fetch = new ArgumentsFetch(language, "showdetail", "of", "");
                 builder.Replace("%ao%", languageManager.GetText(fetch));
-                builder.Replace("%c%", "<color=#1a66ff>");
+                builder.Replace("%c%", $"<color={GetColor("magic")}>");
                 builder.Replace("%c/%", "</color>");
                 break;
             case HealFromDmg.TRUE:
@@ -278,7 +278,7 @@ public class Moves : ScriptableObject
                 builder.Replace("%val%", val.ToString("0%"));
                 fetch = new ArgumentsFetch(language, "showdetail", "of", "");
                 builder.Replace("%ao%", languageManager.GetText(fetch));
-                builder.Replace("%c%", "<color=#a6a6a6>");
+                builder.Replace("%c%", $"<color={GetColor("true")}>");
                 builder.Replace("%c/%", "</color>");
                 break;
             case HealFromDmg.PHYSICAL_MAGICAL:
@@ -287,7 +287,7 @@ public class Moves : ScriptableObject
                 builder.Replace("%val%", val.ToString("0%"));
                 fetch = new ArgumentsFetch(language, "showdetail", "of", "");
                 builder.Replace("%ao%", languageManager.GetText(fetch));
-                builder.Replace("%c%", "<color=#ffaa00>");
+                builder.Replace("%c%", $"<color={GetColor("attack")}>");
                 builder.Replace("%c/%", "</color>");
 
                 fetch = new ArgumentsFetch(language, "showdetail", "and", "");
@@ -297,7 +297,7 @@ public class Moves : ScriptableObject
                 builder.Replace("%type%", languageManager.GetText(fetch));
                 builder.Replace("%val%", "");
                 builder.Replace("%ao%", "");
-                builder.Replace("%c%", "<color=#1a66ff>");
+                builder.Replace("%c%", $"<color={GetColor("magic")}>");
                 builder.Replace("%c/%", "</color>");
                 break;
             case HealFromDmg.PHYSICAL_TRUE:
@@ -306,7 +306,7 @@ public class Moves : ScriptableObject
                 builder.Replace("%val%", val.ToString("0%"));
                 fetch = new ArgumentsFetch(language, "showdetail", "of", "");
                 builder.Replace("%ao%", languageManager.GetText(fetch));
-                builder.Replace("%c%", "<color=#ffaa00>");
+                builder.Replace("%c%", $"<color={GetColor("attack")}>");
                 builder.Replace("%c/%", "</color>");
 
                 fetch = new ArgumentsFetch(language, "showdetail", "and", "");
@@ -317,7 +317,7 @@ public class Moves : ScriptableObject
                 builder.Replace("%val%", val.ToString("0%"));
                 fetch = new ArgumentsFetch(language, "showdetail", "of", "");
                 builder.Replace("%ao%", languageManager.GetText(fetch));
-                builder.Replace("%c%", "<color=#a6a6a6>");
+                builder.Replace("%c%", $"<color={GetColor("true")}>");
                 builder.Replace("%c/%", "</color>");
                 break;
             case HealFromDmg.MAGICAL_TRUE:
@@ -326,7 +326,7 @@ public class Moves : ScriptableObject
                 builder.Replace("%val%", val.ToString("0%"));
                 fetch = new ArgumentsFetch(language, "showdetail", "of", "");
                 builder.Replace("%ao%", languageManager.GetText(fetch));
-                builder.Replace("%c%", "<color=#1a66ff>");
+                builder.Replace("%c%", $"<color={GetColor("magic")}>");
                 builder.Replace("%c/%", "</color>");
 
                 fetch = new ArgumentsFetch(language, "showdetail", "and", "");
@@ -336,7 +336,7 @@ public class Moves : ScriptableObject
                 builder.Replace("%type%", languageManager.GetText(fetch));
                 builder.Replace("%val%", "");
                 builder.Replace("%ao%", "");
-                builder.Replace("%c%", "<color=#a6a6a6>");
+                builder.Replace("%c%", $"<color={GetColor("true")}>");
                 builder.Replace("%c/%", "</color>");
                 break;
             case HealFromDmg.ALL:
@@ -345,36 +345,12 @@ public class Moves : ScriptableObject
                 builder.Replace("%val%", val.ToString("0%"));
                 fetch = new ArgumentsFetch(language, "showdetail", "of", "");
                 builder.Replace("%ao%", languageManager.GetText(fetch));
-                builder.Replace("%c%", "<color=#f75145>");
+                builder.Replace("%c%", $"<color={GetColor("crit")}>");
                 builder.Replace("%c/%", "</color>");
                 break;
         }
 
         return builder;
-    }
-
-    private string GetLanguage()
-    {
-        if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
-            return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().language;
-        else if (GameObject.Find("GameManager").GetComponent<FightLang>())
-            return GameObject.Find("GameManager").GetComponent<FightLang>().language;
-        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
-            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().language;
-        else
-            return null;
-    }
-
-    private LanguageManager GetLanguageMan()
-    {
-        if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
-            return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().languageManager;
-        else if (GameObject.Find("GameManager").GetComponent<FightLang>())
-            return GameObject.Find("GameManager").GetComponent<FightLang>().languageManager;
-        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
-            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().languageManager;
-        else
-            return null;
     }
 
     private StringBuilder GetDmgMoveValue()
@@ -400,7 +376,7 @@ public class Moves : ScriptableObject
                             temp.Append(a.GetStatScaleInfo());
 
                 }
-                builder.Append(GetDmg(languageManager, language, "dealphysicdmg", "ffaa00", val.ToString("0.0")+ temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "dealphysicdmg", GetColor("attack"), val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (magicDmg > 0 || HasScale(DmgType.MAGICAL))
@@ -416,7 +392,7 @@ public class Moves : ScriptableObject
                         else
                             temp.Append(a.GetStatScaleInfo());
                 }
-                builder.Append(GetDmg(languageManager, language, "dealmagicdmg", "1a66ff", val.ToString("0.0")+ temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "dealmagicdmg", GetColor("magic"), val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (trueDmg > 0 || HasScale(DmgType.TRUE))
@@ -432,7 +408,7 @@ public class Moves : ScriptableObject
                         else
                             temp.Append(a.GetStatScaleInfo());
                 }
-                builder.Append(GetDmg(languageManager, language, "dealtruedmg", "a6a6a6", val.ToString("0.0")+ temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "dealtruedmg", GetColor("true"), val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (sanityDmg > 0 || HasScale(DmgType.SANITY))
@@ -448,7 +424,7 @@ public class Moves : ScriptableObject
                         else
                             temp.Append(a.GetStatScaleInfo());
                 }
-                builder.Append(GetDmg(languageManager, language, "dealsanitydmg", "b829ff", val.ToString("0.0")+ temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "dealsanitydmg", GetColor("sanity"), val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (heal > 0 || (!(healFromDmgType is HealFromDmg.NONE) && healFromDmg > 0) || HasScale(DmgType.HEAL))
@@ -469,7 +445,7 @@ public class Moves : ScriptableObject
                     temp.Append(GetHealFromDmg(languageManager, language, healFromDmg, healFromDmgType));
                 }
 
-                builder.Append(GetDmg(languageManager, language, "heal", "00ff11", val.ToString("0.0")+ temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "heal", GetColor("healthregen"), val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (healMana > 0 || HasScale(DmgType.HEALMANA))
@@ -485,7 +461,7 @@ public class Moves : ScriptableObject
                         else
                             temp.Append(a.GetStatScaleInfo());
                 }
-                builder.Append(GetDmg(languageManager, language, "healmana", "1e68fc", val.ToString("0.0")+ temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "healmana", GetColor("healmana"), val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (healStamina > 0 || HasScale(DmgType.HEALSTAMINA))
@@ -501,7 +477,7 @@ public class Moves : ScriptableObject
                         else
                             temp.Append(a.GetStatScaleInfo());
                 }
-                builder.Append(GetDmg(languageManager, language, "healstamina", "f0dd0a", val.ToString("0.0")+ temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "healstamina", GetColor("healstamina"), val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (healSanity > 0 || HasScale(DmgType.HEALSANITY))
@@ -517,7 +493,7 @@ public class Moves : ScriptableObject
                         else
                             temp.Append(a.GetStatScaleInfo());
                 }
-                builder.Append(GetDmg(languageManager, language, "healsanity", "b641f0", val.ToString("0.0")+ temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "healsanity", GetColor("healsanity"), val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
 
             if (shield > 0 || HasScale(DmgType.SHIELD))
@@ -533,7 +509,7 @@ public class Moves : ScriptableObject
                         else
                             temp.Append(a.GetStatScaleInfo());
                 }
-                builder.Append(GetDmg(languageManager, language, "shield", "787878", val.ToString("0.0")+ temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "shield", GetColor("shield"), val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
             
             if (ultEnergy > 0 || HasScale(DmgType.ULTENEGY))
@@ -549,7 +525,7 @@ public class Moves : ScriptableObject
                         else
                             temp.Append(a.GetStatScaleInfo());
                 }
-                builder.Append(GetDmg(languageManager, language, "ultenergy", "d0d0d0", val.ToString("0.0")+ temp.ToString())).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "ultenergy", GetColor("ult"), val.ToString("0.0")+ temp.ToString())).AppendLine();
             }
         } catch
         {
@@ -590,7 +566,7 @@ public class Moves : ScriptableObject
                 if (a.type is DmgType.PHYSICAL)
                     temp.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetDmg(languageManager, language, "dealphysicdmg", phyDmg, "ffaa00", temp.ToString()));
+            builder.Append(GetDmg(languageManager, language, "dealphysicdmg", phyDmg, GetColor("attack"), temp.ToString()));
             if (!isActive)
                 builder.AppendLine();
             else
@@ -606,7 +582,7 @@ public class Moves : ScriptableObject
                 if (a.type is DmgType.MAGICAL)
                     temp.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetDmg(languageManager, language, "dealmagicdmg", magicDmg, "1a66ff", temp.ToString()));
+            builder.Append(GetDmg(languageManager, language, "dealmagicdmg", magicDmg, GetColor("magic"), temp.ToString()));
             if (!isActive)
                 builder.AppendLine();
             else
@@ -622,7 +598,7 @@ public class Moves : ScriptableObject
                 if (a.type is DmgType.TRUE)
                     temp.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetDmg(languageManager, language, "dealtruedmg", trueDmg, "a6a6a6", temp.ToString()));
+            builder.Append(GetDmg(languageManager, language, "dealtruedmg", trueDmg, GetColor("true"), temp.ToString()));
             if (!isActive)
                 builder.AppendLine();
             else
@@ -638,7 +614,7 @@ public class Moves : ScriptableObject
                 if (a.type is DmgType.SANITY)
                     temp.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetDmg(languageManager, language, "dealsanitydmg", sanityDmg, "b829ff", temp.ToString()));
+            builder.Append(GetDmg(languageManager, language, "dealsanitydmg", sanityDmg, GetColor("sanity"), temp.ToString()));
             if (!isActive)
                 builder.AppendLine();
             else
@@ -660,7 +636,7 @@ public class Moves : ScriptableObject
                 temp.Append(GetHealFromDmg(languageManager, language, healFromDmg, healFromDmgType));
             }
 
-            builder.Append(GetDmg(languageManager, language, "heal", heal, "00ff11", temp.ToString()));
+            builder.Append(GetDmg(languageManager, language, "heal", heal, GetColor("healthregen"), temp.ToString()));
             if (!isActive)
                 builder.AppendLine();
             else
@@ -676,7 +652,7 @@ public class Moves : ScriptableObject
                 if (a.type is DmgType.HEALMANA)
                     temp.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetDmg(languageManager, language, "healmana", healMana, "1e68fc", temp.ToString()));
+            builder.Append(GetDmg(languageManager, language, "healmana", healMana, GetColor("healmana"), temp.ToString()));
             if (!isActive)
                 builder.AppendLine();
             else
@@ -692,7 +668,7 @@ public class Moves : ScriptableObject
                 if (a.type is DmgType.HEALSTAMINA)
                     temp.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetDmg(languageManager, language, "healstamina", healStamina, "f0dd0a", temp.ToString()));
+            builder.Append(GetDmg(languageManager, language, "healstamina", healStamina, GetColor("healstamina"), temp.ToString()));
             if (!isActive)
                 builder.AppendLine();
             else
@@ -708,7 +684,7 @@ public class Moves : ScriptableObject
                 if (a.type is DmgType.HEALSANITY)
                     temp.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetDmg(languageManager, language, "healsanity", healSanity, "b641f0", temp.ToString()));
+            builder.Append(GetDmg(languageManager, language, "healsanity", healSanity, GetColor("healsanity"), temp.ToString()));
             if (!isActive)
                 builder.AppendLine();
             else
@@ -724,7 +700,7 @@ public class Moves : ScriptableObject
                 if (a.type is DmgType.SHIELD)
                     temp.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetDmg(languageManager, language, "shield", shield, "787878", temp.ToString()));
+            builder.Append(GetDmg(languageManager, language, "shield", shield, GetColor("shield"), temp.ToString()));
             if (!isActive)
                 builder.AppendLine();
             else
@@ -740,7 +716,7 @@ public class Moves : ScriptableObject
                 if (a.type is DmgType.ULTENEGY)
                     temp.Append(a.GetStatScaleInfo());
             }
-            builder.Append(GetDmg(languageManager, language, "ultenergy", ultEnergy, "d0d0d0", temp.ToString()));
+            builder.Append(GetDmg(languageManager, language, "ultenergy", ultEnergy, GetColor("ult"), temp.ToString()));
             if (!isActive)
                 builder.AppendLine();
             else
@@ -760,42 +736,42 @@ public class Moves : ScriptableObject
         switch (type)
         {
             case MoveType.BASIC:
-                color = "#ffaa00";
+                color = GetColor("attack");
                 ArgumentsFetch fetch = new ArgumentsFetch(language, "moves", "type", "basic");
                 builder.Append(languageManager.GetText(fetch));
                 break;
             case MoveType.PHYSICAL:
-                color = "#ffaa00";
+                color = GetColor("attack");
                 fetch = new ArgumentsFetch(language, "moves", "type", "physical");
                 builder.Append(languageManager.GetText(fetch));
                 break;
             case MoveType.MAGICAL:
-                color = "#1a66ff";
+                color = GetColor("magic");
                 fetch = new ArgumentsFetch(language, "moves", "type", "magic");
                 builder.Append(languageManager.GetText(fetch));
                 break;
             case MoveType.RANGED:
-                color = "#f75145";
+                color = GetColor("crit");
                 fetch = new ArgumentsFetch(language, "moves", "type", "ranged");
                 builder.Append(languageManager.GetText(fetch));
                 break;
             case MoveType.ENCHANT:
-                color = "#CC66FF";
+                color = GetColor("enchant");
                 fetch = new ArgumentsFetch(language, "moves", "type", "enchant");
                 builder.Append(languageManager.GetText(fetch));
                 break;
             case MoveType.DEFFENCIVE:
-                color = "#787878";
+                color = GetColor("shield");
                 fetch = new ArgumentsFetch(language, "moves", "type", "defence");
                 builder.Append(languageManager.GetText(fetch));
                 break;
             case MoveType.SUPPORT:
-                color = "#00ff11";
+                color = GetColor("health");
                 fetch = new ArgumentsFetch(language, "moves", "type", "support");
                 builder.Append(languageManager.GetText(fetch));
                 break;
             case MoveType.SUMMON:
-                color = "#B266FF";
+                color = GetColor("summon");
                 fetch = new ArgumentsFetch(language, "moves", "type", "summon");
                 builder.Append(languageManager.GetText(fetch));
                 break;
@@ -856,8 +832,8 @@ public class Moves : ScriptableObject
 
         if (!isUlt)
         {
-            builder.Append(GetDmg(languageManager, language, "mana", manaCost*manaCostPer, "2d71fa")).AppendLine();
-            builder.Append(GetDmg(languageManager, language, "stamina", staminaCost*staminaCostPer, "ebdb28")).AppendLine();
+            builder.Append(GetDmg(languageManager, language, "mana", manaCost*manaCostPer, GetColor("mana"))).AppendLine();
+            builder.Append(GetDmg(languageManager, language, "stamina", staminaCost*staminaCostPer, GetColor("stamina"))).AppendLine();
         }
 
         if (cooldown > 0)
@@ -871,31 +847,31 @@ public class Moves : ScriptableObject
             
 
         if (hitTime > 1)
-            builder.Append(GetDmg(languageManager, language, "hitimes", hitTime, "FFFFFF")).AppendLine();
+            builder.Append(GetDmg(languageManager, language, "hitimes", hitTime, GetColor())).AppendLine();
 
-        builder.Append(GetDmg(languageManager, language, "priority", priority, "FFFFFF")).AppendLine();
+        builder.Append(GetDmg(languageManager, language, "priority", priority, GetColor())).AppendLine();
 
         if (critChanceBonus != 0)
-            builder.Append(GetDmg(languageManager, language, "bonuscritchance", (critChanceBonus * 100), "f75145")).AppendLine();
+            builder.Append(GetDmg(languageManager, language, "bonuscritchance", (critChanceBonus * 100), GetColor("crit"))).AppendLine();
 
         if (critDmgBonus != 0)
-            builder.Append(GetDmg(languageManager, language, "bonuscritdmg", (critDmgBonus * 100), "f75145")).AppendLine();
+            builder.Append(GetDmg(languageManager, language, "bonuscritdmg", (critDmgBonus * 100), GetColor("crit"))).AppendLine();
 
         if (uses > -1)
-            builder.Append(GetDmg(languageManager, language, "uses", uses, "FFFFFF")).AppendLine();
+            builder.Append(GetDmg(languageManager, language, "uses", uses, GetColor())).AppendLine();
 
         if (blocksPhysical || blocksMagical || blocksRanged)
         {
             builder.Append("<s><align=center>").Append("|                 |").Append("</align></s>").AppendLine();
 
             if (blocksPhysical)
-                builder.Append(GetDmg(languageManager, language, "blockphysic", "ffaa00")).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "blockphysic", GetColor("attack"))).AppendLine();
 
             if (blocksMagical)
-                builder.Append(GetDmg(languageManager, language, "blockmagic", "1a66ff")).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "blockmagic", GetColor("magic"))).AppendLine();
 
             if (blocksRanged)
-                builder.Append(GetDmg(languageManager, language, "blockranged", "f75145")).AppendLine();
+                builder.Append(GetDmg(languageManager, language, "blockranged", GetColor("crit"))).AppendLine();
         }   
 
         if (statModUser || statModEnemy)
@@ -966,19 +942,19 @@ public class Moves : ScriptableObject
         switch (summon.move.dmgType)
         {
             case DmgType.PHYSICAL:
-                temp.Append(GetSummonInfo(languageManager, language, "ffaa00", "physic"));
+                temp.Append(GetSummonInfo(languageManager, language, GetColor("attack"), "physic"));
                 break;
             case DmgType.MAGICAL:
-                temp.Append(GetSummonInfo(languageManager, language, "1a66ff", "magic"));
+                temp.Append(GetSummonInfo(languageManager, language, GetColor("magic"), "magic"));
                 break;
             case DmgType.TRUE:
-                temp.Append(GetSummonInfo(languageManager, language, "a6a6a6", "trued"));
+                temp.Append(GetSummonInfo(languageManager, language, GetColor("true"), "trued"));
                 break;
             case DmgType.SHIELD:
-                temp.Append(GetSummonInfo(languageManager, language, "787878", "shield"));
+                temp.Append(GetSummonInfo(languageManager, language, GetColor("shield"), "shield"));
                 break;
             case DmgType.HEAL:
-                temp.Append(GetSummonInfo(languageManager, language, "00ff11", "heal"));
+                temp.Append(GetSummonInfo(languageManager, language, GetColor("healthregen"), "heal"));
                 break;
         }
 
@@ -994,7 +970,7 @@ public class Moves : ScriptableObject
     public StringBuilder GetSummonInfo(LanguageManager languageManager, string language, string colour, string whatis)
     {
         StringBuilder summonaction = new StringBuilder();
-        summonaction.Append("<color=#" + colour + ">");
+        summonaction.Append("<color=" + colour + ">");
         ArgumentsFetch fetch = new ArgumentsFetch(language, "summon", whatis, "");
         summonaction.Append(languageManager.GetText(fetch));
         summonaction.Append("</color>");
@@ -1027,13 +1003,13 @@ public class Moves : ScriptableObject
             StringBuilder temp = new StringBuilder();
 
             if (blocksPhysical)
-                temp.Append(GetDmg(languageManager, language, "blockphysic", "ffaa00"));
+                temp.Append(GetDmg(languageManager, language, "blockphysic", GetColor("attack")));
 
             if (blocksMagical)
-                temp.Append(GetDmg(languageManager, language, "blockmagic", "1a66ff"));
+                temp.Append(GetDmg(languageManager, language, "blockmagic", GetColor("magic")));
 
             if (blocksRanged)
-                temp.Append(GetDmg(languageManager, language, "blockranged", "f75145"));
+                temp.Append(GetDmg(languageManager, language, "blockranged", GetColor("crit")));
 
             builder.Replace("%block%", temp.ToString());
 
@@ -1043,31 +1019,31 @@ public class Moves : ScriptableObject
             {
                 case MoveType.PHYSICAL:
                     temp.Append(languageManager.GetText(new ArgumentsFetch(language, "moves", "type", "physical")));
-                    temp.Replace("%c%", "<color=#ffaa00>");
+                    temp.Replace("%c%", $"<color={GetColor("attack")}>");
                     break;
                 case MoveType.MAGICAL:
                     temp.Append(languageManager.GetText(new ArgumentsFetch(language, "moves", "type", "magic")));
-                    temp.Replace("%c%", "<color=#1a66ff>");
+                    temp.Replace("%c%", $"<color={GetColor("magic")}>");
                     break;
                 case MoveType.RANGED:
                     temp.Append(languageManager.GetText(new ArgumentsFetch(language, "moves", "type", "ranged")));
-                    temp.Replace("%c%", "<color=#f75145>");
+                    temp.Replace("%c%", $"<color={GetColor("crit")}>");
                     break;
                 case MoveType.ENCHANT:
                     temp.Append(languageManager.GetText(new ArgumentsFetch(language, "moves", "type", "enchant")));
-                    temp.Replace("%c%", "<color=#CC66FF>");
+                    temp.Replace("%c%", $"<color={GetColor("sanity")}>");
                     break;
                 case MoveType.SUPPORT:
                     temp.Append(languageManager.GetText(new ArgumentsFetch(language, "moves", "type", "support")));
-                    temp.Replace("%c%", "<color=#00ff11>");
+                    temp.Replace("%c%", $"<color={GetColor("health")}>");
                     break;
                 case MoveType.DEFFENCIVE:
                     temp.Append(languageManager.GetText(new ArgumentsFetch(language, "moves", "type", "defence")));
-                    temp.Replace("%c%", "<color=#787878>");
+                    temp.Replace("%c%", $"<color={GetColor("shield")}>");
                     break;
                 case MoveType.SUMMON:
                     temp.Append(languageManager.GetText(new ArgumentsFetch(language, "moves", "type", "summon")));
-                    temp.Replace("%c%", "<color=#B266FF>");
+                    temp.Replace("%c%", $"<color={GetColor("summon")}>");
                     break;
             }
 

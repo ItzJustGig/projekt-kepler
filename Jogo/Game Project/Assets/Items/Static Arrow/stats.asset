@@ -9,26 +9,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7a8ba3995158df4ead858de29d095a6, type: 3}
-  m_Name: enya growth
+  m_Script: {fileID: 11500000, guid: 25cbb6c1520490c4cbe5c685482d1204, type: 3}
+  m_Name: stats
   m_EditorClassIdentifier: 
-  hp: 8.6
-  hpRegen: 0.45
-  mana: 9.8
-  manaRegen: 0.022
-  manaCost: 0.01
-  stamina: 4.3
-  staminaRegen: 0.0075
-  staminaCost: 0.01
+  flat: 1
+  time: -1
+  inTime: -1
+  chance: 1
+  hp: 0
+  hpRegen: 0
+  mana: 45
+  manaRegen: 0
+  manaCost: 0
+  stamina: 0
+  staminaRegen: 0
+  staminaCost: 0
   sanity: 0
-  atkDmg: 1.35
-  magicPower: 1.5
-  critChance: 0.0065
-  critDmg: 0.0058
-  dmgResis: 0.9
-  magicResis: 1.12
-  timing: 0.035
-  movSpeed: 3.7
+  atkDmg: 9
+  magicPower: 12
+  critChance: 0
+  critDmg: 0
+  dmgResis: 0
+  magicResis: 0
+  timing: 0
+  movSpeed: 0
   lifesteal: 0
   healBonus: 0
   shieldBonus: 0
@@ -37,4 +41,4 @@ MonoBehaviour:
   armourPen: 0
   magicPen: 0
   ultrate: 0
-  sizeMod: 0
+  size: 0

@@ -9919,6 +9919,7 @@ GameObject:
   - component: {fileID: 1001587210}
   - component: {fileID: 1001587211}
   - component: {fileID: 1001587212}
+  - component: {fileID: 1001587213}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -10173,6 +10174,18 @@ MonoBehaviour:
   resDrop: {fileID: 1724694635}
   fullscrnToggle: {fileID: 812547952}
   needHud: 1
+--- !u!114 &1001587213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001587204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26f1063ee1de79146a52edea74abae82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1027944590
 GameObject:
   m_ObjectHideFlags: 0

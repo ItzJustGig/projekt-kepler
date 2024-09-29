@@ -80,37 +80,13 @@ public class StatScale : ScriptableObject
         StringBuilder builder = new StringBuilder();
         builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", "statscale", "")));
 
-        builder.Replace("%c%", "<color=#" + colour + ">");
+        builder.Replace("%c%", "<color=" + colour + ">");
         builder.Replace("%c/%", "</color>");
         builder.Replace("%u%", onWho);
         builder.Replace("%n%", (statVal * 100).ToString());
         builder.Replace("%s%", languageManager.GetText(new ArgumentsFetch(language, "stats", "name", statName)));
 
         return builder;
-    }
-
-    private string GetLanguage()
-    {
-        if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
-            return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().language;
-        else if (GameObject.Find("GameManager").GetComponent<FightLang>())
-            return GameObject.Find("GameManager").GetComponent<FightLang>().language;
-        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
-            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().language;
-        else
-            return null;
-    }
-
-    private LanguageManager GetLanguageMan()
-    {
-        if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
-            return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().languageManager;
-        else if (GameObject.Find("GameManager").GetComponent<FightLang>())
-            return GameObject.Find("GameManager").GetComponent<FightLang>().languageManager;
-        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
-            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().languageManager;
-        else
-            return null;
     }
 
     public StringBuilder GetStatScaleInfo()
@@ -131,67 +107,67 @@ public class StatScale : ScriptableObject
             builder.Append(flatValue);
 
         if (curHp > 0)
-            builder.Append(GetStat(languageManager, language, "curhp", curHp, "00ff11", onWho));
+            builder.Append(GetStat(languageManager, language, "curhp", curHp, GetColor("health"), onWho));
 
         if (missHp > 0)
-            builder.Append(GetStat(languageManager, language, "misshp", missHp, "00ff11", onWho));
+            builder.Append(GetStat(languageManager, language, "misshp", missHp, GetColor("health"), onWho));
 
         if (maxHp > 0)
-            builder.Append(GetStat(languageManager, language, "maxhp", maxHp, "00ff11", onWho));
+            builder.Append(GetStat(languageManager, language, "maxhp", maxHp, GetColor("health"), onWho));
 
         if (hpRegen > 0)
-            builder.Append(GetStat(languageManager, language, "hpregen", hpRegen, "2ffa3d", onWho));
+            builder.Append(GetStat(languageManager, language, "hpregen", hpRegen, GetColor("healthregen"), onWho));
 
         if (curMana > 0)
-            builder.Append(GetStat(languageManager, language, "curmana", curMana, "2d71fa", onWho));
+            builder.Append(GetStat(languageManager, language, "curmana", curMana, GetColor("mana"), onWho));
 
         if (missMana > 0)
-            builder.Append(GetStat(languageManager, language, "missmana", missMana, "2d71fa", onWho));
+            builder.Append(GetStat(languageManager, language, "missmana", missMana, GetColor("mana"), onWho));
 
         if (maxMana > 0)
-            builder.Append(GetStat(languageManager, language, "maxmana", maxMana, "2d71fa", onWho));
+            builder.Append(GetStat(languageManager, language, "maxmana", maxMana, GetColor("mana"), onWho));
 
         if (manaRegen > 0)
-            builder.Append(GetStat(languageManager, language, "manaregen", manaRegen, "2d71fa", onWho));
+            builder.Append(GetStat(languageManager, language, "manaregen", manaRegen, GetColor("healmana"), onWho));
 
         if (curStamina > 0)
-            builder.Append(GetStat(languageManager, language, "curstamina", curStamina, "f0dd0a", onWho));
+            builder.Append(GetStat(languageManager, language, "curstamina", curStamina, GetColor("stamina"), onWho));
 
         if (missStamina > 0)
-            builder.Append(GetStat(languageManager, language, "missstamina", missStamina, "f0dd0a", onWho));
+            builder.Append(GetStat(languageManager, language, "missstamina", missStamina, GetColor("stamina"), onWho));
 
         if (maxStamina > 0)
-            builder.Append(GetStat(languageManager, language, "maxstamina", maxStamina, "f0dd0a", onWho));
+            builder.Append(GetStat(languageManager, language, "maxstamina", maxStamina, GetColor("stamina"), onWho));
 
         if (staminaRegen > 0)
-            builder.Append(GetStat(languageManager, language, "staminaregen", staminaRegen, "ebdb28", onWho));
+            builder.Append(GetStat(languageManager, language, "staminaregen", staminaRegen, GetColor("healstamina"), onWho));
 
         if (curSanity > 0)
-            builder.Append(GetStat(languageManager, language, "cursanity", curSanity, "b641f0", onWho));
+            builder.Append(GetStat(languageManager, language, "cursanity", curSanity, GetColor("sanity"), onWho));
 
         if (missSanity > 0)
-            builder.Append(GetStat(languageManager, language, "misssanity", missSanity, "b641f0", onWho));
+            builder.Append(GetStat(languageManager, language, "misssanity", missSanity, GetColor("sanity"), onWho));
 
         if (maxSanity > 0)
-            builder.Append(GetStat(languageManager, language, "maxsanity", maxSanity, "b641f0", onWho));
+            builder.Append(GetStat(languageManager, language, "maxsanity", maxSanity, GetColor("sanity"), onWho));
 
         if (atkDmg > 0)
-            builder.Append(GetStat(languageManager, language, "attack", atkDmg, "ffaa00", onWho));
+            builder.Append(GetStat(languageManager, language, "attack", atkDmg, GetColor("attack"), onWho));
 
         if (magicPower > 0)
-            builder.Append(GetStat(languageManager, language, "magicpower", magicPower, "1a66ff", onWho));
+            builder.Append(GetStat(languageManager, language, "magicpower", magicPower, GetColor("magic"), onWho));
 
         if (dmgResis > 0)
-            builder.Append(GetStat(languageManager, language, "def", dmgResis, "937264", onWho));
+            builder.Append(GetStat(languageManager, language, "def", dmgResis, GetColor("def"), onWho));
 
         if (magicResis > 0)
-            builder.Append(GetStat(languageManager, language, "magicdef", magicResis, "946ACD", onWho));
+            builder.Append(GetStat(languageManager, language, "magicdef", magicResis, GetColor("magicdef"), onWho));
 
         if (timing > 0)
-            builder.Append(GetStat(languageManager, language, "timing", timing, "0984db", onWho));
+            builder.Append(GetStat(languageManager, language, "timing", timing, GetColor("timing"), onWho));
 
         if (movSpeed > 0)
-            builder.Append(GetStat(languageManager, language, "movspeed", movSpeed, "0095ff", onWho));
+            builder.Append(GetStat(languageManager, language, "movspeed", movSpeed, GetColor("speed"), onWho));
 
 
         return builder;

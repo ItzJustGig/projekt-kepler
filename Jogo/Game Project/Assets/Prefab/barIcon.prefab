@@ -88,8 +88,8 @@ MonoBehaviour:
     moves</color>\r\n<s><align=center>|                 |</align></s>\r\nTake <color=#b829ff>1-2
     sanity damage</color> each turn.\r\n<s><align=center>|                 |</align></s>\r\n
     <color=#2ffa3d>-20% Health Regen</color>, <color=#ffaa00>-10% Attack Damage</color>,
-    <color=#1a66ff>-10% Magic Power</color>, <color=#e04419>-10% Accuracy</color>
-    and <color=#00ff11>-25% Healing Bonus</color> to the user \r\n"
+    <color=#4d7ee1>-10% Magic Power</color>, <color=#e04419>-10% Accuracy</color>
+    and <color=#2ffa3d>-25% Healing Bonus</color> to the user \r\n"
   textSec: 
   wantSec: 0
 --- !u!95 &4874516270294335299

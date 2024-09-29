@@ -11,7 +11,7 @@ public class AI : ScriptableObject
     [SerializeField] private List<Effects> preferedEffects;
     [SerializeField] private List<string> preferedStats;
 
-    public int chooseMove(List<Moves> moves, Unit user, Unit target, Stats statsU, Stats statsT)
+    public int ChooseMove(List<Moves> moves, Unit user, Unit target, Stats statsU, Stats statsT)
     {
         AiType ai = this.aiType;
         List<float> chances = new List<float>();
@@ -104,10 +104,10 @@ public class AI : ScriptableObject
             
         }
 
-        return checkChances(chances);
+        return CheckChances(chances);
     }
 
-    int checkChances(List<float> chances)
+    int CheckChances(List<float> chances)
     {
         //get totalPoints
         float totalPoints = 0;

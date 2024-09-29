@@ -1035,6 +1035,7 @@ public class LanguageManager : MonoBehaviour
         public string quickfeet;
         public string watcher;
         public string tormentedsoul;
+        public string staticarrow;
 
         public string Get_Cont(string a)
         {
@@ -1266,6 +1267,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "tormentedsoul":
                     returns = tormentedsoul;
+                    break;
+                case "staticarrow":
+                    returns = staticarrow;
                     break;
                 default:
                     returns = "null";
@@ -1881,6 +1885,7 @@ public class LanguageManager : MonoBehaviour
         public string shadowshroom;
         public string prismaticstaff;
         public string lichsamulet;
+        public string staticarrow;
 
         public string Get_Moves(string a, string b)
         {
@@ -2298,6 +2303,9 @@ public class LanguageManager : MonoBehaviour
                 case "piercingblow":
                     returns = piercingblow;
                     break;
+                case "staticarrow":
+                    returns = staticarrow;
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -2365,6 +2373,7 @@ public class LanguageManager : MonoBehaviour
         public string cd;
         public string uses;
         public string title;
+        public string effect;
         public Item_Name name;
         public Item_Rarity rarity;
         public Item_Move move;
@@ -2407,6 +2416,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "purchase":
                     returns = purchase.Get_ItemBuy(b);
+                    break;
+                case "effect":
+                    returns = effect;
                     break;
                 default:
                     returns = "null";
@@ -2457,6 +2469,7 @@ public class LanguageManager : MonoBehaviour
         public string serratedblade;
         public string lichsamulet;
         public string roseguardplate;
+        public string staticarrow;
 
         public string Get_ItemName(string a)
         {
@@ -2577,6 +2590,9 @@ public class LanguageManager : MonoBehaviour
                 case "roseguardplate":
                     returns = roseguardplate;
                     break;
+                case "staticarrow":
+                    returns = staticarrow;
+                    break;
                 default:
                     returns = "null";
                     break;
@@ -2635,6 +2651,7 @@ public class LanguageManager : MonoBehaviour
         public string shadowshroom;
         public string prismaticstaff;
         public string lichsamulet;
+        public string staticarrow;
 
         public string Get_ItemMove(string a)
         {
@@ -2670,6 +2687,9 @@ public class LanguageManager : MonoBehaviour
                     break;
                 case "lichsamulet":
                     returns = lichsamulet;
+                    break;
+                case "staticarrow":
+                    returns = staticarrow;
                     break;
                 default:
                     returns = "null";
@@ -2814,5 +2834,29 @@ public class LanguageManager : MonoBehaviour
             }
         }
         return "null";
+    }
+
+    public static LanguageManager GetLanguageMan()
+    {
+        if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
+            return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().languageManager;
+        else if (GameObject.Find("GameManager").GetComponent<FightLang>())
+            return GameObject.Find("GameManager").GetComponent<FightLang>().languageManager;
+        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
+            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().languageManager;
+        else
+            return null;
+    }
+
+    public static string GetLanguage()
+    {
+        if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
+            return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().language;
+        else if (GameObject.Find("GameManager").GetComponent<FightLang>())
+            return GameObject.Find("GameManager").GetComponent<FightLang>().language;
+        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
+            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().language;
+        else
+            return null;
     }
 }

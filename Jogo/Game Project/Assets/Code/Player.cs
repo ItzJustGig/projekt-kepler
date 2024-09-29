@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
 using static LanguageManager;
+using static Utils;
 using static UnityEngine.UI.CanvasScaler;
 
 public class Player : MonoBehaviour
@@ -388,7 +389,7 @@ public class Player : MonoBehaviour
                     Stats statsU = user.SetModifiers();
                     Stats statsT = target.SetModifiers();
 
-                    random = user.charc.ai.chooseMove(user.moves, user, target, statsU, statsT);
+                    random = user.charc.ai.ChooseMove(user.moves, user, target, statsU, statsT);
                 }
             }
             else
@@ -396,7 +397,7 @@ public class Player : MonoBehaviour
                 Stats statsU = user.SetModifiers();
                 Stats statsT = target.SetModifiers();
 
-                random = user.charc.ai.chooseMove(user.moves, target, user, statsU, statsT);
+                random = user.charc.ai.ChooseMove(user.moves, target, user, statsU, statsT);
             }
 
             foreach (Moves a in user.moves)

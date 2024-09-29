@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,13 +21,13 @@ using UnityEngine;
 
 public class Ticker : MonoBehaviour
 {
-    public static float tickTime = 0.2f;
+    private static float tickTime = 0.1f;
     //public static float tickTime_075 = 0.75f;
 
     private float _tickTimer;
 
-    public delegate void TickAction();
-    public static event TickAction OnTickAction;
+    //public delegate void TickAction();
+    public static event Action OnTickAction;
 
     //public delegate void Tick075Action();
     //public static event Tick075Action OnTick075Action;

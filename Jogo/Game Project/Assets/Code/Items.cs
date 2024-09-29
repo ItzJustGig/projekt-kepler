@@ -31,30 +31,6 @@ public class Items : ScriptableObject
         return item;
     }
 
-    private string GetLanguage()
-    {
-        if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
-            return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().language;
-        else if (GameObject.Find("GameManager").GetComponent<FightLang>())
-            return GameObject.Find("GameManager").GetComponent<FightLang>().language;
-        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
-            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().language;
-        else
-            return null;
-    }
-
-    private LanguageManager GetLanguageMan()
-    {
-        if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
-            return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().languageManager;
-        else if (GameObject.Find("GameManager").GetComponent<FightLang>())
-            return GameObject.Find("GameManager").GetComponent<FightLang>().languageManager;
-        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
-            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().languageManager;
-        else
-            return null;
-    }
-
     private StringBuilder GetName(LanguageManager languageManager, string language, string whatIs, string whatIsIt, string whatIsComp)
     {
         StringBuilder builder = new StringBuilder();

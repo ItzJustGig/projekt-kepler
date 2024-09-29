@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static LanguageManager;
-using static UnityEditor.Progress;
 
 public class SelectManager : MonoBehaviour
 {
@@ -114,17 +113,7 @@ public class SelectManager : MonoBehaviour
         SetMoves(i);
     }
 
-    private void OnEnable()
-    {
-        Ticker.OnTickAction += Tick;
-    }
-
-    private void OnDisable()
-    {
-        Ticker.OnTickAction -= Tick;
-    }
-
-    private void Tick()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {

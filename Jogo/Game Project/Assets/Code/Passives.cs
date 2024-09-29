@@ -96,7 +96,7 @@ public class Passives : ScriptableObject
     {
         StringBuilder builder = new StringBuilder();
         builder.Append(languageManager.GetText(new ArgumentsFetch(language, "showdetail", detail, "")));
-        builder.Replace("%c%", "<color=#"+color+">");
+        builder.Replace("%c%", "<color="+color+">");
         builder.Replace("%c/%", "</color>");
         builder.Replace("%val%", dmg);
         builder.Replace("%ao%", languageManager.GetText(new ArgumentsFetch(language, "showdetail", "as_", "")));
@@ -124,30 +124,6 @@ public class Passives : ScriptableObject
         return builder;
     }
 
-    private string GetLanguage()
-    {
-        if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
-            return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().language;
-        else if (GameObject.Find("GameManager").GetComponent<FightLang>())
-            return GameObject.Find("GameManager").GetComponent<FightLang>().language;
-        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
-            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().language;
-        else
-            return null;
-    }
-
-    private LanguageManager GetLanguageMan()
-    {
-        if (GameObject.Find("GameManager").GetComponent<CharcSelectLang>())
-            return GameObject.Find("GameManager").GetComponent<CharcSelectLang>().languageManager;
-        else if (GameObject.Find("GameManager").GetComponent<FightLang>())
-            return GameObject.Find("GameManager").GetComponent<FightLang>().languageManager;
-        else if (GameObject.Find("GameManager").GetComponent<ShopLangManager>())
-            return GameObject.Find("GameManager").GetComponent<ShopLangManager>().languageManager;
-        else
-            return null;
-    }
-
     public string GetPassiveInfo()
     {
         LanguageManager languageManager = GetLanguageMan();
@@ -161,13 +137,13 @@ public class Passives : ScriptableObject
             switch (origin)
             {
                 case Origin.PASSIVE:
-                    desc.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(new ArgumentsFetch(language, "passive", "title", ""))).Append("</color></align></size>").AppendLine().AppendLine();
+                    desc.Append($"<size=19><align=center><color={GetColor("origin")}>").Append(languageManager.GetText(new ArgumentsFetch(language, "passive", "title", ""))).Append("</color></align></size>").AppendLine().AppendLine();
                     break;
                 case Origin.MOVE:
-                    desc.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(new ArgumentsFetch(language, "passive", "titlemove", ""))).Append("</color></align></size>").AppendLine().AppendLine();
+                    desc.Append($"<size=19><align=center><color={GetColor("origin")}>").Append(languageManager.GetText(new ArgumentsFetch(language, "passive", "titlemove", ""))).Append("</color></align></size>").AppendLine().AppendLine();
                     break;
                 case Origin.ITEM:
-                    desc.Append("<size=19><align=center><color=#B2B2B2>").Append(languageManager.GetText(new ArgumentsFetch(language, "items", "title", ""))).Append("</color></align></size>").AppendLine().AppendLine();
+                    desc.Append($"<size=19><align=center><color={GetColor("origin")}>").Append(languageManager.GetText(new ArgumentsFetch(language, "items", "title", ""))).Append("</color></align></size>").AppendLine().AppendLine();
                     break;
             }
         }
@@ -195,34 +171,34 @@ public class Passives : ScriptableObject
             switch (statScale.type)
             {
                 case DmgType.PHYSICAL:
-                    desc.Replace("%scale%", GetInfo(languageManager, language, "physicdmg", statScale.GetStatScaleInfo().ToString(), "ffaa00").ToString());
+                    desc.Replace("%scale%", GetInfo(languageManager, language, "physicdmg", statScale.GetStatScaleInfo().ToString(), GetColor("attack")).ToString());
                     break;
                 case DmgType.MAGICAL:
-                    desc.Replace("%scale%", GetInfo(languageManager, language, "magicdmg", statScale.GetStatScaleInfo().ToString(), "1a66ff").ToString()); 
+                    desc.Replace("%scale%", GetInfo(languageManager, language, "magicdmg", statScale.GetStatScaleInfo().ToString(), GetColor("magic")).ToString()); 
                     break;
                 case DmgType.TRUE:
-                    desc.Replace("%scale%", GetInfo(languageManager, language, "truedmg", statScale.GetStatScaleInfo().ToString(), "a6a6a6").ToString());
+                    desc.Replace("%scale%", GetInfo(languageManager, language, "truedmg", statScale.GetStatScaleInfo().ToString(), GetColor("true")).ToString());
                     break;
                 case DmgType.SANITY:
-                    desc.Replace("%scale%", GetInfo(languageManager, language, "sanitydmg", statScale.GetStatScaleInfo().ToString(), "b829ff").ToString());
+                    desc.Replace("%scale%", GetInfo(languageManager, language, "sanitydmg", statScale.GetStatScaleInfo().ToString(), GetColor("sanity")).ToString());
                     break;
                 case DmgType.SHIELD:
-                    desc.Replace("%scale%", GetInfo(languageManager, language, "shielddmg", statScale.GetStatScaleInfo().ToString(), "787878").ToString());
+                    desc.Replace("%scale%", GetInfo(languageManager, language, "shielddmg", statScale.GetStatScaleInfo().ToString(), GetColor("shield")).ToString());
                     break;
                 case DmgType.HEAL:
-                    desc.Replace("%scale%", GetInfo(languageManager, language, "healdmg", statScale.GetStatScaleInfo().ToString(), "00ff11").ToString());
+                    desc.Replace("%scale%", GetInfo(languageManager, language, "healdmg", statScale.GetStatScaleInfo().ToString(), GetColor("health")).ToString());
                     break;
                 case DmgType.HEALMANA:
-                    desc.Replace("%scale%", GetInfo(languageManager, language, "healmanadmg", statScale.GetStatScaleInfo().ToString(), "1e68fc").ToString());
+                    desc.Replace("%scale%", GetInfo(languageManager, language, "healmanadmg", statScale.GetStatScaleInfo().ToString(), GetColor("healmana")).ToString());
                     break;
                 case DmgType.HEALSTAMINA:
-                    desc.Replace("%scale%", GetInfo(languageManager, language, "healstaminadmg", statScale.GetStatScaleInfo().ToString(), "f0dd0a").ToString());
+                    desc.Replace("%scale%", GetInfo(languageManager, language, "healstaminadmg", statScale.GetStatScaleInfo().ToString(), GetColor("healstamina")).ToString());
                     break;
                 case DmgType.HEALSANITY:
-                    desc.Replace("%scale%", GetInfo(languageManager, language, "healsanitydmg", statScale.GetStatScaleInfo().ToString(), "b641f0").ToString());
+                    desc.Replace("%scale%", GetInfo(languageManager, language, "healsanitydmg", statScale.GetStatScaleInfo().ToString(), GetColor("healsanity")).ToString());
                     break;
                 case DmgType.ULTENEGY:
-                    desc.Replace("%scale%", GetInfo(languageManager, language, "ultenergydmg", statScale.GetStatScaleInfo().ToString(), "d0d0d0").ToString());
+                    desc.Replace("%scale%", GetInfo(languageManager, language, "ultenergydmg", statScale.GetStatScaleInfo().ToString(), GetColor("ult")).ToString());
                     break;
             }
         }
@@ -232,34 +208,34 @@ public class Passives : ScriptableObject
             switch (statScale2.type)
             {
                 case DmgType.PHYSICAL:
-                    desc.Replace("%scale2%", GetInfo(languageManager, language, "physicdmg", statScale2.GetStatScaleInfo().ToString(), "ffaa00").ToString());
+                    desc.Replace("%scale2%", GetInfo(languageManager, language, "physicdmg", statScale2.GetStatScaleInfo().ToString(), GetColor("attack")).ToString());
                     break;
                 case DmgType.MAGICAL:
-                    desc.Replace("%scale2%", GetInfo(languageManager, language, "magicdmg", statScale2.GetStatScaleInfo().ToString(), "1a66ff").ToString());
+                    desc.Replace("%scale2%", GetInfo(languageManager, language, "magicdmg", statScale2.GetStatScaleInfo().ToString(), GetColor("magic")).ToString());
                     break;
                 case DmgType.TRUE:
-                    desc.Replace("%scale2%", GetInfo(languageManager, language, "truedmg", statScale2.GetStatScaleInfo().ToString(), "a6a6a6").ToString());
+                    desc.Replace("%scale2%", GetInfo(languageManager, language, "truedmg", statScale2.GetStatScaleInfo().ToString(), GetColor("true")).ToString());
                     break;
                 case DmgType.SANITY:
-                    desc.Replace("%scale2%", GetInfo(languageManager, language, "sanitydmg", statScale2.GetStatScaleInfo().ToString(), "b829ff").ToString());
+                    desc.Replace("%scale2%", GetInfo(languageManager, language, "sanitydmg", statScale2.GetStatScaleInfo().ToString(), GetColor("sanity")).ToString());
                     break;
                 case DmgType.SHIELD:
-                    desc.Replace("%scale2%", GetInfo(languageManager, language, "shielddmg", statScale2.GetStatScaleInfo().ToString(), "787878").ToString());
+                    desc.Replace("%scale2%", GetInfo(languageManager, language, "shielddmg", statScale2.GetStatScaleInfo().ToString(), GetColor("shield")).ToString());
                     break;
                 case DmgType.HEAL:
-                    desc.Replace("%scale2%", GetInfo(languageManager, language, "healdmg", statScale2.GetStatScaleInfo().ToString(), "00ff11").ToString());
+                    desc.Replace("%scale2%", GetInfo(languageManager, language, "healdmg", statScale2.GetStatScaleInfo().ToString(), GetColor("healthregen")).ToString());
                     break;
                 case DmgType.HEALMANA:
-                    desc.Replace("%scale2%", GetInfo(languageManager, language, "healmanadmg", statScale2.GetStatScaleInfo().ToString(), "1e68fc").ToString());
+                    desc.Replace("%scale2%", GetInfo(languageManager, language, "healmanadmg", statScale2.GetStatScaleInfo().ToString(), GetColor("healmana")).ToString());
                     break;
                 case DmgType.HEALSTAMINA:
-                    desc.Replace("%scale2%", GetInfo(languageManager, language, "healstaminadmg", statScale2.GetStatScaleInfo().ToString(), "f0dd0a").ToString());
+                    desc.Replace("%scale2%", GetInfo(languageManager, language, "healstaminadmg", statScale2.GetStatScaleInfo().ToString(), GetColor("healstamina")).ToString());
                     break;
                 case DmgType.HEALSANITY:
-                    desc.Replace("%scale2%", GetInfo(languageManager, language, "healsanitydmg", statScale2.GetStatScaleInfo().ToString(), "b641f0").ToString());
+                    desc.Replace("%scale2%", GetInfo(languageManager, language, "healsanitydmg", statScale2.GetStatScaleInfo().ToString(), GetColor("healsanity")).ToString());
                     break;
                 case DmgType.ULTENEGY:
-                    desc.Replace("%scale2%", GetInfo(languageManager, language, "ultenergydmg", statScale2.GetStatScaleInfo().ToString(), "d0d0d0").ToString());
+                    desc.Replace("%scale2%", GetInfo(languageManager, language, "ultenergydmg", statScale2.GetStatScaleInfo().ToString(), GetColor("ult")).ToString());
                     break;
             }
         }

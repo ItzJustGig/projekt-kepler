@@ -12,24 +12,23 @@ using static UnityEngine.UI.CanvasScaler;
 using static Utils;
 using System.Text.RegularExpressions;
 
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, CHANGETURN, ALLYKILLED, ENEMYKILLED, WIN, LOSE, TIE }
-
-struct TurnEndInfo
-{
-    public Unit unit;
-    public Player user;
-    public Player enemy;
-
-    public TurnEndInfo(Unit unit, Player user, Player enemy)
-    {
-        this.unit = unit;
-        this.user = user;
-        this.enemy = enemy;
-    }
-}
-
 public class BattleSystem : MonoBehaviour
 {
+
+    struct TurnEndInfo
+    {
+        public Unit unit;
+        public Player user;
+        public Player enemy;
+
+        public TurnEndInfo(Unit unit, Player user, Player enemy)
+        {
+            this.unit = unit;
+            this.user = user;
+            this.enemy = enemy;
+        }
+    }
+
     public Player player;
     public Player enemy;
 
@@ -154,21 +153,12 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(SetupBattle());
     }
 
-    private void OnEnable()
-    {
-        Ticker.OnTickAction += Tick;
-    } 
-    
-    private void OnDisable()
-    {
-        Ticker.OnTickAction -= Tick;
-    }
-
-    private void Tick()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            this.gameObject.GetComponent<SoundSystem>().FFMenu();
+            gameObject.GetComponent<SoundSystem>().FFMenu();
+            Debug.Log("TICK");
         }
 
         if (Input.GetKeyDown(KeyCode.S) && !(state == BattleState.WIN || state == BattleState.LOSE))
@@ -1975,6 +1965,29 @@ public class BattleSystem : MonoBehaviour
 
                                     dmgTarget.AddDmg(scale.SetScaleDmg(stats, unit));
                                     user.PassivePopup(langmanag.GetInfo(new ArgumentsFetch("passive", "name", a.name)));
+                                }
+                                break;
+                            case "staticarrow":
+                                if (move.type is Moves.MoveType.RANGED)
+                                {
+                                    StatScale scale = a.ifConditionTrueScale();
+
+                                    Unit unit;
+                                    Stats stats;
+                                    if (scale.playerStat)
+                                    {
+                                        unit = user;
+                                        stats = statsUser;
+                                    }
+                                    else
+                                    {
+                                        unit = target;
+                                        stats = statsTarget;
+                                    }
+
+                                    DMG temp = scale.SetScaleDmg(stats, unit);
+
+                                    dmgTarget.AddDmg(temp);
                                 }
                                 break;
                         }

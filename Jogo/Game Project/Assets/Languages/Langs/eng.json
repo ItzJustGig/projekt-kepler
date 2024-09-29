@@ -407,7 +407,8 @@
 			"enchantedshades": "Enchanted Shades",
 			"quickfeet": "Quick Feet",
 			"watcher": "Watcher",
-			"tormentedsoul": "Tormented Soul"
+			"tormentedsoul": "Tormented Soul",
+			"staticarrow": "Static Arrow"
 		},
 		"desc": {
 			"bloodbath": "If an enemy is with Blood, the user will gain%mod%and deal bonus %scale% on attacks.",
@@ -471,7 +472,7 @@
 			"bootsoftherunner": "The user gain%mod%every %cd% turns (stack up to %maxStacks% times)",
 			"holdingtheline": "When the user uses a <color=#787878>defencive</color>, <color=#CC66FF>enchantment</color> or <color=#ffaa00>basic attacks</color>, grant %scale% to the whole team. <color=#ffaa00>Physical</color>, <color=#1a66ff>magic</color> or <color=#f75145>ranged</color> moves grant %scale2% to the whole team.",
 			"druid": "The user's healing is increased by +(%num%% of the user's magic power)%, when an ally is affected by Blood, Allergy, Poison or Cripple, the user heal bonus %scale2% to that target.",
-			"elficmagic": "Every %maxStacks% magic or ranged moves the next will crit and deal bonus %scale%. (crit applies on magic damage aswell)",
+			"elficmagic": "Every %maxStacks% <color=#1a66ff>magic</color> or <color=#f75145>ranged moves</color> the next will <color=#f75145>crit</color> and deal bonus %scale%. (<color=#f75145>crit</color> applies on <color=#1a66ff>magic damage</color> aswell)",
 			"shadowdagger2": "After using a <color=#ffaa00>physical move</color> the user gain%mod% (%cd% turns cooldown)",
 			"subzero": "While the user is below %num%% health, the user grant whole team%mod%and the enemy team have reduced%mod2%while in subzero.",
 			"serratedblade": "The user gain %mod%, when an enemy is Bleeding and enemies Bleeding have%mod2%\nAddicionally, the user's Bleeding effects have +%num%% chance to apply",
@@ -484,7 +485,8 @@
 			"enchantedshades": "The user deal bonus %scale% on targets with at least <color=#00ff11>%num%% more maximum health</color> than the user, or on targets with less than <color=#00ff11>%maxNum%% health</color>, with <color=#ffaa00>basic</color> and <color=#ffaa00>physical attacks</color>. Additionally, the user deals bonus %scale2% on <color=#f75145>critical hits</color> with <color=#ffaa00>basic</color> and <color=#ffaa00>physical attacks</color>. Last %cd% turns.",
 			"quickfeet": "The user gain%mod%on the next <color=#ffaa00>physical</color> or <color=#ffaa00>basic attack</color> and recover %scale% (%cd% turns cooldown)",
 			"watcher": "When the user is inflicted with any effect, buff, debuff or takes <color=#ffaa00>physical</color>, <color=#1a66ff>magic</color>, <color=#a6a6a6>true</color> or <color=#b641f0>sanity</color> damage takes %scale% instead. The basic attack is changed to Observe. The user's attacks cannot be blocked.",
-			"tormentedsoul": "The user deal bonus %scale% on <color=#1a66ff>magic moves</color>. Gain%mod%when any enemy is below <color=#b641f0>%num%% sanity</color>"
+			"tormentedsoul": "The user deal bonus %scale% on <color=#1a66ff>magic moves</color>. Gain%mod%when any enemy is below <color=#b641f0>%num%% sanity</color>",
+			"staticarrow": "The user recover %scale% when using <color=#f75145>ranged attacks</color>"
 		}
 	},
 	"moves": {
@@ -633,7 +635,8 @@
 		"observe": "Observe",
         "erase": "Erase",
 		"coolingsystem": "Cooling System",
-		"piercingblow": "Piercing Blow"
+		"piercingblow": "Piercing Blow",
+		"staticarrow":"Static Arrow"
 	},
 	"items": {
 		"title": "Item",
@@ -643,6 +646,7 @@
 		"cd": "%val% turns cooldown",
 		"uses": "%val% times, ",
 		"stat":"%c%+%val%% %stat%%c/%",
+		"effect":"%chance%% chance to %c%%eff%%c/% for %dur%",
 		"rarity":{
 			"common": "Common",
 			"uncommon": "Uncommon",
@@ -688,7 +692,8 @@
             "aprenticetome": "Aprentice's Tome",
             "serratedblade": "Serrated Blade",
             "lichsamulet": "Lich's Amulet",
-            "roseguardplate": "Roseguard Plate"
+            "roseguardplate": "Roseguard Plate",
+			"staticarrow": "Static Arrow"
 		},
 		"move": {
 			"zap": "The carrier will <color=#ffdf00>zap</color> the target with a %type% to %dmg% and reduce%mode%",
@@ -700,7 +705,8 @@
 			"jewelofthedruid": "The carrier uses a %type% that %summondesc%",
 			"shadowshroom": "The carrier uses an %type% that %dmg%and grants %modu%",
 			"prismaticstaff": "The carrier use a %type% that %dmg%and have <color=#f75145>%critdmg%% critical damage bonus</color>",
-            "lichsamulet": "The carrier uses a %type% that %dmg%and have %mode%"
+            "lichsamulet": "The carrier uses a %type% that %dmg%and have %mode%",
+            "staticarrow": "The carrier uses a %type% that %dmg%and Paralize"
 		},
 		"purchase":{
 			"xpflask": "The user gain +1 level",

@@ -422,7 +422,8 @@
             "enchantedshades": "Sombras Encantadas",
             "quickfeet": "P\u00E9s \u00c1geis",
             "watcher": "Observador",
-            "tormentedsoul": "Alma Atormentada"
+            "tormentedsoul": "Alma Atormentada",
+            "staticarrow": "Flecha Est\u00e1tica"
         },
         "desc": {
             "bloodbath": "Se um inimigo estiver a Sangrar, o utilizador vai ganhar%mod%e vai causar %scale% b\u00F3nus nos ataques.",
@@ -486,7 +487,7 @@
 			"bootsoftherunner": "O utilizador ganha%mod%a cada %cd% turnos (empilha at\u00e9 %maxStacks% vezes)",
             "holdingtheline": "Quando o utilizador usa uma t\u00e9cnica <color=#787878>defenciva</color>, <color=#CC66FF>encantamento</color> ou <color=#ffaa00>b\u00e1sicos</color>, d\u00e1 %scale% \u00e0 equipa. T\u00e9cnicas <color=#ffaa00>f\u00edsicos</color>, <color=#1a66ff>m\u00e1gicos</color> ou <color=#f75145>de alcance</color> d\u00e3o %scale2% \u00e0 equipa.",
 			"druid": "O a cura b\u00f3nus do utilizador \u00e9 aumentada em +(%num%% do poder m\u00e1gico do utilizador)%, quando um aliado est\u00e1 afetado por Sangramento, Alergia, Envenenamento ou Aleijado, o utilizador cura %scale2% b\u00f3nus nesse alvo.",
-			"elficmagic": "A cada %maxStacks% t\u00e9cnicas de alcance ou m\u00e1gicas a pr\u00f3xima vai ser cr\u00edtica e causa %scale% b\u00f3nus. (dano magic causa dano critico tamb\u00e9m)",
+			"elficmagic": "A cada %maxStacks% <color=#f75145>t\u00e9cnicas de alcance</color> ou <color=#1a66ff>m\u00e1gicas</color> a pr\u00f3xima vai ser <color=#f75145>cr\u00edtica</color> e causa %scale% b\u00f3nus. (<color=#1a66ff>dano m\u00e1gico</color> causa dano <color=#f75145>critico</color> tamb\u00e9m)",
             "shadowdagger2": "Depois de utilizar um ataque <color=#ffaa00>f\u00EDsico</color> o utilizador ganha%mod% (%cd% turnos de recarga)",
 			"subzero": "Enquanto o utilizador est\u00e1 abaixo de %num%% vida, o utilizador d\u00e1 \u00e0 sua equipa%mod%e a equipa inimiga perde%mod2%.",
             "serratedblade": "O utilizador ganha %mod%quando um inimigo est\u00e1 a Sangrar, inimigos a Sangrar t\u00eam %mod2%\nAdcionalmente, efeitos de Sangramento do utilizador t\u00eam +%num%% chance de aplicar",
@@ -499,7 +500,8 @@
             "enchantedshades": "O utilizador causa %scale% b\u00f3nus a alvos com pelo menos <color=#00ff11>%num%% mais vida m\u00e1xima</color> do que o utilizador, ou a alvos com menos de <color=#00ff11>%maxNum%% de vida</color> em <color=#ffaa00>ataques b\u00e1sicos</color> ou <color=#ffaa00>f\u00edsicos</color>. Adicionalmente, o utilizador causa %scale2% b\u00f3nus em <color=#f75145>golpes cr\u00edticos</color> com <color=#ffaa00>ataques b\u00e1sicos</color> ou <color=#ffaa00>f\u00edsicos</color>. Dura %cd% turnos.",
             "quickfeet": "O utilizador ganha%mod%no pr\u00f3ximo ataque <color=#ffaa00>f\u00edsico</color> ou <color=#ffaa00>b\u00e1sico</color> e recupera %scale% (%cd% turnos de recarga)",
             "watcher": "Quando o utilizador \u00e9 afetado por qualquer efeito, buff, debuff ou recebe dano <color=#ffaa00>f\u00edsico</color>, <color=#1a66ff>m\u00e1gico</color>, <color=#a6a6a6>verdadeiro</color> ou de <color=#b641f0>sanidade</color>, sofre %scale% em vez disso. O ataque b\u00e1sico \u00e9 alterado para Observar. Os ataques do utilizador n\u00e3o podem ser bloqueados.",
-            "tormentedsoul": "O utilizador causa um b\u00f3nus de %scale% em <color=#1a66ff>ataques m\u00e1gicos</color>. Ganha%mod%quando qualquer inimigo est\u00e1 abaixo de <color=#b641f0>%num%% sanidade</color>"
+            "tormentedsoul": "O utilizador causa um b\u00f3nus de %scale% em <color=#1a66ff>ataques m\u00e1gicos</color>. Ganha%mod%quando qualquer inimigo est\u00e1 abaixo de <color=#b641f0>%num%% sanidade</color>",
+            "staticarrow": "O utilizador recupera %scale% ao usar <color=#f75145>ataques de alcance</color>"
         }
     },
     "moves": {
@@ -648,7 +650,8 @@
         "observe": "Observar",
         "erase": "Apagar",
         "coolingsystem": "Sistema de Arrefecimento",
-        "piercingblow": "Golpe Penetrante"
+        "piercingblow": "Golpe Penetrante",
+        "staticarrow": "Flecha Est\u00e1tica"
     },
     "items": {
         "title": "Iten",
@@ -658,6 +661,7 @@
 		"cd": "%val% turnos de recarga",
 		"uses": "%val% vezes, ",
 		"stat":"%c%+%val%% %stat%%c/%",
+		"effect":"%chance%% chance to %c%%eff%%c/% for %dur%",
 		"rarity":{
 			"common": "Comum",
 			"uncommon": "Incomum",
@@ -703,7 +707,8 @@
             "aprenticetome": "Tomo do Aprendiz",
             "serratedblade": "L\u00e2mina de Serra",
             "lichsamulet": "Medalh\u00e3o do Lich",
-            "roseguardplate": "Placa de Guarda-rosas"
+            "roseguardplate": "Placa de Guarda-rosas",
+            "staticarrow":"Flecha Est\u00e1tica"
         },
 		"move": {
 			"zap": "O transportador d\u00e1 <color=#ffdf00>zap</color> no alvo com uma %type% que %dmg% e reduz%mode%",
@@ -715,7 +720,8 @@
 			"jewelofthedruid": "O transportador usa uma %type% que %summondesc%",
 			"shadowshroom": "O transportador usa um %type% que %dmg%e aumenta %modu%",
 			"prismaticstaff": "O transportador usa uma %type% que %dmg%e tem <color=#f75145>%critdmg%% dano cr\u00edtico b\u00f3nus</color>",
-            "lichsamulet": "O transportador usa uma %type% que %dmg%e tem %mode%"
+            "lichsamulet": "O transportador usa uma %type% que %dmg%e tem %mode%",
+            "staticarrow": "O transportador usa uma %type% que %dmg%e Paraliza"
 		},
         "purchase": {
             "xpflask": "O utilizador ganha +1 n\u00edvel",
