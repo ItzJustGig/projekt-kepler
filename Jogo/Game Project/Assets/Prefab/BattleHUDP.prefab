@@ -1197,7 +1197,7 @@ MonoBehaviour:
   fillStamina: {fileID: 8386040787287237260}
   gradientStamina:
     serializedVersion: 2
-    key0: {r: 0.86666673, g: 0.5137255, b: 0, a: 1}
+    key0: {r: 0.9056604, g: 0.60226625, b: 0.2776789, a: 1}
     key1: {r: 0.69803923, g: 0.69411767, b: 0, a: 1}
     key2: {r: 0.69803923, g: 0.69411767, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}

@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using System.Text.RegularExpressions;
-using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using static LanguageManager;
 using static Utils;

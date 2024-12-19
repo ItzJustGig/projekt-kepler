@@ -412,10 +412,10 @@ MonoBehaviour:
     <size=15><align=center>Single
     Target | Enemy</align></size>
 
-    <color=#568dfb>Mana Cost</color>: 45
+    <color=#568dfb>Mana Cost</color>: 60
 
     <color=#f0dd0a>Stamina
-    Cost</color>: 18,75
+    Cost</color>: 25
 
     Cooldown: 5
 
@@ -433,10 +433,10 @@ MonoBehaviour:
     <s><align=center>|                
     |</align></s>
 
-    Deal <color=#ffaa00>57,4 physical damage</color>
+    Deal <color=#ffaa00>79,3 physical damage</color>
 
     Deal
-    <color=#4d7ee1>29,4 magical damage</color>
+    <color=#4d7ee1>38,8 magical damage</color>
 
 '
   textSec: '<size=24><align=center>Gale Burst</align></size>
@@ -446,10 +446,10 @@ MonoBehaviour:
     <size=15><align=center>Single
     Target | Enemy</align></size>
 
-    <color=#568dfb>Mana Cost</color>: 45
+    <color=#568dfb>Mana Cost</color>: 60
 
     <color=#f0dd0a>Stamina
-    Cost</color>: 18,75
+    Cost</color>: 25
 
     Cooldown: 5
 
